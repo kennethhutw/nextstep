@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="portfolio-menu-active mb-50 text-center portfolio-menu-style">
+    <button class="active" data-filter="*">All</button>
+    <button data-filter=".cat1">Creative</button>
+    <button data-filter=".cat2">Branding</button>
+    <button data-filter=".cat3">Wordpress</button>
+    <button data-filter=".cat4">Photography</button>
+  </div>
+
+  <div class="portfolio-style">
+    <div class="row grid">
+      <ng-masonry-grid *ngIf="showMasonry" [masonryOptions]="{
+          transitionDuration: '0.4s',
+          gutter: 10,
+          horizontalOrder: true
+        }" [useAnimation]="true" [useImagesLoaded]="true" (onNgMasonryInit)="onNgMasonryInit($event)"
+        [scrollAnimationOptions]="animOptions">
+        <ng-masonry-grid-item id="{{ 'masonry-item-' + i }}" *ngFor="let item of masonryItems; let i = index"
+          class="col-md-4 col-sm-6 col-xs-12 grid-item cat2 cat3">
+          <div class="single-portfolio portfolio-hover mb-30">
+            <div class="portfolio-img-text">
+              <div class="portfolio-img">
+                <a href="#">
+                  <img mat-card-image [src]="item.src" alt="Photo of a Shiba Inu" />
+                </a>
+              </div>
+              <div class="portfolio-title">
+                <h3><a href="single-portfolio-1.html">New York</a></h3>
+                <a class="img-poppu" href="assets/img/portfolio/1.jpg">
+                  <i class="fa fa-search"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="row" style="padding: 15px;">
+              <div class="pull-left">Float</div>
+              <div class="pull-right">
+                <label>Item Number: {{ item.count + 1 }}</label>
+              </div>
+            </div>
+
+            <div>
+              <button mat-raised-button (click)="removeItem('masonry-item-' + i)">
+                Remove
+              </button>
+            </div>
+          </div>
+        </ng-masonry-grid-item>
+      </ng-masonry-grid>
+    </div>
+
+    <div class="load-more text-center pt-50 pb-50">
+      <a><i class="fa fa-refresh"></i> Load More</a>
+    </div>
+  </div>
+</div>

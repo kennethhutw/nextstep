@@ -1,0 +1,87 @@
+<form class="profile-editor" [formGroup]="profileForm">
+  <div class="form-group">
+    <label for="InputUserName">UserName</label>
+    <input type="text" class="form-control" id="InputUserName" placeholder="User Name" formControlName="userName">
+    <small id="userNameHelp" class="form-text text-muted">Profile URL</small>
+  </div>
+  <div class="form-group">
+    <label for="InputEmail1">Email address</label>
+    <input type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp" placeholder="Enter email"
+      formControlName="email">
+    <small id="emailHelp" class="form-text text-muted">We will only contact you about your own activities</small>
+  </div>
+
+  <div class="form-check">
+    <label class="form-label" for="InputNotification">Email notifications</label>
+    <input type="checkbox" class="switch_1" id="InputNotification" formControlName="notifications">
+    <label class="form-check-label" for="InputNotification">Notifications enabled</label>
+  </div>
+
+  <div class="form-group">
+    <label for="bio">Bio:</label>
+    <textarea class="form-control" rows="5" id="bio"></textarea>
+    <small id="bioHelp" class="form-text text-muted">Tell us a bit about yourself</small>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4"><span>NOT SET</span></div>
+    <div class="col-md-8">
+      <div class="input-group">
+        <label class="form-label" for="InputProfileImage">Profile Image</label>
+
+        <div class="fileinput fileinput-new input-group " data-provides="fileinput">
+          <div class="form-control" data-trigger="fileinput">
+            <i class="glyphicon glyphicon-file fileinput-exists"></i>
+            <span class="fileinput-filename"></span>
+          </div>
+          <button class="input-group-addon btn btn-default btn-file">
+            <span class="fileinput-new">Browse</span>
+            <span class="fileinput-exists">Change</span>
+            <input id="fileupload1" type="file">
+          </button>
+          <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+        </div>
+
+
+        <small id="profileimageHelp" class="form-text text-muted">Max 500KB - image will be cropped and rounded to 75px
+          *
+          75px</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-md-4">
+      <div class="input-group">
+        <label for="InputWebsite">Website</label>
+        <input type="text" class="form-control" aria-describedby="basic-addon1" formControlName="website">
+      </div>
+    </div>
+    <div class="form-group col-md-4">
+      <div class="input-group">
+        <label class="form-label" for="InputTwitter">Twitter</label>
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">@</span>
+        </div>
+        <input type="text" class="form-control" aria-describedby="basic-addon1" formControlName="twitter">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="input-group">
+        <label for="InputInstagram">Instagram</label>
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">@</span>
+        </div>
+        <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1"
+          formControlName="instagram" minlength="4" maxlength="30">
+      </div>
+    </div>
+  </div>
+  <div class="input-group mb-5">
+    <label for="InputLocation">Location</label>
+    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+
+</form>

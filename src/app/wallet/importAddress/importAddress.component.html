@@ -1,0 +1,51 @@
+<div class="container">
+  <br /><br /><br /><br /><br />
+  <div align="center">
+    <h1 class="text" style="margin-bottom: 30px;">IMPORT ADDRESS</h1>
+    <form class="privateKey-form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="Private Key"
+          id="privateKey"
+          formControlName="privateKey"
+          class="input form-control"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="Address"
+          id="address"
+          formControlName="address"
+          class="input form-control"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="Note"
+          id="note"
+          formControlName="note"
+          class="input form-control"
+        />
+      </div>
+      <div class="form-group" style="margin-left: 60px;">
+        <button
+          style="background-color: #4d607e; color: #ffffff;"
+          [disabled]="loading"
+          class="login btn"
+        >
+          Save
+        </button>
+        <button
+          style="background-color: #4d607e; color: #ffffff;"
+          [disabled]="loading"
+          class="login btn"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="split left">
+  <img class="logo" src="../../assets/EAT_logo.png" />
+  <div class="centered">
+    <img src="../../assets/registerimg.png" />
+    <p style="margin-top: 20px;">
+      We build the ecosystem you need for your startup success.
+    </p>
+  </div>
+</div>
+
+<div class="split right">
+  <div class="centered">
+    <h1 class="text" style="margin-bottom: 30px;">LOG IN</h1>
+    <!-- <p class="text">or</p> -->
+    <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="Email"
+          id="inputEmail"
+          formControlName="email"
+          class="input form-control"
+          [ngClass]="{ 'is-invalid': submitted }"
+        />
+        <!-- <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+          <div *ngIf="f.email.errors.required">Email is required</div>
+        </div> -->
+      </div>
+      <div class="form-group">
+        <input
+          type="password"
+          placeholder="Password"
+          id="inputPassword"
+          formControlName="password"
+          class="input form-control"
+          [ngClass]="{ 'is-invalid': submitted }"
+        />
+        <!-- <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+          <div *ngIf="f.password.errors.required">Password is required</div>
+          <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+        </div> -->
+      </div>
+      <p *ngIf="InvalidUser" class="invalid">
+        Username or password is incorrect!
+      </p>
+      <p *ngIf="unverifiedUser" class="invalid">
+        Please check your inbox to verify your e-mail address.
+      </p>
+      <div class="form-group">
+        <input
+          type="submit"
+          style="background-color: #4d607e; color: #ffffff;"
+          [disabled]="loading"
+          class="login btn"
+          value="Login"
+        />
+        <img
+          *ngIf="loading"
+          style="width: 20px; height: 20px; position: absolute; margin: 3% 3%;"
+          src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+        />
+      </div>
+      <!-- <a [routerLink]="['/resetPassword']" class="text btn btn-link">Forgot your password?</a>
+      <a [routerLink]="['/register']" class="text btn btn-link">New user?</a> -->
+    </form>
+  </div>
+</div>

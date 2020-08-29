@@ -1,0 +1,14 @@
+<p>
+  example works!
+</p>
+<owl-carousel
+  [options]="SlideOptions"
+  [items]="images"
+  [carouselClasses]="['owl-theme', 'sliding']"
+>
+  <div class="item" *ngFor="let img of Images">
+    <div style="align-content: center;">
+      <img style="height: 260px; width: 100%;" src="{{ img }}" />
+    </div>
+  </div>
+</owl-carousel>

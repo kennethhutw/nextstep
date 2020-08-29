@@ -1,0 +1,338 @@
+<div class="donation">
+  <div class="row">
+    <div class="col-md-12">
+      <button
+        style="float: right;"
+        type="button"
+        (click)="getAccount()"
+        class="btn btn-info"
+      >
+        <span>Connect</span>
+      </button>
+    </div>
+  </div>
+  <div class="donation-form">
+    <div class="donation-image">
+      <img
+        src="https://image.ibb.co/kUagtU/rocket_contact.png"
+        alt="rocket_contact"
+      />
+    </div>
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <h5>Support my projects</h5>
+        <p>
+          I am aiming to build a mobile wallet application for developer! Why?
+          This is because all Dapps will need a mobile wallet for testing and
+          training course also need it too. However, most mobile wallets don't
+          support testnet and special functions.So I set up this wallet, but in
+          order to continue this project, I need funds to pay. I thank you for
+          your donation and support!
+        </p>
+        <p>
+          我旨在為開發人員構建一個移動錢包應用程序！為什麼？這是因為所有Dapps都需要一個手機錢包來進行測試，而培訓課程也需要它。
+          但是，大多數移動錢包不支持測試網和一些功能。
+          因此我建立此錢包，但是為了繼續這個專案,需要資金來支付。我感謝您的捐款與支持！
+        </p>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <select
+          #mySelect
+          name="CryptoSelector"
+          id="CryptoSelector"
+          class="form-control mb-2"
+          (change)="CryptoSelector_change(mySelect.value)"
+        >
+          <option value="btc">Bitcoin</option>
+          <option value="ether">Ether</option>
+          <option value="usdc">USDC</option>
+          <option value="usdt">USDT</option>
+        </select>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <qrcode
+          style="display: block; margin-left: auto; margin-right: auto;"
+          [level]="4"
+          [size]="300"
+          [qrvalue]="qrcodevalue"
+        ></qrcode>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+    <div class="row" [style.display]="this.tokenvalue > 0 ? 'block' : 'none'">
+      <div class="col-md-12" style="text-align: center;">
+        <span id="" class="col-md-12" style=""
+          >{{ tokenvalue }} {{ tokenunit }}</span
+        >
+        <span id=""> ≈ US$ </span><span id="">{{ usdvalue }}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <div style="display: inline-block; padding-right: 30px;">
+          <img
+            src="../../../../assets/icon/copy.png"
+            alt=""
+            width="50"
+            height="50"
+          />
+          <p>Copy</p>
+        </div>
+        <div
+          style="display: inline-block; padding-left: 30px;"
+          data-toggle="modal"
+          data-target="#myModaledit"
+        >
+          <img
+            src="../../../../assets/icon/price.png"
+            alt=""
+            width="50"
+            height="50"
+          />
+          <p>Set Amount</p>
+        </div>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">--------------- OR ---------------</div>
+    </div>
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6" style="float: left;">
+        <!--     <div class="qty mt-5">
+          <button type="button" (click)="minus()" class="minus bg-dark">
+            -
+          </button>
+          <input type="number" class="count" name="qty" value="{{ qty }}" />
+          <button type="button" (click)="plus()" class="plus bg-dark">+</button>
+        </div> -->
+        <img
+          src="../../../../assets/bubble-tea_x2.png"
+          alt=""
+          width="60"
+          height="70"
+        />
+        <!--      <div class="coffee-alt-emoji" style="display: inline-block;">☕</div> -->
+        <span
+          class=""
+          style="
+            display: inline-block;
+            font-size: 40px;
+            margin-left: 10px;
+            text-align: center;
+          "
+          >x</span
+        >
+        <input
+          name="coffees"
+          id="coffee-input-count"
+          [(ngModel)]="bubbleAmount"
+          (change)="AmountChanged()"
+          type="number"
+          style="
+            display: inline-block;
+            width: 50px;
+            font-size: 30px;
+            margin-left: 10px;
+            text-align: center;
+          "
+        />
+        <div style="display: inline-block;">
+          <div class="actions">
+            <button
+              (click)="buybubbletea(1)"
+              class="btn"
+              [ngClass]="{
+                active: bubbleAmount === 1,
+                'btn-primary': bubbleAmount === 1
+              }"
+            >
+              <input type="radio" checked />1
+            </button>
+
+            <button
+              (click)="buybubbletea(3)"
+              class="btn btn-default"
+              [ngClass]="{
+                active: bubbleAmount === 3,
+                'btn-primary': bubbleAmount === 3
+              }"
+            >
+              <input type="radio" />3
+            </button>
+
+            <button
+              (click)="buybubbletea(5)"
+              class="btn btn-default"
+              [ngClass]="{
+                active: bubbleAmount === 5,
+                'btn-primary': bubbleAmount === 5
+              }"
+            >
+              <input type="radio" />5
+            </button>
+          </div>
+        </div>
+
+        <div class="col-md-3"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <button
+          type="button"
+          (click)="donate()"
+          class="btn btn-primary"
+          style="margin: 10px;"
+        >
+          <span>Support {{ supportAmount }}</span>
+        </button>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+  <div class="row mbr-justify-content-center">
+    <div class="col-lg-12 mbr-col-md-12">
+      <h2
+        style="text-align: center;"
+        class="mbr-fonts-style mbr-bold mbr-section-title3 display-5"
+      >
+        Your donation will be used to
+      </h2>
+    </div>
+  </div>
+  <div class="row mbr-justify-content-center">
+    <div class="col-lg-6 mbr-col-md-10">
+      <div class="wrap">
+        <div class="ico-wrap">
+          <span class="mbr-iconfont fa-cloud fa"></span>
+        </div>
+        <div class="text-wrap vcenter">
+          <h2 class="mbr-fonts-style mbr-bold mbr-section-title3 display-5">
+            <span>AWS/GCP for Bitcoin and Ethereum node</span>
+          </h2>
+          <p class="mbr-fonts-style text1 mbr-text display-6">
+            Ｉ hv to host bitcoin/ethereun node on my side. Please let me know
+            if you can share the node with me.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 mbr-col-md-10">
+      <div class="wrap">
+        <div class="ico-wrap">
+          <span class="mbr-iconfont fa-pencil fa"></span>
+        </div>
+        <div class="text-wrap vcenter">
+          <h2 class="mbr-fonts-style mbr-bold mbr-section-title3 display-5">
+            <span>UI/UX designer </span>
+          </h2>
+          <p class="mbr-fonts-style text1 mbr-text display-6">
+            I hope to hire a UI/UX designer so as to make it better and easier
+            to use.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 mbr-col-md-10">
+      <div class="wrap">
+        <div class="ico-wrap">
+          <span class="mbr-iconfont fa-globe fa"></span>
+        </div>
+        <div class="text-wrap vcenter">
+          <h2 class="mbr-fonts-style mbr-bold mbr-section-title3 display-5">
+            <span>Front-end Developer</span>
+          </h2>
+          <p class="mbr-fonts-style text1 mbr-text display-6">
+            current, I am doing everyhting by myself. I need a front-end
+            developer so I can focus on functions about blockchain.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 mbr-col-md-10">
+      <div class="wrap">
+        <div class="ico-wrap">
+          <span class="mbr-iconfont fa-trophy fa"></span>
+        </div>
+        <div class="text-wrap vcenter">
+          <h2 class="mbr-fonts-style mbr-bold mbr-section-title3 display-5">
+            Achieve <span>Your Targets</span>
+          </h2>
+          <p class="mbr-fonts-style text1 mbr-text display-6">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row"></div>
+  <!--modal start-->
+  <div
+    class="modal fade"
+    id="myModaledit"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-center">
+      <div class="modal-dialog .modal-align-center">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">
+              Set Amount
+            </h4>
+            <button type="button" class="close" data-dismiss="modal">
+              <span aria-hidden="true">×</span
+              ><span class="sr-only">Close</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div [formGroup]="AmountGroup" (ngSubmit)="onSubmit()">
+              <input
+                type="text"
+                placeholder="Amount"
+                id="amount"
+                style="width: 100%;"
+                formControlName="amount"
+                class="input form-control"
+              />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              [disabled]="loading"
+              type="button"
+              class="btn"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              [disabled]="loading"
+              class="btn"
+              data-dismiss="modal"
+              (click)="onSubmit()"
+            >
+              Confirm
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

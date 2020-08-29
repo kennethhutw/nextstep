@@ -1,0 +1,88 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col col-xl-12 col-lg-12">
+      <div class="card mb-3">
+        <div class="card-header">
+          Basic example
+        </div>
+        <div class="card-body table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th> ID </th>
+                <th> Name </th>
+                <th> Account </th>
+                <th> Password </th>
+                <th> Email </th>
+                <th> Wallet </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <ng-container *ngIf="!users || users.length > 0">
+                  <ng-container *ngFor="let user of users">
+                <tr>
+                  <td> {{ user.id }}</td>
+                  <td> {{ user.name }}</td>
+                  <td> {{ user.account }}</td>
+                  <td> {{ user.password }}</td>
+                  <td> {{ user.email }}</td>
+                  <td> <button class="btn btn-primary" (click)="OpenWallet(user)">Wallets</button></td>
+                </tr>
+              </ng-container>
+              </ng-container>
+              <ng-container *ngIf="!users || users.length == 0">
+                  <tr>
+                      <td colspan="6" style="text-align: center"> 
+                        <h2>You don't have wallet yet</h2>
+                      </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+  <div class="row">
+    <div class="col-xl-3 offset-xl-9 col-lg-3 offset-lg-9">
+      <a routerLink="../../wallet/new-wallet" routerLinkActive="active">
+      <button  type="button" class="btn btn-secondary">
+        Create New Wallet
+      </button>
+      </a>
+    </div>
+  </div>
+
+  <div>
+      <i class="fa fa-address-book-o fa-5x" aria-hidden="true"></i>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="d-flex align-items-center min-vh-100">
+  <div class="container">
+    <div class="row">
+      <div class="col col-xl-8 col-lg-8 offset-xl-2 offset-lg-2" align="center">
+        <div class="card mb-3">
+          <div class="card-header">
+            Import Wallet
+          </div>
+          <div class="card-body table-responsive">
+            <div class="row">
+              <div class="col-xl-4 col-lg-4">
+                <button type="button" class="btn btn-primary" id='choices' routerLink="/wallet/private-key">Private
+                  Key</button>
+              </div>
+              <div class="col-xl-4 col-lg-4">
+                <button type="button" class="btn btn-primary" id='choices'
+                  routerLink="/wallet/without-private-key">Address without Private Key</button>
+              </div>
+              <div class="col-xl-4 col-lg-4">
+                <button type="button" class="btn btn-primary" id='choices'
+                  routerLink="/wallet/metamask">Metamask</button>
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-xl-4 col-lg-4">
+                <button type="button" class="btn btn-primary" routerLink="/wallet/ledger" id='choices'>Ledger</button>
+              </div>
+              <div class="col-xl-4 col-lg-4">
+                <button type="button" class="btn btn-primary" routerLink="/wallet/importMnemonic" id='choices'>Mnemonic
+                  Phase</button>
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-xl-3 col-lg-3">
+                <button type="button" class="btn btn-secondary" style="width: 110px;" (click)="back()">Back</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

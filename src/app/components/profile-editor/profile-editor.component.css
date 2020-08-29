@@ -1,0 +1,194 @@
+.pane{
+    padding: 1em;
+  }
+/* Switch 1 Specific Styles Start */
+
+.profile-editor{
+  padding-bottom: 50px;
+    padding-top: 15px;
+}
+
+input[type="checkbox"].switch_1{
+  font-size: 20px;
+  height: 33px;
+	-webkit-appearance: none;
+	   -moz-appearance: none;
+	        appearance: none;
+width:75px;
+	background: #ddd;
+	border-radius: 3em;
+	position: relative;
+	cursor: pointer;
+	outline: none;
+	-webkit-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+  }
+  
+  input[type="checkbox"].switch_1:checked{
+	background: #0ebeff;
+  }
+  
+  input[type="checkbox"].switch_1:after{
+	position: absolute;
+	content: "";
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 50%;
+	background: #fff;
+	-webkit-box-shadow: 0 0 .25em rgba(0,0,0,.3);
+	        box-shadow: 0 0 .25em rgba(0,0,0,.3);
+	-webkit-transform: scale(.7);
+	        transform: scale(.7);
+	left: 0;
+	-webkit-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+  }
+  
+  input[type="checkbox"].switch_1:checked:after{
+	left: calc(100% - 1.5em);
+  }
+  
+  .form-label{
+    display:block;
+  }
+  .form-check-label{
+    
+    padding: 6px 12px;
+  }
+/* Switch 1 Specific Style End */
+.input-group-prepend{
+  margin-right: -1px;
+  display:flex;
+}
+.input-group-text{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: .375rem .75rem;
+  margin-bottom: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #e9ecef;
+  border: 1px solid #ced4da;
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.fileinput.input-group {
+  display: flex;
+  margin-bottom: 9px;
+  flex-wrap: nowrap;
+}
+
+.fileinput.input-group>* {
+  position: relative;
+  z-index: 2;
+}
+
+.fileinput .form-control {
+  padding: .375rem .75rem;
+  display: inline-block;
+  margin-bottom: 0px;
+  vertical-align: middle;
+  cursor: text;
+}
+
+.fileinput-filename {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.form-control .fileinput-filename {
+  vertical-align: bottom;
+}
+
+.input-group>.form-control:not(:last-child),
+.input-group>.custom-select:not(:last-child) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.fileinput.input-group>.btn-file {
+  z-index: 1;
+}
+
+.fileinput-new {
+  padding-right: 10px;
+}
+
+.fileinput-new.input-group .btn-file,
+.fileinput-new .input-group .btn-file {
+  border-radius: 0 4px 4px 0;
+}
+
+.fileinput-new.input-group .btn-file,
+.fileinput-new .input-group .btn-file {
+  border-radius: 0 .25rem .25rem 0;
+}
+
+.input-group-addon:not(:first-child) {
+  border-left: 0;
+}
+
+.fileinput .input-group-addon {
+  padding: .375rem .75rem;
+  width: auto;
+}
+
+.fileinput-exists .fileinput-new,
+.fileinput-new .fileinput-exists {
+  display: none;
+}
+
+.fileinput .btn {
+  vertical-align: middle;
+}
+
+.fileinput .input-group-addon {
+  padding: .375rem .75rem;
+}
+
+.btn:not(:disabled):not(.disabled) {
+  cursor: pointer;
+}
+
+.fileinput.input-group>.btn-file {
+  z-index: 1;
+}
+
+.fileinput-new.input-group .btn-file,
+.fileinput-new .input-group .btn-file {
+  border-radius: 0 4px 4px 0;
+}
+
+.fileinput-new.input-group .btn-file,
+.fileinput-new .input-group .btn-file {
+  border-radius: 0 .25rem .25rem 0;
+  height:35px;
+}
+
+.btn-file>input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-size: 23px;
+  cursor: pointer;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  direction: ltr;
+}
