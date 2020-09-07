@@ -4,3 +4,6 @@ export { SubTabsComponent } from "./subTabs/subTabs.component";
 export { SubTabComponent } from "./subTab/subTab.component";
 export { SubTableComponent } from "./subTable/subTable.component";
 export { ProfileEditorComponent } from "./profile-editor/profile-editor.component";
+export { ArtWorkLogoComponent } from "./artworklogo/artworklogo.component";
+export { ArtWorkComponent } from "./artwork/artwork.component";
+export { ArtistComponent } from "./artist/artist.component";

@@ -1,101 +1,15 @@
 <div class="container">
   <div class="row">
     <div class="col col-12 col-sm-12 ">
-      <input data-v-01c46051="" type="text" placeholder="Search by artist or ETH address"
-        class="form-control search_input" id="__BVID__3460">
+      <input (keyup)="onKey($event)" type="text" placeholder="Search by artist or ETH address"
+        class="form-control search_input" id="">
     </div>
   </div>
-  <div class="row">
-    <div class="col col-12 col-sm-4 ">
-      <a [routerLink]="['/artist']">
-        <div class="card">
-          <div class="card-body">
-            <div class="text-center mt-4 mb-2"><img data-v-7a968aa4=""
-                src="https://ipfs.infura.io/ipfs/QmUQi1XkfnFPjkT78ZYNwGxB9AHaXY7r4DAo5EXDqBK8e8" alt="profile-image"
-                class="profile-image">
-              <h4 class="mt-4">Psychedelic Astronaut</h4>
-              <!---->
-            </div>
-            <p data-v-41ca7608="" class="bio mt-4 ml-3 mr-3 text-center"> Psychedelic Cyberpunk artist </p>
 
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="col col-12 col-sm-4">
-      <a [routerLink]="['/artist']">
-        <div class="card">
-          <div data-v-41ca7608="" class="card-body">
-            <div data-v-04c771e0="" data-v-41ca7608="" class="text-center mt-4 mb-2"><img data-v-7a968aa4=""
-                data-v-04c771e0="" src="https://ipfs.infura.io/ipfs/QmazwAEUPcs3EbmU1nYZtQg2CGd73M7YboWbWoj84EhSbB"
-                alt="profile-image" class="profile-image">
-              <h4 data-v-04c771e0="" class="mt-4">CapitanArt</h4>
-              <!---->
-            </div>
-            <p data-v-41ca7608="" class="bio mt-4 ml-3 mr-3 text-center"> I like what I do and in my personal works I am
-              inspired to create imaginary worlds where the laws of physics are broken or mythological beings appear.
-            </p>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="col col-12 col-sm-4">
-      <div class="card mb-3">
-        <div data-v-41ca7608="" class="card-body">
-          <div data-v-04c771e0="" data-v-41ca7608="" class="text-center mt-4 mb-2"><img data-v-7a968aa4=""
-              data-v-04c771e0="" src="https://ipfs.infura.io/ipfs/QmWd8bW4UwaxH4czqJeR3kkuQ3fu4RZrrnkjou6fWPka7x"
-              alt="profile-image" class="profile-image">
-            <h4 data-v-04c771e0="" class="mt-4">Nvllsekt</h4>
-            <!---->
-          </div>
-          <p data-v-41ca7608="" class="bio mt-4 ml-3 mr-3 text-center"> Experimental artist manifesting visions through
-            the combined efforts of both man and machine. </p>
-        </div>
-      </div>
+  <div class="row" *ngFor="let row of displayArtists; let i = index">
+    <div class="col col-12 col-sm-4" *ngFor="let col of displayArtists[i]">
+      <app-artist artistId={{col.id}} id={{col.id}} name={{col.name}} src={{col.imageURL}} bio={{col.bio}}></app-artist>
     </div>
   </div>
-  <div class="row">
-    <div class="col col-12 col-sm-4 ">
-      <div class="card">
-        <div data-v-41ca7608="" class="card-body">
-          <div data-v-04c771e0="" data-v-41ca7608="" class="text-center mt-4 mb-2"><img data-v-7a968aa4=""
-              data-v-04c771e0="" src="https://ipfs.infura.io/ipfs/QmcoJt8fj3NqRB4MTmUsQGB9JrtNccKCHEonXbSDCRiXHV"
-              alt="profile-image" class="profile-image">
-            <h4 data-v-04c771e0="" class="mt-4">Plouzzaa</h4>
-            <!---->
-          </div>
-          <p data-v-41ca7608="" class="bio mt-4 ml-3 mr-3 text-center"> Motion Designer, 3d Artist, illustrator </p>
-        </div>
-      </div>
-    </div>
-    <div class="col col-12 col-sm-4">
-      <div class="card">
-        <div data-v-41ca7608="" class="card-body">
-          <div data-v-04c771e0="" data-v-41ca7608="" class="text-center mt-4 mb-2"><img data-v-7a968aa4=""
-              data-v-04c771e0="" src="https://ipfs.infura.io/ipfs/QmckdjdrErTT9X5BFXAWzVE5LTmtg9pqtTtFzAgeDyiAQ2"
-              alt="profile-image" class="profile-image">
-            <h4 data-v-04c771e0="" class="mt-4">_MNK</h4>
-            <!---->
-          </div>
-          <p data-v-41ca7608="" class="bio mt-4 ml-3 mr-3 text-center"> Everything is not what it seems.
-            Stories | Exploration | Illustrations </p>
-        </div>
-      </div>
-    </div>
-    <div class="col col-12 col-sm-4">
-      <div class="card mb-3">
-        <div data-v-41ca7608="" class="card-body">
-          <div data-v-04c771e0="" data-v-41ca7608="" class="text-center mt-4 mb-2"><img data-v-7a968aa4=""
-              data-v-04c771e0="" src="https://ipfs.infura.io/ipfs/QmaUMVJpfmWsPeahHPvtbryoemeLbw8GomjhHFobDVvX4s"
-              alt="profile-image" class="profile-image">
-            <h4 data-v-04c771e0="" class="mt-4">Marc O Matic</h4>
-            <!---->
-          </div>
-          <p data-v-41ca7608="" class="bio mt-4 ml-3 mr-3 text-center"> Marc O Matic is an Australian Artist, AR/VR
-            Auteur, Animator and Technologist who explores fusions between Analogue Illustrative Art and Immersive Med
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
+
 </div>

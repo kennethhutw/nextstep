@@ -1,0 +1,41 @@
+<div id="'gallery_card_'+ id" class="card artwork">
+    <a (click)="routeToEdition()" class="card-target">
+        <div name="edition-image-asset">
+            <img id="'edition_image_'+id" alt="edition-image" class="card-img-top hand-pointer card-img-cover"
+                src="{{src}}" data-src="{{src}}" lazy="loaded">
+            <!---->
+        </div>
+    </a>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                <a (click)="routeToEdition()" class="card-target">
+                    <p class="card-title mt-2 card-edition-name">
+                        <span>
+                            <!----></span>
+                        <span>{{name}}</span>
+                        <span class="text-muted float-right small">{{GetAvailableAmount()}}
+                        </span>
+                    </p>
+                </a></div>
+        </div>
+    </div>
+    <div class="card-footer no-top-border bg-white">
+        <!---->
+        <div class="row mb-2">
+            <div class="col"><code>{{editionId}}</code></div>
+            <div class="col text-right"><span>{{GetImpressionQuantity()}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <!---->
+            </div>
+            <div class="col-4 text-right pt-1">
+                <div class="like-card-container">
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

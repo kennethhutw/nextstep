@@ -3,8 +3,8 @@ export { HomeComponent } from "./home/home.component";
 export { ExampleComponent } from "./example/example.component";
 export { EditionComponent } from "./edition/edition.component";
 export { ArtistsComponent } from "./artists/artists.component";
-export { ArtistComponent } from "./artist/artist.component";
+export { ArtistProfileComponent } from "./artistprofile/artistprofile.component";
 export { ProfileComponent } from "./profile/profile.component";
 export { GalleryComponent } from "./gallery/gallery.component";
-
+export { TokenComponent } from './token/token.component';
 export { ActivityComponent } from "./activity/activity.component";

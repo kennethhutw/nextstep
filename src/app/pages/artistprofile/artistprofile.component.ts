@@ -6,14 +6,14 @@ import {
 import { TranslateService } from "@ngx-translate/core";
 import { SubTabsComponent } from "../../components";
 @Component({
-  selector: "app-artist",
-  templateUrl: "./artist.component.html",
+  selector: "app-artistprofile",
+  templateUrl: "./artistprofile.component.html",
   styleUrls: [
-    "./artist.component.css",
+    "./artistprofile.component.css",
   ],
   encapsulation: ViewEncapsulation.None,
 })
-export class ArtistComponent implements OnInit {
+export class ArtistProfileComponent implements OnInit {
 
   currentTab = 'artworks';
 

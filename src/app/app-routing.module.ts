@@ -21,10 +21,11 @@ import {
   ExampleComponent,
   EditionComponent,
   ArtistsComponent,
-  ArtistComponent,
+  ArtistProfileComponent,
   ActivityComponent,
   GalleryComponent,
-  ProfileComponent
+  ProfileComponent,
+  TokenComponent
 } from "./pages";
 
 const routes: Routes = [
@@ -32,12 +33,14 @@ const routes: Routes = [
   { path: "login", component: LogInComponent },
   { path: "example", component: ExampleComponent },
   { path: "artists", component: ArtistsComponent },
-  { path: "artist", component: ArtistComponent },
+  { path: "artist", component: ArtistProfileComponent },
+  { path: "artist/:name", component: ArtistProfileComponent },
   { path: "activity", component: ActivityComponent },
   { path: "gallery", component: GalleryComponent },
   { path: "profile", component: ProfileComponent },
   { path: "donation", component: DonationComponent },
   { path: "edition", component: EditionComponent },
+  { path: "token/:id", component: TokenComponent },
   { path: "index", component: HomeComponent },
   { path: "admin/user-list", component: UserListComponent },
   { path: "wallet/new-wallet", component: NewWalletComponent },
@@ -50,6 +53,7 @@ const routes: Routes = [
   { path: "wallet/metamask", component: MetamaskComponent },
   { path: "wallet/importAddress", component: ImportAddressComponent },
   { path: "wallet/importMnemonic", component: ImportMnemonicComponent },
+
 ];
 
 @NgModule({

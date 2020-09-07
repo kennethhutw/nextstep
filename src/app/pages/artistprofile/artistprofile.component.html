@@ -188,21 +188,81 @@
                       <code>No insights available yet</code>
                     </div>
                   </div>
+                  <div class="mt-5 table-responsive">
+                    <table class="table table-hover sans-serif">
+                      <thead>
+                        <tr class="text-muted">
+                          <th scope="col" class="align-top">Artwork</th>
+                          <th scope="col" class="align-top text-center"> Sold / Gifted </th>
+                          <th scope="col" class="align-top text-center"> Avg. sale price </th>
+                          <th scope="col" class="align-top text-center"> Total earned </th>
+                          <th scope="col" class="align-top"> Owners </th>
+                          <th scope="col" class="align-top">Created</th>
+                          <th scope="col" class="align-top"> Sellout time </th>
+                        </tr>
+                      </thead>
+                      <tbody class="small">
+                        <tr scope="row" class="align-middle">
+                          <td><a href="/edition/197250" class=""> Storyworld </a>
+                            <div class="pt-1"> (1/1) <span class="text-danger small"> (sold out) </span></div>
+                          </td>
+                          <td class="text-center"> 1 / 0 </td>
+                          <td class="text-center"><span> 5.00 </span></td>
+                          <td class="text-center"><span> 5.00 </span></td>
+                          <td class="text-center"><span> 1 </span></td>
+                          <td> Jul 30th 2020 </td>
+                          <td><span> 13.55 days </span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </app-subtab>
                 <app-subtab tabTitle="Sales">
                   <div class="container-fluid">
                     <div class="row pt-2">
                       <div class="col">
                         <h3> History of sales and accepted bids </h3>
-                        <div><span>Showing transactions where ETH was
-                            exchanged</span></div>
+                        <div>
+                          <span>Showing transactions where ETH was
+                            exchanged</span>
+                        </div>
                         <div class="form-check float-right"><input type="checkbox" id="shouldOnlyMoneyCheck"
                             class="form-check-input" value="true"><label for="shouldOnlyMoneyCheck"
                             class="form-check-label"> Show all </label></div>
                       </div>
                     </div>
                     <div class="row">
-                      <app-subtable></app-subtable>
+
+                      <div class="mt-5 pb-4">
+                        <table class="table table-borderless">
+                          <tbody>
+                            <tr>
+                              <td width="25%" class="align-middle"><a href="/edition/197250" class="">
+                                  <img id="edition_image_8400"
+                                    data-src="https://cdn.knownorigin.io/cdn/images/network/1/edition/8400"
+                                    data-error="https://cdn.knownorigin.io/cdn/images/network/1/edition/8400"
+                                    alt="edition-image" class="card-img-top hand-pointer card-img-cover"
+                                    style=" height:76px; width:135px;"
+                                    src="https://cdn.knownorigin.io/cdn/images/network/1/edition/8400" lazy="loaded">
+                                </a></td>
+                              <td class="align-middle"><code>Bid Accepted</code>
+                                <div><span data-v-ea5978e8="" class="font-roboto"><span data-v-ea5978e8=""
+                                      class="price">5.00</span> <span data-v-ea5978e8=""
+                                      class="price-eth">ETH</span></span><span data-v-6acc9f4a=""
+                                    class="text-muted"><small data-v-6acc9f4a="">($1858.25)</small></span></div>
+                                <div><a href="/token/197251" class="badge badge-primary"> 197251 </a></div>
+                                <!---->
+                              </td>
+                              <td class="align-middle">
+                                <div class="small d-none d-sm-block">08/12/2020</div><span class="small"><a
+                                    href="https://etherscan.io/tx/0xe09698fa924d32ae3779d4c304349cce60322a9acef92ec3a0c16f5f9744d458"
+                                    target="_blank" class="small">[view tx]</a></span>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
                     </div>
                     <div></div>
                     <div class="text-muted small mb-5 mt-3 text-right"> Updated every 5 minutes <br><small>USD prices
@@ -219,33 +279,25 @@
                 <div class="col col-sm-6 text-center text-primary mt-4"> No artworks collected yet
                 </div>
               </div>
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
+
             </div>
           </div>
           <div role="tabpanel" aria-hidden="true" class="tab-pane" id="offers"
-            aria-labelledby="__BVID__19280___BV_tab_button__" style="display: none;">
-            <div class="my-4"><span class="pb-2 active"><a class="btn btn-link font-roboto text-primary"> Offers placed
-                </a></span><span class="pb-2"><a class="btn btn-link font-roboto text-muted">
-                  Offers received </a></span>
-              <div class="mt-2">
-                <div>
-                  <div class="container-fluid">
-                    <div class="text-center text-primary my-4"> No active offers placed </div>
-                  </div>
+            aria-labelledby="__BVID__19280___BV_tab_button__">
+            <app-subtabs>
+              <app-subtab tabTitle="Offers placed">
+                <div class="container-fluid">
+                  <div class="text-center text-primary my-4"> No active offers placed </div>
                 </div>
-                <div style="display: none;">
-                  <div class="container-fluid">
-                    <!---->
-                    <div class="text-center text-primary my-4"> No active offers received </div>
-                  </div>
+              </app-subtab>
+              <app-subtab tabTitle="Offers received">
+                <div class="container-fluid">
+                  <!---->
+                  <div class="text-center text-primary my-4"> No active offers received </div>
                 </div>
-              </div>
-            </div>
+              </app-subtab>
+            </app-subtabs>
+
           </div>
           <div role="tabpanel" aria-hidden="true" class="tab-pane" id="favourites"
             aria-labelledby="__BVID__19285___BV_tab_button__">
@@ -253,21 +305,23 @@
               <div class="pt-4 container-fluid">
                 <!---->
                 <div class="row mt-2">
-                  <div class="col-3"><a [routerLink]="['/edition']" class="">
+                  <div class="col-md-3">
+                    <a [routerLink]="['/edition']" class="">
                       <div name="edition-image-asset" class="img-thumbnail"><img id="edition_image_874"
                           data-src="https://cdn.knownorigin.io/cdn/images/network/1/edition/33500"
                           data-error="https://cdn.knownorigin.io/cdn/images/network/1/edition/33500" alt="edition-image"
                           class="card-img-top hand-pointer" src="assets/64px_missingImageIcon.svg" lazy="loading">
                         <!---->
                       </div>
-                    </a></div>
-                  <div class="col-9 font-roboto">
+                    </a>
+                  </div>
+                  <div class="col-md-9 font-roboto">
                     <p> Earth passing by<br><span class="small"> By <a
                           href="/0xceF2bf4aD6D84Aa37Fcc4Cab6530028EB31c8e69" class=""> 0xBull </a></span></p>
                   </div>
                 </div>
                 <div class="row mt-2">
-                  <div class="col-3"><a [routerLink]="['/edition']" class="">
+                  <div class="col-md-3"><a [routerLink]="['/edition']" class="">
                       <div name="edition-image-asset" class="img-thumbnail"><img id="edition_image_468"
                           data-src="https://cdn.knownorigin.io/cdn/images/network/1/edition/15000"
                           data-error="https://cdn.knownorigin.io/cdn/images/network/1/edition/15000" alt="edition-image"
@@ -275,14 +329,14 @@
                         <!---->
                       </div>
                     </a></div>
-                  <div class="col-9 font-roboto">
+                  <div class="col-md-9 font-roboto">
                     <p> M4R93 s1MpS0N<br><span class="small">
                         By <a href="/0x2Eb9b439Ffb7dC587198e1534e465a6242192b24" class=""> Franky
                           Aguilar </a></span></p>
                   </div>
                 </div>
                 <div class="row mt-2">
-                  <div class="col-3"><a [routerLink]="['/edition']" class="">
+                  <div class="col-md-3"><a [routerLink]="['/edition']" class="">
                       <div name="edition-image-asset" class="img-thumbnail"><img id="edition_image_243"
                           data-src="https://cdn.knownorigin.io/cdn/images/network/1/edition/34000"
                           data-error="https://cdn.knownorigin.io/cdn/images/network/1/edition/34000" alt="edition-image"
@@ -290,7 +344,7 @@
                         <!---->
                       </div>
                     </a></div>
-                  <div class="col-9 font-roboto">
+                  <div class="col-md-9 font-roboto">
                     <p> Extraterrestrial alloy<br><span class="small"> By <a
                           href="/0xE88cfe8535AF121121a4b475eEFD13dAE4fBC4Cc" class=""> NIQ </a></span></p>
                   </div>

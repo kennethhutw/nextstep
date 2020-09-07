@@ -13,6 +13,7 @@ import {
   WalletService,
   CryptoService,
   Web3Service,
+  ArtistService
 } from "./_services";
 import { AuthService } from "./_guards";
 import {
@@ -28,12 +29,14 @@ import {
   MetamaskComponent,
 } from "./wallet";
 import {
+  ArtWorkComponent,
+  ArtWorkLogoComponent,
   FooterComponent,
   HeaderComponent,
   SubTabComponent,
   SubTabsComponent,
   SubTableComponent,
-  ProfileEditorComponent
+  ProfileEditorComponent, ArtistComponent
 } from "./components";
 
 import { DisqusModule } from "ngx-disqus";
@@ -41,16 +44,18 @@ import { DisqusModule } from "ngx-disqus";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { TokenInterceptor } from "../app/_guards";
 
+
 import {
   DonationComponent,
   HomeComponent,
   ExampleComponent,
   EditionComponent,
   ArtistsComponent,
-  ArtistComponent,
+  ArtistProfileComponent,
   ActivityComponent,
   GalleryComponent,
-  ProfileComponent
+  ProfileComponent,
+  TokenComponent
 } from "./pages";
 import { AnQrcodeModule } from "an-qrcode";
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
@@ -83,9 +88,11 @@ export function createLoader(http: HttpClient) {
     DonationComponent,
     HomeComponent,
     ArtistsComponent,
-    ArtistComponent,
+    ArtistProfileComponent,
     ExampleComponent,
     EditionComponent,
+    ArtWorkComponent,
+    ArtWorkLogoComponent,
     HeaderComponent,
     FooterComponent,
     SubTabComponent,
@@ -94,7 +101,9 @@ export function createLoader(http: HttpClient) {
     ProfileEditorComponent,
     ActivityComponent,
     GalleryComponent,
-    ProfileComponent
+    ProfileComponent,
+    TokenComponent,
+    ArtistComponent
   ],
   imports: [
     BrowserModule,
@@ -121,6 +130,7 @@ export function createLoader(http: HttpClient) {
     AuthService,
     CryptoService,
     Web3Service,
+    ArtistService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
