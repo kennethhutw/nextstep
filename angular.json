@@ -21,30 +21,11 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "src/styles.css",
-              "src/assets/css/bundle.css",
-              "src/assets/css/jquery-ui.css",
-              "src/assets/css/magnific-popup.css",
-              "src/assets/css/meanmenu.min.css",
-              "./node_modules/owl.carousel/dist/assets/owl.carousel.min.css",
-              "./node_modules/owl.carousel/dist/assets/owl.theme.default.min.css",
-              "src/assets/css/pe-icon-7-stroke.css",
-              "src/assets/css/font-awesome.min.css",
-              "src/assets/css/responsive.css",
-              "src/assets/css/slick.css",
-              "src/assets/css/style.css"
+        "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [
-              "src/assets/js/vendor/modernizr-2.8.3.min.js",
-              "src/assets/js/jquery.magnific-popup.min.js",
-              "./node_modules/masonry-layout/dist/masonry.pkgd.min.js",
-              "./node_modules/isotope-layout/dist/isotope.pkgd.min.js",
-              "./node_modules/imagesloaded/imagesloaded.pkgd.js",
-              "src/assets/js/jquery.counterup.min.js",
-
-              "src/assets/js/ajax-mail.js",
-              "./node_modules/jquery/dist/jquery.min.js",
-              "./node_modules/owl.carousel/dist/owl.carousel.min.js",
-              "src/assets/js/plugins.js"
+                "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },
           "configurations": {

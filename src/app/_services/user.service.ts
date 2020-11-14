@@ -1,79 +1,66 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
-import { environment } from './../environments/environment';
-
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
+import { Observable, throwError } from "rxjs";
+import { catchError, retry } from "rxjs/operators";
+import { environment } from "./../../environments/environment";
 
 @Injectable()
 export class UserService {
-  fakeUserData = [
-    {
-      id: '0001',
-      name: 'Test01',
-      account: 'Test01-Account',
-      password: 'Test01',
-      email: 'test01@gmail.com'
-    },
-    {
-      id: '0002',
-      name: 'Test02',
-      account: 'Test02-Account',
-      password: 'Test02',
-      email: 'test02@gmail.com'
-    },
-    {
-      id: '0003',
-      name: 'Test03',
-      account: 'Test03-Account',
-      password: '0003',
-      email: 'test03@gmail.com'
-    }
-  ];
-
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) {}
 
   getAllUser() {
-    return this.fakeUserData;
+    return null;
   }
 
-  getUserIDByEmail(email: string) {
-
-    for (let i = 0; i < this.fakeUserData.length; i++) {
-      const user = this.fakeUserData[i];
-      if (user.email == email) {
-        return user.id;
-      }
-    }
-  }
+  getUserIDByEmail(email: string) {}
 
   loggedInID: string;
   loggedInEmail: string;
 
-  getLoggedInEmail() {
-    return localStorage.getItem("email");
-  }
+  getLoggedInEmail() {}
 
-  getLoggedInID(email: string) {
-    for (let i = 0; i < this.fakeUserData.length; i++) {
-      const user = this.fakeUserData[i];
-      if (user.email == email) {
-        return user.id;
-      }
+  getLoggedInID(email: string) {}
+
+  walletLogin(address: string) {
+    try {
+      return this.http.post(`${environment.apiUrl}/authenticate/walletLogin`, {
+        ethaddress: address,
+      });
+    } catch (error) {
+      console.error("login", error);
     }
   }
 
+  async getPassWordByEmail(email: string) {
+      const params = new HttpParams().set("email", email);
+    return await this.http
+      .get<any>(`${environment.apiUrl}/authenticate/getPassWordByEmail`, {
+        params: params,
+      })
+      .toPromise();;
+  }
+
   login(email: string, password: string) {
-
-    var result = this.http.post(
-      'http://cryptopaymentserver.herokuapp.com/user/login',
-      {
-        "email": email,
-        "password": password
+    try {
+      return this.http.post(`${environment.apiUrl}/authenticate/emailLogin`, {
+        email: email,
+        password: password,
       });
-    return result
+    } catch (error) {
+      console.error("login", error);
+    }
+  }
 
+  signup(email: string, password: string, name: string, ethaddress: string) {
+    try {
+      return this.http.post(`${environment.apiUrl}/user/signup`, {
+        email: email,
+        password: password,
+        name: name,
+        ethaddress: ethaddress,
+      });
+    } catch (error) {
+      console.error("signup", error);
+    }
   }
 }

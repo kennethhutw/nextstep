@@ -7,3 +7,8 @@ export { ProfileEditorComponent } from "./profile-editor/profile-editor.componen
 export { ArtWorkLogoComponent } from "./artworklogo/artworklogo.component";
 export { ArtWorkComponent } from "./artwork/artwork.component";
 export { ArtistComponent } from "./artist/artist.component";
+export { UploadFileComponent } from "./upload-file/upload-file.component";
+export { DragDropFileDirective } from "./drag.directive";
+export { InsertEditionComponent } from "./insertEdition/insertEdition.component";
+export { Edition1Component } from "./edition1/edition1.component";
+export { ModalComponent } from "./modal/modal.component";

@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
-import { UserListComponent } from "./admin/user-list/user-list.component";
+
 import { LogInComponent } from "./login/log-in/log-in.component";
 import {
   NewWalletComponent,
@@ -25,7 +25,8 @@ import {
   ActivityComponent,
   GalleryComponent,
   ProfileComponent,
-  TokenComponent
+  TokenComponent,
+  NewArtistComponent
 } from "./pages";
 
 const routes: Routes = [
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: "example", component: ExampleComponent },
   { path: "artists", component: ArtistsComponent },
   { path: "artist", component: ArtistProfileComponent },
+  { path: "newArtist", component: NewArtistComponent },
   { path: "artist/:name", component: ArtistProfileComponent },
   { path: "activity", component: ActivityComponent },
   { path: "gallery", component: GalleryComponent },
@@ -42,7 +44,6 @@ const routes: Routes = [
   { path: "edition", component: EditionComponent },
   { path: "token/:id", component: TokenComponent },
   { path: "index", component: HomeComponent },
-  { path: "admin/user-list", component: UserListComponent },
   { path: "wallet/new-wallet", component: NewWalletComponent },
   { path: "wallet/walletlist", component: WalletListComponent },
   { path: "wallet/import-wallet", component: ImportWalletComponent },

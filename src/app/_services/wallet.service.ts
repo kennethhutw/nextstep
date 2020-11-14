@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { resResult } from "../_models";
 import { forEach } from "@angular/router/src/utils/collection";
-import { environment } from "./../environments/environment";
+import { environment } from "./../../environments/environment";
 
 @Injectable()
 export class WalletService {

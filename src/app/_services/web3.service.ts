@@ -14,6 +14,21 @@ export class Web3Service {
   private contract: Contract;
   private contractAddress: "0x.....";
   constructor(private zone: NgZone) {
+    // if (window.web3) {
+    //   this.web3 = new Web3(window.ethereum);
+    //   this.contract = new this.web3.eth.Contract(
+    //     contractAbi,
+    //     this.contractAddress
+    //   );
+    //   window.ethereum.enable().catch((err) => {
+    //     console.log(err);
+    //   });
+    // } else {
+    //   console.warn("Metamask not found Install or enable Metamask");
+    // }
+  }
+
+  ethEnabled (){
     if (window.web3) {
       this.web3 = new Web3(window.ethereum);
       this.contract = new this.web3.eth.Contract(
@@ -23,10 +38,13 @@ export class Web3Service {
       window.ethereum.enable().catch((err) => {
         console.log(err);
       });
-    } else {
-      console.warn("Metamask not found Install or enable Metamask");
+
+      return true;
     }
+    return false;
   }
+
+ 
 
   async getAccountDetail(): Promise<any> {
     var accounts = await this.web3.eth.getAccounts();

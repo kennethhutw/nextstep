@@ -1,0 +1,53 @@
+.uploadfilecontainer {
+  /* background-image: url("../../../assets/eatl/eatl-upload.svg"); */
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center;
+  height: 150px;
+  width: 100%;
+  /* margin: 1px auto; */
+  border: 2px dashed rgba(60, 192, 126, 1);
+  border-radius: 10px;
+}
+
+.uploadfilecontainer:hover {
+  cursor: pointer;
+  background-color: rgba(218, 241, 231, 0.857) !important;
+  opacity: 0.5;
+}
+
+.files-list {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 10px auto;
+  background: #ffffff;
+  border: 1px dashed;
+  border-radius: 12px;
+  padding: 5px;
+  color: rgba(60, 192, 126, 1);
+}
+
+.files-list .delete-file {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.files-list .delete-file .fa-trash {
+  width: 30px;
+}
+.fa-trash {
+  color: rgba(248, 127, 127, 1);
+}
+.fa-trash:hover {
+  color: rgb(243, 79, 79);
+}
+
+.alert {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 10px auto;
+  padding: 5px;
+}

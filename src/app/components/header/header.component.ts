@@ -1,5 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
+import * as bcrypt from "bcryptjs";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Utility } from "../../_helpers";
+import { UserService, Web3Service, DataService } from "../../_services";
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",
@@ -7,13 +11,111 @@ import { TranslateService } from "@ngx-translate/core";
   encapsulation: ViewEncapsulation.None,
 })
 export class HeaderComponent implements OnInit {
-  constructor(private translateSrv: TranslateService) { }
+  loginForm: FormGroup;
+  currentUser: any = null;
+
+  constructor(
+    private utility: Utility,
+    private fb: FormBuilder,
+    private translateSrv: TranslateService,
+    private userSrv: UserService,
+    private web3Srv: Web3Service,
+    private dataSrv: DataService
+  ) {
+    let _lang = localStorage.getItem("lang");
+    if (this.utility.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
+    }
+  }
 
   ngOnInit() {
     this.translateSrv.use("zh-tw");
+    this.loginForm = this.fb.group({
+      email: ["", Validators.required],
+      password: ["", Validators.required],
+    });
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utility.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+      }
+    });
   }
 
   changeLanguage(lang: string) {
     this.translateSrv.use(lang);
+  }
+
+  inValid() {
+    return this.loginForm.invalid;
+  }
+
+  walletSignup() {
+    if (this.web3Srv.ethEnabled()) {
+      this.web3Srv.getAccountDetail().then(
+        (data) => {
+          console.log("User", data);
+          this.userSrv.walletLogin(data.address).subscribe((result) => {});
+        },
+        (error) => {
+          console.log("getAccountDetail error", error);
+        }
+      );
+    } else {
+      console.warn("Metamask not found Install or enable Metamask");
+    }
+  }
+
+  emaillogin() {
+    let _password = this.loginForm.value.password;
+    if (!this.utility.IsNullOrEmpty(_password)) {
+      this.userSrv
+        .getPassWordByEmail(this.loginForm.value.email)
+        .then((res) => {
+          if (res["result"] === "successful") {
+            const verified = bcrypt.compareSync(
+              _password,
+              res["data"]["password"]
+            );
+            if (verified) {
+              localStorage.setItem("currentUser", JSON.stringify(res.data));
+              this.currentUser = res.data;
+            }
+          }
+        });
+    }
+  }
+  onSubmit() {
+    // if (this.loginForm.invalid) {
+    //   return;
+    // }
+    console.log("====================");
+    let password = this.loginForm.value.password;
+    if (!this.utility.IsNullOrEmpty(password)) {
+      const salt = bcrypt.genSaltSync(10);
+      let pass = bcrypt.hashSync(password, 10);
+      console.log("====================", pass);
+      this.userSrv
+        .signup(this.loginForm.value.email, pass, "", "")
+        .subscribe((result) => {
+          console.log("====================", result);
+        });
+      //  const verified = bcrypt.compareSync('123456', '$2b$10$CTeKHXon1D7VGeJlY7bXR.JkuMWJgZcDRVEoHnj2H/5LmFZZsrztm');
+      //  console.log("verified ====================",verified);
+      //  bcrypt.hash(pass, 10, function(err, hash) {
+      //   console.log("hash ====================",hash);
+      // });
+    }
+    // var res = this.AuthService.login(this.loginForm.value.email, this.loginForm.value.password)
+    // // console.log(res);
+
+    // res.subscribe(result => {
+    //   // console.log("result", result);
+    //   if (result["data"] == undefined) {
+    //     this.InvalidUser = true;
+    //   } else {
+    //     localStorage.setItem("id", result["data"]["id"]);
+    //     this.router.navigate(['/userpage']);
+    //   }
+    // });
   }
 }

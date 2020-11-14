@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col col-12 col-sm-12 ">
+      <input (keyup)="onKey($event)" type="text" placeholder="Search by artist or ETH address"
+        class="form-control search_input" id="">
+    </div>
+  </div>
+
+  <div class="row" *ngFor="let row of displayArtists; let i = index">
+    <div class="col col-12 col-sm-4" *ngFor="let col of displayArtists[i]">
+      <app-artist artistId={{col.id}} id={{col.id}} name={{col.name}} src={{col.imageURL}} bio={{col.bio}}></app-artist>
+    </div>
+  </div>
+
+</div>

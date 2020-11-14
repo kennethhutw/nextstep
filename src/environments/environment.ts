@@ -3,8 +3,21 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'http://localhost:3000',
+  assetUrl: 'http://localhost:3000',
+  assetAPIUrl: 'http://localhost:3000',
+  environment: 'dev'
 };
+
+
+// export const environment = {
+//     production: true,
+//     apiUrl: 'http://cryptopaymentserver.herokuapp.com',
+//     assetAPIUrl: 'https://server.eatlaunchpad.com:8440',
+//     assetUrl: 'https://server.eatlaunchpad.com:8440',
+//     environment: 'prod.'
+// };
 
 /*
  * In development mode, for easier debugging, you can ignore zone related error

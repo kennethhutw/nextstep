@@ -8,3 +8,5 @@ export { ProfileComponent } from "./profile/profile.component";
 export { GalleryComponent } from "./gallery/gallery.component";
 export { TokenComponent } from './token/token.component';
 export { ActivityComponent } from "./activity/activity.component";
+export { NewArtistComponent} from "./newArtist/newArtist.component";
+//export {InsertEditionComponent } from './artists/insertEdition/insertEdition.component';

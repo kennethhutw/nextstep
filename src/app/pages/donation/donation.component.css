@@ -166,10 +166,10 @@ p {
 }
 .actions {
   display: grid;
-  grid-template-rows: auto;
+  /* grid-template-rows: auto;
   grid-template-columns: repeat(auto-fit, minmax(auto, 45px));
   grid-auto-flow: column;
-  grid-gap: 5px;
+  grid-gap: 5px; */
 }
 .btn input {
   display: none;

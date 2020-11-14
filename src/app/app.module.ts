@@ -5,17 +5,10 @@ import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 
 import { AppComponent } from "./app.component";
-import { UserListComponent } from "./admin/user-list/user-list.component";
 import { LogInComponent } from "./login/log-in/log-in.component";
 import { AppRoutingModule } from "./app-routing.module";
-import {
-  UserService,
-  WalletService,
-  CryptoService,
-  Web3Service,
-  ArtistService
-} from "./_services";
-import { AuthService } from "./_guards";
+
+
 import {
   NewWalletComponent,
   WalletListComponent,
@@ -36,13 +29,14 @@ import {
   SubTabComponent,
   SubTabsComponent,
   SubTableComponent,
-  ProfileEditorComponent, ArtistComponent
+  ProfileEditorComponent,
+  ArtistComponent,
+  InsertEditionComponent,
+  Edition1Component,
 } from "./components";
 
 import { DisqusModule } from "ngx-disqus";
 
-import { HTTP_INTERCEPTORS } from "@angular/common/http";
-import { TokenInterceptor } from "../app/_guards";
 
 
 import {
@@ -55,8 +49,10 @@ import {
   ActivityComponent,
   GalleryComponent,
   ProfileComponent,
-  TokenComponent
+  TokenComponent,
+  NewArtistComponent,
 } from "./pages";
+
 import { AnQrcodeModule } from "an-qrcode";
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
@@ -66,6 +62,8 @@ import { IsotopeModule } from "ngx-isotope";
 // Import NgMasonryGridModule
 import { NgMasonryGridModule } from "ng-masonry-grid";
 
+import { SharedModule } from "./_shared/shared.module";
+
 export function createLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -73,7 +71,6 @@ export function createLoader(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    UserListComponent,
     LogInComponent,
     NewWalletComponent,
     WalletListComponent,
@@ -103,7 +100,9 @@ export function createLoader(http: HttpClient) {
     GalleryComponent,
     ProfileComponent,
     TokenComponent,
-    ArtistComponent
+    ArtistComponent,
+    NewArtistComponent,
+    Edition1Component,
   ],
   imports: [
     BrowserModule,
@@ -115,6 +114,7 @@ export function createLoader(http: HttpClient) {
     OwlModule,
     IsotopeModule,
     NgMasonryGridModule,
+    SharedModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -125,18 +125,8 @@ export function createLoader(http: HttpClient) {
     DisqusModule.forRoot("disqus_shortname"),
   ],
   providers: [
-    UserService,
-    WalletService,
-    AuthService,
-    CryptoService,
-    Web3Service,
-    ArtistService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true,
-    },
+
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

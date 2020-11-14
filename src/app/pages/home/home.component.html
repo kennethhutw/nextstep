@@ -1,312 +1,142 @@
-<!-- Start Offset Wrapper -->
-<div class="body__overlay"></div>
-<div class="offset__wrapper">
-  <!-- Start Offset MEnu -->
-  <div class="offsetmenu">
-    <div class="offsetmenu__inner">
-      <div class="offsetmenu__close__btn">
-        <a href="#"><i class="fa fa-times"></i></a>
+<!--header-->
+<div class="container-fluid">
+  <div class="row">
+    <div id="main-bg">
+      <div class="main-slogen">
+        {{ "HOMETITLE" | translate }}<br />{{ "DIGITALARTWORKS" | translate }}
       </div>
-      <div class="off__contact">
-        <div class="off__logo">
-          <a href="index.html">
-            <img src="assets/img/logo/5.png" alt="logo" />
-          </a>
-        </div>
-        <p>
-          There are many variations of passages of Lorem Ipsum available, but
-          the majority have suffered alteration in some form, by injected
-          humour, or randomised words which don't look even slightly believable.
-        </p>
-      </div>
-      <div class="offset__widget">
-        <h4>Contact Us</h4>
-        <div class="off__contact__address">
-          <div class="single__off__address">
-            <span>Address:</span>
-            <p>ur address goes here,street Crossroad 123</p>
-          </div>
-          <div class="single__off__address">
-            <span>Phone:</span>
-            <p>+99 859 658 589 . +69 587 456 25</p>
-          </div>
-          <div class="single__off__address">
-            <span>Email:</span>
-            <p>profolol@email.com</p>
-          </div>
-          <div class="single__off__address">
-            <span>Eax:</span>
-            <p>+55 784 7585 . + 985 698 586</p>
-          </div>
-        </div>
-      </div>
-      <div class="offset__subs">
-        <h4>Subscribe Now</h4>
-        <div class="offset__input">
-          <input type="email" placeholder="Enter your Email..." />
-          <a href="#"><i class="zmdi zmdi-mail-send"></i></a>
-        </div>
-      </div>
-      <div class="offset__sosial__share">
-        <ul class="off__soaial__link">
-          <li>
-            <a
-              href="https://twitter.com/devitemsllc"
-              target="_blank"
-              title="Twitter"
-              ><i class="zmdi zmdi-twitter"></i
-            ></a>
-          </li>
-          <li>
-            <a
-              href="https://www.instagram.com/devitems/"
-              target="_blank"
-              title="Instagram"
-              ><i class="zmdi zmdi-instagram"></i
-            ></a>
-          </li>
-          <li>
-            <a
-              href="https://www.facebook.com/devitems/?ref=bookmarks"
-              target="_blank"
-              title="Facebook"
-              ><i class="zmdi zmdi-facebook"></i
-            ></a>
-          </li>
-          <li>
-            <a
-              href="https://plus.google.com/"
-              target="_blank"
-              title="Google Plus"
-              ><i class="zmdi zmdi-google-plus"></i
-            ></a>
-          </li>
-          <li>
-            <a href="#" target="_blank" title="Google"
-              ><i class="zmdi zmdi-google"></i
-            ></a>
-          </li>
-        </ul>
-      </div>
+      <button class="main-btn-explore" href="project.html">
+        {{ "DISCOVER" | translate }}
+      </button>
     </div>
   </div>
-  <!-- end offset menu -->
 </div>
-<!-- slider start -->
 
-<div class="slider-area">
-  <owl-carousel
-    [options]="SlideOptions"
-    [items]="images"
-    [carouselClasses]="['owl-theme', 'sliding']"
-  >
-    <div
-      [ngStyle]="{
-        height: '479px',
-        background:
-          'url(../assets/img/slider/1.jpg)no-repeat scroll center center'
-      }"
-    >
-      <div class="slider-content text-center">
-        <h2>
-          Life <span class="brand-text">is</span
-          ><span class="brand-text">short.</span>
-        </h2>
-        <h3>Enjoy it !</h3>
-        <a href="about.html">Read More</a>
+<div class="container">
+  <div class="index-title w-100">
+    {{ "POPULARCREATIONS" | translate }}
+  </div>
+
+  <div class="row">
+    <ng-container *ngFor="let edition of popularEditions">
+      <div class="col-md-4 mb-4">
+        <app-edition1
+          editionTitle="{{ edition.editionTitle }}"
+          editionAuthor="{{ edition.editionAuthor }}"
+          editionImg="{{ edition.editionImg }}"
+          editionId="{{ edition.editionId }}"
+        ></app-edition1>
       </div>
+    </ng-container>
+    <div class="text-center form-inline mx-auto">
+      <button class="index_btn_roll">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button class="index_btn_roll">
+        <i class="fas fa-chevron-right"></i>
+      </button>
     </div>
-    <div
-      [ngStyle]="{
-        height: '479px',
-        background:
-          'url(../assets/img/slider/2.jpg)no-repeat scroll center center'
-      }"
-    >
-      <div class="slider-content text-center">
-        <h2>Life is short.</h2>
-        <h3>Enjoy it !</h3>
-        <a href="about.html">Read More</a>
+  </div>
+  <!--row end-->
+
+  <div class="index-title w-100">
+    {{ "RECENT" | translate }}
+  </div>
+
+  <div class="row">
+    <ng-container *ngFor="let edition of recentEditions">
+      <div class="col-sm-6 col-md-3 mb-4">
+        <app-edition1
+          editionTitle="{{ edition.editionTitle }}"
+          editionAuthor="{{ edition.editionAuthor }}"
+          editionImg="{{ edition.editionImg }}"
+          editionId="{{ edition.editionId }}"
+        ></app-edition1>
       </div>
+    </ng-container>
+    <div class="text-center mx-auto">
+      <button class="index_btn_explore1">{{ "VIEWMORE" | translate }}</button>
     </div>
-  </owl-carousel>
+  </div>
+  <!--row end-->
+
+  <div id="index_title" class="index_title text-center">
+    {{ "STARTYOUROWN" | translate }}
+    <span>{{ "DIGITALCOLLECTION" | translate }}</span>
+  </div>
 </div>
-<!-- slider end -->
-<!-- portfolio area start -->
-<div class="portfolio-area ptb-80">
-  <div class="container">
-    <div class="portfolio-menu-active mb-50 text-center portfolio-menu-style">
-      <button class="active" data-filter="*">All</button>
-      <button data-filter=".cat1">Creative</button>
-      <button data-filter=".cat2">Branding</button>
-      <button data-filter=".cat3">Wordpress</button>
-      <button data-filter=".cat4">Photography</button>
-    </div>
 
-    <div class="portfolio-style">
-      <div class="row grid">
-        <ng-masonry-grid
-          *ngIf="showMasonry"
-          [masonryOptions]="{
-            transitionDuration: '0.4s',
-            gutter: 10,
-            horizontalOrder: true
-          }"
-          [useAnimation]="true"
-          [useImagesLoaded]="true"
-          (onNgMasonryInit)="onNgMasonryInit($event)"
-          [scrollAnimationOptions]="animOptions"
-        >
-          <ng-masonry-grid-item
-            id="{{ 'masonry-item-' + i }}"
-            *ngFor="let item of masonryItems; let i = index"
-            class="col-md-4 col-sm-6 col-xs-12 grid-item cat2 cat3"
-          >
-            <div class="single-portfolio portfolio-hover mb-30">
-              <div class="portfolio-img-text">
-                <div class="portfolio-img">
-                  <a href="#">
-                    <img
-                      mat-card-image
-                      [src]="item.src"
-                      alt="Photo of a Shiba Inu"
-                    />
-                  </a>
-                </div>
-                <div class="portfolio-title">
-                  <h3><a href="single-portfolio-1.html">New York</a></h3>
-                  <a class="img-poppu" href="assets/img/portfolio/1.jpg">
-                    <i class="fa fa-search"></i>
-                  </a>
+<div class="container-fluid">
+  <div id="index_buyer_bg" class="row index_buyer_bg">
+    <div class="container">
+      <div id="index_buyer" class="text-center">
+        <div class="row">
+          <div class="col-md-10 offset-md-1">
+            <div class="row box-height">
+              <div class="col-md-4">
+                <div class="index_buyer_box">
+                  <img
+                    src="./../../../assets/images/index_buyer_icon-1.jpg"
+                    alt=""
+                  />
+                  <h3>{{ "COLLECT" | translate }}</h3>
+                  <div>{{ "COLLECTDES" | translate }}</div>
                 </div>
               </div>
-
-              <div class="row" style="padding: 15px;">
-                <div class="pull-left">Float</div>
-                <div class="pull-right">
-                  <label>Item Number: {{ item.count + 1 }}</label>
+              <div class="col-md-4">
+                <div class="index_buyer_box">
+                  <img
+                    src="./../../../assets/images/index_buyer_icon-2.jpg"
+                    alt=""
+                  />
+                  <h3>{{ "SHOWOFF" | translate }}</h3>
+                  <div>{{ "SHOWOFFDES" | translate }}</div>
                 </div>
               </div>
-
-              <div>
-                <button
-                  mat-raised-button
-                  (click)="removeItem('masonry-item-' + i)"
-                >
-                  Remove
-                </button>
+              <div class="col-md-4">
+                <div class="index_buyer_box">
+                  <img
+                    src="./../../../assets/images/index_buyer_icon-3.jpg"
+                    alt=""
+                  />
+                  <h3>{{ "INVEST" | translate }}</h3>
+                  <div>{{ "INVESTDES" | translate }}</div>
+                </div>
               </div>
             </div>
-          </ng-masonry-grid-item>
-        </ng-masonry-grid>
-      </div>
-
-      <div class="load-more text-center pt-50">
-        <a href="portfolio-3-col.html"
-          ><i class="fa fa-refresh"></i> Load More</a
-        >
-      </div>
-    </div>
-  </div>
-</div>
-<!-- portfolio area end -->
-<!-- brand area start -->
-<div class="brand-area pt-20 pb-70">
-  <div class="container">
-    <div class="brand-hover">
-      <owl-carousel
-        [options]="{ items: 5, dots: false, navigation: false }"
-        [items]="Brands"
-        [carouselClasses]="['owl-theme', 'row', 'sliding']"
-      >
-        <div *ngFor="let brand of Brands">
-          <div class="single-brand">
-            <img style="height: 150.25px; width: 189.59px;" src="{{ brand }}" />
           </div>
         </div>
-      </owl-carousel>
-      <div class="brand-logo-active owl-carousel">
-        <div class="single-brand">
-          <a href="#"><img src="assets/img/brand-logo/1.png" alt="" /></a>
-        </div>
-        <div class="single-brand">
-          <a href="#"><img src="assets/img/brand-logo/2.png" alt="" /></a>
-        </div>
-        <div class="single-brand">
-          <a href="#"><img src="assets/img/brand-logo/3.png" alt="" /></a>
-        </div>
-        <div class="single-brand">
-          <a href="#"><img src="assets/img/brand-logo/4.png" alt="" /></a>
-        </div>
-        <div class="single-brand">
-          <a href="#"><img src="assets/img/brand-logo/5.png" alt="" /></a>
-        </div>
-        <div class="single-brand">
-          <a href="#"><img src="assets/img/brand-logo/1.png" alt="" /></a>
-        </div>
+      </div>
+      <div class="text-center mx-auto mt-3 mb-5">
+        <button class="index_btn_explore2">{{ "KNOWMORE" | translate }}</button>
+        <button class="index_btn_explore3">
+          {{ "STARTCOLLECTING" | translate }}
+        </button>
       </div>
     </div>
   </div>
 </div>
-<!-- brand area end -->
-<!-- testimonials area start -->
-<div class="testimonials-area border-top pt-115 pb-80">
-  <div class="container">
-    <div class="testimonials-active owl-carousel">
-      <div class="single-testimonials">
-        <div class="testimonials-img">
-          <img src="assets/img/testimonial/1.png" alt="" />
-          <span><i class="fa fa-quote-right"></i></span>
-        </div>
-        <div class="testimonials-text">
-          <p>
-            Lorem Khaled Ipsum is a major key to success. Fan luv. Lion! Fan
-            luv. Watch your back, but more importantly .
-          </p>
-          <h4>Ms. Shopia</h4>
-        </div>
-      </div>
-      <div class="single-testimonials">
-        <div class="testimonials-img">
-          <img src="assets/img/testimonial/2.png" alt="" />
-          <span><i class="fa fa-quote-right"></i></span>
-        </div>
-        <div class="testimonials-text">
-          <p>
-            Lorem Khaled Ipsum is a major key to success. Fan luv. Lion! Fan
-            luv. Watch your back, but more importantly .
-          </p>
-          <h4>Mr. Mike Banding</h4>
-        </div>
-      </div>
-      <div class="single-testimonials">
-        <div class="testimonials-img">
-          <img src="assets/img/testimonial/1.png" alt="" />
-          <span><i class="fa fa-quote-right"></i></span>
-        </div>
-        <div class="testimonials-text">
-          <p>
-            Lorem Khaled Ipsum is a major key to success. Fan luv. Lion! Fan
-            luv. Watch your back, but more importantly .
-          </p>
-          <h4>Ms. Shopia</h4>
-        </div>
-      </div>
-      <div class="single-testimonials">
-        <div class="testimonials-img">
-          <img src="assets/img/testimonial/2.png" alt="" />
-          <span><i class="fa fa-quote-right"></i></span>
-        </div>
-        <div class="testimonials-text">
-          <p>
-            Lorem Khaled Ipsum is a major key to success. Fan luv. Lion! Fan
-            luv. Watch your back, but more importantly .
-          </p>
-          <h4>Mr. Mike Banding</h4>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- testimonials area end -->
 
+<div class="container-fluid">
+  <div class="row">
+    <div id="index_arts_bg">
+      <div class="index_arts_text">
+        <div class="index_art_slogen">
+          {{ "AREYOUA" | translate }}<br /><span>{{
+            "DIGITALCREATOR?" | translate
+          }}</span>
+        </div>
+        <p class="mt-2 text-center">
+          {{ "DIGITALCREATORDES" | translate }}<br />
+          {{ "DIGITALCREATORDES2" | translate }}
+        </p>
+        <div class="text-center mx-auto mt-3 mb-5">
+          <button class="index_btn_explore1">
+            {{ "KNOWMORE" | translate }}
+          </button>
+          <button class="index_btn_explore2">{{ "JOINUS" | translate }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
