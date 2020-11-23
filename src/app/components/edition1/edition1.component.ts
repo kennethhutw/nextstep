@@ -22,7 +22,7 @@ export class Edition1Component implements OnInit {
     private router: Router
   ) {
     let _lang = localStorage.getItem("lang");
-    if (this.utility.IsNullOrEmpty(_lang)) {
+    if (!this.utility.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
     }
   }

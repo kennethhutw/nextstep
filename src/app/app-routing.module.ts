@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { RouterModule, Routes } from "@angular/router";
+import { RouterModule, Routes, UrlSerializer } from "@angular/router";
 
 import { LogInComponent } from "./login/log-in/log-in.component";
 import {
@@ -26,7 +26,10 @@ import {
   GalleryComponent,
   ProfileComponent,
   TokenComponent,
-  NewArtistComponent
+  NewArtistComponent,
+  RegisterArtistComponent,
+  PageNotFoundComponent,
+  RegisterBuyerComponent,
 } from "./pages";
 
 const routes: Routes = [
@@ -43,7 +46,18 @@ const routes: Routes = [
   { path: "donation", component: DonationComponent },
   { path: "edition", component: EditionComponent },
   { path: "token/:id", component: TokenComponent },
-  { path: "index", component: HomeComponent },
+  {
+    path: "index",
+    component: HomeComponent,
+    children: [
+      {
+        path: "notfound",
+        component: PageNotFoundComponent,
+      },
+    ],
+  },
+  { path: "register-artist", component: RegisterArtistComponent },
+  { path: "register-collector", component: RegisterBuyerComponent },
   { path: "wallet/new-wallet", component: NewWalletComponent },
   { path: "wallet/walletlist", component: WalletListComponent },
   { path: "wallet/import-wallet", component: ImportWalletComponent },
@@ -54,12 +68,21 @@ const routes: Routes = [
   { path: "wallet/metamask", component: MetamaskComponent },
   { path: "wallet/importAddress", component: ImportAddressComponent },
   { path: "wallet/importMnemonic", component: ImportMnemonicComponent },
-
+  { path: "page-not-found", component: ImportMnemonicComponent },
 ];
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forRoot(routes)],
+  imports: [
+    CommonModule,
+    RouterModule.forRoot(routes, {
+      malformedUriErrorHandler: (
+        error: URIError,
+        urlSerializer: UrlSerializer,
+        url: string
+      ) => urlSerializer.parse("/page-not-found"),
+    }),
+  ],
   declarations: [],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

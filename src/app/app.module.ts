@@ -8,7 +8,6 @@ import { AppComponent } from "./app.component";
 import { LogInComponent } from "./login/log-in/log-in.component";
 import { AppRoutingModule } from "./app-routing.module";
 
-
 import {
   NewWalletComponent,
   WalletListComponent,
@@ -37,8 +36,6 @@ import {
 
 import { DisqusModule } from "ngx-disqus";
 
-
-
 import {
   DonationComponent,
   HomeComponent,
@@ -51,6 +48,9 @@ import {
   ProfileComponent,
   TokenComponent,
   NewArtistComponent,
+  RegisterArtistComponent,
+  PageNotFoundComponent,
+  RegisterBuyerComponent,
 } from "./pages";
 
 import { AnQrcodeModule } from "an-qrcode";
@@ -103,6 +103,9 @@ export function createLoader(http: HttpClient) {
     ArtistComponent,
     NewArtistComponent,
     Edition1Component,
+    RegisterArtistComponent,
+    PageNotFoundComponent,
+    RegisterBuyerComponent,
   ],
   imports: [
     BrowserModule,
@@ -124,9 +127,7 @@ export function createLoader(http: HttpClient) {
     }),
     DisqusModule.forRoot("disqus_shortname"),
   ],
-  providers: [
-
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

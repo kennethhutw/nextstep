@@ -21,81 +21,264 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#"
+        <li
+          class="nav-item"
+          [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a class="nav-link" routerLink="../"
             >{{ "HOME" | translate }} <span class="sr-only">(current)</span></a
           >
         </li>
-        <li class="nav-item">
+        <li
+          class="nav-item"
+          [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
           <a class="nav-link" href="#">{{ "GALLERY" | translate }}</a>
         </li>
-        <li class="nav-item">
+        <li
+          class="nav-item"
+          [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
           <a class="nav-link" href="artist.html">{{ "ARTISTS" | translate }}</a>
         </li>
-        <li class="nav-item">
+        <li
+          class="nav-item"
+          [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
           <a class="nav-link" href="activity.html">{{
             "ACTIVITY" | translate
           }}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link">{{ "SIGNUP" | translate }}</a>
+          <a
+            *ngIf="auth.isLoggedOut$ | async"
+            [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+            data-toggle="modal"
+            [attr.data-target]="'#modal_register'"
+            class="nav-link"
+            >{{ "SIGNUP" | translate }}</a
+          >
         </li>
       </ul>
-      <form id="index_login" class="form-inline my-2 my-lg-0 text-white">
-        <a href="signin-wallet.html" class="text-white"
-          ><i class="far fa-arrow-alt-circle-right"></i>
-          {{ "WALLETLOGIN" | translate }}</a
+
+      <form
+        id="index_login"
+        *ngIf="auth.isLoggedOut$ | async"
+        class="form-inline my-2 my-lg-0 text-white"
+      >
+        <a (click)="walletsignin()" class="text-white">
+          <i class="far fa-arrow-alt-circle-right"></i>
+          {{ "WALLETSIGNIN" | translate }}</a
         >｜
         <a
           data-toggle="modal"
-          [attr.data-target]="'#LoginModal'"
+          [attr.data-target]="'#modal_login_mail'"
           class="text-white"
-          >{{ "EMAILLOGIN" | translate }}</a
+          >{{ "EMAILSIGNIN" | translate }}</a
         >
       </form>
+
+      <ng-container *ngIf="auth.user$ | async as user">
+        <!-- <img class="profile-picture" [src]="user.pictureUrl" />
+         -->
+        <i class="fa fa-user"></i>
+        <span>Profile</span>
+      </ng-container>
     </div>
   </div>
 </nav>
 
-<app-modal [modalid]="'LoginModal'">
+<!--Modal login mail-->
+<app-modal [modalid]="'modal_login_mail'">
+  <div header>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">╳</span>
+    </button>
+  </div>
   <div body>
-    <div class="text-center mt-4 mb-2">
-      <h3>Login</h3>
+    <div class="text-center mb-4">
+      <h3>{{ "EMAILSIGNIN" | translate }}</h3>
     </div>
-    <form [formGroup]="loginForm" (ngSubmit)="emaillogin()">
-      <div class="form-group">
-        <input
-          type="email"
-          class="form-control"
-          id="InputEmail"
-          aria-describedby="emailHelp"
-          placeholder="Enter email"
-          formControlName="email"
-        />
-      </div>
-      <div class="form-group">
-        <input
-          type="password"
-          class="form-control"
-          placeholder="password"
-          formControlName="password"
-        />
-      </div>
-      <button
-        type="submit"
-        class="btn btn-primary btn-sm btn-block btn-bgcolor"
-        [ngClass]="{ 'cursor-not-allowed': inValid() }"
-        [disabled]="inValid()"
-      >
-        Login
+    <div class="row text-center">
+      <input
+        class="modal_input w-100 mb-2"
+        type="text"
+        id="emailsignin"
+        placeholder="{{ 'EMAILSIGNIN' | translate }}"
+        (focus)="this.placeholder = ''"
+        (blur)="setBlur(emailsignin, 'EMAILSIGNIN')"
+      />
+      <input
+        class="modal_input w-100 mb-2"
+        type="text"
+        id="emailpassword"
+        placeholder="{{ 'PASSWORD' | translate }}"
+        (focus)="this.placeholder = ''"
+        (blur)="setBlur(emailpassword, 'PASSWORD')"
+      />
+      <button class="model_btn_normal mb-2 w-100">
+        {{ "SIGNIN" | translate }}'
       </button>
-    </form>
-    <hr class="splitLinesilver" />
-    <div>
-      <p style="text-align: left">
-        Signup
-        <span style="float: right"> Forgot Password </span>
-      </p>
+      <div class="w-100">
+        <div class="float-left">
+          <a
+            href="#"
+            data-toggle="modal"
+            data-target="#modal_register"
+            data-dismiss="modal"
+          >
+            {{ "REGISTER" | translate }}</a
+          >
+        </div>
+        <div class="float-right">
+          <a
+            href="#"
+            data-toggle="modal"
+            data-target="#modal_forget_password"
+            data-dismiss="modal"
+            >{{ "FORGOTPASSWORD" | translate }}</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</app-modal>
+<!--Modal forget password-->
+<div
+  class="modal fade"
+  id="modal_forget_password"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content model_padding">
+      <div class="modal_header">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">╳</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center mb-4">
+          <h3>{{ "FORGOTPASSWORD" | translate }}</h3>
+        </div>
+        <div class="row text-center">
+          <input
+            class="modal_input w-100 mb-2"
+            type="text"
+            id="signinPassword"
+            placeholder="{{ 'EMAIL' | translate }}"
+            (focus)="this.placeholder = ''"
+            (blur)="setBlur(signinPassword, 'PASSWORD')"
+          />
+          <button
+            class="model_btn_normal mb-2 w-100"
+            data-toggle="modal"
+            data-target="#modal_password_thanks"
+            data-dismiss="modal"
+          >
+            {{ "SEND" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Modal register-->
+<div
+  class="modal fade"
+  id="modal_register"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content model_padding">
+      <div class="modal_header">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">╳</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center mb-4">
+          <h2>{{ "SELECTYOURROLE" | translate }}</h2>
+        </div>
+        <div class="row text-center">
+          <div class="col-md-6">
+            <a routerLink="../register-artist"
+              ><button
+                data-dismiss="modal"
+                aria-label="Close"
+                class="model_btn_normal"
+              >
+                {{ "IAMCREATOR" | translate }}
+              </button></a
+            >
+            <p class="mt-2 model-p-small">{{ "IAMCREATORDEC" | translate }}</p>
+          </div>
+          <div class="col-md-6">
+            <a routerLink="../register-collector"
+              ><button
+                data-dismiss="modal"
+                aria-label="Close"
+                class="model_btn_normal"
+              >
+                {{ "IAMCOLLECTOR" | translate }}
+              </button></a
+            >
+            <p class="mt-2 model-p-small">
+              {{ "IAMCOLLECTORDEC" | translate }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal password thank you-->
+<app-modal [modalid]="'modal_password_thanks'">
+  <div body>
+    <div class="row text-center">
+      <p>{{ "ANEWPASSWORDHASBEENSENT" | translate }}</p>
+      <button
+        class="model_btn_normal mb-2 w-100"
+        data-dismiss="modal"
+        aria-label="Close"
+      >
+        {{ "CONFRIM" | translate }}
+      </button>
+    </div>
+  </div>
+</app-modal>
+
+<!--Modal wallet wrong-->
+<app-modal [modalid]="'modal_wallet_wrong'">
+  <div body>
+    <div class="row text-center">
+      <p>{{ "NOTFOUNDWALLET" | translate }}</p>
+      <button
+        class="model_btn_normal mb-2 w-100"
+        data-dismiss="modal"
+        aria-label="Close"
+      >
+        {{ "CONFRIM" | translate }}
+      </button>
     </div>
   </div>
 </app-modal>

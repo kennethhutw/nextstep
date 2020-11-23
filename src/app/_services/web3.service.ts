@@ -28,7 +28,7 @@ export class Web3Service {
     // }
   }
 
-  ethEnabled (){
+  ethEnabled() {
     if (window.web3) {
       this.web3 = new Web3(window.ethereum);
       this.contract = new this.web3.eth.Contract(
@@ -44,10 +44,10 @@ export class Web3Service {
     return false;
   }
 
- 
-
   async getAccountDetail(): Promise<any> {
+    console.log("getAccountDetail ==========");
     var accounts = await this.web3.eth.getAccounts();
+    console.log("getAccountDetail ==========", accounts);
     var balance = await this.web3.eth.getBalance(accounts[0]);
     var networkId = await this.web3.eth.net.getId();
     return {

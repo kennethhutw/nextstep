@@ -58,9 +58,107 @@
     width: 80%;
     padding-bottom: 20px;
   }
+
+  .signup-logo img {
+    width: 70%;
+  }
+
+  .signup-logo h1 {
+    font-size: 31px;
+  }
 }
 @media (min-width: 576px) {
 }
+
+.pt-10 {
+  padding-top: 10px;
+}
+.pt-20 {
+  padding-top: 20px;
+}
+.pt-30 {
+  padding-top: 30px;
+}
+.pb-10 {
+  padding-bottom: 10px;
+}
+.pb-20 {
+  padding-bottom: 20px;
+}
+.pb-30 {
+  padding-bottom: 30px;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+.mt-20 {
+  margin-top: 20px;
+}
+.mt-30 {
+  margin-top: 30px;
+}
+.mb-10 {
+  margin-bottom: 10px;
+}
+.mb-20 {
+  margin-bottom: 20px;
+}
+.mb-30 {
+  margin-bottom: 30px;
+}
+
+.mlr-10 {
+  margin: 0 10px;
+}
+
+.bgc-white {
+  background-color: #fff;
+}
+
+.bgc-grey {
+  background-color: #f4f4f4;
+}
+
+.text-green {
+  color: #17f596;
+}
+
+/** 修改 bootstrap model **/
+
+body {
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", Arial, sans-serif;
+  padding-right: 0px !important;
+  overflow-y: scroll !important;
+}
+
+nav {
+  padding-right: 0px !important;
+}
+
+a {
+  color: #08ab65;
+}
+
+a:hover {
+  color: #17f596;
+  text-decoration: none;
+}
+
+/** input placeholder消失 **/
+input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+input:focus:-moz-placeholder {
+  color: transparent;
+} /* FF 4-18 */
+input:focus::-moz-placeholder {
+  color: transparent;
+} /* FF 19+ */
+input:focus:-ms-input-placeholder {
+  color: transparent;
+} /* IE 10+ */
 
 #main-bg {
   background-image: url("./assets/images/main-bg.jpg");
@@ -182,7 +280,7 @@
   color: #fff;
 }
 
-.hovereffect a. {
+.hovereffect a {
   text-decoration: none;
   display: block;
   text-transform: uppercase;
@@ -399,4 +497,159 @@ padding:7px 14px; */
 #footer_bg img {
   width: 80%;
   padding-bottom: 20px;
+}
+
+/** Model **/
+
+.modal_header {
+  border-bottom: 0;
+}
+
+.model_padding {
+  padding: 30px 50px 20px 50px;
+}
+
+.model_btn_normal {
+  font-size: 16px;
+  padding: 15px 20px;
+  width: 100%;
+  background-color: #17f596;
+  border: 2px solid #17f596;
+  border-radius: 3px;
+}
+
+.model_btn_normal:hover {
+  border: 2px solid #11e78b;
+  background-color: #11e78b;
+}
+
+.model_btn_second {
+  font-size: 16px;
+  padding: 15px 20px;
+  width: 100%;
+  background-color: #fff;
+  border: 2px solid #17f596;
+  border-radius: 3px;
+}
+
+.model-p-small {
+  font-size: 13px;
+}
+
+.modal_input {
+  border: 1px solid #17f596;
+  padding: 15px 20px;
+  border-radius: 5px;
+}
+
+/** login **/
+.signup-logo {
+  margin-top: 100px;
+}
+
+.signup-logo h1 {
+  margin-top: 40px;
+}
+
+.login_error {
+  font-size: 13px;
+  color: #d46e6e;
+  padding-top: -3px;
+  padding-bottom: 8px;
+}
+
+.signup-subtitle-wrap {
+  position: relative;
+  margin-bottom: 30px;
+  color: #fff;
+}
+.signup-subtitle-wrap:after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 1px);
+  right: 0;
+  left: 0;
+  height: 1px;
+  z-index: 0;
+  background-color: #979797;
+}
+
+.signup-subtitle {
+  position: relative;
+  z-index: 1;
+
+  background-color: #4a4a4a;
+  color: #fff;
+  margin: 0 auto;
+  padding: 10px 30px;
+  border-radius: 20px;
+}
+
+#register_table input {
+  border: 1px solid #17f596;
+  border-radius: 3px;
+  padding: 25px 15px;
+}
+
+#register_table select {
+  border: 1px solid #17f596;
+  border-radius: 3px;
+  padding: 15px;
+  width: 100%;
+}
+
+.register_info {
+  margin: 40px 10px 40px 10px;
+}
+
+.signup_discript {
+  font-size: 18px;
+  color: #606060;
+}
+.btn_select_img {
+  background-color: #17f596;
+  color: #000;
+  border: 0px;
+  border-radius: 3px;
+  padding: 10px 20px;
+}
+
+.btn_select_img:hover {
+  background-color: #11e78b;
+}
+
+#select_img img {
+  border: 1px solid #17f596;
+}
+
+.btn_normal {
+  font-size: 20px;
+  padding: 15px 30px;
+  background-color: #17f596;
+  border: 2px solid #17f596;
+  border-radius: 3px;
+}
+
+.btn_normal:hover {
+  background-color: #11e78b;
+  border: 2px solid #11e78b;
+}
+
+.input_btn_normal {
+  font-size: 16px;
+  padding: 9px 30px;
+  background-color: #17f596;
+  border: 2px solid #17f596;
+  border-radius: 3px;
+  color: #000;
+}
+
+.input_btn_normal:hover {
+  background-color: #11e78b;
+  border: 2px solid #11e78b;
+  color: #000;
+}
+
+.inline_text {
+  color: #08ab65;
 }

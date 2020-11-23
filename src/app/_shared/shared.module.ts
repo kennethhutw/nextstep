@@ -20,6 +20,7 @@ import {
   ArtistService,
   EditionService,
   DataService,
+AuthStore
 } from "./../_services";
 
 import {
@@ -57,6 +58,7 @@ const sharedComponents = [LoadingDialogComponent, ErrorDialogComponent];
     ArtistService,
     EditionService,
     DataService,
+    AuthStore,
     {
       provide: ErrorHandler,
       useClass: GlobalErrorHandler,

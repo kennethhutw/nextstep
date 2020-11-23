@@ -1,0 +1,9 @@
+.mt-40 {
+  margin-top: 40px;
+}
+.mb-40 {
+  margin-bottom: 40px;
+}
+input[type="checkbox"] {
+  transform: scale(1.5);
+}

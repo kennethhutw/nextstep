@@ -1,3 +1,3 @@
 export * from "./resResult";
-export {NewEdition} from './newEdition.model';
-export * from './newArtist.model';
+export { NewEdition } from "./newEdition.model";
+export * from "./newArtist.model";

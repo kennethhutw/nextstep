@@ -21,7 +21,7 @@ export class UserService {
 
   getLoggedInID(email: string) {}
 
-  walletLogin(address: string) {
+  walletSignin(address: string) {
     try {
       return this.http.post(`${environment.apiUrl}/authenticate/walletLogin`, {
         ethaddress: address,
@@ -32,12 +32,12 @@ export class UserService {
   }
 
   async getPassWordByEmail(email: string) {
-      const params = new HttpParams().set("email", email);
+    const params = new HttpParams().set("email", email);
     return await this.http
       .get<any>(`${environment.apiUrl}/authenticate/getPassWordByEmail`, {
         params: params,
       })
-      .toPromise();;
+      .toPromise();
   }
 
   login(email: string, password: string) {
@@ -48,6 +48,16 @@ export class UserService {
       });
     } catch (error) {
       console.error("login", error);
+    }
+  }
+
+  walletSingup(address: string) {
+    try {
+      return this.http.post(`${environment.apiUrl}/user/signup`, {
+        address: address,
+      });
+    } catch (error) {
+      console.error("signup", error);
     }
   }
 
