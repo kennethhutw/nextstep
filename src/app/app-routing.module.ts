@@ -41,6 +41,7 @@ const routes: Routes = [
   { path: "newArtist", component: NewArtistComponent },
   { path: "artist/:name", component: ArtistProfileComponent },
   { path: "activity", component: ActivityComponent },
+  { path: "gallery/:editionId", component: EditionComponent },
   { path: "gallery", component: GalleryComponent },
   { path: "profile", component: ProfileComponent },
   { path: "donation", component: DonationComponent },

@@ -1,28 +1,32 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
-import { environment } from '../../environments/environment';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable, Subject } from "rxjs";
+import { environment } from "../../environments/environment";
 
 @Injectable()
 export class Utility {
   currentUnixTime = new Date();
   countriesOptions: any;
 
-  constructor(
-    private http: HttpClient) {
+  constructor(private http: HttpClient) {}
 
-  }
+  // public getCountryOptions(): Observable<any> {
+  //   return this.http.get("./../../assets/data/countries.json");
+  // }
 
-  groupBy(arr, func){
-    return arr
-      .reduce((acc, item) => {
-         const key = func(item);
-         if (!acc[key]) {
-           acc[key] = [];
-         }
-         acc[key].push(item);
-         return acc;
-      }, Object.create(null));
+  // public getTagOptions(lang): Observable<any> {
+  //   return this.http.get(`./../../assets/data/types_${lang}.json`);
+  // }
+
+  groupBy(arr, func) {
+    return arr.reduce((acc, item) => {
+      const key = func(item);
+      if (!acc[key]) {
+        acc[key] = [];
+      }
+      acc[key].push(item);
+      return acc;
+    }, Object.create(null));
   }
 
   getCurrentUnixTimeString() {
@@ -34,12 +38,19 @@ export class Utility {
 
   IsNullOrEmpty(value) {
     try {
-      if (!value || value === '' || value === ' ' || value === null || value === undefined || value === 'null') {
+      if (
+        !value ||
+        value === "" ||
+        value === " " ||
+        value === null ||
+        value === undefined ||
+        value === "null"
+      ) {
         return true;
       }
       return false;
     } catch (error) {
-      console.warn('error', error);
+      console.warn("error", error);
     }
   }
 
@@ -53,17 +64,24 @@ export class Utility {
 
   truncate(text: string) {
     if (text.length > 70) {
-      return text.slice(0, 70) + '...';
+      return text.slice(0, 70) + "...";
     } else {
       return text;
     }
   }
 
   isJSONString(str) {
-    if (/^[\],:{}\s]*$/.test(str.replace(/\\["\\\/bfnrtu]/g, '@').
-      replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
-      replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
-
+    if (
+      /^[\],:{}\s]*$/.test(
+        str
+          .replace(/\\["\\\/bfnrtu]/g, "@")
+          .replace(
+            /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,
+            "]"
+          )
+          .replace(/(?:^|:|,)(?:\s*\[)+/g, "")
+      )
+    ) {
       // the json is ok
       return true;
     } else {
@@ -98,9 +116,9 @@ export class Utility {
   }
 
   getExternalURL(url: string) {
-    let externalURL: string = '';
+    let externalURL: string = "";
     if (!/^http[s]?:\/\//.test(url)) {
-      externalURL += 'http://';
+      externalURL += "http://";
     }
 
     externalURL += url;
@@ -115,10 +133,7 @@ export class Utility {
     return newArr;
   }
 
-
-
-
-  GetFieldData(Data: object, field: string, returnStr = '') {
+  GetFieldData(Data: object, field: string, returnStr = "") {
     if (!this.IsNullOrEmpty(Data)) {
       if (!this.IsNullOrEmpty(Data[field])) {
         return Data[field];
@@ -130,13 +145,10 @@ export class Utility {
     }
   }
 
-
   GetUserFieldToArray(Data: object, field: string) {
-
     if (!this.IsNullOrEmpty(Data)) {
       if (!this.IsNullOrEmpty(Data[field])) {
-
-        return Data[field].split(',');
+        return Data[field].split(",");
       } else {
         return [];
       }
@@ -150,40 +162,36 @@ export class Utility {
   GetCountryName(code: string) {
     try {
       if (this.IsNullOrEmpty(this.countriesOptions)) {
-        return '';
+        return "";
       }
-      let result = this.countriesOptions.filter(t => t.value == code);
+      let result = this.countriesOptions.filter((t) => t.value == code);
       if (result.length > 0) {
-        return result[0]['text'];
+        return result[0]["text"];
       } else {
-        return ' ';
+        return " ";
       }
     } catch (error) {
       console.error("Country Name Error : " + error);
-      return ' ';
+      return " ";
     }
   }
-
 
   // to uppercase the first letter of a string
   // ex project => Project
   FirstWordCapitalized(word: string) {
     if (this.IsNullOrEmpty(word)) {
-      return '';
+      return "";
     }
     return word.charAt(0).toUpperCase() + word.slice(1);
   }
 
   // delay for a while before redirect to the next page
   async delay(ms: number) {
-    await new Promise(resolve =>
-      setTimeout(() => resolve(), ms))
-      .then(() => {
-        console.log('fired');
-      });
+    await new Promise((resolve) => setTimeout(() => resolve(), ms)).then(() => {
+      console.log("fired");
+    });
   }
   replaceAll(string, search, replace) {
     return string.split(search).join(replace);
   }
-
 }

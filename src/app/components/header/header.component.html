@@ -35,21 +35,26 @@
           [routerLinkActive]="['active']"
           [routerLinkActiveOptions]="{ exact: true }"
         >
-          <a class="nav-link" href="#">{{ "GALLERY" | translate }}</a>
+          <a class="nav-link" routerLink="/gallery">{{
+            "GALLERY" | translate
+          }}</a>
+        </li>
+
+        <li
+          class="nav-item"
+          [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a class="nav-link" routerLink="/artists">{{
+            "ARTISTS" | translate
+          }}</a>
         </li>
         <li
           class="nav-item"
           [routerLinkActive]="['active']"
           [routerLinkActiveOptions]="{ exact: true }"
         >
-          <a class="nav-link" href="artist.html">{{ "ARTISTS" | translate }}</a>
-        </li>
-        <li
-          class="nav-item"
-          [routerLinkActive]="['active']"
-          [routerLinkActiveOptions]="{ exact: true }"
-        >
-          <a class="nav-link" href="activity.html">{{
+          <a class="nav-link" routerLink="/activity">{{
             "ACTIVITY" | translate
           }}</a>
         </li>

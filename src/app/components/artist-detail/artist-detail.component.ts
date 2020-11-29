@@ -1,0 +1,79 @@
+import { Component, ViewEncapsulation, Input } from "@angular/core";
+import { Router, ActivatedRoute } from "@angular/router";
+import { Utility } from "../../_helpers";
+import { DataService } from "../../_services";
+
+import { TranslateService } from "@ngx-translate/core";
+@Component({
+  selector: "app-artist-detail",
+  templateUrl: "./artist-detail.component.html",
+  styleUrls: ["./artist-detail.component.css"],
+  encapsulation: ViewEncapsulation.None,
+})
+export class ArtistDetailComponent {
+  @Input() id: string;
+  @Input() isFollow: boolean = false;
+
+  @Input() follow: number = 0;
+  @Input() follower: number = 0;
+  @Input() _tags: string[];
+  @Input() set tags(values) {
+    console.log(" ================", values);
+    this._tags = [];
+    if (values.length > -1) {
+      for (let tag of values)
+        this.translateSrv.get(tag).subscribe((text: string) => {
+          if (!this.utility.IsNullOrEmpty(text)) {
+            this._tags.push(text);
+          }
+        });
+    }
+  }
+
+  @Input() walletAddress: string = "0x";
+  @Input() twitter: string = "";
+  @Input() instagram: string = "";
+  @Input() website: string = "";
+  @Input() location: string = "";
+
+  @Input() name: string;
+  @Input() bio: string;
+  @Input() src: string;
+
+  constructor(
+    private utility: Utility,
+    private router: Router,
+    private dataSrv: DataService,
+    private translateSrv: TranslateService
+  ) {
+    let _lang = localStorage.getItem("lang");
+    if (!this.utility.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
+    } else {
+      this.translateSrv.use("zh-tw");
+    }
+  }
+
+  ngOnInit() {
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utility.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+      }
+    });
+  }
+
+  getDisplayWalletAddress() {
+    //0xd7d4f0d1d46443fa79b81b3c3e6e578b98bdd0e8
+    //0xd7d4...bdd0e8
+    if (!this.utility.IsNullOrEmpty(this.walletAddress)) {
+      let first = this.walletAddress.substring(0, 6);
+      let last = this.walletAddress.substring(
+        this.walletAddress.length - 6,
+        this.walletAddress.length
+      );
+      return first + "..." + last;
+    } else {
+      return "";
+    }
+  }
+}

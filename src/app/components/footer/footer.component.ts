@@ -19,6 +19,9 @@ export class FooterComponent implements OnInit {
       this.translateSrv.use(_lang);
       this.SelectedLang = _lang;
     }
+
+    let browserLang = translateSrv.getBrowserLang();
+    console.log("browserLang ==========================", browserLang);
   }
 
   ngOnInit() {}

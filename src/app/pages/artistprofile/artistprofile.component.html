@@ -1,378 +1,85 @@
-<div class="container">
-  <div class="row">
-    <div class="col-lg-4 ">
-      <div class=" p-4 mb-5">
-        <div>
-          <div class="text-center mt-4 mb-2"><img
-              src="https://ipfs.infura.io/ipfs/QmdQ5X54zuD9GcLmf1wHdbp4kRFV4TtEJbpWRh1Gb99UzA" alt="profile-image"
-              class="profile-image">
-            <h4 class="mt-4">Lee Holland</h4>
-            <div><span><a href="https://etherscan.io/address/0x1711854719981c3b4b5d4c8b16fffadcc566d5b2" target="_blank"
-                  class="artist-link text-decoration-none"><span class="artist-name-lg"><span> 0x1711...66d5b2
-                    </span></span></a></span></div>
-            <div>
-              <!---->
-            </div>
-            <!---->
-          </div>
-          <div class="text-center mt-4 bio artist-stats">
-            <hr>
-            <div class="row">
-              <div class="col px-0">
-                <h6 class="text-muted">Sold</h6>
-                <h6>5️</h6>
-              </div>
-              <div class="col px-0">
-                <h6 class="text-muted">Editions</h6>
-                <h6>0</h6>
-              </div>
-              <div class="col px-0">
-                <h6 class="text-muted">Total</h6>
-                <h6><span class="font-roboto"><span class="price">0.18</span> <span class="price-eth">ETH</span></span>
-                </h6>
-              </div>
-              <div class="d-none d-sm-block d-md-block col px-0">
-                <h6 class="text-muted">Highest</h6>
-                <h6><span class="font-roboto"><span class="price">0.06</span> <span class="price-eth">ETH</span></span>
-                </h6>
-              </div>
-            </div>
-          </div>
-          <div class="mt-2">
-            <h6>Bio</h6>
-            <p class="profile-item"><span>Hi, I’m Lee Holland, a multi-disciplined
-                designer and illustrator based in Sheffield, United Kingdom. <br></span></p>
-          </div>
-          <div class="mt-2">
-            <hr>
-            <h6>Website</h6><a href="www.leeholland.net" target="_blank"
-              class="profile-item text-dark">www.leeholland.net</a>
-          </div>
-          <div class="mt-4">
-            <a href="https://twitter.com/LeeDRHolland" target="_blank" class="profile-item text-dark">
-              <i class="fa fa-twitter"></i> @LeeDRHolland </a></div>
-          <div class="mt-2"><a href="https://www.instagram.com/leedrholland" target="_blank"
-              class="profile-item text-dark"><i class="fa fa-instagram"></i> @leedrholland </a></div>
-          <!---->
-          <!---->
+<div id="content-mt" class="container mb-40">
+  <app-artist-detail
+    name="Raamin ka"
+    src="./assets/images/artist-photo.jpg"
+    follow="231"
+    follower="45"
+    bio="    'Trickle Down, A New Vertical Sovereignty' is an artwork by Helen
+        Knowles. It​ is a tokenised four-screen video installation and
+        generative soundscape attached to the blockchain, which explores value
+        systems and wealth disparity. On sale here is a limited-edition
+        transaction map GIF which illustrates how the currency flows and is
+        distributed.The artwork is composed of auction scenes documented by
+        artist Helen Knowles in widely different settings, which reflect the
+        breadth of wealth and financial powe."
+    walletAddress="3MieYo1wiBYWHRUnoe6vvhGVwndmVoBjD"
+    twitter="@yayatom"
+    instagram="@yayatom"
+    website="yayatom.com"
+    location="Taiwan"
+    tags="插畫,攝影,人像 "
+  ></app-artist-detail>
+
+  <div class="row mt-40">
+    <ng-container *ngFor="let edition of popularEditions">
+      <div class="col-md-4 mb-4">
+        <app-edition2
+          editionTitle="{{ edition.editionTitle }}"
+          editionAuthor="{{ edition.editionAuthor }}"
+          editionImg="{{ edition.editionImg }}"
+          editionId="{{ edition.editionId }}"
+        ></app-edition2>
+      </div>
+    </ng-container>
+
+    <!-- <div class="col-md-4 mb-4">
+      <div class="hovereffect">
+        <img src="./assets/images/main-thumbnail-a3.jpg" alt="" />
+        <div class="overlay">
+          <h2>The Calm And The Storm</h2>
+          <p><i class="fas fa-user"></i> Andrew Shiao</p>
+          <a href="project-purchase.html">
+            <button class="info">了解作品細節</button>
+          </a>
         </div>
       </div>
     </div>
-
-
-    <div class="col-lg-8 ">
-      <div class="tabs" id="">
-        <!---->
-        <div class="">
-          <ul role="tablist" class="nav nav-tabs nav-justified" id="__BVID__19265__BV_tab_controls_">
-            <!---->
-            <li role="presentation" class="nav-item"><a
-                [ngClass]="{ 'tab-active': currentTab === 'artworks','nav-link': currentTab !== 'artworks' }"
-                href="#artworks" data-toggle="tab" (click)="changeTab('artworks')">Artworks</a></li>
-            <li role="presentation" class="nav-item"><a
-                [ngClass]="{ 'tab-active': currentTab === 'collection','nav-link': currentTab !== 'collection' }"
-                href="#collection" data-toggle="tab" (click)="changeTab('collection')">Collection</a></li>
-            <li role="presentation" class="nav-item"><a role="tab"
-                [ngClass]="{ 'tab-active': currentTab === 'offers','nav-link': currentTab !== 'offers' }" href="#offers"
-                data-toggle="tab" (click)="changeTab('offers')">Offers</a></li>
-            <li role="presentation" class="nav-item"><a
-                [ngClass]="{ 'tab-active': currentTab === 'favourites','nav-link': currentTab !== 'favourites' }"
-                href="#favourites" data-toggle="tab" (click)="changeTab('favourites')">Favourites</a></li>
-            <!---->
-          </ul>
-        </div>
-        <div class="tab-content" id="">
-          <div role="tabpanel" aria-hidden="false" class="tab-pane active" acive="" id="artworks">
-            <div class="my-4">
-              <app-subtabs>
-                <app-subtab tabTitle="Creations">
-                  <div class="card-deck">
-                    <div class="col-sm-6 mb-5">
-                      <div id="gallery_card_8400" class="card"><a [routerLink]="['/edition']" class="card-target">
-                          <div name="edition-image-asset"><img id="edition_image_8400"
-                              data-src="https://cdn.knownorigin.io/cdn/images/network/1/edition/8400"
-                              data-error="https://cdn.knownorigin.io/cdn/images/network/1/edition/8400"
-                              alt="edition-image" class="card-img-top hand-pointer card-img-cover"
-                              src="https://cdn.knownorigin.io/cdn/images/network/1/edition/8400" lazy="loaded">
-                            <!---->
-                          </div>
-                        </a>
-                        <div class="card-body">
-                          <div class="row">
-                            <div class="col-12"><a [routerLink]="['/edition']" class="card-target">
-                                <p class="card-title mt-2 card-edition-name"><span>
-                                    <!----></span><span>Ethereum Inside</span><span
-                                    class="text-muted float-right small">1 of
-                                    5</span></p>
-                              </a></div>
-                          </div>
-                        </div>
-                        <div class="card-footer no-top-border bg-white">
-                          <div class="row">
-                            <div class="col"><span>
-                                <div><a href="/lee-holland" class="artist-link router-link-exact-active is-active"><img
-                                      src="https://ipfs.infura.io/ipfs/QmdQ5X54zuD9GcLmf1wHdbp4kRFV4TtEJbpWRh1Gb99UzA"
-                                      alt="profile-image" class="profile-image artist-avatar"><span
-                                      class="pl-1 artist-name-lg">Lee Holland</span></a></div>
-                                <!---->
-                              </span></div>
-                            <!---->
-                          </div>
-                          <!---->
-                          <div class="row">
-                            <div class="col-8"><a [routerLink]="['/edition']" class="card-target">
-                                <!---->
-                                <p class="card-text card-edition-price"> Make an offer </p>
-                              </a></div>
-                            <div class="col-4 text-right pt-1">
-                              <div class="like-card-container">
-                                <div></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6 mb-5">
-                      <div id="gallery_card_8300" class="card"><a [routerLink]="['/edition']" class="card-target">
-                          <div name="edition-image-asset"><img id="edition_image_8300"
-                              data-src="https://cdn.knownorigin.io/cdn/images/network/1/edition/8300"
-                              data-error="https://cdn.knownorigin.io/cdn/images/network/1/edition/8300"
-                              alt="edition-image" class="card-img-top hand-pointer card-img-cover"
-                              src="https://cdn.knownorigin.io/cdn/images/network/1/edition/8300" lazy="loaded">
-                            <!---->
-                          </div>
-                        </a>
-                        <div class="card-body">
-                          <div class="row">
-                            <div class="col-12"><a [routerLink]="['/edition']" class="card-target">
-                                <p class="card-title mt-2 card-edition-name"><span>
-                                    <!----></span><span>Bitopian</span><span class="text-muted float-right small">1 of
-                                    5</span></p>
-                              </a></div>
-                          </div>
-                        </div>
-                        <div class="card-footer no-top-border bg-white">
-                          <div class="row">
-                            <div class="col"><span>
-                                <div><a href="/lee-holland" class="artist-link router-link-exact-active is-active"><img
-                                      src="https://ipfs.infura.io/ipfs/QmdQ5X54zuD9GcLmf1wHdbp4kRFV4TtEJbpWRh1Gb99UzA"
-                                      alt="profile-image" class="profile-image artist-avatar"><span
-                                      class="pl-1 artist-name-lg">Lee Holland</span></a></div>
-                                <!---->
-                              </span></div>
-                            <!---->
-                          </div>
-                          <!---->
-                          <div class="row">
-                            <div class="col-8"><a [routerLink]="['/edition']" class="card-target">
-                                <!---->
-                                <p class="card-text card-edition-price"> Make an offer </p>
-                              </a></div>
-                            <div class="col-4 text-right pt-1">
-                              <div class="like-card-container">
-                                <div></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </app-subtab>
-                <app-subtab tabTitle="Insights">
-                  <h3> Edition Insights </h3>
-                  <div> High level data insights in to these creations </div>
-                  <div class="row">
-                    <div class="col">
-                      <code>No insights available yet</code>
-                    </div>
-                  </div>
-                  <div class="mt-5 table-responsive">
-                    <table class="table table-hover sans-serif">
-                      <thead>
-                        <tr class="text-muted">
-                          <th scope="col" class="align-top">Artwork</th>
-                          <th scope="col" class="align-top text-center"> Sold / Gifted </th>
-                          <th scope="col" class="align-top text-center"> Avg. sale price </th>
-                          <th scope="col" class="align-top text-center"> Total earned </th>
-                          <th scope="col" class="align-top"> Owners </th>
-                          <th scope="col" class="align-top">Created</th>
-                          <th scope="col" class="align-top"> Sellout time </th>
-                        </tr>
-                      </thead>
-                      <tbody class="small">
-                        <tr scope="row" class="align-middle">
-                          <td><a href="/edition/197250" class=""> Storyworld </a>
-                            <div class="pt-1"> (1/1) <span class="text-danger small"> (sold out) </span></div>
-                          </td>
-                          <td class="text-center"> 1 / 0 </td>
-                          <td class="text-center"><span> 5.00 </span></td>
-                          <td class="text-center"><span> 5.00 </span></td>
-                          <td class="text-center"><span> 1 </span></td>
-                          <td> Jul 30th 2020 </td>
-                          <td><span> 13.55 days </span></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </app-subtab>
-                <app-subtab tabTitle="Sales">
-                  <div class="container-fluid">
-                    <div class="row pt-2">
-                      <div class="col">
-                        <h3> History of sales and accepted bids </h3>
-                        <div>
-                          <span>Showing transactions where ETH was
-                            exchanged</span>
-                        </div>
-                        <div class="form-check float-right"><input type="checkbox" id="shouldOnlyMoneyCheck"
-                            class="form-check-input" value="true"><label for="shouldOnlyMoneyCheck"
-                            class="form-check-label"> Show all </label></div>
-                      </div>
-                    </div>
-                    <div class="row">
-
-                      <div class="mt-5 pb-4">
-                        <table class="table table-borderless">
-                          <tbody>
-                            <tr>
-                              <td width="25%" class="align-middle"><a href="/edition/197250" class="">
-                                  <img id="edition_image_8400"
-                                    data-src="https://cdn.knownorigin.io/cdn/images/network/1/edition/8400"
-                                    data-error="https://cdn.knownorigin.io/cdn/images/network/1/edition/8400"
-                                    alt="edition-image" class="card-img-top hand-pointer card-img-cover"
-                                    style=" height:76px; width:135px;"
-                                    src="https://cdn.knownorigin.io/cdn/images/network/1/edition/8400" lazy="loaded">
-                                </a></td>
-                              <td class="align-middle"><code>Bid Accepted</code>
-                                <div><span data-v-ea5978e8="" class="font-roboto"><span data-v-ea5978e8=""
-                                      class="price">5.00</span> <span data-v-ea5978e8=""
-                                      class="price-eth">ETH</span></span><span data-v-6acc9f4a=""
-                                    class="text-muted"><small data-v-6acc9f4a="">($1858.25)</small></span></div>
-                                <div><a href="/token/197251" class="badge badge-primary"> 197251 </a></div>
-                                <!---->
-                              </td>
-                              <td class="align-middle">
-                                <div class="small d-none d-sm-block">08/12/2020</div><span class="small"><a
-                                    href="https://etherscan.io/tx/0xe09698fa924d32ae3779d4c304349cce60322a9acef92ec3a0c16f5f9744d458"
-                                    target="_blank" class="small">[view tx]</a></span>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-
-                    </div>
-                    <div></div>
-                    <div class="text-muted small mb-5 mt-3 text-right"> Updated every 5 minutes <br><small>USD prices
-                        powered by <a href="https://www.coingecko.com" target="_blank">coingecko</a></small></div>
-                  </div>
-                </app-subtab>
-              </app-subtabs>
-
-            </div>
-          </div>
-          <div role="tabpanel" aria-hidden="true" class="tab-pane" acive="" id="collection">
-            <div class="container-fluid">
-              <div class="row justify-content-sm-center no-assets">
-                <div class="col col-sm-6 text-center text-primary mt-4"> No artworks collected yet
-                </div>
-              </div>
-
-            </div>
-          </div>
-          <div role="tabpanel" aria-hidden="true" class="tab-pane" id="offers"
-            aria-labelledby="__BVID__19280___BV_tab_button__">
-            <app-subtabs>
-              <app-subtab tabTitle="Offers placed">
-                <div class="container-fluid">
-                  <div class="text-center text-primary my-4"> No active offers placed </div>
-                </div>
-              </app-subtab>
-              <app-subtab tabTitle="Offers received">
-                <div class="container-fluid">
-                  <!---->
-                  <div class="text-center text-primary my-4"> No active offers received </div>
-                </div>
-              </app-subtab>
-            </app-subtabs>
-
-          </div>
-          <div role="tabpanel" aria-hidden="true" class="tab-pane" id="favourites"
-            aria-labelledby="__BVID__19285___BV_tab_button__">
-            <div>
-              <div class="pt-4 container-fluid">
-                <!---->
-                <div class="row mt-2">
-                  <div class="col-md-3">
-                    <a [routerLink]="['/edition']" class="">
-                      <div name="edition-image-asset" class="img-thumbnail"><img id="edition_image_874"
-                          data-src="https://cdn.knownorigin.io/cdn/images/network/1/edition/33500"
-                          data-error="https://cdn.knownorigin.io/cdn/images/network/1/edition/33500" alt="edition-image"
-                          class="card-img-top hand-pointer" src="assets/64px_missingImageIcon.svg" lazy="loading">
-                        <!---->
-                      </div>
-                    </a>
-                  </div>
-                  <div class="col-md-9 font-roboto">
-                    <p> Earth passing by<br><span class="small"> By <a
-                          href="/0xceF2bf4aD6D84Aa37Fcc4Cab6530028EB31c8e69" class=""> 0xBull </a></span></p>
-                  </div>
-                </div>
-                <div class="row mt-2">
-                  <div class="col-md-3"><a [routerLink]="['/edition']" class="">
-                      <div name="edition-image-asset" class="img-thumbnail"><img id="edition_image_468"
-                          data-src="https://cdn.knownorigin.io/cdn/images/network/1/edition/15000"
-                          data-error="https://cdn.knownorigin.io/cdn/images/network/1/edition/15000" alt="edition-image"
-                          class="card-img-top hand-pointer" src="assets/64px_missingImageIcon.svg" lazy="loading">
-                        <!---->
-                      </div>
-                    </a></div>
-                  <div class="col-md-9 font-roboto">
-                    <p> M4R93 s1MpS0N<br><span class="small">
-                        By <a href="/0x2Eb9b439Ffb7dC587198e1534e465a6242192b24" class=""> Franky
-                          Aguilar </a></span></p>
-                  </div>
-                </div>
-                <div class="row mt-2">
-                  <div class="col-md-3"><a [routerLink]="['/edition']" class="">
-                      <div name="edition-image-asset" class="img-thumbnail"><img id="edition_image_243"
-                          data-src="https://cdn.knownorigin.io/cdn/images/network/1/edition/34000"
-                          data-error="https://cdn.knownorigin.io/cdn/images/network/1/edition/34000" alt="edition-image"
-                          class="card-img-top hand-pointer" src="assets/64px_missingImageIcon.svg" lazy="loading">
-                        <!---->
-                      </div>
-                    </a></div>
-                  <div class="col-md-9 font-roboto">
-                    <p> Extraterrestrial alloy<br><span class="small"> By <a
-                          href="/0xE88cfe8535AF121121a4b475eEFD13dAE4fBC4Cc" class=""> NIQ </a></span></p>
-                  </div>
-                </div>
-              </div>
-              <div class="infinite-loading-container">
-                <div class="infinite-status-prompt" style="display: none;">
-                  <div><img
-                      src="data:image/png;base64,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"
-                      width="37" height="19" class="animate-flicker mt-5 mb-5"></div>
-                </div>
-                <div class="infinite-status-prompt"
-                  style="color: rgb(102, 102, 102); font-size: 14px; padding: 10px 0px; display: none;">No results :(
-                </div>
-                <div class="infinite-status-prompt"
-                  style="color: rgb(102, 102, 102); font-size: 14px; padding: 10px 0px; display: none;">No more data :)
-                </div>
-                <div class="infinite-status-prompt"
-                  style="color: rgb(102, 102, 102); font-size: 14px; padding: 10px 0px; display: none;">
-                  Opps, something went wrong :(
-                  <br> <button class="btn-try-infinite">Retry</button></div>
-              </div>
-            </div>
-          </div>
-          <!---->
-          <!---->
+    <div class="col-md-4 mb-4">
+      <div class="hovereffect">
+        <img src="./assets/images/main-thumbnail-a1.jpg" alt="" />
+        <div class="overlay">
+          <h2>The Calm And The Storm too more words</h2>
+          <p><i class="fas fa-user"></i> Andrew Shiao</p>
+          <a href="project-purchase.html">
+            <button class="info">了解作品細節</button>
+          </a>
         </div>
       </div>
     </div>
+    <div class="col-md-4 mb-4">
+      <div class="hovereffect">
+        <img src="./assets/images/main-thumbnail-a2.jpg" alt="" />
+        <div class="overlay">
+          <h2>The Calm And The Storm</h2>
+          <p><i class="fas fa-user"></i> Andrew Shiao</p>
+          <a href="project-purchase.html">
+            <button class="info">了解作品細節</button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="hovereffect">
+        <img src="./assets/images/main-thumbnail-a3.jpg" alt="" />
+        <div class="overlay">
+          <h2>The Calm And The Storm</h2>
+          <p><i class="fas fa-user"></i> Andrew Shiao</p>
+          <a href="project-purchase.html">
+            <button class="info">了解作品細節</button>
+          </a>
+        </div>
+      </div>
+    </div> -->
   </div>
+  <!--row end-->
 </div>

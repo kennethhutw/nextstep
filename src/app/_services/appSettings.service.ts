@@ -10,4 +10,7 @@ export class AppSettingsService {
   public getCountryOptions(): Observable<any> {
     return this.http.get("./../../assets/data/countries.json");
   }
+  public getTagOptions(lang): Observable<any> {
+    return this.http.get(`./../../assets/data/types_${lang}.json`);
+  }
 }

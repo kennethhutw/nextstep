@@ -1,56 +1,247 @@
-<div class="container">
-  <div class="portfolio-menu-active mb-50 text-center portfolio-menu-style">
-    <button class="active" data-filter="*">All</button>
-    <button data-filter=".cat1">Creative</button>
-    <button data-filter=".cat2">Branding</button>
-    <button data-filter=".cat3">Wordpress</button>
-    <button data-filter=".cat4">Photography</button>
+<div id="content-mt" class="container">
+  <div class="form-group row mb-50">
+    <div class="input-group col-md-6 offset-md-3">
+      <input
+        type="text"
+        class="form-control search"
+        aria-label="Recipient's username"
+        aria-describedby="button-addon2"
+      />
+    </div>
+  </div>
+  <div id="project_tag" class="text-center">
+    <div class="project_tag_focus">{{ "ALLEDITION" | translate }}</div>
+    <ng-container *ngFor="let tag of tags">
+      <a href=""><div class="project_tag">抽象</div></a>
+    </ng-container>
+    <!-- <div class="project_tag_focus">全部作品</div>
+    <a href=""><div class="project_tag">抽象</div></a>
+    <a href=""><div class="project_tag">插圖</div></a>
+    <a href=""><div class="project_tag">手繪</div></a>
+    <a href=""><div class="project_tag">動畫</div></a>
+    <a href=""><div class="project_tag">自然</div></a>
+    <a href=""><div class="project_tag">科學</div></a>
+    <a href=""><div class="project_tag">人像</div></a>
+    <a href=""><div class="project_tag">超現實</div></a>
+    <a href=""><div class="project_tag">繪畫</div></a>
+    <a href=""><div class="project_tag">動感</div></a>
+    <a href=""><div class="project_tag">幻想</div></a>
+    <a href=""><div class="project_tag">拼貼</div></a>
+    <a href=""><div class="project_tag">3D</div></a>
+    <a href=""><div class="project_tag">風景</div></a>
+    <a href=""><div class="project_tag">科學</div></a>
+    <a href=""><div class="project_tag">花</div></a>
+    <a href=""><div class="project_tag">寫實</div></a>
+    <a href=""><div class="project_tag">黑白</div></a>
+    <a href=""><div class="project_tag">攝影</div></a>
+    <a href=""><div class="project_tag">靈魂</div></a>
+    <a href=""><div class="project_tag">節慶</div></a>
+    <a href=""><div class="project_tag">有趣</div></a>
+    <a href=""><div class="project_tag">黑暗</div></a>
+    <a href=""><div class="project_tag">建築</div></a>
+    <a href=""><div class="project_tag">時尚</div></a>
+    <a href=""><div class="project_tag">人類</div></a>
+    <a href=""><div class="project_tag">漫畫</div></a>
+    <a href=""><div class="project_tag">天空</div></a>
+    <a href=""><div class="project_tag">宇宙</div></a>
+    <a href=""><div class="project_tag">彩色</div></a>
+    <a href=""><div class="project_tag">植物</div></a>
+    <a href=""><div class="project_tag">動物</div></a>
+    <a href=""><div class="project_tag">機械</div></a>
+    <a href=""><div class="project_tag">小孩</div></a>
+    <a href=""><div class="project_tag">幾何</div></a>
+    <a href=""><div class="project_tag">浪漫</div></a>
+    <a href=""><div class="project_tag">物件</div></a>
+    <a href=""><div class="project_tag">符號</div></a>
+    <a href=""><div class="project_tag">卡通</div></a> -->
+  </div>
+  <div class="peoject_tag_openup text-center mt-10">
+    <span class="project_tag_subtitle"
+      ><a href="project_opendown.html"
+        >看全部分類 <i class="fas fa-chevron-down"></i></a
+    ></span>
+  </div>
+  <div class="row">
+    <div class="col-md-3 offset-md-9 mt-40 mb-20">
+      <select class="sort_dropdown w-100">
+        <option value="">上傳時間：新 → 舊</option>
+        <option value="dog">上傳時間：舊 → 新</option>
+        <option value="cat">熱門瀏覽：高 → 低</option>
+        <option value="hamster">熱門瀏覽：低 → 高</option>
+        <option value="cat">售價：高 → 低</option>
+        <option value="hamster">售價：低 → 高</option>
+      </select>
+    </div>
   </div>
 
-  <div class="portfolio-style">
-    <div class="row grid">
-      <ng-masonry-grid *ngIf="showMasonry" [masonryOptions]="{
-          transitionDuration: '0.4s',
-          gutter: 10,
-          horizontalOrder: true
-        }" [useAnimation]="true" [useImagesLoaded]="true" (onNgMasonryInit)="onNgMasonryInit($event)"
-        [scrollAnimationOptions]="animOptions">
-        <ng-masonry-grid-item id="{{ 'masonry-item-' + i }}" *ngFor="let item of masonryItems; let i = index"
-          class="col-md-4 col-sm-6 col-xs-12 grid-item cat2 cat3">
-          <div class="single-portfolio portfolio-hover mb-30">
-            <div class="portfolio-img-text">
-              <div class="portfolio-img">
-                <a href="#">
-                  <img mat-card-image [src]="item.src" alt="Photo of a Shiba Inu" />
-                </a>
-              </div>
-              <div class="portfolio-title">
-                <h3><a href="single-portfolio-1.html">New York</a></h3>
-                <a class="img-poppu" href="assets/img/portfolio/1.jpg">
-                  <i class="fa fa-search"></i>
-                </a>
-              </div>
-            </div>
-
-            <div class="row" style="padding: 15px;">
-              <div class="pull-left">Float</div>
-              <div class="pull-right">
-                <label>Item Number: {{ item.count + 1 }}</label>
-              </div>
-            </div>
-
-            <div>
-              <button mat-raised-button (click)="removeItem('masonry-item-' + i)">
-                Remove
-              </button>
-            </div>
-          </div>
-        </ng-masonry-grid-item>
-      </ng-masonry-grid>
+  <!--card-->
+  <div class="card-columns">
+    <ng-container *ngFor="let edition of editions">
+      <app-edition3
+        editionTitle="{{ edition.editionTitle }}"
+        editionAuthor="{{ edition.editionAuthor }}"
+        editionImg="{{ edition.editionImg }}"
+        editionId="{{ edition.editionId }}"
+        editionDate="{{ edition.editionDate }}"
+        editionPrice="{{ edition.editionPrice }}"
+      ></app-edition3>
+    </ng-container>
+    <!-- <app-edition3></app-edition3> -->
+    <!-- <div class="card">
+      <div class="hovereffect">
+        <img src="./assets/images/card-01.jpg" alt="" />
+        <div class="overlay">
+          <h2>The Calm And The Storm too more words</h2>
+          <p><i class="fas fa-user"></i> Andrew Shiao</p>
+          <p><i class="fas fa-cloud-upload-alt"></i> 2020-3-15</p>
+          <p><i class="fas fa-dollar-sign"></i> 0.5</p>
+          <a href="project-purchase.html"
+            ><button class="info">了解作品細節</button></a
+          >
+        </div>
+      </div>
     </div>
-
-    <div class="load-more text-center pt-50 pb-50">
-      <a><i class="fa fa-refresh"></i> Load More</a>
+    <div class="card">
+      <div class="hovereffect">
+        <img src="./assets/images/card-02.jpg" alt="" />
+        <div class="overlay">
+          <h2>The Calm And The Storm</h2>
+          <p><i class="fas fa-user"></i> Andrew Shiao</p>
+          <p><i class="fas fa-cloud-upload-alt"></i> 2020-3-15</p>
+          <p><i class="fas fa-dollar-sign"></i> 0.5</p>
+          <a href="project-purchase.html"
+            ><button class="info">了解作品細節</button></a
+          >
+        </div>
+      </div>
     </div>
+    <div class="card">
+      <div class="hovereffect">
+        <img src="./assets/images/card-03.jpg" alt="" />
+        <div class="overlay">
+          <h2>The Calm And The Storm</h2>
+          <p><i class="fas fa-user"></i> Andrew Shiao</p>
+          <p><i class="fas fa-cloud-upload-alt"></i> 2020-3-15</p>
+          <p><i class="fas fa-dollar-sign"></i> 0.5</p>
+          <a href="project-purchase.html"
+            ><button class="info">了解作品細節</button></a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="hovereffect">
+        <img src="./assets/images/card-04.jpg" alt="" />
+        <div class="overlay">
+          <h2>The Calm And The Storm</h2>
+          <p><i class="fas fa-user"></i> Andrew Shiao</p>
+          <p><i class="fas fa-cloud-upload-alt"></i> 2020-3-15</p>
+          <p><i class="fas fa-dollar-sign"></i> 0.5</p>
+          <a href="project-purchase.html"
+            ><button class="info">了解作品細節</button></a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="hovereffect">
+        <img src="./assets/images/card-05.jpg" alt="" />
+        <div class="overlay">
+          <h2>The Calm And The Storm</h2>
+          <p><i class="fas fa-user"></i> Andrew Shiao</p>
+          <p><i class="fas fa-cloud-upload-alt"></i> 2020-3-15</p>
+          <p><i class="fas fa-dollar-sign"></i> 0.5</p>
+          <a href="project-purchase.html"
+            ><button class="info">了解作品細節</button></a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="hovereffect">
+        <img src="./assets/images/card-06.jpg" alt="" />
+        <div class="overlay">
+          <h2>The Calm And The Storm</h2>
+          <p><i class="fas fa-user"></i> Andrew Shiao</p>
+          <p><i class="fas fa-cloud-upload-alt"></i> 2020-3-15</p>
+          <p><i class="fas fa-dollar-sign"></i> 0.5</p>
+          <a href="project-purchase.html"
+            ><button class="info">了解作品細節</button></a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="hovereffect">
+        <img src="./assets/images/card-07.jpg" alt="" />
+        <div class="overlay">
+          <h2>The Calm And The Storm</h2>
+          <p><i class="fas fa-user"></i> Andrew Shiao</p>
+          <p><i class="fas fa-cloud-upload-alt"></i> 2020-3-15</p>
+          <p><i class="fas fa-dollar-sign"></i> 0.5</p>
+          <a href="project-purchase.html"
+            ><a href="project-purchase.html"
+              ><button class="info">了解作品細節</button></a
+            ></a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="hovereffect">
+        <img src="./assets/images/card-08.jpg" alt="" />
+        <div class="overlay">
+          <h2>The Calm And The Storm</h2>
+          <p><i class="fas fa-user"></i> Andrew Shiao</p>
+          <p><i class="fas fa-cloud-upload-alt"></i> 2020-3-15</p>
+          <p><i class="fas fa-dollar-sign"></i> 0.5</p>
+          <a href="project-purchase.html"
+            ><button class="info">了解作品細節</button></a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="hovereffect">
+        <img src="./assets/images/card-09.jpg" alt="" />
+        <div class="overlay">
+          <h2>The Calm And The Storm</h2>
+          <p><i class="fas fa-user"></i> Andrew Shiao</p>
+          <p><i class="fas fa-cloud-upload-alt"></i> 2020-3-15</p>
+          <p><i class="fas fa-dollar-sign"></i> 0.5</p>
+          <a href="project-purchase.html"
+            ><button class="info">了解作品細節</button></a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="hovereffect">
+        <img src="./assets/images/card-10.jpg" alt="" />
+        <div class="overlay">
+          <h2>The Calm And The Storm</h2>
+          <p><i class="fas fa-user"></i> Andrew Shiao</p>
+          <p><i class="fas fa-cloud-upload-alt"></i> 2020-3-15</p>
+          <p><i class="fas fa-dollar-sign"></i> 0.5</p>
+          <a href="project-purchase.html"
+            ><button class="info">了解作品細節</button></a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="hovereffect">
+        <img src="./assets/images/card-11.jpg" alt="" />
+        <div class="overlay">
+          <h2>The Calm And The Storm</h2>
+          <p><i class="fas fa-user"></i> Andrew Shiao</p>
+          <p><i class="fas fa-cloud-upload-alt"></i> 2020-3-15</p>
+          <p><i class="fas fa-dollar-sign"></i> 0.5</p>
+          <a href="project-purchase.html"
+            ><button class="info">了解作品細節</button></a
+          >
+        </div>
+      </div>
+    </div> -->
   </div>
 </div>

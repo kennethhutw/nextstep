@@ -1,0 +1,697 @@
+[{
+        "value": "illustration",
+        "group": "A",
+        "text": "插图"
+    },
+    {
+        "value": "animation",
+        "group": "A",
+        "text": "动画"
+    },
+    {
+        "value": "dark",
+        "group": "A",
+        "text": "深色"
+    },
+    {
+        "value": "digitally-manipulated",
+        "group": "A",
+        "text": "数位操作"
+    },
+    {
+        "value": "dream-like",
+        "group": "A",
+        "text": "梦境"
+    },
+    {
+        "value": "3d-render",
+        "group": "A",
+        "text": "3d 渲染"
+    },
+    {
+        "value": "surreal",
+        "group": "A",
+        "text": "超现实"
+    },
+    {
+        "value": "motion",
+        "group": "A",
+        "text": "运动"
+    },
+    {
+        "value": "fantasy",
+        "group": "A",
+        "text": "幻想"
+    },
+    {
+        "value": "abstract",
+        "group": "A",
+        "text": "抽象"
+    },
+    {
+        "value": "portrait",
+        "group": "A",
+        "text": "肖像"
+    },
+    {
+        "value": "painting",
+        "group": "B",
+        "text": "绘画"
+    },
+    {
+        "value": "light",
+        "group": "B",
+        "text": "灯光"
+    },
+    {
+        "value": "animals",
+        "group": "B",
+        "text": "动物"
+    },
+    {
+        "value": "manipulated",
+        "group": "B",
+        "text": "操纵"
+    },
+    {
+        "value": "glitch",
+        "group": "B",
+        "text": "故障艺术"
+    },
+    {
+        "value": "death",
+        "group": "B",
+        "text": "死亡"
+    },
+    {
+        "value": "science-fiction",
+        "group": "B",
+        "text": "科幻小​​说"
+    },
+    {
+        "value": "crypto-art",
+        "group": "B",
+        "text": "加密艺术"
+    },
+    {
+        "value": "face",
+        "group": "B",
+        "text": "面相"
+    },
+    {
+        "value": "human-figure",
+        "group": "B",
+        "text": "人物"
+    },
+    {
+        "value": "photomontage",
+        "group": "B",
+        "text": "照片蒙太奇"
+    },
+    {
+        "value": "mysticism",
+        "group": "B",
+        "text": "神秘主义"
+    },
+    {
+        "value": "music",
+        "group": "B",
+        "text": "音乐"
+    },
+    {
+        "value": "highly-detailed",
+        "group": "B",
+        "text": "高度详细"
+    },
+    {
+        "value": "cryptocurrency",
+        "group": "B",
+        "text": "加密货币"
+    },
+    {
+        "value": "数位文化",
+        "group": "B",
+        "text": "数位文化"
+    },
+    {
+        "value": "isolationalienation",
+        "group": "C",
+        "text": "隔离/异化"
+    },
+    {
+        "value": "fractal",
+        "group": "C",
+        "text": "分形"
+    },
+    {
+        "value": "glitchy",
+        "group": "C",
+        "text": "小巧"
+    },
+    {
+        "value": "spooky",
+        "group": "C",
+        "text": "怪异"
+    },
+    {
+        "value": "flashing",
+        "group": "C",
+        "text": "闪烁"
+    },
+    {
+        "value": "symbolic-composition",
+        "group": "C",
+        "text": "符号组成"
+    },
+    {
+        "value": "collage",
+        "group": "C",
+        "text": "拼贴"
+    },
+    {
+        "value": "sacred",
+        "group": "C",
+        "text": "神圣"
+    },
+    {
+        "value": "fantastical",
+        "group": "C",
+        "text": "棒极了"
+    },
+    {
+        "value": "psychedelic",
+        "group": "C",
+        "text": "迷幻"
+    },
+    {
+        "value": "stories",
+        "group": "C",
+        "text": "故事"
+    },
+    {
+        "value": "painting-and-drawing",
+        "group": "C",
+        "text": "绘画"
+    },
+    {
+        "value": "3D模型",
+        "group": "C",
+        "text": "3d 模型"
+    },
+    {
+        "value": "filmvideo",
+        "group": "C",
+        "text": "电影/视频"
+    },
+    {
+        "value": "black-and-white",
+        "group": "C",
+        "text": "黑白"
+    },
+    {
+        "value": "blockchain",
+        "group": "C",
+        "text": "区块链"
+    },
+    {
+        "value": "femininity",
+        "group": "C",
+        "text": "女性气质"
+    },
+    {
+        "value": "scary",
+        "group": "C",
+        "text": "稀少"
+    },
+    {
+        "value": "mythology",
+        "group": "D",
+        "text": "神话"
+    },
+    {
+        "value": "nature",
+        "group": "D",
+        "text": "自然"
+    },
+    {
+        "value": "peaceful",
+        "group": "E",
+        "text": "和平"
+    },
+    {
+        "value": "melting",
+        "group": "E",
+        "text": "融化"
+    },
+    {
+        "value": "bizarre",
+        "group": "E",
+        "text": "奇异的"
+    },
+    {
+        "value": "abstract-scenes",
+        "group": "E",
+        "text": "抽象场景"
+    },
+    {
+        "value": "sound",
+        "group": "E",
+        "text": "声音"
+    },
+    {
+        "value": "photography",
+        "group": "E",
+        "text": "摄影"
+    },
+    {
+        "value": "nude",
+        "group": "E",
+        "text": "裸的"
+    },
+    {
+        "value": "people",
+        "group": "F",
+        "text": "人"
+    },
+    {
+        "value": "grid",
+        "group": "F",
+        "text": "网格"
+    },
+    {
+        "value": "vector",
+        "group": "F",
+        "text": "矢量"
+    },
+    {
+        "value": "reflections",
+        "group": "F",
+        "text": "反射"
+    },
+    {
+        "value": "reflective",
+        "group": "F",
+        "text": "反射性"
+    },
+    {
+        "value": "manipulated-photography",
+        "group": "F",
+        "text": "操纵摄影"
+    },
+    {
+        "value": "math",
+        "group": "G",
+        "text": "数学"
+    },
+    {
+        "value": "eye-contact",
+        "group": "G",
+        "text": "目光接触"
+    },
+    {
+        "value": "bodies",
+        "group": "G",
+        "text": "实体"
+    },
+    {
+        "value": "textured",
+        "group": "G",
+        "text": "纹理化"
+    },
+    {
+        "value": "mutated-bodies",
+        "group": "G",
+        "text": "突变体"
+    },
+    {
+        "value": "cosmic",
+        "group": "G",
+        "text": "宇宙"
+    },
+    {
+        "value": "despair",
+        "group": "G",
+        "text": "绝望"
+    },
+    {
+        "value": "provocative",
+        "group": "G",
+        "text": "挑衅性"
+    },
+    {
+        "value": "vaporwave",
+        "group": "G",
+        "text": "蒸气波"
+    },
+    {
+        "value": "unsettling",
+        "group": "G",
+        "text": "令人不安"
+    },
+    {
+        "value": "gloomy",
+        "group": "G",
+        "text": "阴郁"
+    },
+    {
+        "value": "grotesque",
+        "group": "G",
+        "text": "怪诞的"
+    },
+    {
+        "value": "bleak",
+        "group": "H",
+        "text": "黯淡"
+    },
+    {
+        "value": "uncomfortable",
+        "group": "H",
+        "text": "不舒服"
+    },
+    {
+        "value": "anxious",
+        "group": "H",
+        "text": "焦虑"
+    },
+    {
+        "value": "love",
+        "group": "H",
+        "text": "爱"
+    },
+    {
+        "value": "romantic",
+        "group": "I",
+        "text": "浪漫"
+    },
+    {
+        "value": "landscape",
+        "group": "I",
+        "text": "风景"
+    },
+    {
+        "value": "shadows",
+        "group": "I",
+        "text": "阴影"
+    },
+    {
+        "value": "mortality",
+        "group": "I",
+        "text": "道德"
+    },
+
+    {
+        "value": "color-gradient",
+        "group": "I",
+        "text": "颜色渐变"
+    },
+    {
+        "value": "the-environment",
+        "group": "I",
+        "text": "环境"
+    },
+    {
+        "value": "relaxed",
+        "group": "I",
+        "text": "轻松"
+    },
+    {
+        "value": "flowers",
+        "group": "J",
+        "text": "鲜花"
+    },
+    {
+        "value": "trees",
+        "group": "J",
+        "text": "树木"
+    },
+    {
+        "value": "cute",
+        "group": "K",
+        "text": "可爱"
+    },
+    {
+        "value": "pop-culture",
+        "group": "K",
+        "text": "流行文化"
+    },
+    {
+        "value": "generative-art",
+        "group": "K",
+        "text": "生成艺术"
+    },
+    {
+        "value": "popular-culture",
+        "group": "K",
+        "text": "大众文化"
+    },
+    {
+        "value": "erotic",
+        "group": "K",
+        "text": "色情"
+    },
+    {
+        "value": "narrative",
+        "group": "K",
+        "text": "叙述"
+    },
+    {
+        "value": "blurry",
+        "group": "L",
+        "text": "模糊的"
+    },
+    {
+        "value": "tech",
+        "group": "L",
+        "text": "科技"
+    },
+    {
+        "value": "city-life",
+        "group": "L",
+        "text": "城市生活"
+    },
+    {
+        "value": "cultural-commentary",
+        "group": "L",
+        "text": "文化评论"
+    },
+    {
+        "value": "city-scenes",
+        "group": "L",
+        "text": "城市风光"
+    },
+    {
+        "value": "figures-of-crypto",
+        "group": "L",
+        "text": "数位加密货币"
+    },
+    {
+        "value": "pixels",
+        "group": "L",
+        "text": "像素"
+    },
+    {
+        "value": "visual-perception",
+        "group": "L",
+        "text": "视觉感知"
+    },
+    {
+        "value": "sexy",
+        "group": "L",
+        "text": "性感"
+    },
+    {
+        "value": "history",
+        "group": "M",
+        "text": "历史"
+    },
+    {
+        "value": "violent",
+        "group": "M",
+        "text": "暴力"
+    },
+    {
+        "value": "classical-mythology",
+        "group": "M",
+        "text": "古典神话"
+    },
+    {
+        "value": "trauma-and-struggle",
+        "group": "M",
+        "text": "创伤与斗争"
+    },
+    {
+        "value": "about-religion",
+        "group": "M",
+        "text": "关於宗教"
+    },
+    {
+        "value": "science",
+        "group": "M",
+        "text": "科学"
+    },
+    {
+        "value": "flora",
+        "group": "M",
+        "text": "植物相"
+    },
+    {
+        "value": "crypto-politics",
+        "group": "M",
+        "text": "加密政治"
+    },
+    {
+        "value": "inspirational",
+        "group": "M",
+        "text": "鼓舞人心"
+    },
+    {
+        "value": "high-fantasy",
+        "group": "M",
+        "text": "高幻想"
+    },
+    {
+        "value": "Everyday-stuff",
+        "group": "M",
+        "text": "日常琐事"
+    },
+    {
+        "value": "everyday-life",
+        "group": "M",
+        "text": "日常生活"
+    },
+    {
+        "value": "photograph-source",
+        "group": "M",
+        "text": "图片来源"
+    },
+    {
+        "value": "nostalgic",
+        "group": "M",
+        "text": "怀旧"
+    },
+    {
+        "value": "crime",
+        "group": "M",
+        "text": "犯罪"
+    },
+    {
+        "value": "childhood",
+        "group": "M",
+        "text": "童年"
+    },
+    {
+        "value": "generative",
+        "group": "M",
+        "text": "生成"
+    },
+    {
+        "value": "odd",
+        "group": "M",
+        "text": "奇数"
+    },
+    {
+        "value": "imaginary-creatures",
+        "group": "M",
+        "text": "虚构的生物"
+    },
+    {
+        "value": "shifting",
+        "group": "M",
+        "text": "移动"
+    },
+    {
+        "value": "about-music",
+        "group": "N",
+        "text": "关於音乐"
+    },
+    {
+        "value": "metallic",
+        "group": "N",
+        "text": "金属"
+    },
+    {
+        "value": "time",
+        "group": "N",
+        "text": "时间"
+    },
+    {
+        "value": "lusty",
+        "group": "N",
+        "text": "精力充沛"
+    },
+    {
+        "value": "glittery",
+        "group": "N",
+        "text": "闪闪发光"
+    },
+    {
+        "value": "atmospheric-landscapes",
+        "group": "N",
+        "text": "大气景观"
+    },
+    {
+        "value": "sparse",
+        "group": "N",
+        "text": "稀疏"
+    },
+    {
+        "value": "balance",
+        "group": "N",
+        "text": "平衡"
+    },
+    {
+        "value": "disgust",
+        "group": "N",
+        "text": "令人反感"
+    },
+    {
+        "value": "dynamic",
+        "group": "N",
+        "text": "动态"
+    },
+    {
+        "value": "black-and-white-photography",
+        "group": "A",
+        "text": "黑白摄影"
+    },
+    {
+        "value": "outer-space",
+        "group": "P",
+        "text": "外层空间"
+    },
+    {
+        "value": "contemplative",
+        "group": "P",
+        "text": "沉思"
+    },
+    {
+        "value": "calm",
+        "group": "P",
+        "text": "平静"
+    },
+    {
+        "value": "romance",
+        "group": "P",
+        "text": "浪漫"
+    },
+    {
+        "value": "mellow",
+        "group": "P",
+        "text": "醇美"
+    },
+    {
+        "value": "waterscapes",
+        "group": "P",
+        "text": "水景"
+    },
+    {
+        "value": "the-fantastic",
+        "group": "P",
+        "text": "神奇的"
+    },
+    {
+        "value": "patina",
+        "group": "P",
+        "text": "物体表面的"
+    }
+]

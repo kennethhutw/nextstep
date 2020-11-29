@@ -32,6 +32,9 @@ import {
   ArtistComponent,
   InsertEditionComponent,
   Edition1Component,
+  Edition2Component,
+  Edition3Component,
+  ArtistDetailComponent,
 } from "./components";
 
 import { DisqusModule } from "ngx-disqus";
@@ -103,9 +106,12 @@ export function createLoader(http: HttpClient) {
     ArtistComponent,
     NewArtistComponent,
     Edition1Component,
+    Edition2Component,
+    Edition3Component,
     RegisterArtistComponent,
     PageNotFoundComponent,
     RegisterBuyerComponent,
+    ArtistDetailComponent,
   ],
   imports: [
     BrowserModule,

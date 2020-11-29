@@ -12,3 +12,6 @@ export { DragDropFileDirective } from "./drag.directive";
 export { InsertEditionComponent } from "./insertEdition/insertEdition.component";
 export { Edition1Component } from "./edition1/edition1.component";
 export { ModalComponent } from "./modal/modal.component";
+export { ArtistDetailComponent } from "./artist-detail/artist-detail.component";
+export { Edition2Component } from "./edition2/edition2.component";
+export { Edition3Component } from "./edition3/edition3.component";

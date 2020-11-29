@@ -1,0 +1,698 @@
+[
+    {
+        "value": "illustration",
+        "group": "A",
+        "text": "Illustration"
+    },
+    {
+        "value": "animation",
+        "group": "A",
+        "text": "Animation"
+    },
+    {
+        "value": "dark",
+        "group": "A",
+        "text": "Dark"
+    },
+    {
+        "value": "digitally-manipulated",
+        "group": "A",
+        "text": "Digitally Manipulated  "
+    },
+    {
+        "value": "dream-like",
+        "group": "A",
+        "text": "Dream-like"
+    },
+    {
+        "value": "3d-render",
+        "group": "A",
+        "text": "3d Render"
+    },
+    {
+        "value": "surreal",
+        "group": "A",
+        "text": "Surreal"
+    },
+    {
+        "value": "motion",
+        "group": "A",
+        "text": "Motion"
+    },
+    {
+        "value": "fantasy",
+        "group": "A",
+        "text": "Fantasy"
+    },
+    {
+        "value": "abstract",
+        "group": "A",
+        "text": "Abstract"
+    },
+    {
+        "value": "portrait",
+        "group": "A",
+        "text": "Portrait"
+    },
+    {
+        "value": "painting",
+        "group": "B",
+        "text": "Painting"
+    },
+    {
+        "value": "light",
+        "group": "B",
+        "text": "Light"
+    },
+    {
+        "value": "animals",
+        "group": "B",
+        "text": "Animals"
+    },
+    {
+        "value": "manipulated",
+        "group": "B",
+        "text": "Manipulated"
+    },
+    {
+        "value": "glitch",
+        "group": "B",
+        "text": "Glitch"
+    },
+    {
+        "value": "death",
+        "group": "B",
+        "text": "Death"
+    },
+    {
+        "value": "science-fiction",
+        "group": "B",
+        "text": "Science Fiction"
+    },
+    {
+        "value": "crypto-art",
+        "group": "B",
+        "text": "Crypto Art"
+    },
+    {
+        "value": "face",
+        "group": "B",
+        "text": "Face"
+    },
+    {
+        "value": "human-figure",
+        "group": "B",
+        "text": "Human Figure"
+    },
+    {
+        "value": "photomontage",
+        "group": "B",
+        "text": "Photo montage"
+    },
+    {
+        "value": "mysticism",
+        "group": "B",
+        "text": "Mysticism"
+    },
+    {
+        "value": "music",
+        "group": "B",
+        "text": "Music"
+    },
+    {
+        "value": "highly-detailed",
+        "group": "B",
+        "text": "Highly Detailed"
+    },
+    {
+        "value": "cryptocurrency",
+        "group": "B",
+        "text": "Crypto currency"
+    },
+    {
+        "value": "digital-culture",
+        "group": "B",
+        "text": "Digital Culture"
+    },
+    {
+        "value": "isolationalienation",
+        "group": "C",
+        "text": "Isolation/alienation"
+    },
+    {
+        "value": "fractal",
+        "group": "C",
+        "text": "Fractal"
+    },
+    {
+        "value": "glitchy",
+        "group": "C",
+        "text": "Glitchy"
+    },
+    {
+        "value": "spooky",
+        "group": "C",
+        "text": "Spooky"
+    },
+    {
+        "value": "flashing",
+        "group": "C",
+        "text": "Flashing"
+    },
+    {
+        "value": "symbolic-composition",
+        "group": "C",
+        "text": "Symbolic Composition"
+    },
+    {
+        "value": "collage",
+        "group": "C",
+        "text": "Collage"
+    },
+    {
+        "value": "sacred",
+        "group": "C",
+        "text": "Sacred"
+    },
+    {
+        "value": "fantastical",
+        "group": "C",
+        "text": "Fantastical"
+    },
+    {
+        "value": "psychedelic",
+        "group": "C",
+        "text": "Psychedelic"
+    },
+    {
+        "value": "stories",
+        "group": "C",
+        "text": "Stories"
+    },
+    {
+        "value": "painting-and-drawing",
+        "group": "C",
+        "text": "Painting And Drawing"
+    },
+    {
+        "value": "3d-model",
+        "group": "C",
+        "text": "3d Model"
+    },
+    {
+        "value": "filmvideo",
+        "group": "C",
+        "text": "Film/video"
+    },
+    {
+        "value": "black-and-white",
+        "group": "C",
+        "text": "Black And White"
+    },
+    {
+        "value": "blockchain",
+        "group": "C",
+        "text": "Blockchain"
+    },
+    {
+        "value": "femininity",
+        "group": "C",
+        "text": "Femininity"
+    },
+    {
+        "value": "scary",
+        "group": "C",
+        "text": "Scary"
+    },
+    {
+        "value": "mythology",
+        "group": "D",
+        "text": "Mythology"
+    },
+    {
+        "value": "nature",
+        "group": "D",
+        "text": "Nature"
+    },
+    {
+        "value": "peaceful",
+        "group": "E",
+        "text": "Peaceful"
+    },
+    {
+        "value": "melting",
+        "group": "E",
+        "text": "Melting"
+    },
+    {
+        "value": "bizarre",
+        "group": "E",
+        "text": "Bizarre"
+    },
+    {
+        "value": "abstract-scenes",
+        "group": "E",
+        "text": "Abstract Scenes"
+    },
+    {
+        "value": "sound",
+        "group": "E",
+        "text": "Sound"
+    },
+    {
+        "value": "photography",
+        "group": "E",
+        "text": "Photography"
+    },
+    {
+        "value": "nude",
+        "group": "E",
+        "text": "Nude"
+    },
+    {
+        "value": "people",
+        "group": "F",
+        "text": "People"
+    },
+    {
+        "value": "grid",
+        "group": "F",
+        "text": "Grid"
+    },
+    {
+        "value": "vector",
+        "group": "F",
+        "text": "Vector"
+    },
+    {
+        "value": "reflections",
+        "group": "F",
+        "text": "Reflections"
+    },
+    {
+        "value": "reflective",
+        "group": "F",
+        "text": "Reflective"
+    },
+    {
+        "value": "manipulated-photography",
+        "group": "F",
+        "text": "Manipulated Photography"
+    },
+    {
+        "value": "math",
+        "group": "G",
+        "text": "Math"
+    },
+    {
+        "value": "eye-contact",
+        "group": "G",
+        "text": "Eye Contact"
+    },
+    {
+        "value": "bodies",
+        "group": "G",
+        "text": "Bodies"
+    },
+    {
+        "value": "textured",
+        "group": "G",
+        "text": "Textured"
+    },
+    {
+        "value": "mutated-bodies",
+        "group": "G",
+        "text": "Mutated Bodies"
+    },
+    {
+        "value": "cosmic",
+        "group": "G",
+        "text": "Cosmic"
+    },
+    {
+        "value": "despair",
+        "group": "G",
+        "text": "Despair"
+    },
+    {
+        "value": "provocative",
+        "group": "G",
+        "text": "Provocative"
+    },
+    {
+        "value": "vaporwave",
+        "group": "G",
+        "text": "Vapor wave"
+    },
+    {
+        "value": "unsettling",
+        "group": "G",
+        "text": "Unsettling"
+    },
+    {
+        "value": "gloomy",
+        "group": "G",
+        "text": "Gloomy"
+    },
+    {
+        "value": "grotesque",
+        "group": "G",
+        "text": "Grotesque"
+    },
+    {
+        "value": "bleak",
+        "group": "H",
+        "text": "Bleak"
+    },
+    {
+        "value": "uncomfortable",
+        "group": "H",
+        "text": "Uncomfortable"
+    },
+    {
+        "value": "anxious",
+        "group": "H",
+        "text": "Anxious"
+    },
+    {
+        "value": "love",
+        "group": "H",
+        "text": "Love"
+    },
+    {
+        "value": "romantic",
+        "group": "I",
+        "text": "Romantic"
+    },
+    {
+        "value": "landscape",
+        "group": "I",
+        "text": "Landscape"
+    },
+    {
+        "value": "shadows",
+        "group": "I",
+        "text": "Shadows"
+    },
+    {
+        "value": "mortality",
+        "group": "I",
+        "text": "Mortality"
+    },
+
+    {
+        "value": "color-gradient",
+        "group": "I",
+        "text": "Color Gradient"
+    },
+    {
+        "value": "the-environment",
+        "group": "I",
+        "text": "The Environment"
+    },
+    {
+        "value": "relaxed",
+        "group": "I",
+        "text": "Relaxed"
+    },
+    {
+        "value": "flowers",
+        "group": "J",
+        "text": "Flowers"
+    },
+    {
+        "value": "trees",
+        "group": "J",
+        "text": "Trees"
+    },
+    {
+        "value": "cute",
+        "group": "K",
+        "text": "Cute"
+    },
+    {
+        "value": "pop-culture",
+        "group": "K",
+        "text": "Pop Culture"
+    },
+    {
+        "value": "generative-art",
+        "group": "K",
+        "text": "Generative Art"
+    },
+    {
+        "value": "popular-culture",
+        "group": "K",
+        "text": "Popular Culture"
+    },
+    {
+        "value": "erotic",
+        "group": "K",
+        "text": "Erotic"
+    },
+    {
+        "value": "narrative",
+        "group": "K",
+        "text": "Narrative"
+    },
+    {
+        "value": "blurry",
+        "group": "L",
+        "text": "Blurry"
+    },
+    {
+        "value": "tech",
+        "group": "L",
+        "text": "Tech"
+    },
+    {
+        "value": "city-life",
+        "group": "L",
+        "text": "City Life"
+    },
+    {
+        "value": "cultural-commentary",
+        "group": "L",
+        "text": "Cultural Commentary"
+    },
+    {
+        "value": "city-scenes",
+        "group": "L",
+        "text": "City Scenes"
+    },
+    {
+        "value": "figures-of-crypto",
+        "group": "L",
+        "text": "Figures Of Crypto"
+    },
+    {
+        "value": "pixels",
+        "group": "L",
+        "text": "Pixels"
+    },
+    {
+        "value": "visual-perception",
+        "group": "L",
+        "text": "Visual Perception"
+    },
+    {
+        "value": "sexy",
+        "group": "L",
+        "text": "Sexy"
+    },
+    {
+        "value": "history",
+        "group": "M",
+        "text": "History"
+    },
+    {
+        "value": "violent",
+        "group": "M",
+        "text": "Violent"
+    },
+    {
+        "value": "classical-mythology",
+        "group": "M",
+        "text": "Classical Mythology"
+    },
+    {
+        "value": "trauma-and-struggle",
+        "group": "M",
+        "text": "Trauma And Struggle"
+    },
+    {
+        "value": "about-religion",
+        "group": "M",
+        "text": "About Religion"
+    },
+    {
+        "value": "science",
+        "group": "M",
+        "text": "Science"
+    },
+    {
+        "value": "flora",
+        "group": "M",
+        "text": "Flora"
+    },
+    {
+        "value": "crypto-politics",
+        "group": "M",
+        "text": "Crypto Politics"
+    },
+    {
+        "value": "inspirational",
+        "group": "M",
+        "text": "Inspirational"
+    },
+    {
+        "value": "high-fantasy",
+        "group": "M",
+        "text": "High Fantasy"
+    },
+    {
+        "value": "everyday-stuff",
+        "group": "M",
+        "text": "Everyday Stuff"
+    },
+    {
+        "value": "everyday-life",
+        "group": "M",
+        "text": "Everyday Life"
+    },
+    {
+        "value": "photographic-source",
+        "group": "M",
+        "text": "Photographic Source"
+    },
+    {
+        "value": "nostalgic",
+        "group": "M",
+        "text": "Nostalgic"
+    },
+    {
+        "value": "crime",
+        "group": "M",
+        "text": "Crime"
+    },
+    {
+        "value": "childhood",
+        "group": "M",
+        "text": "Childhood"
+    },
+    {
+        "value": "generative",
+        "group": "M",
+        "text": "Generative"
+    },
+    {
+        "value": "odd",
+        "group": "M",
+        "text": "Odd"
+    },
+    {
+        "value": "imaginary-creatures",
+        "group": "M",
+        "text": "Imaginary Creatures"
+    },
+    {
+        "value": "shifting",
+        "group": "M",
+        "text": "Shifting"
+    },
+    {
+        "value": "about-music",
+        "group": "N",
+        "text": "About Music"
+    },
+    {
+        "value": "metallic",
+        "group": "N",
+        "text": "Metallic"
+    },
+    {
+        "value": "time",
+        "group": "N",
+        "text": "Time"
+    },
+    {
+        "value": "lusty",
+        "group": "N",
+        "text": "Lusty"
+    },
+    {
+        "value": "glittery",
+        "group": "N",
+        "text": "Glittery"
+    },
+    {
+        "value": "atmospheric-landscapes",
+        "group": "N",
+        "text": "Atmospheric Landscapes"
+    },
+    {
+        "value": "sparse",
+        "group": "N",
+        "text": "Sparse"
+    },
+    {
+        "value": "balance",
+        "group": "N",
+        "text": "Balance"
+    },
+    {
+        "value": "disgust",
+        "group": "N",
+        "text": "Disgust"
+    },
+    {
+        "value": "dynamic",
+        "group": "N",
+        "text": "Dynamic"
+    },
+    {
+        "value": "black-and-white-photography",
+        "group": "A",
+        "text": "Black-and-white Photography"
+    },
+    {
+        "value": "outer-space",
+        "group": "P",
+        "text": "Outer Space"
+    },
+    {
+        "value": "contemplative",
+        "group": "P",
+        "text": "Contemplative"
+    },
+    {
+        "value": "calm",
+        "group": "P",
+        "text": "Calm"
+    },
+    {
+        "value": "romance",
+        "group": "P",
+        "text": "Romance"
+    },
+    {
+        "value": "mellow",
+        "group": "P",
+        "text": "Mellow"
+    },
+    {
+        "value": "waterscapes",
+        "group": "P",
+        "text": "Water scapes"
+    },
+    {
+        "value": "the-fantastic",
+        "group": "P",
+        "text": "The Fantastic"
+    },
+    {
+        "value": "patina",
+        "group": "P",
+        "text": "Patina"
+    }
+]

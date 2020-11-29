@@ -1,110 +1,129 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation
-} from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
-import * as $ from "jquery";
-import { Masonry, MasonryGridItem } from "ng-masonry-grid";
-import { SubTabsComponent } from "../../components";
-import { SubscriptionLike as ISubscription } from "rxjs";
+import { DataService, AppSettingsService } from "./../../_services";
+import { Utility } from "./../../_helpers";
 
 @Component({
   selector: "app-gallery",
   templateUrl: "./gallery.component.html",
-  styleUrls: [
-    "./../../../../node_modules/ng-masonry-grid/ng-masonry-grid.css",
-    "./gallery.component.css",
-  ],
-  encapsulation: ViewEncapsulation.None,
+  styleUrls: ["./gallery.component.css"],
 })
 export class GalleryComponent implements OnInit {
-
-  currentTab = 'artworks';
-  _masonry: Masonry;
-  masonryItems: Array<any> = [];
-  count = 0;
-
-  private _removeAllSubscription: ISubscription;
-  private _removeItemSubscription: ISubscription;
-  private _removeFirstItemSubscription: ISubscription;
-  showMasonry = true;
-  constructor(private translateSrv: TranslateService) {
-    const len = 10; // length of grid items
-
-    for (let i = 0; i < len; i++) {
-      this.masonryItems.push({
-        src: this.getSrc(),
-        count: this.count++,
-        name: "image" + i,
-      });
+  editions = [];
+  tags = [];
+  constructor(
+    private translateSrv: TranslateService,
+    private utility: Utility,
+    private dataSrv: DataService
+  ) {
+    let _lang = localStorage.getItem("lang");
+    if (this.utility.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
     }
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utility.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+      }
+    });
+    this.editions = [
+      {
+        editionTitle: "The Calm And The Storm too more words",
+        editionAuthor: "Andrew Shiao",
+        editionImg: "./assets/images/card-01.jpg",
+        editionId: "2000163",
+        editionDate: "2020-3-15",
+        editionPrice: "0.5",
+      },
+      {
+        editionTitle: "The Calm And The Storm too more words",
+        editionAuthor: "Andrew Shiao",
+        editionImg: "./assets/images/card-02.jpg",
+        editionId: "2000135",
+        editionDate: "2020-3-15",
+        editionPrice: "0.11",
+      },
+      {
+        editionTitle: "The Calm And The Storm too more words",
+        editionAuthor: "Andrew Shiao",
+        editionImg: "./assets/images/card-03.jpg",
+        editionId: "2000136",
+        editionDate: "2020-3-15",
+        editionPrice: "0.15",
+      },
+      {
+        editionTitle: "The Calm And The Storm too more words",
+        editionAuthor: "Andrew Shiao",
+        editionImg: "./assets/images/card-04.jpg",
+        editionId: "2000137",
+        editionDate: "2020-3-15",
+        editionPrice: "0.09",
+      },
+      {
+        editionTitle: "The Calm And The Storm too more words",
+        editionAuthor: "Andrew Shiao",
+        editionImg: "./assets/images/card-05.jpg",
+        editionId: "2000138",
+        editionDate: "2020-3-15",
+        editionPrice: "0.04",
+      },
+      {
+        editionTitle: "The Calm And The Storm too more words",
+        editionAuthor: "Andrew Shiao",
+        editionImg: "./assets/images/card-06.jpg",
+        editionId: "2000139",
+        editionDate: "2020-3-15",
+        editionPrice: "0.07",
+      },
+      {
+        editionTitle: "The Calm And The Storm too more words",
+        editionAuthor: "Andrew Shiao",
+        editionImg: "./assets/images/card-07.jpg",
+        editionId: "2000143",
+        editionDate: "2020-3-15",
+        editionPrice: "0.09",
+      },
+      {
+        editionTitle: "The Calm And The Storm too more words",
+        editionAuthor: "Andrew Shiao",
+        editionImg: "./assets/images/card-08.jpg",
+        editionId: "2000401",
+        editionDate: "2020-3-15",
+        editionPrice: "0.08",
+      },
+      {
+        editionTitle: "The Calm And The Storm too more words",
+        editionAuthor: "Andrew Shiao",
+        editionImg: "./assets/images/card-09.jpg",
+        editionId: "2000141",
+        editionDate: "2020-3-15",
+        editionPrice: "0.015",
+      },
+      {
+        editionTitle: "The Calm And The Storm too more words",
+        editionAuthor: "Andrew Shiao",
+        editionImg: "./assets/images/card-10.jpg",
+        editionId: "2000142",
+        editionDate: "2020-3-15",
+        editionPrice: "0.05",
+      },
+      {
+        editionTitle: "The Calm And The Storm too more words",
+        editionAuthor: "Andrew Shiao",
+        editionImg: "./assets/images/card-11.jpg",
+        editionId: "2000143",
+        editionDate: "2020-3-15",
+        editionPrice: "0.7",
+      },
+    ];
   }
+
+  // initTags() {
+  //   this.appSettingsSrv.getTagOptions("tw").subscribe((data) => {
+  //     this.tags = data;
+  //   });
+  // }
 
   ngOnInit() {
     this.translateSrv.use("zh-tw");
   }
-
-  changeLanguage(lang: string) {
-    this.translateSrv.use(lang);
-  }
-  changeTab(tab) {
-    this.currentTab = tab;
-  }
-
-  getSrc() {
-    // const width = this.getRandomInt( 300, 400 );
-    // const height = this.getRandomInt( 300, 500 );
-    // return 'http://lorempixel.com/'  + width + '/' + height + '/nature';
-
-    return "assets/img/portfolio/" + this.getRandomInt(1, 10) + ".jpg";
-  }
-
-
-  getRandomInt(min: number, max: number) {
-    return Math.floor(Math.random() * max + min);
-  }
-
-  onNgMasonryInit($event: Masonry) {
-    this._masonry = $event;
-  }
-
-  prependItems() {
-    let src = [
-      { src: this.getSrc(), count: this.count++ },
-      { src: this.getSrc(), count: this.count++ },
-      { src: this.getSrc(), count: this.count++ },
-    ];
-    this._masonry.setAddStatus("prepend");
-    this.masonryItems.splice(0, 0, ...src);
-  }
-
-  // append items to existing masonry
-  appendItems() {
-    let src = [
-      { src: this.getSrc(), count: this.count++ },
-      { src: this.getSrc(), count: this.count++ },
-      { src: this.getSrc(), count: this.count++ },
-    ];
-    this._masonry.setAddStatus("append");
-    this.masonryItems.push(...src);
-  }
-
-  // done without images
-  removeItem(item: any) {
-    if (this._masonry) {
-      const elem = document.querySelector("#" + item);
-      this._removeItemSubscription = this._masonry
-        .removeItem(elem)
-        .subscribe((item: MasonryGridItem) => {
-          if (item) {
-            let id = item.element.getAttribute("id");
-            let index = id.split("-")[2];
-            this.masonryItems.splice(index, 1);
-          }
-        });
-    }
-  }
-
-
 }

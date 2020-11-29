@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="hovereffect">
+    <img src="{{ editionImg }}" alt="" />
+    <div class="overlay">
+      <h2>{{ editionTitle }}</h2>
+      <p><i class="fas fa-user"></i> {{ editionAuthor }}</p>
+      <p><i class="fas fa-cloud-upload-alt"></i> {{ editionDate }}</p>
+      <p><i class="fas fa-dollar-sign"></i> {{ editionPrice }}</p>
+      <a routerLink="/gallery/{{ editionId }}">
+        <button class="info">
+          {{ "VIEWDETAILS" | translate }}
+        </button></a
+      >
+    </div>
+  </div>
+</div>

@@ -29,11 +29,10 @@ export class Edition1Component implements OnInit {
 
   ngOnInit() {
     this.dataSrv.langKey.subscribe((lang) => {
-       if (!this.utility.IsNullOrEmpty(lang)) {
-         this.translateSrv.use(lang);
-       }
+      if (!this.utility.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+      }
     });
-    console.log("================", this.editionTitle);
   }
 
   changeLanguage(lang: string) {
