@@ -76,7 +76,7 @@
         *ngIf="auth.isLoggedOut$ | async"
         class="form-inline my-2 my-lg-0 text-white"
       >
-        <a (click)="walletsignin()" class="text-white">
+        <a (click)="walletSignin()" class="text-white">
           <i class="far fa-arrow-alt-circle-right"></i>
           {{ "WALLETSIGNIN" | translate }}</a
         >｜
@@ -90,9 +90,30 @@
 
       <ng-container *ngIf="auth.user$ | async as user">
         <!-- <img class="profile-picture" [src]="user.pictureUrl" />
+          *ngIf="auth.user$ | async as user"
          -->
-        <i class="fa fa-user"></i>
-        <span>Profile</span>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                       <ul class="navbar-nav mr-auto text-center">
+                         <li class="nav-item dropdown">
+                           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             <i class="far fa-user-circle"></i> 會員管理
+                           </a>
+                           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                             <a class="dropdown-item" href="member-artist-project.html">管理作品</a>
+                             <a class="dropdown-item" href="member-artist-upload.html">上傳作品</a>
+                             <a class="dropdown-item" href="member-artist-sale.html">已賣出作品</a>
+                             <a class="dropdown-item" href="member-artist-basic.html">基本資料</a>
+                             <a class="dropdown-item" href="member-artist-account.html">帳戶及帳密</a>
+                             <a class="dropdown-item" href="member-artist-favorite-project.html">我的最愛</a>
+                             <div class="dropdown-divider"></div>
+                             <!-- <a class="dropdown-item" href="#">登出</a> -->
+                              <button class="dropdown-item" (click)="Signout()">Sign out</button>
+                           </div>
+                         </li>
+
+                       </ul>
+                     </div>
+
       </ng-container>
     </div>
   </div>

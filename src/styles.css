@@ -76,6 +76,59 @@
   #artist-line-right {
     border-right: 0px dashed #fff;
   }
+
+   .activity_timeline:after, .activity_timeline_point:after{
+        display:none;
+    }
+
+    #activity_text_center{
+        text-align:center;
+        margin:0 auto;
+    }
+    #activity_text_center p{
+        width:100%;
+        text-align:center;
+    }
+
+      #content-mt .activity_intro{
+        width:100%;
+        margin:0 auto;
+        text-align: justify;
+    }
+
+    #activity_img_center{
+        text-align:center;
+    }
+
+    .activity_timeline_point{
+        padding-bottom:25px;
+        border-bottom:1px solid #17F596;
+    }
+
+    #content-mt{
+        padding-top:120px;
+    }
+
+    #content-mt-60{
+        padding-top:60px;
+    }
+
+   #member_choice_btn{
+        margin-top:20px;
+    }
+
+    #member-search{
+        margin-top:10px;
+    }
+
+    #member_last_btn_w100{
+        width:100%;
+    }
+
+    #footer_buyer_img img{
+        display:none;
+    }
+
 }
 @media (min-width: 576px) {
 }
@@ -132,10 +185,17 @@
 .mb-50 {
   margin-bottom: 50px;
 }
+.mb-60{margin-bottom:60px;}
+.mb-80{margin-bottom:80px;}
 
 .mlr-10 {
   margin: 0 10px;
 }
+
+.text-13{
+    font-size:13px;
+}
+
 
 /** buttons **/
 
@@ -236,6 +296,12 @@
   background-color: #11e78b;
 }
 /** 共用 **/
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   scroll-behavior: smooth;
 }
@@ -244,9 +310,23 @@ body {
   box-shadow: none !important;
 }
 
+.page-item.active .page-link {
+    background-color: #08AB65;
+    border-color:#08AB65;
+}
+
+.page-link{
+    color:#08AB65;
+}
+
+.page-link:hover{
+    color:#08AB65;
+}
+
 #content-mt {
   margin-top: 120px;
 }
+
 
 .bgc-white {
   background-color: #fff;
@@ -258,6 +338,14 @@ body {
 
 .text-green {
   color: #17f596;
+}
+
+.text-green1{
+    color:#08AB65;
+}
+
+.text-orange{
+    color:#FA6400;
 }
 
 /** 修改 bootstrap model **/
@@ -687,6 +775,10 @@ padding:7px 14px; */
   margin-top: 100px;
 }
 
+.signup-logo1{
+    margin-top:50px;
+}
+
 .signup-logo h1 {
   margin-top: 40px;
 }
@@ -714,7 +806,7 @@ padding:7px 14px; */
   border-radius: 20px;
 }
 
-.signup-subtitle-wrap:after {
+.signup-subtitle-wrap::after {
   content: "";
   position: absolute;
   top: calc(50% - 1px);
@@ -729,6 +821,12 @@ padding:7px 14px; */
   border: 1px solid #17f596;
   border-radius: 3px;
   padding: 25px 15px;
+}
+
+#register_table textarea{
+    border:1px solid #17F596;
+    border-radius:3px;
+    padding:15px;
 }
 
 #register_table select {
@@ -848,6 +946,7 @@ padding:7px 14px; */
 
 .project_info_li {
   padding: 3px 0;
+  margin-left:20px;
 }
 
 .project_info_trans_record {
@@ -961,4 +1060,254 @@ padding:7px 14px; */
   position: relative;
   font-size: 20px;
   font-weight: bold;
+}
+
+
+
+/**member artist**/
+.bgc-member{
+    background-image:url("./assets/images/bgc_member.jpg");
+}
+
+.member_img_w{
+    width:150px;
+}
+
+.member_ul{
+    list-style: none;
+    padding-left: -40px;
+}
+
+.member_side_navi{
+    display:block;
+    border:1px solid #46D196;
+    text-align:center;
+    border-radius:25px;
+    line-height:45px;
+    margin-bottom:10px;
+}
+
+.member_side_navi:hover{
+    border:1px solid #11e78b;
+    background-color: #11e78b;
+    color:#000;
+}
+
+.member_side_navi_focus{
+    display:block;
+    border:1px solid #4A4A4A;
+    background-color: #4A4A4A;
+    text-align:center;
+    border-radius:25px;
+    line-height:45px;
+    margin-bottom:10px;
+    color:#FFF;
+}
+
+.member-info-box{
+    border-left:1px solid #CCCCCC;
+    padding:0 20px;
+}
+
+#member-artist-project img{
+    width:100%;
+}
+
+#member-artist-project img:hover{
+    box-sizing:border-box;
+    border:2px solid #11e78b;
+}
+
+#member-artist-project ul{
+    list-style-type:none;
+}
+
+#member-artist-project li{
+    padding:8px 0;
+    border-bottom:1px dashed #979797;
+}
+
+#member-artist-project li:first-child{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space : nowrap;
+}
+
+#member-artist-project div{
+    margin-bottom:30px;
+}
+
+.pagenation_center{
+    display:flex;
+    justify-content:center;
+}
+
+
+.member_artist_detail_list li{
+    display:block;
+    border-bottom:1px dashed #979797;
+    padding:10px 0;
+    color:#5D5D5D;
+}
+
+.member_modal_hr{
+    background-color: #11e78b;
+    height:2px;
+}
+
+.member_add_project{
+    margin-left:5px;
+    font-size:25px;
+    line-height:50px;
+}
+
+#member_favorite_tab .active{
+    border-color:#4A4A4A;
+    background-color: #4A4A4A;
+    color:#FFF;
+}
+
+
+
+#member_favorite_tab .nav-tabs{
+    border-bottom:1px solid  #11e78b;
+}
+
+#member_favorite_tab .nav-link:hover{
+    border:1px solid rgba(0,0,0,0);
+}
+
+
+
+#member-artist-artist img{
+    width:120px;
+}
+
+.member_artist_delete{
+    position: absolute;
+    display:block;
+    top:0;
+    left:calc(50% + 32px);
+    width:30px;
+    height:30px;
+    line-height:30px;
+    font-size:18px;
+    background-color:#08AB65;
+    color:#FFF;
+    border-radius:50%;
+}
+
+#member-artist-artist a:hover{
+    color:#FFF;
+    background-color:#E20C23;
+}
+
+#member_artist_delete a:nth-child(3):hover{
+    color:#17F596;
+}
+
+#member-artist-artist h5{
+    overflow : hidden;
+    text-overflow : ellipsis;
+    white-space : nowrap;
+}
+
+.member_bidding_history{
+    background-color: #08AB65;
+    color:#FFF;
+    padding:5px 13px;
+    border-radius:15px;
+}
+
+
+.member_bidding_pay{
+    background-color: #FA6400;
+    color:#FFF;
+    padding:5px 13px;
+    border-radius:15px;
+}
+
+.member_bidding_pay:hover{
+    color:#ffd6bb;
+}
+
+
+.footer_title{
+    border-bottom:9px solid #17F596;
+    padding-bottom:10px;
+}
+
+.footer_title_line:after{
+    position:absolute;
+    display:block;
+    content:"";
+    background-color: #979797;
+    height:1px;
+    left:15px;
+    right:15px;
+    margin-top:14px;
+    z-index:-1;
+}
+
+
+.footer_text{
+    line-height:34px;
+    font-size:18px;
+}
+
+.footer_ulli ul{
+    list-style-type: decimal;
+    list-style-position:outside;
+}
+
+.footer_ulli li{
+    padding:8px 0;
+    border-bottom:1px dashed #979797;
+    margin-left:25px;
+}
+
+#text1, #text2, #text3, #text4 ,#text5,#text6,#text7,#text8,#text9,#text10,#text11,#text12:target{
+    content:"";
+    display:block;
+    padding-top:60px;
+}
+
+#text1, #text2, #text3, #text4 ,#text5,#text6,#text7,#text8,#text9,#text10,#text11,#text12{
+    margin-bottom:20px;
+}
+
+
+
+
+.card-header .title {
+    font-size: 17px;
+    color: #000;
+}
+.card-header .accicon {
+  float: right;
+  font-size: 20px;
+  width: 1.2em;
+}
+.card-header{
+  cursor: pointer;
+  border-bottom: none;
+}
+.card{
+  border: 1px solid #ddd;
+}
+.card-body{
+  border-top: 1px solid #ddd;
+}
+.card-header:not(.collapsed) .rotate-icon {
+  transform: rotate(180deg);
+}
+
+
+.page_error{
+    font-size:100px;
+}
+
+.page_404_bg{
+    background-image:url("./assets/images/bgc_member.jpg");
+    min-height:600px;
 }

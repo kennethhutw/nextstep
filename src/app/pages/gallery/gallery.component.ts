@@ -11,18 +11,23 @@ import { Utility } from "./../../_helpers";
 export class GalleryComponent implements OnInit {
   editions = [];
   tags = [];
+  IsShowTags = false;
   constructor(
     private translateSrv: TranslateService,
     private utility: Utility,
-    private dataSrv: DataService
+    private dataSrv: DataService,
+    private appSettingsSrv: AppSettingsService
   ) {
+    console.log(" =========================== ");
     let _lang = localStorage.getItem("lang");
-    if (this.utility.IsNullOrEmpty(_lang)) {
+    if (!this.utility.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
+      this.initTags(_lang);
     }
     this.dataSrv.langKey.subscribe((lang) => {
       if (!this.utility.IsNullOrEmpty(lang)) {
         this.translateSrv.use(lang);
+        this.initTags(lang);
       }
     });
     this.editions = [
@@ -117,11 +122,16 @@ export class GalleryComponent implements OnInit {
     ];
   }
 
-  // initTags() {
-  //   this.appSettingsSrv.getTagOptions("tw").subscribe((data) => {
-  //     this.tags = data;
-  //   });
-  // }
+  initTags(lang) {
+    this.appSettingsSrv.getTagOptions(lang).subscribe((data) => {
+      console.log("tags ==================== ", data);
+      this.tags = data;
+    });
+  }
+
+  IsShowAllTags() {
+    this.IsShowTags = !this.IsShowTags;
+  }
 
   ngOnInit() {
     this.translateSrv.use("zh-tw");

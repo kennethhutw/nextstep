@@ -33,7 +33,6 @@ export class HeaderComponent implements OnInit {
     private route: ActivatedRoute,
     private auth: AuthStore
   ) {
-
     let _lang = localStorage.getItem("lang");
     if (!this.utility.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
@@ -83,27 +82,29 @@ export class HeaderComponent implements OnInit {
   }
 
   walletSignup() {
-    if (this.web3Srv.ethEnabled()) {
-      this.web3Srv.getAccountDetail().then(
-        (data) => {
-          console.log("User", data);
-          this.userSrv.walletSignin(data.address).subscribe((result) => {});
-        },
-        (error) => {
-          console.log("getAccountDetail error", error);
-        }
-      );
-    } else {
-      console.warn("Metamask not found Install or enable Metamask");
-    }
+    // if (this.web3Srv.ethEnabled()) {
+    //   this.web3Srv.getAccountDetail().then(
+    //     (data) => {
+    //       console.log("User", data);
+    //       this.userSrv.walletSignin(data.address).subscribe((result) => {});
+    //     },
+    //     (error) => {
+    //       console.log("getAccountDetail error", error);
+    //     }
+    //   );
+    // } else {
+    //   console.warn("Metamask not found Install or enable Metamask");
+    // }
   }
 
-  walletsignin() {
+  walletSignin() {
+
     if (this.web3Srv.ethEnabled()) {
       this.web3Srv.getAccountDetail().then(
         (data) => {
-          console.log("User", data);
-          this.userSrv.walletSignin(data.address).subscribe((result) => {});
+          this.auth.walletSignin(data.address).subscribe((result) => {
+            console.log(" walletSignin =============== ");
+          });
         },
         (error) => {
           console.log("getAccountDetail error", error);
@@ -140,6 +141,10 @@ export class HeaderComponent implements OnInit {
       //     }
       //   });
     }
+  }
+
+  Signout() {
+    this.auth.logout();
   }
   onSubmit() {
     // if (this.loginForm.invalid) {

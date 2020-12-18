@@ -17,42 +17,83 @@
       <div class="row">
         <div class="col-md-12 text-center mt-40">
           <div class="signup-subtitle-wrap">
-            <span class="signup-subtitle"
-              >我要以<span class="text-green">帳密</span>註冊</span
+            <span class="signup-subtitle">
+              <input
+                type="radio"
+                name="haveOwner"
+                [value]="0"
+                [(ngModel)]="registerType"
+                class="mr-1"
+                [ngModelOptions]="{ standalone: true }"
+              />我要以<span class="text-green">帳密</span>註冊</span
             >
           </div>
         </div>
-
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="exampleInputEmail1">E-mail帳號</label>
-            <input
-              type="email"
-              class="form-control"
-              aria-describedby="emailHelp"
-            />
+        <div class="row col-md-12" [formGroup]="registerForm">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="exampleInputEmail1">E-mail帳號</label>
+              <input
+                [readonly]="IsEnableEmailSignup()"
+                type="email"
+                class="form-control"
+                aria-describedby="emailHelp"
+                formControlName="email"
+                [ngClass]="{
+                  'is-invalid':
+                    (registerForm.get('email').touched ||
+                      registerForm.get('email').dirty) &&
+                    registerForm.get('email').invalid
+                }"
+              />
+            </div>
+            <div *ngIf="submitted && f.email.errors">
+              <div class="error-msg" *ngIf="f.email.errors.required">
+                Email is required
+              </div>
+              <div class="error-msg" *ngIf="f.email.errors.pattern">
+                Invalid email address
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="exampleInputEmail1">密碼</label>
+              <input
+                [readonly]="IsEnableEmailSignup()"
+                type="password"
+                class="form-control"
+                formControlName="password"
+                aria-describedby="passwordHelp"
+                [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+              />
+            </div>
+            <div *ngIf="submitted && f.password.errors">
+              <div class="error-msg" *ngIf="f.password.errors.required">
+                Password is required
+              </div>
+              <div class="error-msg" *ngIf="f.password.errors.minlength">
+                Password must be at least 6 characters
+              </div>
+            </div>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="exampleInputEmail1">密碼</label>
-            <input
-              type="email"
-              class="form-control"
-              aria-describedby="emailHelp"
-            />
-          </div>
-        </div>
-
         <div class="col-md-12 text-center mt-40">
           <div class="signup-subtitle-wrap">
-            <span class="signup-subtitle"
-              >我要以<span class="text-green">虛擬錢包</span>註冊</span
+            <span class="signup-subtitle">
+              <input
+                type="radio"
+                name="haveOwner"
+                [value]="1"
+                class="mr-1"
+                [(ngModel)]="registerType"
+                [ngModelOptions]="{ standalone: true }"
+              />我要以<span class="text-green">虛擬錢包</span>註冊</span
             >
           </div>
-          <p class="register_info text-danger">
+          <!-- <p class="register_info text-danger">
             我們提供兩種取得虛擬錢包位址的方式，請擇一使用。
-          </p>
+          </p> -->
         </div>
 
         <div class="col-md-12 mb-40">
@@ -90,6 +131,7 @@
                 aria-label="Recipient's username"
                 aria-describedby="button-addon2"
                 [(ngModel)]="wellatAddress"
+                [ngModelOptions]="{ standalone: true }"
                 readonly
               />
               <div class="input-group-append">
@@ -97,8 +139,9 @@
                   class="btn btn-outline-secondary input_btn_normal"
                   type="button"
                   (click)="WellectConnect()"
+                  [disabled]="IsEnableWalletSignup()"
                 >
-                  確定連結錢包
+                  {{ "CONNECTTOWALLET" | translate }}
                 </button>
               </div>
             </div>
@@ -119,17 +162,20 @@
         id="inlineCheckbox1"
         [(ngModel)]="IsAgree"
       />
-      <label class="form-check-label" for="inlineCheckbox1"
-        >我同意網站上的<a
-          href="privacy.html"
-          target="_blank"
-          class="inline_text"
-          >服務條款</a
+      <label class="form-check-label pl-10" for="inlineCheckbox1">
+        {{ "IAGRESSWITH" | translate
+        }}<a href="privacy.html" target="_blank" class="inline_text">
+          {{ "TERMSOFSERVICE" | translate }}</a
         ></label
       >
     </div>
   </div>
-  <button [attr.disabled]="IsAgree ? null : true" class="btn_normal mb-40">
-    提交註冊申請
+  <button
+    [attr.disabled]="IsAgree ? null : true"
+    class="btn_normal mb-40"
+    (click)="register()"
+  >
+    {{ "SUBMITBYARTIST" | translate }}
   </button>
+  <div class="error-msg" *ngIf="errorMsg">{{ errorMsg }}</div>
 </div>

@@ -8,11 +8,36 @@
     <div class="col-md-7">
       <div class="col-xs-6 col-md-12">
         <ul>
-          <li>{{ "ABOUTUS" | translate }}</li>
-          <li>{{ "PRIVACY" | translate }}</li>
-          <li>{{ "Q&A" | translate }}</li>
-          <li>{{ "FORARTIST" | translate }}</li>
-          <li>{{ "FORCOLLECTOR" | translate }}</li>
+          <li
+           [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }">
+           <a class="nav-link" routerLink="/about">
+            {{ "ABOUTUS" | translate }}
+           </a></li>
+          <li
+           [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }">
+           <a class="nav-link" routerLink="/policy">
+            {{ "PRIVACY" | translate }}
+          </a></li>
+          <li
+          [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }">
+           <a class="nav-link" routerLink="/qa">
+            {{ "Q&A" | translate }}
+          </a>
+        </li>
+          <li
+           [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }">
+           <a class="nav-link" routerLink="/for-artist">
+            {{ "FORARTIST" | translate }}
+           </a></li>
+          <li [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }">
+           <a class="nav-link" routerLink="/for-buyer">
+            {{ "FORCOLLECTOR" | translate }}
+          </a></li>
         </ul>
       </div>
       <div class="col-xs-6 col-md-12">

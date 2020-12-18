@@ -35,7 +35,14 @@ import {
   Edition2Component,
   Edition3Component,
   ArtistDetailComponent,
+  ArtistHeaderComponent,
+  CollectorHeaderComponent,
 } from "./components";
+
+import {
+  ArtistLayoutComponent,
+  CollectorLayoutComponent
+} from "./layout";
 
 import { DisqusModule } from "ngx-disqus";
 
@@ -54,6 +61,27 @@ import {
   RegisterArtistComponent,
   PageNotFoundComponent,
   RegisterBuyerComponent,
+  ArtistPageComponent,
+  CollectorProfilePageComponent,
+  QAComponent,
+  PolicyComponent,
+  AboutComponent,
+  ForArtistComponent,
+  ForBuyerComponent,
+  ErrorComponent,
+  CollectorAccountComponent,
+  CollectorCollectionComponent,
+CollectorFavoriteComponent,
+CollectorOfferComponent,
+CollectorSalesComponent,
+ArtistAccountComponent,
+ArtistCollectionComponent,
+ArtistFavoriteComponent,
+ArtistOfferComponent,
+ArtistSalesComponent,
+ArtistBasicComponent,
+ArtistEditionDetailComponent,
+ArtistUploadComponent
 } from "./pages";
 
 import { AnQrcodeModule } from "an-qrcode";
@@ -112,6 +140,31 @@ export function createLoader(http: HttpClient) {
     PageNotFoundComponent,
     RegisterBuyerComponent,
     ArtistDetailComponent,
+    ArtistPageComponent,
+    CollectorProfilePageComponent,
+    QAComponent,
+    PolicyComponent,
+    AboutComponent,
+    ForArtistComponent,
+    ForBuyerComponent,
+    ErrorComponent,
+    ArtistHeaderComponent,
+    CollectorHeaderComponent,
+    ArtistLayoutComponent,
+    CollectorLayoutComponent,
+    CollectorAccountComponent,
+    CollectorCollectionComponent,
+    CollectorFavoriteComponent,
+    CollectorOfferComponent,
+    CollectorSalesComponent,
+    ArtistAccountComponent,
+    ArtistCollectionComponent,
+    ArtistFavoriteComponent,
+    ArtistOfferComponent,
+    ArtistSalesComponent,
+    ArtistBasicComponent,
+    ArtistEditionDetailComponent,
+    ArtistUploadComponent
   ],
   imports: [
     BrowserModule,

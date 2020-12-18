@@ -19,100 +19,298 @@
         <span class="text-center w-100 register_info"
           >以下所填內容用於讓我們確認您的創作者帳戶，請務必確實填寫。</span
         >
-        <div class="signup-subtitle" style="display: block">基本資料</div>
-        <div class="row w-100">
+        <div class="signup-subtitle" style="display: block">
+          {{ "BASICINFO" | translate }}
+        </div>
+        <div class="row w-100 mt-10" [formGroup]="registerForm"  (ngSubmit)="onSubmit()">
           <div class="col-md-5 offset-md-1">
             <div class="form-group">
-              <label for="exampleInputEmail1"
-                >真實姓名<span>(必填)</span></label
+              <label for="exampleInputEmail1">
+                {{ "Name" | translate }}<span>(*)</span></label
               >
               <input
-                type="email"
+                type="text"
                 class="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
+                id="inputname"
+                formControlName="name"
+                aria-describedby="nameHelp"
               />
             </div>
           </div>
           <div class="col-md-5">
             <div class="form-group">
-              <label for="exampleInputEmail1">Email<span>(必填)</span></label>
+              <label for="InputEmail1">Email<span>(*)</span></label>
               <input
                 type="email"
                 class="form-control"
-                id="exampleInputEmail1"
+                id="InputEmail1"
+                formControlName="email"
                 aria-describedby="emailHelp"
               />
             </div>
           </div>
           <div class="col-md-5 offset-md-1">
             <div class="form-group">
-              <label for="exampleInputEmail1">所在地<span>(必填)</span></label>
+              <label for="InputLocation"
+                >{{ "LOCATION" | translate }}<span>(*)</span></label
+              >
               <input
-                type="email"
+                type="text"
                 class="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
+                id="InputLocation"
+                formControlName="location"
+                aria-describedby="locationHelp"
               />
             </div>
           </div>
           <div class="col-md-5">
             <div class="form-group">
-              <label for="exampleInputEmail1">個人網站</label>
+              <label for="exampleInputEmail1">{{
+                "WEBSITE" | translate
+              }}</label>
               <input
-                type="email"
+                type="text"
                 class="form-control"
                 id="exampleInputEmail1"
+                formControlName="website"
                 aria-describedby="emailHelp"
               />
             </div>
           </div>
           <div class="col-md-5 offset-md-1">
             <div class="form-group">
-              <label for="exampleInputEmail1">Facebook</label>
+              <label for="InputFacebook">Facebook</label>
               <input
-                type="email"
+                type="text"
                 class="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
+                id="InputFacebook"
+                formControlName="facebook"
+                aria-describedby="facebookHelp"
               />
             </div>
           </div>
           <div class="col-md-5">
             <div class="form-group">
-              <label for="exampleInputEmail1">Twitter</label>
+              <label for="InputTwitter">Twitter</label>
               <input
-                type="email"
+                type="text"
                 class="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
+                id="InputTwitter"
+                formControlName="twitter"
+                aria-describedby="twitterHelp"
               />
             </div>
           </div>
           <div class="col-md-5 offset-md-1">
             <div class="form-group">
-              <label for="exampleInputEmail1">Instagram</label>
+              <label for="InputInstagram">Instagram</label>
               <input
-                type="email"
+                type="text"
                 class="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
+                id="InputInstagram"
+                formControlName="instagram"
+                aria-describedby="instagramHelp"
               />
             </div>
           </div>
           <div class="col-md-5">
             <div class="form-group">
-              <label for="exampleInputEmail1">blog</label>
+              <label for="InputBlog">Blog</label>
               <input
-                type="email"
+                type="text"
                 class="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
+                id="InputBlog"
+                formControlName="blog"
+                aria-describedby="blogHelp"
               />
             </div>
           </div>
+
+          <div class="col-md-12 text-center mt-40">
+            <div class="signup-subtitle-wrap">
+              <span class="signup-subtitle">{{
+                "UPLOADYOURARTWORK" | translate
+              }}</span>
+            </div>
+            <p class="text-left">
+              {{ "ACCEPTFILETYPE" | translate }}：JPG、PNG、GIF
+            </p>
+          </div>
+<!--upload image-->
+          <div formArrayName="editions" class="row">
+            <div id="select_img" class="col-md-3 text-center mt-30">
+                <img class="w-100" *ngIf="theFirstImage" [src]="theFirstImage"  alt="" />
+                <img class="w-100" *ngIf="!theFirstImage" src="./assets/images/select_img.jpg" alt="" />
+            </div>
+            <div [formGroupName]=0 class="col-md-9 mt-30">
+              <label class="btn_select_img mb-20" for="Upload"
+                >{{ "SELECTEDITION" | translate }}
+              </label>
+
+              <input
+                id="Upload"
+                type="file"
+                name="_photos"
+                accept="image/*"
+                 (change)="onDetectImage($event,0)"
+                style="visibility: hidden; padding: 0px"
+              />
+
+              <div class="form-group">
+                <label for="InputEdition1Name">{{
+                  "EDITIONNAME" | translate
+                }}</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="InputEdition1Name"
+                  formControlName="name"
+                  aria-describedby="edition1NameHelp"
+                />
+                <div *ngIf="theFirstImageNameRequire" class="invalid">Name is required</div>
+              </div>
+
+              <div class="form-group">
+                <label for="InputEdition1Desc">{{
+                  "EDITIONDESC" | translate
+                }}</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="InputEdition1Desc"
+                   formControlName="description"
+                  aria-describedby="edition1DescHelp"
+                />
+              </div>
+            </div>
+
+            <div id="select_img" class="col-md-3 text-center mt-30">
+              <img class="w-100" *ngIf="theSecondImage" [src]="theSecondImage"  alt="" />
+                <img class="w-100" *ngIf="!theSecondImage" src="./assets/images/select_img.jpg" alt="" />
+            </div>
+            <div [formGroupName]=1 class="col-md-9 mt-30">
+              <button
+                accept="image/gif, image/jpeg, image/png, image/gif"
+                type="file"
+                class="btn_select_img mb-20"
+              >
+                {{ "SELECTEDITION" | translate }}
+              </button>
+              <div class="form-group">
+                <label for="InputEdition2Name">{{
+                  "EDITIONNAME" | translate
+                }}</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="InputEdition2Name"
+                  formControlName="name"
+                  aria-describedby="edition2NameHelp"
+                />
+                  <div *ngIf="theSecodnImageNameRequire" class="invalid">Name is required</div>
+              </div>
+              <div class="form-group">
+                <label for="InputEdition2Desc">{{
+                  "EDITIONDESC" | translate
+                }}</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="InputEdition2Desc"
+                  formControlName="description"
+                  aria-describedby="edition2DescHelp"
+                />
+              </div>
+            </div>
+
+            <div id="select_img" class="col-md-3 text-center mt-30">
+              <img class="w-100" *ngIf="theThirdImage" [src]="theThirdImage"  alt="" />
+                <img class="w-100" *ngIf="!theThirdImage" src="./assets/images/select_img.jpg" alt="" />
+            </div>
+            <div [formGroupName]=2 class="col-md-9 mt-30 mb-30">
+              <button
+                accept="image/gif, image/jpeg, image/png, image/gif"
+                type="file"
+                class="btn_select_img mb-20"
+              >
+                {{ "SELECTEDITION" | translate }}
+              </button>
+              <div class="form-group">
+                <label for="InputEdition3Name">{{
+                  "EDITIONNAME" | translate
+                }}</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="InputEdition3Name"
+                  formControlName="name"
+                  aria-describedby="edition3NameHelp"
+                />
+                  <div *ngIf="theThirdImageNameRequire" class="invalid">Name is required</div>
+              </div>
+              <div class="form-group">
+                <label for="InputEdition3Desc">{{
+                  "EDITIONDESC" | translate
+                }}</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="InputEdition3Desc"
+                  formControlName="description"
+                  aria-describedby="edition3DescHelp"
+                />
+              </div>
+            </div>
+          </div>
+          <!--upload image end-->
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="text-center mt-40">
+    <div class="form-check form-check-inline mb-10">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="gridRadios"
+        id="gridRadios1"
+        value="option1"
+        checked
+      />
+      <label class="form-check-label" for="gridRadios1">
+        {{ "IAMTHECURATORARTIST" | translate }}
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="gridRadios"
+        id="gridRadios2"
+        value="option2"
+      />
+      <label class="form-check-label" for="gridRadios2">
+        {{ "IAMAGENT" | translate }}
+      </label>
+    </div>
+    <div class="mb-30">
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="IsAgree"
+          [(ngModel)]="IsAgree"
+
+        />
+        <label class="form-check-label" for="inlineCheckbox1"
+          >{{ "IAGRESSWITH" | translate
+          }}<a href="privacy.html" target="_blank" class="inline_text">{{
+            "TERMSOFSERVICE" | translate
+          }}</a></label
+        >
+      </div>
+    </div>
+    <button  [attr.disabled]="IsAgree ? null : true" class="btn_normal mb-40" (click)="onSubmit()"  >{{ "SUBMITBYARTIST" | translate }}</button>
   </div>
 </div>

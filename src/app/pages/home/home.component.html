@@ -5,7 +5,7 @@
       <div class="main-slogen">
         {{ "HOMETITLE" | translate }}<br />{{ "DIGITALARTWORKS" | translate }}
       </div>
-      <button class="main-btn-explore" href="project.html">
+      <button class="main-btn-explore" routerLink="/gallery">
         {{ "DISCOVER" | translate }}
       </button>
     </div>
@@ -134,7 +134,7 @@
           <button class="index_btn_explore1">
             {{ "KNOWMORE" | translate }}
           </button>
-          <button class="index_btn_explore2">{{ "JOINUS" | translate }}</button>
+          <button routerLink="/register-artist" class="index_btn_explore2">{{ "JOINUS" | translate }}</button>
         </div>
       </div>
     </div>

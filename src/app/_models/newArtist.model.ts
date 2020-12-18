@@ -5,7 +5,7 @@ export class NewArtist{
     website:string;
     facebook:string;
     twitter:string;
-    instagram:number;
+    instagram:string;
     blog:string;
     editions:ApplyEdition[]
 }

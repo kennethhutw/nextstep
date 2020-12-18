@@ -11,6 +11,7 @@ export class AppSettingsService {
     return this.http.get("./../../assets/data/countries.json");
   }
   public getTagOptions(lang): Observable<any> {
+    console.log("=======================", lang);
     return this.http.get(`./../../assets/data/types_${lang}.json`);
   }
 }

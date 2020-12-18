@@ -16,7 +16,14 @@
       </div>
 
       <div id="project_info_more" class="row">
-        <div class="col-md-4 col-6 mb-30">
+        <ng-container *ngFor="let edition of editions">
+          <div class="col-md-4 col-6 mb-30">
+            <a routerLink="/gallery/{{ edition.id }}"
+              ><img src="{{ edition.imageURL }}" alt=""
+            /></a>
+          </div>
+        </ng-container>
+        <!-- <div class="col-md-4 col-6 mb-30">
           <a href="project-purchase.html"
             ><img src="./assets/images/project-info-01.jpg" alt=""
           /></a>
@@ -45,7 +52,7 @@
           <a href="project-purchase.html"
             ><img src="./assets/images/project-info-06.jpg" alt=""
           /></a>
-        </div>
+        </div> -->
       </div>
     </div>
 

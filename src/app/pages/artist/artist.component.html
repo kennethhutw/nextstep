@@ -1,0 +1,85 @@
+<div id="content-mt" class="container mb-40">
+  <app-artist-detail
+    name="Raamin ka"
+    src="./assets/images/artist-photo.jpg"
+    follow="231"
+    follower="45"
+    bio="    'Trickle Down, A New Vertical Sovereignty' is an artwork by Helen
+        Knowles. It​ is a tokenised four-screen video installation and
+        generative soundscape attached to the blockchain, which explores value
+        systems and wealth disparity. On sale here is a limited-edition
+        transaction map GIF which illustrates how the currency flows and is
+        distributed.The artwork is composed of auction scenes documented by
+        artist Helen Knowles in widely different settings, which reflect the
+        breadth of wealth and financial powe."
+    walletAddress="3MieYo1wiBYWHRUnoe6vvhGVwndmVoBjD"
+    twitter="@yayatom"
+    instagram="@yayatom"
+    website="yayatom.com"
+    location="Taiwan"
+    tags="插畫,攝影,人像 "
+  ></app-artist-detail>
+
+  <div class="row mt-40">
+    <ng-container *ngFor="let edition of popularEditions">
+      <div class="col-md-4 mb-4">
+        <app-edition2
+          editionTitle="{{ edition.editionTitle }}"
+          editionAuthor="{{ edition.editionAuthor }}"
+          editionImg="{{ edition.editionImg }}"
+          editionId="{{ edition.editionId }}"
+        ></app-edition2>
+      </div>
+    </ng-container>
+
+    <!-- <div class="col-md-4 mb-4">
+      <div class="hovereffect">
+        <img src="./assets/images/main-thumbnail-a3.jpg" alt="" />
+        <div class="overlay">
+          <h2>The Calm And The Storm</h2>
+          <p><i class="fas fa-user"></i> Andrew Shiao</p>
+          <a href="project-purchase.html">
+            <button class="info">了解作品細節</button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="hovereffect">
+        <img src="./assets/images/main-thumbnail-a1.jpg" alt="" />
+        <div class="overlay">
+          <h2>The Calm And The Storm too more words</h2>
+          <p><i class="fas fa-user"></i> Andrew Shiao</p>
+          <a href="project-purchase.html">
+            <button class="info">了解作品細節</button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="hovereffect">
+        <img src="./assets/images/main-thumbnail-a2.jpg" alt="" />
+        <div class="overlay">
+          <h2>The Calm And The Storm</h2>
+          <p><i class="fas fa-user"></i> Andrew Shiao</p>
+          <a href="project-purchase.html">
+            <button class="info">了解作品細節</button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="hovereffect">
+        <img src="./assets/images/main-thumbnail-a3.jpg" alt="" />
+        <div class="overlay">
+          <h2>The Calm And The Storm</h2>
+          <p><i class="fas fa-user"></i> Andrew Shiao</p>
+          <a href="project-purchase.html">
+            <button class="info">了解作品細節</button>
+          </a>
+        </div>
+      </div>
+    </div> -->
+  </div>
+  <!--row end-->
+</div>

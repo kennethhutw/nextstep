@@ -56,9 +56,9 @@
   "IAMCOLL`ECTORDEC":"Buy Your Own Creations",
   "ANEWPASSWORDHASBEENSENT":"The new password has been sent",
   "NOTFOUNDWALLET":"We cannot detect your virtual wallet address, please confirm whether you have installed a virtual wallet.",
-  "LOCATION":"LOCATION(*)",
+  "LOCATION":"Location",
   "WEBSITE":"Website",
-  "NAME":"Name(*)",
+  "NAME":"Name",
   "APPLICAITION":"APPLY",
   "UPLOADYOURARTWORK":"upload your artwork *",
   "SALES":"SALES",
@@ -67,6 +67,7 @@
   "FOLLOW":"Follow",
   "UNFOLLOW":"Unfollow",
   "MOREBYTHISARTIST":"More by this artist",
+  "EDITIONNAME":"Name",
   "EDITIONDESC":"Description",
   "BUYNOW":"Buy now",
   "ADDITIONALDETAILS":"Additional Details",
@@ -75,5 +76,16 @@
   "PRICE":"PRICE",
   "HISTORY":"History",
    "EDITIONOWNER":"OWNER",
-   "ALLEDITION":"All"
+   "ALLEDITION":"All",
+   "TYPEMORE":"more",
+   "SUBMITBYARTIST":"Submit",
+   "IAMTHECURATORARTIST":"I'm the curator/artist",
+   "IAMAGENT":"I have been authorised by the curator/artist",
+   "IAGRESSWITH":"I agree with",
+   "TERMSOFSERVICE":"Terms of service",
+   "CONNECTTOWALLET":"connect to wallet",
+   "BASICINFO":"Basic Information",
+   "ACCEPTFILETYPE":"The acceptable file format is",
+   "SELECTEDITION":"Select file"
+
 }

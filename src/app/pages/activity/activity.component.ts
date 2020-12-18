@@ -15,7 +15,7 @@ export class ActivityComponent implements OnInit {
     private dataSrv: DataService
   ) {
     let _lang = localStorage.getItem("lang");
-    if (this.utility.IsNullOrEmpty(_lang)) {
+    if (!this.utility.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
     }
     this.dataSrv.langKey.subscribe((lang) => {

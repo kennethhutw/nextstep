@@ -1,0 +1,53 @@
+    <div class="container-fluid bgc-grey">
+
+        <div class="row bgc-member ">
+            <div class="col-md-12 mt-50 mb-60">
+                <div class="text-center signup-logo">
+                    <h1 class="text-center">David Huang
+                        <a href="#"><i class="fas fa-user-edit" ></i></a>
+                    </h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div id="register_table" class="container">
+                <div class="row mt-50">
+                    <div class="col-md-2">
+                        <ul class="member_ul">
+                            <a [routerLinkActive]="['active']"
+                               [routerLinkActiveOptions]="{ exact: true }"
+                               routerLink="/collector/collection"><li class="member_side_navi">
+                                收藏作品
+                            </li></a>
+                            <a [routerLinkActive]="['active']"
+                               [routerLinkActiveOptions]="{ exact: true }"
+                               routerLink="/collector/offer"><li class="member_side_navi">
+                                競標作品
+                            </li></a>
+                            <a [routerLinkActive]="['active']"
+                               [routerLinkActiveOptions]="{ exact: true }"
+                               routerLink="/collector/sales"><li class="member_side_navi">
+                                銷售作品
+                            </li></a>
+                           <a [routerLinkActive]="['active']"
+                               [routerLinkActiveOptions]="{ exact: true }"
+                               routerLink="/collector/account"> <li class="member_side_navi_focus w-100">
+                                帳戶及帳密
+                            </li></a>
+                            <a [routerLinkActive]="['active']"
+                               [routerLinkActiveOptions]="{ exact: true }"
+                               routerLink="/collector/favorite"><li class="member_side_navi w-100">
+                                我的最愛
+                            </li></a>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-9 offset-md-1">
+                      <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>

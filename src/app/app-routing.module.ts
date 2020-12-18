@@ -30,23 +30,101 @@ import {
   RegisterArtistComponent,
   PageNotFoundComponent,
   RegisterBuyerComponent,
+  ArtistPageComponent,
+  CollectorProfilePageComponent,
+  QAComponent,
+  PolicyComponent,
+  AboutComponent,
+  ForArtistComponent,
+  ForBuyerComponent,
+  ErrorComponent,
+  CollectorAccountComponent,
+  CollectorCollectionComponent,
+  CollectorFavoriteComponent,
+  CollectorOfferComponent,
+  CollectorSalesComponent,
+  ArtistAccountComponent,
+  ArtistCollectionComponent,
+  ArtistFavoriteComponent,
+  ArtistOfferComponent,
+  ArtistSalesComponent,
+  ArtistBasicComponent,
+  ArtistEditionDetailComponent,
+  ArtistUploadComponent
 } from "./pages";
 
+import {
+  ArtistLayoutComponent,
+  CollectorLayoutComponent
+} from "./layout";
 const routes: Routes = [
   { path: "", redirectTo: "index", pathMatch: "full" },
   { path: "login", component: LogInComponent },
   { path: "example", component: ExampleComponent },
   { path: "artists", component: ArtistsComponent },
-  { path: "artist", component: ArtistProfileComponent },
   { path: "newArtist", component: NewArtistComponent },
-  { path: "artist/:name", component: ArtistProfileComponent },
+  // { path: "artist/:name", component: ArtistPageComponent },
   { path: "activity", component: ActivityComponent },
   { path: "gallery/:editionId", component: EditionComponent },
   { path: "gallery", component: GalleryComponent },
-  { path: "profile", component: ProfileComponent },
+  { path: "error", component: ErrorComponent },
+  { path: "profile/artist/:id", component: ArtistProfileComponent },
+  { path: "profile/collector/:id", component: CollectorProfilePageComponent },
   { path: "donation", component: DonationComponent },
   { path: "edition", component: EditionComponent },
+  { path: "qa",component:QAComponent},
+  { path: "policy",component:PolicyComponent},
+  { path: "about",component:AboutComponent},
+  { path: "for-artist",component:ForArtistComponent},
+  { path: "for-buyer",component:ForBuyerComponent},
   { path: "token/:id", component: TokenComponent },
+  { path: "artist",
+    component: ArtistLayoutComponent,
+    children:[{
+        path: "account",
+        component: ArtistAccountComponent,
+      },{
+        path: "collection",
+        component: ArtistCollectionComponent,
+      },{
+        path: "favorite",
+        component: ArtistFavoriteComponent,
+      },{
+        path: "offer",
+        component: ArtistOfferComponent,
+      },{
+        path: "sales",
+        component: ArtistSalesComponent,
+      },{
+        path: "basic",
+        component: ArtistBasicComponent,
+      },{
+        path: "detail",
+        component: ArtistEditionDetailComponent,
+      },{
+        path: "upload",
+        component: ArtistUploadComponent,
+      }]
+  },
+  { path: "collector",
+    component:CollectorLayoutComponent,
+    children:[{
+        path: "account",
+        component: CollectorAccountComponent,
+      },{
+        path: "collection",
+        component: CollectorCollectionComponent,
+      },{
+        path: "favorite",
+        component: CollectorFavoriteComponent,
+      },{
+        path: "offer",
+        component: CollectorOfferComponent,
+      },{
+        path: "sales",
+        component: CollectorSalesComponent,
+      }]
+  },
   {
     path: "index",
     component: HomeComponent,

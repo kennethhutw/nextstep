@@ -39,6 +39,6 @@ export class Edition2Component implements OnInit {
   }
 
   ViewDetails() {
-    this.router.navigate(["/edition/" + this.editionId]);
+    this.router.navigate(["/gallery/" + this.editionId]);
   }
 }

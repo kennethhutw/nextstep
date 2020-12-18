@@ -15,13 +15,15 @@ export class FooterComponent implements OnInit {
     private utility: Utility
   ) {
     let _lang = localStorage.getItem("lang");
+
     if (!this.utility.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
       this.SelectedLang = _lang;
+    } else {
+      let browserLang = translateSrv.getBrowserLang();
+      this.translateSrv.use(browserLang);
+      this.SelectedLang = browserLang;
     }
-
-    let browserLang = translateSrv.getBrowserLang();
-    console.log("browserLang ==========================", browserLang);
   }
 
   ngOnInit() {}

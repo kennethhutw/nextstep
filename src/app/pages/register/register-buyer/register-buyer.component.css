@@ -7,3 +7,15 @@
 input[type="checkbox"] {
   transform: scale(1.5);
 }
+
+.mr-5 {
+  margin-right: 5px;
+}
+
+.error-msg {
+  color: #dc3545;
+}
+
+.pl-10 {
+  padding-left: 10px;
+}

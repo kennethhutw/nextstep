@@ -1,9 +1,9 @@
-<div class="hovereffect" (click)="ViewDetails()">
+<div class="hovereffect">
   <img src="{{ editionImg }}" alt="" />
   <div class="overlay">
     <h2>{{ editionTitle }}</h2>
     <p><i class="fas fa-user"></i> {{ editionAuthor }}</p>
-    <button class="info">
+    <button (click)="ViewDetails()" class="info">
       {{ "VIEWDETAILS" | translate }}
     </button>
   </div>
