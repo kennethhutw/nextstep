@@ -162,7 +162,7 @@
         id="emailsignin"
         placeholder="{{ 'EMAILSIGNIN' | translate }}"
         (focus)="this.placeholder = ''"
-        (blur)="setBlur(emailsignin, 'EMAILSIGNIN')"
+        (blur)="setBlur('emailsignin', 'EMAILSIGNIN')"
       />
       <input
         class="modal_input w-100 mb-2"
@@ -170,7 +170,7 @@
         id="emailpassword"
         placeholder="{{ 'PASSWORD' | translate }}"
         (focus)="this.placeholder = ''"
-        (blur)="setBlur(emailpassword, 'PASSWORD')"
+        (blur)="setBlur('emailpassword', 'PASSWORD')"
       />
       <button class="model_btn_normal mb-2 w-100">
         {{ "SIGNIN" | translate }}'

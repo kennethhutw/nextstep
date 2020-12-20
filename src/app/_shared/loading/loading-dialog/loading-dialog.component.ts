@@ -7,5 +7,6 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   styleUrls: ["./loading-dialog.component.css"]
 })
 export class LoadingDialogComponent {
+      closeBtnName: string;
   constructor(public bsModalRef: BsModalRef) {}
 }

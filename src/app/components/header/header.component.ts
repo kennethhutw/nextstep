@@ -21,6 +21,7 @@ import { User } from "./../../_models/user";
 export class HeaderComponent implements OnInit {
   signinEmailForm: FormGroup;
   currentUser: any = null;
+  placeholder='';
 
   constructor(
     private utility: Utility,
@@ -31,7 +32,7 @@ export class HeaderComponent implements OnInit {
     private dataSrv: DataService,
     private router: Router,
     private route: ActivatedRoute,
-    private auth: AuthStore
+    public auth: AuthStore
   ) {
     let _lang = localStorage.getItem("lang");
     if (!this.utility.IsNullOrEmpty(_lang)) {
