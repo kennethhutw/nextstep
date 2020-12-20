@@ -169,7 +169,7 @@ const routes: Routes = [
 //   exports: [RouterModule],
 // })
 //export class AppRoutingModule {}
-export const routing = RouterModule.forRoot(routes, {
+export const AppRoutingModule = RouterModule.forRoot(routes, {
   scrollPositionRestoration: 'top',
     malformedUriErrorHandler :(
          error: URIError,

@@ -29,6 +29,7 @@ export { CollectorFavoriteComponent } from "./collectorProfile/favorite/collecto
 export { CollectorOfferComponent } from "./collectorProfile/offer/collector-offer.component";
 export { CollectorSalesComponent } from "./collectorProfile/sales/collector-sales.component";
 
+
 export { ArtistAccountComponent } from "./artistProfile/account/artist-account.component";
 export { ArtistCollectionComponent } from "./artistProfile/collection/artist-collection.component";
 export { ArtistFavoriteComponent } from "./artistProfile/favorite/artist-favorite.component";
