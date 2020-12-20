@@ -154,18 +154,26 @@ const routes: Routes = [
   { path: ":name", component: ArtistPageComponent},
 ];
 
-@NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forRoot(routes,{
-      malformedUriErrorHandler :(
-        error: URIError,
-        urlSerializer: UrlSerializer,
-        url: string
-       ) => urlSerializer.parse("/page-not-found"),
-    }),
-  ],
-  declarations: [],
-  exports: [RouterModule],
-})
-export class AppRoutingModule {}
+// @NgModule({
+//   imports: [
+//     CommonModule,
+//     RouterModule.forRoot(routes,{
+//       malformedUriErrorHandler :(
+//         error: URIError,
+//         urlSerializer: UrlSerializer,
+//         url: string
+//        ) => urlSerializer.parse("/page-not-found"),
+//     }),
+//   ],
+//   declarations: [],
+//   exports: [RouterModule],
+// })
+//export class AppRoutingModule {}
+export const routing = RouterModule.forRoot(routes, {
+  scrollPositionRestoration: 'top',
+    malformedUriErrorHandler :(
+         error: URIError,
+         urlSerializer: UrlSerializer,
+         url: string
+        ) => urlSerializer.parse("/page-not-found"),
+});
