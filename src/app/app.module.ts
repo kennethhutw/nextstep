@@ -30,7 +30,6 @@ import {
   SubTableComponent,
   ProfileEditorComponent,
   ArtistComponent,
-  InsertEditionComponent,
   Edition1Component,
   Edition2Component,
   Edition3Component,
@@ -81,7 +80,8 @@ ArtistOfferComponent,
 ArtistSalesComponent,
 ArtistBasicComponent,
 ArtistEditionDetailComponent,
-ArtistUploadComponent
+ArtistUploadComponent,
+
 } from "./pages";
 
 import { AnQrcodeModule } from "an-qrcode";
@@ -164,7 +164,8 @@ export function createLoader(http: HttpClient) {
     ArtistSalesComponent,
     ArtistBasicComponent,
     ArtistEditionDetailComponent,
-    ArtistUploadComponent
+    ArtistUploadComponent,
+
   ],
   imports: [
     BrowserModule,
