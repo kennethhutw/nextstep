@@ -41,7 +41,7 @@ export class ArtistComponent {
   }
 
   routeToArtistProfile() {
-    this.router.navigate(["./artist/" + this.artistId], {});
+    this.router.navigate(["./" + this.artistId], {});
   }
 
   ngOnInit() {

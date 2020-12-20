@@ -59,24 +59,23 @@ import {
 } from "./layout";
 const routes: Routes = [
   { path: "", redirectTo: "index", pathMatch: "full" },
-  { path: "login", component: LogInComponent },
-  { path: "example", component: ExampleComponent },
-  { path: "artists", component: ArtistsComponent },
-  { path: "newArtist", component: NewArtistComponent },
-  // { path: "artist/:name", component: ArtistPageComponent },
-  { path: "activity", component: ActivityComponent },
+  { path: "login", component: LogInComponent , pathMatch: "full"},
+  { path: "example", component: ExampleComponent , pathMatch: "full"},
+  { path: "artists", component: ArtistsComponent , pathMatch: "full"},
+  { path: "newArtist", component: NewArtistComponent , pathMatch: "full"},
+  { path: "gallery", component: GalleryComponent , pathMatch: "full"},
+  { path: "activity", component: ActivityComponent , pathMatch: "full"},
   { path: "gallery/:editionId", component: EditionComponent },
-  { path: "gallery", component: GalleryComponent },
-  { path: "error", component: ErrorComponent },
+  { path: "error", component: ErrorComponent, pathMatch: "full" },
   { path: "profile/artist/:id", component: ArtistProfileComponent },
   { path: "profile/collector/:id", component: CollectorProfilePageComponent },
-  { path: "donation", component: DonationComponent },
-  { path: "edition", component: EditionComponent },
-  { path: "qa",component:QAComponent},
-  { path: "policy",component:PolicyComponent},
-  { path: "about",component:AboutComponent},
-  { path: "for-artist",component:ForArtistComponent},
-  { path: "for-buyer",component:ForBuyerComponent},
+  { path: "donation", component: DonationComponent , pathMatch: "full"},
+  { path: "edition", component: EditionComponent , pathMatch: "full"},
+  { path: "qa",component:QAComponent , pathMatch: "full"},
+  { path: "policy",component:PolicyComponent, pathMatch: "full"},
+  { path: "about",component:AboutComponent, pathMatch: "full"},
+  { path: "for-artist",component:ForArtistComponent, pathMatch: "full"},
+  { path: "for-buyer",component:ForBuyerComponent, pathMatch: "full"},
   { path: "token/:id", component: TokenComponent },
   { path: "artist",
     component: ArtistLayoutComponent,
@@ -125,6 +124,10 @@ const routes: Routes = [
         component: CollectorSalesComponent,
       }]
   },
+  // {
+  //   path: "**",
+  //   component: HomeComponent
+  // },
   {
     path: "index",
     component: HomeComponent,
@@ -148,6 +151,7 @@ const routes: Routes = [
   { path: "wallet/importAddress", component: ImportAddressComponent },
   { path: "wallet/importMnemonic", component: ImportMnemonicComponent },
   { path: "page-not-found", component: ImportMnemonicComponent },
+  { path: ":name", component: ArtistPageComponent},
 ];
 
 @NgModule({

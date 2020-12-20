@@ -1,6 +1,6 @@
 .active{
     display:block;
-    border:1px solid #4A4A4A;
+    /* border:1px solid #4A4A4A; */
     background-color: #4A4A4A;
     text-align:center;
     border-radius:25px;

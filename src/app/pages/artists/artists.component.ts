@@ -57,7 +57,6 @@ export class ArtistsComponent implements OnInit {
 
   initTags(lang) {
     this.appSettingsSrv.getTagOptions(lang).subscribe((data) => {
-      console.log("tags ==================== ", data);
       this.tags = data;
     });
   }
@@ -72,7 +71,6 @@ export class ArtistsComponent implements OnInit {
     console.log("key event", key);
   }
   IsShowAllTags() {
-    console.log(" ============================ ");
     this.IsShowTags = !this.IsShowTags;
   }
 }

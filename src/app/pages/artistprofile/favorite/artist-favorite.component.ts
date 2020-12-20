@@ -7,7 +7,7 @@ import { TranslateService } from "@ngx-translate/core";
   styleUrls: ["./artist-favorite.component.css"],
 })
 export class ArtistFavoriteComponent implements OnInit {
-  currentTab = "artworks";
+  currentTab = "editions";
   popularEditions = [];
   constructor(private translateSrv: TranslateService) {}
 

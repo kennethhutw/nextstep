@@ -17,33 +17,35 @@
                     <div class="col-md-2">
 
                         <ul class="member_ul">
-                            <li class="member_side_navi_focus">
-                                管理作品
-                            </li>
+                           <a [routerLinkActive]="['active']"
+                               [routerLinkActiveOptions]="{ exact: true }"
+                               routerLink="/artist/collection"> <li class="member_side_navi">
+                                {{ "MANAGEMENTEDITION" | translate }}
+                            </li></a>
                             <a [routerLinkActive]="['active']"
                                [routerLinkActiveOptions]="{ exact: true }"
                                routerLink="/artist/upload"><li class="member_side_navi w-100">
-                                上傳作品
+                                {{ "UPLOADEDITION" | translate }}
                             </li></a>
                             <a [routerLinkActive]="['active']"
                                [routerLinkActiveOptions]="{ exact: true }"
                                routerLink="/artist/sales"><li class="member_side_navi w-100">
-                                已賣出作品
+                               {{ "SOLDEDITION" | translate }}
                             </li></a>
                             <a [routerLinkActive]="['active']"
                                [routerLinkActiveOptions]="{ exact: true }"
                                routerLink="/artist/basic"><li class="member_side_navi w-100">
-                                基本資料
+                                {{ "BASICINFO" | translate }}
                             </li></a>
                              <a [routerLinkActive]="['active']"
                                [routerLinkActiveOptions]="{ exact: true }"
                                routerLink="/artist/account"><li class="member_side_navi w-100">
-                                帳戶及帳密
+                               {{ "ACCOUNTPASSWORD" | translate }}
                             </li></a>
                             <a [routerLinkActive]="['active']"
                                [routerLinkActiveOptions]="{ exact: true }"
                                routerLink="/artist/favorite"><li class="member_side_navi w-100">
-                                我的最愛
+                                {{ "MYFAVOURITES" | translate }}
                             </li></a>
                         </ul>
                     </div>
