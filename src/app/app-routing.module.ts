@@ -157,12 +157,12 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes, {
-      malformedUriErrorHandler: (
+    RouterModule.forRoot(routes,{
+      malformedUriErrorHandler :(
         error: URIError,
         urlSerializer: UrlSerializer,
         url: string
-      ) => urlSerializer.parse("/page-not-found"),
+       ) => urlSerializer.parse("/page-not-found"),
     }),
   ],
   declarations: [],
