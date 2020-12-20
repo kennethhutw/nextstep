@@ -169,11 +169,14 @@ const routes: Routes = [
 //   exports: [RouterModule],
 // })
 //export class AppRoutingModule {}
-export const AppRoutingModule = RouterModule.forRoot(routes, {
-  scrollPositionRestoration: 'top',
-    malformedUriErrorHandler :(
-         error: URIError,
-         urlSerializer: UrlSerializer,
-         url: string
-        ) => urlSerializer.parse("/page-not-found"),
+// export const AppRoutingModule = RouterModule.forRoot(routes, {
+//   scrollPositionRestoration: 'top',
+//     malformedUriErrorHandler :(
+//          error: URIError,
+//          urlSerializer: UrlSerializer,
+//          url: string
+//         ) => urlSerializer.parse("/page-not-found"),
+// });
+export const routing = RouterModule.forRoot(routes, {
+  scrollPositionRestoration: 'top'
 });

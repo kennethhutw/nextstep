@@ -3,7 +3,7 @@ export { HomeComponent } from "./home/home.component";
 export { ExampleComponent } from "./example/example.component";
 export { EditionComponent } from "./edition/edition.component";
 export { ArtistsComponent } from "./artists/artists.component";
-export { ArtistProfileComponent } from "./artistprofile/artistprofile.component";
+export { ArtistProfileComponent } from "./artistProfile/artistprofile.component";
 export { ProfileComponent } from "./profile/profile.component";
 export { GalleryComponent } from "./gallery/gallery.component";
 export { TokenComponent } from "./token/token.component";
@@ -36,5 +36,5 @@ export { ArtistFavoriteComponent } from "./artistProfile/favorite/artist-favorit
 export { ArtistOfferComponent } from "./artistProfile/offer/artist-offer.component";
 export { ArtistSalesComponent } from "./artistProfile/sales/artist-sales.component";
 export { ArtistBasicComponent } from "./artistProfile/basic/artist-basic.component";
-export { ArtistEditionDetailComponent } from "./artistprofile/detail/artist-edition-detail.component";
+export { ArtistEditionDetailComponent } from "./artistProfile/detail/artist-edition-detail.component";
 export { ArtistUploadComponent } from "./artistProfile/upload/artist-upload.component";

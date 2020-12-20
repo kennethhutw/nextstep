@@ -6,7 +6,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 
 import { AppComponent } from "./app.component";
 import { LogInComponent } from "./login/log-in/log-in.component";
-import { AppRoutingModule } from "./app-routing.module";
+import { routing } from "./app-routing.module";
 
 import {
   NewWalletComponent,
@@ -168,7 +168,8 @@ export function createLoader(http: HttpClient) {
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    // AppRoutingModule,
+    routing,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
