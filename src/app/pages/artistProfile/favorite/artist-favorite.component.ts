@@ -9,7 +9,7 @@ import { Utility } from "./../../../_helpers";
   styleUrls: ["./artist-favorite.component.css"],
 })
 export class ArtistFavoriteComponent implements OnInit {
-
+  currentTab="editions";
   constructor(private translateSrv: TranslateService,
     private utility: Utility,
     private dataSrv: DataService) {}
@@ -26,4 +26,7 @@ export class ArtistFavoriteComponent implements OnInit {
     });
   }
 
+   changeTab(tab) {
+    this.currentTab = tab;
+  }
 }

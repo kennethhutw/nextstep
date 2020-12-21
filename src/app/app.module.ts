@@ -54,7 +54,7 @@ import {
   ArtistProfileComponent,
   ActivityComponent,
   GalleryComponent,
-  ProfileComponent,
+
   TokenComponent,
   NewArtistComponent,
   RegisterArtistComponent,
@@ -129,7 +129,7 @@ export function createLoader(http: HttpClient) {
     ProfileEditorComponent,
     ActivityComponent,
     GalleryComponent,
-    ProfileComponent,
+
     TokenComponent,
     ArtistComponent,
     NewArtistComponent,

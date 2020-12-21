@@ -8,7 +8,7 @@ import { Utility } from "./../../../_helpers";
   styleUrls: ["./collector-favorite.component.css"],
 })
 export class CollectorFavoriteComponent implements OnInit {
-
+ currentTab="editions";
   constructor(private translateSrv: TranslateService,
     private utility: Utility,
     private dataSrv: DataService) {}
@@ -25,5 +25,7 @@ export class CollectorFavoriteComponent implements OnInit {
     });
   }
 
-
+   changeTab(tab) {
+    this.currentTab = tab;
+  }
 }
