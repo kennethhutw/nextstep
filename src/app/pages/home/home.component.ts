@@ -30,12 +30,6 @@ export class HomeComponent implements OnInit {
         this.translateSrv.use(lang);
       }
     });
-    /*  this.translateSrv.setTranslation("zh-tw", {
-      HELLO: "你好",
-    });
-    this.translateSrv.setTranslation("en", {
-      HELLO: "Hello",
-    }); */
   }
 
   ngOnInit() {

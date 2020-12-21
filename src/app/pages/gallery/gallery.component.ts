@@ -18,7 +18,7 @@ export class GalleryComponent implements OnInit {
     private dataSrv: DataService,
     private appSettingsSrv: AppSettingsService
   ) {
-    console.log(" =========================== ");
+
     let _lang = localStorage.getItem("lang");
     if (!this.utility.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
@@ -134,6 +134,6 @@ export class GalleryComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.translateSrv.use("zh-tw");
+
   }
 }

@@ -55,7 +55,7 @@
       </div>
     </ng-container>
     <div class="text-center mx-auto">
-      <button class="index_btn_explore1">{{ "VIEWMORE" | translate }}</button>
+      <button class="index_btn_explore1" routerLink="/gallery">{{ "VIEWMORE" | translate }}</button>
     </div>
   </div>
   <!--row end-->
@@ -109,9 +109,9 @@
       </div>
       <div class="text-center mx-auto mt-3 mb-5">
         <button class="index_btn_explore2">{{ "KNOWMORE" | translate }}</button>
-        <button class="index_btn_explore3">
+        <a class="index_btn_explore3" routerLink="/gallery">
           {{ "STARTCOLLECTING" | translate }}
-        </button>
+        </a>
       </div>
     </div>
   </div>

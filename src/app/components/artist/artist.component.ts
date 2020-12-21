@@ -32,9 +32,12 @@ export class ArtistComponent {
     let _lang = localStorage.getItem("lang");
     if (!this.utility.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
-    } else {
-      this.translateSrv.use("zh-tw");
     }
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utility.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+      }
+    });
   }
   GetArtistURL() {
     return "/token" + this.artistId;

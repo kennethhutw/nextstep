@@ -18,7 +18,7 @@ export class TokenComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.translateSrv.use("zh-tw");
+   // this.translateSrv.use("zh-tw");
   }
 
   changeLanguage(lang: string) {

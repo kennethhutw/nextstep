@@ -61,6 +61,6 @@ export class EditionComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.translateSrv.use("zh-tw");
+
   }
 }

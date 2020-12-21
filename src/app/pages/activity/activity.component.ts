@@ -5,8 +5,7 @@ import { Utility } from "./../../_helpers";
 @Component({
   selector: "app-activity",
   templateUrl: "./activity.component.html",
-  styleUrls: ["./activity.component.css"],
-  encapsulation: ViewEncapsulation.None,
+  styleUrls: ["./activity.component.css"]
 })
 export class ActivityComponent implements OnInit {
   constructor(
@@ -26,6 +25,6 @@ export class ActivityComponent implements OnInit {
   }
 
   ngOnInit() {
-    //  this.translateSrv.use("zh-tw");
+
   }
 }

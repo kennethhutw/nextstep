@@ -15,14 +15,17 @@ export class FooterComponent implements OnInit {
     private utility: Utility
   ) {
     let _lang = localStorage.getItem("lang");
-
+    console.log("_lang =======", _lang);
     if (!this.utility.IsNullOrEmpty(_lang)) {
+       console.log("_lang 2 =======", _lang);
       this.translateSrv.use(_lang);
       this.SelectedLang = _lang;
     } else {
-      let browserLang = translateSrv.getBrowserLang();
-      this.translateSrv.use(browserLang);
-      this.SelectedLang = browserLang;
+      let _browserLang = translateSrv.getBrowserLang();
+        console.log("browserLang 2 =======", _lang);
+        console.log("browserLang 2 =======", _browserLang);
+      this.translateSrv.use(_browserLang);
+      this.SelectedLang = _browserLang;
     }
   }
 

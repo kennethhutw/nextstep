@@ -13,7 +13,7 @@ export class ArtistProfileComponent implements OnInit {
   constructor(private translateSrv: TranslateService) {}
 
   ngOnInit() {
-    this.translateSrv.use("zh-tw");
+
     this.popularEditions = [
       {
         editionTitle: "The Calm And The Storm too more words",
@@ -36,9 +36,7 @@ export class ArtistProfileComponent implements OnInit {
     ];
   }
 
-  changeLanguage(lang: string) {
-    this.translateSrv.use(lang);
-  }
+
   changeTab(tab) {
     this.currentTab = tab;
   }

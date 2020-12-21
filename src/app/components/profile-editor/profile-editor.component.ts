@@ -33,10 +33,7 @@ export class ProfileEditorComponent {
   constructor(private translateSrv: TranslateService) { }
 
   ngOnInit() {
-    this.translateSrv.use("zh-tw");
+
   }
 
-  changeLanguage(lang: string) {
-    this.translateSrv.use(lang);
-  }
 }

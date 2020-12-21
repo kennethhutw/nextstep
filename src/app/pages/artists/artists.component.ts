@@ -9,8 +9,7 @@ import { Utility } from "./../../_helpers";
 @Component({
   selector: "app-artists",
   templateUrl: "./artists.component.html",
-  styleUrls: ["./artists.component.css"],
-  encapsulation: ViewEncapsulation.None,
+  styleUrls: ["./artists.component.css"]
 })
 export class ArtistsComponent implements OnInit {
   artists = [];
@@ -28,7 +27,6 @@ export class ArtistsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.translateSrv.use("zh-tw");
     let _lang = localStorage.getItem("lang");
     if (!this.utility.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
