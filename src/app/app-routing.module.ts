@@ -98,7 +98,7 @@ const routes: Routes = [
         path: "basic",
         component: ArtistBasicComponent,
       },{
-        path: "detail",
+        path: "collection/detail",
         component: ArtistEditionDetailComponent,
       },{
         path: "upload",

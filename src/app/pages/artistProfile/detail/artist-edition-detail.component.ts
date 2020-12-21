@@ -8,8 +8,7 @@ import { Utility } from "./../../../_helpers";
   styleUrls: ["./artist-edition-detail.component.css"],
 })
 export class ArtistEditionDetailComponent implements OnInit {
-  currentTab = "artworks";
-  popularEditions = [];
+
   constructor(private translateSrv: TranslateService,
     private utility: Utility,
     private dataSrv: DataService) {
@@ -29,10 +28,5 @@ export class ArtistEditionDetailComponent implements OnInit {
 
   }
 
-  changeLanguage(lang: string) {
-    this.translateSrv.use(lang);
-  }
-  changeTab(tab) {
-    this.currentTab = tab;
-  }
+
 }
