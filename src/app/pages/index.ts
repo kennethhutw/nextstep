@@ -4,7 +4,6 @@ export { ExampleComponent } from "./example/example.component";
 export { EditionComponent } from "./edition/edition.component";
 export { ArtistsComponent } from "./artists/artists.component";
 export { ArtistProfileComponent } from "./artistProfile/artistprofile.component";
-export { ProfileComponent } from "./profile/profile.component";
 export { GalleryComponent } from "./gallery/gallery.component";
 export { TokenComponent } from "./token/token.component";
 export { ActivityComponent } from "./activity/activity.component";

@@ -24,7 +24,7 @@ import {
   ArtistProfileComponent,
   ActivityComponent,
   GalleryComponent,
-  ProfileComponent,
+
   TokenComponent,
   NewArtistComponent,
   RegisterArtistComponent,

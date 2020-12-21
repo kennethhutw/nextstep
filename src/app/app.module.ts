@@ -129,7 +129,6 @@ export function createLoader(http: HttpClient) {
     ProfileEditorComponent,
     ActivityComponent,
     GalleryComponent,
-
     TokenComponent,
     ArtistComponent,
     NewArtistComponent,
