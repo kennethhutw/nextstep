@@ -1164,7 +1164,7 @@ padding:7px 14px; */
 #member_favorite_tab .active{
     border-color:#4A4A4A;
     background-color: #4A4A4A;
-    color:#FFF;
+    color:#FFF !important;
 }
 
 
