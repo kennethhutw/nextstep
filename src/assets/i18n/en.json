@@ -31,8 +31,8 @@
   "ABOUTUS": "About us",
   "PRIVACY": "Privacy",
   "Q&A": "Q&A",
-  "FORARTIST": "For artists",
-  "FORCOLLECTOR": "For collector",
+  "FORARTIST": "Artists",
+  "FORCOLLECTOR": "Collector",
   "POPULARCREATIONS": "Popular Creations",
   "RECENT": "Recent",
   "VIEWMORE": "View more",
@@ -97,5 +97,7 @@
   "MYFAVOURITES": "Favourites",
   "EDITION": "Edition",
   "BIDEDITION": "Offer",
-  "SALESEDITION": "Sale"
+  "SALESEDITION": "Sale",
+  "CONNECTWALLET": "Connect Wallet",
+  "WALLET": "Wallet"
 }

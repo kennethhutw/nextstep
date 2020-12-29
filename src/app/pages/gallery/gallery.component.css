@@ -1,3 +1,10 @@
 .show_tags {
   height: auto !important;
 }
+a {
+  color:#08AB65;
+}
+a:hover{
+  columns: #17f596;
+  text-decoration: none;
+}

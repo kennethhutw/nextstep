@@ -9,3 +9,4 @@ export { AppSettingsService } from "./appSettings.service";
 export { EatToasterService } from "./eattoaster.service";
 export { EmailService } from "./email.service";
 export { AuthStore } from "./auth.store";
+export { DialogService} from "./dialog.service";

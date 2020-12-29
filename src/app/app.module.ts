@@ -5,7 +5,6 @@ import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 
 import { AppComponent } from "./app.component";
-import { LogInComponent } from "./login/log-in/log-in.component";
 import { routing } from "./app-routing.module";
 
 import {
@@ -36,11 +35,16 @@ import {
   ArtistDetailComponent,
   ArtistHeaderComponent,
   CollectorHeaderComponent,
+  NavbarComponent,
+   SidebarComponent,
+    AdminFooterComponent
 } from "./components";
 
 import {
+  AdminLayoutComponent,
   ArtistLayoutComponent,
-  CollectorLayoutComponent
+  CollectorLayoutComponent,
+  MainLayoutComponent
 } from "./layout";
 
 import { DisqusModule } from "ngx-disqus";
@@ -70,20 +74,22 @@ import {
   ErrorComponent,
   CollectorAccountComponent,
   CollectorCollectionComponent,
-CollectorFavoriteComponent,
-CollectorOfferComponent,
-CollectorSalesComponent,
-ArtistAccountComponent,
-ArtistCollectionComponent,
-ArtistFavoriteComponent,
-ArtistOfferComponent,
-ArtistSalesComponent,
-ArtistBasicComponent,
-ArtistEditionDetailComponent,
-ArtistUploadComponent,
+  CollectorFavoriteComponent,
+  CollectorOfferComponent,
+  CollectorSalesComponent,
+  ArtistAccountComponent,
+  ArtistCollectionComponent,
+  ArtistFavoriteComponent,
+  ArtistOfferComponent,
+  ArtistSalesComponent,
+  ArtistBasicComponent,
+  ArtistEditionDetailComponent,
+  ArtistUploadComponent,
 
 } from "./pages";
 
+
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { AnQrcodeModule } from "an-qrcode";
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
@@ -101,8 +107,8 @@ export function createLoader(http: HttpClient) {
 
 @NgModule({
   declarations: [
+    MainLayoutComponent,
     AppComponent,
-    LogInComponent,
     NewWalletComponent,
     WalletListComponent,
     ImportWalletComponent,
@@ -149,6 +155,7 @@ export function createLoader(http: HttpClient) {
     ErrorComponent,
     ArtistHeaderComponent,
     CollectorHeaderComponent,
+    AdminLayoutComponent,
     ArtistLayoutComponent,
     CollectorLayoutComponent,
     CollectorAccountComponent,
@@ -164,7 +171,9 @@ export function createLoader(http: HttpClient) {
     ArtistBasicComponent,
     ArtistEditionDetailComponent,
     ArtistUploadComponent,
-
+NavbarComponent,
+   SidebarComponent,
+    AdminFooterComponent
   ],
   imports: [
     BrowserModule,
@@ -174,6 +183,7 @@ export function createLoader(http: HttpClient) {
     ReactiveFormsModule,
     HttpClientModule,
     AnQrcodeModule,
+    CollapseModule,
     OwlModule,
     IsotopeModule,
     NgMasonryGridModule,

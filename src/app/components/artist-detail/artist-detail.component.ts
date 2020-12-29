@@ -21,7 +21,8 @@ export class ArtistDetailComponent {
     console.log(" ================", values);
     this._tags = [];
     if (values.length > -1) {
-      for (let tag of values)
+      let _values  = values.split(",");
+      for (let tag of _values)
         this.translateSrv.get(tag).subscribe((text: string) => {
           if (!this.utility.IsNullOrEmpty(text)) {
             this._tags.push(text);

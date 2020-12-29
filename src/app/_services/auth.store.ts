@@ -139,4 +139,18 @@ export class AuthStore {
     this.subject.next(null);
     localStorage.removeItem(AUTH_DATA);
   }
+
+  getUserData(){
+     // localStorage.getItem(AUTH_DATA);
+     try {
+      if (this.utility.isJSONString(localStorage.getItem(AUTH_DATA))) {
+        return JSON.parse(localStorage.getItem(AUTH_DATA));
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
 }

@@ -1,0 +1,52 @@
+<div *ngIf="message" class="modal" tabindex="-1" role="dialog" style="display:block!important">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+     <div class="modal_header">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">╳</span>
+        </button>
+      </div>
+    <div class="modal-body">
+
+      <div *ngIf="message?.type == 'confirm'" class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <p class="text-center confirm-message" style="font-family: 'Open Sans';" [innerHTML]="msg"></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <p class="confirm-button">
+              <a class="mr-2" (click)="message.yesFn()">
+                <button class="btn btn-yes model_btn_normal">Yes</button>
+              </a>
+              <a (click)="message.noFn()">
+                <button class="btn btn-no model_btn_normal">No</button>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="message?.type == 'info'" class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <p class="text-center confirm-message" [innerHTML]="msg"></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <p class="confirm-button">
+              <a class="mr-2" (click)="message.yesFn()">
+                <button class="btn btn-yes model_btn_normal">OK</button>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

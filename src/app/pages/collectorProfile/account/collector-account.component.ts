@@ -24,6 +24,7 @@ export class CollectorAccountComponent implements OnInit {
         this.translateSrv.use(lang);
       }
     });
+
   }
 
 }

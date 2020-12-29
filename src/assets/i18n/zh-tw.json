@@ -1,6 +1,6 @@
 {
   "HOMETITLE": "發掘並收藏",
-  "DIGITALARTWORKS": "數位藝術作品",
+  "DIGITALARTWORKS": "數位藝術+             ",
   "DISCOVER": "探索作品",
   "AREYOUA": "你是",
   "DIGITALCREATOR?": "數位藝術創作者?",
@@ -97,5 +97,7 @@
   "MYFAVOURITES": "我的最愛",
   "EDITION": "作品",
   "BIDEDITION": "競標作品",
-  "SALESEDITION": "銷售作品"
+  "SALESEDITION": "銷售作品",
+  "CONNECTWALLET": "連接錢包",
+  "WALLET": "虛擬錢包"
 }

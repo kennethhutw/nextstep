@@ -362,12 +362,12 @@ nav {
 }
 
 a {
-  color: #08ab65;
+  color: #08ab65 !important;
 }
 
 a:hover {
-  color: #17f596;
-  text-decoration: none;
+  color: #17f596 !important;
+  text-decoration: none !important;
 }
 
 /** input placeholder消失 **/
@@ -1090,7 +1090,7 @@ padding:7px 14px; */
 .member_side_navi:hover{
     border:1px solid #11e78b;
     background-color: #11e78b;
-    color:#000;
+    color:white;
 }
 
 .member_side_navi_focus{
@@ -1310,4 +1310,14 @@ padding:7px 14px; */
 .page_404_bg{
     background-image:url("./assets/images/bgc_member.jpg");
     min-height:600px;
+}
+
+
+.btn_normal-disable {
+  font-size: 20px;
+  padding:15px 30px;
+  background-color: #eeeeee;
+  border:2px solid #eeeeee;
+  border-radius: 3px;
+  color:#b2b2b2;
 }

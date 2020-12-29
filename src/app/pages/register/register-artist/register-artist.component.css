@@ -4,3 +4,16 @@
     font-size: 80%;
     color: #dc3545;
 }
+
+#select_img{
+       position: relative;
+}
+
+  #select_img .close {
+    position: absolute;
+    right: 16px;
+    top: -10px;
+    z-index: 100;
+ color: red;
+    font-size: 40px;
+}

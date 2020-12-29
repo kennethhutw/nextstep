@@ -1,9 +1,12 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
-import { DataService,AuthStore } from "./../../../_services";
+import {
+  DataService,
+  AuthStore,
+DialogService } from "./../../../_services";
 import { Utility } from "./../../../_helpers";
 import { NewArtist, ApplyEdition } from "./../../../_models";
-
+import { Router } from '@angular/router';
 import {
   FormBuilder,
   FormGroup,
@@ -35,6 +38,8 @@ export class RegisterArtistComponent implements OnInit {
   theThirdImage :any;
 theThirdImageNameRequire = false;
   constructor(
+      private router: Router,
+    private dialogSrv: DialogService,
     private authStore:AuthStore,
     private formBuilder: FormBuilder,
     private translateSrv: TranslateService,
@@ -61,7 +66,8 @@ theThirdImageNameRequire = false;
         description:[""],
         imageName:[""],
         imageUrl:[""],
-        imageSize:[""]
+        imageSize:[""],
+        image: [null],
       });
       this.newEditions.push(_newEdition);
     }
@@ -105,17 +111,28 @@ theThirdImageNameRequire = false;
     }
 
     var reader = new FileReader();
-
+    let controls =  this.registerForm.controls["editions"];
+    controls["controls"][index].patchValue( {image:event.target.files[0]});
     reader.readAsDataURL(event.target.files[0]);
     reader.onload = (_event) => {
-      let controls =  this.registerForm.controls["editions"];
-      this.theFirstImage = reader.result;
+
+
+       switch(index){
+           case 0:
+             this.theFirstImage = reader.result;
+             break;
+              case 1:
+             this.theSecondImage = reader.result;
+              break;
+              case 2:
+             this.theThirdImage = reader.result;
+             break;
+         }
       controls["controls"][index].patchValue( {imageUrl:reader.result});
     //  controls["controls"][index].patchValue( {name:reader.result});
      // this.imgURL = reader.result;
     }
   }
-
 
   get f() {
     return this.registerForm.controls;
@@ -124,7 +141,75 @@ theThirdImageNameRequire = false;
   inValid() {
     return this.registerForm.invalid;
   }
+
+   onRemoveImg(event, imagePosition) {
+  let controls =  this.registerForm.controls["editions"];
+      controls["controls"][imagePosition].patchValue( {image:null});
+        controls["controls"][imagePosition].updateValueAndValidity();
+    if (imagePosition === "1") {
+      this.theFirstImage = null;
+      const element = document.querySelector('#theFirstImageInput');
+      if (!!element) {
+        element['value'] = null;
+      }
+
+    } else if (imagePosition === "2") {
+      this.theSecondImage = null;
+      const element = document.querySelector('#theSecondImageInput');
+      if (!!element) {
+        element['value'] = null;
+      }
+
+    } else if (imagePosition === "3") {
+       this.theThirdImage = null;
+      const element = document.querySelector('#theThirdImageInput');
+      if (!!element) {
+        element['value'] = null;
+      }
+
+    }
+  }
+
   onSubmit(){
+
+     const _editions = this.registerForm.get('editions') as FormArray;
+
+
+    for(let i =0; i < _editions.controls.length ; i++){
+      let _edition = _editions.controls[i];
+       // _edition.setErrors({'required': false});
+      if(!this.utility.IsNullOrEmpty(_edition.value.imageUrl)){
+         if(this.utility.IsNullOrEmpty(_edition.value.name)){
+         //_edition.setErrors({'required': true});
+         switch(i){
+           case 0:
+             this.theFirstImageNameRequire = true;
+             return;
+             //break;
+              case 1:
+             this.theSecodnImageNameRequire = true;
+              return;
+             //break;
+              case 2:
+             this.theThirdImageNameRequire = true;
+              return;
+             //break;
+         }
+       } else {
+          switch(i){
+           case 0:
+             this.theFirstImageNameRequire = false;
+             break;
+              case 1:
+             this.theSecodnImageNameRequire = false;
+             break;
+              case 2:
+             this.theThirdImageNameRequire = false;
+             break;
+         }
+       }
+      }
+    }
 
      if (this.registerForm.invalid) {
       return;
@@ -139,17 +224,7 @@ theThirdImageNameRequire = false;
     newArtist.instagram = this.registerForm.value.instagram;
     newArtist.blog = this.registerForm.value.blog;
 
-    const _editions = this.registerForm.get('editions') as FormArray;
 
- console.log("_editions ================= "+_editions);
-    for(let i =0; i < _editions.controls.length ; i++){
-      let _edition = _editions.controls[i];
-       console.log("_edition ================= "+_edition);
-      if(!this.utility.IsNullOrEmpty(_edition.value.imageUrl)){
-         console.log("_edition imageUrl ================= "+_edition.value.imageUrl);
-         _edition.setErrors({'required': true});
-      }
-    }
     let formData = new FormData();
     formData.append("name",  newArtist.name);
     formData.append("email",  newArtist.email);
@@ -159,11 +234,39 @@ theThirdImageNameRequire = false;
     formData.append("instagram",  newArtist.instagram);
     formData.append("blog",  newArtist.blog);
 
-     return;
 
-    //  this.authStore.ArtistSignup(formData).subscribe(res =>{
-    //       console.log(" ================= "+res);
-    //  });
+    if(!this.utility.IsNullOrEmpty(_editions.controls[0].value.image)){
+        console.log("firstImage ================= "+ _editions.controls[0].value.image);
+        formData.append('firstImage', _editions.controls[0].value.image);
+        formData.append('firstImageName', _editions.controls[0].value.name);
+        formData.append('firstImageDescription', _editions.controls[0].value.description);
+    }
+
+    if(!this.utility.IsNullOrEmpty(_editions.controls[1].value.image)){
+        console.log("secondImage ================= "+ _editions.controls[1].value.image);
+        formData.append('secondImage', _editions.controls[1].value.image);
+        formData.append('secondImageName', _editions.controls[1].value.name);
+        formData.append('secondImageDescription', _editions.controls[1].value.description);
+    }
+
+    if(!this.utility.IsNullOrEmpty(_editions.controls[2].value.image)){
+        formData.append('thirdImage', _editions.controls[2].value.image);
+        formData.append('thirdImageName', _editions.controls[2].value.name);
+        formData.append('thirdImageDescription', _editions.controls[2].value.description);
+    }
+
+   //  return;
+
+      this.authStore.ArtistSignup(formData).subscribe(res =>{
+           console.log(" ================= "+res);
+            if (res["result"] === "successful") {
+              this.dialogSrv.infoThis("you have successfully registered ",
+               () => {
+                       this.router.navigate(['./index'], {});
+               });
+            }
+     });
 
   }
+
 }

@@ -12,8 +12,8 @@
     </button>
     <p class="text-black-50 mt-10">
       Follow {{ follow }}｜Follower {{ follower }}｜
-      <span class="row" *ngFor="let tag of tags; let i = index"
-        >#{{ tag }}</span
+      <span  *ngFor="let tag of _tags; let i = index"
+        > #{{ tag }}</span
       >
       <!-- #插畫 #攝影 #人像 -->
     </p>

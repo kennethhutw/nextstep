@@ -25,14 +25,14 @@
                 [(ngModel)]="registerType"
                 class="mr-1"
                 [ngModelOptions]="{ standalone: true }"
-              />我要以<span class="text-green">帳密</span>註冊</span
+              /><span class="text-green">Email</span> {{ 'SIGNUP' | translate }}</span
             >
           </div>
         </div>
         <div class="row col-md-12" [formGroup]="registerForm">
           <div class="col-md-6">
             <div class="form-group">
-              <label for="exampleInputEmail1">E-mail帳號</label>
+              <label for="exampleInputEmail1">E-mail</label>
               <input
                 [readonly]="IsEnableEmailSignup()"
                 type="email"
@@ -58,7 +58,7 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="exampleInputEmail1">密碼</label>
+              <label for="exampleInputEmail1">{{ 'PASSWORD' | translate }}</label>
               <input
                 [readonly]="IsEnableEmailSignup()"
                 type="password"
@@ -88,7 +88,7 @@
                 class="mr-1"
                 [(ngModel)]="registerType"
                 [ngModelOptions]="{ standalone: true }"
-              />我要以<span class="text-green">虛擬錢包</span>註冊</span
+              /><span class="text-green">{{ 'WALLET' | translate }}</span> {{ 'SIGNUP' | translate }}</span
             >
           </div>
           <!-- <p class="register_info text-danger">
@@ -121,7 +121,7 @@
           </div> -->
           <div class="form-group">
             <label for="exampleInputEmail1"
-              ><i class="fas fa-play-circle"></i> 系統搜尋連結</label
+              ><i class="fas fa-play-circle"></i> {{ 'CONNECTWALLET' | translate }}</label
             >
             <div class="input-group mb-3">
               <input

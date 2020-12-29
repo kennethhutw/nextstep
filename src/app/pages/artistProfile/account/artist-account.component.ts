@@ -2,17 +2,20 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { DataService } from "./../../../_services";
 import { Utility } from "./../../../_helpers";
-
+import { AuthStore} from "./../../../_services";
 @Component({
   selector: "app-artist-account",
   templateUrl: "./artist-account.component.html",
   styleUrls: ["./artist-account.component.css"],
 })
 export class ArtistAccountComponent implements OnInit {
-
-  constructor(private translateSrv: TranslateService,
+ email="admin@email.com";
+ currentUser: any = null;
+  constructor(
+    private translateSrv: TranslateService,
     private utility: Utility,
-    private dataSrv: DataService) {
+    private dataSrv: DataService,
+    private authStoreSrv:AuthStore) {
 
   }
 
@@ -26,6 +29,9 @@ export class ArtistAccountComponent implements OnInit {
         this.translateSrv.use(lang);
       }
     });
+
+    this.currentUser = this.authStoreSrv.getUserData();
+
   }
 
 }

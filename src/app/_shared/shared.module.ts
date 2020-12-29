@@ -22,12 +22,14 @@ import {
   DataService,
   AuthStore,
   AppSettingsService,
+  DialogService
 } from "./../_services";
 
 import {
   UploadFileComponent,
   ModalComponent,
   DragDropFileDirective,
+  DialogComponent
 } from "../components";
 const sharedComponents = [LoadingDialogComponent, ErrorDialogComponent];
 
@@ -35,6 +37,7 @@ const sharedComponents = [LoadingDialogComponent, ErrorDialogComponent];
   declarations: [
     UploadFileComponent,
     DragDropFileDirective,
+    DialogComponent,
     ModalComponent,
     ...sharedComponents,
   ],
@@ -42,6 +45,7 @@ const sharedComponents = [LoadingDialogComponent, ErrorDialogComponent];
   exports: [
     UploadFileComponent,
     DragDropFileDirective,
+    DialogComponent,
     ModalComponent,
     ...sharedComponents,
   ],
@@ -61,6 +65,7 @@ const sharedComponents = [LoadingDialogComponent, ErrorDialogComponent];
     DataService,
     AppSettingsService,
     AuthStore,
+    DialogService,
     {
       provide: ErrorHandler,
       useClass: GlobalErrorHandler,

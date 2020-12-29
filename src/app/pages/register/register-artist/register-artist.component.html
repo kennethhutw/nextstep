@@ -139,19 +139,21 @@
 <!--upload image-->
           <div formArrayName="editions" class="row">
             <div id="select_img" class="col-md-3 text-center mt-30">
+                      <span *ngIf="this.theFirstImage != null " (click)="onRemoveImg($event,'1')"
+                    class="close">&times;</span>
                 <img class="w-100" *ngIf="theFirstImage" [src]="theFirstImage"  alt="" />
                 <img class="w-100" *ngIf="!theFirstImage" src="./assets/images/select_img.jpg" alt="" />
             </div>
             <div [formGroupName]=0 class="col-md-9 mt-30">
-              <label class="btn_select_img mb-20" for="Upload"
+              <label class="btn_select_img mb-20" for="theFirstImageInput"
                 >{{ "SELECTEDITION" | translate }}
               </label>
 
               <input
-                id="Upload"
+                id="theFirstImageInput"
                 type="file"
-                name="_photos"
-                accept="image/*"
+
+                 accept="image/gif, image/jpeg, image/png, image/gif"
                  (change)="onDetectImage($event,0)"
                 style="visibility: hidden; padding: 0px"
               />
@@ -185,17 +187,33 @@
             </div>
 
             <div id="select_img" class="col-md-3 text-center mt-30">
+                       <span *ngIf="this.theSecondImage != null " (click)="onRemoveImg($event,'1')"
+                    class="close">&times;</span>
               <img class="w-100" *ngIf="theSecondImage" [src]="theSecondImage"  alt="" />
                 <img class="w-100" *ngIf="!theSecondImage" src="./assets/images/select_img.jpg" alt="" />
             </div>
             <div [formGroupName]=1 class="col-md-9 mt-30">
-              <button
+              <!-- <button
+                 id="theSecondImageInput"
                 accept="image/gif, image/jpeg, image/png, image/gif"
                 type="file"
                 class="btn_select_img mb-20"
               >
                 {{ "SELECTEDITION" | translate }}
-              </button>
+              </button> -->
+              <label class="btn_select_img mb-20" for="theSecondImageInput"
+                >{{ "SELECTEDITION" | translate }}
+              </label>
+
+              <input
+                id="theSecondImageInput"
+                type="file"
+
+                  accept="image/gif, image/jpeg, image/png, image/gif"
+                 (change)="onDetectImage($event,1)"
+                style="visibility: hidden; padding: 0px"
+              />
+
               <div class="form-group">
                 <label for="InputEdition2Name">{{
                   "EDITIONNAME" | translate
@@ -224,17 +242,24 @@
             </div>
 
             <div id="select_img" class="col-md-3 text-center mt-30">
+                <span *ngIf="this.theThirdImage != null " (click)="onRemoveImg($event,'1')"
+                    class="close">&times;</span>
               <img class="w-100" *ngIf="theThirdImage" [src]="theThirdImage"  alt="" />
                 <img class="w-100" *ngIf="!theThirdImage" src="./assets/images/select_img.jpg" alt="" />
             </div>
             <div [formGroupName]=2 class="col-md-9 mt-30 mb-30">
-              <button
-                accept="image/gif, image/jpeg, image/png, image/gif"
+           <label class="btn_select_img mb-20" for="theThirdImageInput"
+                >{{ "SELECTEDITION" | translate }}
+              </label>
+
+              <input
+                id="theThirdImageInput"
                 type="file"
-                class="btn_select_img mb-20"
-              >
-                {{ "SELECTEDITION" | translate }}
-              </button>
+
+                accept="image/*"
+                 (change)="onDetectImage($event,2)"
+                style="visibility: hidden; padding: 0px"
+              />
               <div class="form-group">
                 <label for="InputEdition3Name">{{
                   "EDITIONNAME" | translate
@@ -311,6 +336,8 @@
         >
       </div>
     </div>
-    <button  [attr.disabled]="IsAgree ? null : true" class="btn_normal mb-40" (click)="onSubmit()"  >{{ "SUBMITBYARTIST" | translate }}</button>
+    <button [ngClass]="{ 'btn_normal-disable': IsAgree !== true}"
+     [attr.disabled]="IsAgree ? null : true" class="btn_normal mb-40" (click)="onSubmit()"  >{{ "SUBMITBYARTIST" | translate }}</button>
   </div>
 </div>
+<app-dialog></app-dialog>
