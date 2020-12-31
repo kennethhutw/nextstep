@@ -19,3 +19,7 @@
   .par-5{
     padding-right: 5px;
   }
+
+  a {
+      cursor: pointer;
+  }
