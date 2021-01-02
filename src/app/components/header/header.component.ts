@@ -1,6 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { Component,
+   OnInit,
+    ViewChild,
+  TemplateRef,
+ElementRef } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
-import * as bcrypt from "bcryptjs";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Utility } from "../../_helpers";
 import { Router, ActivatedRoute } from "@angular/router";
@@ -15,13 +18,14 @@ import { User } from "./../../_models/user";
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",
-  styleUrls: ["./header.component.css"],
-  encapsulation: ViewEncapsulation.None,
+  styleUrls: ["./header.component.css"]
 })
 export class HeaderComponent implements OnInit {
+   @ViewChild('closebutton') closebutton;
   signinEmailForm: FormGroup;
   currentUser: any = null;
   placeholder='';
+  IsSignInFailed = false;
 
   constructor(
     private utility: Utility,
@@ -62,15 +66,32 @@ export class HeaderComponent implements OnInit {
     console.log("auth", this.auth.isLoggedOut$);
   }
 
-  login() {
-    const val = this.signinEmailForm.value;
+close(){
 
-    this.auth.login(val.emai, val.password).subscribe(
-      () => {},
-      (err) => {
-        alert("Sign in failed!");
-      }
-    );
+}
+  onSignIn() {
+    console.log(" ================== ");
+    this.closebutton.nativeElement.click();
+    // this.closeModal.nativeElement.click();
+   //  this.closeModal['el'].nativeElement.style.display = 'none';
+    //  this.closeModal['el'].nativeElement.classList.add('sshow');
+    // this.IsSignInFailed = false;
+    // const val = this.signinEmailForm.value;
+    // console.log("signIn ========== ",val)
+    // this.auth.login(val.email, val.password).subscribe(
+    //   (res) => {
+    //     console.log(" ===== ",res);
+    //     if(res["result"]==="successful"){
+    //        console.log(" ===== successful");
+    //     }else{
+    //       this.IsSignInFailed = true;
+    //        console.log(" ===== failed");
+    //     }
+    //   },
+    //   (err) => {
+    //     alert("Sign in failed!");
+    //   }
+    // );
   }
 
   logout() {
@@ -111,6 +132,7 @@ export class HeaderComponent implements OnInit {
           });
         },
         (error) => {
+
           console.log("getAccountDetail error", error);
         }
       );

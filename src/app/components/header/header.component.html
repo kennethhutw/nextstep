@@ -103,7 +103,7 @@
                              <a class="dropdown-item" routerLink="/artist/collection">{{ "MANAGEMENTEDITION" | translate }}</a>
                              <a class="dropdown-item" routerLink="/artist/upload">{{ "UPLOADEDITION" | translate }}</a>
                              <a class="dropdown-item" routerLink="/artist/sales">{{ "SOLDEDITION" | translate }}</a>
-                             <a class="dropdown-item" routerLink="/artist/basic">{{ "BASICINFO" | translate }}</a>
+                             <a class="dropdown-item" routerLink="/artist/basic">{{ "PROFILE" | translate }}</a>
                              <a class="dropdown-item" routerLink="/artist/account">{{ "ACCOUNTPASSWORD" | translate }}</a>
                              <a class="dropdown-item" routerLink="/artist/favorite">{{ "MYFAVOURITES" | translate }}</a>
                              <div class="dropdown-divider"> </div>
@@ -145,36 +145,46 @@
 </nav>
 
 <!--Modal login mail-->
-<app-modal [modalid]="'modal_login_mail'">
+<app-modal   [modalid]="'modal_login_mail'">
+
   <div header>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-      <span aria-hidden="true">╳</span>
-    </button>
+
   </div>
   <div body>
+   <button type="button"
+    class="close"
+ #closebutton
+    data-dismiss="modal"
+    aria-label="Close"
+   >
+      <span></span>
+    </button>
     <div class="text-center mb-4">
       <h3>{{ "EMAILSIGNIN" | translate }}</h3>
     </div>
-    <div class="row text-center">
+    <div [formGroup]="signinEmailForm"  class="row text-center">
       <input
         class="modal_input w-100 mb-2"
         type="text"
         id="emailsignin"
+         formControlName="email"
         placeholder="{{ 'EMAILSIGNIN' | translate }}"
         (focus)="this.placeholder = ''"
         (blur)="setBlur('emailsignin', 'EMAILSIGNIN')"
       />
       <input
         class="modal_input w-100 mb-2"
-        type="text"
+        type="password"
         id="emailpassword"
+         formControlName="password"
         placeholder="{{ 'PASSWORD' | translate }}"
         (focus)="this.placeholder = ''"
         (blur)="setBlur('emailpassword', 'PASSWORD')"
       />
-      <button class="model_btn_normal mb-2 w-100">
+      <button  (click)="onSignIn()" class="model_btn_normal mb-2 w-100">
         {{ "SIGNIN" | translate }}
       </button>
+      <div *ngIf="IsSignInFailed"  class="invalid">Incorrect email or password.</div>
       <div class="w-100">
         <div class="float-left">
           <a
@@ -252,6 +262,7 @@
   tabindex="-1"
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
+
 >
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content model_padding">
@@ -261,13 +272,14 @@
           class="close"
           data-dismiss="modal"
           aria-label="Close"
+
         >
           <span aria-hidden="true">╳</span>
         </button>
       </div>
       <div class="modal-body">
         <div class="text-center mb-4">
-          <h2>{{ "SELECTYOURROLE" | translate }}</h2>
+          <h2>{{ "IAMA" | translate }}</h2>
         </div>
         <div class="row text-center">
           <div class="col-md-6">
@@ -277,7 +289,7 @@
                 aria-label="Close"
                 class="model_btn_normal"
               >
-                {{ "IAMCREATOR" | translate }}
+                {{ "CREATOR" | translate }}
               </button></a
             >
             <p class="mt-2 model-p-small">{{ "IAMCREATORDEC" | translate }}</p>
@@ -289,7 +301,7 @@
                 aria-label="Close"
                 class="model_btn_normal"
               >
-                {{ "IAMCOLLECTOR" | translate }}
+                {{ "COLLECTOR" | translate }}
               </button></a
             >
             <p class="mt-2 model-p-small">

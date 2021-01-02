@@ -3,6 +3,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { DataService } from "./../../../_services";
 import { Utility } from "./../../../_helpers";
 import { AuthStore} from "./../../../_services";
+import { Router, ActivatedRoute } from "@angular/router";
 @Component({
   selector: "app-artist-account",
   templateUrl: "./artist-account.component.html",
@@ -12,6 +13,7 @@ export class ArtistAccountComponent implements OnInit {
  email="admin@email.com";
  currentUser: any = null;
   constructor(
+    private router: Router,
     private translateSrv: TranslateService,
     private utility: Utility,
     private dataSrv: DataService,
@@ -31,7 +33,9 @@ export class ArtistAccountComponent implements OnInit {
     });
 
     this.currentUser = this.authStoreSrv.getUserData();
-
+    if(this.utility.IsNullOrEmpty(this.currentUser)){
+ this.router.navigate(['./index'], {});
+    }
   }
 
 }
