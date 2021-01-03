@@ -7,6 +7,7 @@ import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService, TokenInterceptor } from "./../_guards";
 import { Utility, SocialMediaUtility } from "../_helpers";
 import { BsModalService } from "ngx-bootstrap/modal";
@@ -29,24 +30,48 @@ import {
   UploadFileComponent,
   ModalComponent,
   DragDropFileDirective,
-  DialogComponent
+  DialogComponent,
+  EditableInputComponent,
+    ViewModeDirective,
+  EditModeDirective,
+  EditableOnEnterDirective
 } from "../components";
+
+import {
+  FocusableDirective
+} from "../_directive";
+
 const sharedComponents = [LoadingDialogComponent, ErrorDialogComponent];
 
 @NgModule({
   declarations: [
     UploadFileComponent,
     DragDropFileDirective,
+    ViewModeDirective,
+    EditModeDirective,
+    EditableOnEnterDirective,
+    FocusableDirective,
     DialogComponent,
     ModalComponent,
+    EditableInputComponent,
     ...sharedComponents,
   ],
-  imports: [CommonModule, RouterModule, ModalModule.forRoot()],
+  imports: [
+        FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+     RouterModule,
+     ModalModule.forRoot()],
   exports: [
     UploadFileComponent,
     DragDropFileDirective,
+    ViewModeDirective,
+    EditModeDirective,
+    EditableOnEnterDirective,
+    FocusableDirective,
     DialogComponent,
     ModalComponent,
+    EditableInputComponent,
     ...sharedComponents,
   ],
   providers: [

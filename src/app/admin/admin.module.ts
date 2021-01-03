@@ -1,12 +1,9 @@
-import { BrowserModule } from '@angular/platform-browser';
+
 import { NgModule , CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
 import { AdminLayoutRoutes } from './admin.routing';
 
 
@@ -27,8 +24,7 @@ import {
   imports: [
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
-    FormsModule,
-    ReactiveFormsModule
+
   ],
   declarations: [
     // NavbarComponent,
@@ -43,9 +39,7 @@ import {
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule
+    CommonModule
   ]
 })
 

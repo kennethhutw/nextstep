@@ -71,27 +71,28 @@ close(){
 }
   onSignIn() {
     console.log(" ================== ");
-    this.closebutton.nativeElement.click();
+
     // this.closeModal.nativeElement.click();
    //  this.closeModal['el'].nativeElement.style.display = 'none';
     //  this.closeModal['el'].nativeElement.classList.add('sshow');
-    // this.IsSignInFailed = false;
-    // const val = this.signinEmailForm.value;
-    // console.log("signIn ========== ",val)
-    // this.auth.login(val.email, val.password).subscribe(
-    //   (res) => {
-    //     console.log(" ===== ",res);
-    //     if(res["result"]==="successful"){
-    //        console.log(" ===== successful");
-    //     }else{
-    //       this.IsSignInFailed = true;
+     this.IsSignInFailed = false;
+     const val = this.signinEmailForm.value;
+
+     this.auth.login(val.email, val.password).subscribe(
+       (res) => {
+         if(res["result"]==="successful"){
+              this.closebutton.nativeElement.click();
+         }else{
+           this.IsSignInFailed = true;
     //        console.log(" ===== failed");
-    //     }
-    //   },
-    //   (err) => {
-    //     alert("Sign in failed!");
-    //   }
-    // );
+         }
+       },
+       (err) => {
+           console.log(" Sign in failed! ",err);
+            this.IsSignInFailed = true;
+        // alert("Sign in failed!");
+       }
+     );
   }
 
   logout() {

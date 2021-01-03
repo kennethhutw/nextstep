@@ -61,7 +61,7 @@ const routes: Routes = [
   { path: "example", component: ExampleComponent , pathMatch: "full"},
   { path: "donation", component: DonationComponent , pathMatch: "full"},
   { path: "edition", component: EditionComponent , pathMatch: "full"},
-  { path: "qa",component:QAComponent , pathMatch: "full"},
+
 
   { path: "token/:id", component: TokenComponent },
 
@@ -77,7 +77,10 @@ const routes: Routes = [
     path: "",
     component: MainLayoutComponent,
     children: [
-
+      {
+        path: "qa",
+        component:QAComponent,
+        pathMatch: "full"},
       {
         path: "notfound",
         component: PageNotFoundComponent,

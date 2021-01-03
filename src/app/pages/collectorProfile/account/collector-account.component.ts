@@ -1,18 +1,22 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
-import { DataService } from "./../../../_services";
+import { DataService, AuthStore } from "./../../../_services";
 import { Utility } from "./../../../_helpers";
-
+import { Router } from "@angular/router";
 @Component({
   selector: "app-collector-account",
   templateUrl: "./collector-account.component.html",
   styleUrls: ["./collector-account.component.css"],
 })
 export class CollectorAccountComponent implements OnInit {
+   currentUser: any = null;
 
-  constructor(private translateSrv: TranslateService,
+  constructor(
+    private router: Router,
+    private translateSrv: TranslateService,
     private utility: Utility,
-    private dataSrv: DataService) {}
+    private dataSrv: DataService,
+    private authStoreSrv:AuthStore) {}
 
   ngOnInit() {
   let _lang = localStorage.getItem("lang");
@@ -25,6 +29,24 @@ export class CollectorAccountComponent implements OnInit {
       }
     });
 
+    this.currentUser = this.authStoreSrv.getUserData();
+      if(this.utility.IsNullOrEmpty(this.currentUser)){
+        this.router.navigate(['./index'], {});
+      }
   }
+
+
+  GetCurrentUserEmail(){
+    if(!this.utility.IsNullOrEmpty(this.currentUser)){
+        if(!this.utility.IsNullOrEmpty(this.currentUser.email)){
+          return this.currentUser.email;
+        } else{
+          return "";
+        }
+      } else{
+        return "";
+      }
+  }
+
 
 }

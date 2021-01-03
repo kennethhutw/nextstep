@@ -34,7 +34,7 @@ export class ArtistAccountComponent implements OnInit {
 
     this.currentUser = this.authStoreSrv.getUserData();
     if(this.utility.IsNullOrEmpty(this.currentUser)){
- this.router.navigate(['./index'], {});
+       this.router.navigate(['./index'], {});
     }
   }
 

@@ -23,3 +23,7 @@ export { DialogComponent} from "./dialog/dialog.component";
 export { SidebarComponent} from "./admin/sidebar/sidebar.component";
 export { NavbarComponent } from "./admin/navbar/navbar.component";
 export { AdminFooterComponent } from "./admin/footer/footer.component";
+export { EditableInputComponent } from "./editableInput/editableInput.component";
+export { EditModeDirective} from "./editableInput/edit-mode.directive";
+export { ViewModeDirective} from "./editableInput/view-mode.directive";
+export { EditableOnEnterDirective } from './editableInput/editable-on-enter.directive';

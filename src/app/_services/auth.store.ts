@@ -27,8 +27,10 @@ export class AuthStore {
 
     const user = localStorage.getItem(AUTH_DATA);
 
-    if (!this.utility.IsNullOrEmpty(user)) {
+    if (!this.utility.IsNullOrEmpty(user) && this.utility.isJSONString(user)) {
       this.subject.next(JSON.parse(user));
+    }else{
+      this.logout();
     }
   }
 
@@ -41,8 +43,9 @@ export class AuthStore {
       .pipe(
         tap((resResult) => {
           const _user = resResult.data as User;
-          this.subject.next(_user);
+
           localStorage.setItem(AUTH_DATA, JSON.stringify(_user));
+             this.subject.next(_user);
         }),
         shareReplay()
       );
@@ -110,8 +113,10 @@ export class AuthStore {
       .pipe(
         tap((resResult) => {
           const _user = resResult.data as User;
-          this.subject.next(_user);
+          console.log(" ------------" , _user);
+
           localStorage.setItem(AUTH_DATA, JSON.stringify(_user));
+             this.subject.next(_user);
         }),
         shareReplay()
       );
