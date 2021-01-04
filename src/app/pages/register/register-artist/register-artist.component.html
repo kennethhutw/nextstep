@@ -337,8 +337,8 @@
         >
       </div>
     </div>
-    <button [ngClass]="{ 'btn_normal-disable': IsAgree !== true}"
-     [attr.disabled]="IsAgree ? null : true" class="btn_normal mb-40" (click)="onSubmit()"  >{{ "SUBMITBYARTIST" | translate }}</button>
+    <button [ngClass]="{ 'btn_normal-disable': IsAgree !== true,'btn_normal': IsAgree === true}"
+     [attr.disabled]="IsAgree ? null : true" class=" mb-40" (click)="onSubmit()"  >{{ "SUBMITBYARTIST" | translate }}</button>
   </div>
 </div>
 <app-dialog></app-dialog>

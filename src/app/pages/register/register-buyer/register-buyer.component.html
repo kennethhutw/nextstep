@@ -171,7 +171,7 @@
     </div>
   </div>
   <button
-    [ngClass]="{ 'btn_normal-disable': IsAgree !== true}"
+     [ngClass]="{ 'btn_normal-disable': IsAgree !== true,'btn_normal': IsAgree === true}"
     [attr.disabled]="IsAgree ? null : true"
     class="btn_normal mb-40"
     (click)="register()"
