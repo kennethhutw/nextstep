@@ -1,697 +1,836 @@
-[{
+[
+    {
         "value": "illustration",
         "group": "A",
-        "text": "插图"
+        "text": "插图",
+        "selected": false
     },
     {
         "value": "animation",
         "group": "A",
-        "text": "动画"
+        "text": "动画",
+        "selected": false
     },
     {
         "value": "dark",
         "group": "A",
-        "text": "深色"
+        "text": "深色",
+        "selected": false
     },
     {
         "value": "digitally-manipulated",
         "group": "A",
-        "text": "数位操作"
+        "text": "数位操作",
+        "selected": false
     },
     {
         "value": "dream-like",
         "group": "A",
-        "text": "梦境"
+        "text": "梦境",
+        "selected": false
     },
     {
         "value": "3d-render",
         "group": "A",
-        "text": "3d 渲染"
+        "text": "3d 渲染",
+        "selected": false
     },
     {
         "value": "surreal",
         "group": "A",
-        "text": "超现实"
+        "text": "超现实",
+        "selected": false
     },
     {
         "value": "motion",
         "group": "A",
-        "text": "运动"
+        "text": "运动",
+        "selected": false
     },
     {
         "value": "fantasy",
         "group": "A",
-        "text": "幻想"
+        "text": "幻想",
+        "selected": false
     },
     {
         "value": "abstract",
         "group": "A",
-        "text": "抽象"
+        "text": "抽象",
+        "selected": false
     },
     {
         "value": "portrait",
         "group": "A",
-        "text": "肖像"
+        "text": "肖像",
+        "selected": false
     },
     {
         "value": "painting",
         "group": "B",
-        "text": "绘画"
+        "text": "绘画",
+        "selected": false
     },
     {
         "value": "light",
         "group": "B",
-        "text": "灯光"
+        "text": "灯光",
+        "selected": false
     },
     {
         "value": "animals",
         "group": "B",
-        "text": "动物"
+        "text": "动物",
+        "selected": false
     },
     {
         "value": "manipulated",
         "group": "B",
-        "text": "操纵"
+        "text": "操纵",
+        "selected": false
     },
     {
         "value": "glitch",
         "group": "B",
-        "text": "故障艺术"
+        "text": "故障艺术",
+        "selected": false
     },
     {
         "value": "death",
         "group": "B",
-        "text": "死亡"
+        "text": "死亡",
+        "selected": false
     },
     {
         "value": "science-fiction",
         "group": "B",
-        "text": "科幻小​​说"
+        "text": "科幻小​​说",
+        "selected": false
     },
     {
         "value": "crypto-art",
         "group": "B",
-        "text": "加密艺术"
+        "text": "加密艺术",
+        "selected": false
     },
     {
         "value": "face",
         "group": "B",
-        "text": "面相"
+        "text": "面相",
+        "selected": false
     },
     {
         "value": "human-figure",
         "group": "B",
-        "text": "人物"
+        "text": "人物",
+        "selected": false
     },
     {
         "value": "photomontage",
         "group": "B",
-        "text": "照片蒙太奇"
+        "text": "照片蒙太奇",
+        "selected": false
     },
     {
         "value": "mysticism",
         "group": "B",
-        "text": "神秘主义"
+        "text": "神秘主义",
+        "selected": false
     },
     {
         "value": "music",
         "group": "B",
-        "text": "音乐"
+        "text": "音乐",
+        "selected": false
     },
     {
         "value": "highly-detailed",
         "group": "B",
-        "text": "高度详细"
+        "text": "高度详细",
+        "selected": false
     },
     {
         "value": "cryptocurrency",
         "group": "B",
-        "text": "加密货币"
+        "text": "加密货币",
+        "selected": false
     },
     {
         "value": "数位文化",
         "group": "B",
-        "text": "数位文化"
+        "text": "数位文化",
+        "selected": false
     },
     {
         "value": "isolationalienation",
         "group": "C",
-        "text": "隔离/异化"
+        "text": "隔离/异化",
+        "selected": false
     },
     {
         "value": "fractal",
         "group": "C",
-        "text": "分形"
+        "text": "分形",
+        "selected": false
     },
     {
         "value": "glitchy",
         "group": "C",
-        "text": "小巧"
+        "text": "小巧",
+        "selected": false
     },
     {
         "value": "spooky",
         "group": "C",
-        "text": "怪异"
+        "text": "怪异",
+        "selected": false
     },
     {
         "value": "flashing",
         "group": "C",
-        "text": "闪烁"
+        "text": "闪烁",
+        "selected": false
     },
     {
         "value": "symbolic-composition",
         "group": "C",
-        "text": "符号组成"
+        "text": "符号组成",
+        "selected": false
     },
     {
         "value": "collage",
         "group": "C",
-        "text": "拼贴"
+        "text": "拼贴",
+        "selected": false
     },
     {
         "value": "sacred",
         "group": "C",
-        "text": "神圣"
+        "text": "神圣",
+        "selected": false
     },
     {
         "value": "fantastical",
         "group": "C",
-        "text": "棒极了"
+        "text": "棒极了",
+        "selected": false
     },
     {
         "value": "psychedelic",
         "group": "C",
-        "text": "迷幻"
+        "text": "迷幻",
+        "selected": false
     },
     {
         "value": "stories",
         "group": "C",
-        "text": "故事"
+        "text": "故事",
+        "selected": false
     },
     {
         "value": "painting-and-drawing",
         "group": "C",
-        "text": "绘画"
+        "text": "绘画",
+        "selected": false
     },
     {
         "value": "3D模型",
         "group": "C",
-        "text": "3d 模型"
+        "text": "3D 模型",
+        "selected": false
     },
     {
         "value": "filmvideo",
         "group": "C",
-        "text": "电影/视频"
+        "text": "电影/视频",
+        "selected": false
     },
     {
         "value": "black-and-white",
         "group": "C",
-        "text": "黑白"
+        "text": "黑白",
+        "selected": false
     },
     {
         "value": "blockchain",
         "group": "C",
-        "text": "区块链"
+        "text": "区块链",
+        "selected": false
     },
     {
         "value": "femininity",
         "group": "C",
-        "text": "女性气质"
+        "text": "女性气质",
+        "selected": false
     },
     {
         "value": "scary",
         "group": "C",
-        "text": "稀少"
+        "text": "稀少",
+        "selected": false
     },
     {
         "value": "mythology",
         "group": "D",
-        "text": "神话"
+        "text": "神话",
+        "selected": false
     },
     {
         "value": "nature",
         "group": "D",
-        "text": "自然"
+        "text": "自然",
+        "selected": false
     },
     {
         "value": "peaceful",
         "group": "E",
-        "text": "和平"
+        "text": "和平",
+        "selected": false
     },
     {
         "value": "melting",
         "group": "E",
-        "text": "融化"
+        "text": "融化",
+        "selected": false
     },
     {
         "value": "bizarre",
         "group": "E",
-        "text": "奇异的"
+        "text": "奇异的",
+        "selected": false
     },
     {
         "value": "abstract-scenes",
         "group": "E",
-        "text": "抽象场景"
+        "text": "抽象场景",
+        "selected": false
     },
     {
         "value": "sound",
         "group": "E",
-        "text": "声音"
+        "text": "声音",
+        "selected": false
     },
     {
         "value": "photography",
         "group": "E",
-        "text": "摄影"
+        "text": "摄影",
+        "selected": false
     },
     {
         "value": "nude",
         "group": "E",
-        "text": "裸的"
+        "text": "裸的",
+        "selected": false
     },
     {
         "value": "people",
         "group": "F",
-        "text": "人"
+        "text": "人",
+        "selected": false
     },
     {
         "value": "grid",
         "group": "F",
-        "text": "网格"
+        "text": "网格",
+        "selected": false
     },
     {
         "value": "vector",
         "group": "F",
-        "text": "矢量"
+        "text": "矢量",
+        "selected": false
     },
     {
         "value": "reflections",
         "group": "F",
-        "text": "反射"
+        "text": "反射",
+        "selected": false
     },
     {
         "value": "reflective",
         "group": "F",
-        "text": "反射性"
+        "text": "反射性",
+        "selected": false
     },
     {
         "value": "manipulated-photography",
         "group": "F",
-        "text": "操纵摄影"
+        "text": "操纵摄影",
+        "selected": false
     },
     {
         "value": "math",
         "group": "G",
-        "text": "数学"
+        "text": "数学",
+        "selected": false
     },
     {
         "value": "eye-contact",
         "group": "G",
-        "text": "目光接触"
+        "text": "目光接触",
+        "selected": false
     },
     {
         "value": "bodies",
         "group": "G",
-        "text": "实体"
+        "text": "实体",
+        "selected": false
     },
     {
         "value": "textured",
         "group": "G",
-        "text": "纹理化"
+        "text": "纹理化",
+        "selected": false
     },
     {
         "value": "mutated-bodies",
         "group": "G",
-        "text": "突变体"
+        "text": "突变体",
+        "selected": false
     },
     {
         "value": "cosmic",
         "group": "G",
-        "text": "宇宙"
+        "text": "宇宙",
+        "selected": false
     },
     {
         "value": "despair",
         "group": "G",
-        "text": "绝望"
+        "text": "绝望",
+        "selected": false
     },
     {
         "value": "provocative",
         "group": "G",
-        "text": "挑衅性"
+        "text": "挑衅性",
+        "selected": false
     },
     {
         "value": "vaporwave",
         "group": "G",
-        "text": "蒸气波"
+        "text": "蒸气波",
+        "selected": false
     },
     {
         "value": "unsettling",
         "group": "G",
-        "text": "令人不安"
+        "text": "令人不安",
+        "selected": false
     },
     {
         "value": "gloomy",
         "group": "G",
-        "text": "阴郁"
+        "text": "阴郁",
+        "selected": false
     },
     {
         "value": "grotesque",
         "group": "G",
-        "text": "怪诞的"
+        "text": "怪诞的",
+        "selected": false
     },
     {
         "value": "bleak",
         "group": "H",
-        "text": "黯淡"
+        "text": "黯淡",
+        "selected": false
     },
     {
         "value": "uncomfortable",
         "group": "H",
-        "text": "不舒服"
+        "text": "不舒服",
+        "selected": false
     },
     {
         "value": "anxious",
         "group": "H",
-        "text": "焦虑"
+        "text": "焦虑",
+        "selected": false
     },
     {
         "value": "love",
         "group": "H",
-        "text": "爱"
+        "text": "爱",
+        "selected": false
     },
     {
         "value": "romantic",
         "group": "I",
-        "text": "浪漫"
+        "text": "浪漫",
+        "selected": false
     },
     {
         "value": "landscape",
         "group": "I",
-        "text": "风景"
+        "text": "风景",
+        "selected": false
     },
     {
         "value": "shadows",
         "group": "I",
-        "text": "阴影"
+        "text": "阴影",
+        "selected": false
     },
     {
         "value": "mortality",
         "group": "I",
-        "text": "道德"
+        "text": "道德",
+        "selected": false
     },
-
     {
         "value": "color-gradient",
         "group": "I",
-        "text": "颜色渐变"
+        "text": "颜色渐变",
+        "selected": false
     },
     {
         "value": "the-environment",
         "group": "I",
-        "text": "环境"
+        "text": "环境",
+        "selected": false
     },
     {
         "value": "relaxed",
         "group": "I",
-        "text": "轻松"
+        "text": "轻松",
+        "selected": false
     },
     {
         "value": "flowers",
         "group": "J",
-        "text": "鲜花"
+        "text": "鲜花",
+        "selected": false
     },
     {
         "value": "trees",
         "group": "J",
-        "text": "树木"
+        "text": "树木",
+        "selected": false
     },
     {
         "value": "cute",
         "group": "K",
-        "text": "可爱"
+        "text": "可爱",
+        "selected": false
     },
     {
         "value": "pop-culture",
         "group": "K",
-        "text": "流行文化"
+        "text": "流行文化",
+        "selected": false
     },
     {
         "value": "generative-art",
         "group": "K",
-        "text": "生成艺术"
+        "text": "生成艺术",
+        "selected": false
     },
     {
         "value": "popular-culture",
         "group": "K",
-        "text": "大众文化"
+        "text": "大众文化",
+        "selected": false
     },
     {
         "value": "erotic",
         "group": "K",
-        "text": "色情"
+        "text": "色情",
+        "selected": false
     },
     {
         "value": "narrative",
         "group": "K",
-        "text": "叙述"
+        "text": "叙述",
+        "selected": false
     },
     {
         "value": "blurry",
         "group": "L",
-        "text": "模糊的"
+        "text": "模糊的",
+        "selected": false
     },
     {
         "value": "tech",
         "group": "L",
-        "text": "科技"
+        "text": "科技",
+        "selected": false
     },
     {
         "value": "city-life",
         "group": "L",
-        "text": "城市生活"
+        "text": "城市生活",
+        "selected": false
     },
     {
         "value": "cultural-commentary",
         "group": "L",
-        "text": "文化评论"
+        "text": "文化评论",
+        "selected": false
     },
     {
         "value": "city-scenes",
         "group": "L",
-        "text": "城市风光"
+        "text": "城市风光",
+        "selected": false
     },
     {
         "value": "figures-of-crypto",
         "group": "L",
-        "text": "数位加密货币"
+        "text": "数位加密货币",
+        "selected": false
     },
     {
         "value": "pixels",
         "group": "L",
-        "text": "像素"
+        "text": "像素",
+        "selected": false
     },
     {
         "value": "visual-perception",
         "group": "L",
-        "text": "视觉感知"
+        "text": "视觉感知",
+        "selected": false
     },
     {
         "value": "sexy",
         "group": "L",
-        "text": "性感"
+        "text": "性感",
+        "selected": false
     },
     {
         "value": "history",
         "group": "M",
-        "text": "历史"
+        "text": "历史",
+        "selected": false
     },
     {
         "value": "violent",
         "group": "M",
-        "text": "暴力"
+        "text": "暴力",
+        "selected": false
     },
     {
         "value": "classical-mythology",
         "group": "M",
-        "text": "古典神话"
+        "text": "古典神话",
+        "selected": false
     },
     {
         "value": "trauma-and-struggle",
         "group": "M",
-        "text": "创伤与斗争"
+        "text": "创伤与斗争",
+        "selected": false
     },
     {
         "value": "about-religion",
         "group": "M",
-        "text": "关於宗教"
+        "text": "关於宗教",
+        "selected": false
     },
     {
         "value": "science",
         "group": "M",
-        "text": "科学"
+        "text": "科学",
+        "selected": false
     },
     {
         "value": "flora",
         "group": "M",
-        "text": "植物相"
+        "text": "植物相",
+        "selected": false
     },
     {
         "value": "crypto-politics",
         "group": "M",
-        "text": "加密政治"
+        "text": "加密政治",
+        "selected": false
     },
     {
         "value": "inspirational",
         "group": "M",
-        "text": "鼓舞人心"
+        "text": "鼓舞人心",
+        "selected": false
     },
     {
         "value": "high-fantasy",
         "group": "M",
-        "text": "高幻想"
+        "text": "高幻想",
+        "selected": false
     },
     {
         "value": "Everyday-stuff",
         "group": "M",
-        "text": "日常琐事"
+        "text": "日常琐事",
+        "selected": false
     },
     {
         "value": "everyday-life",
         "group": "M",
-        "text": "日常生活"
+        "text": "日常生活",
+        "selected": false
     },
     {
         "value": "photograph-source",
         "group": "M",
-        "text": "图片来源"
+        "text": "图片来源",
+        "selected": false
     },
     {
         "value": "nostalgic",
         "group": "M",
-        "text": "怀旧"
+        "text": "怀旧",
+        "selected": false
     },
     {
         "value": "crime",
         "group": "M",
-        "text": "犯罪"
+        "text": "犯罪",
+        "selected": false
     },
     {
         "value": "childhood",
         "group": "M",
-        "text": "童年"
+        "text": "童年",
+        "selected": false
     },
     {
         "value": "generative",
         "group": "M",
-        "text": "生成"
+        "text": "生成",
+        "selected": false
     },
     {
         "value": "odd",
         "group": "M",
-        "text": "奇数"
+        "text": "奇数",
+        "selected": false
     },
     {
         "value": "imaginary-creatures",
         "group": "M",
-        "text": "虚构的生物"
+        "text": "虚构的生物",
+        "selected": false
     },
     {
         "value": "shifting",
         "group": "M",
-        "text": "移动"
+        "text": "移动",
+        "selected": false
     },
     {
         "value": "about-music",
         "group": "N",
-        "text": "关於音乐"
+        "text": "关於音乐",
+        "selected": false
     },
     {
         "value": "metallic",
         "group": "N",
-        "text": "金属"
+        "text": "金属",
+        "selected": false
     },
     {
         "value": "time",
         "group": "N",
-        "text": "时间"
+        "text": "时间",
+        "selected": false
     },
     {
         "value": "lusty",
         "group": "N",
-        "text": "精力充沛"
+        "text": "精力充沛",
+        "selected": false
     },
     {
         "value": "glittery",
         "group": "N",
-        "text": "闪闪发光"
+        "text": "闪闪发光",
+        "selected": false
     },
     {
         "value": "atmospheric-landscapes",
         "group": "N",
-        "text": "大气景观"
+        "text": "大气景观",
+        "selected": false
     },
     {
         "value": "sparse",
         "group": "N",
-        "text": "稀疏"
+        "text": "稀疏",
+        "selected": false
     },
     {
         "value": "balance",
         "group": "N",
-        "text": "平衡"
+        "text": "平衡",
+        "selected": false
     },
     {
         "value": "disgust",
         "group": "N",
-        "text": "令人反感"
+        "text": "令人反感",
+        "selected": false
     },
     {
         "value": "dynamic",
         "group": "N",
-        "text": "动态"
+        "text": "动态",
+        "selected": false
     },
     {
         "value": "black-and-white-photography",
         "group": "A",
-        "text": "黑白摄影"
+        "text": "黑白摄影",
+        "selected": false
     },
     {
         "value": "outer-space",
         "group": "P",
-        "text": "外层空间"
+        "text": "外层空间",
+        "selected": false
     },
     {
         "value": "contemplative",
         "group": "P",
-        "text": "沉思"
+        "text": "沉思",
+        "selected": false
     },
     {
         "value": "calm",
         "group": "P",
-        "text": "平静"
+        "text": "平静",
+        "selected": false
     },
     {
         "value": "romance",
         "group": "P",
-        "text": "浪漫"
+        "text": "浪漫",
+        "selected": false
     },
     {
         "value": "mellow",
         "group": "P",
-        "text": "醇美"
+        "text": "醇美",
+        "selected": false
     },
     {
         "value": "waterscapes",
         "group": "P",
-        "text": "水景"
+        "text": "水景",
+        "selected": false
     },
     {
         "value": "the-fantastic",
         "group": "P",
-        "text": "神奇的"
+        "text": "神奇的",
+        "selected": false
     },
     {
         "value": "patina",
         "group": "P",
-        "text": "物体表面的"
+        "text": "物体表面的",
+        "selected": false
     }
 ]

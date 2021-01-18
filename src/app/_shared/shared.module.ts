@@ -23,7 +23,9 @@ import {
   DataService,
   AuthStore,
   AppSettingsService,
-  DialogService
+  DialogService,
+  SettingService,
+  LikeService
 } from "./../_services";
 
 import {
@@ -57,10 +59,11 @@ const sharedComponents = [LoadingDialogComponent, ErrorDialogComponent];
     ...sharedComponents,
   ],
   imports: [
-        FormsModule,
+    FormsModule,
     ReactiveFormsModule,
     CommonModule,
-     RouterModule,
+    RouterModule,
+
      ModalModule.forRoot()],
   exports: [
     UploadFileComponent,
@@ -90,6 +93,8 @@ const sharedComponents = [LoadingDialogComponent, ErrorDialogComponent];
     DataService,
     AppSettingsService,
     AuthStore,
+    LikeService,
+    SettingService,
     DialogService,
     {
       provide: ErrorHandler,

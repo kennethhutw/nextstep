@@ -45,9 +45,8 @@ export class Web3Service {
   }
 
   async getAccountDetail(): Promise<any> {
-    console.log("getAccountDetail ==========");
+
     var accounts = await this.web3.eth.getAccounts();
-    console.log("getAccountDetail ==========", accounts);
     var balance = await this.web3.eth.getBalance(accounts[0]);
     var networkId = await this.web3.eth.net.getId();
     return {
@@ -77,6 +76,10 @@ export class Web3Service {
       from: sender,
       value: this.web3.utils.toWei(value.toString(), "ether"),
     });
+  }
+
+  verifyEthAddress(address){
+    return this.web3.utils.isAddress(address);
   }
 
   onEvents(event: string) {

@@ -233,6 +233,23 @@
   border: 2px solid #11e78b;
 }
 
+
+.input_btn_normal {
+  font-size: 16px;
+  padding: 9px 30px;
+  background-color: #17f596;
+  border: 2px solid #17f596;
+  border-radius: 3px;
+  color: #000;
+}
+
+.input_btn_normal:hover {
+  background-color: #11e78b;
+  border: 2px solid #11e78b;
+  color: #000;
+}
+
+
 .btn_large {
   font-size: 25px;
   background-color: #17f596;
@@ -267,21 +284,6 @@
   border-radius: 3px;
   color: #fff;
   transition: all 0.3s ease-in-out;
-}
-
-.input_btn_normal {
-  font-size: 16px;
-  padding: 9px 30px;
-  background-color: #17f596;
-  border: 2px solid #17f596;
-  border-radius: 3px;
-  color: #000;
-}
-
-.input_btn_normal:hover {
-  background-color: #11e78b;
-  border: 2px solid #11e78b;
-  color: #000;
 }
 
 .btn_select_img {
@@ -1320,4 +1322,8 @@ padding:7px 14px; */
   border:2px solid #eeeeee;
   border-radius: 3px;
   color:#b2b2b2;
+}
+
+.error-msg {
+  color: #dc3545;
 }

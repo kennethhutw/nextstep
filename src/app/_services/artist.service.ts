@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import { catchError, retry } from "rxjs/operators";
 import { environment } from "../../environments/environment";
-
+import { resResult} from "../_models";
 @Injectable()
 export class ArtistService {
   constructor(private http: HttpClient) {}
@@ -24,4 +24,17 @@ export class ArtistService {
       return throwError(errorMessage);
     }
   }
+
+  public getArtistBasicInfo(id){
+     return this.http.get<any>(`${environment.apiUrl}/artist/getArtistBasicInfo/${id}`);
+  }
+
+  public updateArtistBasicInfo(data){
+    return this.http
+      .post<resResult>(`${environment.apiUrl}/artist/updateArtistBasicInfo`,
+        data
+      );
+  }
+
+
 }

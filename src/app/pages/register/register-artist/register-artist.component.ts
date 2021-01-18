@@ -11,7 +11,6 @@ import {
   FormBuilder,
   FormGroup,
   Validators,
-  ValidationErrors,
   FormArray
 } from "@angular/forms";
 
@@ -38,7 +37,7 @@ export class RegisterArtistComponent implements OnInit {
   theThirdImage :any;
 theThirdImageNameRequire = false;
   constructor(
-      private router: Router,
+    private router: Router,
     private dialogSrv: DialogService,
     private authStore:AuthStore,
     private formBuilder: FormBuilder,
@@ -173,8 +172,6 @@ theThirdImageNameRequire = false;
   onSubmit(){
 
      const _editions = this.registerForm.get('editions') as FormArray;
-
-
     for(let i =0; i < _editions.controls.length ; i++){
       let _edition = _editions.controls[i];
        // _edition.setErrors({'required': false});
@@ -236,14 +233,12 @@ theThirdImageNameRequire = false;
 
 
     if(!this.utility.IsNullOrEmpty(_editions.controls[0].value.image)){
-        console.log("firstImage ================= "+ _editions.controls[0].value.image);
         formData.append('firstImage', _editions.controls[0].value.image);
         formData.append('firstImageName', _editions.controls[0].value.name);
         formData.append('firstImageDescription', _editions.controls[0].value.description);
     }
 
     if(!this.utility.IsNullOrEmpty(_editions.controls[1].value.image)){
-        console.log("secondImage ================= "+ _editions.controls[1].value.image);
         formData.append('secondImage', _editions.controls[1].value.image);
         formData.append('secondImageName', _editions.controls[1].value.name);
         formData.append('secondImageDescription', _editions.controls[1].value.description);
@@ -258,7 +253,6 @@ theThirdImageNameRequire = false;
    //  return;
 
       this.authStore.ArtistSignup(formData).subscribe(res =>{
-           console.log(" ================= "+res);
             if (res["result"] === "successful") {
               this.dialogSrv.infoThis("you have successfully registered ",
                () => {

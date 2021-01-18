@@ -70,7 +70,6 @@ close(){
 
 }
   onSignIn() {
-    console.log(" ================== ");
 
     // this.closeModal.nativeElement.click();
    //  this.closeModal['el'].nativeElement.style.display = 'none';
@@ -97,6 +96,7 @@ close(){
 
   logout() {
     this.auth.logout();
+      this.router.navigate(['./index'], {});
   }
 
   changeLanguage(lang: string) {
@@ -133,7 +133,6 @@ close(){
           });
         },
         (error) => {
-
           console.log("getAccountDetail error", error);
         }
       );

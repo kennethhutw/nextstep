@@ -124,7 +124,6 @@ export class GalleryComponent implements OnInit {
 
   initTags(lang) {
     this.appSettingsSrv.getTagOptions(lang).subscribe((data) => {
-      console.log("tags ==================== ", data);
       this.tags = data;
     });
   }

@@ -4,6 +4,7 @@ import {
   ArtistService,
   DataService,
   AppSettingsService,
+  SettingService
 } from "./../../_services";
 import { Utility } from "./../../_helpers";
 @Component({
@@ -17,14 +18,18 @@ export class ArtistsComponent implements OnInit {
   values = "";
   tags = [];
   IsShowTags = false;
+  defaultProfileLogo=null;
 
   constructor(
+        private settingSrv: SettingService,
     private translateSrv: TranslateService,
     private utility: Utility,
     private dataSrv: DataService,
     private appSettingsSrv: AppSettingsService,
     private artistSrv: ArtistService
-  ) {}
+  ) {
+        this.defaultProfileLogo = this.settingSrv.defaultProfileLogo;
+  }
 
   ngOnInit() {
     let _lang = localStorage.getItem("lang");

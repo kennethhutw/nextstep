@@ -1,134 +1,262 @@
-  <h5 class="pb-10">作品1</h5>
-                        <div class="member-info-box">
-                            <div class="row">
-                                <div id="select_img" class="col-md-4 text-center">
-                                    <img class="w-100" src="./assets/images/select_img.jpg" alt="">
-                                </div>
-                                <div id="member_choice_btn" class="col-md-8">
-                                    <button class="btn_select_img">選擇作品</button>
-                                    <button class="btn_select_img d-block mt-10">預覽作品</button>
-                                </div>
-                            </div>
-                            <div class="form-group mt-20">
-                                <label for="exampleInputEmail1">作品名稱</label>
-                                <input type="" class="form-control" id="" aria-describedby="" >
-                            </div>
-                            <div class="form-group mt-20">
-                                <label for="exampleInputEmail1">作品介紹</label>
-                                <textarea type="" class="form-control" id="" aria-describedby="" rows=4></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">選擇購買方式</label>
-                                <select>
-                                    <option value="">--請選擇--</option>
-                                    <option value="dog">競價</option>
-                                    <option value="cat">直接購買</option>
-                                </select>
-                                <span class="d-block pt-05 text-black-50 text-13">備註：競價期限為7日，由第一位出價人後開始算起</span>
-                            </div>
-                            <div class="form-group mt-20">
-                                <label for="exampleInputEmail1">售價（ETH) </label>
-                                <input type="" class="form-control" id="" aria-describedby="" >
-                                <span class="d-block pt-05 "><i class="fas fa-arrow-alt-circle-right "></i> 轉換為美金：<span class="text-danger">USD $0</span></span>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">收款方式</label>
-                                <select>
-                                    <option value="">--請選擇--</option>
-                                    <option value="dog">虛擬貨幣</option>
-                                    <option value="cat">美金(paypal收款)</option>
-                                </select>
-                                <span class="d-block pt-05 text-black-50 text-13">備註：競價期限為7日，由第一位出價人後開始算起</span>
-                            </div>
-                            <div class="form-group mt-20">
-                                <label for="exampleInputEmail1">可銷售版本</label>
-                                <input type="" class="form-control" id="" aria-describedby="" >
-                                <span class="d-block pt-05 text-black-50 text-13">備註：此作品可銷售的版本數</span>
-                            </div>
-                            <div class="form-group ">
-                                <label for="exampleInputEmail1">為您的作品選擇合適的標籤，最多10組。</label>
-                                <div class="input-group mb-3">
-                                  <input type="text" class="form-control"  aria-label="Recipient's username" aria-describedby="button-addon2" readonly>
-                                  <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary input_btn_normal" type="button"  data-toggle="modal" data-target="#modal_select_channel">選擇</button>
-                                  </div>
-                                </div>
-                            </div>
+<h5 class="pb-10">{{ "ARTWORK" | translate }}</h5>
+<div [formGroup]="artworkForm" class="member-info-box">
+    <div class="row">
+        <div id="select_img" class="col-md-4 text-center">
+            <!-- <img class="w-100" src="./assets/images/select_img.jpg" alt="">
+             -->
+            <span *ngIf="this.artworkImage != null " (click)="onRemoveImg($event,'1')" class="close">&times;</span>
+            <img class="w-100" *ngIf="artworkImage" height="239px" width="239px" [src]="artworkImage" alt="" />
+            <img class="w-100" *ngIf="!artworkImage" src="./assets/images/select_img.jpg" alt="" />
+        </div>
+        <div id="member_choice_btn" class="col-md-8">
+            <!-- <button class="btn_select_img">{{ "CHOOSEARTWORK" | translate }}</button> -->
+            <!-- <button class="btn_select_img d-block mt-10">預覽作品</button> -->
+            <label class="btn_select_img mb-20" for="artworkImage">{{ "CHOOSEARTWORK" | translate }}</label>
+            <input id="artworkImage" type="file" accept="image/gif, image/jpeg, image/png, image/gif"
+                (change)="onDetectImage($event)" style="visibility: hidden; padding: 0px" />
+        </div>
+    </div>
+    <div class="form-group mt-20">
+        <label for="Inputname">{{ "EDITIONNAME" | translate }}</label>
+        <input type="text" formControlName="name" class="form-control" id="Inputname" aria-describedby="">
+    </div>
+    <div class="form-group mt-20">
+        <label for="Inputdesc">{{ "EDITIONDESC" | translate }}</label>
+        <textarea type="text" formControlName="description" class="form-control" id="" aria-describedby="Inputdesc"
+            rows=4></textarea>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">{{ "BIDDING" | translate }}</label>
+        <!-- <select disabled>
+            <option value="">--請選擇--</option>
+            <option value="bid">競價</option>
+            <option value="direct" selected>直接購買</option>
+        </select> -->
+        <br> <label class="biddingswitch form-control">
+            <input type="checkbox" class="default">
+            <span class="slider"></span>
+        </label>
+        <span class="d-block pt-05 text-black-50 text-13">{{ "BIDDINGNOTE" | translate }}</span>
+    </div>
+
+    <div class="form-group mt-20">
+        <label for="exampleInputEmail1">{{ "SELLPRICE" | translate }}（USD) </label>
+        <input type="number" formControlName="sellingPrice" (change)="TotalETHAmount($event)" class="form-control" id=""
+            aria-describedby="">
+        <span class="d-block pt-05 "><i class="fas fa-arrow-alt-circle-right "></i> 轉換為乙太幣：<span class="text-danger">ETH
+                $ {{ethAmount}}</span></span>
+    </div>
+
+    <!-- <div class="form-group">
+        <label for="payment">收款方式</label>
+        <select disabled>
+            <option value="">--請選擇--</option>
+            <option value="crypto" selected>虛擬貨幣</option>
+            <option value="usd">美金(paypal收款)</option>
+        </select>
+        <span class="d-block pt-05 text-black-50 text-13">備註：競價期限為7日，由第一位出價人後開始算起</span>
+    </div> -->
+    <div class="form-group mt-20">
+        <label for="exampleInputEmail1">{{ "NUMOFCOPIES" | translate }}</label>
+        <input type="number" formControlName="numberOfArtwork" class="form-control" id="" aria-describedby="">
+        <span class="d-block pt-05 text-black-50 text-13">{{ "SOLDNUM" | translate }}</span>
+    </div>
+    <div class="form-group ">
+        <label for="exampleInputEmail1">{{ "SELECTTAGS" | translate }}</label>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="tags" formControlName="tags" aria-describedby="button-addon2"
+                readonly>
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary input_btn_normal" type="button" data-toggle="modal"
+                    data-target="#modal_select_channel">{{ "CHOOSE" | translate }}</button>
+            </div>
+        </div>
+    </div>
 
 
+</div>
+
+<!-- <hr class="mt-50">
+
+<h5 class="pb-10 mt-40">作品2 <a class="text-danger" href=""> <i class="fas fa-trash"></i></a></h5>
+<div class="member-info-box">
+    <div class="row">
+        <div id="select_img" class="col-md-4 text-center">
+            <img class="w-100" src="./assets/images/select_img.jpg" alt="">
+        </div>
+        <div id="member_choice_btn" class="col-md-8">
+            <button class="btn_select_img">選擇作品</button>
+            <button class="btn_select_img d-block mt-10">預覽作品</button>
+        </div>
+    </div>
+    <div class="form-group mt-20">
+        <label for="exampleInputEmail1">作品名稱</label>
+        <input type="" class="form-control" id="" aria-describedby="">
+    </div>
+    <div class="form-group mt-20">
+        <label for="exampleInputEmail1">作品介紹</label>
+        <textarea type="" class="form-control" id="" aria-describedby="" rows=4></textarea>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">選擇購買方式</label>
+        <select>
+            <option value="">--請選擇--</option>
+            <option value="dog">競價</option>
+            <option value="cat">直接購買</option>
+        </select>
+        <span class="d-block pt-05 text-black-50 text-13">備註：競價期限為7日，由第一位出價人後開始算起</span>
+    </div>
+    <div class="form-group mt-20">
+        <label for="exampleInputEmail1">售價（ETH) </label>
+        <input type="" class="form-control" id="" aria-describedby="">
+        <span class="d-block pt-05 "><i class="fas fa-arrow-alt-circle-right "></i> 轉換為美金：<span class="text-danger">USD
+                $0</span></span>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">收款方式</label>
+        <select>
+            <option value="">--請選擇--</option>
+            <option value="dog">虛擬貨幣</option>
+            <option value="cat">美金(paypal收款)</option>
+        </select>
+        <span class="d-block pt-05 text-black-50 text-13">備註：競價期限為7日，由第一位出價人後開始算起</span>
+    </div>
+    <div class="form-group mt-20">
+        <label for="exampleInputEmail1">可銷售版本</label>
+        <input type="" class="form-control" id="" aria-describedby="">
+        <span class="d-block pt-05 text-black-50 text-13">備註：此作品可銷售的版本數</span>
+    </div>
+    <div class="form-group ">
+        <label for="exampleInputEmail1">為您的作品選擇合適的標籤，最多10組。</label>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2"
+                readonly>
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary input_btn_normal" type="button" data-toggle="modal"
+                    data-target="#modal_select_channel">選擇</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<a href="#" class="align-items-center mt-10 ">
+    <div class="d-flex align-items-center">
+        <i class="fas fa-plus-circle fa-3x"></i>
+        <span class="member_add_project">新增作品</span>
+    </div>
+</a> -->
+
+
+<div class="text-center mt-40 mb-40">
+    <button (click)="onSubmit()" id="member_last_btn_w100" class="btn_normal ">
+        已選擇完畢，確認上傳
+    </button>
+    <div style="margin-top: 10px;" [ngClass]="{ 'error-msg': IsUpdateFailed === true }" *ngIf="informMsg">{{informMsg}}
+    </div>
+</div>
+<div class="modal fade" id="modal_select_channel" tabindex="-1" aria-labelledby="channelModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 1000px !important;">
+        <div class="modal-content model_padding">
+            <div class="modal_header">
+            </div>
+            <div class="modal-body">
+                <div class="text-center mb-4">
+                    <h3>選擇作品分類</h3>
+                    <p>最多可選擇三組</p>
+                </div>
+                <div class="row text-center" style="  display: flex;  align-items: center;">
+                    <div class="switch">
+                        <input id="switch01" type="checkbox" class="">
+                        <label for="switch01" class="switch_text">抽象</label>
+                    </div>
+
+                    <ng-container *ngFor="let tag of tags">
+                        <div class="switch">
+                            <input type="checkbox" [(ngModel)]="tag.selected" value={{tag.value}} id={{tag.value}}>
+                            <label for="{{tag.value}}" class="switch_text">{{tag.text}}</label>
                         </div>
+                        <!-- <div class="switch">
+                            <input id="switch02" type="checkbox" class="">
+                            <label for="switch02" class="switch_text">{{tag.text}}</label>
+                        </div> -->
+                    </ng-container>
+                    <!-- <label class="switch form-control project_tag">
+                        <input type="checkbox" class="default">
+                        <span class="tag_selected">插圖</span>
+                    </label>
 
-                        <hr class="mt-50">
-
-                        <h5 class="pb-10 mt-40">作品2 <a class="text-danger" href=""> <i class="fas fa-trash"></i></a></h5>
-                        <div class="member-info-box">
-                            <div class="row">
-                                <div id="select_img" class="col-md-4 text-center">
-                                    <img class="w-100" src="./assets/images/select_img.jpg" alt="">
-                                </div>
-                                <div id="member_choice_btn" class="col-md-8">
-                                    <button class="btn_select_img">選擇作品</button>
-                                    <button class="btn_select_img d-block mt-10">預覽作品</button>
-                                </div>
-                            </div>
-                            <div class="form-group mt-20">
-                                <label for="exampleInputEmail1">作品名稱</label>
-                                <input type="" class="form-control" id="" aria-describedby="" >
-                            </div>
-                            <div class="form-group mt-20">
-                                <label for="exampleInputEmail1">作品介紹</label>
-                                <textarea type="" class="form-control" id="" aria-describedby="" rows=4></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">選擇購買方式</label>
-                                <select>
-                                    <option value="">--請選擇--</option>
-                                    <option value="dog">競價</option>
-                                    <option value="cat">直接購買</option>
-                                </select>
-                                <span class="d-block pt-05 text-black-50 text-13">備註：競價期限為7日，由第一位出價人後開始算起</span>
-                            </div>
-                            <div class="form-group mt-20">
-                                <label for="exampleInputEmail1">售價（ETH) </label>
-                                <input type="" class="form-control" id="" aria-describedby="" >
-                                <span class="d-block pt-05 "><i class="fas fa-arrow-alt-circle-right "></i> 轉換為美金：<span class="text-danger">USD $0</span></span>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">收款方式</label>
-                                <select>
-                                    <option value="">--請選擇--</option>
-                                    <option value="dog">虛擬貨幣</option>
-                                    <option value="cat">美金(paypal收款)</option>
-                                </select>
-                                <span class="d-block pt-05 text-black-50 text-13">備註：競價期限為7日，由第一位出價人後開始算起</span>
-                            </div>
-                            <div class="form-group mt-20">
-                                <label for="exampleInputEmail1">可銷售版本</label>
-                                <input type="" class="form-control" id="" aria-describedby="" >
-                                <span class="d-block pt-05 text-black-50 text-13">備註：此作品可銷售的版本數</span>
-                            </div>
-                            <div class="form-group ">
-                                <label for="exampleInputEmail1">為您的作品選擇合適的標籤，最多10組。</label>
-                                <div class="input-group mb-3">
-                                  <input type="text" class="form-control"  aria-label="Recipient's username" aria-describedby="button-addon2" readonly>
-                                  <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary input_btn_normal" type="button"  data-toggle="modal" data-target="#modal_select_channel">選擇</button>
-                                  </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                            <a href="#" class="align-items-center mt-10 ">
-                                <div class="d-flex align-items-center">
-                                    <i class="fas fa-plus-circle fa-3x"></i>
-                                    <span class="member_add_project">新增作品</span>
-                                </div>
-                            </a>
-
-
-                        <div  class="text-center mt-40">
-                            <button id="member_last_btn_w100" class="btn_normal mb-40">
-                                已選擇完畢，確認上傳
-                            </button>
-                        </div>
+                    <a href="">
+                        <div class="project_tag">手繪</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">動畫</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">自然</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">科學</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">人像</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">超現實</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">繪畫</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">動感</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">幻想</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">拼貼</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">3D</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">風景</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">科學</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">花</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">寫實</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">黑白</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">攝影</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">靈魂</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">節慶</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">有趣</div>
+                    </a> -->
+                </div>
+            </div>
+            <hr>
+            <div class="row mt-20 mb-20">
+                <div class="col-md-6">
+                    <button type="button" class="model_btn_second" data-dismiss="modal" aria-label="Close">取消</button>
+                </div>
+                <div class="col-md-6">
+                    <button class="model_btn_normal" data-dismiss="modal" (click)="getSelected()">確認</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -10,3 +10,5 @@ export { EatToasterService } from "./eattoaster.service";
 export { EmailService } from "./email.service";
 export { AuthStore } from "./auth.store";
 export { DialogService} from "./dialog.service";
+export { SettingService  } from "./setting.service";
+export { LikeService} from "./like.service";

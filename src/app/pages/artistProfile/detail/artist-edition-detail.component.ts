@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { DataService } from "./../../../_services";
 import { Utility } from "./../../../_helpers";
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: "app-artist-edition-detail",
   templateUrl: "./artist-edition-detail.component.html",
@@ -9,7 +10,10 @@ import { Utility } from "./../../../_helpers";
 })
 export class ArtistEditionDetailComponent implements OnInit {
 
-  constructor(private translateSrv: TranslateService,
+  constructor(
+       private router: Router,
+    private route: ActivatedRoute,
+    private translateSrv: TranslateService,
     private utility: Utility,
     private dataSrv: DataService) {
 
@@ -25,7 +29,15 @@ export class ArtistEditionDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-
+      this.route.queryParams.subscribe(params => {
+      console.log(" =======================",params);
+      // var walletPromise = this.walletSrv.getWalletByUid(uid);
+      // console.log("helppp", walletPromise);
+      // for (let i in walletPromise) {
+      //   this.wallets.push(walletPromise[i])
+      // }
+      // console.log("wallettsss", this.wallets);
+    });
   }
 
 

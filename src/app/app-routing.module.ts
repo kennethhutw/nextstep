@@ -136,7 +136,7 @@ const routes: Routes = [
             path: "basic",
             component: ArtistBasicComponent,
           },{
-            path: "collection/detail",
+            path: "collection/detail/:id",
             component: ArtistEditionDetailComponent,
           },{
             path: "upload",

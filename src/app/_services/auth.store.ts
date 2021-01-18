@@ -113,10 +113,8 @@ export class AuthStore {
       .pipe(
         tap((resResult) => {
           const _user = resResult.data as User;
-          console.log(" ------------" , _user);
-
           localStorage.setItem(AUTH_DATA, JSON.stringify(_user));
-             this.subject.next(_user);
+          this.subject.next(_user);
         }),
         shareReplay()
       );
@@ -157,8 +155,18 @@ export class AuthStore {
           return null;
         }
     } catch (error) {
-      console.error(error);
+     console.error(`getUserData failed : ${error}`);
       return null;
+    }
+  }
+
+  setUserData(userData){
+    try {
+      localStorage.setItem(AUTH_DATA, JSON.stringify(userData));
+      return true;
+    } catch (error) {
+      console.error(`setUserData failed : ${error}`);
+      return false;
     }
   }
 }

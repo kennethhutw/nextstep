@@ -2,697 +2,835 @@
     {
         "value": "illustration",
         "group": "A",
-        "text": "Illustration"
+        "text": "Illustration",
+        "selected": false
     },
     {
         "value": "animation",
         "group": "A",
-        "text": "Animation"
+        "text": "Animation",
+        "selected": false
     },
     {
         "value": "dark",
         "group": "A",
-        "text": "Dark"
+        "text": "Dark",
+        "selected": false
     },
     {
         "value": "digitally-manipulated",
         "group": "A",
-        "text": "Digitally Manipulated  "
+        "text": "Digitally Manipulated",
+        "selected": false
     },
     {
         "value": "dream-like",
         "group": "A",
-        "text": "Dream-like"
+        "text": "Dream-like",
+        "selected": false
     },
     {
         "value": "3d-render",
         "group": "A",
-        "text": "3d Render"
+        "text": "3d Render",
+        "selected": false
     },
     {
         "value": "surreal",
         "group": "A",
-        "text": "Surreal"
+        "text": "Surreal",
+        "selected": false
     },
     {
         "value": "motion",
         "group": "A",
-        "text": "Motion"
+        "text": "Motion",
+        "selected": false
     },
     {
         "value": "fantasy",
         "group": "A",
-        "text": "Fantasy"
+        "text": "Fantasy",
+        "selected": false
     },
     {
         "value": "abstract",
         "group": "A",
-        "text": "Abstract"
+        "text": "Abstract",
+        "selected": false
     },
     {
         "value": "portrait",
         "group": "A",
-        "text": "Portrait"
+        "text": "Portrait",
+        "selected": false
     },
     {
         "value": "painting",
         "group": "B",
-        "text": "Painting"
+        "text": "Painting",
+        "selected": false
     },
     {
         "value": "light",
         "group": "B",
-        "text": "Light"
+        "text": "Light",
+        "selected": false
     },
     {
         "value": "animals",
         "group": "B",
-        "text": "Animals"
+        "text": "Animals",
+        "selected": false
     },
     {
         "value": "manipulated",
         "group": "B",
-        "text": "Manipulated"
+        "text": "Manipulated",
+        "selected": false
     },
     {
         "value": "glitch",
-        "group": "B",
-        "text": "Glitch"
+        "group": "G",
+        "text": "Glitch",
+        "selected": false
     },
     {
         "value": "death",
-        "group": "B",
-        "text": "Death"
+        "group": "D",
+        "text": "Death",
+        "selected": false
     },
     {
         "value": "science-fiction",
         "group": "B",
-        "text": "Science Fiction"
+        "text": "Science Fiction",
+        "selected": false
     },
     {
         "value": "crypto-art",
         "group": "B",
-        "text": "Crypto Art"
+        "text": "Crypto Art",
+        "selected": false
     },
     {
         "value": "face",
         "group": "B",
-        "text": "Face"
+        "text": "Face",
+        "selected": false
     },
     {
         "value": "human-figure",
         "group": "B",
-        "text": "Human Figure"
+        "text": "Human Figure",
+        "selected": false
     },
     {
         "value": "photomontage",
         "group": "B",
-        "text": "Photo montage"
+        "text": "Photo montage",
+        "selected": false
     },
     {
         "value": "mysticism",
         "group": "B",
-        "text": "Mysticism"
+        "text": "Mysticism",
+        "selected": false
     },
     {
         "value": "music",
         "group": "B",
-        "text": "Music"
+        "text": "Music",
+        "selected": false
     },
     {
         "value": "highly-detailed",
         "group": "B",
-        "text": "Highly Detailed"
+        "text": "Highly Detailed",
+        "selected": false
     },
     {
         "value": "cryptocurrency",
         "group": "B",
-        "text": "Crypto currency"
+        "text": "Crypto currency",
+        "selected": false
     },
     {
         "value": "digital-culture",
         "group": "B",
-        "text": "Digital Culture"
+        "text": "Digital Culture",
+        "selected": false
     },
     {
         "value": "isolationalienation",
         "group": "C",
-        "text": "Isolation/alienation"
+        "text": "Isolation/alienation",
+        "selected": false
     },
     {
         "value": "fractal",
         "group": "C",
-        "text": "Fractal"
+        "text": "Fractal",
+        "selected": false
     },
     {
         "value": "glitchy",
         "group": "C",
-        "text": "Glitchy"
+        "text": "Glitchy",
+        "selected": false
     },
     {
         "value": "spooky",
         "group": "C",
-        "text": "Spooky"
+        "text": "Spooky",
+        "selected": false
     },
     {
         "value": "flashing",
         "group": "C",
-        "text": "Flashing"
+        "text": "Flashing",
+        "selected": false
     },
     {
         "value": "symbolic-composition",
         "group": "C",
-        "text": "Symbolic Composition"
+        "text": "Symbolic Composition",
+        "selected": false
     },
     {
         "value": "collage",
         "group": "C",
-        "text": "Collage"
+        "text": "Collage",
+        "selected": false
     },
     {
         "value": "sacred",
         "group": "C",
-        "text": "Sacred"
+        "text": "Sacred",
+        "selected": false
     },
     {
         "value": "fantastical",
         "group": "C",
-        "text": "Fantastical"
+        "text": "Fantastical",
+        "selected": false
     },
     {
         "value": "psychedelic",
         "group": "C",
-        "text": "Psychedelic"
+        "text": "Psychedelic",
+        "selected": false
     },
     {
         "value": "stories",
         "group": "C",
-        "text": "Stories"
+        "text": "Stories",
+        "selected": false
     },
     {
         "value": "painting-and-drawing",
         "group": "C",
-        "text": "Painting And Drawing"
+        "text": "Painting And Drawing",
+        "selected": false
     },
     {
         "value": "3d-model",
         "group": "C",
-        "text": "3d Model"
+        "text": "3d Model",
+        "selected": false
     },
     {
         "value": "filmvideo",
         "group": "C",
-        "text": "Film/video"
+        "text": "Film/video",
+        "selected": false
     },
     {
         "value": "black-and-white",
         "group": "C",
-        "text": "Black And White"
+        "text": "Black And White",
+        "selected": false
     },
     {
         "value": "blockchain",
         "group": "C",
-        "text": "Blockchain"
+        "text": "Blockchain",
+        "selected": false
     },
     {
         "value": "femininity",
         "group": "C",
-        "text": "Femininity"
+        "text": "Femininity",
+        "selected": false
     },
     {
         "value": "scary",
         "group": "C",
-        "text": "Scary"
+        "text": "Scary",
+        "selected": false
     },
     {
         "value": "mythology",
         "group": "D",
-        "text": "Mythology"
+        "text": "Mythology",
+        "selected": false
     },
     {
         "value": "nature",
         "group": "D",
-        "text": "Nature"
+        "text": "Nature",
+        "selected": false
     },
     {
         "value": "peaceful",
         "group": "E",
-        "text": "Peaceful"
+        "text": "Peaceful",
+        "selected": false
     },
     {
         "value": "melting",
         "group": "E",
-        "text": "Melting"
+        "text": "Melting",
+        "selected": false
     },
     {
         "value": "bizarre",
         "group": "E",
-        "text": "Bizarre"
+        "text": "Bizarre",
+        "selected": false
     },
     {
         "value": "abstract-scenes",
         "group": "E",
-        "text": "Abstract Scenes"
+        "text": "Abstract Scenes",
+        "selected": false
     },
     {
         "value": "sound",
         "group": "E",
-        "text": "Sound"
+        "text": "Sound",
+        "selected": false
     },
     {
         "value": "photography",
         "group": "E",
-        "text": "Photography"
+        "text": "Photography",
+        "selected": false
     },
     {
         "value": "nude",
         "group": "E",
-        "text": "Nude"
+        "text": "Nude",
+        "selected": false
     },
     {
         "value": "people",
         "group": "F",
-        "text": "People"
+        "text": "People",
+        "selected": false
     },
     {
         "value": "grid",
         "group": "F",
-        "text": "Grid"
+        "text": "Grid",
+        "selected": false
     },
     {
         "value": "vector",
         "group": "F",
-        "text": "Vector"
+        "text": "Vector",
+        "selected": false
     },
     {
         "value": "reflections",
         "group": "F",
-        "text": "Reflections"
+        "text": "Reflections",
+        "selected": false
     },
     {
         "value": "reflective",
         "group": "F",
-        "text": "Reflective"
+        "text": "Reflective",
+        "selected": false
     },
     {
         "value": "manipulated-photography",
         "group": "F",
-        "text": "Manipulated Photography"
+        "text": "Manipulated Photography",
+        "selected": false
     },
     {
         "value": "math",
         "group": "G",
-        "text": "Math"
+        "text": "Math",
+        "selected": false
     },
     {
         "value": "eye-contact",
         "group": "G",
-        "text": "Eye Contact"
+        "text": "Eye Contact",
+        "selected": false
     },
     {
         "value": "bodies",
         "group": "G",
-        "text": "Bodies"
+        "text": "Bodies",
+        "selected": false
     },
     {
         "value": "textured",
         "group": "G",
-        "text": "Textured"
+        "text": "Textured",
+        "selected": false
     },
     {
         "value": "mutated-bodies",
         "group": "G",
-        "text": "Mutated Bodies"
+        "text": "Mutated Bodies",
+        "selected": false
     },
     {
         "value": "cosmic",
         "group": "G",
-        "text": "Cosmic"
+        "text": "Cosmic",
+        "selected": false
     },
     {
         "value": "despair",
         "group": "G",
-        "text": "Despair"
+        "text": "Despair",
+        "selected": false
     },
     {
         "value": "provocative",
         "group": "G",
-        "text": "Provocative"
+        "text": "Provocative",
+        "selected": false
     },
     {
         "value": "vaporwave",
         "group": "G",
-        "text": "Vapor wave"
+        "text": "Vapor wave",
+        "selected": false
     },
     {
         "value": "unsettling",
         "group": "G",
-        "text": "Unsettling"
+        "text": "Unsettling",
+        "selected": false
     },
     {
         "value": "gloomy",
         "group": "G",
-        "text": "Gloomy"
+        "text": "Gloomy",
+        "selected": false
     },
     {
         "value": "grotesque",
         "group": "G",
-        "text": "Grotesque"
+        "text": "Grotesque",
+        "selected": false
     },
     {
         "value": "bleak",
         "group": "H",
-        "text": "Bleak"
+        "text": "Bleak",
+        "selected": false
     },
     {
         "value": "uncomfortable",
         "group": "H",
-        "text": "Uncomfortable"
+        "text": "Uncomfortable",
+        "selected": false
     },
     {
         "value": "anxious",
         "group": "H",
-        "text": "Anxious"
+        "text": "Anxious",
+        "selected": false
     },
     {
         "value": "love",
         "group": "H",
-        "text": "Love"
+        "text": "Love",
+        "selected": false
     },
     {
         "value": "romantic",
         "group": "I",
-        "text": "Romantic"
+        "text": "Romantic",
+        "selected": false
     },
     {
         "value": "landscape",
         "group": "I",
-        "text": "Landscape"
+        "text": "Landscape",
+        "selected": false
     },
     {
         "value": "shadows",
         "group": "I",
-        "text": "Shadows"
+        "text": "Shadows",
+        "selected": false
     },
     {
         "value": "mortality",
         "group": "I",
-        "text": "Mortality"
+        "text": "Mortality",
+        "selected": false
     },
-
     {
         "value": "color-gradient",
         "group": "I",
-        "text": "Color Gradient"
+        "text": "Color Gradient",
+        "selected": false
     },
     {
         "value": "the-environment",
         "group": "I",
-        "text": "The Environment"
+        "text": "The Environment",
+        "selected": false
     },
     {
         "value": "relaxed",
         "group": "I",
-        "text": "Relaxed"
+        "text": "Relaxed",
+        "selected": false
     },
     {
         "value": "flowers",
         "group": "J",
-        "text": "Flowers"
+        "text": "Flowers",
+        "selected": false
     },
     {
         "value": "trees",
         "group": "J",
-        "text": "Trees"
+        "text": "Trees",
+        "selected": false
     },
     {
         "value": "cute",
         "group": "K",
-        "text": "Cute"
+        "text": "Cute",
+        "selected": false
     },
     {
         "value": "pop-culture",
         "group": "K",
-        "text": "Pop Culture"
+        "text": "Pop Culture",
+        "selected": false
     },
     {
         "value": "generative-art",
         "group": "K",
-        "text": "Generative Art"
+        "text": "Generative Art",
+        "selected": false
     },
     {
         "value": "popular-culture",
         "group": "K",
-        "text": "Popular Culture"
+        "text": "Popular Culture",
+        "selected": false
     },
     {
         "value": "erotic",
         "group": "K",
-        "text": "Erotic"
+        "text": "Erotic",
+        "selected": false
     },
     {
         "value": "narrative",
         "group": "K",
-        "text": "Narrative"
+        "text": "Narrative",
+        "selected": false
     },
     {
         "value": "blurry",
         "group": "L",
-        "text": "Blurry"
+        "text": "Blurry",
+        "selected": false
     },
     {
         "value": "tech",
         "group": "L",
-        "text": "Tech"
+        "text": "Tech",
+        "selected": false
     },
     {
         "value": "city-life",
         "group": "L",
-        "text": "City Life"
+        "text": "City Life",
+        "selected": false
     },
     {
         "value": "cultural-commentary",
         "group": "L",
-        "text": "Cultural Commentary"
+        "text": "Cultural Commentary",
+        "selected": false
     },
     {
         "value": "city-scenes",
         "group": "L",
-        "text": "City Scenes"
+        "text": "City Scenes",
+        "selected": false
     },
     {
         "value": "figures-of-crypto",
         "group": "L",
-        "text": "Figures Of Crypto"
+        "text": "Figures Of Crypto",
+        "selected": false
     },
     {
         "value": "pixels",
         "group": "L",
-        "text": "Pixels"
+        "text": "Pixels",
+        "selected": false
     },
     {
         "value": "visual-perception",
         "group": "L",
-        "text": "Visual Perception"
+        "text": "Visual Perception",
+        "selected": false
     },
     {
         "value": "sexy",
         "group": "L",
-        "text": "Sexy"
+        "text": "Sexy",
+        "selected": false
     },
     {
         "value": "history",
         "group": "M",
-        "text": "History"
+        "text": "History",
+        "selected": false
     },
     {
         "value": "violent",
         "group": "M",
-        "text": "Violent"
+        "text": "Violent",
+        "selected": false
     },
     {
         "value": "classical-mythology",
         "group": "M",
-        "text": "Classical Mythology"
+        "text": "Classical Mythology",
+        "selected": false
     },
     {
         "value": "trauma-and-struggle",
         "group": "M",
-        "text": "Trauma And Struggle"
+        "text": "Trauma And Struggle",
+        "selected": false
     },
     {
         "value": "about-religion",
         "group": "M",
-        "text": "About Religion"
+        "text": "About Religion",
+        "selected": false
     },
     {
         "value": "science",
         "group": "M",
-        "text": "Science"
+        "text": "Science",
+        "selected": false
     },
     {
         "value": "flora",
         "group": "M",
-        "text": "Flora"
+        "text": "Flora",
+        "selected": false
     },
     {
         "value": "crypto-politics",
         "group": "M",
-        "text": "Crypto Politics"
+        "text": "Crypto Politics",
+        "selected": false
     },
     {
         "value": "inspirational",
         "group": "M",
-        "text": "Inspirational"
+        "text": "Inspirational",
+        "selected": false
     },
     {
         "value": "high-fantasy",
         "group": "M",
-        "text": "High Fantasy"
+        "text": "High Fantasy",
+        "selected": false
     },
     {
         "value": "everyday-stuff",
         "group": "M",
-        "text": "Everyday Stuff"
+        "text": "Everyday Stuff",
+        "selected": false
     },
     {
         "value": "everyday-life",
         "group": "M",
-        "text": "Everyday Life"
+        "text": "Everyday Life",
+        "selected": false
     },
     {
         "value": "photographic-source",
         "group": "M",
-        "text": "Photographic Source"
+        "text": "Photographic Source",
+        "selected": false
     },
     {
         "value": "nostalgic",
         "group": "M",
-        "text": "Nostalgic"
+        "text": "Nostalgic",
+        "selected": false
     },
     {
         "value": "crime",
         "group": "M",
-        "text": "Crime"
+        "text": "Crime",
+        "selected": false
     },
     {
         "value": "childhood",
         "group": "M",
-        "text": "Childhood"
+        "text": "Childhood",
+        "selected": false
     },
     {
         "value": "generative",
         "group": "M",
-        "text": "Generative"
+        "text": "Generative",
+        "selected": false
     },
     {
         "value": "odd",
         "group": "M",
-        "text": "Odd"
+        "text": "Odd",
+        "selected": false
     },
     {
         "value": "imaginary-creatures",
         "group": "M",
-        "text": "Imaginary Creatures"
+        "text": "Imaginary Creatures",
+        "selected": false
     },
     {
         "value": "shifting",
         "group": "M",
-        "text": "Shifting"
+        "text": "Shifting",
+        "selected": false
     },
     {
         "value": "about-music",
         "group": "N",
-        "text": "About Music"
+        "text": "About Music",
+        "selected": false
     },
     {
         "value": "metallic",
         "group": "N",
-        "text": "Metallic"
+        "text": "Metallic",
+        "selected": false
     },
     {
         "value": "time",
         "group": "N",
-        "text": "Time"
+        "text": "Time",
+        "selected": false
     },
     {
         "value": "lusty",
         "group": "N",
-        "text": "Lusty"
+        "text": "Lusty",
+        "selected": false
     },
     {
         "value": "glittery",
         "group": "N",
-        "text": "Glittery"
+        "text": "Glittery",
+        "selected": false
     },
     {
         "value": "atmospheric-landscapes",
         "group": "N",
-        "text": "Atmospheric Landscapes"
+        "text": "Atmospheric Landscapes",
+        "selected": false
     },
     {
         "value": "sparse",
         "group": "N",
-        "text": "Sparse"
+        "text": "Sparse",
+        "selected": false
     },
     {
         "value": "balance",
         "group": "N",
-        "text": "Balance"
+        "text": "Balance",
+        "selected": false
     },
     {
         "value": "disgust",
         "group": "N",
-        "text": "Disgust"
+        "text": "Disgust",
+        "selected": false
     },
     {
         "value": "dynamic",
         "group": "N",
-        "text": "Dynamic"
+        "text": "Dynamic",
+        "selected": false
     },
     {
         "value": "black-and-white-photography",
         "group": "A",
-        "text": "Black-and-white Photography"
+        "text": "Black-and-white Photography",
+        "selected": false
     },
     {
         "value": "outer-space",
         "group": "P",
-        "text": "Outer Space"
+        "text": "Outer Space",
+        "selected": false
     },
     {
         "value": "contemplative",
         "group": "P",
-        "text": "Contemplative"
+        "text": "Contemplative",
+        "selected": false
     },
     {
         "value": "calm",
         "group": "P",
-        "text": "Calm"
+        "text": "Calm",
+        "selected": false
     },
     {
         "value": "romance",
         "group": "P",
-        "text": "Romance"
+        "text": "Romance",
+        "selected": false
     },
     {
         "value": "mellow",
         "group": "P",
-        "text": "Mellow"
+        "text": "Mellow",
+        "selected": false
     },
     {
         "value": "waterscapes",
         "group": "P",
-        "text": "Water scapes"
+        "text": "Water scapes",
+        "selected": false
     },
     {
         "value": "the-fantastic",
         "group": "P",
-        "text": "The Fantastic"
+        "text": "The Fantastic",
+        "selected": false
     },
     {
         "value": "patina",
         "group": "P",
-        "text": "Patina"
+        "text": "Patina",
+        "selected": false
     }
 ]

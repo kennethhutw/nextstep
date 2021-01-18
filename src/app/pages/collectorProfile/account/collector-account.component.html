@@ -3,17 +3,22 @@
                             <h5>{{ "ACCOUNT" | translate }}：{{GetCurrentUserEmail()}}</h5>
                             <div class="form-group mt-20">
                                 <label for="exampleInputEmail1">{{ "OLDPSW" | translate }}</label>
-                                <input type="password" class="form-control" id="" aria-describedby="" >
+                                <input type="password" [(ngModel)]="oldPSW"  class="form-control" id="" aria-describedby="" >
+                                 <div class="error-msg" *ngIf=" (oldPSW ==='') && submittedPSW"> Old password is required.</div>
                             </div>
                             <div class="form-group mt-20">
                                 <label for="exampleInputEmail1">{{ "NEWPSW" | translate }}</label>
-                                <input type="password" class="form-control" id="" aria-describedby="" >
+                                <input type="password" [(ngModel)]="newPSW" class="form-control" id="" aria-describedby="" >
                             </div>
                             <div class="form-group mt-20">
                                 <label for="exampleInputEmail1">{{ "CONFIRMPSW" | translate }}</label>
-                                <input type="password" class="form-control" id="" aria-describedby="" >
+                                <input type="password" [(ngModel)]="confirmPSW" class="form-control" id="" aria-describedby="" >
+                                 <div class="error-msg" *ngIf=" (newPSW =='') && (confirmPSW =='') && submittedPSW"> New Password and Confirm is required.</div>
+                                <div class="error-msg" *ngIf="(newPSW!=confirmPSW)  && submittedPSW"> New Password & Confirm Password does not match.</div>
                             </div>
-                            <button id="member_last_btn_w100" class="btn_select_img">{{ "CONFIRMSAVE" | translate }}</button>
+
+                            <button id="member_last_btn_w100" (click)="updateUserPassword()" class="btn_select_img">{{ "CONFIRMSAVE" | translate }}</button>
+                            <div  [ngClass]="{ 'error-msg': pswMsgFailed === true }" *ngIf="pswActionMsg" >{{pswActionMsg}}</div>
                         </div>
 
                         <h5 class="pb-10 mt-70  mt-20"> {{ "WALLET" | translate }}</h5>
@@ -21,26 +26,30 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1"><i class="fas fa-play-circle"></i> {{ "INPUTWALLETADDRESSS" | translate }}</label>
                                 <div class="input-group mb-3">
-                                  <input type="text" class="form-control"  placeholder="手動輸入" aria-label="Recipient's username" aria-describedby="button-addon2">
+                                  <input type="text" class="form-control" [(ngModel)]="ethAddress"  placeholder="手動輸入" aria-label="Recipient's username" aria-describedby="button-addon2">
                                   <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary input_btn_normal" type="button" >確定輸入錢包</button>
+                                    <button class="btn btn-outline-secondary input_btn_normal" (click)="getWalletAddress()" type="button" >{{ "CONNECTWALLET" | translate }}</button>
+                                    <button class="btn btn-outline-secondary input_btn_normal" (click)=" verifyEthAddress()" type="button" >{{ "VERIFYADDRESS" | translate }}</button>
                                   </div>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="exampleInputEmail1"><i class="fas fa-play-circle"></i> 系統搜尋連結</label>
                                 <div class="input-group mb-3">
                                   <input type="text" class="form-control"  aria-label="Recipient's username" aria-describedby="button-addon2" readonly>
                                   <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary input_btn_normal" type="button" >確定連結錢包</button>
+                                    <button class="btn btn-outline-secondary input_btn_normal" type="button" >{{ "CONNECTWALLET" | translate }}</button>
+                                     <button class="btn btn-outline-secondary input_btn_normal" type="button" >{{ "CONNECTWALLET" | translate }}</button>
                                   </div>
                                 </div>
                             </div>
                             <div class="form-check mb-20">
                               <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
                               <label class="form-check-label" for="inlineCheckbox1">{{ "BUYARTWORKWITHWALLET" | translate }}</label>
-                            </div>
-                            <button id="member_last_btn_w100" class="btn_select_img">更新虛擬錢包</button>
+                            </div> -->
+
+                            <button id="member_last_btn_w100" (click)="updateWalletAddress()" class="btn_select_img">{{ "UPDATEWALLET" | translate }}</button>
+                            <div  [ngClass]="{ 'error-msg': ethAddressActionMsgFailed === true }" *ngIf="ethAddressActionMsg" >{{ethAddressActionMsg}}</div>
                         </div>
 
 
@@ -48,7 +57,8 @@
                         <div class="member-info-box  mb-40">
                             <div class="form-group mt-20">
                                 <label for="exampleInputEmail1">{{ "EMAILNOTIFICATION" | translate }}</label>
-                                <input type="" class="form-control" id="" aria-describedby="" >
+                                <input type="text" [(ngModel)]="informEmail" class="form-control" id="" aria-describedby="" >
                             </div>
-                            <button id="member_last_btn_w100" class="btn_select_img">{{ "CONFIRMSAVE" | translate }}</button>
+                            <button (click)="updateInforEmail()" id="member_last_btn_w100" class="btn_select_img">{{ "CONFIRMSAVE" | translate }}</button>
+                            <div  [ngClass]="{ 'error-msg': IsUpdateInformEmailFailed === true }" *ngIf="informMsg" >{{informMsg}}</div>
                         </div>

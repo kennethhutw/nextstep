@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from "../../environments/environment";
 
 @Injectable()
 export class CryptoService {
@@ -14,6 +15,8 @@ export class CryptoService {
         })
     };
 
+
+
     constructor(private http: HttpClient) { }
 
     async getCrypto(symbol: string) {
@@ -21,6 +24,17 @@ export class CryptoService {
             //https://api.coindesk.com/v1/bpi/currentprice.json
             //https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${symbol}&convert=USD&CMC_PRO_API_KEY=635df8fc-e179-44be-a7b4-bce2c2d2c89a`
             return await this.http.get(`https://api.coincap.io/v2/assets`).toPromise();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+     public getETHPrice() {
+        try {
+
+            //https://api.coindesk.com/v1/bpi/currentprice.json
+           // let api =`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${symbol}&convert=USD&CMC_PRO_API_KEY=635df8fc-e179-44be-a7b4-bce2c2d2c89a`
+            return  this.http.get(`${environment.apiUrl}/token/ethereum/usdprice`);
         } catch (error) {
             console.log(error);
         }

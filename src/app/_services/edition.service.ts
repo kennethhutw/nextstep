@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import { catchError, retry } from "rxjs/operators";
 import { environment } from "../../environments/environment";
+import { resResult} from "../_models";
 
 @Injectable()
 export class EditionService {
@@ -37,4 +38,15 @@ export class EditionService {
   getPopularEditions() {}
 
   getRecentEditions() {}
+
+  public createArtwrok(formdata){
+     return this.http
+      .post<resResult>(`${environment.apiUrl}/artwork/createArtwrok`,
+        formdata
+      );
+  }
+
+  public getArtwrokByArtistId(artistId){
+     return  this.http.get<any>(`${environment.apiUrl}/artwork/getArtwrok/${artistId}`);
+  }
 }

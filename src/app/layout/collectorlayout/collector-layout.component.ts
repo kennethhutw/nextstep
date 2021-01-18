@@ -3,6 +3,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { DataService, AuthStore } from "../../_services";
 import { Utility } from "../../_helpers";
 import { Router } from "@angular/router";
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: "app-collector-layout",
@@ -16,7 +17,7 @@ export class CollectorLayoutComponent implements OnInit {
   currentUser: any = null;
   IsEdit = false;
   UserName ="";
-
+  profileImage="";
   constructor(
     private router: Router,
     private translateSrv: TranslateService,
@@ -33,11 +34,15 @@ export class CollectorLayoutComponent implements OnInit {
         this.translateSrv.use(lang);
       }
     });
-      this.currentUser = this.authStoreSrv.getUserData();
+    this.currentUser = this.authStoreSrv.getUserData();
       if(this.utility.IsNullOrEmpty(this.currentUser)){
         this.router.navigate(['./index'], {});
-      }
+    }
   this.UserName = this.currentUser.name;
+   if(!this.utility.IsNullOrEmpty( this.currentUser.imageUrl ))
+            {
+              this.profileImage =  environment.assetUrl+ this.currentUser.imageUrl ;
+            }
   }
 
   ngOnInit() {
@@ -62,9 +67,6 @@ export class CollectorLayoutComponent implements OnInit {
 
   updateField(){
     this.currentUser.name = this.UserName;
-    console.log(" Name ==== ",this.currentUser.name);
+    //todo
   }
-
-
-
 }

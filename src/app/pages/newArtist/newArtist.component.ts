@@ -81,14 +81,14 @@ export class NewArtistComponent implements OnInit {
   }
 
   onFileUploaded(files, index) {
-    console.log("onFileUploaded =========",files);
+
     this.uploadImages[index]=files[0];
     this.currentLogo = files[0];
     //    let reader = new FileReader();
     // reader.onload = this._handleReaderLoaded.bind(this);
     // reader.readAsBinaryString(files[0]);
     this.EditionSrv.uploadEdition(files[0]).subscribe(res => {
-       console.log("onFileUploaded res=========",res);
+
       if (res['result'] === 'successful') {
         let editionData = res['data'];
         this.edition.push(editionData);
@@ -100,9 +100,9 @@ export class NewArtistComponent implements OnInit {
               this.imageDrop2 =  this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(files[0]));
         }
       };
-      
+
     });
- 
+
   }
 
   onReset() {
