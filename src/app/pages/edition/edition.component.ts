@@ -56,8 +56,8 @@ export class EditionComponent implements OnInit {
     this.route.params.subscribe(params => {
 
       this.editionId = params["editionId"];
-
-      this.InitLike(this.currentUser.id, this.editionId);
+      if (this.currentUser)
+        this.InitLike(this.currentUser.id, this.editionId);
       //  this.editionId = this.route.snapshot.paramMap.get("editionId");
       this.gallerySrv.getEditionDetailByEditionId(this.editionId).subscribe(res => {
 

@@ -47,7 +47,7 @@
       </h1>
       <a href="#" class="text-white" data-toggle="modal" data-target="#modal_login_way"><button
           class="btn_large w-100">{{ "BUYNOW" | translate }}</button></a>
-      <div class="text-right mt-10">
+      <div class="text-right mt-10" *ngIf="this.currentUser">
         <a *ngIf="!IsFollowed" (click)="onLike()">
           <i class="far fa-heart"></i></a>
         <a *ngIf="IsFollowed" (click)="onDislike()">

@@ -37,9 +37,14 @@ export class ArtistsComponent implements OnInit {
 
   ngOnInit() {
     let _lang = localStorage.getItem("lang");
+    console.log("_lang ==============", _lang);
     if (!this.utility.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
       this.initTags(_lang);
+    } else {
+      let _browserLang = this.translateSrv.getBrowserLang();
+      this.translateSrv.use(_browserLang);
+      this.initTags(_browserLang);
     }
     this.dataSrv.langKey.subscribe((lang) => {
       if (!this.utility.IsNullOrEmpty(lang)) {
@@ -78,7 +83,9 @@ export class ArtistsComponent implements OnInit {
   }
 
   initTags(lang) {
+    console.log("initTags =======", lang)
     this.appSettingsSrv.getTagOptions(lang).subscribe((data) => {
+      console.log("initTags ======= data", data)
       this.tags = data;
     });
   }
@@ -92,6 +99,7 @@ export class ArtistsComponent implements OnInit {
     this.displayArtists = this.splitArr(result, 3);
     console.log("key event", key);
   }
+
   IsShowAllTags() {
     this.IsShowTags = !this.IsShowTags;
   }

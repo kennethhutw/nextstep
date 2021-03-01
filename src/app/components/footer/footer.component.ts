@@ -21,7 +21,7 @@ export class FooterComponent implements OnInit {
       this.translateSrv.use(_lang);
       this.SelectedLang = _lang;
     } else {
-      let _browserLang = translateSrv.getBrowserLang();
+      let _browserLang = this.translateSrv.getBrowserLang();
       this.translateSrv.use(_browserLang);
       this.SelectedLang = _browserLang;
     }

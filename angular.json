@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "thorwallet": {
+    "formosa": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,18 +13,21 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/thorwallet",
+            "outputPath": "dist/formosa",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
             "styles": [
               "src/styles.css",
-        "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [
-                "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },
@@ -34,6 +37,10 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "src/index.html",
+                  "with": "src/index.prod.html"
                 }
               ],
               "optimization": true,
@@ -51,18 +58,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "thorwallet:build"
+            "browserTarget": "formosa:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "thorwallet:build:production"
+              "browserTarget": "formosa:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "thorwallet:build"
+            "browserTarget": "formosa:build"
           }
         },
         "test": {
@@ -72,21 +79,31 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
-            "styles": ["src/styles.css"],
+            "styles": [
+              "src/styles.css"
+            ],
             "scripts": [],
-            "assets": ["src/favicon.ico", "src/assets"]
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
     },
-    "thorwallet-e2e": {
+    "formosa-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -94,11 +111,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "thorwallet:serve"
+            "devServerTarget": "formosa:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "thorwallet:serve:production"
+              "devServerTarget": "formosa:serve:production"
             }
           }
         },
@@ -106,11 +123,13 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
     }
   },
-  "defaultProject": "thorwallet"
+  "defaultProject": "formosa"
 }
