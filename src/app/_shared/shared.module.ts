@@ -43,7 +43,7 @@ import {
 
 import {
   FocusableDirective,
-  TwoDigitDecimaNumberDirective
+
 } from "../_directive";
 
 import { AddressShortenPipe, ShortenPipe }
@@ -61,7 +61,7 @@ const sharedComponents = [
     EditModeDirective,
     EditableOnEnterDirective,
     FocusableDirective,
-    TwoDigitDecimaNumberDirective,
+
     DialogComponent,
     ModalComponent,
     EditableInputComponent,
@@ -82,7 +82,7 @@ const sharedComponents = [
     EditModeDirective,
     EditableOnEnterDirective,
     FocusableDirective,
-    TwoDigitDecimaNumberDirective,
+
     DialogComponent,
     ModalComponent,
     EditableInputComponent,
