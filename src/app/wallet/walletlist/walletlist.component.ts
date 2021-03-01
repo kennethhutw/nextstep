@@ -9,11 +9,11 @@ import { Router, ActivatedRoute } from "@angular/router";
 })
 export class WalletListComponent implements OnInit {
   wallets = [];
-  
+
   constructor(
     private router: Router,
-    private walletSrv: WalletService, 
-    private route: ActivatedRoute) 
+    private walletSrv: WalletService,
+    private route: ActivatedRoute)
     {
 
      }
@@ -22,7 +22,6 @@ export class WalletListComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       let uid = params["uid"];
       var walletPromise = this.walletSrv.getWalletByUid(uid);
-      console.log("helppp", walletPromise);
       for (let i in walletPromise) {
         this.wallets.push(walletPromise[i])
       }

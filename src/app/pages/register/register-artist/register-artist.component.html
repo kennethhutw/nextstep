@@ -1,129 +1,82 @@
 <!--header-->
 <div class="container-fluid">
   <div class="text-center signup-logo">
-    <img
-      class="footer-logo"
-      src="./../../../assets/images/formosa_logo_bgwhite.svg"
-    />
+    <img class="footer-logo" src="./../../../assets/images/formosa_logo_bgwhite.svg" />
     <h1 class="text-center mb-20">{{ "JOINASACREATOR" | translate }}</h1>
     <p class="text-center pb-30 signup_discript">
-    {{ "CREATORREVIEWED" | translate }} <br/>  {{ "CREATORNTIFICATION" | translate }}
-     <br/>  {{ "WELCOMING" | translate }}
+      {{ "CREATORREVIEWED" | translate }} <br /> {{ "CREATORNTIFICATION" | translate }}
+      <br /> {{ "WELCOMING" | translate }}
     </p>
   </div>
 </div>
-
+<button (click)="try()">{{ "SUBMITBYARTIST" | translate
+  }}</button>
 <div class="container-fluid">
   <div class="row" style="background-color: #eee">
     <div class="container">
       <div id="register_table" class="row">
-        <span class="text-center w-100 register_info"
-          > {{ "MUSTFIELD" | translate }}</span
-        >
+        <span class="text-center w-100 register_info"> {{ "MUSTFIELD" | translate }}</span>
         <div class="signup-subtitle" style="display: block">
           {{ "BASICINFO" | translate }}
         </div>
-        <div class="row w-100 mt-10" [formGroup]="registerForm"  (ngSubmit)="onSubmit()">
+        <div class="row w-100 mt-10" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
           <div class="col-md-5 offset-md-1">
             <div class="form-group">
               <label for="exampleInputEmail1">
-                {{ "NAME" | translate }}<span>(*)</span></label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="inputname"
-                formControlName="name"
-                aria-describedby="nameHelp"
-              />
+                {{ "NAME" | translate }}<span>(*)</span></label>
+              <input type="text" class="form-control" id="inputname" formControlName="name"
+                aria-describedby="nameHelp" />
             </div>
           </div>
           <div class="col-md-5">
             <div class="form-group">
               <label for="InputEmail1">Email<span>(*)</span></label>
-              <input
-                type="email"
-                class="form-control"
-                id="InputEmail1"
-                formControlName="email"
-                aria-describedby="emailHelp"
-              />
+              <input type="email" class="form-control" id="InputEmail1" formControlName="email"
+                aria-describedby="emailHelp" />
             </div>
           </div>
           <div class="col-md-5 offset-md-1">
             <div class="form-group">
-              <label for="InputLocation"
-                >{{ "LOCATION" | translate }}<span>(*)</span></label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="InputLocation"
-                formControlName="location"
-                aria-describedby="locationHelp"
-              />
+              <label for="InputLocation">{{ "LOCATION" | translate }}<span>(*)</span></label>
+              <input type="text" class="form-control" id="InputLocation" formControlName="location"
+                aria-describedby="locationHelp" />
             </div>
           </div>
           <div class="col-md-5">
             <div class="form-group">
               <label for="exampleInputEmail1">{{
                 "WEBSITE" | translate
-              }}</label>
-              <input
-                type="text"
-                class="form-control"
-                id="exampleInputEmail1"
-                formControlName="website"
-                aria-describedby="emailHelp"
-              />
+                }}</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" formControlName="website"
+                aria-describedby="emailHelp" />
             </div>
           </div>
           <div class="col-md-5 offset-md-1">
             <div class="form-group">
               <label for="InputFacebook">Facebook</label>
-              <input
-                type="text"
-                class="form-control"
-                id="InputFacebook"
-                formControlName="facebook"
-                aria-describedby="facebookHelp"
-              />
+              <input type="text" class="form-control" id="InputFacebook" formControlName="facebook"
+                aria-describedby="facebookHelp" />
             </div>
           </div>
           <div class="col-md-5">
             <div class="form-group">
               <label for="InputTwitter">Twitter</label>
-              <input
-                type="text"
-                class="form-control"
-                id="InputTwitter"
-                formControlName="twitter"
-                aria-describedby="twitterHelp"
-              />
+              <input type="text" class="form-control" id="InputTwitter" formControlName="twitter"
+                aria-describedby="twitterHelp" />
             </div>
           </div>
           <div class="col-md-5 offset-md-1">
             <div class="form-group">
               <label for="InputInstagram">Instagram</label>
-              <input
-                type="text"
-                class="form-control"
-                id="InputInstagram"
-                formControlName="instagram"
-                aria-describedby="instagramHelp"
-              />
+              <input type="text" class="form-control" id="InputInstagram" formControlName="instagram"
+                aria-describedby="instagramHelp" />
             </div>
           </div>
           <div class="col-md-5">
             <div class="form-group">
               <label for="InputBlog">Blog</label>
-              <input
-                type="text"
-                class="form-control"
-                id="InputBlog"
-                formControlName="blog"
-                aria-describedby="blogHelp"
-              />
+              <input type="text" class="form-control" id="InputBlog" formControlName="blog"
+                aria-describedby="blogHelp" />
             </div>
           </div>
 
@@ -131,67 +84,48 @@
             <div class="signup-subtitle-wrap">
               <span class="signup-subtitle">{{
                 "UPLOADYOURARTWORK" | translate
-              }}</span>
+                }}</span>
             </div>
             <p class="text-left">
               {{ "ACCEPTFILETYPE" | translate }}：JPG、PNG、GIF
             </p>
           </div>
-<!--upload image-->
+          <!--upload image-->
           <div formArrayName="editions" class="row">
             <div id="select_img" class="col-md-3 text-center mt-30">
-                      <span *ngIf="this.theFirstImage != null " (click)="onRemoveImg($event,'1')"
-                    class="close">&times;</span>
-                <img class="w-100" *ngIf="theFirstImage" [src]="theFirstImage"  alt="" />
-                <img class="w-100" *ngIf="!theFirstImage" src="./assets/images/select_img.jpg" alt="" />
+              <span *ngIf="this.theFirstImage != null " (click)="onRemoveImg($event,'1')" class="close">&times;</span>
+              <img class="w-100" *ngIf="theFirstImage" [src]="theFirstImage" alt="" />
+              <img class="w-100" *ngIf="!theFirstImage" src="./assets/images/select_img.jpg" alt="" />
             </div>
             <div [formGroupName]=0 class="col-md-9 mt-30">
-              <label class="btn_select_img mb-20" for="theFirstImageInput"
-                >{{ "SELECTEDITION" | translate }}
+              <label class="btn_select_img mb-20" for="theFirstImageInput">{{ "SELECTEDITION" | translate }}
               </label>
 
-              <input
-                id="theFirstImageInput"
-                type="file"
-
-                 accept="image/gif, image/jpeg, image/png, image/gif"
-                 (change)="onDetectImage($event,0)"
-                style="visibility: hidden; padding: 0px"
-              />
+              <input id="theFirstImageInput" type="file" accept="image/gif, image/jpeg, image/png, image/gif"
+                (change)="onDetectImage($event,0)" style="visibility: hidden; padding: 0px" />
 
               <div class="form-group">
                 <label for="InputEdition1Name">{{
                   "EDITIONNAME" | translate
-                }}</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="InputEdition1Name"
-                  formControlName="name"
-                  aria-describedby="edition1NameHelp"
-                />
+                  }}</label>
+                <input type="text" class="form-control" id="InputEdition1Name" formControlName="name"
+                  aria-describedby="edition1NameHelp" />
                 <div *ngIf="theFirstImageNameRequire" class="invalid">Name is required</div>
               </div>
 
               <div class="form-group">
                 <label for="InputEdition1Desc">{{
                   "EDITIONDESC" | translate
-                }}</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="InputEdition1Desc"
-                   formControlName="description"
-                  aria-describedby="edition1DescHelp"
-                />
+                  }}</label>
+                <input type="text" class="form-control" id="InputEdition1Desc" formControlName="description"
+                  aria-describedby="edition1DescHelp" />
               </div>
             </div>
 
             <div id="select_img" class="col-md-3 text-center mt-30">
-                       <span *ngIf="this.theSecondImage != null " (click)="onRemoveImg($event,'1')"
-                    class="close">&times;</span>
-              <img class="w-100" *ngIf="theSecondImage" [src]="theSecondImage"  alt="" />
-                <img class="w-100" *ngIf="!theSecondImage" src="./assets/images/select_img.jpg" alt="" />
+              <span *ngIf="this.theSecondImage != null " (click)="onRemoveImg($event,'1')" class="close">&times;</span>
+              <img class="w-100" *ngIf="theSecondImage" [src]="theSecondImage" alt="" />
+              <img class="w-100" *ngIf="!theSecondImage" src="./assets/images/select_img.jpg" alt="" />
             </div>
             <div [formGroupName]=1 class="col-md-9 mt-30">
               <!-- <button
@@ -202,89 +136,54 @@
               >
                 {{ "SELECTEDITION" | translate }}
               </button> -->
-              <label class="btn_select_img mb-20" for="theSecondImageInput"
-                >{{ "SELECTEDITION" | translate }}
+              <label class="btn_select_img mb-20" for="theSecondImageInput">{{ "SELECTEDITION" | translate }}
               </label>
 
-              <input
-                id="theSecondImageInput"
-                type="file"
-
-                  accept="image/gif, image/jpeg, image/png, image/gif"
-                 (change)="onDetectImage($event,1)"
-                style="visibility: hidden; padding: 0px"
-              />
+              <input id="theSecondImageInput" type="file" accept="image/gif, image/jpeg, image/png, image/gif"
+                (change)="onDetectImage($event,1)" style="visibility: hidden; padding: 0px" />
 
               <div class="form-group">
                 <label for="InputEdition2Name">{{
                   "EDITIONNAME" | translate
-                }}</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="InputEdition2Name"
-                  formControlName="name"
-                  aria-describedby="edition2NameHelp"
-                />
-                  <div *ngIf="theSecodnImageNameRequire" class="invalid">Name is required</div>
+                  }}</label>
+                <input type="text" class="form-control" id="InputEdition2Name" formControlName="name"
+                  aria-describedby="edition2NameHelp" />
+                <div *ngIf="theSecodnImageNameRequire" class="invalid">Name is required</div>
               </div>
               <div class="form-group">
                 <label for="InputEdition2Desc">{{
                   "EDITIONDESC" | translate
-                }}</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="InputEdition2Desc"
-                  formControlName="description"
-                  aria-describedby="edition2DescHelp"
-                />
+                  }}</label>
+                <input type="text" class="form-control" id="InputEdition2Desc" formControlName="description"
+                  aria-describedby="edition2DescHelp" />
               </div>
             </div>
 
             <div id="select_img" class="col-md-3 text-center mt-30">
-                <span *ngIf="this.theThirdImage != null " (click)="onRemoveImg($event,'1')"
-                    class="close">&times;</span>
-              <img class="w-100" *ngIf="theThirdImage" [src]="theThirdImage"  alt="" />
-                <img class="w-100" *ngIf="!theThirdImage" src="./assets/images/select_img.jpg" alt="" />
+              <span *ngIf="this.theThirdImage != null " (click)="onRemoveImg($event,'1')" class="close">&times;</span>
+              <img class="w-100" *ngIf="theThirdImage" [src]="theThirdImage" alt="" />
+              <img class="w-100" *ngIf="!theThirdImage" src="./assets/images/select_img.jpg" alt="" />
             </div>
             <div [formGroupName]=2 class="col-md-9 mt-30 mb-30">
-           <label class="btn_select_img mb-20" for="theThirdImageInput"
-                >{{ "SELECTEDITION" | translate }}
+              <label class="btn_select_img mb-20" for="theThirdImageInput">{{ "SELECTEDITION" | translate }}
               </label>
 
-              <input
-                id="theThirdImageInput"
-                type="file"
-
-                accept="image/*"
-                 (change)="onDetectImage($event,2)"
-                style="visibility: hidden; padding: 0px"
-              />
+              <input id="theThirdImageInput" type="file" accept="image/*" (change)="onDetectImage($event,2)"
+                style="visibility: hidden; padding: 0px" />
               <div class="form-group">
                 <label for="InputEdition3Name">{{
                   "EDITIONNAME" | translate
-                }}</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="InputEdition3Name"
-                  formControlName="name"
-                  aria-describedby="edition3NameHelp"
-                />
-                  <div *ngIf="theThirdImageNameRequire" class="invalid">Name is required</div>
+                  }}</label>
+                <input type="text" class="form-control" id="InputEdition3Name" formControlName="name"
+                  aria-describedby="edition3NameHelp" />
+                <div *ngIf="theThirdImageNameRequire" class="invalid">Name is required</div>
               </div>
               <div class="form-group">
                 <label for="InputEdition3Desc">{{
                   "EDITIONDESC" | translate
-                }}</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="InputEdition3Desc"
-                  formControlName="description"
-                  aria-describedby="edition3DescHelp"
-                />
+                  }}</label>
+                <input type="text" class="form-control" id="InputEdition3Desc" formControlName="description"
+                  aria-describedby="edition3DescHelp" />
               </div>
             </div>
           </div>
@@ -296,49 +195,29 @@
 
   <div class="text-center mt-40">
     <div class="form-check form-check-inline mb-10">
-      <input
-        class="form-check-input"
-        type="radio"
-        name="gridRadios"
-        id="gridRadios1"
-        value="option1"
-        checked
-      />
+      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked />
       <label class="form-check-label" for="gridRadios1">
         {{ "IAMTHECURATORARTIST" | translate }}
       </label>
     </div>
     <div class="form-check form-check-inline">
-      <input
-        class="form-check-input"
-        type="radio"
-        name="gridRadios"
-        id="gridRadios2"
-        value="option2"
-      />
+      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2" />
       <label class="form-check-label" for="gridRadios2">
         {{ "IAMAGENT" | translate }}
       </label>
     </div>
     <div class="mb-30">
       <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          id="IsAgree"
-          [(ngModel)]="IsAgree"
-
-        />
-        <label class="form-check-label" for="inlineCheckbox1"
-          >{{ "IAGRESSWITH" | translate
+        <input class="form-check-input" type="checkbox" id="IsAgree" [(ngModel)]="IsAgree" />
+        <label class="form-check-label" for="inlineCheckbox1">{{ "IAGRESSWITH" | translate
           }}<a href="privacy.html" target="_blank" class="inline_text">{{
             "TERMSOFSERVICE" | translate
-          }}</a></label
-        >
+            }}</a></label>
       </div>
     </div>
     <button [ngClass]="{ 'btn_normal-disable': IsAgree !== true,'btn_normal': IsAgree === true}"
-     [attr.disabled]="IsAgree ? null : true" class=" mb-40" (click)="onSubmit()"  >{{ "SUBMITBYARTIST" | translate }}</button>
+      [attr.disabled]="IsAgree ? null : true" class=" mb-40" (click)="onSubmit()">{{ "SUBMITBYARTIST" | translate
+      }}</button>
   </div>
 </div>
 <app-dialog></app-dialog>

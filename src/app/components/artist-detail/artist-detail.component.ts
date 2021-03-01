@@ -1,7 +1,12 @@
 import { Component, ViewEncapsulation, Input } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Utility } from "../../_helpers";
-import { DataService } from "../../_services";
+import {
+  DataService,
+  AppSettingsService,
+  LikeService,
+  AuthStore
+} from "../../_services";
 
 import { TranslateService } from "@ngx-translate/core";
 @Component({
@@ -11,23 +16,35 @@ import { TranslateService } from "@ngx-translate/core";
   encapsulation: ViewEncapsulation.None,
 })
 export class ArtistDetailComponent {
+  lang = "en";
+  _uid = null;
+  currentUser: any = null;
   @Input() id: string;
+  @Input() set uid(value) {
+    this._uid = value;
+
+  }
   @Input() isFollow: boolean = false;
 
   @Input() follow: number = 0;
   @Input() follower: number = 0;
   @Input() _tags: string[];
   @Input() set tags(values) {
-    console.log(" ================", values);
     this._tags = [];
+
     if (values.length > -1) {
-      let _values  = values.split(",");
-      for (let tag of _values)
-        this.translateSrv.get(tag).subscribe((text: string) => {
-          if (!this.utility.IsNullOrEmpty(text)) {
-            this._tags.push(text);
-          }
-        });
+      let _values = values.split(",");
+
+      this.appSettingsSrv.getTagOptions(this.lang).subscribe((data) => {
+
+        if (data != null) {
+          for (let tag of data) {
+            if (_values.includes(tag.value)) {
+              this._tags.push(tag.text);
+            }
+          };
+        }
+      });
     }
   }
 
@@ -44,8 +61,11 @@ export class ArtistDetailComponent {
   constructor(
     private utility: Utility,
     private router: Router,
+    private appSettingsSrv: AppSettingsService,
     private dataSrv: DataService,
-    private translateSrv: TranslateService
+    private translateSrv: TranslateService,
+    private likeSrv: LikeService,
+    private authStoreSrv: AuthStore
   ) {
     let _lang = localStorage.getItem("lang");
     if (!this.utility.IsNullOrEmpty(_lang)) {
@@ -56,6 +76,8 @@ export class ArtistDetailComponent {
         this.translateSrv.use(lang);
       }
     });
+
+
   }
 
   ngOnInit() {
@@ -64,6 +86,25 @@ export class ArtistDetailComponent {
         this.translateSrv.use(lang);
       }
     });
+    console.log(" ================ ", this._uid);
+    console.log(" ================ ", this.id);
+    if (!this.utility.IsNullOrEmpty(this._uid)) {
+      this.likeSrv.IsLike(this._uid, this.id).subscribe(res => {
+        console.log(res);
+      })
+    }
+
+    this.currentUser = this.authStoreSrv.getUserData();
+    if (this.utility.IsNullOrEmpty(this.currentUser)) {
+      this.router.navigate(['./index'], {});
+    }
+
+    this.likeSrv.IsLike(this.currentUser.id, this.id).subscribe(res => {
+      console.log("rse ======== ", res);
+      if (res['result'] === "successful") {
+        this.isFollow = res['data'];
+      }
+    })
   }
 
   getDisplayWalletAddress() {
@@ -79,5 +120,21 @@ export class ArtistDetailComponent {
     } else {
       return "";
     }
+  }
+
+  IsNullorEmpty(value) {
+    return !this.utility.IsNullOrEmpty(value)
+  }
+
+  onLike() {
+    this.likeSrv.like(this.currentUser.id, this.id).subscribe(res => {
+      this.isFollow = true
+    });
+  }
+
+  onDislike() {
+    this.likeSrv.removeLike(this.currentUser.id, this.id).subscribe(res => {
+      this.isFollow = false
+    });
   }
 }

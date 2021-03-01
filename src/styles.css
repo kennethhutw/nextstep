@@ -214,6 +214,13 @@
   border: 2px solid #17f596;
   border-radius: 3px;
 }
+.btn_small_liked {
+  font-size: 16px;
+  padding: 5px 13px;
+  background-color: #11e78b;
+  border: 2px solid #17f596;
+  border-radius: 3px;
+}
 
 .btn_small:hover {
   background-color: #11e78b;

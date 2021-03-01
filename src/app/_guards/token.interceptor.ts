@@ -7,7 +7,7 @@ import {
     HttpErrorResponse
 } from '@angular/common/http';
 import { AuthService } from './auth.service';
-import { Observable,throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
 
 import { ErrorDialogService } from "../_shared/errors/error-dialog.service";
@@ -17,12 +17,12 @@ import { LoadingDialogService } from "../_shared/loading/loading-dialog.service"
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
     constructor(
-        public auth: AuthService, 
+        public auth: AuthService,
         private errorDialogService: ErrorDialogService,
         private loadingDialogService: LoadingDialogService) { }
     intercept(request: HttpRequest<any>,
-         next: HttpHandler):
-          Observable<HttpEvent<any>> {
+        next: HttpHandler):
+        Observable<HttpEvent<any>> {
         /*     if (request.url.indexOf('https://pro-api.coinmarketcap.com') == -1) {
                 request = request.clone({
                     setHeaders: {
@@ -30,18 +30,18 @@ export class TokenInterceptor implements HttpInterceptor {
                     }
                 });
             } */
-        console.log(request);
+        //  console.log(request);
         return next.handle(request).pipe(
             catchError((error: HttpErrorResponse) => {
-              console.error("Error from error interceptor", error);
-              this.errorDialogService.openDialog(
-                  error.message
-              , error.status);
-              return throwError(error);
+                console.error("Error from error interceptor", error);
+                this.errorDialogService.openDialog(
+                    error.message
+                    , error.status);
+                return throwError(error);
             }),
             finalize(() => {
-              this.loadingDialogService.hideDialog();
+                this.loadingDialogService.hideDialog();
             })
-          ) as Observable<HttpEvent<any>>;
+        ) as Observable<HttpEvent<any>>;
     }
 }

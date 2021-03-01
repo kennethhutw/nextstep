@@ -44,7 +44,7 @@ import {
   ArtistCollectionComponent,
   ArtistFavoriteComponent,
   ArtistOfferComponent,
-  ArtistSalesComponent,
+  ArtistSoldArtWorkComponent,
   ArtistBasicComponent,
   ArtistEditionDetailComponent,
   ArtistUploadComponent
@@ -57,10 +57,10 @@ import {
   CollectorLayoutComponent
 } from "./layout";
 const routes: Routes = [
-  { path: "", redirectTo: "index" , pathMatch: "full"},
-  { path: "example", component: ExampleComponent , pathMatch: "full"},
-  { path: "donation", component: DonationComponent , pathMatch: "full"},
-  { path: "edition", component: EditionComponent , pathMatch: "full"},
+  { path: "", redirectTo: "index", pathMatch: "full" },
+  { path: "example", component: ExampleComponent, pathMatch: "full" },
+  { path: "donation", component: DonationComponent, pathMatch: "full" },
+  { path: "edition", component: EditionComponent, pathMatch: "full" },
 
 
   { path: "token/:id", component: TokenComponent },
@@ -69,23 +69,25 @@ const routes: Routes = [
   //    path: "**",
   //    component: HomeComponent
   // },
-   {
-         path: "index",
-         component: HomeComponent,
-      },
-   {
+  {
+    path: "index",
+    component: HomeComponent,
+  },
+  {
     path: "",
     component: MainLayoutComponent,
     children: [
       {
         path: "qa",
-        component:QAComponent,
-        pathMatch: "full"},
+        component: QAComponent,
+        pathMatch: "full"
+      },
       {
         path: "notfound",
         component: PageNotFoundComponent,
       },
-      { path: "artists",
+      {
+        path: "artists",
         component: ArtistsComponent,
         pathMatch: "full"
       },
@@ -97,7 +99,8 @@ const routes: Routes = [
       {
         path: "gallery",
         component: GalleryComponent,
-        pathMatch: "full"},
+        pathMatch: "full"
+      },
       {
         path: "activity",
         component: ActivityComponent,
@@ -107,68 +110,68 @@ const routes: Routes = [
         path: "gallery/:editionId",
         component: EditionComponent
       },
-      { path: "policy",component:PolicyComponent, pathMatch: "full"},
-      { path: "about",component:AboutComponent, pathMatch: "full"},
-      { path: "for-artist",component:ForArtistComponent, pathMatch: "full"},
-      { path: "for-buyer",component:ForBuyerComponent, pathMatch: "full"},
+      { path: "policy", component: PolicyComponent, pathMatch: "full" },
+      { path: "about", component: AboutComponent, pathMatch: "full" },
+      { path: "for-artist", component: ForArtistComponent, pathMatch: "full" },
+      { path: "for-buyer", component: ForBuyerComponent, pathMatch: "full" },
       { path: "error", component: ErrorComponent, pathMatch: "full" },
       { path: "profile/artist/:id", component: ArtistProfileComponent },
       { path: "profile/collector/:id", component: CollectorProfilePageComponent },
       {
         path: "artist",
         component: ArtistLayoutComponent,
-        children:[{
-            path: "account",
-            component: ArtistAccountComponent,
-          },{
-            path: "collection",
-            component: ArtistCollectionComponent,
-          },{
-            path: "favorite",
-            component: ArtistFavoriteComponent,
-          },{
-            path: "offer",
-            component: ArtistOfferComponent,
-          },{
-            path: "sales",
-            component: ArtistSalesComponent,
-          },{
-            path: "basic",
-            component: ArtistBasicComponent,
-          },{
-            path: "collection/detail/:id",
-            component: ArtistEditionDetailComponent,
-          },{
-            path: "upload",
-            component: ArtistUploadComponent,
-          }]
+        children: [{
+          path: "account",
+          component: ArtistAccountComponent,
+        }, {
+          path: "collection",
+          component: ArtistCollectionComponent,
+        }, {
+          path: "favorite",
+          component: ArtistFavoriteComponent,
+        }, {
+          path: "offer",
+          component: ArtistOfferComponent,
+        }, {
+          path: "sold",
+          component: ArtistSoldArtWorkComponent,
+        }, {
+          path: "basic",
+          component: ArtistBasicComponent,
+        }, {
+          path: "collection/detail/:id",
+          component: ArtistEditionDetailComponent,
+        }, {
+          path: "upload",
+          component: ArtistUploadComponent,
+        }]
       },
       {
         path: "collector",
-        component:CollectorLayoutComponent,
-        children:[{
-            path: "account",
-            component: CollectorAccountComponent,
-          },{
-            path: "collection",
-            component: CollectorCollectionComponent,
-          },{
-            path: "favorite",
-            component: CollectorFavoriteComponent,
-          },{
-            path: "offer",
-            component: CollectorOfferComponent,
-          },{
-            path: "sales",
-            component: CollectorSalesComponent,
-          }]
+        component: CollectorLayoutComponent,
+        children: [{
+          path: "account",
+          component: CollectorAccountComponent,
+        }, {
+          path: "collection",
+          component: CollectorCollectionComponent,
+        }, {
+          path: "favorite",
+          component: CollectorFavoriteComponent,
+        }, {
+          path: "offer",
+          component: CollectorOfferComponent,
+        }, {
+          path: "sales",
+          component: CollectorSalesComponent,
+        }]
       },
-        { path: "register-artist", component: RegisterArtistComponent },
-        { path: "register-collector", component: RegisterBuyerComponent },
+      { path: "register-artist", component: RegisterArtistComponent },
+      { path: "register-collector", component: RegisterBuyerComponent },
 
       { path: "", redirectTo: "index", pathMatch: "full" }
-      ],
-    },
+    ],
+  },
   // {
   //   path: "index",
   //   component: HomeComponent,
@@ -203,7 +206,7 @@ const routes: Routes = [
       }
     ]
   },
-   { path: ":name", component: ArtistPageComponent},
+  { path: ":uid", component: ArtistPageComponent },
 ];
 
 // @NgModule({

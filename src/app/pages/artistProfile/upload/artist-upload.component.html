@@ -26,7 +26,7 @@
             rows=4></textarea>
     </div>
     <div class="form-group">
-        <label for="exampleInputEmail1">{{ "BIDDING" | translate }}</label>
+        <label for="exampleInputEmail1">{{ "ISBIDDING" | translate }}</label>
         <!-- <select disabled>
             <option value="">--請選擇--</option>
             <option value="bid">競價</option>
@@ -162,14 +162,14 @@
             </div>
             <div class="modal-body">
                 <div class="text-center mb-4">
-                    <h3>選擇作品分類</h3>
-                    <p>最多可選擇三組</p>
+                    <h3>{{ "SELECTCHANNEL" | translate }}</h3>
+                    <p>{{ "UPTOTHREE" | translate }}</p>
                 </div>
                 <div class="row text-center" style="  display: flex;  align-items: center;">
-                    <div class="switch">
+                    <!-- <div class="switch">
                         <input id="switch01" type="checkbox" class="">
                         <label for="switch01" class="switch_text">抽象</label>
-                    </div>
+                    </div> -->
 
                     <ng-container *ngFor="let tag of tags">
                         <div class="switch">
@@ -251,10 +251,12 @@
             <hr>
             <div class="row mt-20 mb-20">
                 <div class="col-md-6">
-                    <button type="button" class="model_btn_second" data-dismiss="modal" aria-label="Close">取消</button>
+                    <button type="button" class="model_btn_second" data-dismiss="modal" aria-label="Close">{{ "CANCEL" |
+                        translate }}</button>
                 </div>
                 <div class="col-md-6">
-                    <button class="model_btn_normal" data-dismiss="modal" (click)="getSelected()">確認</button>
+                    <button class="model_btn_normal" data-dismiss="modal" (click)="getSelected()">{{ "CONFIRM" |
+                        translate }}</button>
                 </div>
             </div>
         </div>

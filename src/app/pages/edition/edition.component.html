@@ -1,105 +1,57 @@
 <div id="content-mt" class="container">
-  <div id="project_info" class="row">
+  <div id="project_info" *ngIf="currentEdition" class="row">
     <div class="col-md-7">
       <div class="mb-20">
-        <img src="./assets/images/project-info.jpg" alt="" />
+        <img src="{{this.currentEdition.imageUrl || this.settingSrv.defaultProfileLogo}}" actual-image="profileImage"
+          alt="" />
       </div>
       <div class="row mt-40 mb-10">
-        <div class="col-6">
+        <div class="col-8">
           <h2>{{ "MOREBYTHISARTIST" | translate }}</h2>
         </div>
-        <div class="col-6 text-right">
-          <a href="artist-detail.html"
-            ><button class="btn_small">更多作品</button></a
-          >
+        <div class="col-4 text-right">
+          <a routerLink="/{{ this.currentEdition.artist.uid }}"><button class="btn_small">{{ "VIEWMORE" | translate
+              }}</button></a>
         </div>
       </div>
 
       <div id="project_info_more" class="row">
-        <ng-container *ngFor="let edition of editions">
+        <ng-container *ngFor="let edition of editions| slice:0:6; let i = index">
           <div class="col-md-4 col-6 mb-30">
-            <a routerLink="/gallery/{{ edition.id }}"
-              ><img src="{{ edition.imageURL }}" alt=""
-            /></a>
+            <a routerLink="/gallery/{{ edition.id }}"><img src="{{ edition.imageUrl }}" alt="" /></a>
           </div>
         </ng-container>
-        <!-- <div class="col-md-4 col-6 mb-30">
-          <a href="project-purchase.html"
-            ><img src="./assets/images/project-info-01.jpg" alt=""
-          /></a>
-        </div>
-        <div class="col-md-4 col-6 mb-30">
-          <a href="project-purchase.html"
-            ><img src="./assets/images/project-info-02.jpg" alt=""
-          /></a>
-        </div>
-        <div class="col-md-4 col-6 mb-30">
-          <a href="project-purchase.html"
-            ><img src="./assets/images/project-info-03.jpg" alt=""
-          /></a>
-        </div>
-        <div class="col-md-4 col-6 mb-30">
-          <a href="project-purchase.html"
-            ><img src="./assets/images/project-info-04.jpg" alt=""
-          /></a>
-        </div>
-        <div class="col-md-4 col-6 mb-30">
-          <a href="project-purchase.html"
-            ><img src="./assets/images/project-info-05.jpg" alt=""
-          /></a>
-        </div>
-        <div class="col-md-4 col-6 mb-30">
-          <a href="project-purchase.html"
-            ><img src="./assets/images/project-info-06.jpg" alt=""
-          /></a>
-        </div> -->
+
       </div>
     </div>
 
     <div class="col-md-5">
       <div class="mb-20">
         <div class="d-inline">
-          <a href="artist-detail.html"
-            ><img
-              class="rounded-circle w-25"
-              src="./assets/images/artist-photo.jpg"
-              alt=""
-          /></a>
+          <a routerLink="/{{ this.currentEdition.artist.uid }}"><img class="rounded-circle w-25"
+              src="{{this.currentEdition.artist.imageUrl || this.settingSrv.defaultProfileLogo}}" alt="" /></a>
         </div>
         <div class="d-inline p-2">
-          <a href="artist-detail.html">Raamin ka</a>
+          <a routerLink="/{{ this.currentEdition.artist.uid }}">{{this.currentEdition.artist.name}}</a>
         </div>
       </div>
 
-      <h1 class="mb-30">The Calm And The Storm</h1>
+      <h1 class="mb-30">{{this.currentEdition.name}}</h1>
       <h4>{{ "EDITIONDESC" | translate }}</h4>
       <div class="text-justify">
-        'Trickle Down, A New Vertical Sovereignty' is an artwork by Helen
-        Knowles. It​ is a tokenised four-screen video installation and
-        generative soundscape attached to the blockchain, which explores value
-        systems and wealth disparity. On sale here is a limited-edition
-        transaction map GIF which illustrates how the currency flows and is
-        distributed.The artwork is composed of auction scenes documented by
-        artist Helen Knowles in widely different settings, which reflect the
-        breadth of wealth and financial power…
+        {{this.currentEdition.description}}
       </div>
       <h1 class="mt-50">
-        Ξ 0.11 <span class="project_info_price_us"> / USD 138</span>
+        Ξ {{displaySellPrice()}} <span class="project_info_price_us"> / USD
+          {{this.currentEdition.usdValue}}</span>
       </h1>
-      <a
-        href="#"
-        class="text-white"
-        data-toggle="modal"
-        data-target="#modal_login_way"
-        ><button class="btn_large w-100">{{ "BUYNOW" | translate }}</button></a
-      >
+      <a href="#" class="text-white" data-toggle="modal" data-target="#modal_login_way"><button
+          class="btn_large w-100">{{ "BUYNOW" | translate }}</button></a>
       <div class="text-right mt-10">
-        <a *ngIf="IsFollowed" href="project-bidding.html">
-          <i class="far fa-heart"></i
-        ></a>
-        <a *ngIf="!IsFollowed" href="project-bidding.html">
-          <i class="fas fa-heart"></i
-        ></a>
+        <a *ngIf="!IsFollowed" (click)="onLike()">
+          <i class="far fa-heart"></i></a>
+        <a *ngIf="IsFollowed" (click)="onDislike()">
+          <i class="fas fa-heart"></i></a>
         <!-- <a href="project-bidding.html">收藏 <i class="far fa-heart"></i></a>
         <a href="project-bidding.html">已收藏 <i class="fas fa-heart"></i></a> -->
       </div>
@@ -122,7 +74,7 @@
       </div>
       <hr class="mt-30 mb-30" />
       <h6>{{ "HISTORY" | translate }}</h6>
-      <table class="table project_info_trans_record">
+      <table class="table project_info_trans_record" style="    margin-bottom: 150px;">
         <thead>
           <tr>
             <th scope="col">{{ "OWNER" | translate }}</th>
@@ -131,7 +83,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+
+          <!-- <ng-container *ngFor="let tx of transactions| slice:0:6; let i = index">
+            <tr>
+              <td>Mark Liu</td>
+              <td>Ξ 0.11 / NTD 138</td>
+              <td>{{tx.createdAt}}</td>
+            </tr>
+          </ng-container> -->
+          <!-- <tr>
             <td>Mark Liu</td>
             <td>Ξ 0.11 / NTD 138</td>
             <td>2020-05-23</td>
@@ -145,7 +105,7 @@
             <td>Chris</td>
             <td>Ξ 0.11 / NTD 138</td>
             <td>2020-05-23</td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
     </div>

@@ -16,7 +16,7 @@ export class ArtistComponent {
   @Input() id: string;
   @Input() src: string;
   @Input() artistId: string;
-  @Input() sales: number = 0;
+  @Input() sold: number = 0;
   @Input() editions: number = 0;
   @Input() amount: number = 0;
 
@@ -44,7 +44,7 @@ export class ArtistComponent {
   }
 
   routeToArtistProfile() {
-    this.router.navigate(["./" + this.artistId], {});
+    this.router.navigate(["./" + this.id], {});
   }
 
   ngOnInit() {

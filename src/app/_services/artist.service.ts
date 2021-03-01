@@ -3,10 +3,10 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import { catchError, retry } from "rxjs/operators";
 import { environment } from "../../environments/environment";
-import { resResult} from "../_models";
+import { resResult } from "../_models";
 @Injectable()
 export class ArtistService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   public getAllArtists(): Observable<any> {
     return this.http
@@ -25,16 +25,27 @@ export class ArtistService {
     }
   }
 
-  public getArtistBasicInfo(id){
-     return this.http.get<any>(`${environment.apiUrl}/artist/getArtistBasicInfo/${id}`);
+  public getArtistBasicInfo(id) {
+    return this.http.get<any>(`${environment.apiUrl}/artists/getArtistBasicInfo/${id}`);
   }
 
-  public updateArtistBasicInfo(data){
+  public getArtistBasicInfoByUid(uid) {
+    return this.http.get<any>(`${environment.apiUrl}/artists/getArtistBasicInfoByUid/${uid}`);
+  }
+
+  public getArtistArtwork(uid) {
+    return this.http.get<any>(`${environment.apiUrl}/artists/getArtistArtwork/${uid}`);
+  }
+
+  public updateArtistBasicInfo(data) {
     return this.http
-      .post<resResult>(`${environment.apiUrl}/artist/updateArtistBasicInfo`,
+      .post<resResult>(`${environment.apiUrl}/artists/updateArtistBasicInfo`,
         data
       );
   }
 
+  public getArtists() {
+    return this.http.get<any>(`${environment.apiUrl}/artists/getArtists`);
+  }
 
 }

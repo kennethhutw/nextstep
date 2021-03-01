@@ -6,7 +6,8 @@ import {
   AppSettingsService,
   ArtistService,
   AuthStore,
-  EditionService } from "./../../../_services";
+  EditionService
+} from "./../../../_services";
 import { Utility } from "./../../../_helpers";
 import {
   FormBuilder,
@@ -20,43 +21,42 @@ import {
 })
 export class ArtistUploadComponent implements OnInit {
 
-  artworkImage :any;
-  artworkImageFile :any;
+  artworkImage: any;
+  artworkImageFile: any;
 
   artworkForm: FormGroup;
   loading = false;
   submitted = false;
   IsUpdateFailed = false;
   informMsg = null;
-  currentUser :any;
+  currentUser: any;
   ethPrice = 0;
-  ethAmount :Number =0;
+  ethAmount: Number = 0;
 
   tags = [];
-   isReadonly = true;
+  isReadonly = true;
   constructor(
-    private dataSrv:DataService,
-    private utility : Utility,
-    private artistSrv:ArtistService,
-    private editionSrv:EditionService,
+    private dataSrv: DataService,
+    private utility: Utility,
+    private artistSrv: ArtistService,
+    private editionSrv: EditionService,
     private appSettingsSrv: AppSettingsService,
     private translateSrv: TranslateService,
     private formBuilder: FormBuilder,
-    private authStoreSrv:AuthStore) {}
+    private authStoreSrv: AuthStore) { }
 
   ngOnInit() {
     this.currentUser = this.authStoreSrv.getUserData();
-    if(!this.utility.IsNullOrEmpty(localStorage.getItem("ETHPRICE")))
-    {
+    if (!this.utility.IsNullOrEmpty(localStorage.getItem("ETHPRICE"))) {
       this.ethPrice = Number(localStorage.getItem("ETHPRICE"));
     }
 
-     this.artworkForm = this.formBuilder.group({
+    this.artworkForm = this.formBuilder.group({
       name: ["", Validators.required],
       description: ["", Validators.required],
       IsBid: [false],
       sellingPrice: [0],
-      paymentway:[0],
+      paymentway: [0],
       numberOfArtwork: ["", Validators.required],
       tags: ["", Validators.required]
     });
@@ -83,7 +83,9 @@ export class ArtistUploadComponent implements OnInit {
   public getSelected() {
     this.isReadonly = false;
     let result = this.tags.filter((ch) => { return ch.selected })
-                     .map((ch) => { return ch.value });
+      .map((ch) => { return ch.value });
+
+
 
     let _tags_string = result.toString();
     this.artworkForm.patchValue({ tags: _tags_string });
@@ -95,37 +97,37 @@ export class ArtistUploadComponent implements OnInit {
     this.artworkImageFile = null;
   }
 
-  TotalETHAmount(event){
-    if(!this.utility.IsNullOrEmpty(event.target.value))
-    {
-      let usd  = parseFloat( event.target.value)
-      this.ethAmount =+( usd/this.ethPrice).toFixed(3);
+  TotalETHAmount(event) {
+    if (!this.utility.IsNullOrEmpty(event.target.value)) {
+      let usd = parseFloat(event.target.value);
+      this.ethAmount = +(usd / this.ethPrice).toFixed(3);
     }
   }
 
   onDetectImage(event) {
-    if ( event.target.files.length === 0)
+    if (event.target.files.length === 0)
       return;
 
-    var mimeType =  event.target.files[0].type;
+    var mimeType = event.target.files[0].type;
     if (mimeType.match(/image\/*/) == null) {
       return;
     }
 
     var reader = new FileReader();
     this.artworkImageFile = event.target.files[0];
+    this.artworkForm.patchValue({ name: this.artworkImageFile.name });
     reader.readAsDataURL(event.target.files[0]);
     reader.onload = (_event) => {
       this.artworkImage = reader.result;
     }
   }
 
-  onSubmit(){
+  onSubmit() {
     this.submitted = true;
-     this.IsUpdateFailed = false;
-      this.informMsg =null;
+    this.IsUpdateFailed = false;
+    this.informMsg = null;
 
-    if(this.artworkImageFile == null){
+    if (this.artworkImageFile == null) {
       return;
     }
 
@@ -150,29 +152,41 @@ export class ArtistUploadComponent implements OnInit {
     formData.append("paymentway", this.artworkForm.value.paymentway);
     formData.append("usdprice", this.artworkForm.value.sellingPrice);
     formData.append("totalamount", this.artworkForm.value.numberOfArtwork);
-     formData.append("uploadfile", this.artworkImageFile );
+    formData.append("uploadfile", this.artworkImageFile);
 
-    this.editionSrv.createArtwrok(formData).subscribe(res =>{
-       if (res["result"] === "successful") {
-         this.translateSrv.get("UPDATEDSUCC").subscribe((text: string) => {
-             this.informMsg = text;
-         });
-         this.artworkForm.reset();
-         this.artworkImageFile = null;
-         this.artworkImage=null;
-       }
-       else {
-         this.translateSrv.get("UPDATEDFAILED").subscribe((text: string) => {
-             this.informMsg = text;
-             this.IsUpdateFailed = true;
-         });
-       }
-     }, error=>{
-       this.translateSrv.get("UPDATEDFAILED").subscribe((text: string) => {
-             this.informMsg = text;
-             this.IsUpdateFailed = true;
-       });
-       console.error("update Basic infor failed",error);
-     });
+    this.editionSrv.createEdition(formData).subscribe(res => {
+      if (res["result"] === "successful") {
+        this.translateSrv.get("UPDATEDSUCC").subscribe((text: string) => {
+          this.informMsg = text;
+        });
+        this.tags
+          .map((ch) => {
+            ch.selected = false;
+          });
+        this.artworkForm.reset();
+        this.artworkImageFile = null;
+        this.artworkImage = null;
+      }
+      else {
+        this.translateSrv.get("UPDATEDFAILED").subscribe((text: string) => {
+          this.informMsg = text;
+          this.IsUpdateFailed = true;
+        });
+      }
+    }, error => {
+      this.translateSrv.get("UPDATEDFAILED").subscribe((text: string) => {
+        this.informMsg = text;
+        this.IsUpdateFailed = true;
+      });
+      console.error("update Basic infor failed", error);
+    });
+  }
+
+  numbersOnly(event: any) {
+    let charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode != 46 && charCode > 31
+      && (charCode < 48 || charCode > 57))
+      return false;
+    return true;
   }
 }

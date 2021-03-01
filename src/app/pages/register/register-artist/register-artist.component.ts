@@ -3,7 +3,8 @@ import { TranslateService } from "@ngx-translate/core";
 import {
   DataService,
   AuthStore,
-DialogService } from "./../../../_services";
+  DialogService
+} from "./../../../_services";
 import { Utility } from "./../../../_helpers";
 import { NewArtist, ApplyEdition } from "./../../../_models";
 import { Router } from '@angular/router';
@@ -28,18 +29,18 @@ export class RegisterArtistComponent implements OnInit {
   registerForm: FormGroup;
   loading = false;
   submitted = false;
-  newEditions =[];
+  newEditions = [];
 
-  theFirstImage :any;
+  theFirstImage: any;
   theFirstImageNameRequire = false;
-  theSecondImage :any;
+  theSecondImage: any;
   theSecodnImageNameRequire = false;
-  theThirdImage :any;
-theThirdImageNameRequire = false;
+  theThirdImage: any;
+  theThirdImageNameRequire = false;
   constructor(
     private router: Router,
     private dialogSrv: DialogService,
-    private authStore:AuthStore,
+    private authStore: AuthStore,
     private formBuilder: FormBuilder,
     private translateSrv: TranslateService,
     private utility: Utility,
@@ -58,14 +59,14 @@ theThirdImageNameRequire = false;
 
   ngOnInit() {
 
-    for(let i = 0; i <3 ;i++){
-     // let _newEdition = new ApplyEdition();
+    for (let i = 0; i < 3; i++) {
+      // let _newEdition = new ApplyEdition();
       let _newEdition = this.formBuilder.group({
         name: [""],
-        description:[""],
-        imageName:[""],
-        imageUrl:[""],
-        imageSize:[""],
+        description: [""],
+        imageName: [""],
+        imageUrl: [""],
+        imageSize: [""],
         image: [null],
       });
       this.newEditions.push(_newEdition);
@@ -88,8 +89,14 @@ theThirdImageNameRequire = false;
       editions: this.formBuilder.array(this.newEditions)
     });
     localStorage.clear();
-  }
 
+  }
+  try() {
+    this.dialogSrv.infoThis("you have successfully registered ",
+      () => {
+        console.log("===")
+      });
+  }
   //   onDetectCompLogo(event) {
   //   this.uploadedCompLogo = false;
   //   this.selectedMaterial = event.target.files;
@@ -99,37 +106,38 @@ theThirdImageNameRequire = false;
   //      let file = this.selectedMaterial.item(0);
   // }
 
-    onDetectImage(event, index) {
-    if ( event.target.files.length === 0)
+  onDetectImage(event, index) {
+    if (event.target.files.length === 0)
       return;
 
-    var mimeType =  event.target.files[0].type;
+    var mimeType = event.target.files[0].type;
     if (mimeType.match(/image\/*/) == null) {
 
       return;
     }
-
+    console.log("event.target.files[0]", event.target);
     var reader = new FileReader();
-    let controls =  this.registerForm.controls["editions"];
-    controls["controls"][index].patchValue( {image:event.target.files[0]});
+    let controls = this.registerForm.controls["editions"];
+    controls["controls"][index].patchValue({ image: event.target.files[0] });
+    controls["controls"][index].patchValue({ name: event.target.files[0].name });
     reader.readAsDataURL(event.target.files[0]);
     reader.onload = (_event) => {
 
 
-       switch(index){
-           case 0:
-             this.theFirstImage = reader.result;
-             break;
-              case 1:
-             this.theSecondImage = reader.result;
-              break;
-              case 2:
-             this.theThirdImage = reader.result;
-             break;
-         }
-      controls["controls"][index].patchValue( {imageUrl:reader.result});
-    //  controls["controls"][index].patchValue( {name:reader.result});
-     // this.imgURL = reader.result;
+      switch (index) {
+        case 0:
+          this.theFirstImage = reader.result;
+          break;
+        case 1:
+          this.theSecondImage = reader.result;
+          break;
+        case 2:
+          this.theThirdImage = reader.result;
+          break;
+      }
+      controls["controls"][index].patchValue({ imageUrl: reader.result });
+      //controls["controls"][index].patchValue({ name: reader.result });
+      // this.imgURL = reader.result;
     }
   }
 
@@ -141,10 +149,10 @@ theThirdImageNameRequire = false;
     return this.registerForm.invalid;
   }
 
-   onRemoveImg(event, imagePosition) {
-  let controls =  this.registerForm.controls["editions"];
-      controls["controls"][imagePosition].patchValue( {image:null});
-        controls["controls"][imagePosition].updateValueAndValidity();
+  onRemoveImg(event, imagePosition) {
+    let controls = this.registerForm.controls["editions"];
+    controls["controls"][imagePosition].patchValue({ image: null });
+    controls["controls"][imagePosition].updateValueAndValidity();
     if (imagePosition === "1") {
       this.theFirstImage = null;
       const element = document.querySelector('#theFirstImageInput');
@@ -160,7 +168,7 @@ theThirdImageNameRequire = false;
       }
 
     } else if (imagePosition === "3") {
-       this.theThirdImage = null;
+      this.theThirdImage = null;
       const element = document.querySelector('#theThirdImageInput');
       if (!!element) {
         element['value'] = null;
@@ -169,52 +177,52 @@ theThirdImageNameRequire = false;
     }
   }
 
-  onSubmit(){
+  onSubmit() {
 
-     const _editions = this.registerForm.get('editions') as FormArray;
-    for(let i =0; i < _editions.controls.length ; i++){
+    const _editions = this.registerForm.get('editions') as FormArray;
+    for (let i = 0; i < _editions.controls.length; i++) {
       let _edition = _editions.controls[i];
-       // _edition.setErrors({'required': false});
-      if(!this.utility.IsNullOrEmpty(_edition.value.imageUrl)){
-         if(this.utility.IsNullOrEmpty(_edition.value.name)){
-         //_edition.setErrors({'required': true});
-         switch(i){
-           case 0:
-             this.theFirstImageNameRequire = true;
-             return;
-             //break;
-              case 1:
-             this.theSecodnImageNameRequire = true;
+      // _edition.setErrors({'required': false});
+      if (!this.utility.IsNullOrEmpty(_edition.value.imageUrl)) {
+        if (this.utility.IsNullOrEmpty(_edition.value.name)) {
+          //_edition.setErrors({'required': true});
+          switch (i) {
+            case 0:
+              this.theFirstImageNameRequire = true;
               return;
-             //break;
-              case 2:
-             this.theThirdImageNameRequire = true;
+            //break;
+            case 1:
+              this.theSecodnImageNameRequire = true;
               return;
-             //break;
-         }
-       } else {
-          switch(i){
-           case 0:
-             this.theFirstImageNameRequire = false;
-             break;
-              case 1:
-             this.theSecodnImageNameRequire = false;
-             break;
-              case 2:
-             this.theThirdImageNameRequire = false;
-             break;
-         }
-       }
+            //break;
+            case 2:
+              this.theThirdImageNameRequire = true;
+              return;
+            //break;
+          }
+        } else {
+          switch (i) {
+            case 0:
+              this.theFirstImageNameRequire = false;
+              break;
+            case 1:
+              this.theSecodnImageNameRequire = false;
+              break;
+            case 2:
+              this.theThirdImageNameRequire = false;
+              break;
+          }
+        }
       }
     }
 
-     if (this.registerForm.invalid) {
+    if (this.registerForm.invalid) {
       return;
     }
 
     let newArtist = new NewArtist();
-    newArtist.name =  this.registerForm.value.name;
-    newArtist.email =  this.registerForm.value.email;
+    newArtist.name = this.registerForm.value.name;
+    newArtist.email = this.registerForm.value.email;
     newArtist.location = this.registerForm.value.location;
     newArtist.website = this.registerForm.value.website;
     newArtist.twitter = this.registerForm.value.twitter;
@@ -223,43 +231,43 @@ theThirdImageNameRequire = false;
 
 
     let formData = new FormData();
-    formData.append("name",  newArtist.name);
-    formData.append("email",  newArtist.email);
-    formData.append("location",  newArtist.location);
-    formData.append("website",  newArtist.website);
-    formData.append("twitter",  newArtist.twitter);
-    formData.append("instagram",  newArtist.instagram);
-    formData.append("blog",  newArtist.blog);
+    formData.append("name", newArtist.name);
+    formData.append("email", newArtist.email);
+    formData.append("location", newArtist.location);
+    formData.append("website", newArtist.website);
+    formData.append("twitter", newArtist.twitter);
+    formData.append("instagram", newArtist.instagram);
+    formData.append("blog", newArtist.blog);
 
 
-    if(!this.utility.IsNullOrEmpty(_editions.controls[0].value.image)){
-        formData.append('firstImage', _editions.controls[0].value.image);
-        formData.append('firstImageName', _editions.controls[0].value.name);
-        formData.append('firstImageDescription', _editions.controls[0].value.description);
+    if (!this.utility.IsNullOrEmpty(_editions.controls[0].value.image)) {
+      formData.append('firstImage', _editions.controls[0].value.image);
+      formData.append('firstImageName', _editions.controls[0].value.name);
+      formData.append('firstImageDescription', _editions.controls[0].value.description);
     }
 
-    if(!this.utility.IsNullOrEmpty(_editions.controls[1].value.image)){
-        formData.append('secondImage', _editions.controls[1].value.image);
-        formData.append('secondImageName', _editions.controls[1].value.name);
-        formData.append('secondImageDescription', _editions.controls[1].value.description);
+    if (!this.utility.IsNullOrEmpty(_editions.controls[1].value.image)) {
+      formData.append('secondImage', _editions.controls[1].value.image);
+      formData.append('secondImageName', _editions.controls[1].value.name);
+      formData.append('secondImageDescription', _editions.controls[1].value.description);
     }
 
-    if(!this.utility.IsNullOrEmpty(_editions.controls[2].value.image)){
-        formData.append('thirdImage', _editions.controls[2].value.image);
-        formData.append('thirdImageName', _editions.controls[2].value.name);
-        formData.append('thirdImageDescription', _editions.controls[2].value.description);
+    if (!this.utility.IsNullOrEmpty(_editions.controls[2].value.image)) {
+      formData.append('thirdImage', _editions.controls[2].value.image);
+      formData.append('thirdImageName', _editions.controls[2].value.name);
+      formData.append('thirdImageDescription', _editions.controls[2].value.description);
     }
 
-   //  return;
+    //  return;
 
-      this.authStore.ArtistSignup(formData).subscribe(res =>{
-            if (res["result"] === "successful") {
-              this.dialogSrv.infoThis("you have successfully registered ",
-               () => {
-                       this.router.navigate(['./index'], {});
-               });
-            }
-     });
+    this.authStore.ArtistSignup(formData).subscribe(res => {
+      if (res["result"] === "successful") {
+        this.dialogSrv.infoThis("you have successfully registered ",
+          () => {
+            this.router.navigate(['./index'], {});
+          });
+      }
+    });
 
   }
 

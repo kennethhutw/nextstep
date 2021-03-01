@@ -9,7 +9,7 @@ import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService, TokenInterceptor } from "./../_guards";
-import { Utility, SocialMediaUtility } from "../_helpers";
+import { Utility, SocialMediaUtility, TimeUtility } from "../_helpers";
 import { BsModalService } from "ngx-bootstrap/modal";
 import { ModalModule } from "ngx-bootstrap";
 import { GlobalErrorHandler } from "./../_core/errors/global-error-handler";
@@ -19,13 +19,15 @@ import {
   CryptoService,
   Web3Service,
   ArtistService,
+  ArtWorkService,
   EditionService,
   DataService,
   AuthStore,
   AppSettingsService,
   DialogService,
   SettingService,
-  LikeService
+  LikeService,
+  GalleryService
 } from "./../_services";
 
 import {
@@ -34,16 +36,22 @@ import {
   DragDropFileDirective,
   DialogComponent,
   EditableInputComponent,
-    ViewModeDirective,
+  ViewModeDirective,
   EditModeDirective,
   EditableOnEnterDirective
 } from "../components";
 
 import {
-  FocusableDirective
+  FocusableDirective,
+  TwoDigitDecimaNumberDirective
 } from "../_directive";
 
-const sharedComponents = [LoadingDialogComponent, ErrorDialogComponent];
+import { AddressShortenPipe, ShortenPipe }
+  from "../_pipe";
+
+const sharedComponents = [
+  LoadingDialogComponent,
+  ErrorDialogComponent];
 
 @NgModule({
   declarations: [
@@ -53,9 +61,12 @@ const sharedComponents = [LoadingDialogComponent, ErrorDialogComponent];
     EditModeDirective,
     EditableOnEnterDirective,
     FocusableDirective,
+    TwoDigitDecimaNumberDirective,
     DialogComponent,
     ModalComponent,
     EditableInputComponent,
+    AddressShortenPipe,
+    ShortenPipe,
     ...sharedComponents,
   ],
   imports: [
@@ -63,8 +74,7 @@ const sharedComponents = [LoadingDialogComponent, ErrorDialogComponent];
     ReactiveFormsModule,
     CommonModule,
     RouterModule,
-
-     ModalModule.forRoot()],
+    ModalModule.forRoot()],
   exports: [
     UploadFileComponent,
     DragDropFileDirective,
@@ -72,13 +82,17 @@ const sharedComponents = [LoadingDialogComponent, ErrorDialogComponent];
     EditModeDirective,
     EditableOnEnterDirective,
     FocusableDirective,
+    TwoDigitDecimaNumberDirective,
     DialogComponent,
     ModalComponent,
     EditableInputComponent,
+    AddressShortenPipe,
+    ShortenPipe,
     ...sharedComponents,
   ],
   providers: [
     Utility,
+    TimeUtility,
     SocialMediaUtility,
     ErrorDialogService,
     LoadingDialogService,
@@ -89,6 +103,7 @@ const sharedComponents = [LoadingDialogComponent, ErrorDialogComponent];
     CryptoService,
     Web3Service,
     ArtistService,
+    ArtWorkService,
     EditionService,
     DataService,
     AppSettingsService,
@@ -96,6 +111,7 @@ const sharedComponents = [LoadingDialogComponent, ErrorDialogComponent];
     LikeService,
     SettingService,
     DialogService,
+    GalleryService,
     {
       provide: ErrorHandler,
       useClass: GlobalErrorHandler,
@@ -108,4 +124,4 @@ const sharedComponents = [LoadingDialogComponent, ErrorDialogComponent];
   ],
   entryComponents: [...sharedComponents],
 })
-export class SharedModule {}
+export class SharedModule { }

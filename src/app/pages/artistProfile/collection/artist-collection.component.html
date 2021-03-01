@@ -19,6 +19,9 @@
 </div>
 <hr>
 <div id="member-artist-project" class="row mt-30">
+    <ng-container *ngIf="artworks.length == 0">
+        <div style="width: 100%;" class="text-center">{{ "NOUPLOADARTWORK" | translate }}</div>
+    </ng-container>
     <ng-container *ngFor="let artwork of artworks">
         <div class="col-md-4">
             <a [routerLink]="['/artist/collection/detail',artwork.id]"><img class="mb-10"
@@ -28,10 +31,11 @@
                     {{artwork.name}}
                 </li>
                 <li>
-                    售價：Ξ {{artwork.usdValue}}
+                    {{ "PRICE" | translate }}：Ξ {{artwork.usdValue}}
                 </li>
                 <li>
-                    上架狀態：<span class="text-orange">{{ getImageStatus(artwork.status)}}</span>
+                    {{ "ARTWORKSTATUS" | translate }}：<span class="text-orange">{{
+                        getImageStatus(artwork.status)}}</span>
                 </li>
             </ul>
         </div>
@@ -163,7 +167,7 @@
                                 </ul>
                             </div> -->
 </div>
-<div class="text-center pagenation_center mb-40">
+<div *ngIf="artworks.length >0 " class="text-center pagenation_center mb-40">
     <nav aria-label="...">
         <ul class="pagination">
             <li class="page-item disabled">

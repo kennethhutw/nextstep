@@ -8,7 +8,7 @@ export class Utility {
   currentUnixTime = new Date();
   countriesOptions: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // public getCountryOptions(): Observable<any> {
   //   return this.http.get("./../../assets/data/countries.json");
@@ -186,12 +186,22 @@ export class Utility {
   }
 
   // delay for a while before redirect to the next page
-  async delay(ms: number) {
-    await new Promise((resolve) => setTimeout(() => resolve(), ms)).then(() => {
-      console.log("fired");
-    });
-  }
+
   replaceAll(string, search, replace) {
     return string.split(search).join(replace);
+  }
+
+
+  getSellETHPrice(usdvalue) {
+    try {
+      let usd = parseFloat(usdvalue);
+      let ethPrice = Number(localStorage.getItem("ETHPRICE"));
+      const ethAmount = +(usd / ethPrice).toFixed(3);
+      return ethAmount;
+    }
+    catch (err) {
+      console.error(`Convert USD to ETH failed : ${err}`);
+      return 0;
+    }
   }
 }

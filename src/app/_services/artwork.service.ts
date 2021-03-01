@@ -6,7 +6,7 @@ import { environment } from "../../environments/environment";
 import { resResult } from "../_models";
 
 @Injectable()
-export class EditionService {
+export class ArtWorkService {
   constructor(private http: HttpClient) { }
 
   public getAllArtists(): Observable<any> {
@@ -39,18 +39,35 @@ export class EditionService {
 
   getRecentEditions() { }
 
-  public createEdition(formdata) {
+  public createArtwrok(formdata) {
     return this.http
-      .post<resResult>(`${environment.apiUrl}/edition/createEdition`,
+      .post<resResult>(`${environment.apiUrl}/artwork/createArtwrok`,
         formdata
       );
   }
 
-  public getEditionByArtistId(artistId) {
-    return this.http.get<any>(`${environment.apiUrl}/edition/getEditionByArtistId/${artistId}`);
+  public getArtwrokByArtistId(artistId) {
+    return this.http.get<any>(`${environment.apiUrl}/artwork/getArtwrokByArtistId/${artistId}`);
   }
 
-  public getEditionById(id) {
-    return this.http.get<any>(`${environment.apiUrl}/edition/getEditionById/${id}`);
+  public getSoldArtwrokByArtistId(artistId) {
+    return this.http.get<any>(`${environment.apiUrl}/artwork/getSoldArtwrokByArtistId/${artistId}`);
+  }
+
+
+  public getArtwrokById(id) {
+    return this.http.get<any>(`${environment.apiUrl}/artwork/getArtwrokById/${id}`);
+  }
+
+  public getLatestArtWork() {
+    return this.http.get<any>(`${environment.apiUrl}/artwork/getLatestArtWork`);
+  }
+
+  public getPopularArtwork() {
+    return this.http.get<any>(`${environment.apiUrl}/artwork/getPopularArtwork`);
+  }
+
+  public getSellArtwork() {
+    return this.http.get<any>(`${environment.apiUrl}/artwork/getSellArtwork`);
   }
 }

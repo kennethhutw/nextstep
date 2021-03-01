@@ -1,128 +1,85 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container">
     <a class="navbar-brand" routerLink="/index">
-      <img
-        src="./../../../assets/images/formosa_head_logo.svg"
-        width="100"
-        height="30"
-        alt=""
-    /></a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+      <img src="./../../../assets/images/formosa_head_logo.svg" width="100" height="30" alt="" /></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li
-          class="nav-item"
-          [routerLinkActive]="['active']"
-          [routerLinkActiveOptions]="{ exact: true }"
-        >
-          <a class="nav-link" routerLink="/index"
-            >{{ "HOME" | translate }} <span class="sr-only">(current)</span></a
-          >
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav-link" routerLink="/index">{{ "HOME" | translate }} <span class="sr-only">(current)</span></a>
         </li>
-        <li
-          class="nav-item"
-          [routerLinkActive]="['active']"
-          [routerLinkActiveOptions]="{ exact: true }"
-        >
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
           <a class="nav-link" routerLink="/gallery">{{
             "GALLERY" | translate
-          }}</a>
+            }}</a>
         </li>
 
-        <li
-          class="nav-item"
-          [routerLinkActive]="['active']"
-          [routerLinkActiveOptions]="{ exact: true }"
-        >
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
           <a class="nav-link" routerLink="/artists">{{
             "ARTISTS" | translate
-          }}</a>
+            }}</a>
         </li>
-        <li
-          class="nav-item"
-          [routerLinkActive]="['active']"
-          [routerLinkActiveOptions]="{ exact: true }"
-        >
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
           <a class="nav-link" routerLink="/activity">{{
             "ACTIVITY" | translate
-          }}</a>
+            }}</a>
         </li>
         <li class="nav-item">
-          <a
-            *ngIf="auth.isLoggedOut$ | async"
-            [routerLinkActive]="['active']"
-            [routerLinkActiveOptions]="{ exact: true }"
-            data-toggle="modal"
-            [attr.data-target]="'#modal_register'"
-            class="nav-link"
-            >{{ "SIGNUP" | translate }}</a
-          >
+          <a *ngIf="auth.isLoggedOut$ | async" [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{ exact: true }" data-toggle="modal" [attr.data-target]="'#modal_register'"
+            class="nav-link">{{ "SIGNUP" | translate }}</a>
         </li>
       </ul>
 
-      <form
-        id="index_login"
-        *ngIf="auth.isLoggedOut$ | async"
-        class="form-inline my-2 my-lg-0 text-white"
-      >
+      <form id="index_login" *ngIf="auth.isLoggedOut$ | async" class="form-inline my-2 my-lg-0 text-white">
         <a (click)="walletSignin()" class="text-white">
           <i class="far fa-arrow-alt-circle-right"></i>
-          {{ "WALLETSIGNIN" | translate }}</a
-        >｜
-        <a
-          data-toggle="modal"
-          [attr.data-target]="'#modal_login_mail'"
-          class="text-white"
-          >{{ "EMAILSIGNIN" | translate }}</a
-        >
+          {{ "WALLETSIGNIN" | translate }}</a>｜
+        <a data-toggle="modal" [attr.data-target]="'#modal_login_mail'" class="text-white">{{ "EMAILSIGNIN" | translate
+          }}</a>
       </form>
 
       <!-- <ng-container *ngIf="auth.user$ | async as user"> -->
-      <ng-container >
+      <ng-container>
         <!-- <img class="profile-picture" [src]="user.pictureUrl" />
           *ngIf="auth.user$ | async as user"
          -->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                       <ul class="navbar-nav mr-auto text-center">
-                         <li class="nav-item dropdown">
-                           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                             <i class="far fa-user-circle par-5"></i>{{ "MEMBERMANAGEMENT" | translate }}
-                           </a>
-                           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                             <a class="dropdown-item" routerLink="/artist/collection">{{ "MANAGEMENTEDITION" | translate }}</a>
-                             <a class="dropdown-item" routerLink="/artist/upload">{{ "UPLOADEDITION" | translate }}</a>
-                             <a class="dropdown-item" routerLink="/artist/sales">{{ "SOLDEDITION" | translate }}</a>
-                             <a class="dropdown-item" routerLink="/artist/basic">{{ "PROFILE" | translate }}</a>
-                             <a class="dropdown-item" routerLink="/artist/account">{{ "ACCOUNTPASSWORD" | translate }}</a>
-                             <a class="dropdown-item" routerLink="/artist/favorite">{{ "MYFAVOURITES" | translate }}</a>
-                             <div class="dropdown-divider"> </div>
-                             <!-- <a class="dropdown-item" href="#">登出</a> -->
-                                <button class="dropdown-item" (click)="Signout()">{{ "SIGNOUT" | translate }}</button>
-                            </div>
-
-                         </li>
-
-                       </ul>
-                     </div>
-
-      </ng-container>
-      <ng-container >
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto text-center">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="far fa-user-circle par-5"></i>收藏家登入
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="far fa-user-circle par-5"></i>{{ "MEMBERMANAGEMENT" | translate }}
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" routerLink="/artist/collection">{{ "MANAGEMENTEDITION" | translate }}</a>
+                <a class="dropdown-item" routerLink="/artist/upload">{{ "UPLOADEDITION" | translate }}</a>
+                <a class="dropdown-item" routerLink="/artist/sold">{{ "SOLDEDITION" | translate }}</a>
+                <a class="dropdown-item" routerLink="/artist/basic">{{ "PROFILE" | translate }}</a>
+                <a class="dropdown-item" routerLink="/artist/account">{{ "ACCOUNTPASSWORD" | translate }}</a>
+                <a class="dropdown-item" routerLink="/artist/favorite">{{ "MYFAVOURITES" | translate }}</a>
+                <div class="dropdown-divider"> </div>
+                <!-- <a class="dropdown-item" href="#">登出</a> -->
+                <button class="dropdown-item" (click)="Signout()">{{ "SIGNOUT" | translate }}</button>
+              </div>
+
+            </li>
+
+          </ul>
+        </div>
+
+      </ng-container>
+      <ng-container>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto text-center">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="far fa-user-circle par-5"></i>{{ "MEMBERMANAGEMENT" | translate }}
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" routerLink="/collector/collection">{{ "COLLECTION" | translate }}</a>
@@ -132,8 +89,8 @@
                 <a class="dropdown-item" routerLink="/collector/account">{{ "ACCOUNTPASSWORD" | translate }}</a>
                 <a class="dropdown-item" routerLink="/collector/favorite">{{ "MYFAVOURITES" | translate }}</a>
                 <div class="dropdown-divider"> </div>
-                    <button class="dropdown-item" (click)="Signout()">{{ "SIGNOUT" | translate }}</button>
-                </div>
+                <button class="dropdown-item" (click)="Signout()">{{ "SIGNOUT" | translate }}</button>
+              </div>
 
             </li>
 
@@ -145,87 +102,48 @@
 </nav>
 
 <!--Modal login mail-->
-<app-modal   [modalid]="'modal_login_mail'">
+<app-modal [modalid]="'modal_login_mail'">
 
   <div header>
 
   </div>
   <div body>
-   <button type="button"
-    class="close"
- #closebutton
-    data-dismiss="modal"
-    aria-label="Close"
-   >
+    <button type="button" class="close" #closebutton data-dismiss="modal" aria-label="Close">
       <span></span>
     </button>
     <div class="text-center mb-4">
       <h3>{{ "EMAILSIGNIN" | translate }}</h3>
     </div>
-    <div [formGroup]="signinEmailForm"  class="row text-center">
-      <input
-        class="modal_input w-100 mb-2"
-        type="text"
-        id="emailsignin"
-         formControlName="email"
-        placeholder="{{ 'EMAILSIGNIN' | translate }}"
-        (focus)="this.placeholder = ''"
-        (blur)="setBlur('emailsignin', 'EMAILSIGNIN')"
-      />
-      <input
-        class="modal_input w-100 mb-2"
-        type="password"
-        id="emailpassword"
-         formControlName="password"
-        placeholder="{{ 'PASSWORD' | translate }}"
-        (focus)="this.placeholder = ''"
-        (blur)="setBlur('emailpassword', 'PASSWORD')"
-      />
-      <button  (click)="onSignIn()" class="model_btn_normal mb-2 w-100">
+    <div [formGroup]="signinEmailForm" class="row text-center">
+      <input class="modal_input w-100 mb-2" type="text" id="emailsignin" formControlName="email"
+        placeholder="{{ 'EMAILSIGNIN' | translate }}" (focus)="this.placeholder = ''"
+        (blur)="setBlur('emailsignin', 'EMAILSIGNIN')" />
+      <input class="modal_input w-100 mb-2" type="password" id="emailpassword" formControlName="password"
+        placeholder="{{ 'PASSWORD' | translate }}" (focus)="this.placeholder = ''"
+        (blur)="setBlur('emailpassword', 'PASSWORD')" />
+      <button (click)="onSignIn()" class="model_btn_normal mb-2 w-100">
         {{ "SIGNIN" | translate }}
       </button>
-      <div *ngIf="IsSignInFailed"  class="invalid">Incorrect email or password.</div>
+      <div *ngIf="IsSignInFailed" class="invalid">Incorrect email or password.</div>
       <div class="w-100">
         <div class="float-left">
-          <a
-            href="#"
-            data-toggle="modal"
-            data-target="#modal_register"
-            data-dismiss="modal"
-          >
-            {{ "REGISTER" | translate }}</a
-          >
+          <a href="#" data-toggle="modal" data-target="#modal_register" data-dismiss="modal">
+            {{ "REGISTER" | translate }}</a>
         </div>
         <div class="float-right">
-          <a
-            href="#"
-            data-toggle="modal"
-            data-target="#modal_forget_password"
-            data-dismiss="modal"
-            >{{ "FORGOTPASSWORD" | translate }}</a
-          >
+          <a href="#" data-toggle="modal" data-target="#modal_forget_password" data-dismiss="modal">{{ "FORGOTPASSWORD"
+            | translate }}</a>
         </div>
       </div>
     </div>
   </div>
 </app-modal>
 <!--Modal forget password-->
-<div
-  class="modal fade"
-  id="modal_forget_password"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="modal_forget_password" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content model_padding">
       <div class="modal_header">
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">╳</span>
         </button>
       </div>
@@ -234,20 +152,10 @@
           <h3>{{ "FORGOTPASSWORD" | translate }}</h3>
         </div>
         <div class="row text-center">
-          <input
-            class="modal_input w-100 mb-2"
-            type="text"
-            id="signinPassword"
-            placeholder="{{ 'EMAIL' | translate }}"
-            (focus)="this.placeholder = ''"
-            (blur)="setBlur('signinPassword', 'PASSWORD')"
-          />
-          <button
-            class="model_btn_normal mb-2 w-100"
-            data-toggle="modal"
-            data-target="#modal_password_thanks"
-            data-dismiss="modal"
-          >
+          <input class="modal_input w-100 mb-2" type="text" id="signinPassword" placeholder="{{ 'EMAIL' | translate }}"
+            (focus)="this.placeholder = ''" (blur)="setBlur('signinPassword', 'PASSWORD')" />
+          <button class="model_btn_normal mb-2 w-100" data-toggle="modal" data-target="#modal_password_thanks"
+            data-dismiss="modal">
             {{ "SEND" | translate }}
           </button>
         </div>
@@ -256,24 +164,11 @@
   </div>
 </div>
 <!--Modal register-->
-<div
-  class="modal fade"
-  id="modal_register"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
-
->
+<div class="modal fade" id="modal_register" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content model_padding">
       <div class="modal_header">
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-
-        >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">╳</span>
         </button>
       </div>
@@ -283,27 +178,16 @@
         </div>
         <div class="row text-center">
           <div class="col-md-6">
-            <a routerLink="/register-artist"
-              ><button
-                data-dismiss="modal"
-                aria-label="Close"
-                class="model_btn_normal"
-              >
-                {{ "CREATOR" | translate }}
-              </button></a
-            >
+            <a routerLink="/register-artist"><button data-dismiss="modal" aria-label="Close" class="model_btn_normal">
+                {{ "IAMCREATOR" | translate }}
+              </button></a>
             <p class="mt-2 model-p-small">{{ "IAMCREATORDEC" | translate }}</p>
           </div>
           <div class="col-md-6">
-            <a routerLink="/register-collector"
-              ><button
-                data-dismiss="modal"
-                aria-label="Close"
-                class="model_btn_normal"
-              >
+            <a routerLink="/register-collector"><button data-dismiss="modal" aria-label="Close"
+                class="model_btn_normal">
                 {{ "COLLECTOR" | translate }}
-              </button></a
-            >
+              </button></a>
             <p class="mt-2 model-p-small">
               {{ "IAMCOLLECTORDEC" | translate }}
             </p>
@@ -319,11 +203,7 @@
   <div body>
     <div class="row text-center">
       <p>{{ "ANEWPASSWORDHASBEENSENT" | translate }}</p>
-      <button
-        class="model_btn_normal mb-2 w-100"
-        data-dismiss="modal"
-        aria-label="Close"
-      >
+      <button class="model_btn_normal mb-2 w-100" data-dismiss="modal" aria-label="Close">
         {{ "CONFRIM" | translate }}
       </button>
     </div>
@@ -335,11 +215,7 @@
   <div body>
     <div class="row text-center">
       <p>{{ "NOTFOUNDWALLET" | translate }}</p>
-      <button
-        class="model_btn_normal mb-2 w-100"
-        data-dismiss="modal"
-        aria-label="Close"
-      >
+      <button class="model_btn_normal mb-2 w-100" data-dismiss="modal" aria-label="Close">
         {{ "CONFRIM" | translate }}
       </button>
     </div>

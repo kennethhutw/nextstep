@@ -4,26 +4,33 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class DataService {
-     isSidebarPinned = false;
+  isSidebarPinned = false;
   isSidebarToggeled = false;
 
-    private lang = new BehaviorSubject('');
-    langKey = this.lang.asObservable();
+  private lang = new BehaviorSubject('');
+  langKey = this.lang.asObservable();
 
-    constructor(
-    ) {
-    }
+  private ethprice = new BehaviorSubject(0);
+  ethpriceKey = this.ethprice.asObservable();
 
-    setLang(lang){
-        this.lang.next(lang);
-    }
+  constructor(
+  ) {
+  }
 
-     toggleSidebar() {
-    this.isSidebarToggeled = ! this.isSidebarToggeled;
+  setLang(lang) {
+    this.lang.next(lang);
+  }
+
+  setETHPrice(price) {
+    this.ethprice.next(price);
+  }
+
+  toggleSidebar() {
+    this.isSidebarToggeled = !this.isSidebarToggeled;
   }
 
   toggleSidebarPin() {
-    this.isSidebarPinned = ! this.isSidebarPinned;
+    this.isSidebarPinned = !this.isSidebarPinned;
   }
 
   getSidebarStat() {

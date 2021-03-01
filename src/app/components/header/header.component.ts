@@ -1,8 +1,10 @@
-import { Component,
-   OnInit,
-    ViewChild,
+import {
+  Component,
+  OnInit,
+  ViewChild,
   TemplateRef,
-ElementRef } from "@angular/core";
+  ElementRef
+} from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Utility } from "../../_helpers";
@@ -21,10 +23,10 @@ import { User } from "./../../_models/user";
   styleUrls: ["./header.component.css"]
 })
 export class HeaderComponent implements OnInit {
-   @ViewChild('closebutton') closebutton;
+  @ViewChild('closebutton') closebutton;
   signinEmailForm: FormGroup;
   currentUser: any = null;
-  placeholder='';
+  placeholder = '';
   IsSignInFailed = false;
 
   constructor(
@@ -66,37 +68,38 @@ export class HeaderComponent implements OnInit {
     console.log("auth", this.auth.isLoggedOut$);
   }
 
-close(){
+  close() {
 
-}
+  }
   onSignIn() {
 
     // this.closeModal.nativeElement.click();
-   //  this.closeModal['el'].nativeElement.style.display = 'none';
+    //  this.closeModal['el'].nativeElement.style.display = 'none';
     //  this.closeModal['el'].nativeElement.classList.add('sshow');
-     this.IsSignInFailed = false;
-     const val = this.signinEmailForm.value;
+    this.IsSignInFailed = false;
+    const val = this.signinEmailForm.value;
 
-     this.auth.login(val.email, val.password).subscribe(
-       (res) => {
-         if(res["result"]==="successful"){
-              this.closebutton.nativeElement.click();
-         }else{
-           this.IsSignInFailed = true;
-    //        console.log(" ===== failed");
-         }
-       },
-       (err) => {
-           console.log(" Sign in failed! ",err);
-            this.IsSignInFailed = true;
+    this.auth.login(val.email, val.password).subscribe(
+      (res) => {
+        console.log("login =======", res);
+        if (res["result"] === "successful") {
+          this.closebutton.nativeElement.click();
+        } else {
+          this.IsSignInFailed = true;
+          //        console.log(" ===== failed");
+        }
+      },
+      (err) => {
+        console.log(" Sign in failed! ", err);
+        this.IsSignInFailed = true;
         // alert("Sign in failed!");
-       }
-     );
+      }
+    );
   }
 
   logout() {
     this.auth.logout();
-      this.router.navigate(['./index'], {});
+    this.router.navigate(['./index'], {});
   }
 
   changeLanguage(lang: string) {
@@ -130,7 +133,10 @@ close(){
         (data) => {
           this.auth.walletSignin(data.address).subscribe((result) => {
             console.log(" walletSignin =============== ");
-          });
+          },
+            errorMsg => {
+              console.log('error', errorMsg);
+            });
         },
         (error) => {
           console.log("getAccountDetail error", error);
@@ -147,7 +153,7 @@ close(){
       const val = this.signinEmailForm.value;
 
       this.auth.login(val.emai, val.password).subscribe(
-        () => {},
+        () => { },
         (err) => {
           alert("Sign in failed!");
         }

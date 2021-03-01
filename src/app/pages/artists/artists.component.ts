@@ -7,6 +7,9 @@ import {
   SettingService
 } from "./../../_services";
 import { Utility } from "./../../_helpers";
+import { environment } from '../../../environments/environment';
+
+
 @Component({
   selector: "app-artists",
   templateUrl: "./artists.component.html",
@@ -18,17 +21,17 @@ export class ArtistsComponent implements OnInit {
   values = "";
   tags = [];
   IsShowTags = false;
-  defaultProfileLogo=null;
+  defaultProfileLogo = null;
 
   constructor(
-        private settingSrv: SettingService,
+    private settingSrv: SettingService,
     private translateSrv: TranslateService,
     private utility: Utility,
     private dataSrv: DataService,
     private appSettingsSrv: AppSettingsService,
     private artistSrv: ArtistService
   ) {
-        this.defaultProfileLogo = this.settingSrv.defaultProfileLogo;
+    this.defaultProfileLogo = this.settingSrv.defaultProfileLogo;
   }
 
   ngOnInit() {
@@ -44,9 +47,24 @@ export class ArtistsComponent implements OnInit {
       }
     });
 
-    this.artistSrv.getAllArtists().subscribe((data) => {
-      this.artists = data;
-      this.displayArtists = this.splitArr(data, 3);
+    // this.artistSrv.getAllArtists().subscribe((data) => {
+    //   this.artists = data;
+    //   this.displayArtists = this.splitArr(data, 3);
+    // });
+
+    this.artistSrv.getArtists().subscribe(res => {
+      console.log("res ==============", res);
+      if (res["result"] === "successful") {
+        this.artists = res["data"];
+        this.artists.forEach((element) => {
+          element.imageUrl = environment.assetUrl + element.imageUrl;
+        });
+        //  _data.imageUrl = environment.assetUrl + _data.imageUrl;
+        this.displayArtists = this.splitArr(res["data"], 3);
+      }
+
+    }, error => {
+      console.error("getArtists failed", error);
     });
   }
 

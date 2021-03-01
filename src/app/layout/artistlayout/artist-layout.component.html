@@ -18,7 +18,7 @@
             <div class="row mt-50">
                 <div class="col-md-2">
 
-                    <ul class="member_ul">
+                    <ul class="member_ul" style="margin-bottom: 200px;">
                         <a [routerLinkActive]="['active']" routerLink="/artist/collection">
                             <li class="member_side_navi">
                                 {{ "MANAGEMENTEDITION" | translate }}
@@ -31,7 +31,7 @@
                             </li>
                         </a>
                         <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
-                            routerLink="/artist/sales">
+                            routerLink="/artist/sold">
                             <li class="member_side_navi w-100">
                                 {{ "SOLDEDITION" | translate }}
                             </li>

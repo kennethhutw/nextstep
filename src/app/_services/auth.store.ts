@@ -3,11 +3,13 @@ import { BehaviorSubject, Observable } from "rxjs";
 
 import { environment } from "./../../environments/environment";
 import { User } from "./../_models/user";
-import { resResult,NewArtist } from "./../_models";
+import { resResult, NewArtist } from "./../_models";
 import { map, shareReplay, tap } from "rxjs/operators";
 
 import { HttpClient } from "@angular/common/http";
 import { Utility } from "../_helpers";
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 const AUTH_DATA = "auth_data";
 @Injectable({
   providedIn: "root",
@@ -29,7 +31,7 @@ export class AuthStore {
 
     if (!this.utility.IsNullOrEmpty(user) && this.utility.isJSONString(user)) {
       this.subject.next(JSON.parse(user));
-    }else{
+    } else {
       this.logout();
     }
   }
@@ -45,7 +47,7 @@ export class AuthStore {
           const _user = resResult.data as User;
 
           localStorage.setItem(AUTH_DATA, JSON.stringify(_user));
-             this.subject.next(_user);
+          this.subject.next(_user);
         }),
         shareReplay()
       );
@@ -56,6 +58,7 @@ export class AuthStore {
       .post<any>(`${environment.apiUrl}/authenticate/walletLogin`, {
         address: walletAddress,
       })
+
       .pipe(
         tap((resResult) => {
           if (resResult["result"] === "successful") {
@@ -67,7 +70,19 @@ export class AuthStore {
             }
           }
         }),
-        shareReplay()
+        shareReplay(),
+        catchError(errorRes => {
+          let errorMsg = 'An unknow error occurred!';
+          if (!errorRes.error || !errorRes.error.error
+          ) {
+            return throwError(errorMsg);
+          }
+          switch (errorRes.error.error.message) {
+            case 'EMAIL_EXISTS':
+              errorMsg = 'This wallet exists already';
+          }
+          return throwError(errorMsg);
+        })
       );
   }
 
@@ -78,7 +93,7 @@ export class AuthStore {
       )
       .pipe(
         tap((resResult) => {
-          console.log("ArtistSignup resResult :",resResult);
+          console.log("ArtistSignup resResult :", resResult);
           const _user = resResult.data as User;
           this.subject.next(_user);
           localStorage.setItem(AUTH_DATA, JSON.stringify(_user));
@@ -143,24 +158,24 @@ export class AuthStore {
     localStorage.removeItem(AUTH_DATA);
   }
 
-  getUserData(){
-     try {
-        if (!this.utility.IsNullOrEmpty(localStorage.getItem(AUTH_DATA))) {
-          if (this.utility.isJSONString(localStorage.getItem(AUTH_DATA))) {
-            return JSON.parse(localStorage.getItem(AUTH_DATA));
-          } else {
-            return null;
-          }
+  getUserData() {
+    try {
+      if (!this.utility.IsNullOrEmpty(localStorage.getItem(AUTH_DATA))) {
+        if (this.utility.isJSONString(localStorage.getItem(AUTH_DATA))) {
+          return JSON.parse(localStorage.getItem(AUTH_DATA));
         } else {
           return null;
         }
+      } else {
+        return null;
+      }
     } catch (error) {
-     console.error(`getUserData failed : ${error}`);
+      console.error(`getUserData failed : ${error}`);
       return null;
     }
   }
 
-  setUserData(userData){
+  setUserData(userData) {
     try {
       localStorage.setItem(AUTH_DATA, JSON.stringify(userData));
       return true;

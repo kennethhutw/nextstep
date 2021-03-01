@@ -1,5 +1,5 @@
-import { Component,OnInit } from "@angular/core";
-import { CryptoService} from "./_services";
+import { Component, OnInit } from "@angular/core";
+import { CryptoService } from "./_services";
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
@@ -7,14 +7,13 @@ import { CryptoService} from "./_services";
 })
 export class AppComponent {
   title = "Formosa";
-  constructor(private CryptoSrv:CryptoService){
+  constructor(private CryptoSrv: CryptoService) {
 
-   this.CryptoSrv.getETHPrice().subscribe(res=>{
-     console.log("res ====", res);
-     if(res["usd"]){
-        localStorage.setItem("ETHPRICE",res["usd"]);
-     }
-   });
+    this.CryptoSrv.getETHPrice().subscribe(res => {
+      if (res) {
+        localStorage.setItem("ETHPRICE", res.toString());
+      }
+    });
 
   }
 }

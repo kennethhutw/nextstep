@@ -1,6 +1,8 @@
 <app-header></app-header>
+
 <!--header-->
 <div class="container-fluid">
+
   <div class="row">
     <div id="main-bg">
       <div class="main-slogen">
@@ -19,21 +21,36 @@
   </div>
 
   <div class="row">
-    <ng-container *ngFor="let edition of popularEditions">
-      <div class="col-md-4 mb-4">
-        <app-edition1
-          editionTitle="{{ edition.editionTitle }}"
-          editionAuthor="{{ edition.editionAuthor }}"
-          editionImg="{{ edition.editionImg }}"
-          editionId="{{ edition.editionId }}"
-        ></app-edition1>
+    <div class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="row">
+            <ng-container *ngFor="let edition of popularEditions">
+              <div class="col-md-4 mb-4">
+                <app-edition1 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
+                  editionImg="{{ edition.imageUrl }}" editionId="{{ edition.artworkId }}"></app-edition1>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="row">
+            <div class="col-sm"><img class="d-block w-100" src="//placehold.it/1200x600/ccff00" alt="4 slide"></div>
+            <div class="col-sm"><img class="d-block w-100" src="//placehold.it/1200x600/444" alt="5 slide"></div>
+            <div class="col-sm"><img class="d-block w-100" src="//placehold.it/1200x600/ddd" alt="6 slide"></div>
+          </div>
+        </div>
       </div>
-    </ng-container>
+    </div>
+
+  </div>
+
+  <div class="row">
     <div class="text-center form-inline mx-auto">
-      <button class="index_btn_roll">
+      <button class="index_btn_roll" data-slide="prev">
         <i class="fas fa-chevron-left"></i>
       </button>
-      <button class="index_btn_roll">
+      <button class="index_btn_roll" data-slide="next">
         <i class="fas fa-chevron-right"></i>
       </button>
     </div>
@@ -47,14 +64,13 @@
   <div class="row">
     <ng-container *ngFor="let edition of recentEditions">
       <div class="col-sm-6 col-md-3 mb-4">
-        <app-edition1
-          editionTitle="{{ edition.editionTitle }}"
-          editionAuthor="{{ edition.editionAuthor }}"
-          editionImg="{{ edition.editionImg }}"
-          editionId="{{ edition.editionId }}"
-        ></app-edition1>
+        <app-edition1 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
+          editionImg="{{ edition.imageUrl }}" editionId="{{ edition.artworkId }}"></app-edition1>
       </div>
     </ng-container>
+
+  </div>
+  <div class="row">
     <div class="text-center mx-auto">
       <button class="index_btn_explore1" routerLink="/gallery">{{ "VIEWMORE" | translate }}</button>
     </div>
@@ -67,6 +83,7 @@
   </div>
 </div>
 
+
 <div class="container-fluid">
   <div id="index_buyer_bg" class="row index_buyer_bg">
     <div class="container">
@@ -76,30 +93,21 @@
             <div class="row ">
               <div class="col-md-4 box-height">
                 <div class="index_buyer_box">
-                  <img
-                    src="./../../../assets/images/index_buyer_icon-1.jpg"
-                    alt=""
-                  />
+                  <img src="./../../../assets/images/index_buyer_icon-1.jpg" alt="" />
                   <h3>{{ "COLLECT" | translate }}</h3>
                   <div>{{ "COLLECTDES" | translate }}</div>
                 </div>
               </div>
               <div class="col-md-4 box-height">
                 <div class="index_buyer_box">
-                  <img
-                    src="./../../../assets/images/index_buyer_icon-2.jpg"
-                    alt=""
-                  />
+                  <img src="./../../../assets/images/index_buyer_icon-2.jpg" alt="" />
                   <h3>{{ "SHOWOFF" | translate }}</h3>
                   <div>{{ "SHOWOFFDES" | translate }}</div>
                 </div>
               </div>
               <div class="col-md-4 box-height">
                 <div class="index_buyer_box">
-                  <img
-                    src="./../../../assets/images/index_buyer_icon-3.jpg"
-                    alt=""
-                  />
+                  <img src="./../../../assets/images/index_buyer_icon-3.jpg" alt="" />
                   <h3>{{ "INVEST" | translate }}</h3>
                   <div>{{ "INVESTDES" | translate }}</div>
                 </div>
@@ -125,7 +133,7 @@
         <div class="index_art_slogen">
           {{ "AREYOUA" | translate }}<br /><span>{{
             "DIGITALCREATOR?" | translate
-          }}</span>
+            }}</span>
         </div>
         <p class="mt-2 text-center">
           {{ "DIGITALCREATORDES" | translate }}<br />

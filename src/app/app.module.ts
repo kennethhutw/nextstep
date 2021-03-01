@@ -36,8 +36,8 @@ import {
   ArtistHeaderComponent,
   CollectorHeaderComponent,
   NavbarComponent,
-   SidebarComponent,
-    AdminFooterComponent
+  SidebarComponent,
+  AdminFooterComponent
 } from "./components";
 
 import {
@@ -81,7 +81,7 @@ import {
   ArtistCollectionComponent,
   ArtistFavoriteComponent,
   ArtistOfferComponent,
-  ArtistSalesComponent,
+  ArtistSoldArtWorkComponent,
   ArtistBasicComponent,
   ArtistEditionDetailComponent,
   ArtistUploadComponent,
@@ -167,12 +167,12 @@ export function createLoader(http: HttpClient) {
     ArtistCollectionComponent,
     ArtistFavoriteComponent,
     ArtistOfferComponent,
-    ArtistSalesComponent,
+    ArtistSoldArtWorkComponent,
     ArtistBasicComponent,
     ArtistEditionDetailComponent,
     ArtistUploadComponent,
-NavbarComponent,
-   SidebarComponent,
+    NavbarComponent,
+    SidebarComponent,
     AdminFooterComponent
   ],
   imports: [
@@ -200,4 +200,4 @@ NavbarComponent,
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
