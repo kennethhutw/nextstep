@@ -6,18 +6,22 @@
     </div>
   </div>
   <div id="project_tag" [ngClass]="{ show_tags: IsShowTags === true }" class="text-center">
-    <div class="project_tag_focus" style="width: 82px">
-      {{ "ALLEDITION" | translate }}
-    </div>
+    <a (click)="onClearFilter()">
+      <div class="project_tag" [ngClass]="{'project_tag_focus':filterValue === null}" style="width: 82px">
+        {{ "ALLEDITION" | translate }}
+      </div>
+    </a>
     <ng-container *ngFor="let tag of tags">
-      <a href="">
-        <div class="project_tag">{{ tag.text }}</div>
+      <a (click)="onfilter(tag.value)">
+        <div class="project_tag" [ngClass]="{'project_tag_focus':filterValue === tag.value}">{{ tag.text }}</div>
       </a>
     </ng-container>
   </div>
   <div class="peoject_tag_openup text-center mt-10">
-    <span class="project_tag_subtitle"><a (click)="IsShowAllTags()">
-        {{ "TYPEMORE" | translate }} <i class="fas fa-chevron-up"></i></a></span>
+    <span *ngIf="!this.IsShowTags" class="project_tag_subtitle"><a (click)="IsShowAllTags()">
+        {{ "TYPEMORE" | translate }} <i class="fas fa-chevron-down"></i></a></span>
+    <span *ngIf="this.IsShowTags" class="project_tag_subtitle"><a (click)="IsShowAllTags()">
+        {{ "TYPELESS" | translate }} <i class="fas fa-chevron-up"></i></a></span>
   </div>
   <div class="row">
     <div class="col-md-3 offset-md-9 mt-40 mb-10">
@@ -30,6 +34,8 @@
     </div>
   </div>
 
+  <div class="row" *ngIf="displayArtists.length ===0" style="height:300px">
+  </div>
   <!--person-->
   <ng-container *ngIf="displayArtists">
     <div class="row" *ngFor="let row of displayArtists; let i = index">
@@ -39,5 +45,6 @@
           editions="{{ col.editions }}"></app-artist>
       </div>
     </div>
+
   </ng-container>
 </div>

@@ -34,10 +34,9 @@ export class ArtistPageComponent implements OnInit {
     private artistSrv: ArtistService) {
     this.defaultImg = this.appSettingsSrv.defulatImage;
     this.currentUser = this.authStoreSrv.getUserData();
-    console.log("================", this.currentUser);
+
     if (this.currentUser) {
       this.uid = this.currentUser.id;
-      console.log("================", this.uid);
     }
 
   }

@@ -80,11 +80,11 @@
     </div>
 
     <div class="text-center mt-40">
-        <button (click)="onSubmit()" id="member_last_btn_w100" class="btn_normal mb-40">
+        <button (click)="onSubmit()" id="member_last_btn_w100" class="btn_normal mb-20">
             {{ "SAVEPROFILE" | translate }}
         </button>
     </div>
-    <div class="text-center mt-40">
+    <div class="text-center  mb-40">
         <div [ngClass]="{ 'error-msg': IsUpdateFailed === true }" *ngIf="informMsg">{{informMsg}}</div>
     </div>
 </div>

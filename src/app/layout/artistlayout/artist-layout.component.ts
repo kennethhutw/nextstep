@@ -4,7 +4,8 @@ import {
   DataService,
   AuthStore,
   SettingService,
-  LikeService
+  LikeService,
+  UserService
 } from "../../_services";
 import { Utility } from "../../_helpers";
 import { Router } from "@angular/router";
@@ -34,7 +35,8 @@ export class ArtistLayoutComponent implements OnInit {
     private translateSrv: TranslateService,
     private utility: Utility,
     private dataSrv: DataService,
-    private authStoreSrv: AuthStore
+    private authStoreSrv: AuthStore,
+    private userSrv: UserService
   ) {
     this.defaultProfileLogo = this.settingSrv.defaultProfileLogo;
     let _lang = localStorage.getItem("lang");
@@ -93,5 +95,16 @@ export class ArtistLayoutComponent implements OnInit {
     this.likeSrv.removeLike(this.currentUser.id, liked_id).subscribe(res => {
 
     });
+  }
+
+  updateField() {
+
+    this.userSrv.updateUserName(this.UserName, this.currentUser.id).subscribe(res => {
+      if (res['result'] == 'successful') {
+        this.currentUser.name = this.UserName;
+        this.authStoreSrv.setUserData(this.currentUser);
+      }
+    });
+
   }
 }

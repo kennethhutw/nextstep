@@ -86,8 +86,7 @@ export class ArtistDetailComponent {
         this.translateSrv.use(lang);
       }
     });
-    console.log(" ================ ", this._uid);
-    console.log(" ================ ", this.id);
+
     if (!this.utility.IsNullOrEmpty(this._uid)) {
       this.likeSrv.IsLike(this._uid, this.id).subscribe(res => {
         console.log(res);
@@ -100,11 +99,10 @@ export class ArtistDetailComponent {
     }
 
     this.likeSrv.IsLike(this.currentUser.id, this.id).subscribe(res => {
-      console.log("rse ======== ", res);
       if (res['result'] === "successful") {
         this.isFollow = res['data'];
       }
-    })
+    });
   }
 
   getDisplayWalletAddress() {

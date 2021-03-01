@@ -60,11 +60,7 @@ export class ArtistEditionDetailComponent implements OnInit {
     }, err => {
       console.error(`getArtwrokById failed ${err}`);
     });
-    //    this.route.queryParams.subscribe(params => {
-    //     console.log(" =======================",params);
-    //     const id = params["id"];
 
-    // });
   }
 
   getSellETHPrice(usdvalue) {

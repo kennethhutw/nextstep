@@ -21,7 +21,7 @@ export class GalleryComponent implements OnInit {
   displayEditions = [];
   tags = [];
   IsShowTags = false;
-
+  filterValue = null;
 
   constructor(
     private translateSrv: TranslateService,
@@ -55,110 +55,9 @@ export class GalleryComponent implements OnInit {
           element.ethPrice = utility.getSellETHPrice(element.usdValue);
         });
         this.displayEditions = this.editions;
-        console.log("this.editions ==============", this.editions);
       }
     });
-    // this.editions = [
-    //   {
-    //     editionTitle: "The Calm And The Storm too more words",
-    //     editionAuthor: "Andrew Shiao",
-    //     editionImg: "./assets/images/card-01.jpg",
-    //     editionId: "2000163",
-    //     editionDate: "2020-3-15",
-    //     editionPrice: "0.5",
-    //   },
-    //   {
-    //     editionTitle: "The Calm And The Storm too more words",
-    //     editionAuthor: "Andrew Shiao",
-    //     editionImg: "./assets/images/card-02.jpg",
-    //     editionId: "2000135",
-    //     editionDate: "2020-3-15",
-    //     editionPrice: "0.11",
-    //   },
-    //   {
-    //     editionTitle: "The Calm And The Storm too more words",
-    //     editionAuthor: "Andrew Shiao",
-    //     editionImg: "./assets/images/card-03.jpg",
-    //     editionId: "2000136",
-    //     editionDate: "2020-3-15",
-    //     editionPrice: "0.15",
-    //   },
-    //   {
-    //     editionTitle: "The Calm And The Storm too more words",
-    //     editionAuthor: "Andrew Shiao",
-    //     editionImg: "./assets/images/card-04.jpg",
-    //     editionId: "2000137",
-    //     editionDate: "2020-3-15",
-    //     editionPrice: "0.09",
-    //   },
-    //   {
-    //     editionTitle: "The Calm And The Storm too more words",
-    //     editionAuthor: "Andrew Shiao",
-    //     editionImg: "./assets/images/card-05.jpg",
-    //     editionId: "2000138",
-    //     editionDate: "2020-3-15",
-    //     editionPrice: "0.04",
-    //   },
-    //   {
-    //     editionTitle: "The Calm And The Storm too more words",
-    //     editionAuthor: "Andrew Shiao",
-    //     editionImg: "./assets/images/card-06.jpg",
-    //     editionId: "2000139",
-    //     editionDate: "2020-3-15",
-    //     editionPrice: "0.07",
-    //   },
-    //   {
-    //     editionTitle: "The Calm And The Storm too more words",
-    //     editionAuthor: "Andrew Shiao",
-    //     editionImg: "./assets/images/card-07.jpg",
-    //     editionId: "2000143",
-    //     editionDate: "2020-3-15",
-    //     editionPrice: "0.09",
-    //   },
-    //   {
-    //     editionTitle: "The Calm And The Storm too more words",
-    //     editionAuthor: "Andrew Shiao",
-    //     editionImg: "./assets/images/card-08.jpg",
-    //     editionId: "2000401",
-    //     editionDate: "2020-3-15",
-    //     editionPrice: "0.08",
-    //   },
-    //   {
-    //     editionTitle: "The Calm And The Storm too more words",
-    //     editionAuthor: "Andrew Shiao",
-    //     editionImg: "./assets/images/card-09.jpg",
-    //     editionId: "2000141",
-    //     editionDate: "2020-3-15",
-    //     editionPrice: "0.015",
-    //   },
-    //   {
-    //     editionTitle: "The Calm And The Storm too more words",
-    //     editionAuthor: "Andrew Shiao",
-    //     editionImg: "./assets/images/card-10.jpg",
-    //     editionId: "2000142",
-    //     editionDate: "2020-3-15",
-    //     editionPrice: "0.05",
-    //   },
-    //   {
-    //     editionTitle: "The Calm And The Storm too more words",
-    //     editionAuthor: "Andrew Shiao",
-    //     editionImg: "./assets/images/card-11.jpg",
-    //     editionId: "2000143",
-    //     editionDate: "2020-3-15",
-    //     editionPrice: "0.7",
-    //   },
-    // ];
 
-    // this.editionSrv.getEditionByArtistId(this.currentUser.id).subscribe(res => {
-    //   if (res['result'] === 'successful') {
-    //     this.editions = res['data'];
-    //   }
-    //   else {
-
-    //   }
-    // }, err => {
-    //   console.error(`getArtwrokByArtistId failed ${err}`);
-    // });
   }
 
   initTags(lang) {
@@ -173,5 +72,20 @@ export class GalleryComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  onfilter(value) {
+
+    let result = this.editions.filter((edition) => {
+      if (edition.tags !== null)
+        return edition.tags.toLowerCase().indexOf(value) != -1 ? value : null;
+    });
+    this.displayEditions = result;
+    this.filterValue = value;
+  }
+
+  onClearFilter() {
+    this.filterValue = null;
+    this.displayEditions = this.editions;
   }
 }

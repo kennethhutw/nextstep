@@ -21,11 +21,11 @@
   </div>
 
   <div class="row">
-    <div class="carousel slide" data-ride="carousel">
+    <div class="carousel slide" id="myCarousel" data-ride="myCarousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <div class="row">
-            <ng-container *ngFor="let edition of popularEditions">
+          <div class="row" *ngIf="popularDisplayEditions.length>1">
+            <ng-container *ngFor="let edition of popularDisplayEditions[0]">
               <div class="col-md-4 mb-4">
                 <app-edition1 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
                   editionImg="{{ edition.imageUrl }}" editionId="{{ edition.artworkId }}"></app-edition1>
@@ -34,10 +34,16 @@
           </div>
         </div>
         <div class="carousel-item">
-          <div class="row">
-            <div class="col-sm"><img class="d-block w-100" src="//placehold.it/1200x600/ccff00" alt="4 slide"></div>
+          <div class="row" *ngIf="popularDisplayEditions.length>1">
+            <ng-container *ngFor="let edition of popularDisplayEditions[1]">
+              <div class="col-md-4 mb-4">
+                <app-edition1 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
+                  editionImg="{{ edition.imageUrl }}" editionId="{{ edition.artworkId }}"></app-edition1>
+              </div>
+            </ng-container>
+            <!-- <div class="col-sm"><img class="d-block w-100" src="//placehold.it/1200x600/ccff00" alt="4 slide"></div>
             <div class="col-sm"><img class="d-block w-100" src="//placehold.it/1200x600/444" alt="5 slide"></div>
-            <div class="col-sm"><img class="d-block w-100" src="//placehold.it/1200x600/ddd" alt="6 slide"></div>
+            <div class="col-sm"><img class="d-block w-100" src="//placehold.it/1200x600/ddd" alt="6 slide"></div> -->
           </div>
         </div>
       </div>
@@ -47,12 +53,12 @@
 
   <div class="row">
     <div class="text-center form-inline mx-auto">
-      <button class="index_btn_roll" data-slide="prev">
+      <a class="index_btn_roll" href="#myCarousel" data-slide="prev">
         <i class="fas fa-chevron-left"></i>
-      </button>
-      <button class="index_btn_roll" data-slide="next">
+      </a>
+      <a class="index_btn_roll" href="#myCarousel" data-slide="next">
         <i class="fas fa-chevron-right"></i>
-      </button>
+      </a>
     </div>
   </div>
   <!--row end-->

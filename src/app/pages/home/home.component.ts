@@ -15,64 +15,10 @@ import { environment } from '../../../environments/environment';
 export class HomeComponent implements OnInit {
   popularEditions = [];
   recentEditions = [];
-  cards = [
-    {
-      title: 'Card Title 1',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
-    {
-      title: 'Card Title 2',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
-    {
-      title: 'Card Title 3',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
-    {
-      title: 'Card Title 4',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
-    {
-      title: 'Card Title 5',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
-    {
-      title: 'Card Title 6',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
-    {
-      title: 'Card Title 7',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
-    {
-      title: 'Card Title 8',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
-    {
-      title: 'Card Title 9',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
-  ];
 
-  slides: any = [[]];
+
+
+  popularDisplayEditions: any = [[]];
   chunk(arr, chunkSize) {
     let R = [];
     for (let i = 0, len = arr.length; i < len; i += chunkSize) {
@@ -99,27 +45,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.slides = this.chunk(this.cards, 3);
-    // this.popularEditions = [
-    //   {
-    //     editionTitle: "The Calm And The Storm too more words",
-    //     editionAuthor: "Andrew Shiao",
-    //     editionImg: "./../../../assets/images/main-thumbnail-a1.jpg",
-    //     editionId: "2000123",
-    //   },
-    //   {
-    //     editionTitle: "The Calm And The Storm",
-    //     editionAuthor: "Andrew Shiao",
-    //     editionImg: "./../../../assets/images/main-thumbnail-a2.jpg",
-    //     editionId: "2000124",
-    //   },
-    //   {
-    //     editionTitle: "The Calm And The Storm too more words",
-    //     editionAuthor: "Andrew Shiao",
-    //     editionImg: "./../../../assets/images/main-thumbnail-a3.jpg",
-    //     editionId: "2000125",
-    //   },
-    // ];
+
     this.artworkSrv.getPopularArtwork().subscribe(res => {
 
       if (res["result"] == "successful") {
@@ -127,6 +53,7 @@ export class HomeComponent implements OnInit {
         this.popularEditions.forEach((element) => {
           element.imageUrl = environment.assetUrl + element.imageUrl;
         });
+        this.popularDisplayEditions = this.chunk(this.popularEditions, 3);
       }
     });
 
@@ -139,55 +66,6 @@ export class HomeComponent implements OnInit {
         });
       }
     });
-    // this.recentEditions = [
-    //   {
-    //     editionTitle: "The Calm And The Storm too more words",
-    //     editionAuthor: "Andrew Shiao",
-    //     editionImg: "./../../../assets/images/main-thumbnail-b1.jpg",
-    //     editionId: "2000123",
-    //   },
-    //   {
-    //     editionTitle: "The Calm And The Storm",
-    //     editionAuthor: "Andrew Shiao",
-    //     editionImg: "./../../../assets/images/main-thumbnail-b2.jpg",
-    //     editionId: "2000124",
-    //   },
-    //   {
-    //     editionTitle: "The Calm And The Storm too more words",
-    //     editionAuthor: "Andrew Shiao",
-    //     editionImg: "./../../../assets/images/main-thumbnail-b1.jpg",
-    //     editionId: "2000123",
-    //   },
-    //   {
-    //     editionTitle: "The Calm And The Storm",
-    //     editionAuthor: "Andrew Shiao",
-    //     editionImg: "./../../../assets/images/main-thumbnail-b2.jpg",
-    //     editionId: "2000124",
-    //   },
-    //   {
-    //     editionTitle: "The Calm And The Storm too more words",
-    //     editionAuthor: "Andrew Shiao",
-    //     editionImg: "./../../../assets/images/main-thumbnail-b1.jpg",
-    //     editionId: "2000123",
-    //   },
-    //   {
-    //     editionTitle: "The Calm And The Storm",
-    //     editionAuthor: "Andrew Shiao",
-    //     editionImg: "./../../../assets/images/main-thumbnail-b2.jpg",
-    //     editionId: "2000124",
-    //   },
-    //   {
-    //     editionTitle: "The Calm And The Storm too more words",
-    //     editionAuthor: "Andrew Shiao",
-    //     editionImg: "./../../../assets/images/main-thumbnail-b1.jpg",
-    //     editionId: "2000123",
-    //   },
-    //   {
-    //     editionTitle: "The Calm And The Storm",
-    //     editionAuthor: "Andrew Shiao",
-    //     editionImg: "./../../../assets/images/main-thumbnail-b2.jpg",
-    //     editionId: "2000124",
-    //   },
-    // ];
+
   }
 }

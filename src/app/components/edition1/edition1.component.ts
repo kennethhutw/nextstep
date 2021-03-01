@@ -40,7 +40,6 @@ export class Edition1Component implements OnInit {
   }
 
   ViewDetails() {
-    console.log("artistId ===========", this.editionId);
     this.router.navigate(["/gallery/" + this.editionId]);
   }
 }

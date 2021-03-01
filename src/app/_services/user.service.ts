@@ -6,20 +6,20 @@ import { environment } from "./../../environments/environment";
 
 @Injectable()
 export class UserService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getAllUser() {
     return null;
   }
 
-  getUserIDByEmail(email: string) {}
+  getUserIDByEmail(email: string) { }
 
   loggedInID: string;
   loggedInEmail: string;
 
-  getLoggedInEmail() {}
+  getLoggedInEmail() { }
 
-  getLoggedInID(email: string) {}
+  getLoggedInID(email: string) { }
 
 
   async getPassWordByEmail(email: string) {
@@ -32,31 +32,38 @@ export class UserService {
   }
 
 
-  updateUserInfoEmail(email:string, uid :string){
-      return this.http.post(`${environment.apiUrl}/users/changeInformEmail`,
-            {
-                'email': email,
-                'uid': uid
-            });
-  }
-
-  changeWalletAddress(address:string, uid :string){
-      return this.http.post(`${environment.apiUrl}/users/changeWalletAddress`,
+  updateUserInfoEmail(email: string, uid: string) {
+    return this.http.post(`${environment.apiUrl}/users/changeInformEmail`,
       {
-          'walletAddress': address,
-          'uid': uid
+        'email': email,
+        'uid': uid
       });
   }
 
-  changePassword(oldPassword:string, newPassword:string, uid :string){
-      return this.http.post(`${environment.apiUrl}/users/changePassword`,
+  changeWalletAddress(address: string, uid: string) {
+    return this.http.post(`${environment.apiUrl}/users/changeWalletAddress`,
       {
-          oldPassword,
-          newPassword,
-          uid
+        'walletAddress': address,
+        'uid': uid
       });
   }
 
+  changePassword(oldPassword: string, newPassword: string, uid: string) {
+    return this.http.post(`${environment.apiUrl}/users/changePassword`,
+      {
+        oldPassword,
+        newPassword,
+        uid
+      });
+  }
+
+  updateUserName(name: string, uid: string) {
+    return this.http.post(`${environment.apiUrl}/users/updateUserName`,
+      {
+        name,
+        uid
+      });
+  }
 
 
 }

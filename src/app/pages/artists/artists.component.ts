@@ -22,6 +22,7 @@ export class ArtistsComponent implements OnInit {
   tags = [];
   IsShowTags = false;
   defaultProfileLogo = null;
+  filterValue = null;
 
   constructor(
     private settingSrv: SettingService,
@@ -93,5 +94,20 @@ export class ArtistsComponent implements OnInit {
   }
   IsShowAllTags() {
     this.IsShowTags = !this.IsShowTags;
+  }
+
+  onfilter(value) {
+
+    let result = this.artists.filter((artist) => {
+      if (artist.tags !== null)
+        return artist.tags.toLowerCase().indexOf(value) != -1 ? value : null;
+    });
+    this.displayArtists = this.splitArr(result, 3);
+    this.filterValue = value;
+  }
+
+  onClearFilter() {
+    this.filterValue = null;
+    this.displayArtists = this.splitArr(this.artists, 3);
   }
 }

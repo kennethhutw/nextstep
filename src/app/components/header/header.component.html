@@ -29,26 +29,25 @@
             }}</a>
         </li>
         <li class="nav-item">
-          <a *ngIf="auth.isLoggedOut$ | async" [routerLinkActive]="['active']"
+          <a *ngIf="authStoreSrv.isLoggedOut$ | async" [routerLinkActive]="['active']"
             [routerLinkActiveOptions]="{ exact: true }" data-toggle="modal" [attr.data-target]="'#modal_register'"
             class="nav-link">{{ "SIGNUP" | translate }}</a>
         </li>
       </ul>
 
-      <form id="index_login" *ngIf="auth.isLoggedOut$ | async" class="form-inline my-2 my-lg-0 text-white">
+      <form id="index_login" *ngIf="authStoreSrv.isLoggedOut$ | async" class="form-inline my-2 my-lg-0 text-white">
+
         <a (click)="walletSignin()" class="text-white">
           <i class="far fa-arrow-alt-circle-right"></i>
           {{ "WALLETSIGNIN" | translate }}</a>｜
         <a data-toggle="modal" [attr.data-target]="'#modal_login_mail'" class="text-white">{{ "EMAILSIGNIN" | translate
           }}</a>
+
       </form>
 
-      <!-- <ng-container *ngIf="auth.user$ | async as user"> -->
-      <ng-container>
-        <!-- <img class="profile-picture" [src]="user.pictureUrl" />
-          *ngIf="auth.user$ | async as user"
-         -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <form *ngIf="authStoreSrv.isLoggedIn$ | async" id="index_login" class="form-inline my-2 my-lg-0 text-white">
+
+        <div *ngIf="this.currentUser.roles.artist" class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto text-center">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -71,10 +70,11 @@
 
           </ul>
         </div>
+      </form>
+      <!-- <ng-container *ngIf="auth.user$ | async as user"> -->
+      <form *ngIf="authStoreSrv.isLoggedIn$ | async" id="index_login" class="form-inline my-2 my-lg-0 text-white">
 
-      </ng-container>
-      <ng-container>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div *ngIf="this.currentUser.roles.collector" class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto text-center">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -96,7 +96,7 @@
 
           </ul>
         </div>
-      </ng-container>
+      </form>
     </div>
   </div>
 </nav>

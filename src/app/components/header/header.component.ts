@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
     private dataSrv: DataService,
     private router: Router,
     private route: ActivatedRoute,
-    public auth: AuthStore
+    public authStoreSrv: AuthStore
   ) {
     let _lang = localStorage.getItem("lang");
     if (!this.utility.IsNullOrEmpty(_lang)) {
@@ -64,8 +64,7 @@ export class HeaderComponent implements OnInit {
     this.translateSrv.get("EMAILSIGNIN").subscribe((text: string) => {
       this.setPlaceholder("#emailsignin", text);
     });
-
-    console.log("auth", this.auth.isLoggedOut$);
+    this.currentUser = this.authStoreSrv.getUserData();
   }
 
   close() {
@@ -79,14 +78,15 @@ export class HeaderComponent implements OnInit {
     this.IsSignInFailed = false;
     const val = this.signinEmailForm.value;
 
-    this.auth.login(val.email, val.password).subscribe(
+    this.authStoreSrv.login(val.email, val.password).subscribe(
       (res) => {
-        console.log("login =======", res);
         if (res["result"] === "successful") {
           this.closebutton.nativeElement.click();
+          console.log("auth", this.authStoreSrv.isLoggedOut$);
+          this.currentUser = this.authStoreSrv.getUserData();
+          console.log(" this.currentUser", this.currentUser);
         } else {
           this.IsSignInFailed = true;
-          //        console.log(" ===== failed");
         }
       },
       (err) => {
@@ -98,7 +98,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.auth.logout();
+    this.authStoreSrv.logout();
     this.router.navigate(['./index'], {});
   }
 
@@ -131,7 +131,7 @@ export class HeaderComponent implements OnInit {
     if (this.web3Srv.ethEnabled()) {
       this.web3Srv.getAccountDetail().then(
         (data) => {
-          this.auth.walletSignin(data.address).subscribe((result) => {
+          this.authStoreSrv.walletSignin(data.address).subscribe((result) => {
             console.log(" walletSignin =============== ");
           },
             errorMsg => {
@@ -152,7 +152,7 @@ export class HeaderComponent implements OnInit {
     if (!this.utility.IsNullOrEmpty(_password)) {
       const val = this.signinEmailForm.value;
 
-      this.auth.login(val.emai, val.password).subscribe(
+      this.authStoreSrv.login(val.emai, val.password).subscribe(
         () => { },
         (err) => {
           alert("Sign in failed!");
@@ -176,7 +176,8 @@ export class HeaderComponent implements OnInit {
   }
 
   Signout() {
-    this.auth.logout();
+    this.authStoreSrv.logout();
+    this.router.navigate(['./index'], {});
   }
   onSubmit() {
     // if (this.loginForm.invalid) {
