@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:3000',
-  assetUrl: 'http://localhost:3000',
-  assetAPIUrl: 'http://localhost:3000',
+  apiUrl: 'http://server.formosa.finance:5184',
+  assetUrl: 'http://server.formosa.finance:5184',
+  assetAPIUrl: 'http://server.formosa.finance:5184',
   environment: 'production'
 };
