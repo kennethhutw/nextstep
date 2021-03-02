@@ -94,15 +94,17 @@ export class ArtistDetailComponent {
     }
 
     this.currentUser = this.authStoreSrv.getUserData();
-    if (this.utility.IsNullOrEmpty(this.currentUser)) {
-      this.router.navigate(['./index'], {});
-    }
+    // if (this.utility.IsNullOrEmpty(this.currentUser)) {
+    //   this.router.navigate(['./index'], {});
+    // }
 
-    this.likeSrv.IsLike(this.currentUser.id, this.id).subscribe(res => {
-      if (res['result'] === "successful") {
-        this.isFollow = res['data'];
-      }
-    });
+    if (!this.utility.IsNullOrEmpty(this.currentUser)) {
+      this.likeSrv.IsLike(this.currentUser.id, this.id).subscribe(res => {
+        if (res['result'] === "successful") {
+          this.isFollow = res['data'];
+        }
+      });
+    }
   }
 
   getDisplayWalletAddress() {

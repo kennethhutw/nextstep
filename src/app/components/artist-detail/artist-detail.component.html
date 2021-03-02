@@ -4,12 +4,14 @@
   </div>
   <div id="artist-line-right" class="col-md-7">
     <h1 class="d-inline align-middle mr-2">{{ name }}</h1>
-    <button *ngIf="!isFollow" class="d-inline btn_small align-middle" (click)="onLike()">
-      <i class="fas fa-user"></i> {{ "FOLLOW" | translate }}
-    </button>
-    <button *ngIf="isFollow" class="d-inline btn_small_liked align-middle active" (click)="onDislike()">
-      <i class="fas fa-user-check"></i> {{ "UNFOLLOW" | translate }}
-    </button>
+    <div class="d-inline" *ngIf="this.currentUser">
+      <button *ngIf="!isFollow" class="d-inline btn_small align-middle" (click)="onLike()">
+        <i class="fas fa-user"></i> {{ "FOLLOW" | translate }}
+      </button>
+      <button *ngIf="isFollow" class="d-inline btn_small_liked align-middle active" (click)="onDislike()">
+        <i class="fas fa-user-check"></i> {{ "UNFOLLOW" | translate }}
+      </button>
+    </div>
     <p class="text-black-50 mt-10">
       Follow {{ follow }}｜Follower {{ follower }}｜
       <span *ngFor="let tag of _tags; let i = index"> #{{ tag }}</span>
