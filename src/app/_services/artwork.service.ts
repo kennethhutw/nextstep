@@ -70,4 +70,12 @@ export class ArtWorkService {
   public getSellArtwork() {
     return this.http.get<any>(`${environment.apiUrl}/artwork/getSellArtwork`);
   }
+
+  public getSellCollectorArtwork(uid) {
+    return this.http.get<any>(`${environment.apiUrl}/artwork/getSellCollectorArtwork/${uid}`);
+  }
+
+  public getArtworkByCollector(uid) {
+    return this.http.get<any>(`${environment.apiUrl}/artwork/getArtworkByCollector/${uid}`);
+  }
 }

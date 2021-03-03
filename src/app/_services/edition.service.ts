@@ -50,6 +50,7 @@ export class EditionService {
     return this.http.get<any>(`${environment.apiUrl}/edition/getEditionByArtistId/${artistId}`);
   }
 
+
   public getEditionById(id) {
     return this.http.get<any>(`${environment.apiUrl}/edition/getEditionById/${id}`);
   }

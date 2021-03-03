@@ -27,7 +27,8 @@ import {
   DialogService,
   SettingService,
   LikeService,
-  GalleryService
+  GalleryService,
+  OfferService
 } from "./../_services";
 
 import {
@@ -109,6 +110,7 @@ const sharedComponents = [
     AppSettingsService,
     AuthStore,
     LikeService,
+    OfferService,
     SettingService,
     DialogService,
     GalleryService,
