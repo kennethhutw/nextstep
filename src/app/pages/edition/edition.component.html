@@ -62,14 +62,16 @@
       <h6>{{ "ADDITIONALDETAILS" | translate }}</h6>
       <div class="text-black-50">
         <ul>
-          <li class="project_info_li">上傳時間：2020年4月20日</li>
-          <li class="project_info_li">規格：5312 x 7200 px, PNG (46.4 MB)</li>
-          <li class="project_info_li">
-            版本：此作品共有10版，此件為第5版 - 10/#5。
+          <li class="project_info_li">{{ "DATE" | translate }}：{{this.currentEdition.createdAt | date : 'yyyy-MM-dd'}}
           </li>
+          <li class="project_info_li">{{ "INFO" | translate }}：5312 x 7200 px, PNG (46.4 MB)</li>
           <li class="project_info_li">
+            {{ "EDITIONS" | translate }}：此作品共有{{this.currentEdition.totalamount}}版，此件為第{{this.currentEdition.number}}版 -
+            {{this.currentEdition.totalamount}} / #{{this.currentEdition.number}}。
+          </li>
+          <!-- <li class="project_info_li">
             標價：此為最終售價。<a href="">標價說明</a>
-          </li>
+          </li> -->
         </ul>
       </div>
       <hr class="mt-30 mb-30" />

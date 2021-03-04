@@ -60,9 +60,11 @@ export class EditionComponent implements OnInit {
         this.InitLike(this.currentUser.id, this.editionId);
       //  this.editionId = this.route.snapshot.paramMap.get("editionId");
       this.gallerySrv.getEditionDetailByEditionId(this.editionId).subscribe(res => {
-
+        console.log("ddd ======= ", res)
         if (res['result'] === 'successful') {
+
           this.currentEdition = res['data'];
+          console.log("  this.currentEdition ======= ", this.currentEdition)
           this.uid = this.currentEdition['artist'].uid;
           if (!this.utility.IsNullOrEmpty(this.currentEdition.imageUrl)) {
             this.currentEdition.imageUrl = environment.assetUrl + this.currentEdition.imageUrl;
