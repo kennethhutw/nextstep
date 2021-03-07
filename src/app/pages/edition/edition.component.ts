@@ -11,6 +11,7 @@ import {
 import { Utility } from "./../../_helpers";
 import { Router, ActivatedRoute } from "@angular/router";
 import { environment } from '../../../environments/environment';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: "edition",
@@ -36,8 +37,10 @@ export class EditionComponent implements OnInit {
     private utility: Utility,
     private dataSrv: DataService,
     private gallerySrv: GalleryService,
-    private likeSrv: LikeService
+    private likeSrv: LikeService,
+    private SpinnerService: NgxSpinnerService
   ) {
+    this.SpinnerService.show();
     this.currentUser = this.authStoreSrv.getUserData();
     let _lang = localStorage.getItem("lang");
     if (!this.utility.IsNullOrEmpty(_lang)) {
@@ -90,6 +93,7 @@ export class EditionComponent implements OnInit {
         error => {
           console.error(`getEditionDetailByEditionId ${JSON.stringify(error)}`);
         }, () => {
+          this.SpinnerService.hide();
           console.log("getEditionDetailByEditionId =============== finish.");
         });
     });

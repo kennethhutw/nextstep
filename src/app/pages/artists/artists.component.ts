@@ -8,7 +8,7 @@ import {
 } from "./../../_services";
 import { Utility } from "./../../_helpers";
 import { environment } from '../../../environments/environment';
-
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: "app-artists",
@@ -30,12 +30,14 @@ export class ArtistsComponent implements OnInit {
     private utility: Utility,
     private dataSrv: DataService,
     private appSettingsSrv: AppSettingsService,
-    private artistSrv: ArtistService
+    private artistSrv: ArtistService,
+    private SpinnerService: NgxSpinnerService
   ) {
     this.defaultProfileLogo = this.settingSrv.defaultProfileLogo;
   }
 
   ngOnInit() {
+    this.SpinnerService.show();
     let _lang = localStorage.getItem("lang");
     console.log("_lang ==============", _lang);
     if (!this.utility.IsNullOrEmpty(_lang)) {
@@ -71,6 +73,8 @@ export class ArtistsComponent implements OnInit {
 
     }, error => {
       console.error("getArtists failed", error);
+    }, () => {
+      this.SpinnerService.hide();
     });
   }
 

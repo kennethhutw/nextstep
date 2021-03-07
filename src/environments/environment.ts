@@ -10,6 +10,13 @@ export const environment = {
   environment: 'dev'
 };
 
+// export const environment = {
+//   production: false,
+//   apiUrl: 'http://localhost:3000',
+//   assetUrl: 'http://localhost:3000',
+//   assetAPIUrl: 'http://localhost:3000',
+//   environment: 'dev'
+// };
 
 // export const environment = {
 //     production: true,

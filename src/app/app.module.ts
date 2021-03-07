@@ -6,7 +6,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 
 import { AppComponent } from "./app.component";
 import { routing } from "./app-routing.module";
-
+import { NgxSpinnerModule } from "ngx-spinner";
 import {
   NewWalletComponent,
   WalletListComponent,
@@ -187,6 +187,7 @@ export function createLoader(http: HttpClient) {
     OwlModule,
     IsotopeModule,
     NgMasonryGridModule,
+    NgxSpinnerModule,
     SharedModule,
     TranslateModule.forRoot({
       loader: {

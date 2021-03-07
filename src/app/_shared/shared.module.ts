@@ -13,6 +13,8 @@ import { Utility, SocialMediaUtility, TimeUtility } from "../_helpers";
 import { BsModalService } from "ngx-bootstrap/modal";
 import { ModalModule } from "ngx-bootstrap";
 import { GlobalErrorHandler } from "./../_core/errors/global-error-handler";
+import { LoadingSpinnerComponent } from "./loading-spinner/loading-spinner.component";
+import { NgxSpinnerModule } from "ngx-spinner";
 import {
   UserService,
   WalletService,
@@ -51,6 +53,7 @@ import { AddressShortenPipe, ShortenPipe }
   from "../_pipe";
 
 const sharedComponents = [
+  LoadingSpinnerComponent,
   LoadingDialogComponent,
   ErrorDialogComponent];
 
@@ -75,6 +78,7 @@ const sharedComponents = [
     ReactiveFormsModule,
     CommonModule,
     RouterModule,
+    NgxSpinnerModule,
     ModalModule.forRoot()],
   exports: [
     UploadFileComponent,
