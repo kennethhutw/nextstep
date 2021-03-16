@@ -124,7 +124,7 @@
       <button (click)="onSignIn()" class="model_btn_normal mb-2 w-100">
         {{ "SIGNIN" | translate }}
       </button>
-      <div *ngIf="IsSignInFailed" class="invalid">Incorrect email or password.</div>
+      <div *ngIf="IsSignInFailed" class="invalid">{{LoginFailedMsg}}</div>
       <div class="w-100">
         <div class="float-left">
           <a href="#" data-toggle="modal" data-target="#modal_register" data-dismiss="modal">
@@ -153,11 +153,18 @@
         </div>
         <div class="row text-center">
           <input class="modal_input w-100 mb-2" type="text" id="signinPassword" placeholder="{{ 'EMAIL' | translate }}"
-            (focus)="this.placeholder = ''" (blur)="setBlur('signinPassword', 'PASSWORD')" />
-          <button class="model_btn_normal mb-2 w-100" data-toggle="modal" data-target="#modal_password_thanks"
-            data-dismiss="modal">
+            [(ngModel)]="ForgotPasswordEmail" (focus)="this.placeholder = ''"
+            (blur)="setBlur('signinPassword', 'PASSWORD')" />
+          <!-- <button class="model_btn_normal mb-2 w-100" data-target="#modal_password_thanks" data-toggle="modal"
+            (click)="onResetPassword()" data-dismiss="modal">
+            {{ "SEND" | translate }}
+          </button> -->
+          <button class="model_btn_normal mb-2 w-100" (click)="onResetPassword()">
             {{ "SEND" | translate }}
           </button>
+        </div>
+        <div [ngClass]="{ 'error-msg': pswMsgFailed == false }" class="text-center mb-4">
+          <p> {{pswActionMsg}}</p>
         </div>
       </div>
     </div>

@@ -30,7 +30,8 @@ import {
   SettingService,
   LikeService,
   GalleryService,
-  OfferService
+  OfferService,
+  EmailService
 } from "./../_services";
 
 import {
@@ -118,6 +119,7 @@ const sharedComponents = [
     SettingService,
     DialogService,
     GalleryService,
+    EmailService,
     {
       provide: ErrorHandler,
       useClass: GlobalErrorHandler,

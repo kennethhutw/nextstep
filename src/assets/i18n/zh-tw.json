@@ -113,6 +113,7 @@
   "COLLECTORCHOICE": "您可以選擇以帳密註冊，或是以虛擬錢包註冊。",
   "METAMASKREGISTRATION": "備註：目前只開放「MetaMask」註冊。",
   "ACCOUNTSETTING": "帳密設定",
+  "PASSWORDSETTING": "密碼設定",
   "ACCOUNT": "帳號",
   "OLDPSW": "舊密碼",
   "NEWPSW": "新密碼",

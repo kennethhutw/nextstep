@@ -47,6 +47,11 @@ export class CollectorLayoutComponent implements OnInit {
 
   ngOnInit() {
     this.UserName = this.currentUser.name;
+
+    this.authStoreSrv.user$.subscribe(user => {
+      this.currentUser = user;
+      this.UserName = this.currentUser.name;
+    });
   }
 
   GetCurrentUserName() {

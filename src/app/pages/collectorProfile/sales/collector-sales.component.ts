@@ -22,7 +22,8 @@ export class CollectorSalesComponent implements OnInit {
   currentUser: any;
   artworks = [];
   ethPrice = 0;
-  constructor(private translateSrv: TranslateService,
+  constructor(
+    private translateSrv: TranslateService,
     private utility: Utility,
     private editionSrv: EditionService,
     private dataSrv: DataService,

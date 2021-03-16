@@ -14,8 +14,8 @@ import {
   UserService,
   Web3Service,
   DataService,
+  EmailService
 } from "../../_services";
-import { User } from "./../../_models/user";
 
 @Component({
   selector: "app-header",
@@ -28,7 +28,11 @@ export class HeaderComponent implements OnInit {
   currentUser: any = null;
   placeholder = '';
   IsSignInFailed = false;
+  LoginFailedMsg = "Incorrect email or password.";
+  ForgotPasswordEmail = "";
 
+  pswMsgFailed = true;
+  pswActionMsg = "";
   constructor(
     private utility: Utility,
     private fb: FormBuilder,
@@ -38,6 +42,7 @@ export class HeaderComponent implements OnInit {
     private dataSrv: DataService,
     private router: Router,
     private route: ActivatedRoute,
+    private emailSrv: EmailService,
     public authStoreSrv: AuthStore
   ) {
     let _lang = localStorage.getItem("lang");
@@ -65,11 +70,14 @@ export class HeaderComponent implements OnInit {
       this.setPlaceholder("#emailsignin", text);
     });
     this.currentUser = this.authStoreSrv.getUserData();
+    this.authStoreSrv.user$.subscribe(user => { this.currentUser = user });
   }
 
   close() {
 
   }
+
+
   onSignIn() {
 
     // this.closeModal.nativeElement.click();
@@ -77,6 +85,7 @@ export class HeaderComponent implements OnInit {
     //  this.closeModal['el'].nativeElement.classList.add('sshow');
     this.IsSignInFailed = false;
     const val = this.signinEmailForm.value;
+    this.LoginFailedMsg = "Incorrect email or password.";
 
     this.authStoreSrv.login(val.email, val.password).subscribe(
       (res) => {
@@ -87,6 +96,7 @@ export class HeaderComponent implements OnInit {
           console.log(" this.currentUser", this.currentUser);
         } else {
           this.IsSignInFailed = true;
+          this.LoginFailedMsg = res["message"];
         }
       },
       (err) => {
@@ -179,6 +189,7 @@ export class HeaderComponent implements OnInit {
     this.authStoreSrv.logout();
     this.router.navigate(['./index'], {});
   }
+
   onSubmit() {
     // if (this.loginForm.invalid) {
     //   return;
@@ -212,6 +223,7 @@ export class HeaderComponent implements OnInit {
     //   }
     // });
   }
+
   GoToNextPage(pageName) {
     this.router.navigate(["/register-artist"]);
   }
@@ -224,5 +236,27 @@ export class HeaderComponent implements OnInit {
 
   setPlaceholder(elementName, value) {
     document.querySelector(elementName).setAttribute("placeholder", value);
+  }
+
+  onResetPassword() {
+
+    this.pswMsgFailed = true;
+    this.pswActionMsg = "";
+    let domain = window.location.origin;
+    let url = '/setPassword';
+    let link = domain + url;
+    this.emailSrv.sendResetPasswordEmail(
+      'Reset your password for Formosa Art',
+      this.ForgotPasswordEmail,
+      link).subscribe(sendRes => {
+        if (sendRes['result'] == 'successful') {
+          this.pswActionMsg = sendRes['message'];
+        } else {
+          this.pswMsgFailed = false;
+          this.pswActionMsg = sendRes['message'];
+        }
+        // this.msg = true;
+        // this.message = 'E-mail has been sent to reset your password.';
+      });
   }
 }

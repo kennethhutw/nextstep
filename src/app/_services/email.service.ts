@@ -18,17 +18,24 @@ export class EmailService {
             });
     }
 
-    sendResetPasswordEmail(subject, receiverName, receiverEmail, link, uid) {
+    sendResetPasswordEmail(subject, receiverEmail, link) {
         return this.http.post(`${environment.apiUrl}/resetPassoword`,
             {
                 'subject': subject,
-                'receiverName': receiverName,
                 'receiverEmail': receiverEmail,
-                'link': link,
-                'uid': uid
+                'link': link
             });
     }
 
+
+    sendResetPasswordEmailByUid(subject, uid, link) {
+        return this.http.post(`${environment.apiUrl}/resetPassowordByUid`,
+            {
+                'subject': subject,
+                'uid': uid,
+                'link': link
+            });
+    }
 
     sendEmail(title, receiver, link, uid, requester, requesterOrg) {
         return this.http.post(`${environment.apiUrl}/sendMail`,
@@ -41,5 +48,14 @@ export class EmailService {
                 'requesterOrg': requesterOrg
             });
     }
+
+    sendWelcomeEmail(name, receiver) {
+        return this.http.post(`${environment.apiUrl}/sendWelcomeEmail`,
+            {
+                'name': name,
+                'receiver': receiver
+            });
+    }
+
 
 }

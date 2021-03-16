@@ -72,16 +72,16 @@ export class RegisterArtistComponent implements OnInit {
       this.newEditions.push(_newEdition);
     }
     this.registerForm = this.formBuilder.group({
-      name: ["Ariel", Validators.required],
+      name: ["", Validators.required],
       email: [
-        "arielhuang1202@gmail.com",
+        "",
         [
           Validators.required,
           Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
         ],
       ],
-      location: ["Taiwan", Validators.required],
-      website: ["https://arielhuang1202.wixsite.com/huaiyuanartworks"],
+      location: ["", Validators.required],
+      website: [""],
       facebook: [""],
       twitter: [""],
       instagram: [""],

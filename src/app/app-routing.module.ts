@@ -47,7 +47,9 @@ import {
   ArtistSoldArtWorkComponent,
   ArtistBasicComponent,
   ArtistEditionDetailComponent,
-  ArtistUploadComponent
+  ArtistUploadComponent,
+  VerificationComponent,
+  SetPasswordComponent
 } from "./pages";
 
 import {
@@ -77,6 +79,14 @@ const routes: Routes = [
     path: "",
     component: MainLayoutComponent,
     children: [
+      {
+        path: "verifyEmail",
+        component: VerificationComponent
+      },
+      {
+        path: "setPassword",
+        component: SetPasswordComponent
+      },
       {
         path: "qa",
         component: QAComponent,

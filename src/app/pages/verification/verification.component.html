@@ -1,0 +1,31 @@
+<div class="login p-3 rounded">
+  <!-- LOGO -->
+  <div class="d-flex flex-column align-items-center mb-3">
+    <div class="mb-2">
+      <img class="p-3  rounded-circle logo" src="../../assets/logo.png" alt="">
+    </div>
+    <p><b style="font-size: 1.5rem;">Formosa Art</b></p>
+  </div>
+  <h5 class="text-center mb-3">Verification</h5>
+  <!-- description -->
+  <div *ngIf="this.timeDiff < 1800000 && this.isVerify == true" class="" style="text-align: center;">
+    Your e-mail has been verified. Click<a class="link-color px-3 text-center" (click)="NextPage()">here</a>to
+    login.
+  </div>
+  <div *ngIf="this.timeDiff > 1800000" class="" style="text-align: center;">
+    This link has expired. Please click on the button to request for a new
+    verification e-mail.
+  </div>
+  <div *ngIf="this.isVerify == false" class="" style="text-align: center;">
+    This verification is failed. Please click on the button to request for a new
+    verification e-mail.
+  </div>
+  <div>
+    <button *ngIf="this.timeDiff > 1800000" type="submit" class="btn btn-primary btn-sm btn-block btn-bgcolor"
+      style="margin-top: 15px;" (click)=resendEmail()>Resend Verification E-mail</button>
+    <p *ngIf="clickedText" style="color: green; font-size: 14px; text-align: center; margin-top: 10px;">E-mail sent.
+    </p>
+    <img *ngIf="loading" class="loading"
+      src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+  </div>
+</div>

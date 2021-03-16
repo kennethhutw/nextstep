@@ -3,6 +3,7 @@ import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import { catchError, retry } from "rxjs/operators";
 import { environment } from "./../../environments/environment";
+import { resResult } from "../_models";
 
 @Injectable()
 export class UserService {
@@ -21,6 +22,20 @@ export class UserService {
 
   getLoggedInID(email: string) { }
 
+  async getUserDataByEmail(email: string) {
+    const params = new HttpParams().set("email", email);
+    return await this.http
+      .get<any>(`${environment.apiUrl}/users/getPassWordByEmail`, {
+        params: params,
+      })
+      .toPromise();
+  }
+
+  async getUserBasicInfo(id: string) {
+    return await this.http
+      .get<any>(`${environment.apiUrl}/users/getUserBasicInfo/${id}`)
+      .toPromise();
+  }
 
   async getPassWordByEmail(email: string) {
     const params = new HttpParams().set("email", email);
@@ -65,5 +80,29 @@ export class UserService {
       });
   }
 
+
+  confirmVerifiedEmail(uid, status) {
+    return this.http.post(`${environment.apiUrl}/users/setVerified`,
+      {
+        uid: uid,
+        status: status
+      });
+  }
+
+  async getUserEmailByUid(uid: string) {
+    const params = new HttpParams().set("uid", uid);
+    return await this.http
+      .get<any>(`${environment.apiUrl}/users/getUserEmailByUid`, {
+        params: params,
+      })
+      .toPromise();
+  }
+
+  public updateUserBasicInfo(data) {
+    return this.http
+      .post<resResult>(`${environment.apiUrl}/users/updateUserBasicInfo`,
+        data
+      );
+  }
 
 }

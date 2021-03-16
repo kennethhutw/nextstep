@@ -20,7 +20,7 @@ export { AboutComponent } from "./about/about.component";
 export { ForArtistComponent } from "./for-artist/for-artist.component";
 export { ForBuyerComponent } from "./for-buyer/for-buyer.component";
 export { ErrorComponent } from "./error/error.component";
-
+export { VerificationComponent } from './verification/verification.component';
 
 export { CollectorAccountComponent } from "./collectorProfile/account/collector-account.component";
 export { CollectorCollectionComponent } from "./collectorProfile/collection/collector-collection.component";
@@ -37,3 +37,4 @@ export { ArtistSoldArtWorkComponent } from "./artistProfile/sold/artist-sold.com
 export { ArtistBasicComponent } from "./artistProfile/basic/artist-basic.component";
 export { ArtistEditionDetailComponent } from "./artistProfile/detail/artist-edition-detail.component";
 export { ArtistUploadComponent } from "./artistProfile/upload/artist-upload.component";
+export { SetPasswordComponent } from './setPassword/setPassword.component';

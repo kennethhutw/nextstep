@@ -121,10 +121,17 @@ export class RegisterBuyerComponent implements OnInit {
           (res) => {
             if (res["result"] === "successful") {
               const _user = res["data"];
-              localStorage.setItem("currentUser", JSON.stringify(_user));
+              this.auth.setUserData(_user);
               localStorage.setItem("token", res["token"]);
+              let AuthEmailRes = this.auth.sendAuthEmail(_user['id'], this.registerForm.value.email);
+              // this.auth.sendAuthEmail(_user['id'], this.registerForm.value.email);
               // redirect to profile
-              this.router.navigate(["profile/collector/" + _user["id"]], {});
+              AuthEmailRes.subscribe(_res => {
+                if (_res['result'] = 'successful') {
+                  this.router.navigate(["collector/account/"], {});
+                }
+              })
+
             } else {
               this.errorMsg = res["message"];
             }

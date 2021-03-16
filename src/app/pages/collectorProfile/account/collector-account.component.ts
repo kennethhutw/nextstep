@@ -6,8 +6,14 @@ import {
   UserService,
   Web3Service
 } from "./../../../_services";
+import {
+  FormBuilder,
+  FormGroup
+} from "@angular/forms";
 import { Utility } from "./../../../_helpers";
 import { Router } from "@angular/router";
+import { resResult, UserModel } from "../../../_models";
+
 @Component({
   selector: "app-collector-account",
   templateUrl: "./collector-account.component.html",
@@ -28,6 +34,12 @@ export class CollectorAccountComponent implements OnInit {
   ethAddressActionMsg = null;
   ethAddressActionMsgFailed = false;
 
+  profileImage: any;
+  profileImageFile: any;
+  profileForm: FormGroup;
+
+  IsUpdateFailed = false;
+
   constructor(
     private web3Srv: Web3Service,
     private router: Router,
@@ -35,6 +47,7 @@ export class CollectorAccountComponent implements OnInit {
     private utility: Utility,
     private dataSrv: DataService,
     private authStoreSrv: AuthStore,
+    private formBuilder: FormBuilder,
     private userSrv: UserService) { }
 
   ngOnInit() {
@@ -56,6 +69,26 @@ export class CollectorAccountComponent implements OnInit {
       this.informEmail = this.currentUser.informEmail;
       this.ethAddress = this.currentUser.ethaddress;
     }
+
+    // this.profileForm = this.formBuilder.group({
+    //   name: [""],
+    //   bio: [""],
+    //   location: [""],
+    //   website: [""],
+    //   facebook: [""],
+    //   twitter: [""],
+    //   instagram: [""],
+    //   tags: [""]
+    // });
+    this.profileForm = this.formBuilder.group({
+      name: [""],
+      bio: [""]
+    });
+    console.log(" this.currentUser ========== ", this.currentUser);
+    this.profileForm.setValue({
+      name: this.currentUser.name,
+      bio: this.currentUser.bio
+    });
   }
 
 
@@ -280,5 +313,67 @@ export class CollectorAccountComponent implements OnInit {
       this.submittedPSW = false;
     }
   }
+
+  onRemoveImg(event) {
+    this.profileImage = null;
+    this.profileImageFile = null;
+  }
+
+  onDetectImage(event) {
+    if (event.target.files.length === 0)
+      return;
+
+    var mimeType = event.target.files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      return;
+    }
+
+    var reader = new FileReader();
+    this.profileImageFile = event.target.files[0];
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload = (_event) => {
+      this.profileImage = reader.result;
+    }
+  }
+
+  onSubmit() {
+    let userInfo = new UserModel();
+    userInfo.name = this.profileForm.value.name;
+    userInfo.bio = this.profileForm.value.bio;
+    this.informMsg = "";
+    this.IsUpdateFailed = false;
+
+    let formData = new FormData();
+    formData.append("id", this.currentUser.id);
+    formData.append("uid", this.currentUser.id);
+    formData.append("name", userInfo.name);
+    formData.append("bio", userInfo.bio);
+    if (this.profileImageFile)
+      formData.append("profileImage", this.profileImageFile);
+
+    this.userSrv.updateUserBasicInfo(formData).subscribe(res => {
+      if (res["result"] === "successful") {
+        this.translateSrv.get("UPDATEDSUCC").subscribe((text: string) => {
+          this.informMsg = text;
+
+        });
+        this.authStoreSrv.reloadCurrentUserInfo();
+      }
+      else {
+        this.translateSrv.get("UPDATEDFAILED").subscribe((text: string) => {
+          this.informMsg = text;
+          this.IsUpdateFailed = true;
+        });
+      }
+    }, error => {
+      this.translateSrv.get("UPDATEDFAILED").subscribe((text: string) => {
+        this.informMsg = text;
+        this.IsUpdateFailed = true;
+      });
+      console.error("update Basic infor failed", error);
+    });
+  }
+
+
 
 }

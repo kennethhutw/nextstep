@@ -113,6 +113,7 @@
   "COLLECTORCHOICE": "您可以选择以帐密注册，或是以虚拟钱包注册。",
   "METAMASKREGISTRATION": "备注：目前只开放「MetaMask」注册。",
   "ACCOUNTSETTING": "帐密设定",
+  "PASSWORDSETTING": "密码设定",
   "ACCOUNT": "帐号",
   "OLDPSW": "旧密码",
   "NEWPSW": "新密码",

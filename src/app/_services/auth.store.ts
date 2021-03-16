@@ -1,10 +1,13 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
+import { EmailService, UserService } from '../_services';
+
 
 import { environment } from "./../../environments/environment";
-import { User } from "./../_models/user";
-import { resResult, NewArtist } from "./../_models";
+import { UserInterface } from "../_models/user.model";
+import { resResult } from "./../_models";
 import { map, shareReplay, tap } from "rxjs/operators";
+
 
 import { HttpClient } from "@angular/common/http";
 import { Utility } from "../_helpers";
@@ -15,14 +18,18 @@ const AUTH_DATA = "auth_data";
   providedIn: "root",
 })
 export class AuthStore {
-  private subject = new BehaviorSubject<User>(null);
+  private subject = new BehaviorSubject<UserInterface>(null);
 
-  user$: Observable<User> = this.subject.asObservable();
+  user$: Observable<UserInterface> = this.subject.asObservable();
 
   isLoggedIn$: Observable<boolean>;
   isLoggedOut$: Observable<boolean>;
 
-  constructor(private http: HttpClient, private utility: Utility) {
+  constructor(
+    private http: HttpClient,
+    private utility: Utility,
+    private emailService: EmailService,
+    private userSrv: UserService) {
     this.isLoggedIn$ = this.user$.pipe(map((user) => !!user));
 
     this.isLoggedOut$ = this.isLoggedIn$.pipe(map((LoggedIn) => !LoggedIn));
@@ -44,7 +51,7 @@ export class AuthStore {
       })
       .pipe(
         tap((resResult) => {
-          const _user = resResult.data as User;
+          const _user = resResult.data as UserInterface;
 
           localStorage.setItem(AUTH_DATA, JSON.stringify(_user));
           this.subject.next(_user);
@@ -62,7 +69,7 @@ export class AuthStore {
       .pipe(
         tap((resResult) => {
           if (resResult["result"] === "successful") {
-            const _user = resResult.data as User;
+            const _user = resResult.data as UserInterface;
             this.subject.next(_user);
             localStorage.setItem("access_token", resResult.token);
             if (!this.utility.IsNullOrEmpty(_user)) {
@@ -94,7 +101,7 @@ export class AuthStore {
       .pipe(
         tap((resResult) => {
           console.log("ArtistSignup resResult :", resResult);
-          const _user = resResult.data as User;
+          const _user = resResult.data as UserInterface;
           this.subject.next(_user);
           localStorage.setItem(AUTH_DATA, JSON.stringify(_user));
         }),
@@ -111,7 +118,7 @@ export class AuthStore {
       })
       .pipe(
         tap((resResult) => {
-          const _user = resResult.data as User;
+          const _user = resResult.data as UserInterface;
           this.subject.next(_user);
           localStorage.setItem(AUTH_DATA, JSON.stringify(_user));
         }),
@@ -127,7 +134,7 @@ export class AuthStore {
       })
       .pipe(
         tap((resResult) => {
-          const _user = resResult.data as User;
+          const _user = resResult.data as UserInterface;
           localStorage.setItem(AUTH_DATA, JSON.stringify(_user));
           this.subject.next(_user);
         }),
@@ -178,10 +185,38 @@ export class AuthStore {
   setUserData(userData) {
     try {
       localStorage.setItem(AUTH_DATA, JSON.stringify(userData));
+      this.subject.next(userData);
       return true;
     } catch (error) {
       console.error(`setUserData failed : ${error}`);
       return false;
     }
   }
+  sendAuthEmail(uid, email, role = '') {
+    const domain = window.location.origin;
+    const url = '/verifyEmail';
+    const currentTime = new Date();
+    const timeInMs = currentTime.getTime();
+    const link = domain + url + '?uid=' + uid + '&time=' + timeInMs + '&role=' + role;
+
+    return this.emailService.authenticateEmail(
+      'Welcome to the Formoas Art platform!',
+      email,
+      link,
+      uid);
+  }
+
+  reloadCurrentUserInfo() {
+    let currentUser = this.getUserData();
+    this.userSrv.getUserBasicInfo(currentUser.id).then(res => {
+      if (res['result'] == 'successful') {
+        const _user = res.data as UserInterface;
+        this.subject.next(_user);
+        localStorage.setItem(AUTH_DATA, JSON.stringify(_user));
+      }
+    }).catch(error => {
+      console.error("reloadCurrentUserInfo failed : ", error);
+    })
+  }
+
 }

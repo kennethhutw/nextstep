@@ -131,6 +131,8 @@ export class ArtistBasicComponent implements OnInit {
   }
 
   onSubmit() {
+    this.informMsg = "";
+    this.IsUpdateFailed = false;
     let newArtist = new NewArtist();
     newArtist.name = this.profileForm.value.name;
     newArtist.bio = this.profileForm.value.bio;
@@ -159,6 +161,7 @@ export class ArtistBasicComponent implements OnInit {
         this.translateSrv.get("UPDATEDSUCC").subscribe((text: string) => {
           this.informMsg = text;
         });
+        this.authStoreSrv.reloadCurrentUserInfo();
       }
       else {
         this.translateSrv.get("UPDATEDFAILED").subscribe((text: string) => {
