@@ -69,7 +69,7 @@ export class SetPasswordComponent implements OnInit {
       }
 
     });
-    debugger;
+
   }
 
   NextPage() {
@@ -107,10 +107,18 @@ export class SetPasswordComponent implements OnInit {
     }
   }
 
+  get f() {
+    return this.Form.controls;
+  }
+
   onSubmit() {
 
     try {
       this.submittedPSW = true;
+      if (this.Form.value.newPassword == this.Form.value.newPassword2) {
+        return;
+      }
+
       let _password = this.Form.value.newPassword;
       this.pswActionMsg = null;
       this.pswMsgFailed = false;
