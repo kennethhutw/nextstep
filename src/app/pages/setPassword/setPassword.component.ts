@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService, EmailService } from '../../_services';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'app-setPassword',
@@ -18,6 +19,13 @@ export class SetPasswordComponent implements OnInit {
   created: number;
   current: Date;
   timeDiff: number;
+
+  oldPSW = "";
+  newPSW = "";
+  confirmPSW = "";
+  submittedPSW = false;
+  pswActionMsg = null;
+  pswMsgFailed = false;
 
   clickedText = false;
   isVerify = true;
@@ -37,6 +45,7 @@ export class SetPasswordComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private userSrv: UserService,
+    private translateSrv: TranslateService,
     private emailSrv: EmailService
   ) {
     this.current = new Date();
@@ -55,11 +64,12 @@ export class SetPasswordComponent implements OnInit {
       this.timeDiff = this.current.getTime() - this.time;
       if (this.timeDiff > 1800000) {
         this.IsCanResetPassword = false;
-        this.message = "This is expired! Please resend reset e-mail."
+        this.pswActionMsg = "This is expired! Please resend reset e-mail.";
+        this.pswMsgFailed = true;
       }
 
     });
-
+    debugger;
   }
 
   NextPage() {
@@ -98,6 +108,39 @@ export class SetPasswordComponent implements OnInit {
   }
 
   onSubmit() {
+
+    try {
+      this.submittedPSW = true;
+      let _password = this.Form.value.newPassword;
+      this.pswActionMsg = null;
+      this.pswMsgFailed = false;
+      this.userSrv.setPassword(_password,
+        this.uid).subscribe(res => {
+          if (res["result"] === "successful") {
+            this.submittedPSW = false;
+            this.translateSrv.get("UPDATEDSUCC").subscribe((text: string) => {
+              this.pswActionMsg = text;
+              this.Form.reset();
+            });
+          } else {
+            this.translateSrv.get("UPDATEDFAILED").subscribe((text: string) => {
+              this.pswActionMsg = text;
+              this.pswMsgFailed = true;
+            });
+          }
+        }, error => {
+          this.translateSrv.get("UPDATEDFAILED").subscribe((text: string) => {
+            this.pswActionMsg = text;
+            this.pswMsgFailed = true;
+          });
+          console.error(`setPassword failed : ${error}`);
+        })
+
+    }
+    catch (err) {
+      console.warn(`changePassword ${err}`);
+      this.submittedPSW = false;
+    }
 
   }
 

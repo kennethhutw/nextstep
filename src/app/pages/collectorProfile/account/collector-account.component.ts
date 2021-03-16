@@ -250,7 +250,6 @@ export class CollectorAccountComponent implements OnInit {
   updateUserPassword() {
     try {
       this.submittedPSW = true;
-      console.log(" updateUserPassword ");
       if (this.newPSW !== this.confirmPSW ||
         this.newPSW === "" ||
         this.confirmPSW === "") {

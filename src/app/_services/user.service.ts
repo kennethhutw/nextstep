@@ -72,6 +72,16 @@ export class UserService {
       });
   }
 
+
+  setPassword(password: string, uid: string) {
+    return this.http.post(`${environment.apiUrl}/authenticate/setPassword`,
+      {
+        password,
+        uid
+      });
+  }
+
+
   updateUserName(name: string, uid: string) {
     return this.http.post(`${environment.apiUrl}/users/updateUserName`,
       {

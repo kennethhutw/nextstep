@@ -69,8 +69,11 @@ export class HeaderComponent implements OnInit {
     this.translateSrv.get("EMAILSIGNIN").subscribe((text: string) => {
       this.setPlaceholder("#emailsignin", text);
     });
+
     this.currentUser = this.authStoreSrv.getUserData();
-    this.authStoreSrv.user$.subscribe(user => { this.currentUser = user });
+    if (this.currentUser) {
+      this.authStoreSrv.user$.subscribe(user => { this.currentUser = user });
+    }
   }
 
   close() {
