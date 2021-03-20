@@ -92,9 +92,11 @@ export class RegisterArtistComponent implements OnInit {
 
   }
   try() {
-    this.dialogSrv.infoThis("you have successfully registered ",
+    this.dialogSrv.infoThis("You have successfully registered ",
       () => {
-        console.log("===")
+        console.log("yed ===");
+      }, () => {
+        console.log("yed ===");
       });
   }
   //   onDetectCompLogo(event) {
@@ -262,9 +264,11 @@ export class RegisterArtistComponent implements OnInit {
 
     this.authStore.ArtistSignup(formData).subscribe(res => {
       if (res["result"] === "successful") {
-        this.dialogSrv.infoThis("you have successfully registered ",
+        this.dialogSrv.infoThis("You have successfully registered ",
           () => {
             this.router.navigate(['./index'], {});
+          }, () => {
+            console.log("yed ===");
           });
       }
     });

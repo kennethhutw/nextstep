@@ -10,8 +10,8 @@ export class DialogService {
         this.setConfirmation(message, yesFn, noFn);
     }
 
-    infoThis(message: string, yesFn: () => void): any {
-        this.setInformation(message, yesFn);
+    infoThis(message: string, yesFn: () => void, noFn: () => void): any {
+        this.setInformation(message, yesFn, noFn);
     }
 
     setConfirmation(message: string, yesFn: () => void, noFn: () => void): any {
@@ -30,7 +30,7 @@ export class DialogService {
         });
     }
 
-    setInformation(message: string, yesFn: () => void): any {
+    setInformation(message: string, yesFn: () => void, noFn: () => void): any {
         const that = this;
         this.subject.next({
             type: 'info',
@@ -38,6 +38,10 @@ export class DialogService {
             yesFn(): any {
                 that.subject.next(); // This will close the modal
                 yesFn();
+            },
+            noFn(): any {
+                that.subject.next();
+                noFn();
             }
         });
     }

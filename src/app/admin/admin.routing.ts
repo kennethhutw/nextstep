@@ -7,11 +7,11 @@ import { MapsComponent } from './pages/maps/maps.component';
 import { NotificationsComponent } from './pages/notifications/notifications.component';
 
 export const AdminLayoutRoutes: Routes = [
-  {path: '',   redirectTo: '/dashboard', pathMatch: 'full'},
-  {path: 'dashboard', component: DashboardComponent},
-  {path: 'forms', component: FormsComponent},
-  {path: 'tables', component: TablesComponent},
-  {path: 'typography', component: TypographyComponent},
-  {path: 'maps', component: MapsComponent},
-  {path: 'notifications', component: NotificationsComponent}
+  { path: '', redirectTo: '/admin/dashboard', pathMatch: 'full' },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'forms', component: FormsComponent },
+  { path: 'tables', component: TablesComponent },
+  { path: 'typography', component: TypographyComponent },
+  { path: 'maps', component: MapsComponent },
+  { path: 'notifications', component: NotificationsComponent }
 ];
