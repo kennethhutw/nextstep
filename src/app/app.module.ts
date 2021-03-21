@@ -86,7 +86,8 @@ import {
   ArtistEditionDetailComponent,
   ArtistUploadComponent,
   VerificationComponent,
-  SetPasswordComponent
+  SetPasswordComponent,
+  CheckStatusComponent
 } from "./pages";
 
 
@@ -176,7 +177,8 @@ export function createLoader(http: HttpClient) {
     SidebarComponent,
     AdminFooterComponent,
     VerificationComponent,
-    SetPasswordComponent
+    SetPasswordComponent,
+    CheckStatusComponent
   ],
   imports: [
     BrowserModule,

@@ -38,3 +38,4 @@ export { ArtistBasicComponent } from "./artistProfile/basic/artist-basic.compone
 export { ArtistEditionDetailComponent } from "./artistProfile/detail/artist-edition-detail.component";
 export { ArtistUploadComponent } from "./artistProfile/upload/artist-upload.component";
 export { SetPasswordComponent } from './setPassword/setPassword.component';
+export { CheckStatusComponent } from './checkStatus/checkStatus.component';

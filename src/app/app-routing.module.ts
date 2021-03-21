@@ -49,7 +49,8 @@ import {
   ArtistEditionDetailComponent,
   ArtistUploadComponent,
   VerificationComponent,
-  SetPasswordComponent
+  SetPasswordComponent,
+  CheckStatusComponent
 } from "./pages";
 
 import {
@@ -79,6 +80,10 @@ const routes: Routes = [
     path: "",
     component: MainLayoutComponent,
     children: [
+      {
+        path: "checkStatus",
+        component: CheckStatusComponent
+      },
       {
         path: "verifyEmail",
         component: VerificationComponent

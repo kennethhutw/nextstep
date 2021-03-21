@@ -29,6 +29,10 @@ export class ArtistService {
     return this.http.get<any>(`${environment.apiUrl}/artists/getArtistBasicInfo/${id}`);
   }
 
+  public getArtistBasicInfoByEmail(email) {
+    return this.http.get<any>(`${environment.apiUrl}/artists/getArtistBasicInfoByEmail/${email}`);
+  }
+
   public getArtistBasicInfoByUid(uid) {
     return this.http.get<any>(`${environment.apiUrl}/artists/getArtistBasicInfoByUid/${uid}`);
   }
