@@ -3,7 +3,8 @@ import { TranslateService } from "@ngx-translate/core";
 import {
   DataService,
   AuthStore,
-  DialogService
+  DialogService,
+  EmailService
 } from "./../../../_services";
 import { Utility } from "./../../../_helpers";
 import { NewArtist, ApplyEdition } from "./../../../_models";
@@ -44,7 +45,8 @@ export class RegisterArtistComponent implements OnInit {
     private formBuilder: FormBuilder,
     private translateSrv: TranslateService,
     private utility: Utility,
-    private dataSrv: DataService
+    private dataSrv: DataService,
+    private EmailSrv: EmailService
   ) {
     let _lang = localStorage.getItem("lang");
     if (!this.utility.IsNullOrEmpty(_lang)) {
@@ -91,14 +93,7 @@ export class RegisterArtistComponent implements OnInit {
     localStorage.clear();
 
   }
-  try() {
-    this.dialogSrv.infoThis("You have successfully registered ",
-      () => {
-        console.log("yed ===");
-      }, () => {
-        console.log("yed ===");
-      });
-  }
+
   //   onDetectCompLogo(event) {
   //   this.uploadedCompLogo = false;
   //   this.selectedMaterial = event.target.files;
@@ -264,6 +259,7 @@ export class RegisterArtistComponent implements OnInit {
 
     this.authStore.ArtistSignup(formData).subscribe(res => {
       if (res["result"] === "successful") {
+        this.sendApplicationEmail(newArtist.name, newArtist.email, res["data"]);
         this.dialogSrv.infoThis("You have successfully registered ",
           () => {
             this.router.navigate(['./index'], {});
@@ -272,6 +268,25 @@ export class RegisterArtistComponent implements OnInit {
           });
       }
     });
+
+  }
+
+  sendApplicationEmail(name, email, uid) {
+
+    let url = '/checkStatus';
+    let link = window.location.origin + url;
+    this.EmailSrv.sendApplicationEmail("We have received your application.",
+      name, email, link, uid).subscribe(res => {
+        if (res['result'] == 'successful') {
+          console.log("Email sent");
+        } else {
+          console.error("sendApplicationEmail failed." + res['message']);
+        }
+
+      }, error => {
+
+        console.error("sendApplicationEmail failed." + error);
+      })
 
   }
 

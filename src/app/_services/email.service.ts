@@ -57,5 +57,15 @@ export class EmailService {
             });
     }
 
+    sendApplicationEmail(subject, receiverName, receiverEmail, link, uid) {
+        return this.http.post(`${environment.apiUrl}/email/sendapplicationEmail`,
+            {
+                'subject': subject,
+                'receiverName': receiverName,
+                'receiverEmail': receiverEmail,
+                'link': link,
+                'uid': uid
+            });
+    }
 
 }
