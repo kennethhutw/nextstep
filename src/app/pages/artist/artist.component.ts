@@ -6,7 +6,8 @@ import {
 import {
   ArtistService,
   AppSettingsService,
-  AuthStore
+  AuthStore,
+  SettingService
 } from "../../_services";
 
 import { Router, ActivatedRoute } from "@angular/router";
@@ -25,7 +26,9 @@ export class ArtistPageComponent implements OnInit {
   defaultImg = "";
   uid = "";
   currentUser = null;
+  defaultProfileLogo = null;
   constructor(
+    private settingSrv: SettingService,
     private authStoreSrv: AuthStore,
     private route: ActivatedRoute,
     private translateSrv: TranslateService,
@@ -38,7 +41,7 @@ export class ArtistPageComponent implements OnInit {
     if (this.currentUser) {
       this.uid = this.currentUser.id;
     }
-
+    this.defaultProfileLogo = this.settingSrv.defaultProfileLogo;
   }
 
   ngOnInit() {
@@ -51,7 +54,8 @@ export class ArtistPageComponent implements OnInit {
 
         if (res["result"] === "successful") {
           this.artist = res["data"];
-          if (this.artist) {
+          if (this.artist && this.artist.imageUrl != null) {
+
             this.artist.imageUrl = environment.assetUrl + this.artist.imageUrl;
           }
           //tags: "bizarre,love,romantic"

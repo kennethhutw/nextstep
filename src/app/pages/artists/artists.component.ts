@@ -65,7 +65,9 @@ export class ArtistsComponent implements OnInit {
       if (res["result"] === "successful") {
         this.artists = res["data"];
         this.artists.forEach((element) => {
-          element.imageUrl = environment.assetUrl + element.imageUrl;
+          if (element.imageUrl != null) {
+            element.imageUrl = environment.assetUrl + element.imageUrl;
+          }
         });
         //  _data.imageUrl = environment.assetUrl + _data.imageUrl;
         this.displayArtists = this.splitArr(res["data"], 3);
