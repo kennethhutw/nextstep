@@ -101,9 +101,9 @@ export class AuthStore {
       .pipe(
         tap((resResult) => {
           console.log("ArtistSignup resResult :", resResult);
-          const _user = resResult.data as UserInterface;
-          this.subject.next(_user);
-          localStorage.setItem(AUTH_DATA, JSON.stringify(_user));
+          // const _user = resResult.data as UserInterface;
+          // this.subject.next(_user);
+          // localStorage.setItem(AUTH_DATA, JSON.stringify(_user));
         }),
         shareReplay()
       );

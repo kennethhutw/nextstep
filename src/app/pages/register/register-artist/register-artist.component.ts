@@ -262,7 +262,7 @@ export class RegisterArtistComponent implements OnInit {
         this.sendApplicationEmail(newArtist.name, newArtist.email, res["data"]);
         this.dialogSrv.infoThis("You have successfully registered ",
           () => {
-            this.router.navigate(['./index'], {});
+            this.router.navigate(['./checkStatus'], {});
           }, () => {
             console.log("yed ===");
           });

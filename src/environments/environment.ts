@@ -4,10 +4,10 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000',
-  assetUrl: 'http://localhost:3000',
-  assetAPIUrl: 'http://localhost:3000',
-  environment: 'dev'
+  apiUrl: 'https://server.formosa.finance:8443',
+  assetUrl: 'https://server.formosa.finance:8443',
+  assetAPIUrl: 'https://server.formosa.finance:8443',
+  environment: 'staging'
 };
 
 // export const environment = {
