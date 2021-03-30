@@ -9,8 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "patch-webpack": "node plugins/patch.js",
-    "postinstall--past": "ng build --aot --prod"
+    "patch-webpack": "node plugins/patch.js"
   },
   "engines": {
     "node": "11.X",
