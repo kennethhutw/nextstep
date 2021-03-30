@@ -2,9 +2,10 @@
   "name": "formosa",
   "version": "0.0.0",
   "scripts": {
+    "heroku-postbuild": "ng build --aot --configuration=${environment} --prod --namedChunks=true --stats-json",
     "ng": "ng",
     "start": "node server.js",
-    "build": "ng build --aot --configuration=staging --prod --namedChunks=true --stats-json",
+    "build": "ng build --aot --configuration=${environment} --prod --namedChunks=true --stats-json",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
