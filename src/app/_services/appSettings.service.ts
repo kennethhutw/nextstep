@@ -20,7 +20,10 @@ export class AppSettingsService {
   defaultAssetUrl = environment.assetUrl;
   defaultApiUrl = environment.apiUrl;
 
-  public getArtistStatus() {
+  // public getArtistStatus(value) {
+  //   switch (value){
 
-  }
+  //   }
+
+  // }
 }
