@@ -1,0 +1,13 @@
+/* font-family: "Noto Sans TC",sans-serif; */
+.title{
+    font-size: 24px;
+    font-weight: 400;
+    font-family: "Noto Sans TC",sans-serif;
+}
+
+.card-body{
+        font-size: 1.3em;
+    line-height: 1.9em;
+    opacity: 0.9;
+    font-family: "Noto Sans TC",sans-serif;
+}
