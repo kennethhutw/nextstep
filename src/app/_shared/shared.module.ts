@@ -50,7 +50,11 @@ import {
 
 } from "../_directive";
 
-import { AddressShortenPipe, ShortenPipe }
+import {
+  AddressShortenPipe,
+  ShortenPipe,
+  UserFilterPipe
+}
   from "../_pipe";
 
 const sharedComponents = [
@@ -72,6 +76,7 @@ const sharedComponents = [
     EditableInputComponent,
     AddressShortenPipe,
     ShortenPipe,
+    UserFilterPipe,
     ...sharedComponents,
   ],
   imports: [
@@ -94,6 +99,7 @@ const sharedComponents = [
     EditableInputComponent,
     AddressShortenPipe,
     ShortenPipe,
+    UserFilterPipe,
     ...sharedComponents,
   ],
   providers: [

@@ -71,9 +71,8 @@ export class HeaderComponent implements OnInit {
     });
 
     this.currentUser = this.authStoreSrv.getUserData();
-    if (this.currentUser) {
-      this.authStoreSrv.user$.subscribe(user => { this.currentUser = user });
-    }
+
+    this.authStoreSrv.user$.subscribe(user => { this.currentUser = user });
   }
 
   close() {
@@ -144,8 +143,11 @@ export class HeaderComponent implements OnInit {
     if (this.web3Srv.ethEnabled()) {
       this.web3Srv.getAccountDetail().then(
         (data) => {
-          this.authStoreSrv.walletSignin(data.address).subscribe((result) => {
-            console.log(" walletSignin =============== ");
+          this.authStoreSrv.walletSignin(data.address, "collector").subscribe((result) => {
+            this.currentUser = this.authStoreSrv.getUserData();
+            if (this.currentUser) {
+              this.authStoreSrv.user$.subscribe(user => { this.currentUser = user });
+            }
           },
             errorMsg => {
               console.log('error', errorMsg);

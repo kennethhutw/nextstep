@@ -100,6 +100,7 @@
   "ACCOUNTPASSWORD": "帳戶及帳密",
   "MYFAVOURITES": "我的最愛",
   "EDITION": "作品",
+  "EDITION_": "作品",
   "BIDEDITION": "競標作品",
   "SALESEDITION": "銷售作品",
   "CONNECTWALLET": "連接錢包",
@@ -173,5 +174,10 @@
   "SELECTCHANNEL": "選擇頻道分類",
   "CANCEL": "取消",
   "CONFIRM": "確認",
-  "REMOVEFAVORITES": "從我的最愛移除"
+  "REMOVEFAVORITES": "從我的最愛移除",
+  "LATEST": "最新的",
+  "OLDEST": "最晚的",
+  "EXPENSIVE": "最高價的",
+  "CHEAPEST": "最低價的",
+  "POPULAR": "最熱門的"
 }

@@ -99,6 +99,7 @@
   "ACCOUNTPASSWORD": "Account",
   "MYFAVOURITES": "Favourites",
   "EDITION": "Edition",
+  "EDITION_": "EDITION",
   "BIDEDITION": "Offer",
   "SALESEDITION": "Sale",
   "CONNECTWALLET": "Connect Wallet",
@@ -174,5 +175,10 @@
   "SELECTCHANNEL": "Select channel classification.",
   "CANCEL": "Cancel",
   "CONFIRM": "Save",
-  "REMOVEFAVORITES": "Remove from favorites"
+  "REMOVEFAVORITES": "Remove from favorites",
+  "LATEST": "Latest",
+  "OLDEST": "Oldest",
+  "EXPENSIVE": "Highest price",
+  "CHEAPEST": "Lowest price",
+  "POPULAR": "Popular"
 }

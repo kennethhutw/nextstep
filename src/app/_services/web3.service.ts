@@ -12,7 +12,7 @@ declare var window: any;
 export class Web3Service {
   private web3: Web3;
   private contract: Contract;
-  private contractAddress: "0x.....";
+  private contractAddress = "0x8Cad66326e9c72C87971f3b945f15bE6A43bC4dD";
   constructor(private zone: NgZone) {
     // if (window.web3) {
     //   this.web3 = new Web3(window.ethereum);
@@ -26,6 +26,14 @@ export class Web3Service {
     // } else {
     //   console.warn("Metamask not found Install or enable Metamask");
     // }
+    if (this.web3) {
+      this.contract = new this.web3.eth.Contract(
+        contractAbi,
+        this.contractAddress
+      );
+
+    }
+
   }
 
   ethEnabled() {
@@ -36,9 +44,20 @@ export class Web3Service {
         this.contractAddress
       );
       window.ethereum.enable().catch((err) => {
-        console.log(err);
+        console.error(err);
       });
 
+      return true;
+    }
+    return false;
+  }
+
+  loadContract() {
+    if (this.web3) {
+      this.contract = new this.web3.eth.Contract(
+        contractAbi,
+        this.contractAddress
+      );
       return true;
     }
     return false;
@@ -65,6 +84,11 @@ export class Web3Service {
     return this.contract.methods[fnName](...args).send({ from: acc });
   }
 
+  async purchase(fnName: string, ethValue, ...args: any[]): Promise<void> {
+    const acc = await this.getAccount();
+    return this.contract.methods[fnName](...args).send({ from: acc, value: ethValue });
+  }
+
   async call(fnName: string, ...args: any[]) {
     const acc = await this.getAccount();
     return this.contract.methods[fnName](...args).call({ from: acc });
@@ -78,7 +102,14 @@ export class Web3Service {
     });
   }
 
-  verifyEthAddress(address){
+  getNetworkId() {
+    return this.web3.eth.net.getId();
+  }
+
+  EthToWei(value) {
+    return this.web3.utils.toWei(value, 'ether');
+  }
+  verifyEthAddress(address) {
     return this.web3.utils.isAddress(address);
   }
 

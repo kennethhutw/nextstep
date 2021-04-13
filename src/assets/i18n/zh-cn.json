@@ -100,6 +100,7 @@
   "ACCOUNTPASSWORD": "帐户及帐密",
   "MYFAVOURITES": "我的最爱",
   "EDITION": "作品",
+  "EDITION_": "作品",
   "BIDEDITION": "竞标作品",
   "SALESEDITION": "销售作品",
   "CONNECTWALLET": "连接钱包",
@@ -173,5 +174,10 @@
   "SELECTCHANNEL": "选择频道分类",
   "CANCEL": "取消",
   "CONFIRM": "确认",
-  "REMOVEFAVORITES": "从我的最爱移除"
+  "REMOVEFAVORITES": "从我的最爱移除",
+  "LATEST": "最新的",
+  "OLDEST": "最晚的",
+  "EXPENSIVE": "最高价的",
+  "CHEAPEST": "最低价的",
+  "POPULAR": "最热门的"
 }

@@ -3,7 +3,7 @@
   <div class="sidebar-profile d-flex flex-column justify-content-center pt-5 pb-3">
     <div class="picture-wrapper mb-4">
       <div class="user-picture m-auto">
-        <img src="./assets/img/user.jpg" class="img-fluid" alt="">
+        <img src="./assets/img/user.png" class="img-fluid" alt="">
       </div>
     </div>
     <div class="profile-details text-center pb-4">
@@ -20,9 +20,23 @@
     </div>
     <ul class="menu-items">
       <li>
+        <a href="#" routerLink="/index" routerLinkActive="active">
+          <i class="fa fa-tv"></i>
+          <span>MarketPlace</span>
+
+        </a>
+      </li>
+      <li>
         <a href="#" routerLink="/admin/dashboard" routerLinkActive="active">
           <i class="fa fa-tv"></i>
           <span>Dashboard</span>
+          <span class="badge badge-warning rounded-0 text-dark p-1">NEW</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" routerLink="/admin/blockchain" routerLinkActive="active">
+          <i class="fa fa-square"></i>
+          <span>blockchain</span>
           <span class="badge badge-warning rounded-0 text-dark p-1">NEW</span>
         </a>
       </li>

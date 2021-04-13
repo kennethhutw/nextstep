@@ -1,53 +1,56 @@
 [
   {
-    "constant": true,
-    "inputs": [],
-    "name": "name",
-    "outputs": [
+    "constant": false,
+    "inputs": [
       {
-        "name": "",
-        "type": "string"
+        "name": "_operator",
+        "type": "address"
+      },
+      {
+        "name": "_role",
+        "type": "uint8"
       }
     ],
+    "name": "addAddressToAccessControl",
+    "outputs": [],
     "payable": false,
-    "stateMutability": "view",
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
     "constant": false,
     "inputs": [
       {
-        "name": "_spender",
+        "name": "_to",
         "type": "address"
       },
       {
-        "name": "_value",
+        "name": "_tokenId",
         "type": "uint256"
       }
     ],
     "name": "approve",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
+    "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "constant": true,
-    "inputs": [],
-    "name": "totalSupply",
-    "outputs": [
+    "constant": false,
+    "inputs": [
       {
-        "name": "",
-        "type": "uint256"
+        "name": "_to",
+        "type": "address"
+      },
+      {
+        "name": "_tokenIds",
+        "type": "uint256[]"
       }
     ],
+    "name": "batchTransfer",
+    "outputs": [],
     "payable": false,
-    "stateMutability": "view",
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -62,11 +65,75 @@
         "type": "address"
       },
       {
-        "name": "_value",
+        "name": "_tokenIds",
+        "type": "uint256[]"
+      }
+    ],
+    "name": "batchTransferFrom",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_tokenId",
         "type": "uint256"
       }
     ],
-    "name": "transferFrom",
+    "name": "burn",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      },
+      {
+        "name": "_editionData",
+        "type": "bytes32"
+      },
+      {
+        "name": "_editionType",
+        "type": "uint256"
+      },
+      {
+        "name": "_startDate",
+        "type": "uint256"
+      },
+      {
+        "name": "_endDate",
+        "type": "uint256"
+      },
+      {
+        "name": "_artistAccount",
+        "type": "address"
+      },
+      {
+        "name": "_artistCommission",
+        "type": "uint256"
+      },
+      {
+        "name": "_priceInWei",
+        "type": "uint256"
+      },
+      {
+        "name": "_tokenURI",
+        "type": "string"
+      },
+      {
+        "name": "_totalAvailable",
+        "type": "uint256"
+      }
+    ],
+    "name": "createActiveEdition",
     "outputs": [
       {
         "name": "",
@@ -78,37 +145,191 @@
     "type": "function"
   },
   {
-    "constant": true,
+    "constant": false,
     "inputs": [
       {
-        "name": "_owner",
+        "name": "_editionNumber",
+        "type": "uint256"
+      },
+      {
+        "name": "_editionData",
+        "type": "bytes32"
+      },
+      {
+        "name": "_editionType",
+        "type": "uint256"
+      },
+      {
+        "name": "_startDate",
+        "type": "uint256"
+      },
+      {
+        "name": "_endDate",
+        "type": "uint256"
+      },
+      {
+        "name": "_artistAccount",
         "type": "address"
       },
       {
-        "name": "_spender",
-        "type": "address"
-      }
-    ],
-    "name": "specialAllowance",
-    "outputs": [
+        "name": "_artistCommission",
+        "type": "uint256"
+      },
       {
-        "name": "",
+        "name": "_priceInWei",
+        "type": "uint256"
+      },
+      {
+        "name": "_tokenURI",
+        "type": "string"
+      },
+      {
+        "name": "_totalSupply",
+        "type": "uint256"
+      },
+      {
+        "name": "_totalAvailable",
         "type": "uint256"
       }
     ],
+    "name": "createActivePreMintedEdition",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
     "payable": false,
-    "stateMutability": "view",
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "constant": true,
+    "constant": false,
     "inputs": [
       {
-        "name": "",
+        "name": "_editionNumber",
+        "type": "uint256"
+      },
+      {
+        "name": "_editionData",
+        "type": "bytes32"
+      },
+      {
+        "name": "_editionType",
+        "type": "uint256"
+      },
+      {
+        "name": "_startDate",
+        "type": "uint256"
+      },
+      {
+        "name": "_endDate",
+        "type": "uint256"
+      },
+      {
+        "name": "_artistAccount",
         "type": "address"
+      },
+      {
+        "name": "_artistCommission",
+        "type": "uint256"
+      },
+      {
+        "name": "_priceInWei",
+        "type": "uint256"
+      },
+      {
+        "name": "_tokenURI",
+        "type": "string"
+      },
+      {
+        "name": "_totalAvailable",
+        "type": "uint256"
       }
     ],
-    "name": "balances",
+    "name": "createInactiveEdition",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      },
+      {
+        "name": "_editionData",
+        "type": "bytes32"
+      },
+      {
+        "name": "_editionType",
+        "type": "uint256"
+      },
+      {
+        "name": "_startDate",
+        "type": "uint256"
+      },
+      {
+        "name": "_endDate",
+        "type": "uint256"
+      },
+      {
+        "name": "_artistAccount",
+        "type": "address"
+      },
+      {
+        "name": "_artistCommission",
+        "type": "uint256"
+      },
+      {
+        "name": "_priceInWei",
+        "type": "uint256"
+      },
+      {
+        "name": "_tokenURI",
+        "type": "string"
+      },
+      {
+        "name": "_totalSupply",
+        "type": "uint256"
+      },
+      {
+        "name": "_totalAvailable",
+        "type": "uint256"
+      }
+    ],
+    "name": "createInactivePreMintedEdition",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_to",
+        "type": "address"
+      },
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      }
+    ],
+    "name": "mint",
     "outputs": [
       {
         "name": "",
@@ -116,104 +337,85 @@
       }
     ],
     "payable": false,
-    "stateMutability": "view",
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "constant": true,
+    "constant": false,
     "inputs": [],
-    "name": "decimals",
+    "name": "pause",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      }
+    ],
+    "name": "purchase",
     "outputs": [
       {
         "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": true,
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_to",
+        "type": "address"
+      },
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      }
+    ],
+    "name": "purchaseTo",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": true,
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "reclaimEther",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_operator",
+        "type": "address"
+      },
+      {
+        "name": "_role",
         "type": "uint8"
       }
     ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_from",
-        "type": "address"
-      },
-      {
-        "name": "_to",
-        "type": "address"
-      },
-      {
-        "name": "_value",
-        "type": "uint256"
-      }
-    ],
-    "name": "transferSpecialFrom",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
+    "name": "removeAddressFromAccessControl",
+    "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_spender",
-        "type": "address"
-      },
-      {
-        "name": "_subtractedValue",
-        "type": "uint256"
-      }
-    ],
-    "name": "decreaseApproval",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "decimalFactor",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_owner",
-        "type": "address"
-      }
-    ],
-    "name": "balanceOf",
-    "outputs": [
-      {
-        "name": "balance",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -226,31 +428,51 @@
     "type": "function"
   },
   {
-    "constant": true,
-    "inputs": [],
-    "name": "owner",
-    "outputs": [
+    "constant": false,
+    "inputs": [
       {
-        "name": "",
+        "name": "_from",
         "type": "address"
+      },
+      {
+        "name": "_to",
+        "type": "address"
+      },
+      {
+        "name": "_tokenId",
+        "type": "uint256"
       }
     ],
+    "name": "safeTransferFrom",
+    "outputs": [],
     "payable": false,
-    "stateMutability": "view",
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "constant": true,
-    "inputs": [],
-    "name": "symbol",
-    "outputs": [
+    "constant": false,
+    "inputs": [
       {
-        "name": "",
-        "type": "string"
+        "name": "_from",
+        "type": "address"
+      },
+      {
+        "name": "_to",
+        "type": "address"
+      },
+      {
+        "name": "_tokenId",
+        "type": "uint256"
+      },
+      {
+        "name": "_data",
+        "type": "bytes"
       }
     ],
+    "name": "safeTransferFrom",
+    "outputs": [],
     "payable": false,
-    "stateMutability": "view",
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -261,17 +483,12 @@
         "type": "address"
       },
       {
-        "name": "_value",
-        "type": "uint256"
-      }
-    ],
-    "name": "transfer",
-    "outputs": [
-      {
-        "name": "",
+        "name": "_approved",
         "type": "bool"
       }
     ],
+    "name": "setApprovalForAll",
+    "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
@@ -280,25 +497,16 @@
     "constant": false,
     "inputs": [
       {
-        "name": "_nonce",
+        "name": "_tokenId",
         "type": "uint256"
       },
       {
-        "name": "_ethSignedMessageHash",
-        "type": "bytes32"
-      },
-      {
-        "name": "_sig",
-        "type": "bytes"
+        "name": "_uri",
+        "type": "string"
       }
     ],
-    "name": "specialApprove",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
+    "name": "setTokenURI",
+    "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
@@ -307,53 +515,29 @@
     "constant": false,
     "inputs": [
       {
-        "name": "_spender",
+        "name": "_from",
         "type": "address"
       },
       {
-        "name": "_addedValue",
+        "name": "_to",
+        "type": "address"
+      },
+      {
+        "name": "_tokenId",
         "type": "uint256"
       }
     ],
-    "name": "increaseApproval",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
+    "name": "transferFrom",
+    "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_owner",
-        "type": "address"
-      },
-      {
-        "name": "_spender",
-        "type": "address"
-      }
-    ],
-    "name": "allowance",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
     "type": "function"
   },
   {
     "constant": false,
     "inputs": [
       {
-        "name": "newOwner",
+        "name": "_newOwner",
         "type": "address"
       }
     ],
@@ -364,48 +548,303 @@
     "type": "function"
   },
   {
+    "constant": false,
     "inputs": [
       {
-        "name": "_totalSupply",
+        "name": "_to",
+        "type": "address"
+      },
+      {
+        "name": "_editionNumber",
         "type": "uint256"
-      },
+      }
+    ],
+    "name": "underMint",
+    "outputs": [
       {
-        "name": "_name",
-        "type": "string"
-      },
-      {
-        "name": "_symbol",
-        "type": "string"
-      },
-      {
-        "name": "_decimals",
-        "type": "uint8"
+        "name": "",
+        "type": "uint256"
       }
     ],
     "payable": false,
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "unpause",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      },
+      {
+        "name": "_active",
+        "type": "bool"
+      }
+    ],
+    "name": "updateActive",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      },
+      {
+        "name": "_rate",
+        "type": "uint256"
+      }
+    ],
+    "name": "updateArtistCommission",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      },
+      {
+        "name": "_artistAccount",
+        "type": "address"
+      }
+    ],
+    "name": "updateArtistsAccount",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      },
+      {
+        "name": "_uri",
+        "type": "string"
+      }
+    ],
+    "name": "updateEditionTokenURI",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      },
+      {
+        "name": "_editionType",
+        "type": "uint256"
+      }
+    ],
+    "name": "updateEditionType",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      },
+      {
+        "name": "_endDate",
+        "type": "uint256"
+      }
+    ],
+    "name": "updateEndDate",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_faCommissionAccount",
+        "type": "address"
+      }
+    ],
+    "name": "updateFaCommissionAccount",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      },
+      {
+        "name": "_rate",
+        "type": "uint256"
+      },
+      {
+        "name": "_recipient",
+        "type": "address"
+      }
+    ],
+    "name": "updateOptionalCommission",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      },
+      {
+        "name": "_priceInWei",
+        "type": "uint256"
+      }
+    ],
+    "name": "updatePriceInWei",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      },
+      {
+        "name": "_startDate",
+        "type": "uint256"
+      }
+    ],
+    "name": "updateStartDate",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_newBaseURI",
+        "type": "string"
+      }
+    ],
+    "name": "updateTokenBaseURI",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      },
+      {
+        "name": "_totalAvailable",
+        "type": "uint256"
+      }
+    ],
+    "name": "updateTotalAvailable",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      },
+      {
+        "name": "_totalSupply",
+        "type": "uint256"
+      }
+    ],
+    "name": "updateTotalSupply",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "payable": true,
+    "stateMutability": "payable",
     "type": "constructor"
   },
   {
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "fallback"
+  },
+  {
     "anonymous": false,
     "inputs": [
       {
         "indexed": true,
-        "name": "from",
-        "type": "address"
+        "name": "_tokenId",
+        "type": "uint256"
       },
       {
         "indexed": true,
-        "name": "to",
+        "name": "_editionNumber",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "_buyer",
         "type": "address"
       },
       {
         "indexed": false,
-        "name": "value",
+        "name": "_priceInWei",
         "type": "uint256"
       }
     ],
-    "name": "Transfer",
+    "name": "Purchase",
     "type": "event"
   },
   {
@@ -413,21 +852,21 @@
     "inputs": [
       {
         "indexed": true,
-        "name": "owner",
-        "type": "address"
+        "name": "_tokenId",
+        "type": "uint256"
       },
       {
         "indexed": true,
-        "name": "spender",
-        "type": "address"
+        "name": "_editionNumber",
+        "type": "uint256"
       },
       {
-        "indexed": false,
-        "name": "value",
-        "type": "uint256"
+        "indexed": true,
+        "name": "_buyer",
+        "type": "address"
       }
     ],
-    "name": "Approval",
+    "name": "Minted",
     "type": "event"
   },
   {
@@ -435,21 +874,33 @@
     "inputs": [
       {
         "indexed": true,
-        "name": "owner",
-        "type": "address"
+        "name": "_editionNumber",
+        "type": "uint256"
       },
       {
         "indexed": true,
-        "name": "spender",
-        "type": "address"
+        "name": "_editionData",
+        "type": "bytes32"
       },
       {
-        "indexed": false,
-        "name": "nonce",
+        "indexed": true,
+        "name": "_editionType",
         "type": "uint256"
       }
     ],
-    "name": "SpecialApproval",
+    "name": "EditionCreated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [],
+    "name": "Pause",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [],
+    "name": "Unpause",
     "type": "event"
   },
   {
@@ -480,5 +931,1025 @@
     ],
     "name": "OwnershipTransferred",
     "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "operator",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "role",
+        "type": "uint8"
+      }
+    ],
+    "name": "RoleAdded",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "operator",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "role",
+        "type": "uint8"
+      }
+    ],
+    "name": "RoleRemoved",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "_from",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "_to",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "_tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "Transfer",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "_owner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "_approved",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "_tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "Approval",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "_owner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "_operator",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "_approved",
+        "type": "bool"
+      }
+    ],
+    "name": "ApprovalForAll",
+    "type": "event"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      }
+    ],
+    "name": "artistCommission",
+    "outputs": [
+      {
+        "name": "_artistAccount",
+        "type": "address"
+      },
+      {
+        "name": "_artistCommission",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_artistsAccount",
+        "type": "address"
+      }
+    ],
+    "name": "artistsEditions",
+    "outputs": [
+      {
+        "name": "_editionNumbers",
+        "type": "uint256[]"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_owner",
+        "type": "address"
+      }
+    ],
+    "name": "balanceOf",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_operator",
+        "type": "address"
+      },
+      {
+        "name": "_role",
+        "type": "uint8"
+      }
+    ],
+    "name": "checkRole",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "editionNumber",
+        "type": "uint256"
+      }
+    ],
+    "name": "detailsOfEdition",
+    "outputs": [
+      {
+        "name": "_editionData",
+        "type": "bytes32"
+      },
+      {
+        "name": "_editionType",
+        "type": "uint256"
+      },
+      {
+        "name": "_startDate",
+        "type": "uint256"
+      },
+      {
+        "name": "_endDate",
+        "type": "uint256"
+      },
+      {
+        "name": "_artistAccount",
+        "type": "address"
+      },
+      {
+        "name": "_artistCommission",
+        "type": "uint256"
+      },
+      {
+        "name": "_priceInWei",
+        "type": "uint256"
+      },
+      {
+        "name": "_tokenURI",
+        "type": "string"
+      },
+      {
+        "name": "_totalSupply",
+        "type": "uint256"
+      },
+      {
+        "name": "_totalAvailable",
+        "type": "uint256"
+      },
+      {
+        "name": "_active",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      }
+    ],
+    "name": "editionActive",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      }
+    ],
+    "name": "editionData",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      }
+    ],
+    "name": "editionExists",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "editionOfTokenId",
+    "outputs": [
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      }
+    ],
+    "name": "editionOptionalCommission",
+    "outputs": [
+      {
+        "name": "_rate",
+        "type": "uint256"
+      },
+      {
+        "name": "_recipient",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_type",
+        "type": "uint256"
+      }
+    ],
+    "name": "editionsOfType",
+    "outputs": [
+      {
+        "name": "_editionNumbers",
+        "type": "uint256[]"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      }
+    ],
+    "name": "editionType",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "exists",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "faCommissionAccount",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getApproved",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_operator",
+        "type": "address"
+      },
+      {
+        "name": "_role",
+        "type": "uint8"
+      }
+    ],
+    "name": "hasRole",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "highestEditionNumber",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "InterfaceId_ERC165",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes4"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_owner",
+        "type": "address"
+      },
+      {
+        "name": "_operator",
+        "type": "address"
+      }
+    ],
+    "name": "isApprovedForAll",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "name",
+    "outputs": [
+      {
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "ownerOf",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "paused",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      }
+    ],
+    "name": "priceInWeiEdition",
+    "outputs": [
+      {
+        "name": "_priceInWei",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "priceInWeiToken",
+    "outputs": [
+      {
+        "name": "_priceInWei",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      }
+    ],
+    "name": "purchaseDatesEdition",
+    "outputs": [
+      {
+        "name": "_startDate",
+        "type": "uint256"
+      },
+      {
+        "name": "_endDate",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "purchaseDatesToken",
+    "outputs": [
+      {
+        "name": "_startDate",
+        "type": "uint256"
+      },
+      {
+        "name": "_endDate",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "ROLE_FORMOSART",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "ROLE_MINTER",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "ROLE_UNDER_MINTER",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_interfaceId",
+        "type": "bytes4"
+      }
+    ],
+    "name": "supportsInterface",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "symbol",
+    "outputs": [
+      {
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "tokenBaseURI",
+    "outputs": [
+      {
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_index",
+        "type": "uint256"
+      }
+    ],
+    "name": "tokenByIndex",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "tokenData",
+    "outputs": [
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      },
+      {
+        "name": "_editionType",
+        "type": "uint256"
+      },
+      {
+        "name": "_editionData",
+        "type": "bytes32"
+      },
+      {
+        "name": "_tokenURI",
+        "type": "string"
+      },
+      {
+        "name": "_owner",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_owner",
+        "type": "address"
+      },
+      {
+        "name": "_index",
+        "type": "uint256"
+      }
+    ],
+    "name": "tokenOfOwnerByIndex",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_owner",
+        "type": "address"
+      }
+    ],
+    "name": "tokensOf",
+    "outputs": [
+      {
+        "name": "_tokenIds",
+        "type": "uint256[]"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      }
+    ],
+    "name": "tokensOfEdition",
+    "outputs": [
+      {
+        "name": "_tokenIds",
+        "type": "uint256[]"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "tokenURI",
+    "outputs": [
+      {
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      }
+    ],
+    "name": "tokenURIEdition",
+    "outputs": [
+      {
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "tokenURISafe",
+    "outputs": [
+      {
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      }
+    ],
+    "name": "totalAvailableEdition",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "totalNumberAvailable",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "totalNumberMinted",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "totalPurchaseValueInWei",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      }
+    ],
+    "name": "totalRemaining",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "totalSupply",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_editionNumber",
+        "type": "uint256"
+      }
+    ],
+    "name": "totalSupplyEdition",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
   }
 ]

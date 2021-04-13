@@ -6,7 +6,11 @@ import {
   AuthStore,
   GalleryService,
   SettingService,
-  LikeService
+  LikeService,
+  Web3Service,
+  ArtWorkService,
+  UserService,
+  DialogService
 } from "./../../_services";
 import { Utility } from "./../../_helpers";
 import { Router, ActivatedRoute } from "@angular/router";
@@ -28,11 +32,15 @@ export class EditionComponent implements OnInit {
   currentUser: any = null;
   ethPrice = 0;
   uid = "";
+  ethSoldValue = 0;
   constructor(
+    private dialogSrv: DialogService,
+    private artworkSrv: ArtWorkService,
     private settingSrv: SettingService,
     private route: ActivatedRoute,
     private authStoreSrv: AuthStore,
     private editionSrv: EditionService,
+    private Web3Srv: Web3Service,
     private translateSrv: TranslateService,
     private utility: Utility,
     private dataSrv: DataService,
@@ -157,8 +165,80 @@ export class EditionComponent implements OnInit {
   displaySellPrice() {
     if (Number(this.currentEdition.usdValue)) {
       let usd = parseFloat(this.currentEdition.usdValue);
-      let ethSoldValue = +((usd / 100) / this.ethPrice).toFixed(5);
-      return ethSoldValue;
+
+      this.ethSoldValue = +((usd / 100) / this.ethPrice).toFixed(5);
+
+      return this.ethSoldValue;
+    }
+  }
+
+  async purchase() {
+    if (this.currentUser) {
+      if (this.Web3Srv.ethEnabled()) {
+        let address = await this.Web3Srv.getAccount();
+        console.log(" address ", address);
+        let weiSoldValue = this.Web3Srv.EthToWei(this.ethSoldValue.toString());
+        this.Web3Srv.purchase('purchase', weiSoldValue, this.currentEdition.id).then(async res => {
+          console.log("purchase result " + res);
+          let networkId = await this.Web3Srv.getNetworkId();
+
+          this.artworkSrv.purchase(this.currentUser.id,
+            res['from'],
+            this.currentEdition.usdValue,
+            this.ethSoldValue,
+            this.currentEdition.artistId,
+            this.currentUser.id,
+            res['from'],
+            this.currentEdition.id,
+            this.currentEdition.id,
+            res['transactionHash'],
+            res['from'],
+            res['to'],
+            this.currentEdition.id,
+            networkId).subscribe(purchaseRes => {
+              console.log("purchaseRes" + purchaseRes);
+              this.dialogSrv.infoThis("Purchase successfully",
+                () => {
+                  console.log("yes ===");
+                }, () => {
+                  console.log("no ===");
+                });
+            }, error => {
+              console.log("purchaseRes failed" + error);
+            });
+
+        }).catch(error => {
+          console.error("purchase failed " + error.message);
+
+          this.dialogSrv.infoThis("Purchase failed!! Please inform us if you still cannot buy this.",
+            () => {
+              console.log("yed ===");
+            }, () => {
+              console.log("no ===");
+            });
+        })
+      }
+    } else {
+      if (this.Web3Srv.ethEnabled()) {
+        this.Web3Srv.getAccountDetail().then(
+          (data) => {
+            this.authStoreSrv.walletSignin(data.address, "collector").subscribe((result) => {
+              this.currentUser = this.authStoreSrv.getUserData();
+              if (this.currentUser) {
+                this.authStoreSrv.user$.subscribe(user => { this.currentUser = user });
+              }
+            },
+              errorMsg => {
+                console.log('error', errorMsg);
+              });
+          },
+          (error) => {
+            console.log("getAccountDetail error", error);
+          }
+        );
+      } else {
+        console.warn("Metamask not found Install or enable Metamask");
+      }
     }
   }
 }

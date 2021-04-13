@@ -78,4 +78,37 @@ export class ArtWorkService {
   public getArtworkByCollector(uid) {
     return this.http.get<any>(`${environment.apiUrl}/artwork/getArtworkByCollector/${uid}`);
   }
+
+  public purchase(uid,
+    owner,
+    usdValue,
+    ethValue,
+    artistId,
+    buyerId,
+    walletAddress,
+    editionId,
+    artworkId,
+    transactionHash,
+    from,
+    to,
+    tokenId,
+    network) {
+    return this.http.post(`${environment.apiUrl}/artwork/purchase`,
+      {
+        uid,
+        owner,
+        usdValue,
+        ethValue,
+        artistId,
+        buyerId,
+        walletAddress,
+        editionId,
+        artworkId,
+        transactionHash,
+        from,
+        to,
+        tokenId,
+        network
+      });
+  }
 }
