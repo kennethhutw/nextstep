@@ -23,6 +23,7 @@ export class GalleryComponent implements OnInit {
   IsShowTags = false;
   filterValue = null;
   searchText = '';
+  selectOption = 'LATEST';
   constructor(
     private translateSrv: TranslateService,
     private utility: Utility,
@@ -87,5 +88,27 @@ export class GalleryComponent implements OnInit {
   onClearFilter() {
     this.filterValue = null;
     this.displayEditions = this.editions;
+  }
+
+  onChange(deviceValue) {
+    console.log(deviceValue);
+    this.displayEditions = this.editions;
+    switch (deviceValue) {
+      case 'LATEST':
+        this.displayEditions = this.editions.sort((a, b) => b.editionDate - a.editionDate);
+        break;
+      case 'OLDEST':
+        this.displayEditions = this.editions.sort((a, b) => a.editionDate - b.editionDate);
+        break;
+      case 'EXPENSIVE':
+        this.displayEditions = this.editions.sort((a, b) => b.usdValue - a.usdValue);
+        break;
+      case 'CHEAPEST':
+        this.displayEditions = this.editions.sort((a, b) => a.usdValue - b.usdValue);
+        break;
+      case 'POPULAR':
+        this.displayEditions = this.editions.sort((a, b) => b.liked - a.liked);
+        break;
+    }
   }
 }

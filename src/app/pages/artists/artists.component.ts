@@ -124,4 +124,24 @@ export class ArtistsComponent implements OnInit {
     this.displayArtists = this.splitArr(this.artists, 3);
   }
 
+  onChange(deviceValue) {
+    console.log(deviceValue);
+    let _artists = this.artists;
+
+    console.log(" onChange ================= ", this.artists);
+    switch (deviceValue) {
+      case 'LATEST':
+        _artists = this.artists.sort((a, b) => b.approvedDate - a.approvedDate);
+        break;
+      case 'OLDEST':
+        _artists = this.artists.sort((a, b) => a.approvedDate - b.approvedDate);
+        break;
+
+      case 'POPULAR':
+        _artists = this.artists.sort((a, b) => b.liked - a.liked);
+        break;
+    }
+
+    this.displayArtists = this.splitArr(_artists, 3);
+  }
 }

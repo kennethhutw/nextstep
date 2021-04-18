@@ -25,7 +25,7 @@
   </div>-->
   <div class="row">
     <div class="col-md-3 offset-md-9 mt-40 mb-10">
-      <select class="sort_dropdown w-100">
+      <select class="sort_dropdown w-100" (change)="onChange($event.target.value)">
         <option value="LATEST">{{ "LATEST" | translate }}</option>
         <option value="OLDEST">{{ "OLDEST" | translate }}</option>
         <option value="POPULAR">{{ "POPULAR" | translate }}</option>

@@ -44,7 +44,6 @@ export class ArtistSoldArtWorkComponent implements OnInit {
     this.currentUser = this.authStoreSrv.getUserData();
 
     this.artworkSrv.getSoldArtwrokByArtistId(this.currentUser.id).subscribe(res => {
-      console.log("getSoldArtwrokByArtistId ============= ", res);
       if (res['result'] === 'successful') {
         this.artworks = res['data'];
       }

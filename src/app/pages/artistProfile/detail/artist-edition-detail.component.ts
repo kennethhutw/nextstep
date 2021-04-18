@@ -64,9 +64,7 @@ export class ArtistEditionDetailComponent implements OnInit {
   }
 
   getSellETHPrice(usdvalue) {
-    let usd = parseFloat(usdvalue);
-    const ethAmount = +(usd / this.ethPrice).toFixed(3);
-    return ethAmount;
+    return this.utility.getSellETHPrice(usdvalue);
   }
 
   getImageStatus(status) {

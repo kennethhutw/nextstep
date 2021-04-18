@@ -80,10 +80,11 @@ export class ArtistFavoriteComponent implements OnInit {
     })
   }
 
-  getETHPrice(amount) {
-    if (!this.utility.IsNullOrEmpty(amount)) {
-      let usd = parseFloat(amount);
-      return +(usd / this.ethPrice).toFixed(3);
+  getETHPrice(usdvalue) {
+    if (!this.utility.IsNullOrEmpty(usdvalue)) {
+      return this.utility.getSellETHPrice(usdvalue);
+    } else {
+      return 0;
     }
   }
   changeTab(tab) {
