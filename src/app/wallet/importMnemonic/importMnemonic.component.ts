@@ -9,9 +9,9 @@ import { UserService } from "../../_services/user.service";
 export class ImportMnemonicComponent implements OnInit {
   users = [];
   loading = false;
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.users = this.userService.getAllUser();
+
   }
 }

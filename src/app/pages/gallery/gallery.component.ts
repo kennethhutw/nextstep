@@ -22,7 +22,7 @@ export class GalleryComponent implements OnInit {
   tags = [];
   IsShowTags = false;
   filterValue = null;
-
+  searchText = '';
   constructor(
     private translateSrv: TranslateService,
     private utility: Utility,

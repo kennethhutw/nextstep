@@ -23,7 +23,7 @@ export class ArtistsComponent implements OnInit {
   IsShowTags = false;
   defaultProfileLogo = null;
   filterValue = null;
-
+  searchText = '';
   constructor(
     private settingSrv: SettingService,
     private translateSrv: TranslateService,
@@ -39,7 +39,6 @@ export class ArtistsComponent implements OnInit {
   ngOnInit() {
     this.SpinnerService.show();
     let _lang = localStorage.getItem("lang");
-    console.log("_lang ==============", _lang);
     if (!this.utility.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
       this.initTags(_lang);
@@ -124,4 +123,5 @@ export class ArtistsComponent implements OnInit {
     this.filterValue = null;
     this.displayArtists = this.splitArr(this.artists, 3);
   }
+
 }

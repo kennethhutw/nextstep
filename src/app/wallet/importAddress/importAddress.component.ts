@@ -10,11 +10,11 @@ export class ImportAddressComponent implements OnInit {
   users = [];
   loading = false;
   constructor(private userService: UserService) {
-  
+
   }
 
-  onSubmit() {}
+  onSubmit() { }
   ngOnInit() {
-    this.users = this.userService.getAllUser();
+
   }
 }

@@ -12,7 +12,10 @@ export { RegisterArtistComponent } from "./register/register-artist/register-art
 //export {InsertEditionComponent } from './artists/insertEdition/insertEdition.component';
 export { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 export { RegisterBuyerComponent } from "./register/register-buyer/register-buyer.component";
+
 export { ArtistPageComponent } from "./artist/artist.component";
+export { CollectorPageComponent } from './collector/collector.component';
+
 export { CollectorProfilePageComponent } from "./collectorProfile/collectorProfile.component";
 export { QAComponent } from "./qa/qa.component";
 export { PolicyComponent } from "./policy/policy.component";

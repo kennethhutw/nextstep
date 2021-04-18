@@ -28,6 +28,7 @@ import {
   PageNotFoundComponent,
   RegisterBuyerComponent,
   ArtistPageComponent,
+  CollectorPageComponent,
   CollectorProfilePageComponent,
   QAComponent,
   PolicyComponent,
@@ -65,7 +66,7 @@ const routes: Routes = [
   { path: "donation", component: DonationComponent, pathMatch: "full" },
   { path: "edition", component: EditionComponent, pathMatch: "full" },
 
-
+  { path: "u/:address", component: CollectorPageComponent },
   { path: "token/:id", component: TokenComponent },
 
   //  {

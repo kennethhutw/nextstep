@@ -121,7 +121,11 @@ export class AdminUsersComponent implements OnInit {
     }
   }
 
-
+  getAdmin(IsAdmin: boolean): string {
+    if (IsAdmin === true) {
+      return 'Admin';
+    }
+  }
   getAllUser() {
     this.userSrv.getAllUser().subscribe(res => {
       console.log("getAllUser ========", res);

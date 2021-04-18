@@ -66,6 +66,7 @@ import {
   PageNotFoundComponent,
   RegisterBuyerComponent,
   ArtistPageComponent,
+  CollectorPageComponent,
   CollectorProfilePageComponent,
   QAComponent,
   PolicyComponent,
@@ -96,11 +97,8 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { AnQrcodeModule } from "an-qrcode";
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
-import { OwlModule } from "ngx-owl-carousel";
-// Import the library
-import { IsotopeModule } from "ngx-isotope";
-// Import NgMasonryGridModule
-import { NgMasonryGridModule } from "ng-masonry-grid";
+
+
 
 import { SharedModule } from "./_shared/shared.module";
 
@@ -149,6 +147,7 @@ export function createLoader(http: HttpClient) {
     RegisterBuyerComponent,
     ArtistDetailComponent,
     ArtistPageComponent,
+    CollectorPageComponent,
     CollectorProfilePageComponent,
     QAComponent,
     PolicyComponent,
@@ -190,9 +189,6 @@ export function createLoader(http: HttpClient) {
     HttpClientModule,
     AnQrcodeModule,
     CollapseModule,
-    OwlModule,
-    IsotopeModule,
-    NgMasonryGridModule,
     NgxSpinnerModule,
     SharedModule,
     TranslateModule.forRoot({

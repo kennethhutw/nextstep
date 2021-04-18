@@ -11,7 +11,7 @@ declare var window: any;
 })
 export class Web3Service {
   private web3: Web3;
-  private contract: Contract;
+  private contract: any;
   private contractAddress = "0x8Cad66326e9c72C87971f3b945f15bE6A43bC4dD";
   constructor(private zone: NgZone) {
     // if (window.web3) {
@@ -26,13 +26,7 @@ export class Web3Service {
     // } else {
     //   console.warn("Metamask not found Install or enable Metamask");
     // }
-    if (this.web3) {
-      this.contract = new this.web3.eth.Contract(
-        contractAbi,
-        this.contractAddress
-      );
 
-    }
 
   }
 
