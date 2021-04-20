@@ -15,6 +15,7 @@ import { ModalModule } from "ngx-bootstrap";
 import { GlobalErrorHandler } from "./../_core/errors/global-error-handler";
 import { LoadingSpinnerComponent } from "./loading-spinner/loading-spinner.component";
 import { NgxSpinnerModule } from "ngx-spinner";
+
 import {
   UserService,
   WalletService,
@@ -31,7 +32,8 @@ import {
   LikeService,
   GalleryService,
   OfferService,
-  EmailService
+  EmailService,
+  ToastService
 } from "./../_services";
 
 import {
@@ -54,8 +56,7 @@ import {
   AddressShortenPipe,
   ShortenPipe,
   UserFilterPipe
-}
-  from "../_pipe";
+} from "../_pipe";
 
 const sharedComponents = [
   LoadingSpinnerComponent,
@@ -85,6 +86,8 @@ const sharedComponents = [
     CommonModule,
     RouterModule,
     NgxSpinnerModule,
+
+
     ModalModule.forRoot()],
   exports: [
     UploadFileComponent,
@@ -126,6 +129,7 @@ const sharedComponents = [
     DialogService,
     GalleryService,
     EmailService,
+    ToastService,
     {
       provide: ErrorHandler,
       useClass: GlobalErrorHandler,

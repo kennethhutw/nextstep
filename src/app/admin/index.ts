@@ -6,7 +6,17 @@ import { MapsComponent } from './pages/maps/maps.component';
 import { NotificationsComponent } from './pages/notifications/notifications.component';
 import { BlockchainComponent } from './pages/blockchain/blockchain.component';
 import { AdminUsersComponent } from './pages/users/adminusers.component';
+import { UserSettingComponent } from './pages/users/usersetting/usersetting.component';
 
+export const containers = [DashboardComponent, TablesComponent,
+    FormsComponent,
+    TypographyComponent,
+    MapsComponent,
+    NotificationsComponent,
+    BlockchainComponent,
+    AdminUsersComponent,
+    UserSettingComponent
+];
 
 export { DashboardComponent } from './pages/dashboard/dashboard.component';
 export { TablesComponent } from './pages/tables/tables.component';
@@ -16,3 +26,4 @@ export { MapsComponent } from './pages/maps/maps.component';
 export { NotificationsComponent } from './pages/notifications/notifications.component';
 export { BlockchainComponent } from './pages/blockchain/blockchain.component';
 export { AdminUsersComponent } from './pages/users/adminusers.component';
+export { UserSettingComponent } from './pages/users/usersetting/usersetting.component';

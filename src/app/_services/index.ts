@@ -15,3 +15,4 @@ export { SettingService } from "./setting.service";
 export { LikeService } from "./like.service";
 export { GalleryService } from "./gallery.service";
 export { OfferService } from './offer.service';
+export * from './toastr.service';

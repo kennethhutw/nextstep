@@ -1,0 +1,103 @@
+<div class="mx-auto">
+  <div class="row">
+    <div class="col-md-12 mb-12 form-group form-inline">
+      <label class="pr-2" for="verifyemail">
+        <h5>Send verify E-mail :</h5>
+      </label>
+      <button type="button" class="btn btn-primary" (click)="sendVerifyEmail()"> Send </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 mb-12 form-group form-inline">
+      <label class="pr-2" for="verifyemail">
+        <h5>Send Reset E-mail :</h5>
+      </label>
+      <button type="button" class="btn btn-primary" (click)="sendResetEmail()"> Send </button>
+    </div>
+  </div>
+</div>
+<div class="row" *ngIf="editedUser">
+  <table class="table table-striped table-borderless">
+    <thead>
+      <tr>
+        <th scope="col">Item</th>
+        <th scope="col">Content</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Username:</td>
+        <td>{{this.editedUser.name}}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Join Date:</td>
+        <td>{{this.editedUser.createdAt | date : "dd/MM/y"}}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Make Admin ?:</td>
+        <td>
+          Yes <input type="radio" name="admin" [(ngModel)]="IsAdmin" [value]="1" [checked]="1">
+          No <input type="radio" name="admin" [(ngModel)]="IsAdmin" [value]="0" [checked]="!1" checked>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Delete User ?:</td>
+        <td>
+          Yes <input type="radio" name="delete" [(ngModel)]="IsDeleteUser" [value]="1" [checked]="1">
+          No <input type="radio" name="delete" [(ngModel)]="IsDeleteUser" [value]="0" [checked]="!1" checked>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td> Verified ?: </td>
+        <td>
+          Yes <input type="radio" name="IsVerified" [(ngModel)]="IsVerified" [value]="1" [checked]="1">
+          No <input type="radio" name="IsVerified" [(ngModel)]="IsVerified" [value]="0" [checked]="!1" checked>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td> </td>
+        <td>
+        </td>
+        <td><button type="button" class="btn btn-primary" (click)="updateIsAdminNDeleted(this.editedUser.key)"> Save
+          </button></td>
+      </tr>
+      <tr>
+        <td> Send verify email ?: </td>
+        <td>{{this.editedUser.email}}</td>
+        <td> <button type="button" class="btn btn-primary" (click)="sendVerifyEmail()"> Send </button> </td>
+      </tr>
+      <tr>
+        <td> Reset Password ?: </td>
+        <td></td>
+        <td> <button type="button" class="btn btn-primary" (click)="resetPassword()"> Reset </button> </td>
+      </tr>
+      <tr>
+        <td> The first time ?: </td>
+        <td>
+          <ng-container *ngIf="this.editedUser.firsttime == true ; else NotFirstTime">
+            YES
+          </ng-container>
+          <ng-template #NotFirstTime>
+            No
+          </ng-template>
+        </td>
+        <td>
+
+          <button type="button" [ngClass]="{ 'btn_normal-disable': this.editedUser.firsttime == true  }"
+            [disabled]="this.editedUser.firsttime" class="btn btn-primary" (click)="updateTheFirstTimeLogin('1')"> Yes
+          </button>
+          <button type="button" [ngClass]="{ 'btn_normal-disable': this.editedUser.firsttime == false  }"
+            [disabled]="!this.editedUser.firsttime" class="btn" style="background-color: #F18D8A; margin-left: 10px;"
+            (click)="updateTheFirstTimeLogin('0')"> No
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

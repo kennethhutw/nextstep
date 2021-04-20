@@ -31,7 +31,8 @@
                         artwork.totalamount}}</span>
                 </li>
                 <li>
-                    {{ "PRICE" | translate }}：Ξ {{getSellETHPrice(artwork.usdValue)}} / USD {{ artwork.usdValue}}
+                    {{ "PRICE" | translate }}：Ξ {{getSellETHPrice(artwork.usdValue)}} / USD {{ artwork.usdValue /
+                    100}}
                 </li>
                 <li>
                     {{ "BIDDING" | translate }}：<span class="title">{{ IsBidding(artwork.isBid)}}</span>

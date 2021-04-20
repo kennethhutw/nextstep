@@ -63,6 +63,9 @@
           <th style="width: 10%;">
             Name
           </th>
+          <th style="width: 10%;">
+            Uid
+          </th>
           <th style="width: 20%;">
             Email
           </th>
@@ -97,48 +100,26 @@
         <!-- admin -->
         <ng-container *ngFor="let user of displayUsers let i=index ;">
 
-          <tr *ngIf="user.IsAdmin ; else User">
-            <td class="text_left">{{user.fullname}}</td>
+          <tr>
+            <td class="text_left">{{user.name}}</td>
+            <td class="text_left">{{user.uid}}</td>
             <td class="text_left">{{user.email}}</td>
             <td class="text_left">{{user.ethaddress}}</td>
-            <td><b>(Admin)</b></td>
+            <td><b>{{user.IsAdmin}}</b></td>
             <td><b>{{getVerified(user.verified)}}</b></td>
             <td>{{user.createdAt | date : 'yyyy-MM-dd HH:mm:ss'}}</td>
             <td>{{user.lastLogin | date : 'yyyy-MM-dd HH:mm:ss'}}</td>
-            <td><a class="clickable" (click)="routeNextPage(user.userId, user.fullname, 'userInfo')"
-                style="color: #4A90E2;"><i class="fa fa-wpforms"></i>
+            <td><a class="clickable" style="color: #4A90E2;"><i class="fa fa-wpforms"></i>
                 Info</a>
             </td>
-            <td><a class="clickable" (click)="routeNextPage(user.userId, user.fullname, 'personality')"
-                style="color: #4A90E2;"><i class="fa fa-wpforms"></i>
+            <td><a class="clickable" style="color: #4A90E2;"><i class="fa fa-wpforms"></i>
                 Detail</a>
             </td>
-            <td><a class="clickable" (click)="routeNextPage(user.userId, user.fullname,'userSetting')"
-                style="color: #7F7F7F;"><i class="fa fa-cog"></i> Settings</a>
+            <td><a class="clickable" [routerLink]="['/admin/usersetting',user.id]" style="color: #7F7F7F;"><i
+                  class="fa fa-cog"></i> Settings</a>
             </td>
           </tr>
-          <ng-template #User>
-            <tr>
-              <td class="text_left">{{user.fullname}}</td>
-              <td class="text_left">{{user.email}}</td>
-              <td class="text_left">{{user.ethaddress}}</td>
-              <td><b></b></td>
-              <td><b>{{getVerified(user.verified)}}</b></td>
-              <td>{{user.createdAt | date : 'yyyy-MM-dd HH:mm:ss'}}</td>
-              <td>{{user.lastLogin | date : 'yyyy-MM-dd HH:mm:ss'}}</td>
-              <td><a class="clickable" (click)="routeNextPage(user.userId, user.fullname, 'userInfo')"
-                  style="color: #4A90E2;"><i class="fa fa-wpforms"></i>
-                  Detail</a>
-              </td>
-              <td><a class="clickable" (click)="routeNextPage(user.userId, user.fullname, 'personality')"
-                  style="color: #4A90E2;"><i class="fa fa-wpforms"></i>
-                  Detail</a>
-              </td>
-              <td><a class="clickable" (click)="routeNextPage(user.userId, user.fullname,'userSetting')"
-                  style="color: #7F7F7F;"><i class="fa fa-cog"></i> Settings</a>
-              </td>
-            </tr>
-          </ng-template>
+
 
         </ng-container>
       </tbody>

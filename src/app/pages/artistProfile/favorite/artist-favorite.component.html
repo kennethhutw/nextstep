@@ -50,7 +50,8 @@
                             {{ "CREATOR" | translate }}：{{artwork.artist.name}}
                         </li>
                         <li>
-                            {{ "PRICE" | translate }}：Ξ {{getETHPrice(artwork.usdValue)}} / USD {{artwork.usdValue}}
+                            {{ "PRICE" | translate }}：Ξ {{getETHPrice(artwork.usdValue)}} / USD {{artwork.usdValue /
+                            100}}
                         </li>
                         <li>
                             {{ "EDITIONS" | translate }}：{{artwork.totalamount}}/#{{artwork.number}}

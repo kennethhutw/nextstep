@@ -1,11 +1,12 @@
 <app-header></app-header>
-<div *ngIf="!artist" class="container mb-40"></div>
-<div id="content-mt" *ngIf="artist" class="container mb-40">
-  <app-artist-detail name="{{this.artist.name}}" src="{{this.artist.imageUrl || this.settingSrv.defaultProfileLogo}}"
-    follow="{{this.artist.like}}" follower="{{this.artist.liked}}" bio="{{this.artist.bio}}"
-    walletAddress="{{this.artist.ethaddress}}" twitter="{{this.artist.twitter}}" instagram="{{this.artist.instagram}}"
-    website="{{this.artist.website}}" location="{{this.artist.location}}" tags="{{this.artist.tags}} "
-    uid="{{this.uid}}" id="{{this.artist.id}}">
+<div *ngIf="!collector" class="container mb-40"></div>
+<div id="content-mt" *ngIf="collector" class="container mb-40">
+  <app-artist-detail name="{{this.collector.name}}"
+    src="{{this.collector.imageUrl || this.settingSrv.defaultProfileLogo}}" follow="{{this.collector.like}}"
+    follower="{{this.collector.liked}}" bio="{{this.collector.bio}}" walletAddress="{{this.collector.ethaddress}}"
+    twitter="{{this.collector.twitter}}" instagram="{{this.collector.instagram}}" website="{{this.collector.website}}"
+    location="{{this.collector.location}}" tags="{{this.collector.tags}} " uid="{{this.uid}}"
+    id="{{this.collector.id}}">
   </app-artist-detail>
   <div class="peoject_tag_openup text-center mt-10">
     <span class="project_tag_subtitle"></span>
@@ -13,8 +14,11 @@
   <div class="row mt-40">
     <ng-container *ngFor="let edition of popularEditions">
       <div class="col-md-4 mb-4">
-        <app-edition2 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
-          editionImg="{{ edition.imageUrl  || defaultProfileLogo}}" editionId="{{ edition.artworkId }}"></app-edition2>
+        <!-- <app-edition2 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
+          editionImg="{{ edition.imageUrl  || defaultProfileLogo}}" editionId="{{ edition.artworkId }}"></app-edition2> -->
+        <app-edition3 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
+          editionImg="{{ edition.imageUrl }}" editionId="{{ edition.id }}" editionDate="{{ edition.editionDate }}"
+          editionPrice="{{ edition.ethPrice }}"></app-edition3>
       </div>
     </ng-container>
 

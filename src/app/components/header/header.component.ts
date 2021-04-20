@@ -11,12 +11,12 @@ import { Utility } from "../../_helpers";
 import { Router, ActivatedRoute } from "@angular/router";
 import {
   AuthStore,
-  UserService,
+  ToastService,
   Web3Service,
   DataService,
   EmailService
 } from "../../_services";
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",
@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit {
     private utility: Utility,
     private fb: FormBuilder,
     private translateSrv: TranslateService,
-    private userSrv: UserService,
+    private toastSrv: ToastService,
     private web3Srv: Web3Service,
     private dataSrv: DataService,
     private router: Router,
@@ -71,7 +71,7 @@ export class HeaderComponent implements OnInit {
     });
 
     this.currentUser = this.authStoreSrv.getUserData();
-
+    console.log("  this.currentUser ", this.currentUser);
     this.authStoreSrv.user$.subscribe(user => { this.currentUser = user });
   }
 
@@ -251,7 +251,7 @@ export class HeaderComponent implements OnInit {
     let url = '/setPassword';
     let link = domain + url;
     this.emailSrv.sendResetPasswordEmail(
-      'Reset your password for Formosa Art',
+      'Reset your password for FormosaArt',
       this.ForgotPasswordEmail,
       link).subscribe(sendRes => {
         if (sendRes['result'] == 'successful') {

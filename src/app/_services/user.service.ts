@@ -46,6 +46,15 @@ export class UserService {
       .toPromise();
   }
 
+  async getUserInfoByAddress(walletaddress: string) {
+    return await this.http
+      .get<any>(`${environment.apiUrl}/users/getUserInfoByAddress/${walletaddress}`)
+      .toPromise();
+  }
+
+  public getUserOwnArtworks(walletaddress: string) {
+    return this.http.get<any>(`${environment.apiUrl}/users/getUserOwnArtworks/${walletaddress}`);
+  }
 
   updateUserInfoEmail(email: string, uid: string) {
     return this.http.post(`${environment.apiUrl}/users/changeInformEmail`,

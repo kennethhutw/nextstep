@@ -40,7 +40,8 @@
                     </li> -->
                     <li>
                         {{ "PRICE" | translate }}：Ξ {{getETHPrice(bids.artwork.usdValue)}} / USD
-                        {{bids.artwork.usdValue}}
+                        {{bids.artwork.usdValue /
+                        100}}
                     </li>
                     <li>
                         最後出價時間：2020-10-09 PM4:31

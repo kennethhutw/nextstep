@@ -47,7 +47,8 @@
 
       <form *ngIf="authStoreSrv.isLoggedIn$ | async" id="index_login" class="form-inline my-2 my-lg-0 text-white">
         <div *ngIf="this.currentUser.roles.admin">
-          <a class="dropdown-item" routerLink="/admin/blockchain">Admin</a>
+
+          <a class="dropdown-item" style="color:rgba(255, 255, 255, 0.5)" routerLink="/admin/dashboard">Admin</a>
         </div>
         <div *ngIf="this.currentUser.roles.artist" class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto text-center">

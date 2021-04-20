@@ -130,7 +130,7 @@ export class RegisterBuyerComponent implements OnInit {
                 if (_res['result'] = 'successful') {
                   this.router.navigate(["collector/account/"], {});
                 }
-              })
+              });
 
             } else {
               this.errorMsg = res["message"];

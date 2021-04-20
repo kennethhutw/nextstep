@@ -4,10 +4,11 @@ import {
 
 } from "@ngx-translate/core";
 import {
-  ArtistService,
+
   AppSettingsService,
   AuthStore,
-  SettingService
+  SettingService,
+  UserService
 } from "../../_services";
 
 import { Router, ActivatedRoute } from "@angular/router";
@@ -19,7 +20,7 @@ import { Utility } from "../../_helpers";
   styleUrls: ["./collector.component.css"],
 })
 export class CollectorPageComponent implements OnInit {
-  artist = null;
+  collector = null;
   popularEditions = [];
   lang = "en";
   tags = [];
@@ -34,7 +35,7 @@ export class CollectorPageComponent implements OnInit {
     private translateSrv: TranslateService,
     private appSettingsSrv: AppSettingsService,
     private utility: Utility,
-    private artistSrv: ArtistService) {
+    private userSrv: UserService) {
     this.defaultImg = this.appSettingsSrv.defulatImage;
     this.currentUser = this.authStoreSrv.getUserData();
 
@@ -49,42 +50,46 @@ export class CollectorPageComponent implements OnInit {
 
     this.lang = localStorage.getItem("lang");
     this.route.params.subscribe(params => {
-      const _artistUid = params["address"];
+      console.log("_collectorAddress ==============", params);
+      const _collectorAddress = params["address"];
       // todo
-      this.artistSrv.getArtistBasicInfoByUid(_artistUid).subscribe(res => {
+      this.userSrv.getUserInfoByAddress(_collectorAddress).then(res => {
 
         if (res["result"] === "successful") {
-          this.artist = res["data"];
-          if (this.artist && this.artist.imageUrl != null) {
+          this.collector = res["data"];
+          if (this.collector && this.collector.imageUrl != null) {
 
-            this.artist.imageUrl = environment.assetUrl + this.artist.imageUrl;
+            this.collector.imageUrl = environment.assetUrl + this.collector.imageUrl;
+          }
+          if (this.collector && this.collector.ownedartwork.length > 0) {
+            this.popularEditions = this.collector.ownedartwork;
+            this.popularEditions.forEach((element) => {
+              element.imageUrl = environment.assetUrl + element.imageUrl;
+            });
+            console.log("popularEditions ==============", this.popularEditions);
           }
           //tags: "bizarre,love,romantic"
         } else {
 
         }
-      },
-        error => {
-          console.error(`ArtistPage error ${error}`);
-        },
-        () => {
+      }).catch(error => {
+        console.error(`ArtistPage error ${error}`);
+      })
 
-        });
+      // this.userSrv.getUserOwnArtworks(_collectorAddress).subscribe(res => {
+      //   if (res["result"] === "successful") {
+      //     this.popularEditions = res["data"];
+      //     this.popularEditions.forEach((element) => {
+      //       element.imageUrl = environment.assetUrl + element.imageUrl;
+      //     });
+      //   }
+      // },
+      //   error => {
+      //     console.error(`getUserOwnArtworks error ${error}`);
+      //   },
+      //   () => {
 
-      this.artistSrv.getArtistArtwork(_artistUid).subscribe(res => {
-        if (res["result"] === "successful") {
-          this.popularEditions = res["data"];
-          this.popularEditions.forEach((element) => {
-            element.imageUrl = environment.assetUrl + element.imageUrl;
-          });
-        }
-      },
-        error => {
-          console.error(`getArtistArtwork error ${error}`);
-        },
-        () => {
-
-        });
+      //   });
     });
 
 

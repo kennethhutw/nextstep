@@ -1,21 +1,15 @@
 import { Routes } from '@angular/router';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { TablesComponent } from './pages/tables/tables.component';
-import { FormsComponent } from './pages/forms/forms.component';
-import { TypographyComponent } from './pages/typography/typography.component';
-import { MapsComponent } from './pages/maps/maps.component';
-import { NotificationsComponent } from './pages/notifications/notifications.component';
-import { BlockchainComponent } from './pages/blockchain/blockchain.component';
-import { AdminUsersComponent } from './pages/users/adminusers.component';
+import * as Containers from './index';
 
 export const AdminLayoutRoutes: Routes = [
   { path: '', redirectTo: '/admin/dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'forms', component: FormsComponent },
-  { path: 'tables', component: TablesComponent },
-  { path: 'typography', component: TypographyComponent },
-  { path: 'maps', component: MapsComponent },
-  { path: 'blockchain', component: BlockchainComponent },
-  { path: 'users', component: AdminUsersComponent },
-  { path: 'notifications', component: NotificationsComponent }
+  { path: 'dashboard', component: Containers.DashboardComponent },
+  { path: 'forms', component: Containers.FormsComponent },
+  { path: 'tables', component: Containers.TablesComponent },
+  { path: 'typography', component: Containers.TypographyComponent },
+  { path: 'maps', component: Containers.MapsComponent },
+  { path: 'blockchain', component: Containers.BlockchainComponent },
+  { path: 'users', component: Containers.AdminUsersComponent },
+  { path: 'notifications', component: Containers.NotificationsComponent },
+  { path: 'usersetting/:id', component: Containers.UserSettingComponent }
 ];

@@ -5,26 +5,12 @@ import { CommonModule } from '@angular/common';
 
 import { RouterModule } from '@angular/router';
 import { AdminLayoutRoutes } from './admin.routing';
-
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
-import { NavbarComponent } from '../components/admin/navbar/navbar.component';
-import { SidebarComponent } from '../components/admin/sidebar/sidebar.component';
-import { AdminFooterComponent } from '../components/admin/footer/footer.component';
-
-
+import { SharedModule } from '../_shared/shared.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import {
-  BlockchainComponent,
-  DashboardComponent,
-  TablesComponent,
-  FormsComponent,
-  TypographyComponent,
-  MapsComponent,
-  NotificationsComponent,
-  AdminUsersComponent
-} from './index';
+import * as Containers from './index';
 
 
 @NgModule({
@@ -34,23 +20,14 @@ import {
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     TooltipModule,
+    SharedModule,
     BsDatepickerModule.forRoot(),
 
     TimepickerModule
 
   ],
   declarations: [
-    // NavbarComponent,
-    // SidebarComponent,
-    // AdminFooterComponent,
-    AdminUsersComponent,
-    BlockchainComponent,
-    DashboardComponent,
-    TablesComponent,
-    FormsComponent,
-    TypographyComponent,
-    MapsComponent,
-    NotificationsComponent
+    ...Containers.containers
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [

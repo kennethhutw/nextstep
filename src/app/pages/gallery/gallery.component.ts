@@ -9,7 +9,7 @@ import {
 } from "./../../_services";
 import { Utility } from "./../../_helpers";
 import { environment } from '../../../environments/environment';
-
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: "app-gallery",
@@ -29,7 +29,8 @@ export class GalleryComponent implements OnInit {
     private utility: Utility,
     private dataSrv: DataService,
     private appSettingsSrv: AppSettingsService,
-    private artworkSrv: ArtWorkService
+    private artworkSrv: ArtWorkService,
+    private SpinnerService: NgxSpinnerService
   ) {
 
     let _lang = localStorage.getItem("lang");
@@ -47,17 +48,7 @@ export class GalleryComponent implements OnInit {
     });
 
 
-    this.artworkSrv.getSellArtwork().subscribe(res => {
 
-      if (res["result"] == "successful") {
-        this.editions = res["data"];
-        this.editions.forEach((element) => {
-          element.imageUrl = environment.assetUrl + element.imageUrl;
-          element.ethPrice = utility.getSellETHPrice(element.usdValue);
-        });
-        this.displayEditions = this.editions;
-      }
-    });
 
   }
 
@@ -72,7 +63,22 @@ export class GalleryComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.SpinnerService.show();
+    this.artworkSrv.getSellArtwork().subscribe(res => {
 
+      if (res["result"] == "successful") {
+        this.editions = res["data"];
+        this.editions.forEach((element) => {
+          element.imageUrl = environment.assetUrl + element.imageUrl;
+          element.ethPrice = this.utility.getSellETHPrice(element.usdValue);
+        });
+        this.displayEditions = this.editions;
+      }
+    }, error => {
+      console.error(`getSellArtwork error message ${error}`);
+    }, () => {
+      this.SpinnerService.hide();
+    });
   }
 
   onfilter(value) {
@@ -91,24 +97,32 @@ export class GalleryComponent implements OnInit {
   }
 
   onChange(deviceValue) {
-    console.log(deviceValue);
     this.displayEditions = this.editions;
-    switch (deviceValue) {
-      case 'LATEST':
-        this.displayEditions = this.editions.sort((a, b) => b.editionDate - a.editionDate);
-        break;
-      case 'OLDEST':
-        this.displayEditions = this.editions.sort((a, b) => a.editionDate - b.editionDate);
-        break;
-      case 'EXPENSIVE':
-        this.displayEditions = this.editions.sort((a, b) => b.usdValue - a.usdValue);
-        break;
-      case 'CHEAPEST':
-        this.displayEditions = this.editions.sort((a, b) => a.usdValue - b.usdValue);
-        break;
-      case 'POPULAR':
-        this.displayEditions = this.editions.sort((a, b) => b.liked - a.liked);
-        break;
+    try {
+      this.SpinnerService.show();
+      console.log(deviceValue);
+
+      switch (deviceValue) {
+        case 'LATEST':
+          this.displayEditions = this.editions.sort((a, b) => b.editionDate - a.editionDate);
+          break;
+        case 'OLDEST':
+          this.displayEditions = this.editions.sort((a, b) => a.editionDate - b.editionDate);
+          break;
+        case 'EXPENSIVE':
+          this.displayEditions = this.editions.sort((a, b) => b.usdValue - a.usdValue);
+          break;
+        case 'CHEAPEST':
+          this.displayEditions = this.editions.sort((a, b) => a.usdValue - b.usdValue);
+          break;
+        case 'POPULAR':
+          this.displayEditions = this.editions.sort((a, b) => b.liked - a.liked);
+          break;
+      }
+    } catch (error) {
+      console.error(`getSellArtwork error message ${error}`);
+    } finally {
+      this.SpinnerService.hide();
     }
   }
 }

@@ -32,7 +32,8 @@
                     <h5>{{this.artwork.name}}</h5>
                 </li>
                 <li>
-                    {{ "PRICE" | translate }}：Ξ {{getSellETHPrice(artwork.usdValue)}} / USD {{ artwork.usdValue}}
+                    {{ "PRICE" | translate }}：Ξ {{getSellETHPrice(artwork.usdValue)}} / USD {{ artwork.usdValue /
+                    100}}
                 </li>
                 <li>
                     {{ "BUYER" | translate }}：David Huang
