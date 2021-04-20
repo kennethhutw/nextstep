@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { ArtistDetailComponent } from '../components';
 
 @Injectable()
 export class EmailService {
@@ -59,6 +60,29 @@ export class EmailService {
 
     sendApplicationEmail(subject, receiverName, receiverEmail, link, uid) {
         return this.http.post(`${environment.apiUrl}/email/sendapplicationEmail`,
+            {
+                'subject': subject,
+                'receiverName': receiverName,
+                'receiverEmail': receiverEmail,
+                'link': link,
+                'uid': uid
+            });
+    }
+
+    sendapprovedEmail(artistId, subject, receiverName, receiverEmail, link, uid) {
+        return this.http.post(`${environment.apiUrl}/email/sendapprovedEmail`,
+            {
+                'artistId': artistId,
+                'subject': subject,
+                'receiverName': receiverName,
+                'receiverEmail': receiverEmail,
+                'link': link,
+                'uid': uid
+            });
+    }
+
+    sendrejectedEmail(subject, receiverName, receiverEmail, link, uid) {
+        return this.http.post(`${environment.apiUrl}/email/snedrejectedEmail`,
             {
                 'subject': subject,
                 'receiverName': receiverName,

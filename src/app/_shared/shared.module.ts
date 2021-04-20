@@ -16,25 +16,7 @@ import { GlobalErrorHandler } from "./../_core/errors/global-error-handler";
 import { LoadingSpinnerComponent } from "./loading-spinner/loading-spinner.component";
 import { NgxSpinnerModule } from "ngx-spinner";
 
-import {
-  UserService,
-  WalletService,
-  CryptoService,
-  Web3Service,
-  ArtistService,
-  ArtWorkService,
-  EditionService,
-  DataService,
-  AuthStore,
-  AppSettingsService,
-  DialogService,
-  SettingService,
-  LikeService,
-  GalleryService,
-  OfferService,
-  EmailService,
-  ToastService
-} from "./../_services";
+import * as AppServices from "./../_services";
 
 import {
   UploadFileComponent,
@@ -112,24 +94,8 @@ const sharedComponents = [
     ErrorDialogService,
     LoadingDialogService,
     BsModalService,
-    UserService,
-    WalletService,
     AuthService,
-    CryptoService,
-    Web3Service,
-    ArtistService,
-    ArtWorkService,
-    EditionService,
-    DataService,
-    AppSettingsService,
-    AuthStore,
-    LikeService,
-    OfferService,
-    SettingService,
-    DialogService,
-    GalleryService,
-    EmailService,
-    ToastService,
+    ...AppServices.services,
     {
       provide: ErrorHandler,
       useClass: GlobalErrorHandler,

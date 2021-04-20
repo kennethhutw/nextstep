@@ -6,7 +6,8 @@ import {
 import {
   UserService,
   AuthStore,
-  ToastService
+  ToastService,
+  EmailService
 } from '../../../../_services';
 
 import {
@@ -17,7 +18,6 @@ import {
   RouterStateSnapshot,
   ActivatedRoute
 } from "@angular/router";
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-usersetting',
@@ -28,7 +28,7 @@ export class UserSettingComponent implements OnInit {
 
   editedUser: any;
   constructor(
-    private toastr: ToastrService,
+    private emailSrv: EmailService,
     private toastSrv: ToastService,
     private route: ActivatedRoute,
     private authSrv: AuthStore,
@@ -81,7 +81,23 @@ export class UserSettingComponent implements OnInit {
   }
 
   sendResetEmail() {
-
+    let domain = window.location.origin;
+    let url = '/setPassword';
+    let link = domain + url;
+    this.emailSrv.sendResetPasswordEmail(
+      'Reset your password for FormosArt',
+      this.editedUser.email,
+      link).subscribe(sendRes => {
+        if (sendRes['result'] == 'successful') {
+          this.toastSrv.showToast('Success', "Reset Email Sent", this.toastSrv.iconClasses.success);
+        } else {
+          this.toastSrv.showToast('Failed', sendRes['message'], this.toastSrv.iconClasses.error);
+        }
+        // this.msg = true;
+        // this.message = 'E-mail has been sent to reset your password.';
+      }, error => {
+        this.toastSrv.showToast('Failed', error, this.toastSrv.iconClasses.error);
+      });
   }
 
 }

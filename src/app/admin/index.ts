@@ -7,8 +7,12 @@ import { NotificationsComponent } from './pages/notifications/notifications.comp
 import { BlockchainComponent } from './pages/blockchain/blockchain.component';
 import { AdminUsersComponent } from './pages/users/adminusers.component';
 import { UserSettingComponent } from './pages/users/usersetting/usersetting.component';
+import { ApplicationComponent } from './pages/users/application/application.component';
 
-export const containers = [DashboardComponent, TablesComponent,
+
+export const containers = [DashboardComponent,
+    ApplicationComponent,
+    TablesComponent,
     FormsComponent,
     TypographyComponent,
     MapsComponent,
@@ -27,3 +31,4 @@ export { NotificationsComponent } from './pages/notifications/notifications.comp
 export { BlockchainComponent } from './pages/blockchain/blockchain.component';
 export { AdminUsersComponent } from './pages/users/adminusers.component';
 export { UserSettingComponent } from './pages/users/usersetting/usersetting.component';
+export { ApplicationComponent } from './pages/users/application/application.component';

@@ -60,7 +60,6 @@ export class ArtistsComponent implements OnInit {
     // });
 
     this.artistSrv.getArtists().subscribe(res => {
-      console.log("res ==============", res);
       if (res["result"] === "successful") {
         this.artists = res["data"];
         this.artists.forEach((element) => {

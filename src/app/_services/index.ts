@@ -1,3 +1,43 @@
+import { UserService } from "./user.service";
+import { WalletService } from "./wallet.service";
+import { CryptoService } from "./crypto.service";
+import { Web3Service } from "./web3.service";
+import { ArtistService } from "./artist.service";
+import { ArtWorkService } from "./artwork.service";
+import { EditionService } from "./edition.service";
+import { DataService } from "./data.service";
+import { AppSettingsService } from "./appSettings.service";
+import { EatToasterService } from "./eattoaster.service";
+import { EmailService } from "./email.service";
+import { AuthStore } from "./auth.store";
+import { DialogService } from "./dialog.service";
+import { SettingService } from "./setting.service";
+import { LikeService } from "./like.service";
+import { GalleryService } from "./gallery.service";
+import { OfferService } from './offer.service';
+import { ToastService } from './toastr.service';
+import { PendingEditionService } from './pendingedition.service';
+
+export const services = [UserService,
+    WalletService,
+    CryptoService,
+    Web3Service,
+    ArtistService,
+    ArtWorkService,
+    EditionService,
+    DataService,
+    AppSettingsService,
+    DialogService,
+    SettingService,
+    LikeService,
+    GalleryService,
+    OfferService,
+    EmailService,
+    ToastService
+    , PendingEditionService];
+
+
+
 export * from "./user.service";
 export * from "./wallet.service";
 export * from "./crypto.service";
@@ -16,3 +56,4 @@ export { LikeService } from "./like.service";
 export { GalleryService } from "./gallery.service";
 export { OfferService } from './offer.service';
 export * from './toastr.service';
+export { PendingEditionService } from './pendingedition.service';

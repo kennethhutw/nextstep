@@ -112,18 +112,22 @@ export class SetPasswordComponent implements OnInit {
   }
 
   onSubmit() {
-
+    console.log("========= onSubmit");
     try {
       this.submittedPSW = true;
-      if (this.Form.value.newPassword == this.Form.value.newPassword2) {
+      this.pswActionMsg = null;
+      this.pswMsgFailed = false;
+      if (this.Form.value.newPassword !== this.Form.value.newPassword2) {
+        this.pswActionMsg = "Password are not match";
+        this.pswMsgFailed = true;
         return;
       }
 
       let _password = this.Form.value.newPassword;
-      this.pswActionMsg = null;
-      this.pswMsgFailed = false;
+
       this.userSrv.setPassword(_password,
         this.uid).subscribe(res => {
+          console.log("=========", res);
           if (res["result"] === "successful") {
             this.submittedPSW = false;
             this.translateSrv.get("UPDATEDSUCC").subscribe((text: string) => {
