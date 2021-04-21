@@ -8,8 +8,8 @@ import { BlockchainComponent } from './pages/blockchain/blockchain.component';
 import { AdminUsersComponent } from './pages/users/adminusers.component';
 import { UserSettingComponent } from './pages/users/usersetting/usersetting.component';
 import { ApplicationComponent } from './pages/users/application/application.component';
-
-
+import { AdminEditionComponent } from './pages/editions/editions.component';
+import { TokenizeComponent } from './pages/editions/tokenize/tokenize.component';
 export const containers = [DashboardComponent,
     ApplicationComponent,
     TablesComponent,
@@ -19,7 +19,9 @@ export const containers = [DashboardComponent,
     NotificationsComponent,
     BlockchainComponent,
     AdminUsersComponent,
-    UserSettingComponent
+    UserSettingComponent,
+    AdminEditionComponent,
+    TokenizeComponent
 ];
 
 export { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -32,3 +34,5 @@ export { BlockchainComponent } from './pages/blockchain/blockchain.component';
 export { AdminUsersComponent } from './pages/users/adminusers.component';
 export { UserSettingComponent } from './pages/users/usersetting/usersetting.component';
 export { ApplicationComponent } from './pages/users/application/application.component';
+export { AdminEditionComponent } from './pages/editions/editions.component';
+export { TokenizeComponent } from './pages/editions/tokenize/tokenize.component';

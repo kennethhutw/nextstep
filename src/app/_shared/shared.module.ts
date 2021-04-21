@@ -26,7 +26,8 @@ import {
   EditableInputComponent,
   ViewModeDirective,
   EditModeDirective,
-  EditableOnEnterDirective
+  EditableOnEnterDirective,
+  LoadingComponent
 } from "../components";
 
 import {
@@ -43,7 +44,8 @@ import {
 const sharedComponents = [
   LoadingSpinnerComponent,
   LoadingDialogComponent,
-  ErrorDialogComponent];
+  ErrorDialogComponent,
+  LoadingComponent];
 
 @NgModule({
   declarations: [

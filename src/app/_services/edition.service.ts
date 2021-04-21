@@ -54,4 +54,24 @@ export class EditionService {
   public getEditionById(id) {
     return this.http.get<any>(`${environment.apiUrl}/edition/getEditionById/${id}`);
   }
+
+  public getEditions() {
+    return this.http.get<any>(`${environment.apiUrl}/edition/editions`);
+  }
+  public getTokenizeEdition(id) {
+    return this.http.get<any>(`${environment.apiUrl}/edition/tokenizeEdition/${id}`);
+  }
+
+  public getTokenUriById(id) {
+    return this.http.get<any>(`${environment.apiUrl}/edition/tokenUriById/${id}`);
+  }
+
+  public createIPFSLink(editionId, tokenId, name, description, artist, tags, asset_type, external_uri, imageUri) {
+    return this.http
+      .post<resResult>(`${environment.apiUrl}/ipfs/createIPFSLink`,
+        {
+          editionId, tokenId, name, description, artist, tags, asset_type, external_uri, imageUri
+        }
+      );
+  }
 }

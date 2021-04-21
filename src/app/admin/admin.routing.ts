@@ -12,5 +12,7 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'users', component: Containers.AdminUsersComponent },
   { path: 'notifications', component: Containers.NotificationsComponent },
   { path: 'usersetting/:id', component: Containers.UserSettingComponent },
-  { path: 'application/:id', component: Containers.ApplicationComponent }
+  { path: 'application/:id', component: Containers.ApplicationComponent },
+  { path: 'editions', component: Containers.AdminEditionComponent },
+  { path: 'editions/tokenize/:id', component: Containers.TokenizeComponent }
 ];

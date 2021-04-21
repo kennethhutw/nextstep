@@ -53,7 +53,6 @@ export class ArtistAccountComponent implements OnInit {
       this.router.navigate(['./index'], {});
     }
     else {
-      console.log(" =============== ", this.currentUser);
       this.informEmail = this.currentUser.informEmail;
       this.ethAddress = this.currentUser.ethaddress;
     }
