@@ -60,7 +60,7 @@
           <th style="width: 10%;">
             created date
           </th>
-
+          <th>tokenize</th>
         </tr>
       </thead>
       <!--   <tbody *ngIf="isLoading">
@@ -75,19 +75,20 @@
         <ng-container *ngFor="let edition of displayEditions let i=index ;">
 
           <tr>
-            <td class="text_left">{{edition.artworkName}}</td>
+            <td class="text_left">{{edition.artworkName}}</td>s
             <td class="text_left">{{edition.ArtistName}}</td>
             <td class="text_left">{{edition.description}}</td>
             <td class="text_left">{{edition.tags}}</td>
             <td><b>{{edition.isBid}}</b></td>
             <td><b>{{edition.purchaseway}}</b></td>
-            <td>{{edition.createdAt | date : 'yyyy-MM-dd HH:mm:ss'}}</td>
+            <td>{{edition.createdAt | date : 'yyyy-MM-dd
+              HH:mm:ss'}}</td>
             <td><a class="clickable" [routerLink]="['/admin/editions/tokenize',edition.id]" style="color: #7F7F7F;"><i
                   class="fa fa-cog"></i>
-                Settings</a>
+                tokenize</a>
             </td>
 
-          </tr>
+          </tr>s
 
 
         </ng-container>

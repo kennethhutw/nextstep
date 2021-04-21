@@ -1,4 +1,25 @@
 <div class="mx-auto">
+  <div class="row">
+    <div class="col col-12 padding">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a [routerLink]="['/admin/editions']">Edition</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Tokenize</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 mb-12 form-group form-inline">
+      <label class="pr-2" for="highestEditionNumber">
+        <h5>highestEditionNumber :</h5>
+      </label>
+      <input type="text" id="highestEditionNumber" style="width: 500px;" class="form-control mr-10"
+        [(ngModel)]="highestEditionNumber">
+      <button type="button" class="btn btn-primary" (click)="getHighestEditionNumber()"> Retreive </button>
+    </div>
+  </div>
+
   <app-loading *ngIf="loading"></app-loading>
   <div class="row">
     <div class="col-md-12 mb-12 form-group form-inline">
@@ -8,10 +29,12 @@
       <input type="text" id="tokenUri" style="width: 500px;" placeholder="Enter email..." class="form-control mr-10"
         [(ngModel)]="tokenUri">
       <button type="button" class="btn btn-primary" (click)="getTokenUri()"> Retreive </button>
-      <button type="button" class="btn btn-primary" (click)="showTokenUri()"> Create </button>
+      <button type="button" style="margin-left: 10px;" class="btn btn-secondary" (click)="showTokenUri()">
+        {{showTokenUriPanel? "Hide": "Show"}}
+      </button>
     </div>
   </div>
-  <div [formGroup]="tokenUriForm" class="member-info-box">
+  <div *ngIf="showTokenUriPanel" [formGroup]="tokenUriForm" class="member-info-box">
 
     <div class="form-group mt-20">
       <label for="editionId">edition ID</label>

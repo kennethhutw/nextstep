@@ -9,7 +9,8 @@ import {
   AuthStore,
   ToastService,
   EmailService,
-  EditionService
+  EditionService,
+  Web3Service
 } from '../../../../_services';
 
 import {
@@ -38,6 +39,8 @@ export class TokenizeComponent implements OnInit, OnDestroy {
   assetImgUrl = "";
   tokenUri: any = null;
   loading = false;
+  showTokenUriPanel = false;
+  highestEditionNumber = 0;
   constructor(
     private utility: Utility,
     private formBuilder: FormBuilder,
@@ -47,7 +50,7 @@ export class TokenizeComponent implements OnInit, OnDestroy {
     private toastSrv: ToastService,
     private route: ActivatedRoute,
     private authSrv: AuthStore,
-    private userSrv: UserService
+    private web3Srv: Web3Service
   ) { }
 
   ngOnInit() {
@@ -191,30 +194,44 @@ export class TokenizeComponent implements OnInit, OnDestroy {
   onClear() {
 
   }
-  Tokenize() {
 
+  Tokenize() {
+    if (this.web3Srv.ethEnabled()) {
+
+      var unixtimestamp = (new Date(this.tokenizeForm.value.startDate)).getTime() / 1000;
+      console.log('ethEnabled ==========');
+      let priceInWei = this.web3Srv.EthToWei(this.tokenizeForm.value.priceInEth.toString());
+      if (this.web3Srv.loadContract()) {
+        this.web3Srv.executeTransaction('createActiveEdition',
+          this.tokenizeForm.value.editionNumber,
+          this.tokenizeForm.value.editionData[0],
+          this.tokenizeForm.value.editionType,
+          unixtimestamp,
+          0,
+          this.tokenizeForm.value.artistAccount,
+          this.tokenizeForm.value.artistCommission,
+          priceInWei,
+          this.tokenizeForm.value.tokenURI,
+          this.tokenizeForm.value.totalAvailable
+        ).then(res => {
+          console.log('res ==========', res);
+        }).catch(err => {
+          console.error('name err ==========', err);
+        });
+      }
+    }
   }
 
   get t() {
     return this.tokenUriForm.controls;
   }
 
-
   get f() {
     return this.tokenizeForm.controls;
   }
+
   createTokenUri() {
-    // this.tokenUriForm.setValue({
-    //   tokenID: this.edition.id,
-    //   name: this.edition.artworkName,
-    //   description: this.edition.description,
-    //   artist: this.edition.ArtistName,
-    //   artistAddress: this.edition.ethaddress,
-    //   tags: this.edition.tags,
-    //   asset_type: this.edition.tags,
-    //   external_uri: link,
-    //   imageUri: this.edition.imageUrl,
-    // });
+
     this.editionSrv.createIPFSLink(this.tokenUriForm.value.editionId,
       this.edition.firstnumber,
       this.tokenUriForm.value.name,
@@ -235,14 +252,16 @@ export class TokenizeComponent implements OnInit, OnDestroy {
       console.error(` res error : ${error} `);
     });
   }
-  showTokenUri() {
 
+  showTokenUri() {
+    this.showTokenUriPanel = !this.showTokenUriPanel;
   }
+
   getTokenUri() {
     this.editionSrv.getTokenizeEdition(this.edition.id).subscribe(res => {
       console.error(` res PendingEdition : ${res} `);
-      if (res["result"] == "succesful") {
-        this.tokenUri = res['data'];
+      if (res["result"] == "successful") {
+        this.tokenUri = res['data']['tokenUri'];
       }
       else {
         this.tokenUri = 'no link';
@@ -251,5 +270,15 @@ export class TokenizeComponent implements OnInit, OnDestroy {
     }, error => {
       console.error(` res error : ${error} `);
     })
+  }
+
+  getHighestEditionNumber() {
+    if (this.web3Srv.ethEnabled()) {
+      this.web3Srv.call('highestEditionNumber').then(res => {
+        this.highestEditionNumber = res;
+      }, error => {
+        console.error(` highestEditionNumber error : ${error} `);
+      })
+    }
   }
 }
