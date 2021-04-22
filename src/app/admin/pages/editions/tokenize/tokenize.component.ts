@@ -64,7 +64,7 @@ export class TokenizeComponent implements OnInit, OnDestroy {
 
     this.tokenizeForm = this.formBuilder.group({
       editionNumber: [""],
-      editionData: "0x0000000000000000000000000000000000000000000000000000000000000000",
+      editionData: "0x6c00000000000000000000000000000000000000000000000000000000000000",
       editionType: 1,
       startDate: [""],
       endDate: [""],
@@ -218,11 +218,11 @@ export class TokenizeComponent implements OnInit, OnDestroy {
           this.tokenizeForm.value.editionNumber,
           this.tokenizeForm.value.editionData,
           this.tokenizeForm.value.editionType,
-          unixtimestamp,
+          "1619100935",
           0,
           this.tokenizeForm.value.artistAccount,
           this.tokenizeForm.value.artistCommission,
-          priceInWei,
+          0,
           this.tokenizeForm.value.tokenURI,
           this.tokenizeForm.value.totalAvailable
         ).then(res => {
