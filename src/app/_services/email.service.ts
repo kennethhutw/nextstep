@@ -91,8 +91,21 @@ export class EmailService {
                 'uid': uid
             });
     }
+
     sendAvailableEmail(subject, receiverName, receiverEmail, link, artworkName, uid) {
         return this.http.post(`${environment.apiUrl}/email/availableEmail`,
+            {
+                'subject': subject,
+                'receiverName': receiverName,
+                'receiverEmail': receiverEmail,
+                'artworkName': artworkName,
+                'link': link,
+                'uid': uid
+            });
+    }
+
+    sendSoldEmail(subject, receiverName, receiverEmail, link, artworkName, uid) {
+        return this.http.post(`${environment.apiUrl}/email/soldEmail`,
             {
                 'subject': subject,
                 'receiverName': receiverName,

@@ -5,12 +5,13 @@ import {
   EditionService,
   AuthStore,
   GalleryService,
-  SettingService,
+  EmailService,
   LikeService,
   Web3Service,
   ArtWorkService,
   UserService,
-  DialogService
+  DialogService,
+  SettingService
 } from "./../../_services";
 import { Utility } from "./../../_helpers";
 import { Router, ActivatedRoute } from "@angular/router";
@@ -34,9 +35,10 @@ export class EditionComponent implements OnInit {
   uid = "";
   ethSoldValue = 0;
   constructor(
+    private settingSrv: SettingService,
     private dialogSrv: DialogService,
     private artworkSrv: ArtWorkService,
-    private settingSrv: SettingService,
+    private emailSrv: EmailService,
     private route: ActivatedRoute,
     private authStoreSrv: AuthStore,
     private editionSrv: EditionService,
@@ -105,32 +107,7 @@ export class EditionComponent implements OnInit {
           console.log("getEditionDetailByEditionId =============== finish.");
         });
     });
-    // this.editions = [
-    //   {
-    //     id: "01",
-    //     imageURL: "./assets/images/project-info-01.jpg",
-    //   },
-    //   {
-    //     id: "02",
-    //     imageURL: "./assets/images/project-info-02.jpg",
-    //   },
-    //   {
-    //     id: "03",
-    //     imageURL: "./assets/images/project-info-03.jpg",
-    //   },
-    //   {
-    //     id: "04",
-    //     imageURL: "./assets/images/project-info-04.jpg",
-    //   },
-    //   {
-    //     id: "05",
-    //     imageURL: "./assets/images/project-info-05.jpg",
-    //   },
-    //   {
-    //     id: "06",
-    //     imageURL: "./assets/images/project-info-06.jpg",
-    //   },
-    // ];
+
   }
 
   ngOnInit() {
@@ -177,7 +154,7 @@ export class EditionComponent implements OnInit {
         let address = await this.Web3Srv.getAccount();
         console.log(" address ", address);
         let weiSoldValue = this.Web3Srv.EthToWei(this.ethSoldValue.toString());
-        this.Web3Srv.purchase('purchase', weiSoldValue, this.currentEdition.id).then(async res => {
+        this.Web3Srv.purchase('purchase', weiSoldValue, 410030).then(async res => {
           console.log("purchase result " + res);
           let networkId = await this.Web3Srv.getNetworkId();
 
@@ -199,7 +176,9 @@ export class EditionComponent implements OnInit {
               this.dialogSrv.infoThis("Purchase successfully",
                 () => {
                   console.log("yes ===");
+                  this.informArtist();
                 }, () => {
+                  this.informArtist();
                   console.log("no ===");
                 });
             }, error => {
@@ -239,5 +218,32 @@ export class EditionComponent implements OnInit {
         console.warn("Metamask not found Install or enable Metamask");
       }
     }
+  }
+
+
+  informArtist() {
+
+    let domain = window.location.origin;
+    let url = '/gallery/' + this.editionId;
+    let link = domain + url;
+    this.emailSrv.sendAvailableEmail(
+      'Your artwork is available now on Formosart',
+      this.currentEdition.artist.name,
+      this.currentEdition.email,
+      link,
+      this.currentEdition.name,
+      this.currentUser.id).subscribe(sendRes => {
+        console.log("error = ", sendRes);
+        if (sendRes['result'] == 'successful') {
+          //         this.toastSrv.showToast('Success', "Inform Email Sent", this.toastSrv.iconClasses.success);
+        } else {
+          //       this.toastSrv.showToast('Failed', sendRes['message'], this.toastSrv.iconClasses.error);
+        }
+        // this.msg = true;
+        // this.message = 'E-mail has been sent to reset your password.';
+      }, error => {
+        console.error("error = ", error);
+        //       this.toastSrv.showToast('Failed', error, this.toastSrv.iconClasses.error);
+      });
   }
 }
