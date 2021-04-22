@@ -11,6 +11,8 @@ import { ApplicationComponent } from './pages/users/application/application.comp
 import { AdminEditionComponent } from './pages/editions/editions.component';
 import { TokenizeComponent } from './pages/editions/tokenize/tokenize.component';
 import { AdminArtworkComponent } from './pages/editions/artworks/artworks.component';
+import { AdminDelegateEmailComponent } from './pages/delegateEmail/delegate-email.component';
+
 export const containers = [DashboardComponent,
     ApplicationComponent,
     TablesComponent,
@@ -23,7 +25,8 @@ export const containers = [DashboardComponent,
     UserSettingComponent,
     AdminEditionComponent,
     TokenizeComponent,
-    AdminArtworkComponent
+    AdminArtworkComponent,
+    AdminDelegateEmailComponent
 ];
 
 export { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -39,3 +42,4 @@ export { ApplicationComponent } from './pages/users/application/application.comp
 export { AdminEditionComponent } from './pages/editions/editions.component';
 export { TokenizeComponent } from './pages/editions/tokenize/tokenize.component';
 export { AdminArtworkComponent } from './pages/editions/artworks/artworks.component';
+export { AdminDelegateEmailComponent } from './pages/delegateEmail/delegate-email.component';
