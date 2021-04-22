@@ -2,7 +2,7 @@ import { Injectable, NgZone } from "@angular/core";
 import Web3 from "web3";
 import { Contract } from "web3-eth-contract";
 import { Observable } from "rxjs";
-
+import { environment } from '../../environments/environment';
 const contractAbi = require("./contractABI.json");
 declare var window: any;
 
@@ -26,7 +26,7 @@ export class Web3Service {
     // } else {
     //   console.warn("Metamask not found Install or enable Metamask");
     // }
-
+    this.contractAddress = environment.contractAddress;
 
   }
 
