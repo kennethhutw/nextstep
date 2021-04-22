@@ -60,7 +60,8 @@
           <th style="width: 10%;">
             created date
           </th>
-          <th>tokenize</th>
+          <th>Artworks</th>
+          <th>Tokenize</th>
         </tr>
       </thead>
       <!--   <tbody *ngIf="isLoading">
@@ -83,6 +84,10 @@
             <td><b>{{edition.purchaseway}}</b></td>
             <td>{{edition.createdAt | date : 'yyyy-MM-dd
               HH:mm:ss'}}</td>
+            <td><a class="clickable" [routerLink]="['/admin/editions/artworks',edition.id]" style="color: #7F7F7F;"><i
+                  class="fa fa-cog"></i>
+                tokenize</a>
+            </td>
             <td><a class="clickable" [routerLink]="['/admin/editions/tokenize',edition.id]" style="color: #7F7F7F;"><i
                   class="fa fa-cog"></i>
                 tokenize</a>

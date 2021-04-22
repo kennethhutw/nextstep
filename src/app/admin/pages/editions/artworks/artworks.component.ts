@@ -4,7 +4,7 @@ import {
   HostListener,
   AfterViewInit, OnDestroy
 } from '@angular/core';
-import { UserService, EditionService } from '../../../../_services';
+import { UserService, ArtWorkService } from '../../../../_services';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
 import { BsDaterangepickerDirective } from 'ngx-bootstrap/datepicker';
@@ -15,6 +15,10 @@ import {
   animate,
   transition,
 } from '@angular/animations';
+
+import {
+  ActivatedRoute
+} from "@angular/router";
 @Component({
   selector: 'app-admin-artworks',
   templateUrl: './artworks.component.html',
@@ -41,9 +45,9 @@ export class AdminArtworkComponent implements OnInit {
 
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
-  atrworks: Array<any> = [];
+  artworks: Array<any> = [];
   displayArtworks: Array<any> = [];
-  isLoading = true;
+  isLoading = false;;
 
   dtTrigger: Subject<any> = new Subject();
 
@@ -74,11 +78,13 @@ export class AdminArtworkComponent implements OnInit {
   }
 
   constructor(
-    private editionSrv: EditionService,
+    private route: ActivatedRoute,
+    private artworkSrv: ArtWorkService,
     private userSrv: UserService
   ) { }
 
   ngOnInit() {
+    this.isLoading = true;
     this.filterPanelOpen = 'out';
     this.dtOptions = {
       pagingType: 'full_numbers',
@@ -86,19 +92,28 @@ export class AdminArtworkComponent implements OnInit {
     };
 
     try {
-      // this.editionSrv.getTokenizeEdition(id).subscribe(res => {
-      //   console.log(` getEdition ${res}`, res);
-      //   if (res['result'] == 'successful') {
-      //     this.atrworks = res['data'];
-      //     this.displayArtworks = this.atrworks;
+      this.route.params.subscribe(params => {
+        const _editionId = params["editionId"];
+        this.artworkSrv.getArtwrokByEditionId(_editionId).subscribe(res => {
+          console.log("res ===========", res);
+          if (res["result"] === "successful") {
+            this.artworks = res["data"];
+            this.displayArtworks = this.artworks;
+            //tags: "bizarre,love,romantic"
+          } else {
+            this.displayArtworks = this.artworks;
+            //tags: "bizarre,love,romantic"
+          }
+        }, error => {
+          console.error(` res error : ${error} `);
+        }, () => {
+          this.isLoading = false;
+        });
 
-      //   }
-      // }, error => {
-      //   console.error(` get initEdition : ${error} `);
+      })
 
-      // })
     } catch (error) {
-
+      console.error(` res error : ${error} `);
     }
   }
 
@@ -123,8 +138,7 @@ export class AdminArtworkComponent implements OnInit {
           pagingType: 'full_numbers',
           pageLength: 2,
         };
-        this.getAllUser();
-        //  dtInstance.draw();
+
       });
     }
   }
@@ -141,17 +155,6 @@ export class AdminArtworkComponent implements OnInit {
     if (IsAdmin === true) {
       return 'Admin';
     }
-  }
-  getAllUser() {
-    this.editionSrv.getEditions().subscribe(res => {
-      console.log("getEditions ========", res);
-      this.atrworks = res['data'];
-      this.displayArtworks = this.atrworks;
-    }, error => {
-      console.error("Get all editions failed :", error);
-    }, () => {
-      this.isLoading = false;
-    });
   }
 
 

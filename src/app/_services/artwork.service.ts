@@ -79,6 +79,10 @@ export class ArtWorkService {
     return this.http.get<any>(`${environment.apiUrl}/artwork/getArtworkByCollector/${uid}`);
   }
 
+  public getArtwrokByEditionId(editionId) {
+    return this.http.get<any>(`${environment.apiUrl}/artwork/getArtwrokByEditionId/${editionId}`);
+  }
+
   public purchase(uid,
     owner,
     usdValue,
