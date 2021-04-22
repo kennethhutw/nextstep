@@ -74,4 +74,50 @@ export class EditionService {
         }
       );
   }
+
+  public highestNumber() {
+    return this.http.get<any>(`${environment.apiUrl}/edition/highestNumber`);
+  }
+
+  updateHighestEditionNumber(number, id, uid) {
+    return this.http
+      .post<resResult>(`${environment.apiUrl}/edition/updateHighestEditionNumber`,
+        {
+          number, id, uid
+        }
+      );
+  }
+
+  generateArtwork(artistId,
+    editionId,
+    name,
+    description,
+    tags,
+    isBid,
+    usdprice,
+    image_type,
+    imageName,
+    imageUrl,
+    totalamount,
+    firstnumber,
+    uid) {
+    return this.http
+      .post<resResult>(`${environment.apiUrl}/artwork/generateArtwrok`,
+        {
+          artistId,
+          editionId,
+          name,
+          description,
+          tags,
+          isBid,
+          usdprice,
+          image_type,
+          imageName,
+          imageUrl,
+          totalamount,
+          firstnumber,
+          uid
+        }
+      );
+  }
 }

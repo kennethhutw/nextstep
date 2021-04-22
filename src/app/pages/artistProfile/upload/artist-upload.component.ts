@@ -62,6 +62,7 @@ export class ArtistUploadComponent implements OnInit {
     });
 
     let _lang = localStorage.getItem("lang");
+    console.log("_lang")
     if (!this.utility.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
       this.initTags(_lang);
@@ -130,18 +131,9 @@ export class ArtistUploadComponent implements OnInit {
     if (this.artworkImageFile == null) {
       return;
     }
-
-
-
-    // let newArtist = new NewArtist();
-    // newArtist.name =  this.profileForm.value.name;
-    // newArtist.bio = this.profileForm.value.bio;
-    // newArtist.location = this.profileForm.value.location;
-    // newArtist.facebook = this.profileForm.value.facebook;
-    // newArtist.website = this.profileForm.value.website;
-    // newArtist.twitter = this.profileForm.value.twitter;
-    // newArtist.instagram = this.profileForm.value.instagram;
-
+    let sellprice = this.artworkForm.value.sellingPrice
+    if (sellprice > 0)
+      sellprice = sellprice * 100;
     let formData = new FormData();
     formData.append("artistId", this.currentUser.id);
     formData.append("uid", this.currentUser.id);
@@ -150,7 +142,7 @@ export class ArtistUploadComponent implements OnInit {
     formData.append("tags", this.artworkForm.value.tags);
     formData.append("isBid", this.artworkForm.value.IsBid);
     formData.append("paymentway", this.artworkForm.value.paymentway);
-    formData.append("usdprice", this.artworkForm.value.sellingPrice);
+    formData.append("usdprice", sellprice);
     formData.append("totalamount", this.artworkForm.value.numberOfArtwork);
     formData.append("uploadfile", this.artworkImageFile);
 

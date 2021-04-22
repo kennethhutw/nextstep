@@ -39,9 +39,15 @@ export class GalleryService {
             );
     }
 
+    public generateArtwrok(formdata) {
+        return this.http
+            .post<any>(`${environment.apiUrl}/artwork/generateArtwrok`,
+                formdata
+            );
+    }
+
     public getEditionDetailByEditionId(editionId) {
         return this.http.get<any>(`${environment.apiUrl}/gallery/getEditionDetailByEditionId/${editionId}`);
-
     }
 
     // public getSoldArtwrokByArtistId(artistId) {

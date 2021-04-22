@@ -12,7 +12,7 @@
   <div class="row">
     <div class="col-md-12 mb-12 form-group form-inline">
       <label class="pr-2" for="highestEditionNumber">
-        <h5>highestEditionNumber :</h5>
+        <h5> Blockchain highestEditionNumber :</h5>
       </label>
       <input type="text" id="highestEditionNumber" style="width: 500px;" class="form-control mr-10"
         [(ngModel)]="highestEditionNumber">
@@ -20,14 +20,36 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-md-4 mb-4 form-group form-inline">
+      <label class="pr-2" for="highestEditionNumber">
+        <h5> Database highestEditionNumber :</h5>
+      </label>
+      <input type="text" id="highestEditionNumber" style="width: 500px;" class="form-control mr-10"
+        [(ngModel)]="highestDBEditionNumber">
+    </div>
+    <div class="col-md-4 mb-4 form-group form-inline">
+      <label class="pr-2" for="highestEditionNumber">
+        <h5> Database highestArtworkNumber :</h5>
+      </label>
+      <input type="text" id="highestEditionNumber" style="width: 500px;" class="form-control mr-10"
+        [(ngModel)]="highestDBArtworkNumber">
+
+
+    </div>
+    <div class="col-md-4 mb-4 form-group form-inline">
+      <button type="button" class="btn btn-primary" (click)="getDBHighestNumber()"> Retreive </button>
+    </div>
+  </div>
+
   <app-loading *ngIf="loading"></app-loading>
+  <h3>Step 1: token URI</h3>
   <div class="row">
     <div class="col-md-12 mb-12 form-group form-inline">
       <label class="pr-2" for="tokenUri">
         <h5>TokenUri :</h5>
       </label>
-      <input type="text" id="tokenUri" style="width: 500px;" placeholder="Enter email..." class="form-control mr-10"
-        [(ngModel)]="tokenUri">
+      <input type="text" id="tokenUri" style="width: 500px;" class="form-control mr-10" [(ngModel)]="tokenUri">
       <button type="button" class="btn btn-primary" (click)="getTokenUri()"> Retreive </button>
       <button type="button" style="margin-left: 10px;" class="btn btn-secondary" (click)="showTokenUri()">
         {{showTokenUriPanel? "Hide": "Show"}}
@@ -37,8 +59,12 @@
   <div *ngIf="showTokenUriPanel" [formGroup]="tokenUriForm" class="member-info-box">
 
     <div class="form-group mt-20">
+      <label for="tokenId">token ID (firstnumber)</label>
+      <input type="text" formControlName="tokenId" class="form-control" id="tokenId" aria-describedby="tokenId">
+    </div>
+    <div class="form-group mt-20">
       <label for="editionId">edition ID</label>
-      <input type="text" formControlName="editionId" class="form-control" id="tokenID" aria-describedby="tokenID">
+      <input type="text" formControlName="editionId" class="form-control" id="editionId" aria-describedby="editionId">
     </div>
     <div class="form-group mt-20">
       <label for="name">Name</label>
@@ -84,6 +110,7 @@
     </div>
 
   </div>
+  <h3>Step 2: tokenize</h3>
   <div [formGroup]="tokenizeForm" class="member-info-box">
     <div class="row">
       <div id="select_img" class="col-md-4 text-center">
@@ -151,5 +178,75 @@
       </div>
     </div>
   </div>
+  <hr>
+  <h3>Step 3: update Edition & Generate Artwork</h3>
+  <div class="row">
+    <div class="col-md-12 mb-12 form-group form-inline">
+      <label class="pr-2" for="updateFirstnumber">
+        <h5> update firstnumber :</h5>
+      </label>
+      <input type="text" id="updateFirstnumber" style="width: 500px;" class="form-control mr-10"
+        [(ngModel)]="newFirstnumber">
+      <button type="button" class="btn btn-primary" (click)="updateFirstnumber()"> Retreive </button>
+    </div>
+  </div>
 
+  <h5> Generate Artwork :</h5>
+  <div [formGroup]="newArtWorkForm" class="member-info-box">
+
+    <div class="form-group mt-20">
+      <label for="artistId">artist ID</label>
+      <input type="text" formControlName="artistId" class="form-control" id="" aria-describedby="artistId">
+    </div>
+    <div class="form-group mt-20">
+      <label for="editionId">edition ID</label>
+      <input type="text" formControlName="editionId" class="form-control" id="" aria-describedby="tokenID">
+    </div>
+    <div class="form-group mt-20">
+      <label for="name">Name</label>
+      <input type="text" formControlName="name" class="form-control" id="" aria-describedby="name">
+    </div>
+    <div class="form-group mt-20">
+      <label for="description">Description</label>
+      <input type="text" formControlName="description" class="form-control" id="" aria-describedby="description">
+    </div>
+    <div class="form-group mt-20">
+      <label for="usdValue">usdValue</label>
+      <input type="text" formControlName="usdValue" class="form-control" id="" aria-describedby="usdprice">
+    </div>
+    <div class="form-group mt-20">
+      <label for="tags">tags</label>
+      <input type="text" formControlName="tags" class="form-control" id="" aria-describedby="tags">
+    </div>
+    <div class="form-group mt-20">
+      <label for="isBid">isBid</label>
+      <input type="text" formControlName="isBid" class="form-control" id="" aria-describedby="isBid">
+    </div>
+    <div class="form-group mt-20">
+      <label for="image_type">asset_type</label>
+      <input type="text" formControlName="image_type" class="form-control" id="" aria-describedby="image_type">
+    </div>
+    <div class="form-group mt-20">
+      <label for="imageName">image Name</label>
+      <input type="text" formControlName="imageName" class="form-control" id="" aria-describedby="imageName">
+    </div>
+    <div class="form-group mt-20">
+      <label for="imageUri">image uri</label>
+      <input type="text" formControlName="imageUri" class="form-control" id="" aria-describedby="imageUri">
+    </div>
+    <div class="form-group mt-20">
+      <label for="firstnumber">The First number</label>
+      <input type="text" formControlName="firstnumber" class="form-control" id="" aria-describedby="firstnumber">
+    </div>
+    <div class="form-group mt-20">
+      <label for="totalamount">Total number</label>
+      <input type="text" formControlName="totalamount" class="form-control" id="" aria-describedby="totalamount">
+    </div>
+    <div class="row mt-20 mb-20">
+      <div class="col-md-12">
+        <button class="model_btn_normal" (click)="generateArtwork()">Submit</button>
+      </div>
+    </div>
+
+  </div>
 </div>

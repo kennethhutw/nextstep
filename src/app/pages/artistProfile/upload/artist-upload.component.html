@@ -43,8 +43,8 @@
         <label for="exampleInputEmail1">{{ "SELLPRICE" | translate }}（USD) </label>
         <input type="number" formControlName="sellingPrice" (change)="TotalETHAmount($event)" class="form-control" id=""
             aria-describedby="">
-        <span class="d-block pt-05 "><i class="fas fa-arrow-alt-circle-right "></i> 轉換為乙太幣：<span class="text-danger">ETH
-                $ {{ethAmount}}</span></span>
+        <span class="d-block pt-05 "><i class="fas fa-arrow-alt-circle-right "></i><span class="text-danger">ETH
+                $ {{ethAmount}}</span><small> (include 15% platform fee)</small></span>
     </div>
 
     <!-- <div class="form-group">
@@ -145,12 +145,12 @@
         <i class="fas fa-plus-circle fa-3x"></i>
         <span class="member_add_project">新增作品</span>
     </div>
-</a> -->
+</a> 已選擇完畢，確認上傳-->
 
 
 <div class="text-center mt-40 mb-40">
     <button (click)="onSubmit()" id="member_last_btn_w100" class="btn_normal ">
-        已選擇完畢，確認上傳
+        {{ "UPLOAD" | translate }}
     </button>
     <div style="margin-top: 10px;" [ngClass]="{ 'error-msg': IsUpdateFailed === true }" *ngIf="informMsg">{{informMsg}}
     </div>
