@@ -120,4 +120,13 @@ export class EditionService {
         }
       );
   }
+
+  updateStatusByEditionId(status, uid, editionId) {
+    return this.http
+      .post<resResult>(`${environment.apiUrl}/edition/updateStatusByEditionId`,
+        {
+          status, uid, editionId
+        }
+      );
+  }
 }

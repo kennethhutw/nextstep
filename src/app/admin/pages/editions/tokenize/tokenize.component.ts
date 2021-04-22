@@ -10,7 +10,8 @@ import {
   ToastService,
   EmailService,
   EditionService,
-  Web3Service
+  Web3Service,
+  ArtistService
 } from '../../../../_services';
 
 import {
@@ -34,7 +35,7 @@ export class TokenizeComponent implements OnInit, OnDestroy {
   tokenizeForm: FormGroup;
   tokenUriForm: FormGroup;
   newArtWorkForm: FormGroup;
-  editedUser: any;
+  artist: any;
   edition: any = null;
   currentUser: any;
   assetImgUrl = "";
@@ -53,7 +54,7 @@ export class TokenizeComponent implements OnInit, OnDestroy {
     private emailSrv: EmailService,
     private toastSrv: ToastService,
     private route: ActivatedRoute,
-    private authSrv: AuthStore,
+    private artistSrv: ArtistService,
     private web3Srv: Web3Service
   ) { }
 
@@ -64,7 +65,7 @@ export class TokenizeComponent implements OnInit, OnDestroy {
     this.tokenizeForm = this.formBuilder.group({
       editionNumber: [""],
       editionData: "0x0000000000000000000000000000000000000000000000000000000000000000",
-      editionType: 0,
+      editionType: 1,
       startDate: [""],
       endDate: [""],
       artistAccount: [""],
@@ -106,27 +107,16 @@ export class TokenizeComponent implements OnInit, OnDestroy {
     this.route.params.subscribe(params => {
       const _editionid = params["id"];
       this.initEdition(_editionid);
-    })
+    });
+
+
   }
 
   ngAfterViewInit(): void {
 
   }
 
-  CheckStatus(value) {
-    console.log(" ===========", value);
-    let _status = "not decide";
-    switch (value) {
-      case "1":
-        _status = "approved";
-        break;
-      case 2:
-        _status = "rejected";
-        break;
 
-    }
-    return _status;
-  }
 
   ngOnDestroy(): void {
 
@@ -138,18 +128,15 @@ export class TokenizeComponent implements OnInit, OnDestroy {
         console.log(` getEdition ${res}`, res);
         if (res['result'] == 'successful') {
           this.edition = res['data'];
-          // if (this.editions.length > 0) {
-          //   this.editions.forEach((element) => {
-          //     element.imageUrl = environment.assetUrl + element.imageUrl;
-          //   });
-          // }
-
+          if (this.edition != null) {
+            this.initArtist(this.edition.artistId);
+          }
           this.assetImgUrl = environment.assetUrl + this.edition.imageUrl;
           let _eth = this.utility.getSellETHPrice(this.edition.usdValue);
           this.tokenizeForm.setValue({
             editionNumber: this.edition.firstnumber,
             editionData: "0x0000000000000000000000000000000000000000000000000000000000000000",
-            editionType: 0,
+            editionType: 1,
             startDate: [""],
             endDate: [""],
             artistAccount: this.edition.ethaddress,
@@ -178,20 +165,6 @@ export class TokenizeComponent implements OnInit, OnDestroy {
             imageUri: "./.." + this.edition.imageUrl,
           });
 
-          /*
-                editionId: [""],
-      artistId: [""],
-      name: [""],
-      description: [""],
-      usdprice: [""],
-      tags: [""],
-      isBid: [""],
-      asset_type: [""],
-      imageName: [""],
-      imageUri: [""],
-      totalamount: [""],
-      firstnumber: [""],*/
-
           this.newArtWorkForm.setValue({
             artistId: this.edition.artistId,
             editionId: this.edition.id,
@@ -216,29 +189,18 @@ export class TokenizeComponent implements OnInit, OnDestroy {
     }
   }
 
+  initArtist(id) {
+    this.artistSrv.getArtistBasicInfo(id).subscribe(res => {
+      console.log(" getArtistBasicInfoByUid ==== ", res);
+      if (res["result"] === "successful") {
+        this.artist = res["data"];
 
+      } else {
 
-  sendApprovedEmail() {
-    let domain = window.location.origin;
-    let url = '/setPassword';
-    let link = domain + url;
-    this.emailSrv.sendapprovedEmail(
-      this.editedUser.id,
-      'FormosArt Artist Application',
-      this.editedUser.name,
-      this.editedUser.email,
-      link,
-      this.currentUser.id).subscribe(sendRes => {
-        if (sendRes['result'] == "successful") {
-          this.toastSrv.showToast('Success', "Approved Email Sent", this.toastSrv.iconClasses.success);
-        } else {
-          this.toastSrv.showToast('Failed', sendRes['message'], this.toastSrv.iconClasses.error);
-        }
-        // this.msg = true;
-        // this.message = 'E-mail has been sent to reset your password.';
-      }, error => {
-        this.toastSrv.showToast('Failed', error, this.toastSrv.iconClasses.error);
-      });
+      }
+    }, error => {
+      console.error(` initial Artist failed`, error);
+    })
   }
 
   onClear() {
@@ -352,8 +314,6 @@ export class TokenizeComponent implements OnInit, OnDestroy {
       this.highestDBArtworkNumber = -1;
       console.error(` res error : ${error} `);
     })
-    // highestDBEditionNumber = -1;
-    // highestDBArtworkNumber = -1;
   }
 
   updateFirstnumber() {
@@ -381,19 +341,6 @@ export class TokenizeComponent implements OnInit, OnDestroy {
 
   generateArtwork() {
     try {
-      // artistId,
-      //   editionId,
-      //   name,
-      //   description,
-      //   tags,
-      //   isBid,
-      //   usdprice,
-      //   imageName,
-      //   imageUrl,
-      //   totalamount,
-      //   firstnumber,
-      //   uid
-      console.log("generateArtwork ======", this.newArtWorkForm.value)
       this.editionSrv.generateArtwork(this.newArtWorkForm.value.artistId,
         this.newArtWorkForm.value.editionId,
         this.newArtWorkForm.value.name,
@@ -430,5 +377,49 @@ export class TokenizeComponent implements OnInit, OnDestroy {
         error,
         this.toastSrv.iconClasses.error);
     }
+  }
+
+  updateStatus() {
+    this.editionSrv.updateStatusByEditionId("1", this.currentUser.id, this.edition.id).subscribe(res => {
+      if (res["result"] == "successful") {
+        this.toastSrv.showToast('Success',
+          "updated Status successfully",
+          this.toastSrv.iconClasses.success);
+      } else {
+        this.toastSrv.showToast('Failed',
+          res['message'],
+          this.toastSrv.iconClasses.error);
+      }
+    }, error => {
+      console.error(` res error : ${error} `);
+      this.toastSrv.showToast('Failed',
+        "update Status failed" + error,
+        this.toastSrv.iconClasses.error);
+    })
+  }
+
+
+  informArtist() {
+    let id = this.edition.firstnumber + 1;
+    let domain = window.location.origin;
+    let url = '/gallery/' + id;
+    let link = domain + url;
+    this.emailSrv.sendAvailableEmail(
+      'Your artwork is available now on Formosart',
+      this.artist.name,
+      this.artist.email,
+      link,
+      this.edition.name,
+      this.currentUser.id).subscribe(sendRes => {
+        if (sendRes['result'] == 'successful') {
+          this.toastSrv.showToast('Success', "Inform Email Sent", this.toastSrv.iconClasses.success);
+        } else {
+          this.toastSrv.showToast('Failed', sendRes['message'], this.toastSrv.iconClasses.error);
+        }
+        // this.msg = true;
+        // this.message = 'E-mail has been sent to reset your password.';
+      }, error => {
+        this.toastSrv.showToast('Failed', error, this.toastSrv.iconClasses.error);
+      });
   }
 }

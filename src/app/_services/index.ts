@@ -16,6 +16,7 @@ import { GalleryService } from "./gallery.service";
 import { OfferService } from './offer.service';
 import { ToastService } from './toastr.service';
 import { PendingEditionService } from './pendingedition.service';
+import { DelegateEmailService } from './delegateEmail.service';
 
 export const services = [UserService,
     WalletService,
@@ -33,7 +34,8 @@ export const services = [UserService,
     OfferService,
     EmailService,
     ToastService
-    , PendingEditionService];
+    , PendingEditionService,
+    DelegateEmailService];
 
 
 
@@ -55,3 +57,4 @@ export { GalleryService } from "./gallery.service";
 export { OfferService } from './offer.service';
 export * from './toastr.service';
 export { PendingEditionService } from './pendingedition.service';
+export { DelegateEmailService } from './delegateEmail.service';

@@ -191,7 +191,8 @@
     </div>
   </div>
 
-  <h5> Generate Artwork :</h5>
+  <h3>Step 4: Generate Artwork </h3>
+
   <div [formGroup]="newArtWorkForm" class="member-info-box">
 
     <div class="form-group mt-20">
@@ -248,5 +249,26 @@
       </div>
     </div>
 
+  </div>
+
+  <h3>Step 5: Goto Live</h3>
+  <div class="row">
+    <div class="col-md-12 mb-12 form-group form-inline">
+      <label class="pr-2" for="updateFirstnumber">
+        <h5> edition Id : </h5>
+      </label>
+
+      <button type="button" class="btn btn-primary" (click)="updateStatus()"> Upadate </button>
+    </div>
+  </div>
+  <h3>Step 6: inform Artist</h3>
+  <div class="row">
+    <div class="col-md-12 mb-12 form-group form-inline">
+      <label class="pr-2" for="updateFirstnumber">
+        <h5> edition Id :</h5>
+      </label>
+
+      <button type="button" class="btn btn-primary" (click)="informArtist()"> Inform </button>
+    </div>
   </div>
 </div>

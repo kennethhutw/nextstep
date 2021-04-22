@@ -139,7 +139,6 @@ export class EditionComponent implements OnInit {
 
   InitLike(uid, liked_id) {
     this.likeSrv.IsLike(uid, liked_id).subscribe(res => {
-      console.log(res);
       if (res['result'] == "successful") {
         this.IsFollowed = res['data'];
       }

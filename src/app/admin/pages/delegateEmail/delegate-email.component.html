@@ -1,0 +1,64 @@
+<div class="mx-auto">
+  <h1>Done By Tiffany :)</h1>
+  <div class="row">
+    <div class="m-3">
+      <button type='button' id='newShorOrg' data-toggle="modal" [attr.data-target]="'#AddShowOrg'"
+      class="btn btn-md btn-primary">New</button>
+    </div>
+  </div>
+
+  <div>
+    <ng-container *ngIf="!loading; else Loading" >
+        <table datatable [dtOptions]="dtOptions" class="row-border hover">
+          <thead>
+              <tr>
+                <th style="width: 10%;">Action</th>
+                <th>Test Email</th>
+                <th>Delegating Email</th>
+              </tr>
+          </thead>
+
+          <tbody>
+              <tr *ngFor="let emailEntry of Emails">
+                <td>
+                  <button type="button" class="btn btn-danger btn-width" (click)="deleteEmailEntry(emailEntry.id, emailEntry.email)">Delete</button>
+                </td>
+                <td class="text_left">{{emailEntry.email}}</td>
+                <td class="text_left">{{emailEntry.delegatingEmail}}</td>
+              </tr>
+          </tbody>
+        </table>
+    </ng-container>
+
+    <ng-template #Loading>
+      <i class="text_center fa fa-spin fa-spinner"></i>
+    </ng-template>
+  </div>
+</div>
+
+<app-modal [modalid]="'AddShowOrg'">
+  <div body style="padding: 20px;">
+    <div class="row comheader">
+      <h2>Add delegation email</h2>
+    </div>
+    <hr class="splitLinesilver">
+    <div class="row  combody">
+      <form [formGroup]="emailsForm">
+        <div class="form-group">
+          <label for="testEmail">Test Email</label>
+          <input type="text" class="form-control" id="testEmail" placeholder="Email for testing" formControlName="testEmail" style="width: 700px;" (input)="isInvalid()" required>
+        </div>
+        <div class="form-group">
+          <label for="delegatingEmail">Delegating Email</label>
+          <input type="text" id="delegatingEmail" formControlName="delegatingEmail" style="width: 700px;" class="form-control" placeholder="Real email" (input)="isInvalid()" required>
+        </div>
+      </form>
+    </div>
+    <div style="text-align: end;">
+      <button type='button' id='InsertDisplay' (click)="addEmailEntry()" [disabled]="isInvalid()"
+        class="btn btn-md btn-primary btn-width" data-dismiss="modal">Add</button>
+      <button type='button' class="btn btn-md btn-secondary btn_wrap ml-3 btn-width"
+        data-dismiss="modal">Cancel</button>
+    </div>
+  </div>
+</app-modal>

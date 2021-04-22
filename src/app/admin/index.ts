@@ -10,6 +10,7 @@ import { UserSettingComponent } from './pages/users/usersetting/usersetting.comp
 import { ApplicationComponent } from './pages/users/application/application.component';
 import { AdminEditionComponent } from './pages/editions/editions.component';
 import { TokenizeComponent } from './pages/editions/tokenize/tokenize.component';
+import { AdminArtworkComponent } from './pages/editions/artworks/artworks.component';
 export const containers = [DashboardComponent,
     ApplicationComponent,
     TablesComponent,
@@ -21,7 +22,8 @@ export const containers = [DashboardComponent,
     AdminUsersComponent,
     UserSettingComponent,
     AdminEditionComponent,
-    TokenizeComponent
+    TokenizeComponent,
+    AdminArtworkComponent
 ];
 
 export { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -36,3 +38,4 @@ export { UserSettingComponent } from './pages/users/usersetting/usersetting.comp
 export { ApplicationComponent } from './pages/users/application/application.component';
 export { AdminEditionComponent } from './pages/editions/editions.component';
 export { TokenizeComponent } from './pages/editions/tokenize/tokenize.component';
+export { AdminArtworkComponent } from './pages/editions/artworks/artworks.component';
