@@ -6,7 +6,7 @@
       </label>
       <input type="text" id="verifyemail" style="width: 500px;" placeholder="Enter email..." class="form-control mr-10"
         [(ngModel)]="sendEmail">
-      <button type="button" class="btn btn-primary" (click)="sendVerifyEmail()"> Send </button>
+      <button type="button" class="btn btn-primary"> Send </button>
     </div>
   </div>
   <!--   <div class="row">
@@ -21,35 +21,7 @@
 
         </div>
     </div> -->
-  <div class="row ">
-    <div class="col-md-12">
-      <button type="button" class="btn btn-primary" (click)="toggleaddWidgetPanel()">
-        Filter</button>
-    </div>
-  </div>
-  <div [@slideInOut]="filterPanelOpen" class="row mt-10 ml-20">
-    <div class="col-md-12 mb-3 form-group form-inline">
-      <button type="button" class="btn btn-primary mr-10" (click)="GetTodaySingupUsers()"> Today Sign up </button>
-      <button type="button" class="btn btn-primary mr-10" (click)="GetTodayLoginUsers()"> Today Sign in </button>
-      <button type="button" class="btn btn-primary mr-10" (click)="ResetFilterUserByDate()"> Reset </button>
-    </div>
-    <div class="col-md-3 mb-3 form-group form-inline">
-      <span class="mr-10">From :</span>
-      <input type="text" [(ngModel)]="FromDate" placeholder="Nov 2020" class="form-control" bsDatepicker
-        [bsConfig]="{ isAnimated: true }" style="width: 70%;">
-    </div>
 
-    <div class="col-md-3 mb-3 form-group form-inline">
-      <span class="mr-10">To :</span> <input type="text" [(ngModel)]="ToDate" placeholder="Dec 2020"
-        class="form-control" bsDatepicker [bsConfig]="{ isAnimated: true }" style="width: 70%;">
-    </div>
-    <div class="col-md-6 mb-3 form-group form-inline">
-      <button type="button" class="btn btn-primary mr-10" (click)="FilterUserByDate('signup')"> Sign up </button>
-      <button type="button" class="btn btn-primary mr-10" (click)="FilterUserByDate('signin')"> Sign in </button>
-      <button type="button" class="btn btn-primary mr-10" (click)="ResetFilterUserByDate()"> Reset </button>
-    </div>
-  </div>
-  <hr>
   <div style="font-size: 16px; margin-bottom: 10px;">
     Number Of User(s) : {{this.displayUsers.length}}
   </div>
