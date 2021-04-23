@@ -170,8 +170,8 @@ export class ApplicationComponent implements OnInit, OnDestroy {
 
   sendApprovedEmail() {
     let domain = window.location.origin;
-    let url = '/setPassword';
-    let link = domain + url;
+
+    let link = domain;
     this.emailSrv.sendapprovedEmail(
       this.editedUser.id,
       'FormosArt Artist Application',

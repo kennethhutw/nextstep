@@ -34,6 +34,7 @@ export class HeaderComponent implements OnInit {
 
   pswMsgFailed = true;
   pswActionMsg = "";
+  pswloading = false;
   constructor(
     private utility: Utility,
     private fb: FormBuilder,
@@ -181,31 +182,31 @@ export class HeaderComponent implements OnInit {
   }
 
   emailsignin() {
-    let _password = this.signinEmailForm.value.password;
-    if (!this.utility.IsNullOrEmpty(_password)) {
-      const val = this.signinEmailForm.value;
+    // let _password = this.signinEmailForm.value.password;
+    // if (!this.utility.IsNullOrEmpty(_password)) {
+    //   const val = this.signinEmailForm.value;
 
-      this.authStoreSrv.login(val.emai, val.password).subscribe(
-        () => { },
-        (err) => {
-          alert("Sign in failed!");
-        }
-      );
-      // this.userSrv
-      //   .getPassWordByEmail(this.signinEmailForm.value.email)
-      //   .then((res) => {
-      //     if (res["result"] === "successful") {
-      //       const verified = bcrypt.compareSync(
-      //         _password,
-      //         res["data"]["password"]
-      //       );
-      //       if (verified) {
-      //         localStorage.setItem("currentUser", JSON.stringify(res.data));
-      //         this.currentUser = res.data;
-      //       }
-      //     }
-      //   });
-    }
+    //   this.authStoreSrv.login(val.emai, val.password).subscribe(
+    //     () => { },
+    //     (err) => {
+    //       alert("Sign in failed!");
+    //     }
+    //   );
+    // this.userSrv
+    //   .getPassWordByEmail(this.signinEmailForm.value.email)
+    //   .then((res) => {
+    //     if (res["result"] === "successful") {
+    //       const verified = bcrypt.compareSync(
+    //         _password,
+    //         res["data"]["password"]
+    //       );
+    //       if (verified) {
+    //         localStorage.setItem("currentUser", JSON.stringify(res.data));
+    //         this.currentUser = res.data;
+    //       }
+    //     }
+    //   });
+    // }
   }
 
   Signout() {
@@ -213,39 +214,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['./index'], {});
   }
 
-  onSubmit() {
-    // if (this.loginForm.invalid) {
-    //   return;
-    // }
-    // console.log("====================");
-    // let password = this.loginForm.value.password;
-    // if (!this.utility.IsNullOrEmpty(password)) {
-    //   const salt = bcrypt.genSaltSync(10);
-    //   let pass = bcrypt.hashSync(password, 10);
-    //   console.log("====================", pass);
-    //   this.userSrv
-    //     .signup(this.loginForm.value.email, pass, "", "")
-    //     .subscribe((result) => {
-    //       console.log("====================", result);
-    //     });
-    //  const verified = bcrypt.compareSync('123456', '$2b$10$CTeKHXon1D7VGeJlY7bXR.JkuMWJgZcDRVEoHnj2H/5LmFZZsrztm');
-    //  console.log("verified ====================",verified);
-    //  bcrypt.hash(pass, 10, function(err, hash) {
-    //   console.log("hash ====================",hash);
-    // });
-    //  }
-    // var res = this.AuthService.login(this.loginForm.value.email, this.loginForm.value.password)
-    // // console.log(res);
-    // res.subscribe(result => {
-    //   // console.log("result", result);
-    //   if (result["data"] == undefined) {
-    //     this.InvalidUser = true;
-    //   } else {
-    //     localStorage.setItem("id", result["data"]["id"]);
-    //     this.router.navigate(['/userpage']);
-    //   }
-    // });
-  }
+
 
   GoToNextPage(pageName) {
     this.router.navigate(["/register-artist"]);
@@ -268,6 +237,7 @@ export class HeaderComponent implements OnInit {
     let domain = window.location.origin;
     let url = '/setPassword';
     let link = domain + url;
+    this.pswloading = true
     this.emailSrv.sendResetPasswordEmail(
       'Reset your password for FormosaArt',
       this.ForgotPasswordEmail,
@@ -280,6 +250,11 @@ export class HeaderComponent implements OnInit {
         }
         // this.msg = true;
         // this.message = 'E-mail has been sent to reset your password.';
+      }, error => {
+        this.pswMsgFailed = false;
+        this.pswActionMsg = error.message;
+      }, () => {
+        this.pswloading = false;
       });
   }
 }

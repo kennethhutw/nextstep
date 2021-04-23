@@ -167,6 +167,9 @@
             {{ "SEND" | translate }}
           </button>
         </div>
+        <div class="text-center mb-4">
+          <app-loading *ngIf="pswloading"></app-loading>
+        </div>
         <div [ngClass]="{ 'error-msg': pswMsgFailed == false }" class="text-center mb-4">
           <p> {{pswActionMsg}}</p>
         </div>
