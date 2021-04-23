@@ -14,9 +14,10 @@ import {
   ToastService,
   Web3Service,
   DataService,
-  EmailService
+  EmailService,
+  UserService
 } from "../../_services";
-import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",
@@ -36,6 +37,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     private utility: Utility,
     private fb: FormBuilder,
+    private userSrv: UserService,
     private translateSrv: TranslateService,
     private toastSrv: ToastService,
     private web3Srv: Web3Service,
@@ -93,9 +95,25 @@ export class HeaderComponent implements OnInit {
       (res) => {
         if (res["result"] === "successful") {
           this.closebutton.nativeElement.click();
-          console.log("auth", this.authStoreSrv.isLoggedOut$);
+
           this.currentUser = this.authStoreSrv.getUserData();
+
           console.log(" this.currentUser", this.currentUser);
+          if (this.currentUser.firstTime == 1) {
+            this.userSrv.setFirstTime(this.currentUser.id, "0").subscribe(res => {
+              console.log(" setFirstTime", res);
+            }, error => {
+              console.log(" setFirstTime", error);
+            });
+          }
+
+          if (this.currentUser.roles.artist) {
+            if (this.currentUser.firstTime == 1) {
+              this.currentUser.firstTime = 0;
+              this.authStoreSrv.setUserData(this.currentUser);
+              this.router.navigate(['/artist/account'], {});
+            }
+          }
         } else {
           this.IsSignInFailed = true;
           this.LoginFailedMsg = res["message"];

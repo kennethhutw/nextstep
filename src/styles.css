@@ -265,6 +265,14 @@
   color: #000;
   padding: 10px 0;
 }
+.btn_large_disable {
+    font-size: 25px;
+  background-color: #eeeeee;
+  border:2px solid #eeeeee;
+  border-radius: 3px;
+  color:#b2b2b2;
+    padding: 10px 0;
+}
 
 .btn_large:hover {
   font-size: 25px;

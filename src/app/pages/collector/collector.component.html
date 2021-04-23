@@ -1,13 +1,13 @@
 <app-header></app-header>
 <div *ngIf="!collector" class="container mb-40"></div>
 <div id="content-mt" *ngIf="collector" class="container mb-40">
-  <app-artist-detail name="{{this.collector.name}}"
+  <app-collector-detail name="{{this.collector.name}}"
     src="{{this.collector.imageUrl || this.settingSrv.defaultProfileLogo}}" follow="{{this.collector.like}}"
     follower="{{this.collector.liked}}" bio="{{this.collector.bio}}" walletAddress="{{this.collector.ethaddress}}"
     twitter="{{this.collector.twitter}}" instagram="{{this.collector.instagram}}" website="{{this.collector.website}}"
     location="{{this.collector.location}}" tags="{{this.collector.tags}} " uid="{{this.uid}}"
     id="{{this.collector.id}}">
-  </app-artist-detail>
+  </app-collector-detail>
   <div class="peoject_tag_openup text-center mt-10">
     <span class="project_tag_subtitle"></span>
   </div>
@@ -17,8 +17,8 @@
         <!-- <app-edition2 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
           editionImg="{{ edition.imageUrl  || defaultProfileLogo}}" editionId="{{ edition.artworkId }}"></app-edition2> -->
         <app-edition3 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
-          editionImg="{{ edition.imageUrl }}" editionId="{{ edition.id }}" editionDate="{{ edition.editionDate }}"
-          editionPrice="{{ edition.ethPrice }}"></app-edition3>
+          editionImg="{{ edition.imageUrl }}" artworkId="{{ edition.artworkId }}"
+          editionDate="{{ edition.editionDate }}" editionPrice="{{ edition.ethPrice }}"></app-edition3>
       </div>
     </ng-container>
 

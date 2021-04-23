@@ -11,7 +11,7 @@
       <button *ngIf="isFollow" class="d-inline btn_small_liked align-middle active" (click)="onDislike()">
         <i class="fas fa-user-check"></i> {{ "UNFOLLOW" | translate }}
       </button>
-      <button style="margin-left: 5px;" class="d-inline btn_small align-middle" (click)="onShare()">
+      <button style="margin-left: 5px;" class="d-inline btn_small align-middle" (click)="onShare(this.walletAddress)">
         <i class="fas fa-share"></i> {{ "SHARE" | translate }}
       </button>
     </div>

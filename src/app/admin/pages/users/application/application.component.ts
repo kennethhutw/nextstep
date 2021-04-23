@@ -124,6 +124,9 @@ export class ApplicationComponent implements OnInit, OnDestroy {
             let _status = 'Approved';
             if (!value)
               _status = 'Rejected';
+            if (value) {
+              this.editedUser.approved = true;
+            }
             this.toastSrv.showToast('Success', _status, this.toastSrv.iconClasses.success);
           } else {
             this.toastSrv.showToast('Failed', _res['message'], this.toastSrv.iconClasses.error);

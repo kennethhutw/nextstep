@@ -124,4 +124,14 @@ export class UserService {
       );
   }
 
+  setFirstTime(uid: string, isFirstTime) {
+    if (uid !== null || uid !== undefined) {
+      return this.http.post(`${environment.apiUrl}/users/setFirstTime`,
+        {
+          uid: uid,
+          isFirstTime
+        });
+    }
+  }
+
 }

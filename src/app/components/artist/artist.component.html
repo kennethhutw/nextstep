@@ -19,7 +19,7 @@
       </tbody>
     </table>
     <p class="text-justify artist_intro_limit text-body">
-      {{ bio }}
+      {{ bio | shorten:'120' }}
     </p>
   </div>
 </a>

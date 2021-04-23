@@ -217,6 +217,13 @@
     <button [ngClass]="{ 'btn_normal-disable': IsAgree !== true,'btn_normal': IsAgree === true}"
       [attr.disabled]="IsAgree ? null : true" class=" mb-40" (click)="onSubmit()">{{ "SUBMITBYARTIST" | translate
       }}</button>
+
+  </div>
+  <div style="margin-top: -30px; padding-bottom: 40px;color:red;" *ngIf="message" class="text-center">
+    {{message}}
+  </div>
+  <div style="margin-top: -30px; padding-bottom: 40px;" *ngIf="loading" class="text-center">
+    <app-loading></app-loading>
   </div>
 </div>
 <app-dialog></app-dialog>

@@ -123,7 +123,7 @@ const routes: Routes = [
         pathMatch: "full"
       },
       {
-        path: "gallery/:editionId",
+        path: "gallery/:artworkId",
         component: EditionComponent
       },
       { path: "policy", component: PolicyComponent, pathMatch: "full" },

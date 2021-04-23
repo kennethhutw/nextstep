@@ -18,6 +18,7 @@ export { Edition3Component } from "./edition3/edition3.component";
 export { ArtistHeaderComponent } from "./artist-header/artist-header.component";
 export { CollectorHeaderComponent } from "./collector-header/collector-header.component";
 export { DialogComponent } from "./dialog/dialog.component";
+export { CollectorDetailComponent } from "./collector-detail/collector-detail.component";
 
 
 export { SidebarComponent } from "./admin/sidebar/sidebar.component";

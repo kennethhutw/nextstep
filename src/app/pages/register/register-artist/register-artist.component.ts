@@ -38,6 +38,7 @@ export class RegisterArtistComponent implements OnInit {
   theSecodnImageNameRequire = false;
   theThirdImage: any;
   theThirdImageNameRequire = false;
+  message = null;
   constructor(
     private router: Router,
     private dialogSrv: DialogService,
@@ -82,7 +83,7 @@ export class RegisterArtistComponent implements OnInit {
           Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
         ],
       ],
-      location: ["", Validators.required],
+      location: [""],
       website: [""],
       facebook: [""],
       twitter: [""],
@@ -175,7 +176,13 @@ export class RegisterArtistComponent implements OnInit {
   }
 
   onSubmit() {
-
+    this.loading = true;
+    this.message = null;
+    if (this.registerForm.invalid) {
+      this.loading = false;
+      this.message = "Name or Email cannot be empty";
+      return;
+    }
     const _editions = this.registerForm.get('editions') as FormArray;
     for (let i = 0; i < _editions.controls.length; i++) {
       let _edition = _editions.controls[i];
@@ -213,9 +220,7 @@ export class RegisterArtistComponent implements OnInit {
       }
     }
 
-    if (this.registerForm.invalid) {
-      return;
-    }
+
 
     let newArtist = new NewArtist();
     newArtist.name = this.registerForm.value.name;
@@ -255,9 +260,9 @@ export class RegisterArtistComponent implements OnInit {
       formData.append('thirdImageDescription', _editions.controls[2].value.description);
     }
 
-    //  return;
 
     this.authStore.ArtistSignup(formData).subscribe(res => {
+      this.loading = false;
       if (res["result"] === "successful") {
         this.sendApplicationEmail(newArtist.name, newArtist.email, res["data"]);
         this.dialogSrv.infoThis("You have successfully registered ",
@@ -267,6 +272,14 @@ export class RegisterArtistComponent implements OnInit {
             console.log("yed ===");
           });
       }
+    }, error => {
+      this.loading = false;
+      console.error("signup failed!", error);
+      this.dialogSrv.infoThis("Signup failed! Please inform us if you still cannot submit . ",
+        () => {
+
+        }, () => {
+        });
     });
 
   }

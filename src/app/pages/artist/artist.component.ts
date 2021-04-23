@@ -38,9 +38,9 @@ export class ArtistPageComponent implements OnInit {
     this.defaultImg = this.appSettingsSrv.defulatImage;
     this.currentUser = this.authStoreSrv.getUserData();
 
-    if (this.currentUser) {
-      this.uid = this.currentUser.id;
-    }
+    // if (this.currentUser) {
+    //   this.uid = this.currentUser.id;
+    // }
     this.defaultProfileLogo = this.settingSrv.defaultProfileLogo;
   }
 
@@ -49,8 +49,8 @@ export class ArtistPageComponent implements OnInit {
 
     this.lang = localStorage.getItem("lang");
     this.route.params.subscribe(params => {
-      const _artistUid = params["uid"];
-      this.artistSrv.getArtistBasicInfoByUid(_artistUid).subscribe(res => {
+      this.uid = params["uid"];
+      this.artistSrv.getArtistBasicInfoByUid(this.uid).subscribe(res => {
         console.log(" getArtistBasicInfoByUid ==== ", res);
         if (res["result"] === "successful") {
           this.artist = res["data"];
@@ -70,7 +70,7 @@ export class ArtistPageComponent implements OnInit {
 
         });
 
-      this.artistSrv.getArtistArtwork(_artistUid).subscribe(res => {
+      this.artistSrv.getArtistArtwork(this.uid).subscribe(res => {
         if (res["result"] === "successful") {
           this.popularEditions = res["data"];
           this.popularEditions.forEach((element) => {

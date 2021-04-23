@@ -43,7 +43,7 @@
   <div class="card-columns">
     <ng-container *ngFor="let edition of ( displayEditions  | userFilter: searchText : 'name' )">
       <app-edition3 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
-        editionImg="{{ edition.imageUrl }}" editionId="{{ edition.artworkId }}" editionDate="{{ edition.editionDate }}"
+        editionImg="{{ edition.imageUrl }}" artworkId="{{ edition.artworkId }}" editionDate="{{ edition.editionDate }}"
         editionPrice="{{ edition.ethPrice }}"></app-edition3>
     </ng-container>
 

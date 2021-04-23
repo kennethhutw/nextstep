@@ -28,8 +28,9 @@ export class EditionComponent implements OnInit {
   IsFollowed = false;
   editions = [];
   transactions = [];
-  editionId = null;
-  currentEdition = null;
+  artworkId = null;
+  // currentEdition = null;
+  currentArtwork = null;
   currentUser: any = null;
   ethPrice = 0;
   uid = "";
@@ -68,32 +69,32 @@ export class EditionComponent implements OnInit {
 
     this.route.params.subscribe(params => {
 
-      this.editionId = params["editionId"];
+      this.artworkId = params["artworkId"];
       if (this.currentUser)
-        this.InitLike(this.currentUser.id, this.editionId);
+        this.InitLike(this.currentUser.id, this.artworkId);
       //  this.editionId = this.route.snapshot.paramMap.get("editionId");
-      this.gallerySrv.getEditionDetailByEditionId(this.editionId).subscribe(res => {
-        console.log("ddd ======= ", res)
+      this.gallerySrv.getEditionDetailByEditionId(this.artworkId).subscribe(res => {
+
         if (res['result'] === 'successful') {
 
-          this.currentEdition = res['data'];
-          console.log("  this.currentEdition ======= ", this.currentEdition)
-          this.uid = this.currentEdition['artist'].uid;
-          if (!this.utility.IsNullOrEmpty(this.currentEdition.imageUrl)) {
-            this.currentEdition.imageUrl = environment.assetUrl + this.currentEdition.imageUrl;
+          this.currentArtwork = res['data'];
+          console.log("  this.currentArtwork ======= ", this.currentArtwork)
+          this.uid = this.currentArtwork['artist'].uid;
+          if (!this.utility.IsNullOrEmpty(this.currentArtwork.imageUrl)) {
+            this.currentArtwork.imageUrl = environment.assetUrl + this.currentArtwork.imageUrl;
           }
 
-          if (!this.utility.IsNullOrEmpty(this.currentEdition.artist.imageUrl)) {
-            this.currentEdition.artist.imageUrl = environment.assetUrl + this.currentEdition.artist.imageUrl;
+          if (!this.utility.IsNullOrEmpty(this.currentArtwork.artist.imageUrl)) {
+            this.currentArtwork.artist.imageUrl = environment.assetUrl + this.currentArtwork.artist.imageUrl;
           }
 
-          if (!this.utility.IsNullOrEmpty(this.currentEdition.editions)) {
-            this.currentEdition.editions.forEach((element) => {
+          if (!this.utility.IsNullOrEmpty(this.currentArtwork.editions)) {
+            this.currentArtwork.editions.forEach((element) => {
               element.imageUrl = environment.assetUrl + element.imageUrl;
             });
 
-            this.editions = this.currentEdition.editions;
-            //this.currentEdition.artist.imageUrl = environment.assetUrl + this.currentEdition.artist.imageUrl;
+            this.editions = this.currentArtwork.editions;
+            //this.currentArtwork.artist.imageUrl = environment.assetUrl + this.currentArtwork.artist.imageUrl;
           }
         }
         else {
@@ -123,7 +124,7 @@ export class EditionComponent implements OnInit {
   }
 
   onLike() {
-    this.likeSrv.like(this.currentUser.id, this.editionId).subscribe(res => {
+    this.likeSrv.like(this.currentUser.id, this.artworkId).subscribe(res => {
       if (res['result'] == "successful") {
         this.IsFollowed = true;
       }
@@ -131,7 +132,7 @@ export class EditionComponent implements OnInit {
   }
 
   onDislike() {
-    this.likeSrv.removeLike(this.currentUser.id, this.editionId).subscribe(res => {
+    this.likeSrv.removeLike(this.currentUser.id, this.artworkId).subscribe(res => {
       if (res['result'] == "successful") {
         this.IsFollowed = false;
       }
@@ -139,8 +140,8 @@ export class EditionComponent implements OnInit {
   }
 
   displaySellPrice() {
-    if (Number(this.currentEdition.usdValue)) {
-      let usd = parseFloat(this.currentEdition.usdValue);
+    if (Number(this.currentArtwork.usdValue)) {
+      let usd = parseFloat(this.currentArtwork.usdValue);
 
       this.ethSoldValue = +((usd / 100) / this.ethPrice).toFixed(5);
 
@@ -151,26 +152,49 @@ export class EditionComponent implements OnInit {
   async purchase() {
     if (this.currentUser) {
       if (this.Web3Srv.ethEnabled()) {
+        let _networkId = await this.Web3Srv.getNetworkId();
+        // detect network
+        if (environment.environment == "staging") {
+          if (_networkId != 4) {
+            this.dialogSrv.infoThis("Network is not correct.<br> Please change to the correct network ",
+              () => {
+
+              }, () => {
+              });
+            return;
+          }
+        } else if (environment.environment == "production") {
+          if (_networkId != 1) {
+            this.dialogSrv.infoThis("Network is not correct.<br> Please change to the correct network ",
+              () => {
+
+              }, () => {
+              });
+            return;
+          }
+        }
+
         let address = await this.Web3Srv.getAccount();
         console.log(" address ", address);
         let weiSoldValue = this.Web3Srv.EthToWei(this.ethSoldValue.toString());
-        this.Web3Srv.purchase('purchase', weiSoldValue, 410030).then(async res => {
+        this.Web3Srv.purchase('purchase', weiSoldValue, this.currentArtwork.firstnumber).then(async res => {
           console.log("purchase result " + res);
+          this.currentArtwork.status = 3;
           let networkId = await this.Web3Srv.getNetworkId();
 
           this.artworkSrv.purchase(this.currentUser.id,
             res['from'],
-            this.currentEdition.usdValue,
+            this.currentArtwork.usdValue,
             this.ethSoldValue,
-            this.currentEdition.artistId,
+            this.currentArtwork.artistId,
             this.currentUser.id,
             res['from'],
-            this.currentEdition.id,
-            this.currentEdition.id,
+            this.currentArtwork.editionId,
+            this.currentArtwork.id,
             res['transactionHash'],
             res['from'],
             res['to'],
-            this.currentEdition.id,
+            this.currentArtwork.id,
             networkId).subscribe(purchaseRes => {
               console.log("purchaseRes" + purchaseRes);
               this.dialogSrv.infoThis("Purchase successfully",
@@ -224,14 +248,14 @@ export class EditionComponent implements OnInit {
   informArtist() {
 
     let domain = window.location.origin;
-    let url = '/gallery/' + this.editionId;
+    let url = '/gallery/' + this.artworkId;
     let link = domain + url;
     this.emailSrv.sendAvailableEmail(
       'Your artwork is available now on Formosart',
-      this.currentEdition.artist.name,
-      this.currentEdition.email,
+      this.currentArtwork.artist.name,
+      this.currentArtwork.email,
       link,
-      this.currentEdition.name,
+      this.currentArtwork.name,
       this.currentUser.id).subscribe(sendRes => {
         console.log("error = ", sendRes);
         if (sendRes['result'] == 'successful') {

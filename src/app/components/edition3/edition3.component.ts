@@ -13,7 +13,7 @@ export class Edition3Component implements OnInit {
   @Input() editionTitle: string;
   @Input() editionAuthor: string;
   @Input() editionImg: string;
-  @Input() editionId: string;
+  @Input() artworkId: string;
   @Input() editionDate: string;
   @Input() editionPrice: string;
   constructor(
@@ -41,6 +41,6 @@ export class Edition3Component implements OnInit {
   }
 
   ViewDetails() {
-    this.router.navigate(["/gallery/" + this.editionId]);
+    this.router.navigate(["/gallery/" + this.artworkId]);
   }
 }

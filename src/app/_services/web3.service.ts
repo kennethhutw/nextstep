@@ -96,8 +96,8 @@ export class Web3Service {
     });
   }
 
-  getNetworkId() {
-    return this.web3.eth.net.getId();
+  async getNetworkId() {
+    return await this.web3.eth.net.getId();
   }
 
   EthToWei(value) {

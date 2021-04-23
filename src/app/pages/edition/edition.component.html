@@ -1,10 +1,10 @@
 <div id="content-mt" class="container">
 
-  <div style="height: 500px;" *ngIf="!currentEdition"></div>
-  <div id="project_info" *ngIf="currentEdition" class="row">
+  <div style="height: 500px;" *ngIf="!currentArtwork"></div>
+  <div id="project_info" *ngIf="currentArtwork" class="row">
     <div class="col-md-7">
       <div class="mb-20">
-        <img src="{{this.currentEdition.imageUrl || this.settingSrv.defaultProfileLogo}}" actual-image="profileImage"
+        <img src="{{this.currentArtwork.imageUrl || this.settingSrv.defaultProfileLogo}}" actual-image="profileImage"
           alt="" />
       </div>
       <div class="row mt-40 mb-10">
@@ -12,7 +12,7 @@
           <h2>{{ "MOREBYTHISARTIST" | translate }}</h2>
         </div>
         <div class="col-4 text-right">
-          <a routerLink="/{{ this.currentEdition.artist.uid }}"><button class="btn_small">{{ "VIEWMORE" | translate
+          <a routerLink="/{{ this.currentArtwork.artist.uid }}"><button class="btn_small">{{ "VIEWMORE" | translate
               }}</button></a>
         </div>
       </div>
@@ -30,32 +30,32 @@
     <div class="col-md-5">
       <div class="mb-20">
         <div class="d-inline">
-          <a routerLink="/{{ this.currentEdition.artist.uid }}"><img class="rounded-circle w-25"
-              src="{{this.currentEdition.artist.imageUrl || this.settingSrv.defaultProfileLogo}}" alt="" /></a>
+          <a routerLink="/{{ this.currentArtwork.artist.uid }}"><img class="rounded-circle w-25"
+              src="{{this.currentArtwork.artist.imageUrl || this.settingSrv.defaultProfileLogo}}" alt="" /></a>
         </div>
         <div class="d-inline p-2">
-          <a routerLink="/{{ this.currentEdition.artist.uid }}">{{this.currentEdition.artist.name}}</a>
+          <a routerLink="/{{ this.currentArtwork.artist.uid }}">{{this.currentArtwork.artist.name}}</a>
         </div>
       </div>
 
-      <h1 class="mb-30">{{this.currentEdition.name}}</h1>
+      <h1 class="mb-30">{{this.currentArtwork.name}}</h1>
       <h4>{{ "EDITIONDESC" | translate }}</h4>
       <div class="text-justify">
-        {{this.currentEdition.description}}
+        {{this.currentArtwork.description}}
       </div>
       <h1 class="mt-50">
         Ξ {{displaySellPrice()}} <span class="project_info_price_us"> / USD
-          {{this.currentEdition.usdValue/100}}</span>
+          {{this.currentArtwork.usdValue/100}}</span>
       </h1>
-      <a href="#" *ngIf="this.currentEdition.status == 1" class="text-white" data-toggle="modal"
+      <a href="#" *ngIf="this.currentArtwork.status == 1" class="text-white" data-toggle="modal"
         data-target="#modal_login_way"><button class="btn_large w-100" (click)="purchase()">{{ "BUYNOW" | translate
           }}</button></a>
-      <a href="#" *ngIf="this.currentEdition.status == 2" class="text-white" data-toggle="modal"
+      <a href="#" *ngIf="this.currentArtwork.status == 2" class="text-white" data-toggle="modal"
         data-target="#modal_login_way"><button class="btn_large w-100" (click)="purchase()">{{ "BIDDING" | translate
           }}</button></a>
-      <a href="#" *ngIf="this.currentEdition.status == 3" class="text-white" data-toggle="modal"
-        data-target="#modal_login_way"><button class="btn_large w-100" (click)="purchase()">{{ "SOLD" | translate
-          }}</button></a>
+      <button *ngIf="this.currentArtwork.status == 3" [attr.disabled]="true" class="btn_large_disable  w-100"
+        (click)="purchase()">{{ "SOLD" | translate
+        }}</button>
       <div class="text-right mt-10" *ngIf="this.currentUser">
         <a *ngIf="!IsFollowed" (click)="onLike()">
           <i class="far fa-heart"></i></a>
@@ -66,17 +66,17 @@
       </div>
       <hr class="mt-30 mb-30" />
       <h6 class="mt-50">{{ "EDITIONOWNER" | translate }}</h6>
-      <p class="text-black-50">{{this.currentEdition.owner}}</p>
+      <p class="text-black-50">{{this.currentArtwork.owner}}</p>
       <hr class="mt-30 mb-30" />
       <h6>{{ "ADDITIONALDETAILS" | translate }}</h6>
       <div class="text-black-50">
         <ul>
-          <li class="project_info_li">{{ "DATE" | translate }}：{{this.currentEdition.createdAt | date : 'yyyy-MM-dd'}}
+          <li class="project_info_li">{{ "DATE" | translate }}：{{this.currentArtwork.createdAt | date : 'yyyy-MM-dd'}}
           </li>
           <li class="project_info_li">{{ "INFO" | translate }}：</li>
-          <li class="project_info_li">{{ "EDITION_" | translate }}：# {{this.currentEdition.id}}</li>
+          <li class="project_info_li">{{ "EDITION_" | translate }}：# {{this.currentArtwork.id}}</li>
           <li class="project_info_li">
-            {{ "EDITIONS" | translate }}： {{this.currentEdition.number}} of {{this.currentEdition.totalamount}}。
+            {{ "EDITIONS" | translate }}： {{this.currentArtwork.number}} of {{this.currentArtwork.totalamount}}。
           </li>
           <!-- <li class="project_info_li">
             標價：此為最終售價。<a href="">標價說明</a>

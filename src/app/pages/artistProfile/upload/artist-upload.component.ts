@@ -62,10 +62,12 @@ export class ArtistUploadComponent implements OnInit {
     });
 
     let _lang = localStorage.getItem("lang");
-    console.log("_lang")
     if (!this.utility.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
       this.initTags(_lang);
+    } else {
+      this.translateSrv.use("en");
+      this.initTags("en");
     }
     this.dataSrv.langKey.subscribe((lang) => {
       if (!this.utility.IsNullOrEmpty(lang)) {

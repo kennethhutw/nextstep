@@ -11,12 +11,12 @@ import {
 
 import { TranslateService } from "@ngx-translate/core";
 @Component({
-  selector: "app-artist-detail",
-  templateUrl: "./artist-detail.component.html",
-  styleUrls: ["./artist-detail.component.css"],
+  selector: "app-collector-detail",
+  templateUrl: "./collector-detail.component.html",
+  styleUrls: ["./collector-detail.component.css"],
   encapsulation: ViewEncapsulation.None,
 })
-export class ArtistDetailComponent {
+export class CollectorDetailComponent {
   lang = "en";
   _uid = null;
   currentUser: any = null;
@@ -25,7 +25,6 @@ export class ArtistDetailComponent {
     this._uid = value;
 
   }
-
   @Input() isFollow: boolean = false;
 
   @Input() follow: number = 0;
@@ -90,11 +89,13 @@ export class ArtistDetailComponent {
       }
     });
 
+    if (!this.utility.IsNullOrEmpty(this._uid)) {
+      this.likeSrv.IsLike(this._uid, this.id).subscribe(res => {
+        console.log(res);
+      })
+    }
 
-
-    console.log("this.id ================", this.id);
     this.currentUser = this.authStoreSrv.getUserData();
-    console.log("this.currentUser ================", this.currentUser);
     // if (this.utility.IsNullOrEmpty(this.currentUser)) {
     //   this.router.navigate(['./index'], {});
     // }
@@ -139,14 +140,14 @@ export class ArtistDetailComponent {
     });
   }
 
-  onShare() {
-    if (!this.utility.IsNullOrEmpty(this._uid)) {
+  onShare(address) {
+    if (!this.utility.IsNullOrEmpty(address)) {
       let selBox = document.createElement('textarea');
       selBox.style.position = 'fixed';
       selBox.style.left = '0';
       selBox.style.top = '0';
       selBox.style.opacity = '0';
-      selBox.value = location.origin + '/' + this._uid;
+      selBox.value = location.origin + '/u/' + address;
       //  selBox.value = promoCode;
       document.body.appendChild(selBox);
       selBox.focus();
