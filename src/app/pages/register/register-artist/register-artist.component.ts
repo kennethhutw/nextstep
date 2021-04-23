@@ -228,6 +228,7 @@ export class RegisterArtistComponent implements OnInit {
     newArtist.location = this.registerForm.value.location;
     newArtist.website = this.registerForm.value.website;
     newArtist.twitter = this.registerForm.value.twitter;
+    newArtist.facebook = this.registerForm.value.facebook;
     newArtist.instagram = this.registerForm.value.instagram;
     newArtist.blog = this.registerForm.value.blog;
 
@@ -237,6 +238,7 @@ export class RegisterArtistComponent implements OnInit {
     formData.append("email", newArtist.email);
     formData.append("location", newArtist.location);
     formData.append("website", newArtist.website);
+    formData.append("facebook", newArtist.facebook);
     formData.append("twitter", newArtist.twitter);
     formData.append("instagram", newArtist.instagram);
     formData.append("blog", newArtist.blog);
