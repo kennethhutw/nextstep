@@ -144,6 +144,7 @@
   "SAVEPROFILE": "储存变更",
   "PROFILEIMAGE": "照片",
   "UPDATEDSUCC": "更新成功",
+  "ARTWORTUPLOADSUCC": "作品上传成功. 请在[管理作品]页面检视状况.",
   "CHOOSEARTWORK": "选择作品",
   "ARTWORK": "作品",
   "SELLPRICE": "售价",
@@ -180,5 +181,6 @@
   "OLDEST": "最晚的",
   "EXPENSIVE": "最高价的",
   "CHEAPEST": "最低价的",
-  "POPULAR": "最热门的"
+  "POPULAR": "最热门的",
+  "SHARE": "分享"
 }

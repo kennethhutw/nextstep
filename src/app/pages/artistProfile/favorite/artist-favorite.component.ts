@@ -4,6 +4,7 @@ import {
   DataService,
   LikeService,
   AuthStore,
+  SettingService
 } from "./../../../_services";
 import { Utility } from "./../../../_helpers";
 import { environment } from '../../../../environments/environment';
@@ -19,12 +20,15 @@ export class ArtistFavoriteComponent implements OnInit {
   artworks = [];
   currentTab = 'editions';
   ethPrice = 0;
+  defaultProfileLogo = null;
   constructor(
+    private settingSrv: SettingService,
     private authStoreSrv: AuthStore,
     private translateSrv: TranslateService,
     private utility: Utility,
     private dataSrv: DataService,
     private likeSrv: LikeService) {
+    this.defaultProfileLogo = this.settingSrv.defaultProfileLogo;
     this.currentUser = this.authStoreSrv.getUserData();
     if (!this.utility.IsNullOrEmpty(localStorage.getItem("ETHPRICE"))) {
       this.ethPrice = Number(localStorage.getItem("ETHPRICE"));
@@ -52,7 +56,9 @@ export class ArtistFavoriteComponent implements OnInit {
       if (res['result'] == 'successful') {
         this.artists = res['data'];
         this.artists.forEach((element) => {
-          element['imageUrl'] = environment.assetUrl + element['imageUrl'];
+          if (element['imageUrl']) {
+            element['imageUrl'] = environment.assetUrl + element['imageUrl'];
+          }
         });
       }
     });

@@ -150,7 +150,7 @@ export class ArtistUploadComponent implements OnInit {
 
     this.editionSrv.createEdition(formData).subscribe(res => {
       if (res["result"] === "successful") {
-        this.translateSrv.get("UPDATEDSUCC").subscribe((text: string) => {
+        this.translateSrv.get("ARTWORTUPLOADSUCC").subscribe((text: string) => {
           this.informMsg = text;
         });
         this.tags
