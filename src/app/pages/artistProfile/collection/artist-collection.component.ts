@@ -5,7 +5,8 @@ import {
   AppSettingsService,
   ArtistService,
   AuthStore,
-  EditionService
+  EditionService,
+  DataService
 } from "./../../../_services";
 import { Utility } from "./../../../_helpers";
 
@@ -18,7 +19,9 @@ export class ArtistCollectionComponent implements OnInit {
 
   currentUser: any;
   artworks = [];
+  _lang = "en";
   constructor(
+    private dataSrv: DataService,
     private utility: Utility,
     private artistSrv: ArtistService,
     private editionSrv: EditionService,
@@ -39,6 +42,17 @@ export class ArtistCollectionComponent implements OnInit {
     }, err => {
       console.error(`getArtwrokByArtistId failed ${err}`);
     });
+
+    this._lang = localStorage.getItem("lang");
+    if (!this.utility.IsNullOrEmpty(this._lang)) {
+      this.translateSrv.use(this._lang);
+    }
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utility.IsNullOrEmpty(lang)) {
+        this._lang = lang;
+        this.translateSrv.use(lang);
+      }
+    });
   }
 
 
@@ -47,21 +61,48 @@ export class ArtistCollectionComponent implements OnInit {
   }
 
   getImageStatus(status) {
+    let _status = "Review";
     switch (status) {
       case "0":
-        return "審核中";
+        if (this._lang == "en") {
+          _status = "Review";
+        } else if (this._lang == "zh-cn") {
+          _status = "审核中";
+        } else if (this._lang == "zh-tw") {
+          _status = "審核中";
+        }
+        return _status;
 
       case "1":
-        return "上架中";
+        if (this._lang == "en") {
+          _status = "Available";
+        } else if (this._lang == "zh-cn") {
+          _status = "已上架";
+        } else if (this._lang == "zh-tw") {
+          _status = "已上架";
+        }
+        return _status;
+
 
       case "2":
-        return "已上架";
+        if (this._lang == "en") {
+          _status = "Auction";
+        } else if (this._lang == "zh-cn") {
+          _status = "竞价中";
+        } else if (this._lang == "zh-tw") {
+          _status = "競價中";
+        }
+        return _status;
 
       case "3":
-        return "競價中";
-
-      case "4":
-        return "已下架";
+        if (this._lang == "en") {
+          _status = "Sold";
+        } else if (this._lang == "zh-cn") {
+          _status = "已卖出";
+        } else if (this._lang == "zh-tw") {
+          _status = "已賣出";
+        }
+        return _status;
 
     }
   }
