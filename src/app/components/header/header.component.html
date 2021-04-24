@@ -85,7 +85,8 @@
                 <i class="far fa-user-circle par-5"></i>{{ "MEMBERMANAGEMENT" | translate }}
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" [routerLink]="['/u',this.currentUser.ethaddress]">{{ "PROFILE" | translate
+                <a class="dropdown-item" *ngIf="this.currentUser.ethaddress"
+                  [routerLink]="['/u',this.currentUser.ethaddress]">{{ "PROFILE" | translate
                   }}</a>
                 <a class="dropdown-item" routerLink="/collector/collection">{{ "COLLECTION" | translate }}</a>
                 <a class="dropdown-item" routerLink="/collector/offer">{{ "BIDEDITION" | translate }}</a>

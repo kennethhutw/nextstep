@@ -108,6 +108,8 @@ export class ArtistAccountComponent implements OnInit {
             this.IsUpdateInformEmailFailed = true;
           });
           console.error(`updateUserInfoEmail failed : ${error}`);
+        }, () => {
+          this.authStoreSrv.reloadCurrentUserInfo();
         });
     } catch (err) {
       this.translateSrv.get("UPDATEDFAILED").subscribe((text: string) => {
@@ -199,6 +201,8 @@ export class ArtistAccountComponent implements OnInit {
               this.ethAddressActionMsgFailed = true;
             });
             console.error(`updateUserInfoEmail failed : ${error}`);
+          }, () => {
+            this.authStoreSrv.reloadCurrentUserInfo();
           });
       } else {
         this.ethAddressActionMsgFailed = true;

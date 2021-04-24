@@ -70,16 +70,7 @@ export class CollectorAccountComponent implements OnInit {
       this.ethAddress = this.currentUser.ethaddress;
     }
 
-    // this.profileForm = this.formBuilder.group({
-    //   name: [""],
-    //   bio: [""],
-    //   location: [""],
-    //   website: [""],
-    //   facebook: [""],
-    //   twitter: [""],
-    //   instagram: [""],
-    //   tags: [""]
-    // });
+
     this.profileForm = this.formBuilder.group({
       name: [""],
       bio: [""]
@@ -140,6 +131,8 @@ export class CollectorAccountComponent implements OnInit {
             this.IsUpdateInformEmailFailed = true;
           });
           console.error(`updateUserInfoEmail failed : ${error}`);
+        }, () => {
+          this.authStoreSrv.reloadCurrentUserInfo();
         });
     } catch (err) {
       this.translateSrv.get("UPDATEDFAILED").subscribe((text: string) => {
@@ -179,7 +172,8 @@ export class CollectorAccountComponent implements OnInit {
     try {
       this.ethAddressActionMsg = null;
       this.ethAddressActionMsgFailed = false;
-      let result = this.web3Srv.verifyEthAddress(this.ethAddress);
+      console.log("this.ethAddress =============", this.ethAddress);
+      let result = this.web3Srv.verifyEthAddress(this.ethAddress.toLowerCase());
       if (result) {
         this.translateSrv.get("VALIDADDRESS").subscribe((text: string) => {
           this.ethAddressActionMsg = text;
@@ -229,6 +223,8 @@ export class CollectorAccountComponent implements OnInit {
               this.ethAddressActionMsgFailed = true;
             });
             console.error(`updateUserInfoEmail failed : ${error}`);
+          }, () => {
+            this.authStoreSrv.reloadCurrentUserInfo();
           });
       } else {
         this.ethAddressActionMsgFailed = true;
