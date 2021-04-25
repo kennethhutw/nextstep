@@ -20,7 +20,9 @@ import { environment } from '../../../../environments/environment';
 export class CollectorCollectionComponent implements OnInit {
   currentUser: any;
   artworks = [];
+  displayArtworks = [];
   ethPrice = 0;
+  searchText = "";
   constructor(private translateSrv: TranslateService,
     private utility: Utility,
     private editionSrv: EditionService,
@@ -49,6 +51,7 @@ export class CollectorCollectionComponent implements OnInit {
           this.artworks.forEach((element) => {
             element['imageUrl'] = environment.assetUrl + element['imageUrl'];
           });
+          this.displayArtworks = this.artworks;
         }
       }
       else {
@@ -64,22 +67,31 @@ export class CollectorCollectionComponent implements OnInit {
     return environment.assetAPIUrl + path;
   }
 
-  getImageStatus(status) {
-    switch (status) {
-      case "0":
-        return "審核中";
+  onChange(deviceValue) {
+    this.displayArtworks = this.artworks;
 
-      case "1":
-        return "上架中";
-
-      case "2":
-        return "已上架";
-
-      case "3":
-        return "競價中";
-
-      case "4":
-        return "已下架";
+    try {
+      //  this.SpinnerService.show();
+      switch (deviceValue) {
+        case 'LATEST':
+          this.displayArtworks = this.artworks.sort((a, b) => b.editionDate - a.editionDate);
+          break;
+        case 'OLDEST':
+          this.displayArtworks = this.artworks.sort((a, b) => a.editionDate - b.editionDate);
+          break;
+        case 'EXPENSIVE':
+          this.displayArtworks = this.artworks.sort((a, b) => b.usdValue - a.usdValue);
+          break;
+        case 'CHEAPEST':
+          this.displayArtworks = this.artworks.sort((a, b) => a.usdValue - b.usdValue);
+          break;
+        case 'POPULAR':
+          this.displayArtworks = this.artworks.sort((a, b) => b.liked - a.liked);
+          break;
+      }
+    } catch (error) {
+      console.error(`getSellArtwork error message ${error}`);
+    } finally {
 
     }
   }

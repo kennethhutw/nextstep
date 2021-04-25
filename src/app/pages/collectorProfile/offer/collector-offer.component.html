@@ -11,20 +11,22 @@
         </select> -->
     </div>
     <div class="col-md-8">
-        <form class="form-inline d-flex justify-content-end md-form form-sm active-cyan-2 ">
+        <div class="form-inline d-flex justify-content-end md-form form-sm active-cyan-2 ">
             <input id="member-search" class="form-control form-control-sm mr-3 w-50" type="text" placeholder="Search"
-                aria-label="Search">
+                [(ngModel)]="searchText" aria-label="Search">
             <i class="fas fa-search" style="position: relative; left: -48px;" aria-hidden="true"></i>
-        </form>
+        </div>
     </div>
 </div>
 <hr>
 
 <div id="member-artist-project" class="row mt-30">
     <ng-container *ngIf="bids.length == 0">
-        <div style="width: 100%;font-size: 1.5rem;" class="text-center">{{ "NOARTWORK" | translate }}</div>
+        <div style="width: 100%;font-size: 1.5rem; white-space: pre-wrap;" class="text-center subtitle">{{
+            "NOOFFER_START" | translate }}<a class="nav-link" routerLink="/gallery">{{
+                "NOOFFER_LINK" | translate }}</a>{{ "NOOFFER_END" | translate }}</div>
     </ng-container>
-    <ng-container *ngFor="let bid of bids">
+    <ng-container *ngFor="let bid of ( bids  | userFilter: searchText : 'name' )">
         <div id="member-artist-project" class="row mt-30">
             <div class="col-md-4">
                 <a routerLink="/gallery/{{ bids.artwork.id }}" target="_blank"><img class="mb-10"
@@ -63,99 +65,6 @@
     </ng-container>
 
 </div>
-<!--
-                        <div id="member-artist-project" class="row mt-30">
-                            <div class="col-md-4">
-                                <a href="project-purchase.html" target="_blank"><img class="mb-10" src="./assets/images/project-info-01.jpg" alt=""></a>
-                            </div>
-                            <div class="col-md-8">
-                                <ul class="member_artist_detail_list">
-                                    <li>
-                                        <h5>作品名稱作品名稱作品名稱作品名稱作品名稱作品名稱</h5>
-                                    </li>
-                                    <li>
-                                        售價：Ξ 0.11 / USD 138
-                                    </li>
-                                    <li>
-                                        最後出價時間：2020-10-09 PM4:31
-                                    </li>
-                                    <li>
-                                        出價：<span class="text-orange">Ξ 0.005 / USD 66 </span><a class="member_bidding_history" href="#" data-toggle="modal" data-target="#modal_bid_history">出價紀錄</a>
-                                    </li>
-                                    <li>
-                                        付款方式：虛擬錢包 <a class="member_bidding_pay" href="#" data-toggle="modal" data-target="#modal_pay_money">已得標，進行付款</a>
-                                    </li>
-                                    <li>
-                                        版本：10/#8
-                                    </li>
-                                    <li>
-                                        我的最愛：10
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div id="member-artist-project" class="row mt-30">
-                            <div class="col-md-4">
-                                <a href="project-purchase.html" target="_blank"><img class="mb-10" src="./assets/images/project-info-02.jpg" alt=""></a>
-                            </div>
-                            <div class="col-md-8">
-                                <ul class="member_artist_detail_list">
-                                    <li>
-                                        <h5>作品名稱作品名稱作品名稱作品名稱作品名稱作品名稱</h5>
-                                    </li>
-                                    <li>
-                                        售價：Ξ 0.11 / USD 138
-                                    </li>
-                                    <li>
-                                        最後出價時間：2020-10-09 PM4:31
-                                    </li>
-                                    <li>
-                                        出價：<span class="text-orange">Ξ 0.005 / USD 66 </span><a class="member_bidding_history" href="#" data-toggle="modal" data-target="#modal_bid_history">出價紀錄</a>
-                                    </li>
-                                    <li>
-                                        付款方式：虛擬錢包
-                                    </li>
-                                    <li>
-                                        版本：10/#8
-                                    </li>
-                                    <li>
-                                        我的最愛：10
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div id="member-artist-project" class="row mt-30">
-                            <div class="col-md-4">
-                                <a href="project-purchase.html" target="_blank"><img class="mb-10" src="./assets/images/project-info-03.jpg" alt=""></a>
-                            </div>
-                            <div class="col-md-8">
-                                <ul class="member_artist_detail_list">
-                                    <li>
-                                        <h5>作品名稱作品名稱作品名稱作品名稱作品名稱作品名稱</h5>
-                                    </li>
-                                    <li>
-                                        售價：Ξ 0.11 / USD 138
-                                    </li>
-                                    <li>
-                                        最後出價時間：2020-10-09 PM4:31
-                                    </li>
-                                    <li>
-                                        出價：<span class="text-orange">Ξ 0.005 / USD 66 </span><a class="member_bidding_history" href="#" data-toggle="modal" data-target="#modal_bid_history">出價紀錄</a>
-                                    </li>
-                                    <li>
-                                        付款方式：虛擬錢包
-                                    </li>
-                                    <li>
-                                        版本：10/#8
-                                    </li>
-                                    <li>
-                                        我的最愛：10
-                                    </li>
-                                </ul>
-                            </div>
-                        </div> -->
 
 <div *ngIf="bids.length >3" class="text-center pagenation_center mb-40">
     <nav aria-label="...">

@@ -127,7 +127,6 @@ export class ArtistsComponent implements OnInit {
     console.log(deviceValue);
     let _artists = this.artists;
 
-    console.log(" onChange ================= ", this.artists);
     switch (deviceValue) {
       case 'LATEST':
         _artists = this.artists.sort((a, b) => b.approvedDate - a.approvedDate);

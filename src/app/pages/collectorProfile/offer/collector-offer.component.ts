@@ -19,6 +19,7 @@ export class CollectorOfferComponent implements OnInit {
   currentUser: any;
   bids = [];
   ethPrice = 0;
+  searchText = "";
   constructor(private translateSrv: TranslateService,
     private utility: Utility,
     private editionSrv: EditionService,

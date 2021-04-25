@@ -21,7 +21,9 @@ import { environment } from '../../../../environments/environment';
 export class CollectorSalesComponent implements OnInit {
   currentUser: any;
   artworks = [];
+  displayArtworks = [];
   ethPrice = 0;
+  searchText = "";
   constructor(
     private translateSrv: TranslateService,
     private utility: Utility,
@@ -49,6 +51,7 @@ export class CollectorSalesComponent implements OnInit {
           this.artworks.forEach((element) => {
             element['imageUrl'] = environment.assetUrl + element['imageUrl'];
           });
+          this.displayArtworks = this.artworks;
         }
       }
       else {
@@ -65,6 +68,35 @@ export class CollectorSalesComponent implements OnInit {
       let ethPrice = Number(localStorage.getItem("ETHPRICE"));
       //   const ethAmount = +(usd / ethPrice).toFixed(3);
       return +(usd / ethPrice).toFixed(3);
+    }
+  }
+
+  onChange(deviceValue) {
+    this.displayArtworks = this.artworks;
+
+    try {
+      //  this.SpinnerService.show();
+      switch (deviceValue) {
+        case 'LATEST':
+          this.displayArtworks = this.artworks.sort((a, b) => b.editionDate - a.editionDate);
+          break;
+        case 'OLDEST':
+          this.displayArtworks = this.artworks.sort((a, b) => a.editionDate - b.editionDate);
+          break;
+        case 'EXPENSIVE':
+          this.displayArtworks = this.artworks.sort((a, b) => b.usdValue - a.usdValue);
+          break;
+        case 'CHEAPEST':
+          this.displayArtworks = this.artworks.sort((a, b) => a.usdValue - b.usdValue);
+          break;
+        case 'POPULAR':
+          this.displayArtworks = this.artworks.sort((a, b) => b.liked - a.liked);
+          break;
+      }
+    } catch (error) {
+      console.error(`getSellArtwork error message ${error}`);
+    } finally {
+
     }
   }
 }
