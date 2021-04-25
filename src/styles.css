@@ -875,7 +875,8 @@ padding:7px 14px; */
 .search {
   border: 2px solid #17f596;
   border-radius: 3px;
-  padding: 25px 15px 25px 60px;
+  /* padding: 25px 15px 25px 60px; */
+  padding: 22px 15px 22px 60px;
   background-image: url("./assets/images/icon_search.jpg");
   background-position: left;
   background-size: auto 100%;

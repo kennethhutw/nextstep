@@ -146,24 +146,6 @@ export class AuthStore {
         }),
         shareReplay()
       );
-
-    //  this.userSrv
-    //    .getPassWordByEmail(this.signinEmailForm.value.email)
-    //    .then((res) => {
-    //      if (res["result"] === "successful") {
-    //        const verified = bcrypt.compareSync(
-    //          _password,
-    //          res["data"]["password"]
-    //        );
-    //        if (verified) {
-    //          localStorage.setItem(
-    //            "currentUser",
-    //            JSON.stringify(res.data)
-    //          );
-    //          this.currentUser = res.data;
-    //        }
-    //      }
-    //    });
   }
 
   logout() {

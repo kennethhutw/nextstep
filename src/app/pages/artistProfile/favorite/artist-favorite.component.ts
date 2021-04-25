@@ -18,9 +18,13 @@ export class ArtistFavoriteComponent implements OnInit {
   currentUser: any;
   artists = [];
   artworks = [];
+  displayArtists = [];
+  displayArtworks = [];
   currentTab = 'editions';
   ethPrice = 0;
   defaultProfileLogo = null;
+  searchArtworkText = "";
+  searchArtistText = "";
   constructor(
     private settingSrv: SettingService,
     private authStoreSrv: AuthStore,
@@ -59,6 +63,7 @@ export class ArtistFavoriteComponent implements OnInit {
           if (element['imageUrl']) {
             element['imageUrl'] = environment.assetUrl + element['imageUrl'];
           }
+          this.displayArtists = this.artists;
         });
       }
     });
@@ -71,6 +76,8 @@ export class ArtistFavoriteComponent implements OnInit {
         this.artworks.forEach((element) => {
           element.imageUrl = environment.assetUrl + element.imageUrl;
         });
+
+        this.displayArtworks = this.artworks;
       }
     });
   }
@@ -97,5 +104,62 @@ export class ArtistFavoriteComponent implements OnInit {
     this.currentTab = tab;
   }
 
+  onArtworkChange(deviceValue) {
+    this.displayArtworks = this.artworks;
 
+    try {
+      //  this.SpinnerService.show();
+      switch (deviceValue) {
+        case 'LATEST':
+          this.displayArtworks = this.artworks.sort((a, b) => b.editionDate - a.editionDate);
+          break;
+        case 'OLDEST':
+          this.displayArtworks = this.artworks.sort((a, b) => a.editionDate - b.editionDate);
+          break;
+        case 'EXPENSIVE':
+          this.displayArtworks = this.artworks.sort((a, b) => b.usdValue - a.usdValue);
+          break;
+        case 'CHEAPEST':
+          this.displayArtworks = this.artworks.sort((a, b) => a.usdValue - b.usdValue);
+          break;
+        case 'POPULAR':
+          this.displayArtworks = this.artworks.sort((a, b) => b.liked - a.liked);
+          break;
+      }
+    } catch (error) {
+      console.error(`getSellArtwork error message ${error}`);
+    } finally {
+
+    }
+  }
+
+
+  onArtistChange(deviceValue) {
+    this.displayArtists = this.artists;
+
+    try {
+      //  this.SpinnerService.show();
+      switch (deviceValue) {
+        case 'LATEST':
+          this.displayArtists = this.artists.sort((a, b) => b.editionDate - a.editionDate);
+          break;
+        case 'OLDEST':
+          this.displayArtists = this.artists.sort((a, b) => a.editionDate - b.editionDate);
+          break;
+        case 'EXPENSIVE':
+          this.displayArtists = this.artists.sort((a, b) => b.usdValue - a.usdValue);
+          break;
+        case 'CHEAPEST':
+          this.displayArtists = this.artists.sort((a, b) => a.usdValue - b.usdValue);
+          break;
+        case 'POPULAR':
+          this.displayArtists = this.artists.sort((a, b) => b.liked - a.liked);
+          break;
+      }
+    } catch (error) {
+      console.error(`displayArtists error message ${error}`);
+    } finally {
+
+    }
+  }
 }

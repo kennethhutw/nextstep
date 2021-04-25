@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-4">
-        <select class="sort_dropdown w-100">
+        <select class="sort_dropdown w-100" (change)="onChange($event.target.value)">
             <option value="LATEST">{{ "LATEST" | translate }}</option>
             <option value="OLDEST">{{ "OLDEST" | translate }}</option>
             <option value="EXPENSIVE">{{ "EXPENSIVE" | translate }}</option>
@@ -9,22 +9,21 @@
         </select>
     </div>
     <div class="col-md-8">
-        <form class="form-inline d-flex justify-content-end md-form form-sm active-cyan-2 ">
+        <div class="form-inline d-flex justify-content-end md-form form-sm active-cyan-2 ">
             <input id="member-search" class="form-control form-control-sm mr-3 w-50" type="text" placeholder="Search"
-                aria-label="Search">
+                [(ngModel)]="searchText" aria-label="Search">
             <i class="fas fa-search" style="position: relative; left: -48px;" aria-hidden="true"></i>
-        </form>
+        </div>
     </div>
 </div>
 <hr>
 <ng-container *ngIf="artworks.length == 0">
     <div style="width: 100%;" class="text-center">{{ "NOSOLD" | translate }}</div>
 </ng-container>
-<ng-container *ngFor="let artwork of artworks">
+<ng-container *ngFor="let artwork of ( displayArtworks | userFilter: searchText : 'name' )">
     <div id="member-artist-project" class="row mt-30">
         <div class="col-md-4">
-            <a [routerLink]="['/gallery',artwork.id]"><img class="mb-10" src="{{ getImageURL(artwork.imageUrl)}}"
-                    alt=""></a>
+            <a [routerLink]="['/gallery',artwork.id]"><img class="mb-10" src="{{ artwork.imageUrl}}" alt=""></a>
         </div>
         <div class="col-md-8">
             <ul class="member_artist_detail_list">

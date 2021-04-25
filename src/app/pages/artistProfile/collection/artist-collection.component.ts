@@ -20,6 +20,8 @@ export class ArtistCollectionComponent implements OnInit {
   currentUser: any;
   artworks = [];
   _lang = "en";
+  searchText = "";
+  displayArtworks = [];
   constructor(
     private dataSrv: DataService,
     private utility: Utility,
@@ -35,6 +37,10 @@ export class ArtistCollectionComponent implements OnInit {
     this.editionSrv.getEditionByArtistId(this.currentUser.id).subscribe(res => {
       if (res['result'] === 'successful') {
         this.artworks = res['data'];
+        this.artworks.forEach((element) => {
+          element['imageUrl'] = environment.assetUrl + element['imageUrl'];
+        });
+        this.displayArtworks = this.artworks;
       }
       else {
 
@@ -106,4 +112,35 @@ export class ArtistCollectionComponent implements OnInit {
 
     }
   }
+
+
+  onChange(deviceValue) {
+    this.displayArtworks = this.artworks;
+
+    try {
+      //  this.SpinnerService.show();
+      switch (deviceValue) {
+        case 'LATEST':
+          this.displayArtworks = this.artworks.sort((a, b) => b.editionDate - a.editionDate);
+          break;
+        case 'OLDEST':
+          this.displayArtworks = this.artworks.sort((a, b) => a.editionDate - b.editionDate);
+          break;
+        case 'EXPENSIVE':
+          this.displayArtworks = this.artworks.sort((a, b) => b.usdValue - a.usdValue);
+          break;
+        case 'CHEAPEST':
+          this.displayArtworks = this.artworks.sort((a, b) => a.usdValue - b.usdValue);
+          break;
+        case 'POPULAR':
+          this.displayArtworks = this.artworks.sort((a, b) => b.liked - a.liked);
+          break;
+      }
+    } catch (error) {
+      console.error(`getSellArtwork error message ${error}`);
+    } finally {
+
+    }
+  }
+
 }

@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-4">
-        <select class="sort_dropdown w-100">
+        <select class="sort_dropdown w-100" (change)="onChange($event.target.value)">
             <option value="LATEST">{{ "LATEST" | translate }}</option>
             <option value="OLDEST">{{ "OLDEST" | translate }}</option>
             <option value="EXPENSIVE">{{ "EXPENSIVE" | translate }}</option>
@@ -9,22 +9,22 @@
         </select>
     </div>
     <div class="col-md-8">
-        <form class="form-inline d-flex justify-content-end md-form form-sm active-cyan-2 ">
+        <div class="form-inline d-flex justify-content-end md-form form-sm active-cyan-2 ">
             <input id="member-search" class="form-control form-control-sm mr-3 w-50" type="text" placeholder="Search"
-                aria-label="Search">
+                [(ngModel)]="searchText" aria-label="Search">
             <i class="fas fa-search" style="position: relative; left: -48px;" aria-hidden="true"></i>
-        </form>
+        </div>
     </div>
 </div>
 <hr>
 <div id="member-artist-project" class="row mt-30">
-    <ng-container *ngIf="artworks.length == 0">
+    <ng-container *ngIf="displayArtworks.length == 0">
         <div style="width: 100%;" class="text-center">{{ "NOUPLOADARTWORK" | translate }}</div>
     </ng-container>
-    <ng-container *ngFor="let artwork of artworks">
+    <ng-container *ngFor="let artwork of ( displayArtworks | userFilter: searchText : 'name' )">
         <div class="col-md-4">
-            <a [routerLink]="['/artist/collection/detail',artwork.id]"><img class="mb-10"
-                    src="{{ getImageURL(artwork.imageUrl)}}" alt=""></a>
+            <a [routerLink]="['/artist/collection/detail',artwork.id]"><img class="mb-10" src="{{ artwork.imageUrl}}"
+                    alt=""></a>
             <ul>
                 <li>
                     {{artwork.name}}
@@ -40,132 +40,6 @@
             </ul>
         </div>
     </ng-container>
-    <!-- <div class="col-md-4">
-                                <a [routerLink]="['/artist/collection/detail']"><img class="mb-10" src="./assets/images/project-info-01.jpg" alt=""></a>
-                                <ul>
-                                    <li>
-                                        作品名稱作品名稱作品名稱作品名稱作稱作品名稱作品名稱作品名稱作品名稱
-                                    </li>
-                                    <li>
-                                        售價：Ξ 0.01
-                                    </li>
-                                    <li>
-                                        上架狀態：<span class="text-orange">準備中</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4">
-                                <a [routerLink]="['/artist/collection/detail']"><img class="mb-10" src="./assets/images/project-info-02.jpg" alt=""></a>
-                                <ul>
-                                    <li>
-                                        作品名稱作品名稱作品名稱作品名稱作稱作品名稱作品名稱作品名稱作品名稱
-                                    </li>
-                                    <li>
-                                        售價：Ξ 0.01
-                                    </li>
-                                    <li>
-                                        上架狀態：已上架
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4">
-                                <a [routerLink]="['/artist/collection/detail']"><img class="mb-10" src="./assets/images/project-info-03.jpg" alt=""></a>
-                                <ul>
-                                    <li>
-                                        作品名稱作品名稱作品名稱作品名稱作稱作品名稱作品名稱作品名稱作品名稱
-                                    </li>
-                                    <li>
-                                        售價：Ξ 0.01
-                                    </li>
-                                    <li>
-                                        上架狀態：<span class="text-orange">準備中</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4">
-                                <a [routerLink]="['/artist/collection/detail']"><img class="mb-10" src="./assets/images/project-info-01.jpg" alt=""></a>
-                                <ul>
-                                    <li>
-                                        作品名稱作品名稱作品名稱作品名稱作稱作品名稱作品名稱作品名稱作品名稱
-                                    </li>
-                                    <li>
-                                        售價：Ξ 0.01
-                                    </li>
-                                    <li>
-                                        上架狀態：已上架
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="member-artist-detail.html"><img class="mb-10" src="./assets/images/project-info-02.jpg" alt=""></a>
-                                <ul>
-                                    <li>
-                                        作品名稱作品名稱作品名稱作品名稱作稱作品名稱作品名稱作品名稱作品名稱
-                                    </li>
-                                    <li>
-                                        售價：Ξ 0.01
-                                    </li>
-                                    <li>
-                                        上架狀態：已上架
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="member-artist-detail.html"><img class="mb-10" src="./assets/images/project-info-03.jpg" alt=""></a>
-                                <ul>
-                                    <li>
-                                        作品名稱作品名稱作品名稱作品名稱作稱作品名稱作品名稱作品名稱作品名稱
-                                    </li>
-                                    <li>
-                                        售價：Ξ 0.01
-                                    </li>
-                                    <li>
-                                        上架狀態：已上架
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="member-artist-detail.html"><img class="mb-10" src="./assets/images/project-info-01.jpg" alt=""></a>
-                                <ul>
-                                    <li>
-                                        作品名稱作品名稱作品名稱作品名稱作稱作品名稱作品名稱作品名稱作品名稱
-                                    </li>
-                                    <li>
-                                        售價：Ξ 0.01
-                                    </li>
-                                    <li>
-                                        上架狀態：已上架
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="member-artist-detail.html"><img class="mb-10" src="./assets/images/project-info-02.jpg" alt=""></a>
-                                <ul>
-                                    <li>
-                                        作品名稱作品名稱作品名稱作品名稱作稱作品名稱作品名稱作品名稱作品名稱
-                                    </li>
-                                    <li>
-                                        售價：Ξ 0.01
-                                    </li>
-                                    <li>
-                                        上架狀態：已上架
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="member-artist-detail.html"><img class="mb-10" src="./assets/images/project-info-03.jpg" alt=""></a>
-                                <ul>
-                                    <li>
-                                        作品名稱作品名稱作品名稱作品名稱作稱作品名稱作品名稱作品名稱作品名稱
-                                    </li>
-                                    <li>
-                                        售價：Ξ 0.01
-                                    </li>
-                                    <li>
-                                        上架狀態：<span class="text-orange">準備中</span>
-                                    </li>
-                                </ul>
-                            </div> -->
 </div>
 <div *ngIf="artworks.length >3" class="text-center pagenation_center mb-40">
     <nav aria-label="...">
@@ -173,8 +47,8 @@
             <li class="page-item disabled">
                 <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item active" aria-current="page">
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item" aria-current="page">
                 <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
             </li>
             <li class="page-item"><a class="page-link" href="#">3</a></li>

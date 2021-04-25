@@ -20,6 +20,8 @@ export class ArtistSoldArtWorkComponent implements OnInit {
 
   currentUser: any;
   artworks = [];
+  searchText = "";
+  displayArtworks = [];
   constructor(
     private artistSrv: ArtistService,
     private artworkSrv: ArtWorkService,
@@ -46,6 +48,10 @@ export class ArtistSoldArtWorkComponent implements OnInit {
     this.artworkSrv.getSoldArtwrokByArtistId(this.currentUser.id).subscribe(res => {
       if (res['result'] === 'successful') {
         this.artworks = res['data'];
+        this.artworks.forEach((element) => {
+          element['imageUrl'] = environment.assetUrl + element['imageUrl'];
+        });
+        this.displayArtworks = this.artworks;
       }
       else {
 
@@ -54,10 +60,7 @@ export class ArtistSoldArtWorkComponent implements OnInit {
       console.error(`getSoldArtwrokByArtistId failed ${err}`);
     });
   }
-  getImageURL(path) {
-    return environment.assetAPIUrl + path;
 
-  }
 
   getSellETHPrice(value) {
     return this.utility.getSellETHPrice(value);

@@ -100,8 +100,6 @@ export class GalleryComponent implements OnInit {
     this.displayEditions = this.editions;
     try {
       this.SpinnerService.show();
-      console.log(deviceValue);
-
       switch (deviceValue) {
         case 'LATEST':
           this.displayEditions = this.editions.sort((a, b) => b.editionDate - a.editionDate);
