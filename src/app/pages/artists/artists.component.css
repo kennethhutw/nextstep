@@ -11,3 +11,12 @@
   background-size: auto 100%;
   background-repeat: no-repeat;
 }
+
+.title{
+    font-family: "Maitree", serif;
+
+}
+.subtitle{
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+}

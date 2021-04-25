@@ -1,19 +1,20 @@
 <a class="artist" (click)="routeToArtistProfile()">
   <div class="artist_intro_box">
-    <img class="rounded-circle w-50" src="{{ src }}" alt="" />
+    <img class="profile_image rounded-circle w-50" src="{{ src }}" alt="" />
     <h5 class="mt-10 mb-10 text-body">{{ name }}</h5>
     <table class="table project_info_trans_record">
       <thead>
         <tr>
+          <th scope="col">{{ "EDITIONS" | translate }}</th>
           <th scope="col">{{ "SALES" | translate }}</th>
-          <th scope="col">{{ "COLLECTIONS" | translate }}</th>
+
           <th scope="col">{{ "TOTAL" | translate }}</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>{{ sold }}</td>
           <td>{{ editions }}</td>
+          <td>{{ sold }}</td>
           <td>Ξ {{ amount }}</td>
         </tr>
       </tbody>

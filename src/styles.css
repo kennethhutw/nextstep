@@ -1342,3 +1342,8 @@ padding:7px 14px; */
 .error-msg {
   color: #dc3545;
 }
+
+.profile_image{
+  height: 154px;
+  width: 154px;
+}

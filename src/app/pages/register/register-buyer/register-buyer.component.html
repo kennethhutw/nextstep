@@ -18,34 +18,22 @@
         <div class="col-md-12 text-center mt-40">
           <div class="signup-subtitle-wrap">
             <span class="signup-subtitle">
-              <input
-                type="radio"
-                name="haveOwner"
-                [value]="0"
-                [(ngModel)]="registerType"
-                class="mr-1"
-                [ngModelOptions]="{ standalone: true }"
-              /><span class="text-green">Email</span> {{ 'SIGNUP' | translate }}</span
-            >
+              <input type="radio" name="haveOwner" [value]="0" [(ngModel)]="registerType" class="mr-1"
+                [ngModelOptions]="{ standalone: true }" /><span class="text-green">Email</span> {{ 'SIGNUP' | translate
+              }}</span>
           </div>
         </div>
         <div class="row col-md-12" [formGroup]="registerForm">
           <div class="col-md-6">
             <div class="form-group">
               <label for="exampleInputEmail1">E-mail</label>
-              <input
-                [readonly]="IsEnableEmailSignup()"
-                type="email"
-                class="form-control"
-                aria-describedby="emailHelp"
-                formControlName="email"
-                [ngClass]="{
+              <input [readonly]="IsEnableEmailSignup()" type="email" class="form-control" aria-describedby="emailHelp"
+                formControlName="email" [ngClass]="{
                   'is-invalid':
                     (registerForm.get('email').touched ||
                       registerForm.get('email').dirty) &&
                     registerForm.get('email').invalid
-                }"
-              />
+                }" />
             </div>
             <div *ngIf="submitted && f.email.errors">
               <div class="error-msg" *ngIf="f.email.errors.required">
@@ -59,14 +47,8 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="exampleInputEmail1">{{ 'PASSWORD' | translate }}</label>
-              <input
-                [readonly]="IsEnableEmailSignup()"
-                type="password"
-                class="form-control"
-                formControlName="password"
-                aria-describedby="passwordHelp"
-                [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
-              />
+              <input [readonly]="IsEnableEmailSignup()" type="password" class="form-control" formControlName="password"
+                aria-describedby="passwordHelp" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
             </div>
             <div *ngIf="submitted && f.password.errors">
               <div class="error-msg" *ngIf="f.password.errors.required">
@@ -81,15 +63,9 @@
         <div class="col-md-12 text-center mt-40">
           <div class="signup-subtitle-wrap">
             <span class="signup-subtitle">
-              <input
-                type="radio"
-                name="haveOwner"
-                [value]="1"
-                class="mr-1"
-                [(ngModel)]="registerType"
-                [ngModelOptions]="{ standalone: true }"
-              /><span class="text-green">{{ 'WALLET' | translate }}</span> {{ 'SIGNUP' | translate }}</span
-            >
+              <input type="radio" name="haveOwner" [value]="1" class="mr-1" [(ngModel)]="registerType"
+                [ngModelOptions]="{ standalone: true }" /><span class="text-green">{{ 'WALLET' | translate }}</span> {{
+              'SIGNUP' | translate }}</span>
           </div>
           <!-- <p class="register_info text-danger">
             我們提供兩種取得虛擬錢包位址的方式，請擇一使用。
@@ -120,27 +96,13 @@
             </div>
           </div> -->
           <div class="form-group">
-            <label for="exampleInputEmail1"
-              ><i class="fas fa-play-circle"></i> {{ 'CONNECTWALLET' | translate }}</label
-            >
+            <label for="exampleInputEmail1"><i class="fas fa-play-circle"></i> {{ 'CONNECTWALLET' | translate }}</label>
             <div class="input-group mb-3">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="不需輸入"
-                aria-label="Recipient's username"
-                aria-describedby="button-addon2"
-                [(ngModel)]="wellatAddress"
-                [ngModelOptions]="{ standalone: true }"
-                readonly
-              />
+              <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="button-addon2"
+                [(ngModel)]="wellatAddress" [ngModelOptions]="{ standalone: true }" readonly />
               <div class="input-group-append">
-                <button
-                  class="btn btn-outline-secondary input_btn_normal"
-                  type="button"
-                  (click)="WellectConnect()"
-                  [disabled]="IsEnableWalletSignup()"
-                >
+                <button class="btn btn-outline-secondary input_btn_normal" type="button" (click)="WellectConnect()"
+                  [disabled]="IsEnableWalletSignup()">
                   {{ "CONNECTTOWALLET" | translate }}
                 </button>
               </div>
@@ -156,26 +118,15 @@
 <div class="text-center mt-40 mb-40">
   <div class="mb-30">
     <div class="form-check form-check-inline">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        id="inlineCheckbox1"
-        [(ngModel)]="IsAgree"
-      />
+      <input class="form-check-input" type="checkbox" id="inlineCheckbox1" [(ngModel)]="IsAgree" />
       <label class="form-check-label pl-10" for="inlineCheckbox1">
         {{ "IAGRESSWITH" | translate
         }}<a href="privacy.html" target="_blank" class="inline_text">
-          {{ "TERMSOFSERVICE" | translate }}</a
-        ></label
-      >
+          {{ "TERMSOFSERVICE" | translate }}</a></label>
     </div>
   </div>
-  <button
-     [ngClass]="{ 'btn_normal-disable': IsAgree !== true,'btn_normal': IsAgree === true}"
-    [attr.disabled]="IsAgree ? null : true"
-    class="btn_normal mb-40"
-    (click)="register()"
-  >
+  <button [ngClass]="{ 'btn_normal-disable': IsAgree !== true,'btn_normal': IsAgree === true}"
+    [attr.disabled]="IsAgree ? null : true" class="btn_normal mb-40" (click)="register()">
     {{ "SUBMITBYARTIST" | translate }}
   </button>
   <div class="error-msg" *ngIf="errorMsg">{{ errorMsg }}</div>

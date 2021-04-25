@@ -1,8 +1,8 @@
 <div id="content-mt" class="container">
   <div class="form-group row mb-50">
-    <div class="input-group col-md-6 offset-md-3">
-      <input type="text" class="form-control search" aria-label="Artwork Name" aria-describedby="button-addon2"
-        [(ngModel)]="searchText" />
+    <div class="col-md-12">
+      <h1 class="title">Gallery</h1>
+      <p class="subtitle">Discover artworks by world class artists</p>
     </div>
   </div>
   <!-- <div id="project_tag" [ngClass]="{ show_tags: IsShowTags === true }" class="text-center">
@@ -25,7 +25,14 @@
         {{ "TYPELESS" | translate }} <i class="fas fa-chevron-up"></i></a></span>
   </div> -->
   <div class="row">
-    <div class="col-md-3 offset-md-9 mt-40 mb-20">
+    <div class="col-md-6  mb-20">
+      <input type="text" class="form-control search" aria-label="Artwork Name" aria-describedby="button-addon2"
+        [(ngModel)]="searchText" />
+    </div>
+    <div class="col-md-3  mb-20">
+
+    </div>
+    <div class="col-md-3  mb-20">
       <select [(ngModel)]="selectOption" class="sort_dropdown w-100" (change)="onChange($event.target.value)">
         <option value="LATEST">{{ "LATEST" | translate }}</option>
         <option value="OLDEST">{{ "OLDEST" | translate }}</option>
