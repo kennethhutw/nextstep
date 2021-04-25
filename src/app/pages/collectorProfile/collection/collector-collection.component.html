@@ -19,7 +19,7 @@
 <hr>
 <div id="member-artist-project" class="row mt-30">
 
-    <ng-container *ngIf="bids.length == 0">
+    <ng-container *ngIf="displayArtworks.length == 0">
         <div style="width: 100%;font-size: 1.5rem; white-space: pre-wrap;" class="text-center subtitle">{{
             "NOOFFER_START" | translate }}<a class="nav-link" routerLink="/gallery">{{
                 "NOOFFER_LINK" | translate }}</a>{{ "NOOFFER_END" | translate }}</div>

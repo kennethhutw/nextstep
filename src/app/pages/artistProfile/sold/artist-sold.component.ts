@@ -65,5 +65,32 @@ export class ArtistSoldArtWorkComponent implements OnInit {
   getSellETHPrice(value) {
     return this.utility.getSellETHPrice(value);
   }
+  onChange(deviceValue) {
+    this.displayArtworks = this.artworks;
 
+    try {
+      //  this.SpinnerService.show();
+      switch (deviceValue) {
+        case 'LATEST':
+          this.displayArtworks = this.artworks.sort((a, b) => b.editionDate - a.editionDate);
+          break;
+        case 'OLDEST':
+          this.displayArtworks = this.artworks.sort((a, b) => a.editionDate - b.editionDate);
+          break;
+        case 'EXPENSIVE':
+          this.displayArtworks = this.artworks.sort((a, b) => b.usdValue - a.usdValue);
+          break;
+        case 'CHEAPEST':
+          this.displayArtworks = this.artworks.sort((a, b) => a.usdValue - b.usdValue);
+          break;
+        case 'POPULAR':
+          this.displayArtworks = this.artworks.sort((a, b) => b.liked - a.liked);
+          break;
+      }
+    } catch (error) {
+      console.error(`getSellArtwork error message ${error}`);
+    } finally {
+
+    }
+  }
 }
