@@ -13,6 +13,7 @@ import { TokenizeComponent } from './pages/editions/tokenize/tokenize.component'
 import { AdminArtworkComponent } from './pages/editions/artworks/artworks.component';
 import { AdminDelegateEmailComponent } from './pages/delegateEmail/delegate-email.component';
 
+
 export const containers = [DashboardComponent,
     ApplicationComponent,
     TablesComponent,

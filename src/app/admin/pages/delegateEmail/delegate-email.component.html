@@ -9,7 +9,7 @@
 
   <div>
     <ng-container *ngIf="!loading; else Loading">
-      <table datatable class="row-border hover">
+      <table datatable class="table table-striped table-borderless" style="text-align: center;">
         <thead>
           <tr>
             <th style="width: 10%;">Action</th>
@@ -43,20 +43,20 @@
       <h2>Add delegation email</h2>
     </div>
     <hr class="splitLinesilver">
-    <div class="row  combody">
-      <form [formGroup]="emailsForm">
-        <div class="form-group">
-          <label for="testEmail">Test Email</label>
-          <input type="text" class="form-control" id="testEmail" placeholder="Email for testing"
-            formControlName="testEmail" style="width: 700px;" (input)="isInvalid()" required>
-        </div>
-        <div class="form-group">
-          <label for="delegatingEmail">Delegating Email</label>
-          <input type="text" id="delegatingEmail" formControlName="delegatingEmail" style="width: 700px;"
-            class="form-control" placeholder="Real email" (input)="isInvalid()" required>
-        </div>
-      </form>
-    </div>
+
+    <form [formGroup]="emailsForm">
+      <div class="form-group">
+        <label for="testEmail">Test Email</label>
+        <input type="text" class="form-control" id="testEmail" placeholder="Email for testing"
+          formControlName="testEmail" (input)="isInvalid()" required>
+      </div>
+      <div class="form-group">
+        <label for="delegatingEmail">Delegating Email</label>
+        <input type="text" id="delegatingEmail" formControlName="delegatingEmail" class="form-control"
+          placeholder="Real email" (input)="isInvalid()" required>
+      </div>
+    </form>
+
     <div style="text-align: end;">
       <button type='button' id='InsertDisplay' (click)="addEmailEntry()" [disabled]="isInvalid()"
         class="btn btn-md btn-primary btn-width" data-dismiss="modal">Add</button>

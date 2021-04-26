@@ -1,3 +1,4 @@
+import { Container } from '@angular/compiler/src/i18n/i18n_ast';
 import { Routes } from '@angular/router';
 import * as Containers from './index';
 
@@ -15,5 +16,6 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'application/:id', component: Containers.ApplicationComponent },
   { path: 'editions', component: Containers.AdminEditionComponent },
   { path: 'editions/tokenize/:id', component: Containers.TokenizeComponent },
-  { path: 'editions/artworks/:editionId', component: Containers.AdminArtworkComponent }
+  { path: 'editions/artworks/:editionId', component: Containers.AdminArtworkComponent },
+  { path: 'delegate', component: Containers.AdminDelegateEmailComponent }
 ];

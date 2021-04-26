@@ -85,20 +85,28 @@ export class AdminDelegateEmailComponent implements OnInit, OnDestroy {
   // Deletes the entry
   deleteEmailEntry(id: any, _title: any) {
     const that = this;
-
-    this.confirmDialogService.confirmThis('Are you sure you want to delete?', function () {
-      //Yes clicked
-      that.delSrv.deleteDelegatingEmail(id).subscribe(res => {
-        if (res['result'] = 'successful') {
-          that.showToaster(true, `delete ${_title} successfully`);
-          that.refreshTable();
-        } else {
-          that.showToaster(false, `delete ${_title} failed`);
-        }
-      });
-    }, function () {
-      //No clicked
+    that.delSrv.deleteDelegatingEmail(id).subscribe(res => {
+      if (res['result'] = 'successful') {
+        that.showToaster(true, `delete ${_title} successfully`);
+        that.refreshTable();
+      } else {
+        that.showToaster(false, `delete ${_title} failed`);
+      }
     });
+    // this.confirmDialogService.confirmThis('Are you sure you want to delete?',
+    //   () => {
+    //     that.delSrv.deleteDelegatingEmail(id).subscribe(res => {
+    //       if (res['result'] = 'successful') {
+    //         that.showToaster(true, `delete ${_title} successfully`);
+    //         that.refreshTable();
+    //       } else {
+    //         that.showToaster(false, `delete ${_title} failed`);
+    //       }
+    //     });
+    //   }, () => {
+    //     console.log("No ----");
+    //   });
+
   }
 
   isInArray(val, arr) {
