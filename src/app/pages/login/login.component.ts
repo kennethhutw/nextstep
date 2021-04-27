@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
   IsSignInFailed = false;
   LoginFailedMsg = "";
   submitted = false;
+  loading = false;
   constructor(
     private utility: Utility,
     private fb: FormBuilder,
