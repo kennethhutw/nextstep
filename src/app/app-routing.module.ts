@@ -27,6 +27,7 @@ import {
   RegisterArtistComponent,
   PageNotFoundComponent,
   RegisterBuyerComponent,
+  LoginComponent,
   ArtistPageComponent,
   CollectorPageComponent,
   CollectorProfilePageComponent,
@@ -184,7 +185,7 @@ const routes: Routes = [
       },
       { path: "register-artist", component: RegisterArtistComponent },
       { path: "register-collector", component: RegisterBuyerComponent },
-
+      { path: "login", component: LoginComponent },
       { path: "", redirectTo: "index", pathMatch: "full" }
     ],
   },

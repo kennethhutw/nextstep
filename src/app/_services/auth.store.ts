@@ -9,7 +9,7 @@ import { resResult } from "./../_models";
 import { map, shareReplay, tap } from "rxjs/operators";
 
 
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Utility } from "../_helpers";
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
@@ -115,11 +115,30 @@ export class AuthStore {
       );
   }
 
-  signup(email: string, password: string, role: string): Observable<resResult> {
+  // signup(email: string, password: string, role: string): Observable<resResult> {
+  //   return this.http
+  //     .post<resResult>(`${environment.apiUrl}/authenticate/emailSignUp`, {
+  //       email,
+  //       password,
+  //       role,
+  //     })
+  //     .pipe(
+  //       tap((resResult) => {
+  //         const _user = resResult.data as UserInterface;
+  //         this.subject.next(_user);
+  //         localStorage.setItem(AUTH_DATA, JSON.stringify(_user));
+  //       }),
+  //       shareReplay()
+  //     );
+  // }
+
+  signup(name: string, email: string, password: string, walletAddress: string, role: string): Observable<resResult> {
     return this.http
       .post<resResult>(`${environment.apiUrl}/authenticate/emailSignUp`, {
+        name,
         email,
         password,
+        walletAddress,
         role,
       })
       .pipe(
@@ -206,5 +225,15 @@ export class AuthStore {
       console.error("reloadCurrentUserInfo failed : ", error);
     })
   }
+
+  public getEmail(email) {
+    return this.http.get<any>(`${environment.apiUrl}/authenticate/emailLogin/${email}`);
+  }
+
+  async checkUserData(email, walletAddress) {
+    const params = new HttpParams().set('email', email).set('walletAddress', walletAddress);
+    return await this.http.get<any>(`${environment.apiUrl}/authenticate/checkUserData`, { params: params }).toPromise();
+  }
+
 
 }

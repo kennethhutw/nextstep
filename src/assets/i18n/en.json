@@ -196,5 +196,6 @@
   "EXPENSIVE": "Highest price",
   "CHEAPEST": "Lowest price",
   "POPULAR": "Popular",
-  "SHARE": "Share"
+  "SHARE": "Share",
+  "VERIFIEDEMAIL": "We have sent you an e-mail.\n Follow the instructions to verify your e-mail."
 }

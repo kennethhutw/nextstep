@@ -57,7 +57,7 @@ export class VerificationComponent implements OnInit {
   }
 
   NextPage() {
-    this.router.navigate(['./index'], {
+    this.router.navigate(['./login'], {
       queryParams: {
         role: this.role
       }

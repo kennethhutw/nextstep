@@ -7,7 +7,12 @@ import {
   ValidationErrors,
 } from "@angular/forms";
 import { Utility } from "./../../../_helpers";
-import { Web3Service, DataService, AuthStore } from "../../../_services";
+import {
+  Web3Service,
+  DataService,
+  AuthStore,
+  DialogService
+} from "../../../_services";
 import { Router } from "@angular/router";
 
 @Component({
@@ -26,7 +31,8 @@ export class RegisterBuyerComponent implements OnInit {
   registerType = 0;
 
   errorMsg = "";
-
+  verifiedMsg = "";
+  walletLoading = false;
   constructor(
     private router: Router,
     private auth: AuthStore,
@@ -34,16 +40,23 @@ export class RegisterBuyerComponent implements OnInit {
     private web3Srv: Web3Service,
     private translateSrv: TranslateService,
     private utility: Utility,
-    private dataSrv: DataService
+    private dataSrv: DataService,
+    private dialogSrv: DialogService
   ) {
     let _lang = localStorage.getItem("lang");
 
     if (!this.utility.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
     }
+    this.translateSrv.get("VERIFIEDEMAIL").subscribe((text: string) => {
+      this.verifiedMsg = text;
+    });
     this.dataSrv.langKey.subscribe((lang) => {
       if (!this.utility.IsNullOrEmpty(lang)) {
         this.translateSrv.use(lang);
+        this.translateSrv.get("VERIFIEDEMAIL").subscribe((text: string) => {
+          this.verifiedMsg = text;
+        });
       }
     });
   }
@@ -59,6 +72,7 @@ export class RegisterBuyerComponent implements OnInit {
   ngOnInit() {
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     this.registerForm = this.formBuilder.group({
+      name: ["", Validators.required],
       email: [
         "",
         [
@@ -67,23 +81,37 @@ export class RegisterBuyerComponent implements OnInit {
         ],
       ],
       password: ["", [Validators.required, Validators.minLength(6)]],
+      wallet: [""]
     });
     localStorage.clear();
   }
 
   WellectConnect() {
+    this.walletLoading = true;
     if (this.web3Srv.ethEnabled()) {
       this.web3Srv.getAccountDetail().then(
         (data) => {
           console.log("User", data);
-          if (data.address) this.wellatAddress = data.address;
+          if (data.address) {
+            this.wellatAddress = data.address;
+            this.registerForm.controls['wallet'].setValue(data.address);
+          };
+          this.walletLoading = false;
         },
         (error) => {
           console.log("getAccountDetail error", error);
+          this.walletLoading = false;
         }
       );
     } else {
       console.warn("Metamask not found Install or enable Metamask");
+      this.dialogSrv.infoThis("Metamask not found Install or enable Metamask",
+        () => {
+          console.log("yed ===");
+        }, () => {
+          console.log("no ===");
+        });
+      this.walletLoading = false;
     }
   }
 
@@ -101,11 +129,72 @@ export class RegisterBuyerComponent implements OnInit {
     return false;
   }
 
-  register() {
+  async register() {
     //I have read, understand and agree to MeWe´s Privacy Policy and Terms of Service
     this.submitted = true;
     this.errorMsg = "";
+    if (this.registerForm.invalid) {
+      return;
+    }
+    this.loading = true;
+    const _emailResult = await this.auth.checkUserData(
+      this.registerForm.value.email,
+      this.registerForm.value.wallet);
+    console.log("_emailResult ===========", _emailResult);
+    if (_emailResult["result"] === "successful"
+      && _emailResult["email"] !== null) {
+      this.errorMsg = "Email already exists!";
+      return;
+    }
+    if (this.registerForm.value.wallet != "") {
+      if (_emailResult["result"] === "successful"
+        && _emailResult["address"] !== null) {
+        this.errorMsg = "Wallet already exists!";
+        return;
+      }
+    }
 
+    this.auth
+      .signup(
+        this.registerForm.value.name,
+        this.registerForm.value.email,
+        this.registerForm.value.password,
+        this.registerForm.value.wallet,
+        "collector"
+      )
+      .subscribe(
+        (res) => {
+          if (res["result"] === "successful") {
+            const _user = res["data"];
+            // this.auth.setUserData(_user);
+            // localStorage.setItem("token", res["token"]);
+            let AuthEmailRes = this.auth.sendAuthEmail(_user['id'], this.registerForm.value.email);
+            // this.auth.sendAuthEmail(_user['id'], this.registerForm.value.email);
+            // redirect to profile
+            AuthEmailRes.subscribe(_res => {
+              if (_res['result'] = 'successful') {
+                //  this.router.navigate(["collector/account/"], {});
+                this.dialogSrv.infoThis(this.verifiedMsg,
+                  () => {
+                    console.log("yed ===");
+                  }, () => {
+                    console.log("no ===");
+                  });
+              }
+            });
+
+          } else {
+            this.errorMsg = res["message"];
+          }
+
+        },
+        (error) => {
+          console.error("Sign up failed! " + error);
+        }
+        , () => {
+          this.loading = false;
+        });
+    /*
     if (this.registerType === 0) {
       if (this.registerForm.invalid) {
         return;
@@ -164,5 +253,6 @@ export class RegisterBuyerComponent implements OnInit {
         }
       );
     }
+    */
   }
 }

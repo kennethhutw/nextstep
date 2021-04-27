@@ -1,30 +1,48 @@
 <!--header-->
 <div class="container-fluid bgc-grey">
-  <div class="row bgc-white">
+  <div class="row bgc-white" style="
+    padding-bottom: 40px;
+">
     <div class="col-md-12">
       <div class="text-center signup-logo">
         <img src="./../../../assets/images/formosa_logo_bgwhite.svg" alt="" />
         <h1 class="text-center mb-20">{{ 'JOINASACOLLECTOR' | translate }}</h1>
-        <p class="text-center pb-30 signup_discript">
+        <!-- <p class="text-center pb-30 signup_discript">
           {{ 'COLLECTORCHOICE' | translate }}
-        </p>
+        </p> -->
       </div>
     </div>
   </div>
 
-  <div class="row">
+  <div class="row mt-20">
     <div id="register_table" class="container">
-      <div class="row">
+      <div class="row" [formGroup]="registerForm">
         <div class="col-md-12 text-center mt-40">
           <div class="signup-subtitle-wrap">
             <span class="signup-subtitle">
-              <input type="radio" name="haveOwner" [value]="0" [(ngModel)]="registerType" class="mr-1"
-                [ngModelOptions]="{ standalone: true }" /><span class="text-green">Email</span> {{ 'SIGNUP' | translate
-              }}</span>
+              <span class="text-green">{{ 'SIGNUP' | translate
+                }}</span></span>
+            <!-- <input type="radio" name="haveOwner" [value]="0" [(ngModel)]="registerType" class="mr-1"
+                [ngModelOptions]="{ standalone: true }" /><span class="text-green">{{ 'SIGNUP' | translate
+                }}</span></span> -->
           </div>
         </div>
-        <div class="row col-md-12" [formGroup]="registerForm">
-          <div class="col-md-6">
+        <div class="row col-md-12">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" aria-describedby="emailHelp" formControlName="name" />
+            </div>
+            <div *ngIf="submitted && f.name.errors">
+              <div class="error-msg" *ngIf="f.name.errors.required">
+                Name is required
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="row col-md-12">
+          <div class="col-md-12">
             <div class="form-group">
               <label for="exampleInputEmail1">E-mail</label>
               <input [readonly]="IsEnableEmailSignup()" type="email" class="form-control" aria-describedby="emailHelp"
@@ -44,11 +62,14 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6">
+
+        </div>
+        <div class="row col-md-12">
+          <div class="col-md-12">
             <div class="form-group">
-              <label for="exampleInputEmail1">{{ 'PASSWORD' | translate }}</label>
-              <input [readonly]="IsEnableEmailSignup()" type="password" class="form-control" formControlName="password"
-                aria-describedby="passwordHelp" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+              <label for="password">{{ 'PASSWORD' | translate }}</label>
+              <input type="password" class="form-control" formControlName="password" aria-describedby="passwordHelp"
+                [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
             </div>
             <div *ngIf="submitted && f.password.errors">
               <div class="error-msg" *ngIf="f.password.errors.required">
@@ -60,62 +81,42 @@
             </div>
           </div>
         </div>
-        <div class="col-md-12 text-center mt-40">
+        <!--     <div class="col-md-12 text-center mt-40">
           <div class="signup-subtitle-wrap">
             <span class="signup-subtitle">
               <input type="radio" name="haveOwner" [value]="1" class="mr-1" [(ngModel)]="registerType"
                 [ngModelOptions]="{ standalone: true }" /><span class="text-green">{{ 'WALLET' | translate }}</span> {{
               'SIGNUP' | translate }}</span>
           </div>
-          <!-- <p class="register_info text-danger">
+           <p class="register_info text-danger">
             我們提供兩種取得虛擬錢包位址的方式，請擇一使用。
-          </p> -->
-        </div>
+          </p>
+        </div>-->
 
         <div class="col-md-12 mb-40">
-          <!-- <div class="form-group">
-            <label for="exampleInputEmail1"
-              ><i class="fas fa-play-circle"></i> 手動輸入虛擬錢包位址</label
-            >
-            <div class="input-group mb-3">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="手動輸入"
-                aria-label="Recipient's username"
-                aria-describedby="button-addon2"
-              />
-              <div class="input-group-append">
-                <button
-                  class="btn btn-outline-secondary input_btn_normal"
-                  type="button"
-                >
-                  確定輸入錢包
-                </button>
-              </div>
-            </div>
-          </div> -->
+
           <div class="form-group">
             <label for="exampleInputEmail1"><i class="fas fa-play-circle"></i> {{ 'CONNECTWALLET' | translate }}</label>
             <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="button-addon2"
-                [(ngModel)]="wellatAddress" [ngModelOptions]="{ standalone: true }" readonly />
+              <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="wallet"
+                formControlName="wallet" />
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary input_btn_normal" type="button" (click)="WellectConnect()"
-                  [disabled]="IsEnableWalletSignup()">
+                <button class="btn btn-outline-secondary input_btn_normal" type="button" (click)="WellectConnect()">
                   {{ "CONNECTTOWALLET" | translate }}
                 </button>
               </div>
             </div>
           </div>
-          <p>{{ 'METAMASKREGISTRATION' | translate }}</p>
+          <span>{{ 'METAMASKREGISTRATION' | translate }}</span>
+          <app-loading style="margin-left: 5px;" *ngIf="walletLoading"></app-loading>
         </div>
       </div>
     </div>
   </div>
 </div>
+<app-dialog></app-dialog>
 
-<div class="text-center mt-40 mb-40">
+<div class="text-center mt-40">
   <div class="mb-30">
     <div class="form-check form-check-inline">
       <input class="form-check-input" type="checkbox" id="inlineCheckbox1" [(ngModel)]="IsAgree" />
@@ -130,4 +131,8 @@
     {{ "SUBMITBYARTIST" | translate }}
   </button>
   <div class="error-msg" *ngIf="errorMsg">{{ errorMsg }}</div>
+
+</div>
+<div class="text-center mb-40">
+  <app-loading *ngIf="loading"></app-loading>
 </div>
