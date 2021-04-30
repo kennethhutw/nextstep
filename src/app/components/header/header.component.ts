@@ -17,7 +17,7 @@ import {
   EmailService,
   UserService
 } from "../../_services";
-
+import { environment } from '../../../environments/environment';
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",
@@ -35,6 +35,7 @@ export class HeaderComponent implements OnInit {
   pswMsgFailed = true;
   pswActionMsg = "";
   pswloading = false;
+  DemoSite = "";
   constructor(
     private utility: Utility,
     private fb: FormBuilder,
@@ -60,6 +61,9 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (environment.environment !== "production") {
+      this.DemoSite = "This is a demo site.";
+    }
     this.signinEmailForm = this.fb.group({
       email: ["", Validators.required],
       password: ["", Validators.required],
