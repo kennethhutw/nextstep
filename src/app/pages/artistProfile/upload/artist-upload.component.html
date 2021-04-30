@@ -1,3 +1,4 @@
+<h5 class="pb-10" style="color: red;">** {{ "IMPUPLOADRULE" | translate }}</h5>
 <h5 class="pb-10">{{ "ARTWORK" | translate }}</h5>
 <div [formGroup]="artworkForm" class="member-info-box">
     <div class="row">
@@ -5,7 +6,7 @@
             <!-- <img class="w-100" src="./assets/images/select_img.jpg" alt="">
              -->
             <span *ngIf="this.artworkImage != null " (click)="onRemoveImg($event,'1')" class="close">&times;</span>
-            <img class="w-100" *ngIf="artworkImage" height="239px" width="239px" [src]="artworkImage" alt="" />
+            <img class="w-100" *ngIf="artworkImage" [src]="artworkImage" alt="" />
             <img class="w-100" *ngIf="!artworkImage" src="./assets/images/select_img.jpg" alt="" />
         </div>
         <div id="member_choice_btn" class="col-md-8">
@@ -17,11 +18,11 @@
         </div>
     </div>
     <div class="form-group mt-20">
-        <label for="Inputname">{{ "EDITIONNAME" | translate }}</label>
+        <label for="Inputname">{{ "EDITIONNAME" | translate }} (*)</label>
         <input type="text" formControlName="name" class="form-control" id="Inputname" aria-describedby="">
     </div>
     <div class="form-group mt-20">
-        <label for="Inputdesc">{{ "EDITIONDESC" | translate }}</label>
+        <label for="Inputdesc">{{ "EDITIONDESC" | translate }} (*)</label>
         <textarea type="text" formControlName="description" class="form-control" id="" aria-describedby="Inputdesc"
             rows=4></textarea>
     </div>
@@ -40,7 +41,7 @@
     </div>
 
     <div class="form-group mt-20">
-        <label for="exampleInputEmail1">{{ "SELLPRICE" | translate }}（USD) </label>
+        <label for="exampleInputEmail1">{{ "SELLPRICE" | translate }}（USD) (*)</label>
         <input type="number" formControlName="sellingPrice" (change)="TotalETHAmount($event)" class="form-control" id=""
             aria-describedby="">
         <span class="d-block pt-05 "><i class="fas fa-arrow-alt-circle-right "></i><span class="text-danger">ETH
@@ -262,3 +263,4 @@
         </div>
     </div>
 </div>
+<app-dialog></app-dialog>

@@ -83,13 +83,18 @@ export class CollectorFavoriteComponent implements OnInit {
     });
   }
   removeFavorites(liked_id) {
+
     this.likeSrv.removeLike(this.currentUser.id, liked_id).subscribe(res => {
-      this.artworks = this.artworks.filter(artwork => {
-        return artwork.id != liked_id;
-      });
-      this.artists = this.artists.filter(artist => {
-        return artist.id != liked_id;
-      });
+      if (res['result'] == 'successful') {
+        this.artworks = this.artworks.filter(artwork => {
+          return artwork.id != liked_id;
+        });
+        this.displayArtworks = this.artworks;
+        this.artists = this.artists.filter(artist => {
+          return artist.id != liked_id;
+        });
+        this.displayArtists = this.artworks;
+      }
     })
   }
 

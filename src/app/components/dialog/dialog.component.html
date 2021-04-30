@@ -8,7 +8,8 @@
         </button>
       </div>
       <div class="modal-body">
-        <div *ngIf="message?.type == 'confirm'" class="modal-body">
+        <div *ngIf="message?.type == 'confirm'" class="modal-body" style="    width: 450px;
+    margin-left: -30px;">
           <div class="row">
             <div class="col-md-12">
               <p class="text-center confirm-message" style="font-family: 'Open Sans';" [innerHTML]="msg"></p>
@@ -17,12 +18,12 @@
           <div class="row">
             <div class="col-md-12">
               <p class="confirm-button">
-                <a class="mr-2" (click)="message.yesFn()">
-                  <button class="btn btn-yes">Yes</button>
+                <a (click)="message.yesFn()">
+                  <button class="btn btn-yes btn_normal">Yes</button>
                 </a>
 
                 <a (click)="message.noFn()">
-                  <button class="btn btn-no model_btn_normal">No</button>
+                  <button class="btn btn-no ">No</button>
                 </a>
               </p>
             </div>

@@ -38,6 +38,10 @@ export class ModalComponent implements OnInit {
     this.el.nativeElement.classList.add('hhidden');
   }
 
+  open() {
+
+    this.el.nativeElement.classList.add('sshow');
+  }
 
 
 }

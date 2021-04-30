@@ -6,7 +6,8 @@ import {
   AppSettingsService,
   ArtistService,
   AuthStore,
-  EditionService
+  EditionService,
+  DialogService
 } from "./../../../_services";
 import { Utility } from "./../../../_helpers";
 import {
@@ -35,6 +36,7 @@ export class ArtistUploadComponent implements OnInit {
 
   tags = [];
   isReadonly = true;
+  lang = "en";
   constructor(
     private dataSrv: DataService,
     private utility: Utility,
@@ -43,7 +45,8 @@ export class ArtistUploadComponent implements OnInit {
     private appSettingsSrv: AppSettingsService,
     private translateSrv: TranslateService,
     private formBuilder: FormBuilder,
-    private authStoreSrv: AuthStore) { }
+    private authStoreSrv: AuthStore,
+    private dialogSrv: DialogService) { }
 
   ngOnInit() {
     this.currentUser = this.authStoreSrv.getUserData();
@@ -61,16 +64,17 @@ export class ArtistUploadComponent implements OnInit {
       tags: ["", Validators.required]
     });
 
-    let _lang = localStorage.getItem("lang");
-    if (!this.utility.IsNullOrEmpty(_lang)) {
-      this.translateSrv.use(_lang);
-      this.initTags(_lang);
+    this.lang = localStorage.getItem("lang");
+    if (!this.utility.IsNullOrEmpty(this.lang)) {
+      this.translateSrv.use(this.lang);
+      this.initTags(this.lang);
     } else {
       this.translateSrv.use("en");
       this.initTags("en");
     }
     this.dataSrv.langKey.subscribe((lang) => {
       if (!this.utility.IsNullOrEmpty(lang)) {
+        this.lang = lang;
         this.translateSrv.use(lang);
         this.initTags(lang);
       }
@@ -125,55 +129,107 @@ export class ArtistUploadComponent implements OnInit {
     }
   }
 
+  upload() {
+    try {
+      let sellprice = this.artworkForm.value.sellingPrice
+      if (sellprice > 0)
+        sellprice = sellprice * 100;
+      let formData = new FormData();
+      formData.append("artistId", this.currentUser.id);
+      formData.append("uid", this.currentUser.id);
+      formData.append("name", this.artworkForm.value.name);
+      formData.append("description", this.artworkForm.value.description);
+      formData.append("tags", this.artworkForm.value.tags);
+      formData.append("isBid", this.artworkForm.value.IsBid);
+      formData.append("paymentway", this.artworkForm.value.paymentway);
+      formData.append("usdprice", sellprice);
+      formData.append("totalamount", this.artworkForm.value.numberOfArtwork);
+      formData.append("uploadfile", this.artworkImageFile);
+
+      this.editionSrv.createEdition(formData).subscribe(res => {
+        if (res["result"] === "successful") {
+          this.translateSrv.get("ARTWORTUPLOADSUCC").subscribe((text: string) => {
+            this.informMsg = text;
+          });
+          this.tags
+            .map((ch) => {
+              ch.selected = false;
+            });
+          this.artworkForm.reset();
+          this.artworkImageFile = null;
+          this.artworkImage = null;
+        }
+        else {
+          this.translateSrv.get("UPDATEDFAILED").subscribe((text: string) => {
+            this.informMsg = text;
+            this.IsUpdateFailed = true;
+          });
+        }
+      }, error => {
+        this.translateSrv.get("UPDATEDFAILED").subscribe((text: string) => {
+          this.informMsg = text;
+          this.IsUpdateFailed = true;
+        });
+        console.error("update Basic infor failed", error);
+      });
+    } catch (error) {
+      console.error("upload failed", error);
+    }
+  }
+
+
+  getConfirmMsg(lang) {
+    let msg = "";
+    switch (lang) {
+      case "en":
+        msg = "You will not be able to revise the information and price of this artwork once you proceed,\n would you like to go ahead?";
+        break;
+      case "zh-tw":
+        msg = "您將無法修改此藝術品的信息和價格，\n您要繼續嗎？"
+        break;
+      case "zh-cn":
+        msg = "您将无法修改此艺术品的信息和价格，\n您要继续吗？"
+        break;
+    }
+    return msg;
+  }
+
+  getErrorMsg(lang) {
+    let msg = "";
+    switch (lang) {
+      case "en":
+        msg = "Please fill in all the required fields(*). ";
+        break;
+      case "zh-tw":
+        msg = "請填寫所有必填欄位(*)。"
+        break;
+      case "zh-cn":
+        msg = "请填写所有必填栏位(*)。"
+        break;
+    }
+    return msg;
+  }
   onSubmit() {
     this.submitted = true;
     this.IsUpdateFailed = false;
     this.informMsg = null;
 
     if (this.artworkImageFile == null) {
+      this.informMsg = this.getErrorMsg(this.lang);
+      this.IsUpdateFailed = true;
       return;
     }
-    let sellprice = this.artworkForm.value.sellingPrice
-    if (sellprice > 0)
-      sellprice = sellprice * 100;
-    let formData = new FormData();
-    formData.append("artistId", this.currentUser.id);
-    formData.append("uid", this.currentUser.id);
-    formData.append("name", this.artworkForm.value.name);
-    formData.append("description", this.artworkForm.value.description);
-    formData.append("tags", this.artworkForm.value.tags);
-    formData.append("isBid", this.artworkForm.value.IsBid);
-    formData.append("paymentway", this.artworkForm.value.paymentway);
-    formData.append("usdprice", sellprice);
-    formData.append("totalamount", this.artworkForm.value.numberOfArtwork);
-    formData.append("uploadfile", this.artworkImageFile);
 
-    this.editionSrv.createEdition(formData).subscribe(res => {
-      if (res["result"] === "successful") {
-        this.translateSrv.get("ARTWORTUPLOADSUCC").subscribe((text: string) => {
-          this.informMsg = text;
-        });
-        this.tags
-          .map((ch) => {
-            ch.selected = false;
-          });
-        this.artworkForm.reset();
-        this.artworkImageFile = null;
-        this.artworkImage = null;
-      }
-      else {
-        this.translateSrv.get("UPDATEDFAILED").subscribe((text: string) => {
-          this.informMsg = text;
-          this.IsUpdateFailed = true;
-        });
-      }
-    }, error => {
-      this.translateSrv.get("UPDATEDFAILED").subscribe((text: string) => {
-        this.informMsg = text;
-        this.IsUpdateFailed = true;
+    let msg = "";
+    msg = this.getConfirmMsg(this.lang)
+    this.dialogSrv.confirmThis(msg,
+      () => {
+        console.log("YES");
+        this.upload();
+      }, () => {
+        console.log("NO");
       });
-      console.error("update Basic infor failed", error);
-    });
+
   }
 
   numbersOnly(event: any) {

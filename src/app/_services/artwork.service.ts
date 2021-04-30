@@ -83,6 +83,13 @@ export class ArtWorkService {
     return this.http.get<any>(`${environment.apiUrl}/artwork/getArtwrokByEditionId/${editionId}`);
   }
 
+  public updateStatusById(status, artworkId, uid) {
+    return this.http.post(`${environment.apiUrl}/artwork/updateStatusById`,
+      {
+        status, artworkId, uid
+      });
+  }
+
   public purchase(uid,
     owner,
     usdValue,

@@ -104,7 +104,7 @@
   "EDITION_": "作品",
   "BIDEDITION": "竞标作品",
   "SALESEDITION": "销售作品",
-  "CONNECTWALLET": "连接钱包",
+  "CONNECTWALLET": "连接钱包(选择项)",
   "WALLET": "虚拟钱包",
   "JOINASACREATOR": "我要加入成为创作者成员",
   "CREATORREVIEWED": "请正确填写以下内容，我们将尽速审核您的会员资格，审核时间约为7天，",
@@ -159,6 +159,7 @@
   "STATUS": "上架状态",
   "EDITIONS": "版本",
   "BIDDING": "竞价",
+  "UPLOADTIME": "上传时间",
   "BACKPAGE": "回上一页",
   "CANCELSALE": "取消上架",
   "PERIODS": "竞价时间",
@@ -197,5 +198,7 @@
   "CHEAPEST": "最低价的",
   "POPULAR": "最热门的",
   "SHARE": "分享",
-  "VERIFIEDEMAIL": "我们已送验证E-mail \n请至信箱收取信件并验证"
+  "VERIFIEDEMAIL": "我们已送验证E-mail \n请至信箱收取信件并验证",
+  "IMPUPLOADRULE": "请注意：以下讯息提交後，您将无法修改以下任何信息",
+  "CONFIRMIMP": "您将无法修改此艺术品的信息和价格，\n您要继续吗？"
 }

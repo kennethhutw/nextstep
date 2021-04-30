@@ -99,7 +99,7 @@ export class HeaderComponent implements OnInit {
 
           this.currentUser = this.authStoreSrv.getUserData();
 
-          console.log(" this.currentUser", this.currentUser);
+
           if (this.currentUser.firstTime == 1) {
             this.userSrv.setFirstTime(this.currentUser.id, "0").subscribe(res => {
               console.log(" setFirstTime", res);

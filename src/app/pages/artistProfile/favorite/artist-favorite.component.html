@@ -36,8 +36,7 @@
             </div>
         </div>
         <ng-container *ngIf="displayArtworks.length == 0">
-            <div style="width: 100%;font-size: 1.5rem; white-space: pre-wrap;margin-top:20px;"
-                class="text-center subtitle">{{
+            <div style="margin-top:20px;" class="text-center subtitle no-msg">{{
                 "NOFAVOARTWORK_START" | translate }}<a class="nav-link" routerLink="/gallery">{{
                     "NOFAVOARTWORK_LINK" | translate }}</a>{{ "NOFAVOARTWORK_END" | translate }}</div>
         </ng-container>
@@ -220,8 +219,7 @@
         <hr>
         <div id="member-artist-artist" class="row mt-30 mb-20">
             <ng-container *ngIf="displayArtists.length == 0">
-                <div style="width: 100%;font-size: 1.5rem; white-space: pre-wrap;margin-top:20px;"
-                    class="text-center subtitle">{{
+                <div style="margin-top:20px;" class="text-center subtitle no-msg">{{
                     "NOFAVOARTIST_START" | translate }}<a routerLink="/artists">{{
                         "NOFAVOARTIST_LINK" | translate }}</a>{{ "NOFAVOARTIST_END" | translate }}</div>
             </ng-container>

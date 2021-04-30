@@ -3,7 +3,10 @@ import { TranslateService } from "@ngx-translate/core";
 import {
   DataService,
   EditionService,
-  SettingService
+  SettingService,
+  DialogService,
+  ArtWorkService,
+  AuthStore
 } from "./../../../_services";
 import { Utility } from "./../../../_helpers";
 import { Router, ActivatedRoute } from '@angular/router';
@@ -19,13 +22,19 @@ export class ArtistEditionDetailComponent implements OnInit {
   artwork = null;
   defaultProfileLogo = null;
   ethPrice = 0;
+  editionId = "";
+  _lang = "en";
+  currentUser: any;
   constructor(
+    private dialogSrv: DialogService,
     private router: Router,
     private settingSrv: SettingService,
     private editionSrv: EditionService,
+    private artworkSrv: ArtWorkService,
     private route: ActivatedRoute,
     private translateSrv: TranslateService,
     private utility: Utility,
+    private authStoreSrv: AuthStore,
     private dataSrv: DataService) {
 
     let _lang = localStorage.getItem("lang");
@@ -40,12 +49,15 @@ export class ArtistEditionDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.currentUser = this.authStoreSrv.getUserData();
+
     this.defaultProfileLogo = this.settingSrv.defaultProfileLogo;
-    const id = this.route.snapshot.paramMap.get("id");
+    this.editionId = this.route.snapshot.paramMap.get("id");
     if (!this.utility.IsNullOrEmpty(localStorage.getItem("ETHPRICE"))) {
       this.ethPrice = Number(localStorage.getItem("ETHPRICE"));
     }
-    this.editionSrv.getEditionById(id).subscribe(res => {
+    this.editionSrv.getEditionById(this.editionId).subscribe(res => {
 
       if (res['result'] === 'successful') {
         const _data = res['data'];
@@ -61,6 +73,18 @@ export class ArtistEditionDetailComponent implements OnInit {
       console.error(`getArtwrokById failed ${err}`);
     });
 
+
+    this._lang = localStorage.getItem("lang");
+    if (!this.utility.IsNullOrEmpty(this._lang)) {
+      this.translateSrv.use(this._lang);
+    }
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utility.IsNullOrEmpty(lang)) {
+        this._lang = lang;
+        this.translateSrv.use(lang);
+      }
+    });
+
   }
 
   getSellETHPrice(usdvalue) {
@@ -68,21 +92,57 @@ export class ArtistEditionDetailComponent implements OnInit {
   }
 
   getImageStatus(status) {
+    let _status = "Review";
     switch (status) {
       case "0":
-        return "審核中";
+        if (this._lang == "en") {
+          _status = "Review";
+        } else if (this._lang == "zh-cn") {
+          _status = "审核中";
+        } else if (this._lang == "zh-tw") {
+          _status = "審核中";
+        }
+        return _status;
 
       case "1":
-        return "上架中";
+        if (this._lang == "en") {
+          _status = "Available";
+        } else if (this._lang == "zh-cn") {
+          _status = "已上架";
+        } else if (this._lang == "zh-tw") {
+          _status = "已上架";
+        }
+        return _status;
+
 
       case "2":
-        return "已上架";
+        if (this._lang == "en") {
+          _status = "Auction";
+        } else if (this._lang == "zh-cn") {
+          _status = "竞价中";
+        } else if (this._lang == "zh-tw") {
+          _status = "競價中";
+        }
+        return _status;
 
       case "3":
-        return "競價中";
-
+        if (this._lang == "en") {
+          _status = "Sold";
+        } else if (this._lang == "zh-cn") {
+          _status = "已卖出";
+        } else if (this._lang == "zh-tw") {
+          _status = "已賣出";
+        }
+        return _status;
       case "4":
-        return "已下架";
+        if (this._lang == "en") {
+          _status = "Unavailable";
+        } else if (this._lang == "zh-cn") {
+          _status = "已下架";
+        } else if (this._lang == "zh-tw") {
+          _status = "已下架";
+        }
+        return _status;
 
     }
   }
@@ -98,5 +158,32 @@ export class ArtistEditionDetailComponent implements OnInit {
         return "Yes";
 
     }
+  }
+
+  onCancel() {
+    this.dialogSrv.confirmThis("Are you sure to cancel this?",
+      () => {
+        console.log("YES");
+        this.editionSrv.updateStatusByEditionId(4, this.currentUser.id, this.editionId).subscribe(res => {
+          if (res["result"] == "successful") {
+            this.artwork.status = "4";
+          }
+          else {
+            this.CancelFailed();
+          }
+        }, error => {
+          console.error("cancel failed", error);
+          this.CancelFailed();
+        })
+      }, () => {
+        console.log("NO");
+      });
+  }
+
+  CancelFailed() {
+    this.dialogSrv.infoThis("Cancel failed. Please inform us.",
+      () => { }, () => {
+
+      });
   }
 }

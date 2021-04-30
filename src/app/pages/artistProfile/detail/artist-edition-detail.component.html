@@ -7,7 +7,7 @@
             <h6>
                 {{ "STATUS" | translate }}：<span class="text-orange">{{ getImageStatus(artwork.status)}}</span>
             </h6>
-            <a href="#">
+            <a (click)="onCancel()" *ngIf="artwork.status != '4'">
                 <button class="btn_small">
                     {{ "CANCELSALE" | translate }}
                 </button>
@@ -57,3 +57,4 @@
 
     </div>
 </div>
+<app-dialog></app-dialog>

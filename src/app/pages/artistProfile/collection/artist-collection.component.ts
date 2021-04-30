@@ -109,7 +109,15 @@ export class ArtistCollectionComponent implements OnInit {
           _status = "已賣出";
         }
         return _status;
-
+      case "4":
+        if (this._lang == "en") {
+          _status = "Unavailable";
+        } else if (this._lang == "zh-cn") {
+          _status = "已下架";
+        } else if (this._lang == "zh-tw") {
+          _status = "已下架";
+        }
+        return _status;
     }
   }
 

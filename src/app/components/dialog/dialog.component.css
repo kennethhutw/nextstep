@@ -78,11 +78,15 @@
 .btn-no {
     background-color: #ED4639;
     color:white;
+    margin-left: 10px;
+    width: 100px;
 }
 
 .btn-yes {
     background-color: #80CDC1;
     color:white;
+      margin-right: 10px;
+      width: 100px;
 }
 
 .dailog{

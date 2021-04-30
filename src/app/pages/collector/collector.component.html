@@ -9,8 +9,27 @@
     id="{{this.collector.id}}">
   </app-collector-detail>
   <div class="peoject_tag_openup text-center mt-10">
+    <p class="title">{{ "COLLECTION" | translate }}</p>
+
+  </div>
+  <div class="peoject_tag_openup text-center mt-10">
+
     <span class="project_tag_subtitle"></span>
   </div>
+
+  <!-- <div class="row mt-40">
+
+    <div id="member_favorite_tab" class="col-md-12 mb-20">
+      <ul role="tablist" class="nav nav-tabs">
+
+        <li class="nav-item"><a class="nav-link " [ngClass]="{ 'active': currentTab === 'editions' }" href="#editions"
+            data-toggle="tab" (click)="changeTab('editions')">{{ "COLLECTION" | translate }}</a>
+        </li>
+
+      </ul>
+    </div>
+  </div> -->
+
   <div class="row mt-40">
     <ng-container *ngFor="let edition of popularEditions">
       <div class="col-md-4 mb-4">

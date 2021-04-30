@@ -79,8 +79,21 @@
     <button class="btn_normal mb-40" (click)="onSignIn()">
         {{ "SIGNIN" | translate }}
     </button>
+    <button class="btn_normal mb-40" (click)="onSignIn()">
+        test
+    </button>
     <div class="error-msg" *ngIf="IsSignInFailed">{{ LoginFailedMsg }}</div>
 </div>
 <div class="text-center mb-40">
     <app-loading *ngIf="loading"></app-loading>
 </div>
+<app-modal [modalid]="'modal_wallet_wrong'">
+    <div body>
+        <div class="row text-center">
+            <p>{{ "NOTFOUNDWALLET" | translate }}</p>
+            <button class="model_btn_normal mb-2 w-100" data-dismiss="modal" aria-label="Close">
+                {{ "CONFRIM" | translate }}
+            </button>
+        </div>
+    </div>
+</app-modal>

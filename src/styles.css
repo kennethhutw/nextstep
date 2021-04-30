@@ -328,16 +328,17 @@ body {
 }
 
 .page-item.active .page-link {
-    background-color: #08AB65;
-    border-color:#08AB65;
+  color: #fff !important;
+    background-color: #08AB65  !important;
+    border-color:#08AB65  !important;
 }
 
 .page-link{
-    color:#08AB65;
+    color:#08AB65 !important;
 }
 
 .page-link:hover{
-    color:#08AB65;
+    color:#08AB65 !important;
 }
 
 #content-mt {
@@ -1342,9 +1343,16 @@ padding:7px 14px; */
 
 .error-msg {
   color: #dc3545;
+
 }
 
 .profile_image{
   height: 154px;
   width: 154px;
+}
+
+.no-msg{
+  width: 100%;
+  font-size: 1.3rem;
+  white-space: pre-wrap;
 }
