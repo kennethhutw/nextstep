@@ -1,29 +1,4 @@
 <h5 class="pb-10"> {{ "ACCOUNTSETTING" | translate }}</h5>
-<div class="member-info-box">
-  <h5>{{ "ACCOUNT" | translate }}：{{GetCurrentUserEmail()}}</h5>
-  <div class="form-group mt-20">
-    <label for="exampleInputEmail1">{{ "OLDPSW" | translate }}</label>
-    <input type="password" [(ngModel)]="oldPSW" class="form-control" id="" aria-describedby="">
-    <div class="error-msg" *ngIf=" (oldPSW ==='') && submittedPSW"> Old password is required.</div>
-  </div>
-  <div class="form-group mt-20">
-    <label for="exampleInputEmail1">{{ "NEWPSW" | translate }}</label>
-    <input type="password" [(ngModel)]="newPSW" class="form-control" id="" aria-describedby="">
-  </div>
-  <div class="form-group mt-20">
-    <label for="exampleInputEmail1">{{ "CONFIRMPSW" | translate }}</label>
-    <input type="password" [(ngModel)]="confirmPSW" class="form-control" id="" aria-describedby="">
-    <div class="error-msg" *ngIf=" (newPSW =='') && (confirmPSW =='') && submittedPSW"> New Password and Confirm is
-      required.</div>
-    <div class="error-msg" *ngIf="(newPSW!=confirmPSW)  && submittedPSW"> New Password & Confirm Password does not
-      match.</div>
-  </div>
-
-  <button id="member_last_btn_w100" (click)="updateUserPassword()" class="btn_select_img">{{ "CONFIRMSAVE" | translate
-    }}</button>
-  <div [ngClass]="{ 'error-msg': pswMsgFailed === true }" *ngIf="pswActionMsg">{{pswActionMsg}}</div>
-</div>
-
 <h5 class="pb-10 mt-70  mt-20"> {{ "WALLET" | translate }}</h5>
 <div class="member-info-box">
   <div class="form-group">
@@ -59,6 +34,32 @@
   <div [ngClass]="{ 'error-msg': ethAddressActionMsgFailed === true }" *ngIf="ethAddressActionMsg">
     {{ethAddressActionMsg}}</div>
 </div>
+
+<h5 class="mt-70  mt-20">{{ "ACCOUNT" | translate }}：{{GetCurrentUserEmail()}}</h5>
+<div class="member-info-box">
+  <div class="form-group mt-20">
+    <label for="exampleInputEmail1">{{ "OLDPSW" | translate }}</label>
+    <input type="password" [(ngModel)]="oldPSW" class="form-control" id="" aria-describedby="">
+    <div class="error-msg" *ngIf=" (oldPSW ==='') && submittedPSW"> Old password is required.</div>
+  </div>
+  <div class="form-group mt-20">
+    <label for="exampleInputEmail1">{{ "NEWPSW" | translate }}</label>
+    <input type="password" [(ngModel)]="newPSW" class="form-control" id="" aria-describedby="">
+  </div>
+  <div class="form-group mt-20">
+    <label for="exampleInputEmail1">{{ "CONFIRMPSW" | translate }}</label>
+    <input type="password" [(ngModel)]="confirmPSW" class="form-control" id="" aria-describedby="">
+    <div class="error-msg" *ngIf=" (newPSW =='') && (confirmPSW =='') && submittedPSW"> New Password and Confirm is
+      required.</div>
+    <div class="error-msg" *ngIf="(newPSW!=confirmPSW)  && submittedPSW"> New Password & Confirm Password does not
+      match.</div>
+  </div>
+
+  <button id="member_last_btn_w100" (click)="updateUserPassword()" class="btn_select_img">{{ "CONFIRMSAVE" | translate
+    }}</button>
+  <div [ngClass]="{ 'error-msg': pswMsgFailed === true }" *ngIf="pswActionMsg">{{pswActionMsg}}</div>
+</div>
+
 
 
 <h5 class="mt-70  mt-20">{{ "INFORMEMAIL" | translate }}</h5>

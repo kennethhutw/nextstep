@@ -8,6 +8,11 @@ import {
 } from "./../../../_services";
 import { Utility } from "./../../../_helpers";
 import { Router } from "@angular/router";
+import {
+  FormBuilder,
+  FormGroup,
+  Validators
+} from "@angular/forms";
 @Component({
   selector: "app-artist-account",
   templateUrl: "./artist-account.component.html",
@@ -27,8 +32,9 @@ export class ArtistAccountComponent implements OnInit {
   ethAddress = "";
   ethAddressActionMsg = null;
   ethAddressActionMsgFailed = false;
-
+  emailForm: FormGroup;
   constructor(
+    private formBuilder: FormBuilder,
     private web3Srv: Web3Service,
     private router: Router,
     private translateSrv: TranslateService,
@@ -53,10 +59,22 @@ export class ArtistAccountComponent implements OnInit {
       this.router.navigate(['./index'], {});
     }
     else {
-      this.informEmail = this.currentUser.informEmail;
+      this.informEmail = this.currentUser.email;
       this.ethAddress = this.currentUser.ethaddress;
     }
+
+    this.emailForm = this.formBuilder.group({
+      email: [
+        "",
+        [
+          Validators.required,
+          Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
+        ],
+      ]
+    });
   }
+
+
 
 
   GetCurrentUserEmail() {
@@ -87,10 +105,10 @@ export class ArtistAccountComponent implements OnInit {
 
       this.informMsg = null;
       this.IsUpdateInformEmailFailed = false;
-      this.userSrv.updateUserInfoEmail(this.informEmail,
+      this.userSrv.updateUserEmail(this.informEmail,
         this.currentUser.id).subscribe(res => {
           if (res["result"] === "successful") {
-            this.currentUser.informEmail = this.informEmail;
+            this.currentUser.email = this.informEmail;
             this.authStoreSrv.setUserData(this.currentUser);
             this.translateSrv.get("UPDATEDSUCC").subscribe((text: string) => {
               this.informMsg = text;
@@ -183,7 +201,7 @@ export class ArtistAccountComponent implements OnInit {
         this.userSrv.changeWalletAddress(this.ethAddress,
           this.currentUser.id).subscribe(res => {
             if (res["result"] === "successful") {
-              this.currentUser.informEmail = this.informEmail;
+              this.currentUser.ethAddress = this.ethAddress;
               this.authStoreSrv.setUserData(this.currentUser);
               this.translateSrv.get("UPDATEDSUCC").subscribe((text: string) => {
                 this.ethAddressActionMsg = text;

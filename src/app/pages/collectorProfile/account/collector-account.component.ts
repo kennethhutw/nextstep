@@ -66,7 +66,7 @@ export class CollectorAccountComponent implements OnInit {
       this.router.navigate(['./index'], {});
     }
     else {
-      this.informEmail = this.currentUser.informEmail;
+      this.informEmail = this.currentUser.email;
       this.ethAddress = this.currentUser.ethaddress;
     }
 
@@ -75,7 +75,6 @@ export class CollectorAccountComponent implements OnInit {
       name: [""],
       bio: [""]
     });
-    console.log(" this.currentUser ========== ", this.currentUser);
     this.profileForm.setValue({
       name: this.currentUser.name,
       bio: this.currentUser.bio
@@ -110,10 +109,10 @@ export class CollectorAccountComponent implements OnInit {
     try {
       this.informMsg = null;
       this.IsUpdateInformEmailFailed = false;
-      this.userSrv.updateUserInfoEmail(this.informEmail,
+      this.userSrv.updateUserEmail(this.informEmail,
         this.currentUser.id).subscribe(res => {
           if (res["result"] === "successful") {
-            this.currentUser.informEmail = this.informEmail;
+            this.currentUser.email = this.informEmail;
             this.authStoreSrv.setUserData(this.currentUser);
             this.translateSrv.get("UPDATEDSUCC").subscribe((text: string) => {
               this.informMsg = text;

@@ -64,6 +64,14 @@ export class UserService {
       });
   }
 
+  updateUserEmail(email: string, uid: string) {
+    return this.http.post(`${environment.apiUrl}/users/changeEmail`,
+      {
+        'email': email,
+        'uid': uid
+      });
+  }
+
   changeWalletAddress(address: string, uid: string) {
     return this.http.post(`${environment.apiUrl}/users/changeWalletAddress`,
       {
