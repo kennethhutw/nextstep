@@ -39,6 +39,8 @@ export class RegisterArtistComponent implements OnInit {
   theThirdImage: any;
   theThirdImageNameRequire = false;
   message = null;
+
+  verifiedMsg = "";
   constructor(
     private router: Router,
     private dialogSrv: DialogService,
@@ -56,6 +58,9 @@ export class RegisterArtistComponent implements OnInit {
     this.dataSrv.langKey.subscribe((lang) => {
       if (!this.utility.IsNullOrEmpty(lang)) {
         this.translateSrv.use(lang);
+        this.translateSrv.get("ARTISTREGISTER").subscribe((text: string) => {
+          this.verifiedMsg = text;
+        });
       }
     });
   }
@@ -92,6 +97,10 @@ export class RegisterArtistComponent implements OnInit {
       editions: this.formBuilder.array(this.newEditions)
     });
     localStorage.clear();
+
+    this.translateSrv.get("ARTISTREGISTER").subscribe((text: string) => {
+      this.verifiedMsg = text;
+    });
 
   }
 
@@ -304,5 +313,12 @@ export class RegisterArtistComponent implements OnInit {
       })
 
   }
-
+  test() {
+    this.dialogSrv.infoThis(this.verifiedMsg,
+      () => {
+        console.log("yed ===");
+      }, () => {
+        console.log("no ===");
+      });
+  }
 }

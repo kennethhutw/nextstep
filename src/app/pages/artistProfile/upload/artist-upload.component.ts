@@ -222,6 +222,7 @@ export class ArtistUploadComponent implements OnInit {
 
     let msg = "";
     msg = this.getConfirmMsg(this.lang)
+    console.log(" ======================", msg);
     this.dialogSrv.confirmThis(msg,
       () => {
         console.log("YES");

@@ -140,7 +140,6 @@ export class RegisterBuyerComponent implements OnInit {
     const _emailResult = await this.auth.checkUserData(
       this.registerForm.value.email,
       this.registerForm.value.wallet);
-    console.log("_emailResult ===========", _emailResult);
     if (_emailResult["result"] === "successful"
       && _emailResult["email"] !== null) {
       this.errorMsg = "Email already exists!";
@@ -255,4 +254,6 @@ export class RegisterBuyerComponent implements OnInit {
     }
     */
   }
+
+
 }
