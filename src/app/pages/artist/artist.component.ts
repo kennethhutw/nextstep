@@ -51,7 +51,6 @@ export class ArtistPageComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.uid = params["uid"];
       this.artistSrv.getArtistBasicInfoByUid(this.uid).subscribe(res => {
-        console.log(" getArtistBasicInfoByUid ==== ", res);
         if (res["result"] === "successful") {
           this.artist = res["data"];
           if (this.artist && this.artist.imageUrl != null) {

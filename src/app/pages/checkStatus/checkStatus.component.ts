@@ -72,7 +72,11 @@ export class CheckStatusComponent implements OnInit {
 
     } else {
       this.isAlarm = true;
-      this.msg = "It cannot be empty!";
+      this.msg = "This field cannot be empty, please enter a valid email address.";
     }
+  }
+
+  onSubmit() {
+    this.onEnter();
   }
 }

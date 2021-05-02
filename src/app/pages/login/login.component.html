@@ -79,21 +79,130 @@
     <button class="btn_normal mb-40" (click)="onSignIn()">
         {{ "SIGNIN" | translate }}
     </button>
-    <button class="btn_normal mb-40" (click)="onSignIn()">
+
+    <button class="btn_normal mb-40" (click)="onClick()">
         test
+    </button>
+    <button class="btn_normal mb-40" (click)="onClick2()">
+        test2
     </button>
     <div class="error-msg" *ngIf="IsSignInFailed">{{ LoginFailedMsg }}</div>
 </div>
 <div class="text-center mb-40">
     <app-loading *ngIf="loading"></app-loading>
 </div>
-<app-modal [modalid]="'modal_wallet_wrong'">
-    <div body>
-        <div class="row text-center">
-            <p>{{ "NOTFOUNDWALLET" | translate }}</p>
-            <button class="model_btn_normal mb-2 w-100" data-dismiss="modal" aria-label="Close">
-                {{ "CONFRIM" | translate }}
-            </button>
+
+<button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#modal_user_guide">Open Modal</button>
+<div class="modal fade" id="modal_user_guide" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="    max-width: 700px;">
+        <div class="modal-content model_padding">
+            <div class="modal_header">
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">╳</span>
+                </button> -->
+            </div>
+            <div class="modal-body">
+                <div id="intro">
+                    <div class="row text-center" *ngIf="artistStep===0">
+                        <h3 style="width: 100%;"><b>Welcome onboard</b></h3>
+                        <p class="full_width text-center f20" style="padding-top: 15px;padding-bottom: 15px;">{{
+                            'ARTIST4STEPS' | translate }}
+                        </p>
+                        <button (click)="onNext()" class="model_btn_normal mb-2 w-100">
+                            {{ 'NEXT' | translate }}
+                        </button>
+                    </div>
+                    <div class="row text-center" *ngIf="artistStep===1">
+                        <h3 class="full_width text-center"><b>Step 1</b></h3>
+                        <p class="full_width text-center f20">{{ 'ARTIST1STEP' | translate }}</p>
+                        <p class="full_width text-center f20">{{ 'ARTIST1STEPINTR' | translate }}</p>
+                        <button (click)="onNext()" class="model_btn_normal mb-2 w-100">
+                            {{ 'NEXT' | translate }}
+                        </button>
+                    </div>
+                    <div class="row text-center" *ngIf="artistStep===2">
+                        <h3 class="full_width text-center"><b>Step 2</b></h3>
+                        <p class="full_width text-center f20">{{ 'ARTIST2STEP' | translate }}</p>
+                        <p class="full_width text-center f20">{{ 'ARTIST2STEPINTR' | translate }}</p>
+                        <button (click)="onNext()" class="model_btn_normal mb-2 w-100">
+                            {{ 'NEXT' | translate }}
+                        </button>
+                    </div>
+                    <div class="row text-center" *ngIf="artistStep===3">
+                        <h3 class="full_width text-center"><b>Step 3</b></h3>
+                        <p class="full_width text-center f20">{{ 'ARTIST3STEP' | translate }}</p>
+                        <p class="full_width text-center f20">{{ 'ARTIST3STEPINTR' | translate }}</p>
+                        <button (click)="onNext()" class="model_btn_normal mb-2 w-100">
+                            {{ 'NEXT' | translate }}
+                        </button>
+                    </div>
+                    <div class="row text-center" *ngIf="artistStep===4">
+                        <h3 class="full_width text-center"><b>Step 4</b></h3>
+                        <p class="full_width text-center f20">{{ 'ARTIST4STEP' | translate }}
+                        </p>
+                        <p class="full_width text-center f20">{{ 'ARTIST4STEPINTR' | translate }}
+                        </p>
+                        <button (click)="GotoArtist()" class="model_btn_normal mb-2 w-100" data-dismiss="modal"
+                            aria-label="Close">
+                            {{ 'GOTIT' | translate }}
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</app-modal>
+</div>
+<button id="openCollectorModalButton" [hidden]="true" data-toggle="modal" data-target="#modal_collector_guide">Open
+    Modal</button>
+<div class="modal fade" id="modal_collector_guide" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="    max-width: 700px;">
+        <div class="modal-content model_padding">
+            <div class="modal_header">
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">╳</span>
+                </button> -->
+            </div>
+            <div class="modal-body">
+                <div id="intro">
+                    <div class="row text-center" *ngIf="collectorStep===0">
+                        <h3 class="full_width text-center"><b>Welcome onboard</b></h3>
+                        <p class="full_width text-center f20" style="padding-top: 15px;padding-bottom: 15px;">{{
+                            'COLLECTOR3STEPS' | translate }}
+                        </p>
+                        <button (click)="onCollectorNext()" class="model_btn_normal mb-2 w-100">
+                            {{ 'NEXT' | translate }}
+                        </button>
+                    </div>
+                    <div class="row text-center" *ngIf="collectorStep===1">
+                        <h3 style="width:100%;" class="full_width text-center"><b>Step 1</b></h3>
+                        <p class="full_width text-center f20">{{ 'COLLECTOR1STEP' | translate }}</p>
+                        <p class="full_width text-center f20">{{ 'COLLECTOR1STEPINTR' | translate }}</p>
+                        <button (click)="onCollectorNext()" class="model_btn_normal mb-2 w-100">
+                            {{ 'NEXT' | translate }}
+                        </button>
+                    </div>
+                    <div class="row text-center" *ngIf="collectorStep===2">
+                        <h3 class="full_width text-center"><b>Step 2</b></h3>
+                        <p class="full_width text-center f20" style="padding-top: 15px;padding-bottom: 15px;">{{
+                            'COLLECTOR2STEP' | translate }}</p>
+
+
+                        <button (click)="onCollectorNext()" class="model_btn_normal mb-2 w-100">
+                            {{ 'NEXT' | translate }}
+                        </button>
+                    </div>
+                    <div class="row text-center" *ngIf="collectorStep===3">
+                        <h3 class="full_width text-center"><b>Step 3</b></h3>
+                        <p class="full_width text-center f20">{{ 'COLLECTOR3STEP' | translate }}</p>
+                        <p class="full_width text-center f20">{{ 'COLLECTOR3STEPINTR' | translate }}</p>
+                        <button (click)="GotoCollector()" class="model_btn_normal mb-2 w-100" data-dismiss="modal"
+                            aria-label="Close">
+                            {{ 'GOTIT' | translate }}
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

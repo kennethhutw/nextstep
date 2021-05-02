@@ -17,7 +17,6 @@ export class MainLayoutComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log(" ==================== mainlayout");
     //  this.dataSrv.currentShowAdminSideBar.subscribe(value => (this.display = value));
   }
 

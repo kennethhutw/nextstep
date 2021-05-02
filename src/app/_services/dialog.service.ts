@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 export class DialogService {
     private subject = new Subject<any>();
 
+
     confirmThis(message: string, yesFn: () => void, noFn: () => void): any {
         this.setConfirmation(message, yesFn, noFn);
     }

@@ -36,6 +36,7 @@ export class HeaderComponent implements OnInit {
   pswActionMsg = "";
   pswloading = false;
   DemoSite = "";
+  collectorStep = 0;
   constructor(
     private utility: Utility,
     private fb: FormBuilder,
@@ -171,6 +172,14 @@ export class HeaderComponent implements OnInit {
             if (this.currentUser) {
               this.authStoreSrv.user$.subscribe(user => { this.currentUser = user });
             }
+            if (this.currentUser.firstTime == 1) {
+              this.userSrv.setFirstTime(this.currentUser.id, "0").subscribe(res => {
+                console.log(" setFirstTime", res);
+              }, error => {
+                console.log(" setFirstTime", error);
+              });
+              document.getElementById("openCollectorheaderModalButton").click();
+            }
           },
             errorMsg => {
               console.log('error', errorMsg);
@@ -261,4 +270,14 @@ export class HeaderComponent implements OnInit {
         this.pswloading = false;
       });
   }
+
+
+  onCollectorNext() {
+    this.collectorStep += 1;
+  }
+
+  GotoCollector() {
+    this.router.navigate(['/collector/account'], {});
+  }
+
 }

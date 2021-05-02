@@ -52,29 +52,34 @@ export class CollectorPageComponent implements OnInit {
     this.route.params.subscribe(params => {
       console.log("_collectorAddress ==============", params);
       const _collectorAddress = params["address"];
-      // todo
-      this.userSrv.getUserInfoByAddress(_collectorAddress).then(res => {
 
-        if (res["result"] === "successful") {
-          this.collector = res["data"];
-          if (this.collector && this.collector.imageUrl != null) {
+      if (_collectorAddress.indexOf("0x") > -1) {
+        // todo
+        this.userSrv.getUserInfoByAddress(_collectorAddress).then(res => {
 
-            this.collector.imageUrl = environment.assetUrl + this.collector.imageUrl;
+          if (res["result"] === "successful") {
+            this.collector = res["data"];
+            if (this.collector && this.collector.imageUrl != null) {
+
+              this.collector.imageUrl = environment.assetUrl + this.collector.imageUrl;
+            }
+            if (this.collector && this.collector.ownedartwork.length > 0) {
+              this.popularEditions = this.collector.ownedartwork;
+              this.popularEditions.forEach((element) => {
+                element.imageUrl = environment.assetUrl + element.imageUrl;
+              });
+              console.log("popularEditions ==============", this.popularEditions);
+            }
+            //tags: "bizarre,love,romantic"
+          } else {
+
           }
-          if (this.collector && this.collector.ownedartwork.length > 0) {
-            this.popularEditions = this.collector.ownedartwork;
-            this.popularEditions.forEach((element) => {
-              element.imageUrl = environment.assetUrl + element.imageUrl;
-            });
-            console.log("popularEditions ==============", this.popularEditions);
-          }
-          //tags: "bizarre,love,romantic"
-        } else {
+        }).catch(error => {
+          console.error(`ArtistPage error ${error}`);
+        })
+      } else {
 
-        }
-      }).catch(error => {
-        console.error(`ArtistPage error ${error}`);
-      })
+      }
 
       // this.userSrv.getUserOwnArtworks(_collectorAddress).subscribe(res => {
       //   if (res["result"] === "successful") {

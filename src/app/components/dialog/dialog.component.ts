@@ -26,12 +26,8 @@ export class DialogComponent implements OnInit {
       if (!!message) {
         this.msg = message.text.replace(/(\r\n|\n|\r)/gm, '<br>');
       }
-      console.log('====', message);
       this.message = message;
     });
   }
 
-  onclick() {
-    console.log('====')
-  }
 }

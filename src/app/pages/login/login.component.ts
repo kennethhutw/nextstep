@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
   DataService,
@@ -26,6 +26,13 @@ export class LoginComponent implements OnInit {
   LoginFailedMsg = "";
   submitted = false;
   loading = false;
+
+  showModalBox: boolean = false;
+
+  artistStep = 0;
+  collectorStep = 0;
+
+  @ViewChild('content') content: any;
   constructor(
     private utility: Utility,
     private fb: FormBuilder,
@@ -85,7 +92,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSignIn() {
-
+    console.log("===========");
     // this.closeModal.nativeElement.click();
     //  this.closeModal['el'].nativeElement.style.display = 'none';
     //  this.closeModal['el'].nativeElement.classList.add('sshow');
@@ -99,7 +106,6 @@ export class LoginComponent implements OnInit {
 
           this.currentUser = this.authStoreSrv.getUserData();
 
-          console.log(" this.currentUser", this.currentUser);
           if (this.currentUser.firstTime == 1) {
             this.userSrv.setFirstTime(this.currentUser.id, "0").subscribe(res => {
               console.log(" setFirstTime", res);
@@ -109,14 +115,15 @@ export class LoginComponent implements OnInit {
           }
 
           if (this.currentUser.roles.artist) {
-            if (this.currentUser.firstTime == 1) {
-              this.currentUser.firstTime = 0;
-              this.authStoreSrv.setUserData(this.currentUser);
-              this.router.navigate(['/artist/account'], {});
-            }
+            this.currentUser.firstTime = 0;
+            this.authStoreSrv.setUserData(this.currentUser);
+            // this.router.navigate(['/artist/account'], {});
+            document.getElementById("openModalButton").click();
+          } else if (this.currentUser.roles.collector) {
+            document.getElementById("openCollectorModalButton").click();
+          } else {
+            this.router.navigate(['/'], {});
           }
-
-          this.router.navigate(['/'], {});
         } else {
           this.IsSignInFailed = true;
           this.LoginFailedMsg = res["message"];
@@ -129,4 +136,29 @@ export class LoginComponent implements OnInit {
       }
     );
   }
+
+  onClick() {
+    document.getElementById("openModalButton").click();
+  }
+
+  onClick2() {
+    document.getElementById("openCollectorModalButton").click();
+  }
+  onNext() {
+    this.artistStep += 1;
+  }
+
+  onCollectorNext() {
+    this.collectorStep += 1;
+  }
+
+  GotoArtist() {
+    this.router.navigate(['/artist/account'], {});
+  }
+
+  GotoCollector() {
+    this.router.navigate(['/collector/account'], {});
+  }
+
+
 }

@@ -5,15 +5,18 @@
   </div>
   <div class="row  mt-20">
     <div class="col-md-12" style="text-align: center;">
-      <span style="font-size: 20px;">Please enter your emailt to check your application status</span>
+      <span style="font-size: 20px;">Please enter your email to check your application status</span>
     </div>
   </div>
   <div class="form-group row mt-30 mb-50">
     <div class="input-group col-md-6 offset-md-3">
       <input type="text" class="form-control search search_status" aria-label="Artist's status"
-        aria-describedby="button-addon2" placeholder="Enter email" [(ngModel)]="ArtistEmail" (keyup.enter)="onEnter()"
-        (click)="onEnter()" />
+        aria-describedby="button-addon2" placeholder="Please enter your email to check your application status"
+        [(ngModel)]="ArtistEmail" (keyup.enter)="onEnter()" (click)="onEnter()" />
     </div>
+    <button class="btn btn_normal" style="background-color: #17f596;
+    border: 2px solid #17f596;" (click)="onSubmit()">{{ "SUBMITBYARTIST" | translate
+      }}</button>
   </div>
   <div class="row" style="margin-top: 60px;">
     <div [ngClass]="{ 'invalid':isAlarm }" class="col-md-12" style="text-align: center;">

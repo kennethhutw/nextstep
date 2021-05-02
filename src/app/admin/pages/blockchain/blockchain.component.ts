@@ -32,10 +32,9 @@ export class BlockchainComponent implements OnInit {
   ngOnInit() {
     if (this.web3Srv.ethEnabled()) {
       this.isConnected = true;
-      console.log('ethEnabled ==========');
+
       if (this.web3Srv.loadContract()) {
         this.web3Srv.call('name').then(res => {
-          console.log('res ==========', res);
           this.tokenName = res;
         }).catch(err => {
           console.error('name err ==========', err);

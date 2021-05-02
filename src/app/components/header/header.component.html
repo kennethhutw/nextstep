@@ -63,10 +63,10 @@
                 <i class="far fa-user-circle par-5"></i>{{ "MEMBERMANAGEMENT" | translate }}
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" routerLink="/artist/basic">{{ "PROFILE" | translate }}</a>
                 <a class="dropdown-item" routerLink="/artist/collection">{{ "MANAGEMENTEDITION" | translate }}</a>
                 <a class="dropdown-item" routerLink="/artist/upload">{{ "UPLOADEDITION" | translate }}</a>
                 <a class="dropdown-item" routerLink="/artist/sold">{{ "SOLDEDITION" | translate }}</a>
-                <a class="dropdown-item" routerLink="/artist/basic">{{ "PROFILE" | translate }}</a>
                 <a class="dropdown-item" routerLink="/artist/account">{{ "ACCOUNTPASSWORD" | translate }}</a>
                 <a class="dropdown-item" routerLink="/artist/favorite">{{ "MYFAVOURITES" | translate }}</a>
                 <div class="dropdown-divider"> </div>
@@ -241,3 +241,59 @@
     </div>
   </div>
 </app-modal>
+<button id="openCollectorheaderModalButton" [hidden]="true" data-toggle="modal"
+  data-target="#modal_collector_header_guide">Open
+  Modal</button>
+<div class="modal fade" id="modal_collector_header_guide" tabindex="-1" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" style="    max-width: 700px;">
+    <div class="modal-content model_padding">
+      <div class="modal_header">
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">╳</span>
+                </button> -->
+      </div>
+      <div class="modal-body">
+        <div id="intro">
+          <div class="row text-center" *ngIf="collectorStep===0">
+            <h3 class="full_width text-center"><b>Welcome onboard</b></h3>
+            <p class="full_width text-center f20" style="padding-top: 15px;padding-bottom: 15px;">{{
+              'COLLECTOR3STEPS' | translate }}
+            </p>
+            <button (click)="onCollectorNext()" class="model_btn_normal mb-2 w-100">
+              {{ 'NEXT' | translate }}
+            </button>
+          </div>
+          <div class="row text-center" *ngIf="collectorStep===1">
+            <h3 style="width:100%;" class="full_width text-center"><b>Step 1</b></h3>
+            <p class="full_width text-center f20">{{ 'COLLECTOR1STEP' | translate }}</p>
+            <p class="full_width text-center f20">{{ 'COLLECTOR1STEPINTR' | translate }}</p>
+            <button (click)="onCollectorNext()" class="model_btn_normal mb-2 w-100">
+              {{ 'NEXT' | translate }}
+            </button>
+          </div>
+          <div class="row text-center" *ngIf="collectorStep===2">
+            <h3 class="full_width text-center"><b>Step 2</b></h3>
+            <p class="full_width text-center f20" style="padding-top: 15px;padding-bottom: 15px;">{{
+              'COLLECTOR2STEP' | translate }}</p>
+
+
+            <button (click)="onCollectorNext()" class="model_btn_normal mb-2 w-100">
+              {{ 'NEXT' | translate }}
+            </button>
+          </div>
+          <div class="row text-center" *ngIf="collectorStep===3">
+            <h3 class="full_width text-center"><b>Step 3</b></h3>
+            <p class="full_width text-center f20">{{ 'COLLECTOR3STEP' | translate }}</p>
+            <p class="full_width text-center f20">{{ 'COLLECTOR3STEPINTR' | translate }}</p>
+            <button (click)="GotoCollector()" class="model_btn_normal mb-2 w-100" data-dismiss="modal"
+              aria-label="Close">
+              {{ 'GOTIT' | translate }}
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

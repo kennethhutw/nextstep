@@ -85,9 +85,14 @@
                 "UPLOADYOURARTWORK" | translate
                 }}</span>
             </div>
-            <p class="text-left">
-              {{ "ACCEPTFILETYPE" | translate }}：JPG、PNG、GIF
-            </p>
+            <div class="col-md-12 text-left">
+              <p class="text-left">
+                {{ "ACCEPTFILETYPE" | translate }}：JPG、PNG、GIF.
+              </p>
+              <p class="text-left" style="color:red">
+                {{ "REGISTERNOTE" | translate }}
+              </p>
+            </div>
           </div>
           <!--upload image-->
           <div formArrayName="editions" class="row">

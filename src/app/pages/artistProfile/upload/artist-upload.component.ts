@@ -15,6 +15,10 @@ import {
   FormGroup,
   Validators
 } from "@angular/forms";
+import {
+  Router,
+
+} from "@angular/router";
 @Component({
   selector: "app-artist-upload",
   templateUrl: "./artist-upload.component.html",
@@ -46,7 +50,8 @@ export class ArtistUploadComponent implements OnInit {
     private translateSrv: TranslateService,
     private formBuilder: FormBuilder,
     private authStoreSrv: AuthStore,
-    private dialogSrv: DialogService) { }
+    private dialogSrv: DialogService,
+    private router: Router) { }
 
   ngOnInit() {
     this.currentUser = this.authStoreSrv.getUserData();
@@ -158,6 +163,7 @@ export class ArtistUploadComponent implements OnInit {
           this.artworkForm.reset();
           this.artworkImageFile = null;
           this.artworkImage = null;
+          this.router.navigate(['/artist/collection'], {});
         }
         else {
           this.translateSrv.get("UPDATEDFAILED").subscribe((text: string) => {
@@ -222,7 +228,7 @@ export class ArtistUploadComponent implements OnInit {
 
     let msg = "";
     msg = this.getConfirmMsg(this.lang)
-    console.log(" ======================", msg);
+
     this.dialogSrv.confirmThis(msg,
       () => {
         console.log("YES");

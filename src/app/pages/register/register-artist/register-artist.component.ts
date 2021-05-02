@@ -187,6 +187,9 @@ export class RegisterArtistComponent implements OnInit {
   onSubmit() {
     this.loading = true;
     this.message = null;
+    this.theFirstImageNameRequire = false;
+    this.theSecodnImageNameRequire = false;
+    this.theThirdImageNameRequire = false;
     if (this.registerForm.invalid) {
       this.loading = false;
       this.message = "Name or Email cannot be empty";
@@ -196,40 +199,35 @@ export class RegisterArtistComponent implements OnInit {
     for (let i = 0; i < _editions.controls.length; i++) {
       let _edition = _editions.controls[i];
       // _edition.setErrors({'required': false});
-      if (!this.utility.IsNullOrEmpty(_edition.value.imageUrl)) {
-        if (this.utility.IsNullOrEmpty(_edition.value.name)) {
-          //_edition.setErrors({'required': true});
-          switch (i) {
-            case 0:
-              this.theFirstImageNameRequire = true;
-              return;
-            //break;
-            case 1:
-              this.theSecodnImageNameRequire = true;
-              return;
-            //break;
-            case 2:
-              this.theThirdImageNameRequire = true;
-              return;
-            //break;
-          }
-        } else {
-          switch (i) {
-            case 0:
-              this.theFirstImageNameRequire = false;
-              break;
-            case 1:
-              this.theSecodnImageNameRequire = false;
-              break;
-            case 2:
-              this.theThirdImageNameRequire = false;
-              break;
-          }
+      if (!this.utility.IsNullOrEmpty(_edition.value.imageUrl) &&
+        !this.utility.IsNullOrEmpty(_edition.value.name)) {
+
+        //_edition.setErrors({'required': true});
+        switch (i) {
+          case 0:
+            this.theFirstImageNameRequire = true;
+            //return;
+            break;
+          case 1:
+            this.theSecodnImageNameRequire = true;
+            //  return;
+            break;
+          case 2:
+            this.theThirdImageNameRequire = true;
+            //  return;
+            break;
         }
+
       }
     }
 
-
+    if (!this.theFirstImageNameRequire &&
+      !this.theSecodnImageNameRequire &&
+      !this.theThirdImageNameRequire) {
+      this.loading = false;
+      this.message = "Please upload your artwork(s).";
+      return;
+    }
 
     let newArtist = new NewArtist();
     newArtist.name = this.registerForm.value.name;
