@@ -11,6 +11,16 @@
         <button class="info">
           {{ "VIEWDETAILS" | translate }}
         </button></a>
+      <p *ngIf="uid">
+        <a *ngIf="!IsFollowed" (click)="onLike()">
+          <i class="far fa-heart">
+          </i>
+        </a>
+        <a *ngIf="IsFollowed" (click)="onDislike()">
+          <i class="fas fa-heart"></i>
+        </a>
+      </p>
+
     </div>
   </div>
 </div>

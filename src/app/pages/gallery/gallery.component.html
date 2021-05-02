@@ -49,9 +49,17 @@
   <!--card-->
   <div class="card-columns">
     <ng-container *ngFor="let edition of ( displayEditions  | userFilter: searchText : 'name' )">
-      <app-edition3 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
-        editionImg="{{ edition.imageUrl }}" artworkId="{{ edition.artworkId }}" editionDate="{{ edition.editionDate }}"
-        editionPrice="{{ edition.ethPrice }}"></app-edition3>
+      <ng-container *ngIf="currentUser; else NoLogin">
+        <app-edition3 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
+          editionImg="{{ edition.imageUrl }}" artworkId="{{ edition.artworkId }}"
+          editionDate="{{ edition.editionDate }}" editionPrice="{{ edition.ethPrice }}" uid="{{currentUser.id}}">
+        </app-edition3>
+      </ng-container>
+      <ng-template #NoLogin>
+        <app-edition3 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
+          editionImg="{{ edition.imageUrl }}" artworkId="{{ edition.artworkId }}"
+          editionDate="{{ edition.editionDate }}" editionPrice="{{ edition.ethPrice }}"></app-edition3>
+      </ng-template>
     </ng-container>
 
 

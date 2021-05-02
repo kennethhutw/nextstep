@@ -3,7 +3,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { Router } from "@angular/router";
 
 import { Utility } from "../../_helpers";
-import { DataService } from "../../_services";
+import { DataService, LikeService } from "../../_services";
 @Component({
   selector: "app-edition3",
   templateUrl: "./edition3.component.html",
@@ -16,7 +16,10 @@ export class Edition3Component implements OnInit {
   @Input() artworkId: string;
   @Input() editionDate: string;
   @Input() editionPrice: string;
+  @Input() uid: string;
+  IsFollowed = false;
   constructor(
+    private likeSrv: LikeService,
     private utility: Utility,
     private translateSrv: TranslateService,
     private dataSrv: DataService,
@@ -34,6 +37,14 @@ export class Edition3Component implements OnInit {
         this.translateSrv.use(lang);
       }
     });
+    console.log("============edition3", this.uid);
+    if (this.uid != null) {
+      this.likeSrv.IsLike(this.uid, this.artworkId).subscribe(res => {
+        if (res['result'] == "successful") {
+          this.IsFollowed = res['data'];
+        }
+      });
+    }
   }
 
   changeLanguage(lang: string) {
@@ -43,4 +54,20 @@ export class Edition3Component implements OnInit {
   ViewDetails() {
     this.router.navigate(["/gallery/" + this.artworkId]);
   }
+
+  onDislike() {
+    this.likeSrv.removeLike(this.uid, this.artworkId).subscribe(res => {
+      if (res['result'] == "successful") {
+        this.IsFollowed = false;
+      }
+    });
+  }
+  onLike() {
+    this.likeSrv.like(this.uid, this.artworkId).subscribe(res => {
+      if (res['result'] == "successful") {
+        this.IsFollowed = true;
+      }
+    });
+  }
+
 }

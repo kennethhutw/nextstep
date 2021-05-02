@@ -123,3 +123,9 @@
 .col {
   width: 40%;
 }
+
+.viewImg{
+   width: 100%;
+    height: 100%;
+ object-fit: cover;
+}

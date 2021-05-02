@@ -24,7 +24,9 @@ export class GalleryComponent implements OnInit {
   filterValue = null;
   searchText = '';
   selectOption = 'LATEST';
+  currentUser: any;
   constructor(
+    private authStoreSrv: AuthStore,
     private translateSrv: TranslateService,
     private utility: Utility,
     private dataSrv: DataService,
@@ -64,6 +66,8 @@ export class GalleryComponent implements OnInit {
 
   ngOnInit() {
     this.SpinnerService.show();
+    this.currentUser = this.authStoreSrv.getUserData();
+    console.log("============currentUser", this.currentUser);
     this.artworkSrv.getSellArtwork().subscribe(res => {
 
       if (res["result"] == "successful") {
