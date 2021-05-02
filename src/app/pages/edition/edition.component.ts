@@ -78,7 +78,6 @@ export class EditionComponent implements OnInit {
         if (res['result'] === 'successful') {
 
           this.currentArtwork = res['data'];
-          console.log("  this.currentArtwork ======= ", this.currentArtwork)
           this.uid = this.currentArtwork['artist'].uid;
           if (!this.utility.IsNullOrEmpty(this.currentArtwork.imageUrl)) {
             this.currentArtwork.imageUrl = environment.assetUrl + this.currentArtwork.imageUrl;

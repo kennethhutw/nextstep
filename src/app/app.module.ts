@@ -103,7 +103,7 @@ import { AnQrcodeModule } from "an-qrcode";
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 
-
+import * as Websitepages from './website/index';
 
 import { SharedModule } from "./_shared/shared.module";
 
@@ -185,7 +185,8 @@ export function createLoader(http: HttpClient) {
     VerificationComponent,
     SetPasswordComponent,
     CheckStatusComponent,
-    LoginComponent
+    LoginComponent,
+    Websitepages.containers
   ],
   imports: [
     BrowserModule,

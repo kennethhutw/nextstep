@@ -1330,7 +1330,14 @@ padding:7px 14px; */
     background-image:url("./assets/images/bgc_member.jpg");
     min-height:600px;
 }
-
+.page_launch_bg{
+    background-image: url("./assets/images/launch_artist1.png");
+    background-position: left bottom; /*Positioning*/
+   background-repeat: no-repeat; /*Prevent showing multiple background images*/
+    background-color: black;
+    min-height:900px;
+    min-width: 100%;
+}
 
 .btn_normal-disable {
   font-size: 20px;

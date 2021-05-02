@@ -61,6 +61,10 @@ import {
   ArtistLayoutComponent,
   CollectorLayoutComponent
 } from "./layout";
+
+import * as Websitepages from './website/index';
+
+
 const routes: Routes = [
   { path: "", redirectTo: "index", pathMatch: "full" },
   { path: "example", component: ExampleComponent, pathMatch: "full" },
@@ -69,7 +73,7 @@ const routes: Routes = [
 
   { path: "u/:address", component: CollectorPageComponent },
   { path: "token/:id", component: TokenComponent },
-
+  { path: "launch", component: Websitepages.LaunchComponent },
   //  {
   //    path: "**",
   //    component: HomeComponent
