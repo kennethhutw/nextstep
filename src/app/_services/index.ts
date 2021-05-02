@@ -17,8 +17,11 @@ import { OfferService } from './offer.service';
 import { ToastService } from './toastr.service';
 import { PendingEditionService } from './pendingedition.service';
 import { DelegateEmailService } from './delegateEmail.service';
+import { AdminService } from "./admin.service";
 
-export const services = [UserService,
+export const services = [
+    AdminService,
+    UserService,
     WalletService,
     CryptoService,
     Web3Service,
@@ -58,3 +61,4 @@ export { OfferService } from './offer.service';
 export * from './toastr.service';
 export { PendingEditionService } from './pendingedition.service';
 export { DelegateEmailService } from './delegateEmail.service';
+export { AdminService } from "./admin.service";

@@ -1,0 +1,82 @@
+<div class="mx-auto" *ngIf="editedUser">
+  <div class="row">
+    <div class="col-md-12 mb-12 form-group form-inline">
+      <label class="pr-2" for="verifyemail">
+        <h5>Name :</h5>
+      </label>
+      {{this.editedUser.name}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 mb-12 form-group form-inline">
+      <label class="pr-2" for="verifyemail">
+        <h5>Bio :</h5>
+      </label>
+      {{(this.editedUser.roles.artist ? 'Yes': 'No')}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 mb-12 form-group form-inline">
+      <label class="pr-2" for="verifyemail">
+        <h5>Is artist :</h5>
+      </label>
+      {{(this.editedUser.roles.artist ? 'Yes': 'No')}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 mb-12 form-group form-inline">
+      <label class="pr-2" for="verifyemail">
+        <h5>Status (Approved/reject) :</h5>
+      </label>
+      {{ CheckStatus(this.editedUser.approved)}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <button type="button" [attr.disabled]="this.editedUser.roles.artist ? null : true" class="btn btn-primary"
+        (click)="setApprove(1)"> Approved </button>
+      <button type="button" [attr.disabled]="this.editedUser.roles.artist ? null : true" class="btn btn-danger"
+        style="margin-left: 10px;" (click)="setApprove(2)"> Rejected
+      </button>
+    </div>
+  </div>
+  <div class="row" style="margin-top:10px;">
+    <div class="col-md-12">
+      <button type="button" [attr.disabled]="this.editedUser.approved ? null : true" class="btn btn-primary"
+        (click)="sendApprovedEmail()"> Send Welcome and Password Email </button>
+      <button type="button" [attr.disabled]="this.editedUser.roles.artist ? null : true" class="btn btn-danger"
+        style="margin-left: 10px;" (click)="sendRejectEmail()"> Send Reject Email
+      </button>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-12 mb-12 form-group form-inline">
+      <label class="pr-2" for="verifyemail">
+        <h5>Artist's artwork</h5>
+      </label>
+    </div>
+  </div>
+  <div class="row" *ngFor="let edition of  editions; let i = index">
+    <div class="col-md-12">
+      <h3> {{i+1}}</h3>
+    </div>
+    <div class="col-md-12">
+      <label class="pr-2" for="edition">
+        <span>Name:</span>
+      </label>
+      {{edition.name}}
+    </div>
+    <div class="col-md-12">
+      <label class="pr-2" for="edition">
+        <span>Description:</span>
+      </label>
+      {{edition.description}}
+    </div>
+    <div class="col-md-12">
+      <img class="mb-10" style="max-width: 400px; max-height: 400px;" src="{{edition.imageUrl}}" alt="">
+    </div>
+    <hr>
+  </div>
+
+</div>

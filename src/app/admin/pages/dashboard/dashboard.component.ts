@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
-
+import {
+  AdminService
+} from "../../../_services";
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -110,10 +112,28 @@ export class DashboardComponent implements OnInit {
       cutoutPercentage: 80
     }
   };
-
-  constructor() { }
+  Nums: any;
+  total = 0;
+  artists = 0;
+  collectors = 0;
+  constructor(
+    private adminSrv: AdminService
+  ) { }
 
   ngOnInit() {
+
+    this.adminSrv.userNumber().subscribe(res => {
+      if (res["result"] == "successful") {
+        let data = res["data"];
+        if (data != null) {
+          this.total = data[0]["total"];
+          this.artists = data[0]["artist"];
+          this.collectors = data[0]["collector"];
+        }
+      }
+    }, error => {
+      console.error("error ", error);
+    })
 
     new Chart('chart-line', {
       type: 'line',

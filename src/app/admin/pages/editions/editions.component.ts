@@ -1,10 +1,12 @@
 import {
   Component, OnInit,
   ViewChild,
-  HostListener,
-  AfterViewInit, OnDestroy
+  HostListener
 } from '@angular/core';
-import { UserService, EditionService } from '../../../_services';
+import {
+  UserService, EditionService,
+  SettingService
+} from '../../../_services';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
 import { BsDaterangepickerDirective } from 'ngx-bootstrap/datepicker';
@@ -15,6 +17,7 @@ import {
   animate,
   transition,
 } from '@angular/animations';
+import { environment } from './../../../../environments/environment';
 @Component({
   selector: 'app-admin-editions',
   templateUrl: './editions.component.html',
@@ -62,6 +65,7 @@ export class AdminEditionComponent implements OnInit {
   filterPanelOpen: string;
   FromDate: string;
   ToDate: string;
+  defaultProfileLogo = null;
   @ViewChild(BsDaterangepickerDirective) datepicker: BsDaterangepickerDirective;
 
   @HostListener('window:scroll')
@@ -74,13 +78,16 @@ export class AdminEditionComponent implements OnInit {
   }
 
   constructor(
+    private settingSrv: SettingService,
     private editionSrv: EditionService,
     private userSrv: UserService
-  ) { }
+  ) {
+    this.defaultProfileLogo = this.settingSrv.defaultProfileLogo;
+  }
 
   ngOnInit() {
     this.filterPanelOpen = 'out';
-    this.getAllUser();
+    this.getAllEdition();
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 2,
@@ -106,9 +113,9 @@ export class AdminEditionComponent implements OnInit {
         this.dtTrigger.next();
         this.dtOptions = {
           pagingType: 'full_numbers',
-          pageLength: 2,
+          pageLength: 12,
         };
-        this.getAllUser();
+        this.getAllEdition();
         //  dtInstance.draw();
       });
     }
@@ -127,10 +134,15 @@ export class AdminEditionComponent implements OnInit {
       return 'Admin';
     }
   }
-  getAllUser() {
+  getAllEdition() {
     this.editionSrv.getEditions().subscribe(res => {
       console.log("getEditions ========", res);
       this.editions = res['data'];
+      this.editions.forEach((element) => {
+        if (element.imageUrl != null) {
+          element.imageUrl = environment.assetUrl + element.imageUrl;
+        }
+      });
       this.displayEditions = this.editions;
     }, error => {
       console.error("Get all editions failed :", error);

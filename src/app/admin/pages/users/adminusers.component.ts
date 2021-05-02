@@ -82,7 +82,7 @@ export class AdminUsersComponent implements OnInit {
     this.getAllUser();
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 2,
+      pageLength: 10,
     };
   }
 
@@ -138,4 +138,18 @@ export class AdminUsersComponent implements OnInit {
     });
   }
 
+
+  DisplayRoles(roles) {
+    let _role = "";
+    if (roles.admin) {
+      _role += "admin, ";
+    }
+    if (roles.artist) {
+      _role += "artist, ";
+    }
+    if (roles.collector) {
+      _role += "collector, ";
+    }
+    return _role;
+  }
 }

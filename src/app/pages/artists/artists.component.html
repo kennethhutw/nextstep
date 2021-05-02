@@ -48,7 +48,7 @@
       <div class="col-md-4 text-center" *ngFor="let col of ( displayArtists[i] | userFilter: searchText : 'name' )">
         <app-artist artistId="{{ col.id }}" id="{{ col.uid }}" name="{{ col.name }}"
           src="{{ col.imageUrl || defaultProfileLogo }}" bio="{{ col.bio }}" sold="{{ col.sold }}"
-          editions="{{ col.editions }}"></app-artist>
+          editions="{{ col.available }}"></app-artist>
       </div>
     </div>
 

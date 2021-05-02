@@ -76,7 +76,8 @@
         <ng-container *ngFor="let edition of displayEditions let i=index ;">
 
           <tr>
-            <td class="text_left">{{edition.artworkName}}</td>
+            <td class="text_left">{{edition.artworkName}} <img src="{{ edition.imageUrl }}" height="50px" width="50px"
+                alt="" /></td>
             <td class="text_left">{{edition.ArtistName}}</td>
             <td class="text_left">{{edition.description}}</td>
             <td class="text_left">{{edition.tags}}</td>
@@ -84,11 +85,12 @@
             <td><b>{{edition.purchaseway}}</b></td>
             <td>{{edition.createdAt | date : 'yyyy-MM-dd
               HH:mm:ss'}}</td>
-            <td><a class="clickable" [routerLink]="['/admin/editions/artworks',edition.id]" style="color: #7F7F7F;">
+            <td><a *ngIf="edition.status!=1" class="clickable" [routerLink]="['/admin/editions/artworks',edition.id]"
+                style="color: #7F7F7F;">
                 details</a>
             </td>
-            <td><a class="clickable" [routerLink]="['/admin/editions/tokenize',edition.id]" style="color: #7F7F7F;"><i
-                  class="fa fa-cog"></i>
+            <td><a *ngIf="edition.status==1" class="clickable" [routerLink]="['/admin/editions/tokenize',edition.id]"
+                style="color: #7F7F7F;"><i class="fa fa-cog"></i>
                 tokenize</a>
             </td>
 

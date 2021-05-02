@@ -12,7 +12,7 @@ import { AdminEditionComponent } from './pages/editions/editions.component';
 import { TokenizeComponent } from './pages/editions/tokenize/tokenize.component';
 import { AdminArtworkComponent } from './pages/editions/artworks/artworks.component';
 import { AdminDelegateEmailComponent } from './pages/delegateEmail/delegate-email.component';
-
+import { UserInfoComponent } from './pages/users/info/info.component';
 
 export const containers = [DashboardComponent,
     ApplicationComponent,
@@ -27,7 +27,8 @@ export const containers = [DashboardComponent,
     AdminEditionComponent,
     TokenizeComponent,
     AdminArtworkComponent,
-    AdminDelegateEmailComponent
+    AdminDelegateEmailComponent,
+    UserInfoComponent
 ];
 
 export { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -44,3 +45,4 @@ export { AdminEditionComponent } from './pages/editions/editions.component';
 export { TokenizeComponent } from './pages/editions/tokenize/tokenize.component';
 export { AdminArtworkComponent } from './pages/editions/artworks/artworks.component';
 export { AdminDelegateEmailComponent } from './pages/delegateEmail/delegate-email.component';
+export { UserInfoComponent } from './pages/users/info/info.component';

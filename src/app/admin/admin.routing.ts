@@ -11,6 +11,7 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'maps', component: Containers.MapsComponent },
   { path: 'blockchain', component: Containers.BlockchainComponent },
   { path: 'users', component: Containers.AdminUsersComponent },
+  { path: 'users/info/:id', component: Containers.UserInfoComponent },
   { path: 'notifications', component: Containers.NotificationsComponent },
   { path: 'usersetting/:id', component: Containers.UserSettingComponent },
   { path: 'application/:id', component: Containers.ApplicationComponent },

@@ -49,6 +49,8 @@
     "codelyzer": "~4.2.1",
     "compression": "^1.7.4",
     "core-js": "^2.6.12",
+    "datatables.net": "^1.10.22",
+    "datatables.net-dt": "^1.10.22",
     "express": "^4.17.1",
     "font-awesome": "^4.7.0",
     "heroku": "^7.52.0",

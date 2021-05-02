@@ -11,7 +11,7 @@ import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { SharedModule } from '../_shared/shared.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import * as Containers from './index';
-
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   imports: [
@@ -21,6 +21,7 @@ import * as Containers from './index';
     RouterModule.forChild(AdminLayoutRoutes),
     TooltipModule,
     SharedModule,
+    DataTablesModule,
     BsDatepickerModule.forRoot(),
 
     TimepickerModule
