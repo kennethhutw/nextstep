@@ -69,20 +69,20 @@ export class ArtistPageComponent implements OnInit {
 
         });
 
-      this.artistSrv.getArtistArtwork(this.uid).subscribe(res => {
-        if (res["result"] === "successful") {
-          this.popularEditions = res["data"];
-          this.popularEditions.forEach((element) => {
-            element.imageUrl = environment.assetUrl + element.imageUrl;
-          });
-        }
-      },
-        error => {
-          console.error(`getArtistArtwork error ${error}`);
-        },
-        () => {
+      // this.artistSrv.getArtistArtwork(this.uid).subscribe(res => {
+      //   if (res["result"] === "successful") {
+      //     this.popularEditions = res["data"];
+      //     this.popularEditions.forEach((element) => {
+      //       element.imageUrl = environment.assetUrl + element.imageUrl;
+      //     });
+      //   }
+      // },
+      //   error => {
+      //     console.error(`getArtistArtwork error ${error}`);
+      //   },
+      //   () => {
 
-        });
+      //   });
     });
 
 

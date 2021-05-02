@@ -4,7 +4,8 @@
   <div id="project_info" *ngIf="currentArtwork" class="row">
     <div class="col-md-7">
       <div class="mb-20">
-        <img src="{{this.currentArtwork.imageUrl || this.settingSrv.defaultProfileLogo}}" actual-image="profileImage"
+        <img style="cursor: zoom-in;" data-toggle="modal" data-target="#modal_collector_guide"
+          src="{{this.currentArtwork.imageUrl || this.settingSrv.defaultProfileLogo}}" actual-image="profileImage"
           alt="" />
       </div>
 
@@ -132,3 +133,25 @@
   <p style="color: white">Please Wait. </p>
 </ngx-spinner>
 <app-dialog></app-dialog>
+
+<div class="modal fade" id="modal_collector_guide" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" style="    max-width: 700px;">
+    <div class="modal-content model_padding">
+      <div class="modal_header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">╳</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <img style=" width: 100%;
+    height: 100%;
+    object-fit: cover;     " src="{{this.currentArtwork.imageUrl || this.settingSrv.defaultProfileLogo}}"
+              actual-image="profileImage" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
