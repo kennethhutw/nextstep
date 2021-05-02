@@ -36,7 +36,7 @@ export class EditionComponent implements OnInit {
   uid = "";
   ethSoldValue = 0;
   constructor(
-    private settingSrv: SettingService,
+    public settingSrv: SettingService,
     private dialogSrv: DialogService,
     private artworkSrv: ArtWorkService,
     private emailSrv: EmailService,
