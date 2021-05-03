@@ -70,8 +70,8 @@
   </div>
 
   <div *ngIf="popularEditions.length == 0" class="form-group row mt-30 mb-50">
-    <div class="input-group col-md-12 " style="justify-content: center;">
-      <h2>No artwork now.</h2>
+    <div class="input-group col-md-12 subtitle no-msg" style="justify-content: center;">
+      {{ "NOCOLLECTION" | translate }}
     </div>
   </div>
   <!--row end-->

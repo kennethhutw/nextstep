@@ -178,7 +178,12 @@ export class HeaderComponent implements OnInit {
               }, error => {
                 console.log(" setFirstTime", error);
               });
-              document.getElementById("openCollectorheaderModalButton").click();
+              if (this.currentUser.roles.collector) {
+                document.getElementById("openCollectorheaderModalButton").click();
+              }
+              if (this.currentUser.roles.artist) {
+                document.getElementById("openArtistModalButton").click();
+              }
             }
           },
             errorMsg => {
