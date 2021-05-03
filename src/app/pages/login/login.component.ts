@@ -153,10 +153,14 @@ export class LoginComponent implements OnInit {
   }
 
   GotoArtist() {
+    this.collectorStep = 0;
+    this.artistStep = 0;
     this.router.navigate(['/artist/account'], {});
   }
 
   GotoCollector() {
+    this.collectorStep = 0;
+    this.artistStep = 0;
     this.router.navigate(['/collector/account'], {});
   }
 

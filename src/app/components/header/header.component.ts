@@ -37,6 +37,7 @@ export class HeaderComponent implements OnInit {
   pswloading = false;
   DemoSite = "";
   collectorStep = 0;
+  artistStep = 0;
   constructor(
     private utility: Utility,
     private fb: FormBuilder,
@@ -277,11 +278,25 @@ export class HeaderComponent implements OnInit {
   }
 
 
+
+
+  onNext() {
+    this.artistStep += 1;
+  }
+
   onCollectorNext() {
     this.collectorStep += 1;
   }
 
+  GotoArtist() {
+    this.collectorStep = 0;
+    this.artistStep = 0;
+    this.router.navigate(['/artist/account'], {});
+  }
+
   GotoCollector() {
+    this.collectorStep = 0;
+    this.artistStep = 0;
     this.router.navigate(['/collector/account'], {});
   }
 
