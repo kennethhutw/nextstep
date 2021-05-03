@@ -1,5 +1,6 @@
 import { Injectable, NgZone } from "@angular/core";
 import Web3 from "web3";
+const Web3Utils = require('web3-utils');
 import { Contract } from "web3-eth-contract";
 import { Observable } from "rxjs";
 import { environment } from '../../environments/environment';
@@ -104,7 +105,8 @@ export class Web3Service {
     return this.web3.utils.toWei(value, 'ether');
   }
   verifyEthAddress(address) {
-    return this.web3.utils.isAddress(address);
+    //return this.web3.utils.isAddress(address);
+    return Web3Utils.isAddress(address);
   }
 
   onEvents(event: string) {

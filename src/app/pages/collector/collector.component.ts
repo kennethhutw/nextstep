@@ -50,7 +50,6 @@ export class CollectorPageComponent implements OnInit {
 
     this.lang = localStorage.getItem("lang");
     this.route.params.subscribe(params => {
-      console.log("_collectorAddress ==============", params);
       const _collectorAddress = params["address"];
 
       if (_collectorAddress.indexOf("0x") > -1) {
@@ -68,9 +67,9 @@ export class CollectorPageComponent implements OnInit {
               this.popularEditions.forEach((element) => {
                 element.imageUrl = environment.assetUrl + element.imageUrl;
               });
-              console.log("popularEditions ==============", this.popularEditions);
+
             }
-            //tags: "bizarre,love,romantic"
+
           } else {
 
           }

@@ -249,8 +249,8 @@ export class EditionComponent implements OnInit {
     let domain = window.location.origin;
     let url = '/gallery/' + this.artworkId;
     let link = domain + url;
-    this.emailSrv.sendAvailableEmail(
-      'Your artwork is available now on Formosart',
+    this.emailSrv.sendSoldEmail(
+      'Your artwork sold',
       this.currentArtwork.artist.name,
       this.currentArtwork.email,
       link,

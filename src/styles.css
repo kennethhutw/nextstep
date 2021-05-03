@@ -982,7 +982,8 @@ padding:7px 14px; */
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  min-height: 75px;
+  height: 75px;
+
 }
 
 .artist_intro_box {
@@ -1362,4 +1363,9 @@ padding:7px 14px; */
   width: 100%;
   font-size: 1.3rem;
   white-space: pre-wrap;
+}
+
+.subtitle{
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
 }

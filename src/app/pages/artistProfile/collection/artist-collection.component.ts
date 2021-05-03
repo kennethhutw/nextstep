@@ -67,11 +67,11 @@ export class ArtistCollectionComponent implements OnInit {
   }
 
   getImageStatus(status) {
-    let _status = "Review";
+    let _status = "Under Review";
     switch (status) {
       case "0":
         if (this._lang == "en") {
-          _status = "Review";
+          _status = "Under Review";
         } else if (this._lang == "zh-cn") {
           _status = "审核中";
         } else if (this._lang == "zh-tw") {
