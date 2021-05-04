@@ -65,7 +65,7 @@ export class ArtistUploadComponent implements OnInit {
       IsBid: [false],
       sellingPrice: [0],
       paymentway: [0],
-      numberOfArtwork: ["", Validators.required],
+      numberOfArtwork: ["", [Validators.required, Validators.min(0), Validators.max(10)]],
       tags: ["", Validators.required]
     });
 

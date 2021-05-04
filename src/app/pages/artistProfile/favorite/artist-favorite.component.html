@@ -43,7 +43,7 @@
         <ng-container *ngFor="let artwork of  ( displayArtworks | userFilter: searchArtworkText : 'name' )">
             <div id=" member-artist-project" class="row mt-30">
                 <div class="col-md-4">
-                    <a routerLink="/gallery/{{ artwork.id }}" target="_blank"><img class="mb-10"
+                    <a routerLink="/gallery/{{ artwork.id }}" target="_blank"><img style="width: 100%;" class="mb-10"
                             src="{{artwork.imageUrl}}" alt=""></a>
                 </div>
                 <div class="col-md-8">
