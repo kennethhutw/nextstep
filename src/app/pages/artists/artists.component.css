@@ -3,7 +3,11 @@
 }
 
 .search {
-  border: 2px solid #17f596;
+      background-color: #fff;
+    border-radius: 0;
+    color: #363636;
+     border: 2px solid #dbdbdb;
+  /* border: 2px solid #17f596; */
   border-radius: 3px;
     padding: 22px 15px 22px 60px;
   background-image: url("../../../assets/images/icon_search.jpg");

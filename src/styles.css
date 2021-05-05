@@ -941,7 +941,8 @@ padding:7px 14px; */
 
 .sort_dropdown {
   padding: 10px;
-  border: 1px solid #17f596;
+  /* border: 1px solid #17f596; */
+  border: 1px solid #dbdbdb;
   color: #000;
   border-radius: 5px;
 }
