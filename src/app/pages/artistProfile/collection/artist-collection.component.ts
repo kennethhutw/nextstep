@@ -35,6 +35,7 @@ export class ArtistCollectionComponent implements OnInit {
     this.currentUser = this.authStoreSrv.getUserData();
 
     this.editionSrv.getEditionByArtistId(this.currentUser.id).subscribe(res => {
+      console.log("artworks ==========", res);
       if (res['result'] === 'successful') {
         this.artworks = res['data'];
         this.artworks.forEach((element) => {
@@ -53,6 +54,13 @@ export class ArtistCollectionComponent implements OnInit {
     if (!this.utility.IsNullOrEmpty(this._lang)) {
       this.translateSrv.use(this._lang);
     }
+    else {
+      this._lang = this.translateSrv.getBrowserLang();
+      if (!this.utility.IsNullOrEmpty(this._lang)) {
+        this._lang = "en";
+      }
+      localStorage.setItem("lang", this._lang);
+    }
     this.dataSrv.langKey.subscribe((lang) => {
       if (!this.utility.IsNullOrEmpty(lang)) {
         this._lang = lang;
@@ -68,6 +76,7 @@ export class ArtistCollectionComponent implements OnInit {
 
   getImageStatus(status) {
     let _status = "Under Review";
+    console.log("artwgetImageStatusorks ==========", status);
     switch (status) {
       case "0":
         if (this._lang == "en") {

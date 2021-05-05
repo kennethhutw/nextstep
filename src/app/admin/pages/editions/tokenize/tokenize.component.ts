@@ -46,6 +46,7 @@ export class TokenizeComponent implements OnInit, OnDestroy {
   highestDBEditionNumber = -1;
   highestDBArtworkNumber = -1;
   newFirstnumber = -1;
+  tokenizeUri = "aaaaa";
   constructor(
     private utility: Utility,
     private formBuilder: FormBuilder,
@@ -69,7 +70,7 @@ export class TokenizeComponent implements OnInit, OnDestroy {
       startDate: [""],
       endDate: [""],
       artistAccount: [""],
-      artistCommission: 0,
+      artistCommission: 85,
       priceInEth: 0,
       tokenURI: [""],
       totalAvailable: 0,
@@ -222,13 +223,13 @@ export class TokenizeComponent implements OnInit, OnDestroy {
           0,
           this.tokenizeForm.value.artistAccount,
           this.tokenizeForm.value.artistCommission,
-          0,
+          priceInWei,
           this.tokenizeForm.value.tokenURI,
           this.tokenizeForm.value.totalAvailable
         ).then(res => {
-          console.log('res ==========', res);
+          console.log(' Tokenize res ==========', res);
         }).catch(err => {
-          console.error('name err ==========', err);
+          console.error('Tokenize name err ==========', err);
         });
       }
     }
@@ -256,12 +257,20 @@ export class TokenizeComponent implements OnInit, OnDestroy {
     ).subscribe(res => {
       if (res["result"] == "successful") {
         this.tokenUri = res['data'];
+        this.tokenizeUri = this.tokenUri;
+        this.tokenizeForm.controls['tokenURI'].setValue(this.tokenUri);
+        this.tokenizeForm.controls['editionNumber'].setValue(this.tokenUriForm.value.tokenId);
+        this.newFirstnumber = this.tokenUriForm.value.tokenId;
+        this.newArtWorkForm.controls['firstnumber'].setValue(this.tokenUriForm.value.tokenId);
       } else {
+        this.tokenUriForm.value.editionId
         this.tokenUri = res['message'];
+        this.tokenizeUri = this.tokenUri;
       }
 
     }, error => {
       console.error(` res error : ${error} `);
+      this.tokenizeUri = "failed!!!" + this.tokenUri;
     });
   }
 
