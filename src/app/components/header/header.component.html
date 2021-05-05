@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg  bg-white fixed-top">
   <div class="container">
     <a class="navbar-brand" routerLink="/index">
       <img src="./../../../assets/images/formosa_head_logo.svg" width="170" height="40" alt="" /></a>
@@ -29,7 +29,7 @@
             }}</a>
         </li>
         <div>
-          <h3 style="color:red">{{this.DemoSite}}</h3>
+          <h4 style="color:red">{{this.DemoSite}}</h4>
         </div>
         <!-- <li class="nav-item">
           <a *ngIf="authStoreSrv.isLoggedOut$ | async" [routerLinkActive]="['active']"
@@ -39,14 +39,14 @@
       </ul>
 
       <!-- <i style="color: #fff!important;" class="fas fa-globe"></i> -->
-      <form id="index_login" *ngIf="authStoreSrv.isLoggedOut$ | async" class="form-inline my-2 my-lg-0 text-white">
+      <form id="index_login" *ngIf="authStoreSrv.isLoggedOut$ | async" class="form-inline my-2 my-lg-0 ">
 
-        <a (click)="walletSignin()" class="text-white">
+        <a (click)="walletSignin()">
           <i class="far fa-arrow-alt-circle-right"></i>
           {{ "WALLETSIGNIN" | translate }}</a>｜
-        <a data-toggle="modal" [attr.data-target]="'#modal_login_mail'" class="text-white">{{ "EMAILSIGNIN" | translate
-          }}</a>｜<a class="text-white" [routerLinkActive]="['active']" data-toggle="modal"
-          [attr.data-target]="'#modal_register'">{{ "SIGNUP" | translate }}</a>
+        <a data-toggle="modal" [attr.data-target]="'#modal_login_mail'">{{ "EMAILSIGNIN" | translate
+          }}</a>｜<a [routerLinkActive]="['active']" data-toggle="modal" [attr.data-target]="'#modal_register'">{{
+          "SIGNUP" | translate }}</a>
 
       </form>
 
@@ -80,7 +80,7 @@
         </div>
       </form>
       <!-- <ng-container *ngIf="auth.user$ | async as user"> -->
-      <form *ngIf="authStoreSrv.isLoggedIn$ | async" id="index_login" class="form-inline my-2 my-lg-0 text-white">
+      <form *ngIf="authStoreSrv.isLoggedIn$ | async" id="index_login" class="form-inline my-2 my-lg-0 ">
 
         <div *ngIf="this.currentUser.roles.collector" class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto text-center">
