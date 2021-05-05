@@ -109,18 +109,20 @@ export class HeaderComponent implements OnInit {
           if (this.currentUser.firstTime == 1) {
             this.userSrv.setFirstTime(this.currentUser.id, "0").subscribe(res => {
               console.log(" setFirstTime", res);
+              this.currentUser.firstTime = 0;
+              this.authStoreSrv.setUserData(this.currentUser);
             }, error => {
               console.log(" setFirstTime", error);
             });
-          }
 
-          if (this.currentUser.roles.artist) {
-            if (this.currentUser.firstTime == 1) {
-              this.currentUser.firstTime = 0;
-              this.authStoreSrv.setUserData(this.currentUser);
-              this.router.navigate(['/artist/account'], {});
+            if (this.currentUser.roles.collector) {
+              document.getElementById("openCollectorheaderModalButton").click();
+            }
+            if (this.currentUser.roles.artist) {
+              document.getElementById("openArtistModalButton").click();
             }
           }
+
         } else {
           this.IsSignInFailed = true;
           this.LoginFailedMsg = res["message"];

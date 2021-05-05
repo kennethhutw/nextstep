@@ -59,8 +59,16 @@
     </div> -->
     <div class="form-group mt-20">
         <label for="exampleInputEmail1">{{ "NUMOFCOPIES" | translate }}</label>
-        <input type="number" formControlName="numberOfArtwork" class="form-control" id="" aria-describedby="">
-        <span class="d-block pt-05 text-black-50 text-13">{{ "SOLDNUM" | translate }}</span>
+        <input type="number" formControlName="numberOfArtwork" class="form-control" id="" aria-describedby=""
+            [ngClass]="{ 'is-invalid': submitted && f.numberOfArtwork.errors }">
+        <span class="d-block pt-05 text-black-50 text-13 mt-10">{{ "SOLDNUM" | translate }}</span>
+
+        <div *ngIf="submitted && f.numberOfArtwork.errors" class="invalid-feedback">
+            <div *ngIf="f.numberOfArtwork.errors.required">{{ "NUMOFCOPIESREQ" | translate }} </div>
+            <div *ngIf="f.numberOfArtwork.errors?.min"> {{ "NUMOFCOPIESMIN" | translate }} </div>
+            <div *ngIf="f.numberOfArtwork.errors?.max">s {{ "NUMOFCOPIESMAX" | translate }} </div>
+        </div>
+
     </div>
     <div class="form-group ">
         <label for="exampleInputEmail1">{{ "SELECTTAGS" | translate }}</label>
@@ -153,7 +161,7 @@
     <button (click)="onSubmit()" id="member_last_btn_w100" class="btn_normal ">
         {{ "UPLOAD" | translate }}
     </button>
-    <div style="margin-top: 10px;" [ngClass]="{ 'error-msg': IsUpdateFailed === true }" *ngIf="informMsg">{{informMsg}}
+    <div style="margin-top: 10px;" class="error-msg" *ngIf="informMsg">{{informMsg}}
     </div>
 </div>
 <div class="modal fade" id="modal_select_channel" tabindex="-1" aria-labelledby="channelModal" aria-hidden="true">

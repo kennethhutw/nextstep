@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 
 import {
@@ -42,6 +42,7 @@ export class ArtistUploadComponent implements OnInit {
   isReadonly = true;
   lang = "en";
   constructor(
+    private changeDetectorRef: ChangeDetectorRef,
     private dataSrv: DataService,
     private utility: Utility,
     private artistSrv: ArtistService,
@@ -74,6 +75,7 @@ export class ArtistUploadComponent implements OnInit {
       this.translateSrv.use(this.lang);
       this.initTags(this.lang);
     } else {
+      this.lang = "en";
       this.translateSrv.use("en");
       this.initTags("en");
     }
@@ -86,6 +88,11 @@ export class ArtistUploadComponent implements OnInit {
     });
   }
 
+
+  get f() {
+    return this.artworkForm.controls;
+  }
+
   initTags(lang) {
     this.appSettingsSrv.getTagOptions(lang).subscribe((data) => {
       this.tags = data;
@@ -96,8 +103,6 @@ export class ArtistUploadComponent implements OnInit {
     this.isReadonly = false;
     let result = this.tags.filter((ch) => { return ch.selected })
       .map((ch) => { return ch.value });
-
-
 
     let _tags_string = result.toString();
     this.artworkForm.patchValue({ tags: _tags_string });
@@ -201,11 +206,11 @@ export class ArtistUploadComponent implements OnInit {
   }
 
   getErrorMsg(lang) {
-    let msg = "";
+    let msg = "Please fill in all the required fields(*). ";
     switch (lang) {
-      case "en":
-        msg = "Please fill in all the required fields(*). ";
-        break;
+      // case "en":
+      //   msg = "Please fill in all the required fields(*). ";
+      //   break;
       case "zh-tw":
         msg = "請填寫所有必填欄位(*)。"
         break;
@@ -219,10 +224,15 @@ export class ArtistUploadComponent implements OnInit {
     this.submitted = true;
     this.IsUpdateFailed = false;
     this.informMsg = null;
-
+    console.log("================");
     if (this.artworkImageFile == null) {
       this.informMsg = this.getErrorMsg(this.lang);
       this.IsUpdateFailed = true;
+      this.changeDetectorRef.detectChanges();
+      return;
+    }
+    console.log("================");
+    if (this.artworkForm.invalid) {
       return;
     }
 
@@ -232,6 +242,7 @@ export class ArtistUploadComponent implements OnInit {
     this.dialogSrv.confirmThis(msg,
       () => {
         console.log("YES");
+
         this.upload();
       }, () => {
         console.log("NO");
