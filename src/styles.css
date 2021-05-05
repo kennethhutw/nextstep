@@ -1356,8 +1356,8 @@ padding:7px 14px; */
 }
 
 .profile_image{
-  height: 154px;
-  width: 154px;
+  height: 154px  !important;
+  width: 154px !important;
 }
 
 .no-msg{

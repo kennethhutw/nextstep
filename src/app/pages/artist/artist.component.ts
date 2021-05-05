@@ -21,6 +21,7 @@ import { Utility } from "../../_helpers";
 export class ArtistPageComponent implements OnInit {
   artist = null;
   popularEditions = [];
+  artistArtworks = [];
   lang = "en";
   tags = [];
   defaultImg = "";
@@ -69,20 +70,20 @@ export class ArtistPageComponent implements OnInit {
 
         });
 
-      // this.artistSrv.getArtistArtwork(this.uid).subscribe(res => {
-      //   if (res["result"] === "successful") {
-      //     this.popularEditions = res["data"];
-      //     this.popularEditions.forEach((element) => {
-      //       element.imageUrl = environment.assetUrl + element.imageUrl;
-      //     });
-      //   }
-      // },
-      //   error => {
-      //     console.error(`getArtistArtwork error ${error}`);
-      //   },
-      //   () => {
+      this.artistSrv.getArtistArtwork(this.uid).subscribe(res => {
+        if (res["result"] === "successful") {
+          this.artistArtworks = res["data"];
+          this.artistArtworks.forEach((element) => {
+            element.imageUrl = environment.assetUrl + element.imageUrl;
+          });
+        }
+      },
+        error => {
+          console.error(`getArtistArtwork error ${error}`);
+        },
+        () => {
 
-      //   });
+        });
     });
 
 

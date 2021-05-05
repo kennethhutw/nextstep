@@ -14,7 +14,7 @@
     <div class="col-md-5">
       <div class="mb-20">
         <div class="d-inline">
-          <a routerLink="/{{ this.currentArtwork.artist.uid }}"><img class="rounded-circle w-25 profile_image"
+          <a routerLink="/{{ this.currentArtwork.artist.uid }}"><img class="rounded-circle profile_image"
               src="{{this.currentArtwork.artist.imageUrl || this.settingSrv.defaultProfileLogo}}" alt="" /></a>
         </div>
         <div class="d-inline p-2">
@@ -23,10 +23,7 @@
       </div>
 
       <h1 class="mb-30">{{this.currentArtwork.name}}</h1>
-      <h4>{{ "EDITIONDESC" | translate }}</h4>
-      <div class="text-justify">
-        {{this.currentArtwork.description}}
-      </div>
+
       <h1 class="mt-50">
         Ξ {{displaySellPrice()}} <span class="project_info_price_us"> / USD
           {{this.currentArtwork.usdValue/100}}</span>
@@ -42,11 +39,16 @@
         }}</button>
       <div class="text-right mt-10" *ngIf="this.currentUser">
         <a *ngIf="!IsFollowed" (click)="onLike()">
-          <i class="far fa-heart"></i></a>
+          <i class="far fa-heart fa-lg"></i></a>
         <a *ngIf="IsFollowed" (click)="onDislike()">
-          <i class="fas fa-heart"></i></a>
-        <!-- <a href="project-bidding.html">收藏 <i class="far fa-heart"></i></a>
-        <a href="project-bidding.html">已收藏 <i class="fas fa-heart"></i></a> -->
+          <i class="fas fa-heart fa-lg"></i></a>
+        <!-- <a href="project-bidding.html">收藏 <i class="far fa-heart  fa-lg"></i></a>
+        <a href="project-bidding.html">已收藏 <i class="fas fa-heart  fa-lg"></i></a> -->
+      </div>
+      <hr class="mt-30 mb-30" />
+      <h4>{{ "EDITIONDESC" | translate }}</h4>
+      <div class="text-justify">
+        {{this.currentArtwork.description}}
       </div>
       <hr class="mt-30 mb-30" />
       <h6 class="mt-50">{{ "EDITIONOWNER" | translate }}</h6>
