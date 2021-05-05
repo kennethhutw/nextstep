@@ -46,8 +46,8 @@ export class CheckStatusComponent implements OnInit {
 
           if (this.utility.IsNullOrEmpty(_artistData.status)) {
             if (_artistData.status == 0) {
-              this.msg = "Your application is still under proessing. \n\b ";
-              this.msg2 = "We will review your application soon."
+              this.msg = "Your application is still under review. \n\b ";
+              this.msg2 = ""
             }
             else {
               this.isAlarm = true;
