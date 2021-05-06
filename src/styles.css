@@ -2,7 +2,10 @@
 // No media query for `xs` since this is the default in Bootstrap
 
 // Small devices (landscape phones, 576px and up) */
-
+.nav-link{
+    font-family:Roboto;
+  font-weight: 200;
+}
 @media (max-width: 750px) {
   #main-bg {
     padding: 50px 0;
@@ -369,8 +372,9 @@ body {
 /** 修改 bootstrap model **/
 
 body {
-  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
-    "Microsoft YaHei", Arial, sans-serif;
+/*   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", Arial, sans-serif; */
+    font-family:"Roboto thin"  !important;
   padding-right: 0px !important;
   overflow-y: scroll !important;
 }

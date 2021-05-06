@@ -10,6 +10,7 @@
     letter-spacing: 0.4px;
     padding: 0 0 15px;
     text-transform: capitalize;
+
   }
   .main-menu nav > ul > li:hover > a,
   .sidebar-mega-menu nav > ul > li:hover > a {
@@ -44,4 +45,6 @@
 a{
      color: #210b2c;
          font-size: 20px;
+              font-family:Roboto;
+  font-weight: 200;
 }
