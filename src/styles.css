@@ -2,10 +2,7 @@
 // No media query for `xs` since this is the default in Bootstrap
 
 // Small devices (landscape phones, 576px and up) */
-.nav-link{
-    font-family:Roboto;
-  font-weight: 200;
-}
+
 @media (max-width: 750px) {
   #main-bg {
     padding: 50px 0;
@@ -201,7 +198,9 @@
 
 
 /** buttons **/
-
+button{
+  font-weight: 300;
+}
 .btn_small:focus,
 .btn_normal:focus,
 .btn_large:focus,
@@ -374,9 +373,10 @@ body {
 body {
 /*   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
     "Microsoft YaHei", Arial, sans-serif; */
-    font-family:"Roboto thin"  !important;
+    font-family:'Roboto', sans-serif!important;
   padding-right: 0px !important;
   overflow-y: scroll !important;
+  font-weight: 300 !important;
 }
 
 nav {
@@ -427,7 +427,8 @@ input:focus:-ms-input-placeholder {
   color: #fff;
   margin: 0 auto;
   text-align: center;
-  font-weight: bold;
+  font-family: "Noto Serif JP", sans-serif;
+  /* font-weight: bold; */
 }
 
 .main-btn-explore {
@@ -458,6 +459,7 @@ input:focus:-ms-input-placeholder {
   padding-bottom: 5px;
   font-size: 30px;
   margin-bottom: 20px;
+   font-family: "Noto Serif JP", sans-serif;
 }
 
 .index_buyer_box:hover {
@@ -640,10 +642,12 @@ box-shadow:0 0 5px #fff;
 
 .index_title {
   font-size: 60px;
-  margin-top: 100px;
-  font-weight: bold;
-  line-height: 50px;
+  margin-top: 80px;
+  /* font-weight: bold; */
+  line-height: 60px;
   margin-bottom: 30px;
+    font-family: "Noto Serif JP", sans-serif;
+    font-weight: 200;
 }
 
 .index_title span {
@@ -656,12 +660,14 @@ box-shadow:0 0 5px #fff;
 }
 
 .index_buyer_box {
-  border: 6px solid #17f596;
-  border-radius: 15px;
+  /* border: 6px solid #17f596; */
+  /* border-radius: 15px; */
   padding: 40px;
   font-size: 20px;
   margin-bottom: 20px;
   background-color: #fff;
+  font-family: "Noto Serif JP", sans-serif;
+
 }
 
 .index_buyer_bg {
@@ -690,7 +696,8 @@ box-shadow:0 0 5px #fff;
   font-size: 60px;
   line-height: 80px;
   text-align: center;
-  font-weight: bold;
+  font-weight: 200;
+   font-family: "Noto Serif JP", sans-serif;
 }
 
 .index_art_slogen span {

@@ -2,3 +2,22 @@
 /* a {
   color: #08ab65 !important;
 } */
+.nft{
+  margin-top: 7%;
+  font-weight: 300;
+  font-size: 3rem;
+  line-height: 3.5rem;
+  font-family: "Noto Serif JP", sans-serif;
+
+}
+
+.nft-desc{
+   font-size: 22px;
+}
+#recentEditions img{
+  height:241px;
+}
+
+#popularDisplayEditions  img{
+  height:241px;
+}

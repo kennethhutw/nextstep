@@ -1,4 +1,4 @@
-<div id="content-mt" class="container">
+<div *ngIf="currentArtwork" id="content-mt" class="container">
 
   <div style="height: 500px;" *ngIf="!currentArtwork"></div>
   <div id="project_info" *ngIf="currentArtwork" class="row">
@@ -146,7 +146,7 @@
       </div>
       <div class="modal-body">
         <div class="row">
-          <div class="col-md-12">
+          <div *ngIf="currentArtwork" class="col-md-12">
             <img class="viewImg" src="{{this.currentArtwork.imageUrl }}" actual-image="profileImage" alt="" />
           </div>
         </div>

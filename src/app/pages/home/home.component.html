@@ -20,8 +20,16 @@
   <div class="index-title w-100">
     {{ "POPULARCREATIONS" | translate }}
   </div>
+  <div id="popularDisplayEditions" class="row">
+    <ng-container *ngFor="let edition of popularDisplayEditions[0]">
+      <div class="col-md-4 mb-4">
+        <app-edition1 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
+          editionImg="{{ edition.imageUrl }}" editionId="{{ edition.artworkId }}"></app-edition1>
+      </div>
+    </ng-container>
 
-  <div class="row">
+  </div>
+  <!-- <div class="row">
     <div class="carousel slide" id="myCarousel" data-ride="myCarousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
@@ -42,9 +50,7 @@
                   editionImg="{{ edition.imageUrl }}" editionId="{{ edition.artworkId }}"></app-edition1>
               </div>
             </ng-container>
-            <!-- <div class="col-sm"><img class="d-block w-100" src="//placehold.it/1200x600/ccff00" alt="4 slide"></div>
-            <div class="col-sm"><img class="d-block w-100" src="//placehold.it/1200x600/444" alt="5 slide"></div>
-            <div class="col-sm"><img class="d-block w-100" src="//placehold.it/1200x600/ddd" alt="6 slide"></div> -->
+
           </div>
         </div>
       </div>
@@ -61,14 +67,14 @@
         <i class="fas fa-chevron-right"></i>
       </a>
     </div>
-  </div>
+  </div> -->
   <!--row end-->
 
   <div class="index-title w-100">
     {{ "RECENT" | translate }}
   </div>
 
-  <div class="row">
+  <div id="recentEditions" class="row">
     <ng-container *ngFor="let edition of recentEditions">
       <div class="col-md-4 mb-4">
         <app-edition1 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
@@ -85,37 +91,37 @@
   <!--row end-->
 
   <div id="index_title" class="index_title text-center">
-    {{ "STARTYOUROWN" | translate }}
-    <span>{{ "DIGITALCOLLECTION" | translate }}</span>
+    {{ "STARTYOUROWN" | translate }} {{ "DIGITALCOLLECTION" | translate }}
+    <span></span>
   </div>
 </div>
 
 
 <div class="container-fluid">
-  <div id="index_buyer_bg" class="row index_buyer_bg">
+  <div class="row">
     <div class="container">
       <div id="index_buyer" class="text-center">
         <div class="row">
           <div class="col-md-10 offset-md-1">
             <div class="row ">
-              <div class="col-md-4 box-height">
+              <div class="col-md-4 ">
                 <div class="index_buyer_box">
-                  <img src="./../../../assets/images/index_buyer_icon-1.jpg" alt="" />
-                  <h3>{{ "COLLECT" | translate }}</h3>
+                  <img src="./../../../assets/images/collect.png" alt="" />
+                  <h3 style="font-weight: 700;">{{ "COLLECT" | translate }}</h3>
                   <div>{{ "COLLECTDES" | translate }}</div>
                 </div>
               </div>
-              <div class="col-md-4 box-height">
+              <div class="col-md-4 ">
                 <div class="index_buyer_box">
-                  <img src="./../../../assets/images/index_buyer_icon-2.jpg" alt="" />
-                  <h3>{{ "SHOWOFF" | translate }}</h3>
+                  <img src="./../../../assets/images/share.png" alt="" />
+                  <h3 style="font-weight: 700;">{{ "SHOWOFF" | translate }}</h3>
                   <div>{{ "SHOWOFFDES" | translate }}</div>
                 </div>
               </div>
-              <div class="col-md-4 box-height">
+              <div class="col-md-4 ">
                 <div class="index_buyer_box">
-                  <img src="./../../../assets/images/index_buyer_icon-3.jpg" alt="" />
-                  <h3>{{ "INVEST" | translate }}</h3>
+                  <img src="./../../../assets/images/invest.png" alt="" />
+                  <h3 style="font-weight: 700;">{{ "INVEST" | translate }}</h3>
                   <div>{{ "INVESTDES" | translate }}</div>
                 </div>
               </div>
@@ -124,8 +130,8 @@
         </div>
       </div>
       <div class="text-center mx-auto mt-3 mb-5">
-        <button class="index_btn_explore2">{{ "LEARNMORE" | translate }}</button>
-        <button class="index_btn_explore3" routerLink="/gallery">
+        <!-- <button class="index_btn_explore1">{{ "LEARNMORE" | translate }}</button> -->
+        <button class="index_btn_explore1" routerLink="/gallery">
           {{ "STARTCOLLECTING" | translate }}
         </button>
       </div>
@@ -138,12 +144,10 @@
     background-color: 	#181818;">
   <div class="row " style="color:white">
     <div class="col-md-6 text-center">
-      <h1 style="font-family: 'Maitree',serif;
-    font-weight: 300;    font-size: 3rem;
-    line-height: 3.5rem;">What are NFTs?</h1>
+      <h1 class="nft">What are NFTs?</h1>
     </div>
-    <div class="col-md-5">
-      Every digital artwork on KnownOrigin is authentic and truly unique. Blockchain technology makes this new
+    <div class="col-md-5 nft-desc">
+      Every digital artwork on FormosArt is authentic and truly unique. Blockchain technology makes this new
       approach to
       digital ownership possible. Use our platform to showcase and sell your work to collectors who care about
       authenticity.
@@ -158,18 +162,18 @@
     <div id="index_arts_bg">
       <div class="index_arts_text">
         <div class="index_art_slogen">
-          {{ "AREYOUA" | translate }}<br /><span>{{
-            "DIGITALCREATOR?" | translate
-            }}</span>
+          {{ "AREYOUA" | translate }}<br />{{
+          "DIGITALCREATOR?" | translate
+          }}
         </div>
         <p class="mt-2 text-center">
           {{ "DIGITALCREATORDES" | translate }}<br />
           {{ "DIGITALCREATORDES2" | translate }}
         </p>
         <div class="text-center mx-auto mt-3 mb-5">
-          <button class="index_btn_explore1">
+          <!-- <button class="index_btn_explore1">
             {{ "LEARNMORE" | translate }}
-          </button>
+          </button> -->
           <button routerLink="/register-artist" class="index_btn_explore1">{{ "JOINUS" | translate }}</button>
         </div>
       </div>
