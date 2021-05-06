@@ -541,9 +541,9 @@ border:1px solid #fff; */
 padding:7px 14px; */
 }
 
-.hovereffect a.info:hover {
-  /* box-shadow:0 0 5px #fff; */
-}
+/* .hovereffect a.info:hover {
+box-shadow:0 0 5px #fff;
+} */
 
 .hovereffect:hover img {
   -ms-transform: scale(1.2);
