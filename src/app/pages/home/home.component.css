@@ -21,3 +21,8 @@
 #popularDisplayEditions  img{
   height:241px;
 }
+
+.desc{
+     font-family: "Roboto", sans-serif;
+     font-weight: 300;
+}
