@@ -38,6 +38,7 @@ export class HeaderComponent implements OnInit {
   DemoSite = "";
   collectorStep = 0;
   artistStep = 0;
+  uid = "";
   constructor(
     private utility: Utility,
     private fb: FormBuilder,
@@ -81,6 +82,7 @@ export class HeaderComponent implements OnInit {
 
     this.currentUser = this.authStoreSrv.getUserData();
     console.log("  this.currentUser ", this.currentUser);
+    this.uid = this.currentUser.uid;
     this.authStoreSrv.user$.subscribe(user => { this.currentUser = user });
   }
 

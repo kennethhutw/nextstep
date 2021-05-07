@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
         this.popularEditions.forEach((element) => {
           element.imageUrl = environment.assetUrl + element.imageUrl;
         });
-        this.popularDisplayEditions = this.chunk(this.popularEditions, 3);
+        // this.popularDisplayEditions = this.chunk(this.popularEditions, 3);
       }
     });
 

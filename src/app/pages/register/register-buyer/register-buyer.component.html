@@ -1,11 +1,11 @@
 <!--header-->
 <div class="container-fluid bgc-grey">
   <div class="row bgc-white" style="
-    padding-bottom: 40px;
+    padding-bottom: 20px;
 ">
     <div class="col-md-12">
       <div class="text-center signup-logo">
-        <img src="./../../../assets/images/formosa_logo_bgwhite.svg" alt="" />
+        <img style="height:83px; width: 342px;" src="./../../../assets/images/header_logo.svg" />
         <h1 class="text-center mb-20">{{ 'JOINASACOLLECTOR' | translate }}</h1>
         <!-- <p class="text-center pb-30 signup_discript">
           {{ 'COLLECTORCHOICE' | translate }}
@@ -14,7 +14,7 @@
     </div>
   </div>
 
-  <div class="row mt-20">
+  <div class="row ">
     <div id="register_table" class="container">
       <div class="row" [formGroup]="registerForm">
         <div class="col-md-12 text-center mt-40">
@@ -115,6 +115,7 @@
     </div>
   </div>
 </div>
+
 <app-dialog></app-dialog>
 
 <div class="text-center mt-40">

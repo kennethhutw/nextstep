@@ -5,12 +5,17 @@
   <div id="artist-line-right" class="col-md-7">
     <h1 class="d-inline align-middle mr-2">{{ name }}</h1>
     <div class="d-inline" *ngIf="this.currentUser">
-      <button *ngIf="!isFollow" class="d-inline btn_small align-middle" (click)="onLike()">
-        <i class="fas fa-user"></i> {{ "FOLLOW" | translate }}
+      <button *ngIf="_uid == id" class="d-inline btn_small align-middle" routerLink="/artist/basic">
+        <i class="fas fa-pencil-alt"></i> {{ "EDITPROFILE" | translate }}
       </button>
-      <button *ngIf="isFollow" class="d-inline btn_small_liked align-middle active" (click)="onDislike()">
-        <i class="fas fa-user-check"></i> {{ "UNFOLLOW" | translate }}
-      </button>
+      <ng-container *ngIf="_uid != id">
+        <button *ngIf="!isFollow" class="d-inline btn_small align-middle" (click)="onLike()">
+          <i class="fas fa-user"></i> {{ "FOLLOW" | translate }}
+        </button>
+        <button *ngIf="isFollow" class="d-inline btn_small_liked align-middle active" (click)="onDislike()">
+          <i class="fas fa-user-check"></i> {{ "UNFOLLOW" | translate }}
+        </button>
+      </ng-container>
       <button style="margin-left: 5px;" class="d-inline btn_small align-middle" (click)="onShare()">
         <i class="fas fa-share"></i> {{ "SHARE" | translate }}
       </button>

@@ -23,7 +23,7 @@ export class ArtistDetailComponent {
   @Input() id: string;
   @Input() set uid(value) {
     this._uid = value;
-
+    console.log("_uid", this._uid);
   }
 
   @Input() isFollow: boolean = false;
@@ -48,6 +48,8 @@ export class ArtistDetailComponent {
         }
       });
     }
+
+
   }
 
   @Input() walletAddress: string = "0x";
@@ -79,7 +81,7 @@ export class ArtistDetailComponent {
         this.translateSrv.use(lang);
       }
     });
-
+    console.log("id", this.id);
 
   }
 

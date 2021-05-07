@@ -19,6 +19,24 @@
                 <div class="col-md-2">
 
                     <ul class="member_ul" style="margin-bottom: 200px;">
+                        <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+                            routerLink="/artist/account">
+                            <li class="member_side_navi w-100">
+                                {{ "ACCOUNTPASSWORD" | translate }}
+                            </li>
+                        </a>
+                        <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+                            [routerLink]="['/',this.currentUser.uid]">
+                            <li class="member_side_navi w-100">
+                                {{ "PROFILE" | translate }}
+                            </li>
+                        </a>
+                        <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+                            routerLink="/artist/basic">
+                            <li class="member_side_navi w-100">
+                                {{ "EDITPROFILE" | translate }}
+                            </li>
+                        </a>
                         <a [routerLinkActive]="['active']" routerLink="/artist/collection">
                             <li class="member_side_navi">
                                 {{ "MANAGEMENTEDITION" | translate }}
@@ -42,12 +60,7 @@
                                 {{ "PROFILE" | translate }}
                             </li>
                         </a> -->
-                        <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
-                            routerLink="/artist/account">
-                            <li class="member_side_navi w-100">
-                                {{ "ACCOUNTPASSWORD" | translate }}
-                            </li>
-                        </a>
+
                         <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
                             routerLink="/artist/favorite">
                             <li class="member_side_navi w-100">

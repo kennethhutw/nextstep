@@ -5,7 +5,7 @@
     follow="{{this.artist.like}}" follower="{{this.artist.liked}}" bio="{{this.artist.bio}}"
     walletAddress="{{this.artist.ethaddress}}" twitter="{{this.artist.twitter}}" instagram="{{this.artist.instagram}}"
     website="{{this.artist.website}}" location="{{this.artist.location}}" tags="{{this.artist.tags}} "
-    uid="{{this.uid}}" id="{{this.artist.id}}">
+    uid="{{this.currentUid}}" id="{{this.artist.id}}">
   </app-artist-detail>
   <div class="peoject_tag_openup text-center mt-10">
     <span class="project_tag_subtitle"></span>
@@ -18,55 +18,6 @@
       </div>
     </ng-container>
 
-
-    <!-- <div class="col-md-4 mb-4">
-      <div class="hovereffect">
-        <img src="./assets/images/main-thumbnail-a3.jpg" alt="" />
-        <div class="overlay">
-          <h2>The Calm And The Storm</h2>
-          <p><i class="fas fa-user"></i> Andrew Shiao</p>
-          <a href="project-purchase.html">
-            <button class="info">了解作品細節</button>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-4">
-      <div class="hovereffect">
-        <img src="./assets/images/main-thumbnail-a1.jpg" alt="" />
-        <div class="overlay">
-          <h2>The Calm And The Storm too more words</h2>
-          <p><i class="fas fa-user"></i> Andrew Shiao</p>
-          <a href="project-purchase.html">
-            <button class="info">了解作品細節</button>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-4">
-      <div class="hovereffect">
-        <img src="./assets/images/main-thumbnail-a2.jpg" alt="" />
-        <div class="overlay">
-          <h2>The Calm And The Storm</h2>
-          <p><i class="fas fa-user"></i> Andrew Shiao</p>
-          <a href="project-purchase.html">
-            <button class="info">了解作品細節</button>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-4">
-      <div class="hovereffect">
-        <img src="./assets/images/main-thumbnail-a3.jpg" alt="" />
-        <div class="overlay">
-          <h2>The Calm And The Storm</h2>
-          <p><i class="fas fa-user"></i> Andrew Shiao</p>
-          <a href="project-purchase.html">
-            <button class="info">了解作品細節</button>
-          </a>
-        </div>
-      </div>
-    </div> -->
   </div>
 
   <div *ngIf="popularEditions.length == 0" class="form-group row mt-30 mb-50">

@@ -45,3 +45,10 @@ p {
 .artist{
     cursor: pointer;
 }
+.name {
+      font-family: "Noto Serif JP", sans-serif;
+      font-weight: 400;
+}
+th{
+    font-weight: 300;
+}

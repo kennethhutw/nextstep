@@ -255,5 +255,12 @@ export class RegisterBuyerComponent implements OnInit {
     */
   }
 
-
+  test() {
+    this.dialogSrv.infoThis("Metamask not found Install or enable Metamask",
+      () => {
+        console.log("yed ===");
+      }, () => {
+        console.log("no ===");
+      });
+  }
 }

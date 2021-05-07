@@ -64,11 +64,14 @@
                 <i class="far fa-user-circle par-5"></i>{{ "MEMBERMANAGEMENT" | translate }}
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" routerLink="/artist/basic">{{ "PROFILE" | translate }}</a>
+                <a class="dropdown-item" routerLink="/artist/account">{{ "ACCOUNTPASSWORD" | translate }}</a>
+                <a class="dropdown-item" *ngIf="this.currentUser.uid" [routerLink]="['/',this.currentUser.uid]">{{
+                  "PROFILE" | translate }}</a>
+                <a class="dropdown-item" routerLink="/artist/basic">{{ "EDITPROFILE" | translate }}</a>
                 <a class="dropdown-item" routerLink="/artist/collection">{{ "MANAGEMENTEDITION" | translate }}</a>
                 <a class="dropdown-item" routerLink="/artist/upload">{{ "UPLOADEDITION" | translate }}</a>
                 <a class="dropdown-item" routerLink="/artist/sold">{{ "SOLDEDITION" | translate }}</a>
-                <a class="dropdown-item" routerLink="/artist/account">{{ "ACCOUNTPASSWORD" | translate }}</a>
+
                 <a class="dropdown-item" routerLink="/artist/favorite">{{ "MYFAVOURITES" | translate }}</a>
                 <div class="dropdown-divider"> </div>
                 <!-- <a class="dropdown-item" href="#">登出</a> -->

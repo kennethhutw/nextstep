@@ -55,7 +55,8 @@ export class CollectorPageComponent implements OnInit {
       if (_collectorAddress.indexOf("0x") > -1) {
         // todo
         this.userSrv.getUserInfoByAddress(_collectorAddress).then(res => {
-
+          console.log("collector========== ", res);
+          console.log("collector========== ", this.uid);
           if (res["result"] === "successful") {
             this.collector = res["data"];
             if (this.collector && this.collector.imageUrl != null) {

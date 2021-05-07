@@ -23,7 +23,6 @@ export class CollectorDetailComponent {
   @Input() id: string;
   @Input() set uid(value) {
     this._uid = value;
-
   }
   @Input() isFollow: boolean = false;
 
@@ -58,6 +57,7 @@ export class CollectorDetailComponent {
   @Input() name: string;
   @Input() bio: string;
   @Input() src: string;
+
 
   constructor(
     private utility: Utility,

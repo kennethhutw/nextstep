@@ -26,6 +26,7 @@ export class ArtistPageComponent implements OnInit {
   tags = [];
   defaultImg = "";
   uid = "";
+  currentUid = "";
   currentUser = null;
   defaultProfileLogo = null;
   constructor(
@@ -39,9 +40,9 @@ export class ArtistPageComponent implements OnInit {
     this.defaultImg = this.appSettingsSrv.defulatImage;
     this.currentUser = this.authStoreSrv.getUserData();
 
-    // if (this.currentUser) {
-    //   this.uid = this.currentUser.id;
-    // }
+    if (this.currentUser) {
+      this.currentUid = this.currentUser.id;
+    }
     this.defaultProfileLogo = this.settingSrv.defaultProfileLogo;
   }
 
