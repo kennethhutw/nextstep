@@ -15,6 +15,7 @@ export { ModalComponent } from "./modal/modal.component";
 export { ArtistDetailComponent } from "./artist-detail/artist-detail.component";
 export { Edition2Component } from "./edition2/edition2.component";
 export { Edition3Component } from "./edition3/edition3.component";
+export { Edition4Component } from "./edition4/edition4.component";
 export { ArtistHeaderComponent } from "./artist-header/artist-header.component";
 export { CollectorHeaderComponent } from "./collector-header/collector-header.component";
 export { DialogComponent } from "./dialog/dialog.component";
