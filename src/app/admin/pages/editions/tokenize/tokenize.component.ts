@@ -418,7 +418,7 @@ export class TokenizeComponent implements OnInit, OnDestroy {
       this.artist.name,
       this.artist.email,
       link,
-      this.edition.name,
+      this.edition.artworkName,
       this.currentUser.id).subscribe(sendRes => {
         if (sendRes['result'] == 'successful') {
           this.toastSrv.showToast('Success', "Inform Email Sent", this.toastSrv.iconClasses.success);
