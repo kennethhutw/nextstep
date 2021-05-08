@@ -82,7 +82,9 @@ export class HeaderComponent implements OnInit {
 
     this.currentUser = this.authStoreSrv.getUserData();
     console.log("  this.currentUser ", this.currentUser);
-    this.uid = this.currentUser.uid;
+    if (!!this.currentUser) {
+      this.uid = this.currentUser.uid;
+    }
     this.authStoreSrv.user$.subscribe(user => { this.currentUser = user });
   }
 

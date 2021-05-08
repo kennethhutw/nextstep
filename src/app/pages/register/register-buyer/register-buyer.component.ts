@@ -256,11 +256,8 @@ export class RegisterBuyerComponent implements OnInit {
   }
 
   test() {
-    this.dialogSrv.infoThis("Metamask not found Install or enable Metamask",
-      () => {
-        console.log("yed ===");
-      }, () => {
-        console.log("no ===");
-      });
+    console.log("authenticateMail ============");
+    let AuthEmailRes = this.auth.sendAuthEmail('11', 'kenneth.hu.tw@gmail.com').subscribe(res => { });
+
   }
 }

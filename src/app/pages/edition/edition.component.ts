@@ -243,6 +243,9 @@ export class EditionComponent implements OnInit {
     }
   }
 
+  test() {
+    this.informArtist();
+  }
 
   informArtist() {
 
@@ -252,7 +255,7 @@ export class EditionComponent implements OnInit {
     this.emailSrv.sendSoldEmail(
       'Your artwork sold',
       this.currentArtwork.artist.name,
-      this.currentArtwork.email,
+      this.currentArtwork.artist.email,
       link,
       this.currentArtwork.name,
       this.currentUser.id).subscribe(sendRes => {
