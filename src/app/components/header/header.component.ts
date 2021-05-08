@@ -267,6 +267,7 @@ export class HeaderComponent implements OnInit {
       'Reset your password for FormosaArt',
       this.ForgotPasswordEmail,
       link).subscribe(sendRes => {
+        console.log("sendRes", sendRes);
         if (sendRes['result'] == 'successful') {
           this.pswActionMsg = sendRes['message'];
         } else {
