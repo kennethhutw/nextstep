@@ -76,7 +76,6 @@ export class ApplicationComponent implements OnInit, OnDestroy {
   }
 
   CheckStatus(value) {
-    console.log(" ===========", value);
     let _status = "not decide";
     switch (value) {
       case "1":
@@ -152,6 +151,7 @@ export class ApplicationComponent implements OnInit, OnDestroy {
         this.editedUser.email,
         link,
         this.currentUser.id).subscribe(sendRes => {
+          console.log("sendRejectEmail", sendRes)
           if (sendRes['result'] == 'successful') {
             this.toastSrv.showToast('Success', "Reject Email Sent", this.toastSrv.iconClasses.success);
           } else {
@@ -171,7 +171,7 @@ export class ApplicationComponent implements OnInit, OnDestroy {
   sendApprovedEmail() {
     let domain = window.location.origin;
 
-    let link = domain;
+    let link = domain + '/login';
     this.emailSrv.sendapprovedEmail(
       this.editedUser.id,
       'FormosArt Artist Application',
