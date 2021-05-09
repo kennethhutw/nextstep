@@ -35,6 +35,7 @@ export class EditionComponent implements OnInit {
   ethPrice = 0;
   uid = "";
   ethSoldValue = 0;
+  submitted = false;
   constructor(
     public settingSrv: SettingService,
     private dialogSrv: DialogService,
@@ -142,7 +143,7 @@ export class EditionComponent implements OnInit {
     if (Number(this.currentArtwork.ethValue)) {
       let eth = parseFloat(this.currentArtwork.ethValue);
 
-      this.ethSoldValue = +(eth * 100).toFixed(5);
+      this.ethSoldValue = +(eth / 100).toFixed(5);
 
       return this.ethSoldValue;
     }
@@ -151,7 +152,7 @@ export class EditionComponent implements OnInit {
     if (Number(this.currentArtwork.ethValue)) {
       let eth = parseFloat(this.currentArtwork.ethValue);
 
-      this.ethSoldValue = +(eth * 100 * this.ethPrice).toFixed(5);
+      this.ethSoldValue = +(eth / 100 * this.ethPrice).toFixed(5);
 
       return this.ethSoldValue;
     }

@@ -26,7 +26,7 @@
 
       <h1 class="mt-50">
         Ξ {{displaySellPrice()}} <span class="project_info_price_us"> / USD
-          {{this.currentArtwork.usdValue/100}}</span>
+          {{displayUSDPrice()}}</span>
       </h1>
       <a href="#" *ngIf="this.currentArtwork.status == 1" class="text-white" data-toggle="modal"
         data-target="#modal_login_way"><button class="btn_large w-100" (click)="purchase()">{{ "BUYNOW" | translate
@@ -36,6 +36,9 @@
           }}</button></a>
       <button *ngIf="this.currentArtwork.status == 3" [attr.disabled]="true" class="btn_large_disable  w-100"
         (click)="purchase()">{{ "SOLD" | translate
+        }}</button>
+      <button *ngIf="this.currentArtwork.status == -1" [attr.disabled]="true" class="btn_large_disable  w-100"
+        (click)="purchase()">{{ "INPROCESS" | translate
         }}</button>
       <div class="text-right mt-10" *ngIf="this.currentUser">
         <a *ngIf="!IsFollowed" (click)="onLike()">

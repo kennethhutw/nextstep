@@ -52,6 +52,7 @@ export class HomeComponent implements OnInit {
         this.popularEditions = res["data"];
         this.popularEditions.forEach((element) => {
           element.imageUrl = environment.assetUrl + element.imageUrl;
+          element.ethValue = element.ethValue / 100;
         });
         // this.popularDisplayEditions = this.chunk(this.popularEditions, 3);
       }
@@ -63,6 +64,7 @@ export class HomeComponent implements OnInit {
         this.recentEditions = res["data"];
         this.recentEditions.forEach((element) => {
           element.imageUrl = environment.assetUrl + element.imageUrl;
+          element.ethValue = element.ethValue / 100;
         });
       }
     });

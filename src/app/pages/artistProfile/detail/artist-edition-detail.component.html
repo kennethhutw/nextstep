@@ -16,7 +16,7 @@
 
         <div class="col-md-8">
             <h1 class="mb-20">{{this.artwork.name}}</h1>
-            <h5>{{ "EDITIONDESC" | translate }}</h5>
+            <p>{{ "EDITIONDESC" | translate }} :</p>
             <p class="text-justify">
                 {{this.artwork.description}}
             </p>
@@ -31,8 +31,8 @@
                         artwork.totalamount}}</span>
                 </li>
                 <li>
-                    {{ "PRICE" | translate }}：Ξ {{getSellETHPrice(artwork.usdValue)}} / USD {{ artwork.usdValue /
-                    100}}
+                    {{ "PRICE" | translate }}：ETH {{artwork.ethValue /100}} / USD {{ getSellUSDPrice(
+                    artwork.ethValue)}}
                 </li>
                 <li>
                     {{ "BIDDING" | translate }}：<span class="title">{{ IsBidding(artwork.isBid)}}</span>
@@ -44,7 +44,7 @@
                 <li *ngIf="artwork.isBid > 0 ">
                     {{ "PRICE" | translate }}：<span class="text-orange">Ξ 0.11 / Davif Huan</span>
                 </li>
-                <li>
+                <li *ngIf="artwork.status !=0">
                     {{ "FAVOURITES" | translate }}：{{ artwork.liked}}
                 </li>
             </ul>

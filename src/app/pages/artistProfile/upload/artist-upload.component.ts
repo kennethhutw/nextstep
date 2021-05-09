@@ -1,4 +1,10 @@
-import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ChangeDetectorRef,
+  ViewChild,
+  ElementRef
+} from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 
 import {
@@ -43,6 +49,10 @@ export class ArtistUploadComponent implements OnInit {
   tags = [];
   isReadonly = true;
   lang = "en";
+  maxWordCount = 300;
+  wordCount: any;
+  words = 300;
+  @ViewChild("text") text: ElementRef;
   constructor(
     private emailSrv: EmailService,
     private changeDetectorRef: ChangeDetectorRef,
@@ -67,10 +77,10 @@ export class ArtistUploadComponent implements OnInit {
       name: ["", Validators.required],
       description: ["", Validators.required],
       IsBid: [false],
-      sellingPrice: [0],
+      sellingPrice: [0, [Validators.pattern(/^\d*(?:[.,]\d{1,2})?$/)]],
       paymentway: [0],
       numberOfArtwork: ["", [Validators.required, Validators.min(0), Validators.max(10)]],
-      tags: ["", Validators.required]
+      tags: [""]
     });
 
     this.lang = localStorage.getItem("lang");
@@ -243,7 +253,7 @@ export class ArtistUploadComponent implements OnInit {
       this.changeDetectorRef.detectChanges();
       return;
     }
-    console.log("================");
+    console.log(" invalid ================");
     if (this.artworkForm.invalid) {
       return;
     }
@@ -291,5 +301,11 @@ export class ArtistUploadComponent implements OnInit {
       }, error => {
 
       });
+  }
+  wordCounter() {
+    //alert(this.text.nativeElement.value)
+    this.wordCount = this.text ? this.text.nativeElement.value.split(/\s+/) : 0;
+
+    this.words = this.wordCount ? (this.maxWordCount - this.wordCount.length) : 0;
   }
 }

@@ -158,6 +158,8 @@ export class ArtistBasicComponent implements OnInit {
 
     this.artistSrv.updateArtistBasicInfo(formData).subscribe(res => {
       if (res["result"] === "successful") {
+
+
         this.translateSrv.get("UPDATEDSUCC").subscribe((text: string) => {
           this.informMsg = text;
         });

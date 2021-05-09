@@ -54,7 +54,12 @@ export class CollectorLayoutComponent implements OnInit {
     this.authStoreSrv.user$.subscribe(user => {
       this.currentUser = user;
       this.UserName = this.currentUser.name;
+      if (!this.utility.IsNullOrEmpty(this.currentUser.imageUrl)) {
+        this.profileImage = environment.assetUrl + this.currentUser.imageUrl;
+      }
     });
+
+
   }
 
   GetCurrentUserName() {

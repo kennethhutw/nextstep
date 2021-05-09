@@ -4,7 +4,7 @@ import {
 
 } from "@ngx-translate/core";
 import {
-
+  LikeService,
   AppSettingsService,
   AuthStore,
   SettingService,
@@ -21,6 +21,8 @@ import { Utility } from "../../_helpers";
 })
 export class CollectorPageComponent implements OnInit {
   collector = null;
+  artists = [];
+  displayArtists = [];
   popularEditions = [];
   lang = "en";
   tags = [];
@@ -28,6 +30,7 @@ export class CollectorPageComponent implements OnInit {
   uid = "";
   currentUser = null;
   defaultProfileLogo = null;
+  currentTab = "collection";
   constructor(
     private settingSrv: SettingService,
     private authStoreSrv: AuthStore,
@@ -35,7 +38,8 @@ export class CollectorPageComponent implements OnInit {
     private translateSrv: TranslateService,
     private appSettingsSrv: AppSettingsService,
     private utility: Utility,
-    private userSrv: UserService) {
+    private userSrv: UserService,
+    private likeSrv: LikeService) {
     this.defaultImg = this.appSettingsSrv.defulatImage;
     this.currentUser = this.authStoreSrv.getUserData();
 
@@ -54,16 +58,15 @@ export class CollectorPageComponent implements OnInit {
 
       if (_collectorAddress.indexOf("0x") > -1) {
         // todo
+        this.initFavourites(_collectorAddress);
         this.userSrv.getUserInfoByAddress(_collectorAddress).then(res => {
-          console.log("collector========== ", res);
-          console.log("collector========== ", this.uid);
           if (res["result"] === "successful") {
             this.collector = res["data"];
             if (this.collector && this.collector.imageUrl != null) {
 
               this.collector.imageUrl = environment.assetUrl + this.collector.imageUrl;
             }
-            if (this.collector && this.collector.ownedartwork.length > 0) {
+            if (this.collector && this.collector.ownedartwork && this.collector.ownedartwork.length > 0) {
               this.popularEditions = this.collector.ownedartwork;
               this.popularEditions.forEach((element) => {
                 element.imageUrl = environment.assetUrl + element.imageUrl;
@@ -77,28 +80,45 @@ export class CollectorPageComponent implements OnInit {
         }).catch(error => {
           console.error(`ArtistPage error ${error}`);
         })
-      } else {
-
       }
-
-      // this.userSrv.getUserOwnArtworks(_collectorAddress).subscribe(res => {
-      //   if (res["result"] === "successful") {
-      //     this.popularEditions = res["data"];
-      //     this.popularEditions.forEach((element) => {
-      //       element.imageUrl = environment.assetUrl + element.imageUrl;
-      //     });
-      //   }
-      // },
-      //   error => {
-      //     console.error(`getUserOwnArtworks error ${error}`);
+      //   this.userSrv.getUserOwnArtworks(_collectorAddress).subscribe(res => {
+      //     if (res["result"] === "successful") {
+      //       this.popularEditions = res["data"];
+      //       this.popularEditions.forEach((element) => {
+      //         element.imageUrl = environment.assetUrl + element.imageUrl;
+      //       });
+      //     }
       //   },
-      //   () => {
+      //     error => {
+      //       console.error(`getUserOwnArtworks error ${error}`);
+      //     },
+      //     () => {
 
-      //   });
+      //     });
     });
 
 
   }
 
+  initFavourites(address) {
+    this.likeSrv.getUserLikeByAddress(address).subscribe(res => {
 
+      if (res['result'] == 'successful') {
+        this.artists = res['data'];
+        this.artists.forEach((element) => {
+          if (element['imageUrl']) {
+            element['imageUrl'] = environment.assetUrl + element['imageUrl'];
+          }
+        });
+        this.displayArtists = this.artists;
+
+      }
+    }, error => {
+      console.error("getUserLikeByAddress ", error);
+    });
+  }
+
+  changeTab(tab) {
+    this.currentTab = tab;
+  }
 }

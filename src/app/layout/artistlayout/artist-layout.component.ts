@@ -71,6 +71,14 @@ export class ArtistLayoutComponent implements OnInit {
     }, error => {
       console.error("getUserFollow failed", error);
     });
+
+    this.authStoreSrv.user$.subscribe(user => {
+      console.log("layout====", user);
+      this.currentUser = user;
+      if (!this.utility.IsNullOrEmpty(this.currentUser.imageUrl)) {
+        this.profileImage = environment.assetUrl + this.currentUser.imageUrl;
+      }
+    });
   }
 
   GetCurrentUserName() {

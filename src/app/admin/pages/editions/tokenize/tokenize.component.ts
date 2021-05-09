@@ -95,7 +95,7 @@ export class TokenizeComponent implements OnInit, OnDestroy {
       artistId: [""],
       name: [""],
       description: [""],
-      usdValue: [""],
+      ethValue: 0,
       tags: [""],
       isBid: [""],
       image_type: [""],
@@ -133,7 +133,7 @@ export class TokenizeComponent implements OnInit, OnDestroy {
             this.initArtist(this.edition.artistId);
           }
           this.assetImgUrl = environment.assetUrl + this.edition.imageUrl;
-          let _eth = this.utility.getSellETHPrice(this.edition.usdValue);
+          let _eth = this.edition.ethValue / 100; //this.utility.getSellETHPrice(this.edition.usdValue);
           this.tokenizeForm.setValue({
             editionNumber: this.edition.firstnumber,
             editionData: "0x0000000000000000000000000000000000000000000000000000000000000000",
@@ -165,13 +165,13 @@ export class TokenizeComponent implements OnInit, OnDestroy {
             external_uri: link,
             imageUri: "./.." + this.edition.imageUrl,
           });
-
+          console.log("_eth", _eth);
           this.newArtWorkForm.setValue({
             artistId: this.edition.artistId,
             editionId: this.edition.id,
             name: this.edition.artworkName,
             description: this.edition.description,
-            usdValue: this.edition.usdValue,
+            ethValue: _eth,
             tags: this.edition.tags,
             isBid: this.edition.isBid,
             image_type: this.edition.image_type,
@@ -356,7 +356,7 @@ export class TokenizeComponent implements OnInit, OnDestroy {
         this.newArtWorkForm.value.description,
         this.newArtWorkForm.value.tags,
         this.newArtWorkForm.value.isBid,
-        this.newArtWorkForm.value.usdValue,
+        this.newArtWorkForm.value.ethValue * 100,
         this.newArtWorkForm.value.image_type,
         this.newArtWorkForm.value.imageName,
         this.newArtWorkForm.value.imageUri,

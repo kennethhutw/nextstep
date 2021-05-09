@@ -16,6 +16,9 @@ export class LikeService {
     return this.http.get(`${environment.apiUrl}/likes/getUserLikeArtist/${user_id}`);
   }
 
+  getUserLikeByAddress(address) {
+    return this.http.get(`${environment.apiUrl}/likes/getUserLikeByAddress/${address}`);
+  }
   getUserLikeArtWork(user_id) {
     return this.http.get(`${environment.apiUrl}/likes/getUserLikeArtWork/${user_id}`);
   }

@@ -37,7 +37,6 @@ export class Edition3Component implements OnInit {
         this.translateSrv.use(lang);
       }
     });
-    console.log("============edition3", this.uid);
     if (this.uid != null) {
       this.likeSrv.IsLike(this.uid, this.artworkId).subscribe(res => {
         if (res['result'] == "successful") {

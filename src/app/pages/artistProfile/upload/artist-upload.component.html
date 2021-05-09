@@ -16,15 +16,31 @@
             <input id="artworkImage" type="file" accept="image/gif, image/jpeg, image/png"
                 (change)="onDetectImage($event)" style="visibility: hidden; padding: 0px" />
         </div>
+        <div *ngIf="submitted && !artworkImageFile">
+            <div class="error-msg" *ngIf="!artworkImageFile" style="    margin-left: 15px;">
+                {{ "EDITIONISREQ" | translate }}
+            </div>
+        </div>
     </div>
     <div class="form-group mt-20">
         <label for="Inputname">{{ "EDITIONNAME" | translate }} (*)</label>
         <input type="text" formControlName="name" class="form-control" id="Inputname" aria-describedby="">
+        <div *ngIf="submitted && f.name.errors">
+            <div class="error-msg" *ngIf="f.name.errors.required">
+                {{ "NAMEISREQ" | translate }}
+            </div>
+        </div>
     </div>
     <div class="form-group mt-20">
         <label for="Inputdesc">{{ "EDITIONDESC" | translate }} (*)</label>
-        <textarea type="text" formControlName="description" class="form-control" id="" aria-describedby="Inputdesc"
-            rows=4></textarea>
+        <textarea type="text" (keydown)="wordCounter()" #text formControlName="description" class="form-control" id=""
+            aria-describedby="Inputdesc" rows=4></textarea>
+        <div>Maximum words:<span id="wordCount">{{ words }}</span></div>
+        <div *ngIf="submitted && f.description.errors">
+            <div class="error-msg" *ngIf="f.description.errors.required">
+                {{ "DESCISREQ" | translate }}
+            </div>
+        </div>
     </div>
     <!--   <div class="form-group">
         <label for="exampleInputEmail1">{{ "ISBIDDING" | translate }}</label>
@@ -45,7 +61,12 @@
         <input type="number" formControlName="sellingPrice" (change)="TotalUSDAmount($event)" class="form-control" id=""
             aria-describedby="">
         <span class="d-block pt-05 "><i class="fas fa-arrow-alt-circle-right "></i><span class="text-danger"> USD
-                $ {{usdAmount}}</span><small> (include 15% platform fee)</small></span>
+                $ {{usdAmount}}</span><small> {{ "PLATFORMFEE" | translate }}</small></span>
+        <div *ngIf="submitted && f.sellingPrice.errors">
+            <div class="error-msg" *ngIf="f.sellingPrice.errors.required">
+                {{ "SELLPRICEISREQ" | translate }}
+            </div>
+        </div>
     </div>
 
     <!-- <div class="form-group">
@@ -78,6 +99,11 @@
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary input_btn_normal" type="button" data-toggle="modal"
                     data-target="#modal_select_channel">{{ "CHOOSE" | translate }}</button>
+            </div>
+        </div>
+        <div *ngIf="submitted && f.tags.errors">
+            <div class="error-msg" *ngIf="f.tags.errors.required">
+                {{ "SELLPRICEISREQ" | translate }}
             </div>
         </div>
     </div>
@@ -172,7 +198,7 @@
             <div class="modal-body">
                 <div class="text-center mb-4">
                     <h3>{{ "SELECTCHANNEL" | translate }}</h3>
-                    <p>{{ "UPTOTHREE" | translate }}</p>
+                    <p>{{ "SELECTTAGS" | translate }}</p>
                 </div>
                 <div class="row text-center" style="  display: flex;  align-items: center;">
                     <!-- <div class="switch">
