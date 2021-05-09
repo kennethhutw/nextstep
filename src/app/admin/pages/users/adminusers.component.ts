@@ -4,7 +4,7 @@ import {
   HostListener,
   AfterViewInit, OnDestroy
 } from '@angular/core';
-import { UserService } from '../../../_services';
+import { UserService, ToastService } from '../../../_services';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
 import { BsDaterangepickerDirective } from 'ngx-bootstrap/datepicker';
@@ -74,6 +74,7 @@ export class AdminUsersComponent implements OnInit {
   }
 
   constructor(
+    private toastSrv: ToastService,
     private userSrv: UserService
   ) { }
 
@@ -128,7 +129,7 @@ export class AdminUsersComponent implements OnInit {
   }
   getAllUser() {
     this.userSrv.getAllUser().subscribe(res => {
-      console.log("getAllUser ========", res);
+
       this.users = res['data'];
       this.displayUsers = this.users;
     }, error => {
@@ -151,5 +152,27 @@ export class AdminUsersComponent implements OnInit {
       _role += "collector, ";
     }
     return _role;
+  }
+
+  deleteUser(id, name) {
+    try {
+      this.userSrv.deleteUser(id).subscribe(res => {
+        if (res["result"] == "successful") {
+          this.getAllUser();
+          this.toastSrv.showToast('Success',
+            "delete " + name,
+            this.toastSrv.iconClasses.success);
+        } else {
+          this.toastSrv.showToast('Failed',
+            res['message'],
+            this.toastSrv.iconClasses.error);
+        }
+      })
+    } catch (error) {
+      console.error('delete user failed', error);
+      this.toastSrv.showToast('Failed',
+        error.message,
+        this.toastSrv.iconClasses.error);
+    }
   }
 }

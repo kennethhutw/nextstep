@@ -26,6 +26,7 @@ export { ErrorComponent } from "./error/error.component";
 export { VerificationComponent } from './verification/verification.component';
 
 export { CollectorAccountComponent } from "./collectorProfile/account/collector-account.component";
+export { CollectorBasicComponent } from './collectorProfile/basic/collector-basic.component';
 export { CollectorCollectionComponent } from "./collectorProfile/collection/collector-collection.component";
 export { CollectorFavoriteComponent } from "./collectorProfile/favorite/collector-favorite.component";
 export { CollectorOfferComponent } from "./collectorProfile/offer/collector-offer.component";

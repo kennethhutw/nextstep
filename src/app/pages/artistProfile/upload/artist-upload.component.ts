@@ -7,7 +7,8 @@ import {
   ArtistService,
   AuthStore,
   EditionService,
-  DialogService
+  DialogService,
+  EmailService
 } from "./../../../_services";
 import { Utility } from "./../../../_helpers";
 import {
@@ -36,12 +37,14 @@ export class ArtistUploadComponent implements OnInit {
   informMsg = null;
   currentUser: any;
   ethPrice = 0;
+  //discard
   ethAmount: Number = 0;
-
+  usdAmount: Number = 0;
   tags = [];
   isReadonly = true;
   lang = "en";
   constructor(
+    private emailSrv: EmailService,
     private changeDetectorRef: ChangeDetectorRef,
     private dataSrv: DataService,
     private utility: Utility,
@@ -121,6 +124,13 @@ export class ArtistUploadComponent implements OnInit {
     }
   }
 
+  TotalUSDAmount(event) {
+    if (!this.utility.IsNullOrEmpty(event.target.value)) {
+      let eth = parseFloat(event.target.value);
+      this.usdAmount = +(eth * this.ethPrice).toFixed(3);
+    }
+  }
+
   onDetectImage(event) {
     if (event.target.files.length === 0)
       return;
@@ -132,6 +142,7 @@ export class ArtistUploadComponent implements OnInit {
 
     var reader = new FileReader();
     this.artworkImageFile = event.target.files[0];
+
     this.artworkForm.patchValue({ name: this.artworkImageFile.name });
     reader.readAsDataURL(event.target.files[0]);
     reader.onload = (_event) => {
@@ -152,7 +163,7 @@ export class ArtistUploadComponent implements OnInit {
       formData.append("tags", this.artworkForm.value.tags);
       formData.append("isBid", this.artworkForm.value.IsBid);
       formData.append("paymentway", this.artworkForm.value.paymentway);
-      formData.append("usdprice", sellprice);
+      formData.append("ethprice", sellprice);
       formData.append("totalamount", this.artworkForm.value.numberOfArtwork);
       formData.append("uploadfile", this.artworkImageFile);
 
@@ -165,6 +176,7 @@ export class ArtistUploadComponent implements OnInit {
             .map((ch) => {
               ch.selected = false;
             });
+          this.informArtist(this.artworkForm.value.name);
           this.artworkForm.reset();
           this.artworkImageFile = null;
           this.artworkImage = null;
@@ -256,5 +268,28 @@ export class ArtistUploadComponent implements OnInit {
       && (charCode < 48 || charCode > 57))
       return false;
     return true;
+  }
+
+
+  informArtist(artworkName) {
+    //let id = this.edition.firstnumber + 1;
+    let domain = window.location.origin;
+    let url = '/artist/collection';
+    let link = domain + url;
+    this.emailSrv.sendReceivedArtworkEmail(
+      'Your artwork is available now on Formosart',
+      this.currentUser.name,
+      this.currentUser.email,
+      link,
+      artworkName,
+      this.currentUser.id).subscribe(sendRes => {
+        if (sendRes['result'] == 'successful') {
+
+        }
+        // this.msg = true;
+        // this.message = 'E-mail has been sent to reset your password.';
+      }, error => {
+
+      });
   }
 }

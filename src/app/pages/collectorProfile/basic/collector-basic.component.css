@@ -1,0 +1,70 @@
+
+.input_btn_normal {
+  font-size: 16px;
+  padding: 9px 30px;
+  background-color: #17f596;
+  border: 2px solid #17f596;
+  border-radius: 3px;
+  color: #000;
+}
+
+.input_btn_normal:hover {
+  background-color: #11e78b;
+  border: 2px solid #11e78b;
+  color: #000;
+}
+
+  #select_img .close {
+    position: absolute;
+    right: 16px;
+    top: -10px;
+    z-index: 100;
+ color: red;
+    font-size: 40px;
+}
+.tag {
+    background: #A5D6A7;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+}
+
+/* The switch - the box around the slider */
+.switch {
+        display: inline-block;
+        background-color: #FFF;
+    }
+
+    .switch input[type="checkbox"]{
+        position: absolute;
+        opacity: 0;
+    }
+
+    .switch input[type="checkbox"]:checked + label{
+        border:1px solid #17F596;
+        background-color:#17F596;
+    }
+
+    .switch_text{
+        margin:5px;
+        border:1px solid #CACACA;
+        border-radius:3px;
+        padding:5px 10px;
+        text-align:center;
+        background-color: #fff;
+        cursor: pointer;
+        transition: all .2s;
+    }
+
+.biddingswitch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+
+  height: 34px;
+  /* float:left; */
+  background-color: #f4f4f4;
+}
+
+
+/* Hide default HTML checkbox */
+.biddingswitch input {display:none;}

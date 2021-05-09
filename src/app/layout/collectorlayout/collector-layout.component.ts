@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
-import { DataService, AuthStore, UserService } from "../../_services";
+import { DataService, AuthStore, UserService, SettingService } from "../../_services";
 import { Utility } from "../../_helpers";
 import { Router } from "@angular/router";
 import { environment } from '../../../environments/environment';
@@ -18,7 +18,9 @@ export class CollectorLayoutComponent implements OnInit {
   IsEdit = false;
   UserName = "";
   profileImage = "";
+  defaultProfileLogo = null;
   constructor(
+    private settingSrv: SettingService,
     private router: Router,
     private translateSrv: TranslateService,
     private utility: Utility,
@@ -26,6 +28,7 @@ export class CollectorLayoutComponent implements OnInit {
     private authStoreSrv: AuthStore,
     private userSrv: UserService
   ) {
+    this.defaultProfileLogo = this.settingSrv.defaultProfileLogo;
     let _lang = localStorage.getItem("lang");
     if (!this.utility.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);

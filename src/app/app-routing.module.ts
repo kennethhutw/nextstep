@@ -38,6 +38,7 @@ import {
   ForBuyerComponent,
   ErrorComponent,
   CollectorAccountComponent,
+  CollectorBasicComponent,
   CollectorCollectionComponent,
   CollectorFavoriteComponent,
   CollectorOfferComponent,
@@ -173,6 +174,9 @@ const routes: Routes = [
         children: [{
           path: "account",
           component: CollectorAccountComponent,
+        }, {
+          path: "basic",
+          component: CollectorBasicComponent,
         }, {
           path: "collection",
           component: CollectorCollectionComponent,

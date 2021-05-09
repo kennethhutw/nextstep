@@ -1,29 +1,39 @@
-<div class="container-fluid bgc-grey">
+<div class="container-fluid">
 
-    <div class="row bgc-member ">
-        <div class="col-md-12 mt-50 mb-60">
+    <div class="row">
+        <div class="col-md-12" style="border-bottom: 2px solid #dbdbdb; width: 80%;">
+            <div class="text-center signup-logo">
+                <img class="rounded-circle member_img_w profile_image" src="{{profileImage || defaultProfileLogo}}"
+                    actual-image="profileImage" alt="">
+                <h1 class="text-center" style="margin-top:10px;">{{ GetCurrentUserName()}}</h1>
+                <!-- <p class="text-center pb-10 signup_discript">
+                    Follow <span class="text-green1">{{followNum}}</span> ｜Follower <span
+                        class="text-green1">{{followerNum}}</span></p> -->
+            </div>
+        </div>
+        <!-- <div class="col-md-12 mt-50 mb-60" style="border-bottom: 2px solid #dbdbdb;">
             <div class="text-center signup-logo">
                 <app-editableInput (update)="updateField()">
                     <ng-template viewMode>
                         <h1 class="text-center">
-                            <a> {{ GetCurrentUserName()}}
-                                <i class="fas fa-user-edit"></i></a>
+                            <a> {{ GetCurrentUserName()}}</a>
+                     <i class="fas fa-user-edit"></i></a>
                         </h1>
                     </ng-template>
                     <ng-template editMode>
                         <input [(ngModel)]="UserName" focusable editableOnEnter>
                     </ng-template>
                 </app-editableInput>
-                <!-- <ng-container *ngIf="!IsEdit  ; else editMode">
+            <ng-container *ngIf="!IsEdit  ; else editMode">
                         <h1 class="text-center">{{ GetCurrentUserName()}}
                             <a (click)="SetEditMode()"><i class="fas fa-user-edit" ></i></a>
                         </h1>
                     </ng-container>
                     <ng-template #editMode>
                           <input type="text" class="form-control" id="" aria-describedby="" >
-                    </ng-template> -->
+                    </ng-template>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <div class="row">
@@ -32,29 +42,36 @@
                 <div class="col-md-2">
                     <ul class="member_ul">
                         <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+                            routerLink="/collector/account">
+                            <li class="member_side_navi w-100">
+                                {{ "ACCOUNTPASSWORD" | translate }}
+                            </li>
+                        </a>
+                        <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+                            routerLink="/collector/basic">
+                            <li class="member_side_navi w-100">
+                                {{ "BASICINFO" | translate }}
+                            </li>
+                        </a>
+                        <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
                             routerLink="/collector/collection">
                             <li class="member_side_navi">
                                 {{ "COLLECTION" | translate }}
                             </li>
                         </a>
-                        <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+                        <!-- <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
                             routerLink="/collector/offer">
                             <li class="member_side_navi">
                                 {{ "BIDEDITION" | translate }}
                             </li>
-                        </a>
+                        </a> -->
                         <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
                             routerLink="/collector/sales">
                             <li class="member_side_navi">
                                 {{ "SALESEDITION" | translate }}
                             </li>
                         </a>
-                        <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
-                            routerLink="/collector/account">
-                            <li class="member_side_navi w-100">
-                                {{ "ACCOUNTPASSWORD" | translate }}
-                            </li>
-                        </a>
+
                         <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
                             routerLink="/collector/favorite">
                             <li class="member_side_navi w-100">

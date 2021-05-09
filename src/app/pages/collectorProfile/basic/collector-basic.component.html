@@ -1,0 +1,198 @@
+<h5 class="pb-10">{{ "PROFILEIMAGE" | translate }}</h5>
+
+<div [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <div class="member-info-box">
+        <div class="row">
+            <div id="select_img" class="col-md-4 text-center">
+                <span *ngIf="this.profileImage != null " (click)="onRemoveImg($event,'1')" class="close">&times;</span>
+                <img class="w-100" *ngIf="profileImage" height="239px" width="239px" [src]="profileImage" alt="" />
+                <img class="w-100" *ngIf="!profileImage" src="./assets/images/select_img.jpg" alt="" />
+            </div>
+            <div id="member_choice_btn" class="col-md-8">
+                <label class="btn_select_img mb-20" for="profileImage">{{ "UPLOADPROFILEIMAGE" | translate }}</label>
+                <input id="profileImage" type="file" accept="image/gif, image/jpeg, image/png, image/gif"
+                    (change)="onDetectImage($event)" style="visibility: hidden; padding: 0px" />
+            </div>
+        </div>
+    </div>
+
+    <h5 class="mt-50 pb-10">{{ "NAME" | translate }}</h5>
+    <div class="form-group member-info-box">
+        <input type="text" formControlName="name" class="form-control" id="name" aria-describedby="">
+    </div>
+
+    <h5 class="mt-50 pb-10">{{ "BIO" | translate }}</h5>
+    <div class="form-group member-info-box">
+        <label for="">{{ "BIOINTRO" | translate }}</label>
+        <textarea type="text" formControlName="bio" class="form-control" id="" rows="4" cols="50"></textarea>
+    </div>
+
+    <h5 class="mt-50 pb-10">{{ "SOCIALMEDIALINK" | translate }}</h5>
+    <div class="member-info-box">
+        <div class="form-group ">
+            <label for="twitter">Twitter</label>
+            <input type="text" formControlName="twitter" class="form-control" id="twitter" aria-describedby=""
+                placeholder="ex- https://twitter.com/formosa">
+        </div>
+
+        <div class="form-group">
+            <label for="instagram">Instagram</label>
+            <input type="textg" formControlName="instagram" class="form-control" id="instagram" aria-describedby=""
+                placeholder="ex- https://www.instagram.com/formosa">
+        </div>
+
+        <div class="form-group">
+            <label for="facebook">Facebook</label>
+            <input type="text" formControlName="facebook" class="form-control" id="facebook" aria-describedby=""
+                placeholder="ex- https://www.facebook.com/formosa">
+        </div>
+
+        <div class="form-group">
+            <label for="website">Website</label>
+            <input type="text" formControlName="website" class="form-control" id="website" aria-describedby=""
+                placeholder="personal website">
+        </div>
+
+        <div class="form-group">
+            <label for="location">{{ "LOCATION" | translate }}</label>
+            <select style="height:52px;" name="location" formControlName="location" id="location" class="form-control">
+                <option value="" selected>Select country...</option>
+                <option *ngFor="let opt of countriesOptions" [value]="opt.text">{{opt.text}}
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <!-- <h5 class="mt-50 pb-10">{{ "CHANNELTYPE" | translate }}</h5>
+    <div class="member-info-box">
+        <div class="form-group ">
+            <label for="exampleInputEmail1">{{ "CHANNELDESC" | translate }}</label>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" aria-label="tagss" name="tags" formControlName="tags"
+                    aria-describedby="button-addon2" readonly>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary input_btn_normal" type="button" data-toggle="modal"
+                        data-target="#modal_select_channel">,
+                        {{ "CHOOSE" | translate }}</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="text-center mt-40">
+        <button (click)="onSubmit()" id="member_last_btn_w100" class="btn_normal mb-20">
+            {{ "SAVEPROFILE" | translate }}
+        </button>
+    </div>
+    <div class="text-center  mb-40">
+        <div [ngClass]="{ 'error-msg': IsUpdateFailed === true }" *ngIf="informMsg">{{informMsg}}</div>
+    </div>
+</div>
+<!--Channel-->
+<div class="modal fade" id="modal_select_channel" tabindex="-1" aria-labelledby="channelModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 1000px !important;">
+        <div class="modal-content model_padding">
+            <div class="modal_header">
+            </div>
+            <div class="modal-body">
+                <div class="text-center mb-4">
+                    <h3>{{ "SELECTCHANNEL" | translate }}</h3>
+                    <p>{{ "UPTOTHREE" | translate }}</p>
+                </div>
+                <div class="row text-center" style="  display: flex;  align-items: center;">
+                    <!-- <div class="switch">
+                        <input id="switch01" type="checkbox" class="">
+                        <label for="switch01" class="switch_text">抽象</label>
+                    </div> -->
+
+                    <ng-container *ngFor="let tag of tags">
+                        <div class="switch">
+                            <input type="checkbox" [(ngModel)]="tag.selected" value={{tag.value}} id={{tag.value}}>
+                            <label for="{{tag.value}}" class="switch_text">{{tag.text}}</label>
+                        </div>
+                        <!-- <div class="switch">
+                            <input id="switch02" type="checkbox" class="">
+                            <label for="switch02" class="switch_text">{{tag.text}}</label>
+                        </div> -->
+                    </ng-container>
+                    <!-- <label class="switch form-control project_tag">
+                        <input type="checkbox" class="default">
+                        <span class="tag_selected">插圖</span>
+                    </label>
+
+                    <a href="">
+                        <div class="project_tag">手繪</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">動畫</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">自然</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">科學</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">人像</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">超現實</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">繪畫</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">動感</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">幻想</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">拼貼</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">3D</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">風景</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">科學</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">花</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">寫實</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">黑白</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">攝影</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">靈魂</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">節慶</div>
+                    </a>
+                    <a href="">
+                        <div class="project_tag">有趣</div>
+                    </a> -->
+                </div>
+            </div>
+            <hr>
+            <div class="row mt-20 mb-20">
+                <div class="col-md-6">
+                    <button type="button" class="model_btn_second" data-dismiss="modal" aria-label="Close">{{ "CANCEL" |
+                        translate }}</button>
+                </div>
+                <div class="col-md-6">
+                    <button class="model_btn_normal" data-dismiss="modal" (click)="getSelected()">{{ "CONFIRM" |
+                        translate }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

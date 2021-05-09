@@ -59,6 +59,7 @@
           <th style="width: 10%;">Application</th>
           <th style="width: 10%;">Info</th>
           <th style="width: 10%;">Settings</th>
+          <th style="width: 10%;">Action</th>
         </tr>
       </thead>
       <!--   <tbody *ngIf="isLoading">
@@ -92,6 +93,8 @@
 
             <td><a class="clickable" [routerLink]="['/admin/usersetting',user.id]" style="color: #7F7F7F;"><i
                   class="fa fa-cog"></i> Settings</a>
+            </td>
+            <td><button type="button" class="btn btn-danger" (click)="deleteUser(user.id,user.name)"> Delete </button>
             </td>
           </tr>
 

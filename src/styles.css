@@ -55,7 +55,7 @@
   }
 
   #footer_bg img {
-    width: 80%;
+    width: 100%;
     padding-bottom: 20px;
   }
 
@@ -752,7 +752,7 @@ box-shadow:0 0 5px #fff;
 }
 
 #footer_bg img {
-  width: 80%;
+  width: 100%;
   padding-bottom: 20px;
 }
 

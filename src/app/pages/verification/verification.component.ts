@@ -71,7 +71,7 @@ export class VerificationComponent implements OnInit {
       let url = '/verifyEmail';
       let link = domain + url;
       this.emailSrv.authenticateEmail(
-        'Welcome to the Formoas Art platform!',
+        'Welcome to the FormosArt platform!',
         this.email,
         link,
         this.uid,

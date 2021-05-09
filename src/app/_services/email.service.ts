@@ -104,6 +104,19 @@ export class EmailService {
             });
     }
 
+
+    sendReceivedArtworkEmail(subject, receiverName, receiverEmail, link, artworkName, uid) {
+        return this.http.post(`${environment.apiUrl}/email/receivedArtworkEmail`,
+            {
+                'subject': subject,
+                'receiverName': receiverName,
+                'receiverEmail': receiverEmail,
+                'artworkName': artworkName,
+                'link': link,
+                'uid': uid
+            });
+    }
+
     sendSoldEmail(subject, receiverName, receiverEmail, link, artworkName, uid) {
         return this.http.post(`${environment.apiUrl}/email/soldEmail`,
             {

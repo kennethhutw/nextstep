@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
     this.artworkSrv.getPopularArtwork().subscribe(res => {
-
+      console.log(" getPopularArtwork =========== ", res);
       if (res["result"] == "successful") {
         this.popularEditions = res["data"];
         this.popularEditions.forEach((element) => {
@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit {
     });
 
     this.artworkSrv.getLatestArtWork().subscribe(res => {
-
+      console.log(" getLatestArtWork =========== ", res);
       if (res["result"] == "successful") {
         this.recentEditions = res["data"];
         this.recentEditions.forEach((element) => {

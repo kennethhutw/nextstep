@@ -64,10 +64,11 @@
                 <i class="far fa-user-circle par-5"></i>{{ "MEMBERMANAGEMENT" | translate }}
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" routerLink="/artist/account">{{ "ACCOUNTPASSWORD" | translate }}</a>
+
                 <a class="dropdown-item" *ngIf="this.currentUser.uid" [routerLink]="['/',this.currentUser.uid]">{{
                   "PROFILE" | translate }}</a>
                 <a class="dropdown-item" routerLink="/artist/basic">{{ "EDITPROFILE" | translate }}</a>
+                <a class="dropdown-item" routerLink="/artist/account">{{ "ACCOUNTPASSWORD" | translate }}</a>
                 <a class="dropdown-item" routerLink="/artist/collection">{{ "MANAGEMENTEDITION" | translate }}</a>
                 <a class="dropdown-item" routerLink="/artist/upload">{{ "UPLOADEDITION" | translate }}</a>
                 <a class="dropdown-item" routerLink="/artist/sold">{{ "SOLDEDITION" | translate }}</a>
@@ -97,10 +98,12 @@
                 <a class="dropdown-item" *ngIf="this.currentUser.ethaddress"
                   [routerLink]="['/u',this.currentUser.ethaddress]">{{ "PROFILE" | translate
                   }}</a>
+                <a class="dropdown-item" routerLink="/collector/basic">{{ "EDITPROFILE" | translate }}</a>
+                <a class="dropdown-item" routerLink="/collector/account">{{ "ACCOUNTPASSWORD" | translate }}</a>
                 <a class="dropdown-item" routerLink="/collector/collection">{{ "COLLECTION" | translate }}</a>
                 <a class="dropdown-item" routerLink="/collector/offer">{{ "BIDEDITION" | translate }}</a>
                 <a class="dropdown-item" routerLink="/collector/sales">{{ "SALESEDITION" | translate }}</a>
-                <a class="dropdown-item" routerLink="/collector/account">{{ "ACCOUNTPASSWORD" | translate }}</a>
+
                 <a class="dropdown-item" routerLink="/collector/favorite">{{ "MYFAVOURITES" | translate }}</a>
                 <div class="dropdown-divider"> </div>
                 <button class="dropdown-item" (click)="Signout()">{{ "SIGNOUT" | translate }}</button>

@@ -23,8 +23,12 @@
   <div id="popularDisplayEditions" class="row">
     <ng-container *ngFor="let edition of popularEditions">
       <div class="col-md-4 mb-4">
-        <app-edition1 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
-          editionImg="{{ edition.imageUrl }}" editionId="{{ edition.artworkId }}"></app-edition1>
+        <!-- <app-edition1 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
+          editionImg="{{ edition.imageUrl }}" editionId="{{ edition.artworkId }}"></app-edition1> -->
+        <app-edition3 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
+          editionImg="{{ edition.imageUrl }}" artworkId="{{ edition.artworkId }}"
+          editionDate="{{ edition.editionDate }}" editionPrice="{{ edition.ethValue }}">
+        </app-edition3>
       </div>
     </ng-container>
 
@@ -77,8 +81,10 @@
   <div id="recentEditions" class="row">
     <ng-container *ngFor="let edition of recentEditions">
       <div class="col-md-4 mb-4">
-        <app-edition1 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
-          editionImg="{{ edition.imageUrl }}" editionId="{{ edition.artworkId }}"></app-edition1>
+        <app-edition3 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
+          editionImg="{{ edition.imageUrl }}" artworkId="{{ edition.artworkId }}"
+          editionDate="{{ edition.editionDate }}" editionPrice="{{ edition.ethValue }}">
+        </app-edition3>
       </div>
     </ng-container>
 
@@ -89,7 +95,11 @@
     </div>
   </div>
   <!--row end-->
+  <div class="row">
+    <div class="index-title w-100" style="border-bottom: 2px solid #dbdbdb;">
 
+    </div>
+  </div>
   <div id="index_title" class="index_title text-center">
     {{ "STARTYOUROWN" | translate }} {{ "DIGITALCOLLECTION" | translate }}
     <span></span>
@@ -98,6 +108,7 @@
 
 
 <div class="container-fluid">
+
   <div class="row">
     <div class="container">
       <div id="index_buyer" class="text-center">
@@ -143,11 +154,11 @@
     <div class="col-md-6 text-center">
       <h1 class="nft">What are NFTs?</h1>
     </div>
-    <div class="col-md-5 nft-desc">
+    <div class="col-md-3 nft-desc">
       Each digital artwork on FormosArt is genuine and one of a kind. This new approach to digital ownership is based on
       blockchain technology. Use our platform to showcase and market your creation to authentic collectors
     </div>
-    <div class="col-md-1">
+    <div class="col-md-2">
 
     </div>
   </div>
@@ -161,7 +172,7 @@
           "DIGITALCREATOR?" | translate
           }}
         </div>
-        <p class="mt-2 text-center">
+        <p class="mt-2 text-center" style="font-size: 22px;">
           {{ "DIGITALCREATORDES" | translate }}<br />
           {{ "DIGITALCREATORDES2" | translate }}
         </p>

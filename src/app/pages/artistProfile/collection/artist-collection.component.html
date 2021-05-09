@@ -23,14 +23,14 @@
     </ng-container>
     <ng-container *ngFor="let artwork of ( displayArtworks | userFilter: searchText : 'name' )">
         <div class="col-md-4">
-            <a [routerLink]="['/artist/collection/detail',artwork.id]"><img class="mb-10" src="{{ artwork.imageUrl}}"
-                    alt=""></a>
+            <a [routerLink]="['/artist/collection/detail',artwork.id]"><img class="mb-10"
+                    src="{{ artwork.imageUrl || defaultImg}}" alt=""></a>
             <ul>
                 <li>
                     {{ "NAMEUP" | translate }}： {{artwork.name}}
                 </li>
                 <li>
-                    {{ "PRICE" | translate }}：Ξ {{artwork.usdValue /
+                    {{ "PRICE" | translate }}：Ξ {{artwork.ethValue /
                     100}}
                 </li>
                 <li>

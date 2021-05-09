@@ -22,6 +22,7 @@ export class ArtistCollectionComponent implements OnInit {
   _lang = "en";
   searchText = "";
   displayArtworks = [];
+  defaultImg = "";
   constructor(
     private dataSrv: DataService,
     private utility: Utility,
@@ -29,7 +30,9 @@ export class ArtistCollectionComponent implements OnInit {
     private editionSrv: EditionService,
     private appSettingsSrv: AppSettingsService,
     private translateSrv: TranslateService,
-    private authStoreSrv: AuthStore) { }
+    private authStoreSrv: AuthStore) {
+    this.defaultImg = this.appSettingsSrv.defulatImage;
+  }
 
   ngOnInit() {
     this.currentUser = this.authStoreSrv.getUserData();

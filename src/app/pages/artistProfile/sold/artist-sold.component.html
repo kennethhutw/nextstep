@@ -19,7 +19,7 @@
 <hr>
 <ng-container *ngIf="displayArtworks.length == 0">
     <div style="margin-top:20px;" class="text-center subtitle no-msg">{{
-        "NOSOLD_START" | translate }}<a class="nav-link" routerLink="/artist/collection">{{
+        "NOSOLD_START" | translate }}<a routerLink="/artist/collection">{{
             "NOSOLD_LINK" | translate }}</a>{{ "NOFAVOARTWORK_END" | translate }}</div>
 </ng-container>
 <ng-container *ngFor="let artwork of ( displayArtworks | userFilter: searchText : 'name' )">

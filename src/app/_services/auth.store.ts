@@ -207,7 +207,7 @@ export class AuthStore {
     const link = domain + url + '?uid=' + uid + '&time=' + timeInMs + '&role=' + role;
 
     return this.emailService.authenticateEmail(
-      'Welcome to the Formoas Art platform!',
+      'Welcome to the FormosArt platform!',
       email,
       link,
       uid);

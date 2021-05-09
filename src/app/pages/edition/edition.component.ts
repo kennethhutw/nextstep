@@ -139,15 +139,23 @@ export class EditionComponent implements OnInit {
   }
 
   displaySellPrice() {
-    if (Number(this.currentArtwork.usdValue)) {
-      let usd = parseFloat(this.currentArtwork.usdValue);
+    if (Number(this.currentArtwork.ethValue)) {
+      let eth = parseFloat(this.currentArtwork.ethValue);
 
-      this.ethSoldValue = +((usd / 100) / this.ethPrice).toFixed(5);
+      this.ethSoldValue = +(eth * 100).toFixed(5);
 
       return this.ethSoldValue;
     }
   }
+  displayUSDPrice() {
+    if (Number(this.currentArtwork.ethValue)) {
+      let eth = parseFloat(this.currentArtwork.ethValue);
 
+      this.ethSoldValue = +(eth * 100 * this.ethPrice).toFixed(5);
+
+      return this.ethSoldValue;
+    }
+  }
   async purchase() {
     if (this.currentUser) {
       if (this.Web3Srv.ethEnabled()) {

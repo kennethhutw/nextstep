@@ -142,4 +142,8 @@ export class UserService {
     }
   }
 
+  deleteUser(id: string) {
+    return this.http.post(`${environment.apiUrl}/deleteUser/${id}`, {});
+  }
+
 }

@@ -21,7 +21,7 @@
 
     <ng-container *ngIf="displayArtworks.length == 0">
         <div class="text-center subtitle no-msg">{{
-            "NOOFFER_START" | translate }}<a class="nav-link" routerLink="/gallery">{{
+            "NOOFFER_START" | translate }}<a routerLink="/gallery">{{
                 "NOOFFER_LINK" | translate }}</a>{{ "NOOFFER_END" | translate }}</div>
     </ng-container>
     <ng-container *ngFor="let artwork of (displayArtworks | userFilter: searchText : 'name' )">

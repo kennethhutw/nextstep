@@ -1,6 +1,6 @@
-<div class="container-fluid bgc-grey">
+<div class="container-fluid ">
 
-    <div class="row bgc-member">
+    <div class="row ">
         <div class="col-md-12">
             <div class="text-center signup-logo">
                 <img class="rounded-circle member_img_w profile_image" src="{{profileImage || defaultProfileLogo}}"
@@ -19,12 +19,7 @@
                 <div class="col-md-2">
 
                     <ul class="member_ul" style="margin-bottom: 200px;">
-                        <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
-                            routerLink="/artist/account">
-                            <li class="member_side_navi w-100">
-                                {{ "ACCOUNTPASSWORD" | translate }}
-                            </li>
-                        </a>
+
                         <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
                             [routerLink]="['/',this.currentUser.uid]">
                             <li class="member_side_navi w-100">
@@ -37,9 +32,10 @@
                                 {{ "EDITPROFILE" | translate }}
                             </li>
                         </a>
-                        <a [routerLinkActive]="['active']" routerLink="/artist/collection">
-                            <li class="member_side_navi">
-                                {{ "MANAGEMENTEDITION" | translate }}
+                        <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+                            routerLink="/artist/account">
+                            <li class="member_side_navi w-100">
+                                {{ "ACCOUNTPASSWORD" | translate }}
                             </li>
                         </a>
                         <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
@@ -48,6 +44,12 @@
                                 {{ "UPLOADEDITION" | translate }}
                             </li>
                         </a>
+                        <a [routerLinkActive]="['active']" routerLink="/artist/collection">
+                            <li class="member_side_navi">
+                                {{ "MANAGEMENTEDITION" | translate }}
+                            </li>
+                        </a>
+
                         <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
                             routerLink="/artist/sold">
                             <li class="member_side_navi w-100">
