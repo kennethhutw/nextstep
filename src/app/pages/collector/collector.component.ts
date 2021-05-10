@@ -21,8 +21,8 @@ import { Utility } from "../../_helpers";
 })
 export class CollectorPageComponent implements OnInit {
   collector = null;
-  artists = [];
-  displayArtists = [];
+  favourites = [];
+  displayFavourites = [];
   popularEditions = [];
   lang = "en";
   tags = [];
@@ -104,13 +104,13 @@ export class CollectorPageComponent implements OnInit {
     this.likeSrv.getUserLikeByAddress(address).subscribe(res => {
 
       if (res['result'] == 'successful') {
-        this.artists = res['data'];
-        this.artists.forEach((element) => {
+        this.favourites = res['data'];
+        this.favourites.forEach((element) => {
           if (element['imageUrl']) {
             element['imageUrl'] = environment.assetUrl + element['imageUrl'];
           }
         });
-        this.displayArtists = this.artists;
+        this.displayFavourites = this.favourites;
 
       }
     }, error => {

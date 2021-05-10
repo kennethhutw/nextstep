@@ -7,7 +7,93 @@
     website="{{this.artist.website}}" location="{{this.artist.location}}" tags="{{this.artist.tags}} "
     uid="{{this.currentUid}}" id="{{this.artist.id}}">
   </app-artist-detail>
-  <div class="peoject_tag_openup text-center mt-10">
+
+  <!--Tab start-->
+  <div class="row">
+    <!---->
+    <div id="collector_tab" class="col-md-12 mb-20  mt-10">
+      <ul role="tablist" class="nav nav-pills nav-fill">
+        <!---->
+        <li class="nav-item"><a class="title" [ngClass]="{ 'active': currentTab === 'artworks' }" href="#artworks"
+            data-toggle="tab" (click)="changeTab('artworks')">{{ "ARTWORKS" | translate }}</a>
+        </li>
+        <li class="nav-item"><a class="title" [ngClass]="{ 'active': currentTab === 'collection' }" href="#collection"
+            data-toggle="tab" (click)="changeTab('collection')">{{ "COLLECTION" | translate }}</a>
+        </li>
+        <li class="nav-item"><a class="peoject_tag_openup title" [ngClass]="{ 'active': currentTab === 'favourites' }"
+            href="#favourites" data-toggle="tab" (click)="changeTab('favourites')">{{ "MYFAVOURITES" | translate }}</a>
+        </li>
+        <!---->
+      </ul>
+    </div>
+  </div>
+  <!-- Tab end-->
+  <div class="tab-content">
+    <div role="tabpanel" aria-hidden="false" class="tab-pane" [ngClass]="{ 'active': currentTab === 'artworks' }"
+      acive="" id="editions">
+
+      <div class="row mt-40 mb-10">
+        <ng-container *ngFor="let edition of artistArtworks">
+          <div class="col-md-4 mb-4" style="height: 241px;">
+            <app-edition2 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
+              editionImg="{{ edition.imageUrl  || defaultProfileLogo}}" editionId="{{ edition.artworkId }}">
+            </app-edition2>
+          </div>
+        </ng-container>
+      </div>
+
+      <div *ngIf="artistArtworks.length == 0" class="form-group row mt-30 mb-50">
+        <div class="input-group col-md-12 subtitle no-msg" style="justify-content: center;">
+          {{ "NOARTWORK" | translate }}
+        </div>
+      </div>
+
+
+    </div>
+    <div role="tabpanel" aria-hidden="false" class="tab-pane" [ngClass]="{ 'active': currentTab === 'collection' }"
+      acive="" id="editions">
+
+      <div class="row mt-40 mb-10">
+        <ng-container *ngFor="let edition of collection">
+          <div class="col-md-4 mb-4" style="height: 241px;">
+
+            <app-edition4 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
+              editionImg="{{ edition.imageUrl }}" artworkId="{{ edition.artworkId }}"
+              editionDate="{{ edition.editionDate }}" editionPrice="{{ edition.ethPrice }}"></app-edition4>
+          </div>
+        </ng-container>
+      </div>
+
+      <div *ngIf="collection.length == 0" class="form-group row mt-30 mb-50">
+        <div class="input-group col-md-12 subtitle no-msg" style="justify-content: center;">
+          {{ "NOARTWORK" | translate }}
+        </div>
+      </div>
+    </div>
+    <div role="tabpanel" aria-hidden="true" class="tab-pane" [ngClass]="{ 'active': currentTab === 'favourites' }"
+      acive="" id="artists">
+      <div class="row mt-40 mb-10">
+        <ng-container *ngFor="let edition of favourites">
+          <div class="col-md-4 mb-4" style="height: 241px;">
+
+            <app-edition4 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
+              editionImg="{{ edition.imageUrl }}" artworkId="{{ edition.artworkId }}"
+              editionDate="{{ edition.editionDate }}" editionPrice="{{ edition.ethPrice }}"></app-edition4>
+          </div>
+        </ng-container>
+      </div>
+
+      <div *ngIf="favourites.length == 0" class="form-group row mt-30 mb-50">
+        <div class="input-group col-md-12 subtitle no-msg" style="justify-content: center;">
+          {{ "NOARTWORK" | translate }}
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+  <!-- <div class="peoject_tag_openup text-center mt-10">
     <span class="project_tag_subtitle"></span>
   </div>
   <div class="row mt-40">
@@ -24,7 +110,7 @@
     <div class="input-group col-md-12 subtitle no-msg" style="justify-content: center;">
       {{ "NOARTWORK" | translate }}
     </div>
-  </div>
+  </div> -->
   <!--row end-->
 </div>
 <app-footer></app-footer>

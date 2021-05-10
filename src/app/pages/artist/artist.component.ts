@@ -7,7 +7,10 @@ import {
   ArtistService,
   AppSettingsService,
   AuthStore,
-  SettingService
+  SettingService,
+  UserService,
+  DataService,
+  LikeService
 } from "../../_services";
 
 import { Router, ActivatedRoute } from "@angular/router";
@@ -21,7 +24,10 @@ import { Utility } from "../../_helpers";
 export class ArtistPageComponent implements OnInit {
   artist = null;
   popularEditions = [];
+  collection = [];
   artistArtworks = [];
+  favourites = [];
+  displayFavourites = [];
   lang = "en";
   tags = [];
   defaultImg = "";
@@ -29,6 +35,8 @@ export class ArtistPageComponent implements OnInit {
   currentUid = "";
   currentUser = null;
   defaultProfileLogo = null;
+
+  currentTab = "artworks";
   constructor(
     private settingSrv: SettingService,
     private authStoreSrv: AuthStore,
@@ -36,6 +44,9 @@ export class ArtistPageComponent implements OnInit {
     private translateSrv: TranslateService,
     private appSettingsSrv: AppSettingsService,
     private utility: Utility,
+    private likeSrv: LikeService,
+    private dataSrv: DataService,
+    private userSrv: UserService,
     private artistSrv: ArtistService) {
     this.defaultImg = this.appSettingsSrv.defulatImage;
     this.currentUser = this.authStoreSrv.getUserData();
@@ -48,10 +59,20 @@ export class ArtistPageComponent implements OnInit {
 
   ngOnInit() {
 
-
+    let _lang = localStorage.getItem("lang");
+    if (!this.utility.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
+    }
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utility.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+      }
+    });
     this.lang = localStorage.getItem("lang");
     this.route.params.subscribe(params => {
       this.uid = params["uid"];
+      this.initFavourites(this.uid)
+      this.initCollection(this.uid)
       this.artistSrv.getArtistBasicInfoByUid(this.uid).subscribe(res => {
         if (res["result"] === "successful") {
           this.artist = res["data"];
@@ -90,5 +111,43 @@ export class ArtistPageComponent implements OnInit {
 
   }
 
+  initCollection(uid) {
+    this.userSrv.getUserInfoByAddress(uid).then(res => {
+      if (res["result"] === "successful") {
+        this.collection = res["data"];
+        if (this.collection) {
 
+          this.collection.forEach((element) => {
+            element.imageUrl = environment.assetUrl + element.imageUrl;
+          });
+        }
+
+      } else {
+
+      }
+    }).catch(error => {
+      console.error(`ArtistPage error ${error}`);
+    })
+  }
+
+  initFavourites(uid) {
+    this.likeSrv.getUserLikeArtWork(uid).subscribe(res => {
+
+      if (res['result'] == 'successful') {
+        this.favourites = res['data'];
+        this.favourites.forEach((element) => {
+          if (element['imageUrl']) {
+            element['imageUrl'] = environment.assetUrl + element['imageUrl'];
+          }
+        });
+        this.displayFavourites = this.favourites;
+      }
+    }, error => {
+      console.error("getUserLikeByAddress ", error);
+    });
+  }
+
+  changeTab(tab) {
+    this.currentTab = tab;
+  }
 }

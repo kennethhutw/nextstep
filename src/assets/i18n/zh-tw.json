@@ -99,6 +99,7 @@
   "MEMBERMANAGEMENT": "會員管理",
   "MANAGEMENTEDITION": "管理作品",
   "UPLOADEDITION": "上傳作品",
+  "INPROCESS": "處理中",
   "SOLDEDITION": "已賣出作品",
   "SOLD": "已賣出",
   "ACCOUNTPASSWORD": "帳戶及帳密",
@@ -235,5 +236,6 @@
   "COLLECTOR3STEP": "在FormosArt上查看您的收藏。",
   "COLLECTOR3STEPINTR": "在哪裡找到它？配置文件->收藏集。",
   "NEXT": "下一步",
-  "GOTIT": "知道了！"
+  "GOTIT": "知道了！",
+  "ARTWORKS": "作品"
 }

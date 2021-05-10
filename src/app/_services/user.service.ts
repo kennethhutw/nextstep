@@ -56,6 +56,11 @@ export class UserService {
     return this.http.get<any>(`${environment.apiUrl}/users/getUserOwnArtworks/${walletaddress}`);
   }
 
+  //test
+  public getUserOwnArtworksByUid(uid: string) {
+    return this.http.get<any>(`${environment.apiUrl}/users/getUserOwnArtworksByUid/${uid}`);
+  }
+
   updateUserInfoEmail(email: string, uid: string) {
     return this.http.post(`${environment.apiUrl}/users/changeInformEmail`,
       {
