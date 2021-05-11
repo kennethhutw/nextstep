@@ -104,7 +104,7 @@
 <div class="member-info-box  mb-40">
   <div class="form-group mt-20">
     <label for="exampleInputEmail1">{{ "EMAILNOTIFICATION" | translate }}</label>
-    <input type="text" formControlName="email" [pattern]="unamePattern" class="form-control" id="" aria-describedby="">
+    <input type="text" formControlName="email" class="form-control" id="" aria-describedby="">
     <div *ngIf="submitted && f.email.errors">
       <div class="error-msg" *ngIf="f.email.errors.required">
         {{ "EMAILISREQ" | translate }}
