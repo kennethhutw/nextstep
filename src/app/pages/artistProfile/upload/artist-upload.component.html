@@ -1,20 +1,24 @@
-<h5 class="pb-10" style="color: red;">** {{ "IMPUPLOADRULE" | translate }}</h5>
+<h5 class="pb-10 warming-msg">** {{ "IMPUPLOADRULE" | translate }}</h5>
 <h5 class="pb-10">{{ "ARTWORK" | translate }}</h5>
 <div [formGroup]="artworkForm" class="member-info-box">
     <div class="row">
         <div id="select_img" class="col-md-4 text-center">
             <!-- <img class="w-100" src="./assets/images/select_img.jpg" alt="">
              -->
-            <span *ngIf="this.artworkImage != null " (click)="onRemoveImg($event,'1')" class="close">&times;</span>
+            <!--<span *ngIf="this.artworkImage != null " (click)="onRemoveImg($event,'1')" class="close">&times;</span>-->
             <img class="w-100" *ngIf="artworkImage" [src]="artworkImage" alt="" />
             <img class="w-100" *ngIf="!artworkImage" src="./assets/images/select_img.jpg" alt="" />
+            <button class="member_artist_upload_delete" *ngIf="artworkImage" (click)="onRemoveImg($event,'1')"><i
+                    class="fas fa-times"></i></button>
         </div>
         <div id="member_choice_btn" class="col-md-8">
             <!-- <button class="btn_select_img">{{ "CHOOSEARTWORK" | translate }}</button> -->
             <!-- <button class="btn_select_img d-block mt-10">預覽作品</button> -->
+            <span class="warming-msg">Maximum file size:50MB</span><br>
             <label class="btn_select_img mb-20" for="artworkImage">{{ "CHOOSEARTWORK" | translate }}</label>
             <input id="artworkImage" type="file" accept="image/gif, image/jpeg, image/png"
                 (change)="onDetectImage($event)" style="visibility: hidden; padding: 0px" />
+
         </div>
         <div *ngIf="submitted && !artworkImageFile">
             <div class="error-msg" *ngIf="!artworkImageFile" style="    margin-left: 15px;">
@@ -32,7 +36,7 @@
         </div>
     </div>
     <div class="form-group mt-20">
-        <label for="Inputdesc">{{ "EDITIONDESC" | translate }} (*)</label>
+        <label for="Inputdesc">{{ "DESC" | translate }} (*)</label>
         <textarea type="text" (keydown)="wordCounter()" #text formControlName="description" class="form-control" id=""
             aria-describedby="Inputdesc" rows=4></textarea>
         <div>Maximum words:<span id="wordCount">{{ words }}</span></div>
@@ -57,9 +61,9 @@
     </div>-->
 
     <div class="form-group mt-20">
-        <label for="exampleInputEmail1">{{ "SELLPRICE" | translate }}（ETH) (*)</label>
+        <label for="exampleInputEmail1">{{ "SELLPRICE" | translate }} (*)</label>
         <input type="number" formControlName="sellingPrice" (change)="TotalUSDAmount($event)" class="form-control" id=""
-            aria-describedby="">
+            placeholder="ETH 0.00" aria-describedby="">
         <span class="d-block pt-05 "><i class="fas fa-arrow-alt-circle-right "></i><span class="text-danger"> USD
                 $ {{usdAmount}}</span><small> {{ "PLATFORMFEE" | translate }}</small></span>
         <div *ngIf="submitted && f.sellingPrice.errors">
@@ -82,7 +86,7 @@
         <label for="exampleInputEmail1">{{ "NUMOFCOPIES" | translate }}</label>
         <input type="number" formControlName="numberOfArtwork" class="form-control" id="" aria-describedby=""
             [ngClass]="{ 'is-invalid': submitted && f.numberOfArtwork.errors }">
-        <span class="d-block pt-05 text-black-50 text-13 mt-10">{{ "SOLDNUM" | translate }}</span>
+        <span class="d-block pt-05 text-black-50 text-16 mt-10">{{ "SOLDNUM" | translate }}</span>
 
         <div *ngIf="submitted && f.numberOfArtwork.errors" class="invalid-feedback">
             <div *ngIf="f.numberOfArtwork.errors.required">{{ "NUMOFCOPIESREQ" | translate }} </div>

@@ -8,7 +8,8 @@ import {
 } from "./../../../_services";
 import {
   FormBuilder,
-  FormGroup
+  FormGroup,
+  Validators
 } from "@angular/forms";
 import { Utility } from "./../../../_helpers";
 import { Router } from "@angular/router";
@@ -39,7 +40,8 @@ export class CollectorAccountComponent implements OnInit {
   profileForm: FormGroup;
 
   IsUpdateFailed = false;
-
+  submitted = false;
+  emailForm: FormGroup;
   constructor(
     private web3Srv: Web3Service,
     private router: Router,
@@ -79,6 +81,16 @@ export class CollectorAccountComponent implements OnInit {
       name: this.currentUser.name,
       bio: this.currentUser.bio
     });
+
+    this.emailForm = this.formBuilder.group({
+      email: [
+        this.currentUser.email,
+        [
+          Validators.required,
+          Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
+        ],
+      ]
+    });
   }
 
 
@@ -109,11 +121,17 @@ export class CollectorAccountComponent implements OnInit {
     try {
       this.informMsg = null;
       this.IsUpdateInformEmailFailed = false;
-      this.userSrv.updateUserEmail(this.informEmail,
+      this.submitted = true;
+
+      if (this.emailForm.invalid) {
+
+        return;
+      }
+      this.userSrv.updateUserEmail(this.emailForm.value.email,
         this.currentUser.id).subscribe(res => {
           if (res["result"] === "successful") {
-            this.currentUser.email = this.informEmail;
-            this.authStoreSrv.setUserData(this.currentUser);
+            this.currentUser.email = this.emailForm.value.email,
+              this.authStoreSrv.setUserData(this.currentUser);
             this.translateSrv.get("UPDATEDSUCC").subscribe((text: string) => {
               this.informMsg = text;
             });

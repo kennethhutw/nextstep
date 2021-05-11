@@ -12,7 +12,7 @@ export class CheckStatusComponent implements OnInit {
   ArtistEmail: string;
   isAlarm: boolean = false;
   signinEmailForm: FormGroup;
-  msg: string;
+  msg: string = "";
   msg2: string;
   constructor(
     private route: ActivatedRoute,

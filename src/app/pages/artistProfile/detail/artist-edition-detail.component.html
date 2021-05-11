@@ -5,7 +5,7 @@
         <div class="col-md-4">
             <img class="mb-10 w-100" src="{{ this.artwork.imageUrl || defaultProfileLogo }}" alt="">
             <h6>
-                {{ "STATUS" | translate }}：<span class="text-orange">{{ getImageStatus(artwork.status)}}</span>
+                {{ "STATUS" | translate }}：<span class="text-green2">{{ getImageStatus(artwork.status)}}</span>
             </h6>
             <a (click)="onCancel()" *ngIf="artwork.status != '4'">
                 <button class="btn_small">
@@ -23,11 +23,11 @@
             <h5 class="mt-30"></h5>
             <ul class="member_artist_detail_list">
                 <li>
-                    {{ "UPLOADTIME" | translate }}：<span class="title">{{artwork.createdAt | date : 'yyyy-MM-dd
+                    {{ "UPLOADTIME" | translate }}：<span class="content">{{artwork.createdAt | date : 'yyyy-MM-dd
                         HH:mm:ss'}}</span>
                 </li>
                 <li>
-                    {{ "EDITIONS" | translate }}： <span class="title"> {{ artwork.totalamount - artwork.sold}}/ {{
+                    {{ "EDITIONS" | translate }}： <span class="content"> {{ artwork.totalamount - artwork.sold}}/ {{
                         artwork.totalamount}}</span>
                 </li>
                 <li>
@@ -35,7 +35,7 @@
                     artwork.ethValue)}}
                 </li>
                 <li>
-                    {{ "BIDDING" | translate }}：<span class="title">{{ IsBidding(artwork.isBid)}}</span>
+                    {{ "BIDDING" | translate }}：<span class="content">{{ IsBidding(artwork.isBid)}}</span>
                 </li>
                 <li *ngIf="artwork.isBid > 0 ">
                     {{ "PERIODS" | translate }}：{{artwork.createdAt | date : 'yyyy-MM-dd'}} - {{artwork.createdAt | date

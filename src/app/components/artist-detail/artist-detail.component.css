@@ -25,7 +25,10 @@ p {
     margin-left: 1rem!important;
 }
 
-
+.name{
+        font-size: 30px;
+         font-family: "Noto Serif JP", sans-serif;
+}
 .profile-image {
     vertical-align: center;
     -ms-flex-line-pack: center;

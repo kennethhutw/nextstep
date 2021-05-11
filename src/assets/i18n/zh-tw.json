@@ -161,6 +161,7 @@
   "EDITIONISREQ": "作品是必要的",
   "NAMEISREQ": "作品名是必要的",
   "DESCISREQ": "介紹是必要的",
+  "EMAILISREQ": "Email是必要的",
   "SELLPRICEISREQ": "售價是必要的",
   "NUMOFCOPIESREQ": "銷售版本是必要的",
   "NUMOFCOPIESMIN": "銷售版本至少是1個",

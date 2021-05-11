@@ -64,7 +64,7 @@
 .confirm-message {
      font-family:'Roboto', sans-serif;
     font-size:20px;
-    font-weight:500;
+    font-weight:400;
     margin-bottom:0px;
     margin-top:5px;
     word-wrap: break-word;
@@ -76,17 +76,19 @@
 }
 
 .btn-no {
-    background-color: #ED4639;
-    color:white;
+    background-color: #00FF90;
+    color:black;
     margin-left: 10px;
-    width: 100px;
+    width: 179px;
+    height: 60px;
 }
 
 .btn-yes {
-    background-color: #80CDC1;
+    background-color: #000000;
     color:white;
       margin-right: 10px;
-      width: 100px;
+      width: 179px;
+      height: 60px;
 }
 
 .dailog{

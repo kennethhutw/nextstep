@@ -61,12 +61,22 @@
 </div>
 
 
-
+<!-- [(ngModel)]="informEmail" -->
 <h5 class="mt-70  mt-20">{{ "INFORMEMAIL" | translate }}</h5>
-<div class="member-info-box  mb-40">
+<div class="member-info-box  mb-40" [formGroup]="emailForm">
   <div class="form-group mt-20">
     <label for="exampleInputEmail1">{{ "EMAILNOTIFICATION" | translate }}</label>
-    <input type="text" [(ngModel)]="informEmail" class="form-control" id="" aria-describedby="">
+    <input type="text" formControlName="email" [pattern]="unamePattern" class="form-control" id="" aria-describedby="">
+    <div *ngIf="submitted && f.email.errors">
+      <div class="error-msg" *ngIf="f.email.errors.required">
+        {{ "EMAILISREQ" | translate }}
+      </div>
+    </div>
+    <div *ngIf="submitted && f.email.errors">
+      <div class="error-msg" *ngIf="f.email.errors?.pattern">
+        {{ "INVAILDEMAIL" | translate }}
+      </div>
+    </div>
   </div>
   <button (click)="updateInforEmail()" id="member_last_btn_w100" class="btn_select_img">{{ "CONFIRMSAVE" | translate
     }}</button>

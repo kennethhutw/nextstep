@@ -44,8 +44,8 @@ export class ArtistUploadComponent implements OnInit {
   currentUser: any;
   ethPrice = 0;
   //discard
-  ethAmount: Number = 0;
-  usdAmount: Number = 0;
+  ethAmount: Number = 0.00;
+  usdAmount: Number = 0.00;
   tags = [];
   isReadonly = true;
   lang = "en";
@@ -77,7 +77,7 @@ export class ArtistUploadComponent implements OnInit {
       name: ["", Validators.required],
       description: ["", Validators.required],
       IsBid: [false],
-      sellingPrice: [0, [Validators.pattern(/^\d*(?:[.,]\d{1,2})?$/)]],
+      sellingPrice: ["", [Validators.pattern(/^\d*(?:[.,]\d{1,2})?$/)]],
       paymentway: [0],
       numberOfArtwork: ["", [Validators.required, Validators.min(0), Validators.max(10)]],
       tags: [""]

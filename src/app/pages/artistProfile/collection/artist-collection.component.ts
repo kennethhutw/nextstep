@@ -79,7 +79,7 @@ export class ArtistCollectionComponent implements OnInit {
 
   getImageStatus(status) {
     let _status = "Under Review";
-    console.log("artwgetImageStatusorks ==========", status);
+
     switch (status) {
       case "0":
         if (this._lang == "en") {

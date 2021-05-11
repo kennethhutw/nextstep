@@ -331,8 +331,11 @@ body {
 
 .page-item.active .page-link {
   color: #fff !important;
-    background-color: #08AB65  !important;
-    border-color:#08AB65  !important;
+    /* background-color: #08AB65  !important;
+    border-color:#08AB65  !important; */
+      background-color: #00FF90  !important;
+    border-color:#00FF90  !important;
+    font-weight: 100;
 }
 
 .page-link{
@@ -362,6 +365,9 @@ body {
 
 .text-green1{
     color:#08AB65;
+}
+.text-green2{
+   color:#00FF90;
 }
 
 .text-orange{
@@ -1224,11 +1230,25 @@ box-shadow:0 0 5px #fff;
     height:30px;
     line-height:30px;
     font-size:18px;
-    background-color:#08AB65;
+    background-color:#00FF90;
+    border-color: #00FF90;
     color:#FFF;
     border-radius:50%;
 }
-
+.member_artist_upload_delete{
+    position: absolute;
+    display:block;
+    top:0;
+    left:calc(70% + 32px);
+    width:30px;
+    height:30px;
+    line-height:30px;
+    font-size:18px;
+    background-color:#00FF90;
+    border-color: #00FF90;
+    color:#FFF;
+    border-radius:50%;
+}
 #member-artist-artist a:hover{
     color:#FFF;
     background-color:#E20C23;
@@ -1363,7 +1383,7 @@ box-shadow:0 0 5px #fff;
 
 .error-msg {
   color: #dc3545;
-
+font-size:16px;
 }
 
 .profile_image{

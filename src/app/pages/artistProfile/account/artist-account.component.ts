@@ -30,9 +30,11 @@ export class ArtistAccountComponent implements OnInit {
   informMsg = null;
   IsUpdateInformEmailFailed = false;
   ethAddress = "";
+  submitted = false;
   ethAddressActionMsg = null;
   ethAddressActionMsgFailed = false;
   emailForm: FormGroup;
+  unamePattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"
   constructor(
     private formBuilder: FormBuilder,
     private web3Srv: Web3Service,
@@ -59,13 +61,14 @@ export class ArtistAccountComponent implements OnInit {
       this.router.navigate(['./index'], {});
     }
     else {
-      this.informEmail = this.currentUser.email;
+      //  this.informEmail = this.currentUser.email;
+      //this.emailForm.setValue({ "email": this.currentUser.email });
       this.ethAddress = this.currentUser.ethaddress;
     }
 
     this.emailForm = this.formBuilder.group({
       email: [
-        "",
+        this.currentUser.email,
         [
           Validators.required,
           Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
@@ -100,16 +103,23 @@ export class ArtistAccountComponent implements OnInit {
     }
   }
 
+  get f() {
+    return this.emailForm.controls;
+  }
   updateInforEmail() {
     try {
-
+      this.submitted = true;
       this.informMsg = null;
       this.IsUpdateInformEmailFailed = false;
-      this.userSrv.updateUserEmail(this.informEmail,
+      if (this.emailForm.invalid) {
+
+        return;
+      }
+      this.userSrv.updateUserEmail(this.emailForm.value.email,
         this.currentUser.id).subscribe(res => {
           if (res["result"] === "successful") {
-            this.currentUser.email = this.informEmail;
-            this.authStoreSrv.setUserData(this.currentUser);
+            this.currentUser.email = this.emailForm.value.email,
+              this.authStoreSrv.setUserData(this.currentUser);
             this.translateSrv.get("UPDATEDSUCC").subscribe((text: string) => {
               this.informMsg = text;
             });

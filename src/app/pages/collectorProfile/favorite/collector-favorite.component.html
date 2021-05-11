@@ -49,7 +49,7 @@
                 <div class="col-md-8">
                     <ul class="member_artist_detail_list">
                         <li>
-                            <h5>{{artwork.name}}</h5>
+                            <p class="title">{{artwork.name}}</p>
                         </li>
                         <li>
                             {{ "CREATOR" | translate }}：{{artwork.artist.name}}
@@ -126,7 +126,7 @@
                     <button class="member_artist_delete" (click)="removeFavorites(artist.id)"><i
                             class="fas fa-times"></i></button>
                     <a routerLink="/{{ artist.uid }}" target="_blank">
-                        <h5 class="text-center mt-10">{{artist.name}}</h5>
+                        <p class="title text-center mt-10">{{artist.name}}</p>
                     </a>
                 </div>
             </ng-container>
