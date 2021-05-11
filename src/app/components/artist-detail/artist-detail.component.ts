@@ -9,6 +9,7 @@ import {
   ToastService
 } from "../../_services";
 
+
 import { TranslateService } from "@ngx-translate/core";
 @Component({
   selector: "app-artist-detail",
@@ -86,6 +87,7 @@ export class ArtistDetailComponent {
   }
 
   ngOnInit() {
+
     this.dataSrv.langKey.subscribe((lang) => {
       if (!this.utility.IsNullOrEmpty(lang)) {
         this.translateSrv.use(lang);
@@ -152,9 +154,9 @@ export class ArtistDetailComponent {
       selBox.select();
       document.execCommand('copy');
       document.body.removeChild(selBox);
-      this.toasterSrv.showToast('Share', 'copied', 'success');
+
     } else {
-      this.toasterSrv.showToast('Share', 'Failed to copy the wallet address', 'error');
+
     }
   }
 

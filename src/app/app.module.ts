@@ -11,6 +11,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { AppComponent } from "./app.component";
 import { routing } from "./app-routing.module";
 import { NgxSpinnerModule } from "ngx-spinner";
+import { TooltipModule } from 'ng2-tooltip-directive';
 import {
   NewWalletComponent,
   WalletListComponent,
@@ -193,6 +194,7 @@ export function createLoader(http: HttpClient) {
     Websitepages.containers
   ],
   imports: [
+    TooltipModule,
     BrowserModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),

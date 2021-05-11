@@ -3,6 +3,9 @@ import { HttpClient } from "@angular/common/http";
 import { DialogService } from './../../_services';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+declare var $: any; // ADD THIS
+
+
 @Component({
   selector: 'app-example',
   templateUrl: './example.component.html',
@@ -33,7 +36,7 @@ export class ExampleComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    $('[data-toggle="popover"]').popover();
 
 
   }
