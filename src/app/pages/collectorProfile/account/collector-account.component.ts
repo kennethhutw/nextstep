@@ -116,7 +116,9 @@ export class CollectorAccountComponent implements OnInit {
       return "";
     }
   }
-
+  get f() {
+    return this.emailForm.controls;
+  }
   updateInforEmail() {
     try {
       this.informMsg = null;
