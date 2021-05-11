@@ -4,7 +4,8 @@ import {
   DataService,
   LikeService,
   AuthStore,
-  SettingService
+  SettingService,
+  AppSettingsService
 } from "./../../../_services";
 import { Utility } from "./../../../_helpers";
 import { environment } from '../../../../environments/environment';
@@ -26,6 +27,7 @@ export class ArtistFavoriteComponent implements OnInit {
   searchArtworkText = "";
   searchArtistText = "";
   constructor(
+    private appSettingsSrv: AppSettingsService,
     private settingSrv: SettingService,
     private authStoreSrv: AuthStore,
     private translateSrv: TranslateService,
@@ -57,14 +59,19 @@ export class ArtistFavoriteComponent implements OnInit {
   initArtist() {
     this.likeSrv.getUserLikeArtist(this.currentUser.id).subscribe(res => {
 
+      console.log("getUserLikeArtist ================", res);
       if (res['result'] == 'successful') {
         this.artists = res['data'];
         this.artists.forEach((element) => {
-          if (element['imageUrl']) {
+          if (!this.utility.IsNullOrEmpty(element['imageUrl'])) {
             element['imageUrl'] = environment.assetUrl + element['imageUrl'];
+          } else {
+
+            element['imageUrl'] = this.defaultProfileLogo;
           }
-          this.displayArtists = this.artists;
+
         });
+        this.displayArtists = this.artists;
       }
     });
   }
@@ -74,7 +81,20 @@ export class ArtistFavoriteComponent implements OnInit {
       if (res['result'] == 'successful') {
         this.artworks = res['data'];
         this.artworks.forEach((element) => {
-          element.imageUrl = environment.assetUrl + element.imageUrl;
+          if (!this.utility.IsNullOrEmpty(element['imageUrl'])) {
+            element['imageUrl'] = environment.assetUrl + element['imageUrl'];
+          } else {
+
+            element['imageUrl'] = this.settingSrv.defulatImage;
+          }
+          if (!this.utility.IsNullOrEmpty(element['ethValue'])) {
+            let eth = parseFloat(element['ethValue']);
+            element['ethValue'] = +(eth / 100).toFixed(3);
+            element['usdValue'] = this.utility.getSellUSDPrice(eth);
+          } else {
+            element['ethValue'] = 0;
+            element['usdValue'] = 0;
+          }
         });
 
         this.displayArtworks = this.artworks;

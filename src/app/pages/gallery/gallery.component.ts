@@ -67,16 +67,23 @@ export class GalleryComponent implements OnInit {
   ngOnInit() {
     this.SpinnerService.show();
     this.currentUser = this.authStoreSrv.getUserData();
-    console.log("============currentUser", this.currentUser);
     this.artworkSrv.getSellArtwork().subscribe(res => {
 
       if (res["result"] == "successful") {
         this.editions = res["data"];
         this.editions.forEach((element) => {
           element.imageUrl = environment.assetUrl + element.imageUrl;
-          element.ethPrice = this.utility.getSellETHPrice(element.usdValue);
+          if (!this.utility.IsNullOrEmpty(element['ethValue'])) {
+            let eth = parseFloat(element['ethValue']);
+            element['ethValue'] = +(eth / 100).toFixed(3);
+            element['usdValue'] = this.utility.getSellUSDPrice(eth);
+          } else {
+            element['ethValue'] = 0;
+            element['usdValue'] = 0;
+          }
         });
         this.displayEditions = this.editions;
+
       }
     }, error => {
       console.error(`getSellArtwork error message ${error}`);

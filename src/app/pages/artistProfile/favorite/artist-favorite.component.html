@@ -55,8 +55,7 @@
                             {{ "CREATOR" | translate }}：{{artwork.artist.name}}
                         </li>
                         <li>
-                            {{ "PRICE" | translate }}：Ξ {{getETHPrice(artwork.usdValue)}} / USD {{artwork.usdValue /
-                            100}}
+                            {{ "PRICE" | translate }}：Ξ {{artwork.ethValue}} / USD {{artwork.usdValue}}
                         </li>
                         <li>
                             {{ "EDITIONS" | translate }}：{{artwork.totalamount}}/#{{artwork.number}}
@@ -225,7 +224,7 @@
             </ng-container>
             <ng-container *ngFor="let artist of ( displayArtists  | userFilter: searchArtistText : 'name' )">
                 <div id="member_artist_delete" class="col-md-3 col-6 text-center mb-30">
-                    <img class="rounded-circle member_img_w" src="{{artist.imageUrl}}" alt="">
+                    <img class="rounded-circle member_img_w" src="{{artist.imageUrl || defaultProfileLogo}}" alt="">
                     <button class="member_artist_delete" (click)="removeFavorites(artist.id)"><i
                             class="fas fa-times"></i></button>
                     <a routerLink="/{{ artist.uid }}" target="_blank">

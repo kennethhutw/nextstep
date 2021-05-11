@@ -44,7 +44,7 @@
             <div id="member-artist-project" class="row mt-30">
                 <div class="col-md-4">
                     <a routerLink="/gallery/{{ artwork.id }}" target="_blank"><img style="width: 100%;" class="mb-10"
-                            src="{{artwork.imageUrl}}" alt=""></a>
+                            src="{{artwork.imageUrl || defulatImage}}" alt=""></a>
                 </div>
                 <div class="col-md-8">
                     <ul class="member_artist_detail_list">
@@ -55,8 +55,7 @@
                             {{ "CREATOR" | translate }}：{{artwork.artist.name}}
                         </li>
                         <li>
-                            {{ "PRICE" | translate }}：Ξ {{getETHPrice(artwork.usdValue)}} / USD {{artwork.usdValue /
-                            100}}
+                            {{ "PRICE" | translate }}：Ξ {{artwork.ethValue}} / USD {{artwork.usdValue}}
                         </li>
                         <li>
                             {{ "EDITIONS" | translate }}：{{artwork.totalamount}}/#{{artwork.number}}

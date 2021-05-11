@@ -24,6 +24,7 @@ export class CollectorFavoriteComponent implements OnInit {
   currentTab = 'editions';
   ethPrice = 0;
   defaultProfileLogo = null;
+  defulatImage = null;
   searchArtworkText = "";
   searchArtistText = "";
   constructor(
@@ -34,6 +35,7 @@ export class CollectorFavoriteComponent implements OnInit {
     private dataSrv: DataService,
     private likeSrv: LikeService) {
     this.defaultProfileLogo = this.settingSrv.defaultProfileLogo;
+    this.defulatImage = this.settingSrv.defulatImage;
     this.currentUser = this.authStoreSrv.getUserData();
     if (!this.utility.IsNullOrEmpty(localStorage.getItem("ETHPRICE"))) {
       this.ethPrice = Number(localStorage.getItem("ETHPRICE"));
@@ -61,9 +63,13 @@ export class CollectorFavoriteComponent implements OnInit {
       if (res['result'] == 'successful') {
         this.artists = res['data'];
         this.artists.forEach((element) => {
-          if (element['imageUrl']) {
+          if (!this.utility.IsNullOrEmpty(element['imageUrl'])) {
             element['imageUrl'] = environment.assetUrl + element['imageUrl'];
+          } else {
+
+            element['imageUrl'] = this.defaultProfileLogo;
           }
+
         });
         this.displayArtists = this.artists;
 
@@ -76,7 +82,21 @@ export class CollectorFavoriteComponent implements OnInit {
       if (res['result'] == 'successful') {
         this.artworks = res['data'];
         this.artworks.forEach((element) => {
-          element.imageUrl = environment.assetUrl + element.imageUrl;
+          console.log("===================", element);
+          if (!this.utility.IsNullOrEmpty(element['imageUrl'])) {
+            element['imageUrl'] = environment.assetUrl + element['imageUrl'];
+          } else {
+
+            element['imageUrl'] = this.settingSrv.defulatImage;
+          }
+          if (!this.utility.IsNullOrEmpty(element['ethValue'])) {
+            let eth = parseFloat(element['ethValue']);
+            element['ethValue'] = +(eth / 100).toFixed(3);
+            element['usdValue'] = this.utility.getSellUSDPrice(eth);
+          } else {
+            element['ethValue'] = 0;
+            element['usdValue'] = 0;
+          }
         });
         this.displayArtworks = this.artworks;
       }

@@ -211,7 +211,7 @@ export class Utility {
       let usd = parseFloat(usdvalue);
       let ethPrice = Number(localStorage.getItem("ETHPRICE"));
 
-      const ethAmount = +(usd / 100 * ethPrice).toFixed(3);
+      const ethAmount = +(usd / 100 * ethPrice).toFixed(2);
       return ethAmount;
     }
     catch (err) {
