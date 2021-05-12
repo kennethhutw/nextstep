@@ -14,7 +14,7 @@
         <div id="member_choice_btn" class="col-md-8">
             <!-- <button class="btn_select_img">{{ "CHOOSEARTWORK" | translate }}</button> -->
             <!-- <button class="btn_select_img d-block mt-10">預覽作品</button> -->
-            <span class="warming-msg">Maximum file size:50MB</span><br>
+            <span class="warming-msg" style="font-size: 12px;">Maximum file size:50MB</span><br>
             <label class="btn_select_img mb-20" for="artworkImage">{{ "CHOOSEARTWORK" | translate }}</label>
             <input id="artworkImage" type="file" accept="image/gif, image/jpeg, image/png"
                 (change)="onDetectImage($event)" style="visibility: hidden; padding: 0px" />
@@ -39,7 +39,7 @@
         <label for="Inputdesc">{{ "DESC" | translate }} (*)</label>
         <textarea type="text" (keydown)="wordCounter()" #text formControlName="description" class="form-control" id=""
             aria-describedby="Inputdesc" rows=4></textarea>
-        <div>Maximum words:<span id="wordCount">{{ words }}</span></div>
+        <div style="font-size: 12px;">Maximum words:<span id="wordCount">{{ words }}</span></div>
         <div *ngIf="submitted && f.description.errors">
             <div class="error-msg" *ngIf="f.description.errors.required">
                 {{ "DESCISREQ" | translate }}
@@ -86,7 +86,9 @@
         <label for="exampleInputEmail1">{{ "NUMOFCOPIES" | translate }}</label>
         <input type="number" formControlName="numberOfArtwork" class="form-control" id="" aria-describedby=""
             [ngClass]="{ 'is-invalid': submitted && f.numberOfArtwork.errors }">
-        <span class="d-block pt-05 text-black-50 text-16 mt-10">{{ "SOLDNUM" | translate }}</span>
+        <span class="d-block pt-05 text-black-50 text-16 mt-10" style="font-size: 12px;color: black !important;">{{
+            "SOLDNUM" | translate
+            }}</span>
 
         <div *ngIf="submitted && f.numberOfArtwork.errors" class="invalid-feedback">
             <div *ngIf="f.numberOfArtwork.errors.required">{{ "NUMOFCOPIESREQ" | translate }} </div>

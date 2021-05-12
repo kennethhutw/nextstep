@@ -17,3 +17,9 @@
  color: red;
     font-size: 40px;
 }
+
+.title {
+  font-size: 36px;
+    font-family: "Noto Serif JP", sans-serif;
+        font-weight: 500;
+}

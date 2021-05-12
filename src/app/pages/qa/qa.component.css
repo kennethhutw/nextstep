@@ -1,13 +1,31 @@
 /* font-family: "Noto Sans TC",sans-serif; */
 .title{
-    font-size: 24px;
+      font-family: "Roboto", sans-serif;
+    font-size: 22px;
+    font-weight: 300;
+    /* font-size: 24px;
     font-weight: 400;
-    font-family: "Noto Sans TC",sans-serif;
+    font-family: "Noto Sans TC",sans-serif; */
 }
 
+
 .card-body{
-        font-size: 1.3em;
+        font-size: 18px;
     line-height: 1.9em;
     opacity: 0.9;
-    font-family: "Noto Sans TC",sans-serif;
+     font-family: "Roboto", sans-serif;
+    /* font-family: "Noto Sans TC",sans-serif;*/
+}
+
+.text-title{
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.QA{
+        font-family: "Noto Serif JP", sans-serif;
+
+    font-weight: 700;
+    font-size: 36px;
 }

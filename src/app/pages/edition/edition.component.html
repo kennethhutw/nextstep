@@ -18,18 +18,22 @@
               src="{{this.currentArtwork.artist.imageUrl || this.settingSrv.defaultProfileLogo}}" alt="" /></a>
         </div>
         <div class="d-inline p-2">
-          <a routerLink="/{{ this.currentArtwork.artist.uid }}">{{this.currentArtwork.artist.name}}</a>
+          <a style=" font-family: 'Noto Serif JP', sans-serif; font-size: 22px; font-weight: 300;margin-left: 20px;"
+            routerLink="/{{ this.currentArtwork.artist.uid }}">{{this.currentArtwork.artist.name}}</a>
         </div>
       </div>
 
-      <h1 class="mb-30">{{this.currentArtwork.name}}</h1>
+      <h1 class="mb-30" style=" font-family: 'Noto Serif JP', sans-serif; font-size: 40px; font-weight: 500;">
+        {{this.currentArtwork.name}}</h1>
 
       <h1 class="mt-50">
-        Ξ {{displaySellPrice()}} <span class="project_info_price_us"> / USD
+        <span style="font-weight: 100;"> Ξ </span> <span style="font-weight: 500;">{{displaySellPrice()}} </span><span
+          class="project_info_price_us" style="font-weight: 100;"> / USD
           {{displayUSDPrice()}}</span>
       </h1>
       <a href="#" *ngIf="this.currentArtwork.status == 1" class="text-white" data-toggle="modal"
-        data-target="#modal_login_way"><button class="btn_large w-100" (click)="purchase()">{{ "BUYNOW" | translate
+        data-target="#modal_login_way"><button class="btn_large w-100" style="margin-top: 20px;" (click)="purchase()">{{
+          "BUYNOW" | translate
           }}</button></a>
       <a href="#" *ngIf="this.currentArtwork.status == 2" class="text-white" data-toggle="modal"
         data-target="#modal_login_way"><button class="btn_large w-100" (click)="purchase()">{{ "BIDDING" | translate
@@ -48,20 +52,19 @@
         <!-- <a href="project-bidding.html">收藏 <i class="far fa-heart  fa-lg"></i></a>
         <a href="project-bidding.html">已收藏 <i class="fas fa-heart  fa-lg"></i></a> -->
       </div>
-      <hr class="mt-30 mb-30" />
-      <h4>{{ "EDITIONDESC" | translate }}</h4>
+
+      <h4 class="mt-30" style="font-size: 18px;">{{ "DESC" | translate }}</h4>
       <div class="text-justify">
         {{this.currentArtwork.description}}
       </div>
       <hr class="mt-30 mb-30" />
-      <h6 class="mt-50">{{ "EDITIONOWNER" | translate }}</h6>
+      <h6 class="mt-50" style="font-size: 18px;">{{ "EDITIONOWNER" | translate }}</h6>
       <p class="text-black-50">{{this.currentArtwork.owner}}</p>
       <hr class="mt-30 mb-30" />
-      <h6>{{ "ADDITIONALDETAILS" | translate }}</h6>
+      <h6 style="font-size: 18px;">{{ "ADDITIONALDETAILS" | translate }}</h6>
       <div class="text-black-50">
         <ul>
-          <li class="project_info_li">{{ "DATE" | translate }}：{{this.currentArtwork.createdAt | date : 'yyyy-MM-dd'}}
-          </li>
+
           <li class="project_info_li">{{ "INFO" | translate }}：</li>
           <li class="project_info_li">{{ "EDITION_" | translate }}：# {{this.currentArtwork.id}}</li>
           <li class="project_info_li">
@@ -73,13 +76,13 @@
         </ul>
       </div>
       <hr class="mt-30 mb-30" />
-      <h6>{{ "HISTORY" | translate }}</h6>
+      <h6 style="font-size: 18px;">{{ "HISTORY" | translate }}</h6>
       <table class="table project_info_trans_record" style="    margin-bottom: 150px;">
         <thead>
           <tr>
-            <th scope="col">{{ "OWNER" | translate }}</th>
-            <th scope="col">{{ "PRICE" | translate }}</th>
-            <th scope="col">{{ "DATE" | translate }}</th>
+            <th scope="col" style="font-weight: 300;">{{ "OWNER" | translate }}</th>
+            <th scope="col" style="font-weight: 300;">{{ "PRICE" | translate }}</th>
+            <th scope="col" style="font-weight: 300;">{{ "DATE" | translate }}</th>
           </tr>
         </thead>
         <tbody>
@@ -114,7 +117,8 @@
     <div class="col-md-7">
       <div class="row mt-40 mb-10">
         <div class="col-8">
-          <h2>{{ "MOREBYTHISARTIST" | translate }}</h2>
+          <h2 style=" font-family: 'Noto Serif JP', sans-serif; font-size: 30px; font-weight: 500;">{{
+            "MOREBYTHISARTIST" | translate }}</h2>
         </div>
         <div class="col-4 text-right">
           <a routerLink="/{{ this.currentArtwork.artist.uid }}"><button class="btn_small">{{ "VIEWMORE" | translate

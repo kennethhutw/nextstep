@@ -215,7 +215,7 @@ export class ArtistUploadComponent implements OnInit {
     let msg = "";
     switch (lang) {
       case "en":
-        msg = "You will not be able to revise the information and price of this artwork once you proceed,\n would you like to go ahead?";
+        msg = "You will not be able to revise this artwork after you proceed, do you want to continue?";
         break;
       case "zh-tw":
         msg = "您將無法修改此藝術品的信息和價格，\n您要繼續嗎？"

@@ -215,7 +215,7 @@
             </div>
         </div>
 
-        <hr>
+
         <div id="member-artist-artist" class="row mt-30 mb-20">
             <ng-container *ngIf="displayArtists.length == 0">
                 <div style="margin-top:20px;" class="text-center subtitle no-msg">{{
@@ -224,15 +224,16 @@
             </ng-container>
             <ng-container *ngFor="let artist of ( displayArtists  | userFilter: searchArtistText : 'name' )">
                 <div id="member_artist_delete" class="col-md-3 col-6 text-center mb-30">
-                    <img class="rounded-circle member_img_w" src="{{artist.imageUrl || defaultProfileLogo}}" alt="">
+                    <img class="rounded-circle member_img" src="{{artist.imageUrl || defaultProfileLogo}}" alt="">
                     <button class="member_artist_delete" (click)="removeFavorites(artist.id)"><i
                             class="fas fa-times"></i></button>
                     <a routerLink="/{{ artist.uid }}" target="_blank">
-                        <p class="title text-center mt-10">{{artist.name}}</p>
+                        <p class="title text-center mt-10" style="font-weight: 300;">{{artist.name}}</p>
                     </a>
                 </div>
             </ng-container>
         </div>
+
         <!-- <div id="member-artist-artist" class="row mt-30 mb-20">
                             <div id="member_artist_delete" class="col-md-3 col-6 text-center mb-30">
                                 <img class="rounded-circle member_img_w" src="./assets/images/artist-photo.jpg" alt="">

@@ -1,6 +1,6 @@
 <div *ngIf="this.artwork">
     <a [routerLink]="['/artist/collection']"><i class="fas fa-caret-left"></i> {{ "BACKPAGE" | translate }}</a>
-    <hr>
+    =
     <div class="row mt-30">
         <div class="col-md-4">
             <img class="mb-10 w-100" src="{{ this.artwork.imageUrl || defaultProfileLogo }}" alt="">
@@ -15,7 +15,7 @@
         </div>
 
         <div class="col-md-8">
-            <h1 class="mb-20">{{this.artwork.name}}</h1>
+            <h1 class="mb-20" style=" font-family: 'Noto Serif JP', sans-serif;">{{this.artwork.name}}</h1>
             <p>{{ "EDITIONDESC" | translate }} :</p>
             <p class="text-justify">
                 {{this.artwork.description}}
@@ -30,7 +30,7 @@
                     {{ "EDITIONS" | translate }}： <span class="content"> {{ artwork.totalamount - artwork.sold}}/ {{
                         artwork.totalamount}}</span>
                 </li>
-                <li>
+                <li class="content">
                     {{ "PRICE" | translate }}：ETH {{artwork.ethValue /100}} / USD {{ getSellUSDPrice(
                     artwork.ethValue)}}
                 </li>
