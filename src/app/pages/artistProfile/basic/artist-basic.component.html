@@ -32,13 +32,13 @@
     <h5 class="mt-50 pb-10">{{ "SOCIALMEDIALINK" | translate }}</h5>
     <div class="member-info-box">
         <div class="form-group ">
-            <label for="twitter">Twitter</label>
+            <div><i class="fab fa-twitter"></i> <label class="pl-10" for="twitter">Twitter</label></div>
             <input type="text" formControlName="twitter" class="form-control" id="twitter" aria-describedby=""
                 placeholder="ex- https://twitter.com/formosa">
         </div>
 
         <div class="form-group">
-            <label for="instagram">Instagram</label>
+            <div><i class="fab fa-instagram-square"></i><label class="pl-10" for="instagram">Instagram</label></div>
             <input type="textg" formControlName="instagram" class="form-control" id="instagram" aria-describedby=""
                 placeholder="ex- https://www.instagram.com/formosa">
         </div>
@@ -50,13 +50,14 @@
         </div> -->
 
         <div class="form-group">
-            <label for="website">Website</label>
+            <div><i class="fas fa-globe"></i><label class="pl-10" for="website">Website</label></div>
             <input type="text" formControlName="website" class="form-control" id="website" aria-describedby=""
                 placeholder="personal website">
         </div>
 
         <div class="form-group">
-            <label for="location">{{ "LOCATION" | translate }}</label>
+            <div><i class="fas fa-map-marker"></i><label class="pl-10" for="location">{{ "LOCATION" | translate
+                    }}</label></div>
             <select style="height:52px;" name="location" formControlName="location" id="location" class="form-control">
                 <option value="" selected>Select country...</option>
                 <option *ngFor="let opt of countriesOptions" [value]="opt.text">{{opt.text}}

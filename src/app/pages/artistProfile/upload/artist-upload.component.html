@@ -70,6 +70,9 @@
             <div class="error-msg" *ngIf="f.sellingPrice.errors.required">
                 {{ "SELLPRICEISREQ" | translate }}
             </div>
+            <div class="error-msg" *ngIf="f.sellingPrice.errors?.min">
+                {{ "SELLPRICEMIN" | translate }}
+            </div>
         </div>
     </div>
 
@@ -109,7 +112,7 @@
         </div>
         <div *ngIf="submitted && f.tags.errors">
             <div class="error-msg" *ngIf="f.tags.errors.required">
-                {{ "SELLPRICEISREQ" | translate }}
+                {{ "TAGSISREQ" | translate }}
             </div>
         </div>
     </div>

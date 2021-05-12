@@ -73,7 +73,7 @@
   </div>
 </div> -->
 
-<h5 class="pb-10"> {{ "PASSWORDSETTING" | translate }}</h5>
+<h5 class="pb-10  mt-20"> {{ "PASSWORDSETTING" | translate }}</h5>
 <div class="member-info-box">
   <div class="form-group mt-20">
     <label for="exampleInputEmail1">{{ "OLDPSW" | translate }}</label>
@@ -101,7 +101,7 @@
 
 
 <h5 class="mt-70  mt-20">{{ "INFORMEMAIL" | translate }}</h5>
-<div class="member-info-box  mb-40">
+<div class="member-info-box  mb-40" [formGroup]="emailForm">
   <div class="form-group mt-20">
     <label for="exampleInputEmail1">{{ "EMAILNOTIFICATION" | translate }}</label>
     <input type="text" formControlName="email" class="form-control" id="" aria-describedby="">

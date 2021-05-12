@@ -77,7 +77,7 @@ export class ArtistUploadComponent implements OnInit {
       name: ["", Validators.required],
       description: ["", Validators.required],
       IsBid: [false],
-      sellingPrice: ["", [Validators.pattern(/^\d*(?:[.,]\d{1,2})?$/)]],
+      sellingPrice: ["", [Validators.pattern(/^\d*(?:[.,]\d{1,2})?$/), Validators.min(0.03)]],
       paymentway: [0],
       numberOfArtwork: ["", [Validators.required, Validators.min(0), Validators.max(10)]],
       tags: [""]

@@ -68,3 +68,22 @@
 
 /* Hide default HTML checkbox */
 .biddingswitch input {display:none;}
+.member_artist_delete{
+    position: absolute;
+    display:block;
+    top:0;
+    left:calc(70% + 32px);
+    width:30px;
+    height:30px;
+    line-height:30px;
+    font-size:18px;
+    background-color:#00FF90;
+    border-color: #00FF90;
+    color:#FFF;
+    border-radius:50%;
+}
+
+
+.pl-10{
+  padding-left: 10px;
+}
