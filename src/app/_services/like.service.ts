@@ -23,6 +23,10 @@ export class LikeService {
     return this.http.get(`${environment.apiUrl}/likes/getUserLikeArtWork/${user_id}`);
   }
 
+  getUserLikeArtWorkByUid(uid) {
+    return this.http.get(`${environment.apiUrl}/likes/getUserLikeArtWorkByUid/${uid}`);
+  }
+
   removeLike(uid, liked_id) {
     return this.http.post(`${environment.apiUrl}/likes/dislike`,
       {
