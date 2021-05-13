@@ -129,4 +129,16 @@ export class EmailService {
             });
     }
 
+    sendPurchaseEmail(subject, receiverName, receiverEmail, link, artworkName, uid) {
+        return this.http.post(`${environment.apiUrl}/email/purchaseEmail`,
+            {
+                'subject': subject,
+                'receiverName': receiverName,
+                'receiverEmail': receiverEmail,
+                'artworkName': artworkName,
+                'link': link,
+                'uid': uid
+            });
+    }
+
 }

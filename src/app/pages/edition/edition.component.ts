@@ -1,4 +1,8 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ViewChild
+} from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
   DataService,
@@ -21,10 +25,11 @@ import { NgxSpinnerService } from "ngx-spinner";
 @Component({
   selector: "edition",
   templateUrl: "./edition.component.html",
-  styleUrls: ["./edition.component.css"],
-  encapsulation: ViewEncapsulation.None,
+  styleUrls: ["./edition.component.css"]
 })
 export class EditionComponent implements OnInit {
+
+  mdlSampleIsOpen: boolean = false;
   IsFollowed = false;
   editions = [];
   transactions = [];
@@ -209,8 +214,10 @@ export class EditionComponent implements OnInit {
                 () => {
                   console.log("yes ===");
                   this.informArtist();
+                  this.informBuyer();
                 }, () => {
                   this.informArtist();
+                  this.informBuyer();
                   console.log("no ===");
                 });
             }, error => {
@@ -254,6 +261,7 @@ export class EditionComponent implements OnInit {
 
   test() {
     this.informArtist();
+    this.informBuyer();
   }
 
   informArtist() {
@@ -281,4 +289,42 @@ export class EditionComponent implements OnInit {
         //       this.toastSrv.showToast('Failed', error, this.toastSrv.iconClasses.error);
       });
   }
+
+  informBuyer() {
+
+    if (!this.currentUser) {
+      return;
+    }
+    if (this.utility.IsNullOrEmpty(this.currentUser.email)) {
+      return;
+    }
+    let domain = window.location.origin;
+    let url = '/gallery/' + this.artworkId;
+    let link = domain + url;
+    this.emailSrv.sendPurchaseEmail(
+      'Thank you for your purchase',
+      this.currentUser.name,
+      this.currentUser.email,
+      link,
+      this.currentArtwork.name,
+      this.currentUser.id).subscribe(sendRes => {
+        console.log("error = ", sendRes);
+        if (sendRes['result'] == 'successful') {
+          //         this.toastSrv.showToast('Success', "Inform Email Sent", this.toastSrv.iconClasses.success);
+        } else {
+          //       this.toastSrv.showToast('Failed', sendRes['message'], this.toastSrv.iconClasses.error);
+        }
+        // this.msg = true;
+        // this.message = 'E-mail has been sent to reset your password.';
+      }, error => {
+        console.error("error = ", error);
+        //       this.toastSrv.showToast('Failed', error, this.toastSrv.iconClasses.error);
+      });
+  }
+
+  private openModal(open: boolean): void {
+    this.mdlSampleIsOpen = open;
+  }
+
+
 }

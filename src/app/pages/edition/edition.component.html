@@ -1,5 +1,7 @@
 <div *ngIf="currentArtwork" id="content-mt" class="container">
-
+  <!-- <button type="button" id="btnClose" class="btn btn-danger" (click)=" openModal(true)"><i
+      class="fa fa-times fa-fw"></i>
+    open</button> -->
   <div style="height: 500px;" *ngIf="!currentArtwork"></div>
   <div id="project_info" *ngIf="currentArtwork" class="row">
     <div class="col-md-7">
@@ -154,13 +156,66 @@
       <div class="modal-body">
         <div class="row">
           <div *ngIf="currentArtwork" class="col-md-12">
-            <img class="viewImg" src="{{this.currentArtwork.imageUrl }}" actual-image="profileImage" alt="" />
+            <img class="metamask_img" src="{{this.currentArtwork.imageUrl }}" actual-image="profileImage" alt="" />
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<!-- <button class="btn btn-outline-secondary input_btn_normal" type="button" (click)="test()">
+
+<div class="modal fade" #myModal id="modal_wallet"
+  [ngStyle]="{'display': mdlSampleIsOpen ? 'block' : 'none', 'opacity': 1}" tabindex="-1"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content model_padding">
+      <div class="modal_header">
+        <button type="button" (click)=" openModal(false)" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">╳</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div style="    border: 1px solid rgb(205, 210, 234);
+    box-shadow: rgb(31 31 65 / 8%) 0px 5px 12px;padding:10px;">
+            <img class="metamask_img" src="./../../../assets/images/metamask.svg" />
+            <div style="padding-left: 40px;padding-top: 5px;">Connect MetaMask</div>
+          </div>
+        </div>
+        <div class="row">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" #myModal2 id="modal_wallet"
+  [ngStyle]="{'display': mdlSampleIsOpen ? 'block' : 'none', 'opacity': 1}" tabindex="-1"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content model_padding">
+      <div class="modal_header">
+        <button type="button" (click)=" openModal(false)" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">╳</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div style="    border: 1px solid rgb(205, 210, 234);
+    box-shadow: rgb(31 31 65 / 8%) 0px 5px 12px;padding:10px;">
+            <img class="metamask_img" src="./../../../assets/images/metamask.svg" />
+            <div style="padding-left: 40px;padding-top: 5px;">Connect MetaMask</div>
+          </div>
+        </div>
+        <div class="row">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="btn btn-outline-secondary input_btn_normal" type="button" (click)="test()">
   tttttt
-</button> -->
+</button>
