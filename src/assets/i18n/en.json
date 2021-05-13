@@ -241,5 +241,8 @@
   "COLLECTOR3STEPINTR": "Where to find it? Profile -> Collection.",
   "NEXT": "NEXT",
   "GOTIT": "Got it!",
-  "ARTWORKS": "Artworks"
+  "ARTWORKS": "Artworks",
+  "CHECKSTATUSMSE": "You will receive an email from FormosArt shortly!",
+  "CHECKSTATUSMSE2": " please check your Spam folder or contact us with this email address:",
+  "CHECKSTATUSMSE3": " Formosart@formosart.io"
 }

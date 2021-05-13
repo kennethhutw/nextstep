@@ -241,5 +241,8 @@
   "COLLECTOR3STEPINTR": "在哪裡找到它？配置文件->收藏集。",
   "NEXT": "下一步",
   "GOTIT": "知道了！",
-  "ARTWORKS": "作品"
+  "ARTWORKS": "作品",
+  "CHECKSTATUSMSE": "您將很快收到來自FormosArt的電子郵件！ ",
+  "CHECKSTATUSMSE2": "如果仍未收到電子郵件，請檢查您的垃圾郵件文件夾或與我們聯系：",
+  "CHECKSTATUSMSE3": " Formosart@formosart.io"
 }

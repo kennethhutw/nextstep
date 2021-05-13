@@ -22,13 +22,13 @@
   </div>
   <div id="popularDisplayEditions" class="row">
     <ng-container *ngFor="let edition of popularEditions">
-      <div class="col-md-4 mb-4">
+      <div class="col-md-4 mb-4" style="height: 241px;">
         <!-- <app-edition1 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
           editionImg="{{ edition.imageUrl }}" editionId="{{ edition.artworkId }}"></app-edition1> -->
-        <app-edition3 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
+        <app-edition4 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
           editionImg="{{ edition.imageUrl }}" artworkId="{{ edition.artworkId }}"
           editionDate="{{ edition.editionDate }}" editionPrice="{{ edition.ethValue }}">
-        </app-edition3>
+        </app-edition4>
       </div>
     </ng-container>
 
@@ -80,11 +80,11 @@
 
   <div id="recentEditions" class="row">
     <ng-container *ngFor="let edition of recentEditions">
-      <div class="col-md-4 mb-4">
-        <app-edition3 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
+      <div class="col-md-4 mb-4" style="height: 241px;">
+        <app-edition4 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
           editionImg="{{ edition.imageUrl }}" artworkId="{{ edition.artworkId }}"
           editionDate="{{ edition.editionDate }}" editionPrice="{{ edition.ethValue }}">
-        </app-edition3>
+        </app-edition4>
       </div>
     </ng-container>
 
