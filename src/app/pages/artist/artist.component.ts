@@ -112,7 +112,8 @@ export class ArtistPageComponent implements OnInit {
   }
 
   initCollection(uid) {
-    this.userSrv.getUserInfoByAddress(uid).then(res => {
+    this.userSrv.getUserOwnArtworksByUid(uid).subscribe(res => {
+
       if (res["result"] === "successful") {
         this.collection = res["data"];
         if (this.collection) {
@@ -125,8 +126,8 @@ export class ArtistPageComponent implements OnInit {
       } else {
 
       }
-    }).catch(error => {
-      console.error(`ArtistPage error ${error}`);
+    }, error => {
+      console.error(`getUserOwnArtworksByUid error ${error}`);
     })
   }
 

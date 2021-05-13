@@ -33,6 +33,7 @@ export class EditionComponent implements OnInit {
   currentArtwork = null;
   currentUser: any = null;
   ethPrice = 0;
+  usdValue = 0;
   uid = "";
   ethSoldValue = 0;
   submitted = false;
@@ -143,7 +144,7 @@ export class EditionComponent implements OnInit {
     if (Number(this.currentArtwork.ethValue)) {
       let eth = parseFloat(this.currentArtwork.ethValue);
 
-      this.ethSoldValue = +(eth / 100).toFixed(5);
+      this.ethSoldValue = +(eth / 100).toFixed(2);
 
       return this.ethSoldValue;
     }
@@ -152,9 +153,8 @@ export class EditionComponent implements OnInit {
     if (Number(this.currentArtwork.ethValue)) {
       let eth = parseFloat(this.currentArtwork.ethValue);
 
-      this.ethSoldValue = +(eth / 100 * this.ethPrice).toFixed(5);
-
-      return this.ethSoldValue;
+      this.currentArtwork.usdValue = +(eth / 100 * this.ethPrice).toFixed(2);
+      return this.currentArtwork.usdValue;
     }
   }
   async purchase() {
@@ -192,8 +192,8 @@ export class EditionComponent implements OnInit {
 
           this.artworkSrv.purchase(this.currentUser.id,
             res['from'],
-            this.currentArtwork.usdValue,
-            this.ethSoldValue,
+            this.currentArtwork.usdValue * 100,
+            this.ethSoldValue * 100,
             this.currentArtwork.artistId,
             this.currentUser.id,
             res['from'],

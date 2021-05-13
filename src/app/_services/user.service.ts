@@ -52,10 +52,14 @@ export class UserService {
       .toPromise();
   }
 
-  public getUserOwnArtworks(walletaddress: string) {
-    return this.http.get<any>(`${environment.apiUrl}/users/getUserOwnArtworks/${walletaddress}`);
+
+  public getUserOwnArtworksByAddress(walletaddress: string) {
+    return this.http.get<any>(`${environment.apiUrl}/users/getUserOwnArtworksByAddress/${walletaddress}`);
   }
 
+  public getUserOwnArtworks(id: string) {
+    return this.http.get<any>(`${environment.apiUrl}/users/getUserOwnArtworks/${id}`);
+  }
   //test
   public getUserOwnArtworksByUid(uid: string) {
     return this.http.get<any>(`${environment.apiUrl}/users/getUserOwnArtworksByUid/${uid}`);

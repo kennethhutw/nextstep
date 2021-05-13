@@ -246,14 +246,14 @@ export class ArtistUploadComponent implements OnInit {
     this.submitted = true;
     this.IsUpdateFailed = false;
     this.informMsg = null;
-    console.log("================");
+
     if (this.artworkImageFile == null) {
       this.informMsg = this.getErrorMsg(this.lang);
       this.IsUpdateFailed = true;
       this.changeDetectorRef.detectChanges();
       return;
     }
-    console.log(" invalid ================");
+
     if (this.artworkForm.invalid) {
       return;
     }
@@ -287,7 +287,7 @@ export class ArtistUploadComponent implements OnInit {
     let url = '/artist/collection';
     let link = domain + url;
     this.emailSrv.sendReceivedArtworkEmail(
-      'Your artwork is available now on Formosart',
+      'We have received your artwork for tokenize',
       this.currentUser.name,
       this.currentUser.email,
       link,
