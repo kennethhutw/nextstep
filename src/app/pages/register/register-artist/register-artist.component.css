@@ -23,3 +23,17 @@
     font-family: "Noto Serif JP", sans-serif;
         font-weight: 500;
 }
+.member_artist_delete{
+    position: absolute;
+    display:block;
+    top:0;
+    left:calc(73% + 32px);
+    width:30px;
+    height:30px;
+    line-height:30px;
+    font-size:18px;
+    background-color:#00FF90;
+    border-color: #00FF90;
+    color:#FFF;
+    border-radius:50%;
+}

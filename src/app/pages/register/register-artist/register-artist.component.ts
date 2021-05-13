@@ -160,21 +160,21 @@ export class RegisterArtistComponent implements OnInit {
     let controls = this.registerForm.controls["editions"];
     controls["controls"][imagePosition].patchValue({ image: null });
     controls["controls"][imagePosition].updateValueAndValidity();
-    if (imagePosition === "1") {
+    if (imagePosition === "0") {
       this.theFirstImage = null;
       const element = document.querySelector('#theFirstImageInput');
       if (!!element) {
         element['value'] = null;
       }
 
-    } else if (imagePosition === "2") {
+    } else if (imagePosition === "1") {
       this.theSecondImage = null;
       const element = document.querySelector('#theSecondImageInput');
       if (!!element) {
         element['value'] = null;
       }
 
-    } else if (imagePosition === "3") {
+    } else if (imagePosition === "2") {
       this.theThirdImage = null;
       const element = document.querySelector('#theThirdImageInput');
       if (!!element) {
