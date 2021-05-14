@@ -110,6 +110,8 @@ import * as Websitepages from './website/index';
 
 import { SharedModule } from "./_shared/shared.module";
 
+import { ModalModule } from './_modal';
+
 export function createLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -194,6 +196,7 @@ export function createLoader(http: HttpClient) {
     Websitepages.containers
   ],
   imports: [
+    ModalModule,
     TooltipModule,
     BrowserModule,
     BrowserAnimationsModule,

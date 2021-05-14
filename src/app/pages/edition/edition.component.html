@@ -1,7 +1,8 @@
 <div *ngIf="currentArtwork" id="content-mt" class="container">
-  <!-- <button type="button" id="btnClose" class="btn btn-danger" (click)=" openModal(true)"><i
+  <button type="button" id="btnClose" class="btn btn-danger" (click)=" openModal(true)"><i
       class="fa fa-times fa-fw"></i>
-    open</button> -->
+    open</button>
+
   <div style="height: 500px;" *ngIf="!currentArtwork"></div>
   <div id="project_info" *ngIf="currentArtwork" class="row">
     <div class="col-md-7">
@@ -163,7 +164,7 @@
     </div>
   </div>
 </div>
-<!--
+
 <div class="modal fade" #myModal id="modal_wallet"
   [ngStyle]="{'display': mdlSampleIsOpen ? 'block' : 'none', 'opacity': 1}" tabindex="-1"
   aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -202,20 +203,24 @@
       </div>
       <div class="modal-body">
         <div class="row">
-          <div style="    border: 1px solid rgb(205, 210, 234);
-    box-shadow: rgb(31 31 65 / 8%) 0px 5px 12px;padding:10px;">
-            <img class="metamask_img" src="./../../../assets/images/metamask.svg" />
-            <div style="padding-left: 40px;padding-top: 5px;">Connect MetaMask</div>
-          </div>
+          <circle-progress [percent]="100" [radius]="100" [subtitle]="Time" [outerStrokeWidth]="16"
+            [outerStrokeColor]="'#78C000'" [animation]="true" [animationDuration]="30000">
+          </circle-progress>
         </div>
         <div class="row">
+          <div class="text-center" style="
+    box-shadow: rgb(31 31 65 / 8%) 0px 5px 12px;background-color: #fff;
+  border: 2px solid #17f596;
+  border-radius: 3px; width: 100%;">
 
+            <div style=" ">Verify Transaction</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div> -->
+</div>
 
-<button class="btn btn-outline-secondary input_btn_normal" type="button" (click)="test()">
+<button class="btn btn-outline-secondary input_btn_normal" type="button" (click)="openModal2('custom-modal-1')">
   tttttt
 </button>

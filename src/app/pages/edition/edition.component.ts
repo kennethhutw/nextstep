@@ -21,6 +21,8 @@ import { Utility } from "./../../_helpers";
 import { Router, ActivatedRoute } from "@angular/router";
 import { environment } from '../../../environments/environment';
 import { NgxSpinnerService } from "ngx-spinner";
+import { ModalService } from '../../_modal';
+import { CircleProgressComponent, CircleProgressOptions } from 'ng-circle-progress';
 
 @Component({
   selector: "edition",
@@ -42,7 +44,10 @@ export class EditionComponent implements OnInit {
   uid = "";
   ethSoldValue = 0;
   submitted = false;
+  _timer = null;
+  options = new CircleProgressOptions();
   constructor(
+    private modalService: ModalService,
     public settingSrv: SettingService,
     private dialogSrv: DialogService,
     private artworkSrv: ArtWorkService,
@@ -190,6 +195,8 @@ export class EditionComponent implements OnInit {
         let address = await this.Web3Srv.getAccount();
         console.log(" address ", address);
         let weiSoldValue = this.Web3Srv.EthToWei(this.ethSoldValue.toString());
+
+        //https://ethereum.stackexchange.com/questions/39237/how-to-get-transaction-hash-of-a-function-call-from-web3/67859
         this.Web3Srv.purchase('purchase', weiSoldValue, this.currentArtwork.firstnumber).then(async res => {
           console.log("purchase result " + res);
           this.currentArtwork.status = 3;
@@ -322,9 +329,25 @@ export class EditionComponent implements OnInit {
       });
   }
 
-  private openModal(open: boolean): void {
+  openModal(open: boolean): void {
     this.mdlSampleIsOpen = open;
+    this.start();
   }
 
+  openModal2(id: string) {
+    this.modalService.open(id);
+  }
 
+  closeModal(id: string) {
+    this.modalService.close(id);
+  }
+
+  start = () => {
+    if (this._timer !== null) {
+      clearInterval(this._timer);
+    }
+    this._timer = window.setInterval(() => {
+      this.options.percent = (Math.round(Math.random() * 100));
+    }, 1000);
+  }
 }
