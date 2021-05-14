@@ -152,7 +152,7 @@ export class UserService {
   }
 
   deleteUser(id: string) {
-    return this.http.post(`${environment.apiUrl}/deleteUser/${id}`, {});
+    return this.http.post(`${environment.apiUrl}/users/deleteUser/${id}`, {});
   }
 
 }

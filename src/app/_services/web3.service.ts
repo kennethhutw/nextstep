@@ -81,7 +81,9 @@ export class Web3Service {
 
   async purchase(fnName: string, ethValue, ...args: any[]): Promise<void> {
     const acc = await this.getAccount();
-    return this.contract.methods[fnName](...args).send({ from: acc, value: ethValue });
+    return this.contract.methods[fnName](...args).send({ from: acc, value: ethValue }).on('transactionHash', function (hash) {
+      console.log(hash);
+    });
   }
 
   async call(fnName: string, ...args: any[]) {
