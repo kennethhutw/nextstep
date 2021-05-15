@@ -7,7 +7,7 @@
         HH:mm:ss' }}</p> -->
 
     <p *ngIf="editionPrice"><i class="fas fa-dollar-sign"></i> {{ editionPrice }}</p>
-    <a routerLink="/gallery/{{ artworkId }}">
+    <a [routerLink]="['/gallery', artworkId]">
       <button class="info">
         {{ "VIEWDETAILS" | translate }}
       </button></a>

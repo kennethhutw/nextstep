@@ -19,7 +19,7 @@ import { PendingEditionService } from './pendingedition.service';
 import { DelegateEmailService } from './delegateEmail.service';
 import { AdminService } from "./admin.service";
 import { TableService } from "./table.service";
-
+import { UserTourService } from './user-tour.service';
 export const services = [
     AdminService,
     UserService,
@@ -40,7 +40,8 @@ export const services = [
     ToastService,
     PendingEditionService,
     DelegateEmailService,
-    TableService];
+    TableService,
+    UserTourService];
 
 
 
@@ -65,3 +66,4 @@ export { PendingEditionService } from './pendingedition.service';
 export { DelegateEmailService } from './delegateEmail.service';
 export { AdminService } from "./admin.service";
 export { TableService } from "./table.service";
+export { UserTourService } from './user-tour.service';

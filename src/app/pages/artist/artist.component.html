@@ -77,8 +77,9 @@
           <div class="col-md-4 mb-4" style="height: 241px;">
 
             <app-edition4 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
-              editionImg="{{ edition.imageUrl }}" artworkId="{{ edition.artworkId }}"
-              editionDate="{{ edition.editionDate }}"></app-edition4>
+              editionImg="{{ edition.imageUrl }}" artworkId="{{ edition.liked_id }}"
+              editionDate="{{ edition.editionDate }}">
+            </app-edition4>
           </div>
         </ng-container>
       </div>

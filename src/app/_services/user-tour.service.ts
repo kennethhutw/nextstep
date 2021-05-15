@@ -76,7 +76,7 @@ export class UserTourService {
             }
             default: {
                 throw new Error(`'type' property must be one of 'back', 'cancel', or 'next'`);
-                break;
+                // break;
             }
         }
 

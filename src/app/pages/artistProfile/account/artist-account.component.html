@@ -4,7 +4,7 @@
   <div class="form-group">
     <label for="exampleInputEmail1"><i class="fas fa-play-circle"></i> {{ "INPUTWALLETADDRESSS" | translate }}</label>
     <div class="input-group mb-3">
-      <input type="text" class="form-control" [(ngModel)]="ethAddress" placeholder="manually enter"
+      <input type="text" id="ethAddress" class="form-control" [(ngModel)]="ethAddress" placeholder="manually enter"
         aria-label="Recipient's username" aria-describedby="button-addon2">
       <div class="input-group-append">
         <button class="btn btn-outline-secondary input_btn_normal" (click)="getWalletAddress()" type="button">{{

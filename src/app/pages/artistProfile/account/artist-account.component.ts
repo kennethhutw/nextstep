@@ -4,7 +4,8 @@ import {
   DataService,
   AuthStore,
   UserService,
-  Web3Service
+  Web3Service,
+  UserTourService
 } from "./../../../_services";
 import { Utility } from "./../../../_helpers";
 import { Router } from "@angular/router";
@@ -36,6 +37,7 @@ export class ArtistAccountComponent implements OnInit {
   emailForm: FormGroup;
   unamePattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"
   constructor(
+    private userTourSrv: UserTourService,
     private formBuilder: FormBuilder,
     private web3Srv: Web3Service,
     private router: Router,
@@ -75,9 +77,19 @@ export class ArtistAccountComponent implements OnInit {
         ],
       ]
     });
+    this.showUserTour();
   }
 
+  showUserTour() {
+    console.log("============= showUserTour");
+    const step1 = this.userTourSrv.createStep("Step 1", "Link to your crypto wallet.", "#ethAddress", "", ['next']);
+    // const step2 = this.userTourSrv.createStep("This title is optional.", "This is a red square and I am pointing at it from the bottom.", ".red-square", 'bottom', ['back', 'next']);
+    // const step3 = this.userTourSrv.createStep("", "This is a yellow circle and there is no title. I am pointing at it from the left.", "#yellow-circle", "left", ['back', 'next']);
 
+    const steps = [step1];
+
+    this.userTourSrv.startTour(steps);
+  }
 
 
   GetCurrentUserEmail() {
