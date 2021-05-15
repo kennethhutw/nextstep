@@ -133,7 +133,6 @@ export class ArtistPageComponent implements OnInit {
 
   initFavourites(uid) {
     this.likeSrv.getUserLikeArtWorkByUid(uid).subscribe(res => {
-      console.log("getUserLikeArtWorkByUid ================", res);
       if (res['result'] == 'successful') {
         this.favourites = res['data'];
         this.favourites.forEach((element) => {

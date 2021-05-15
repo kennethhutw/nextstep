@@ -3,7 +3,7 @@
     <img class="rounded-circle w-100 profile_image" src="{{ src }}" alt="" />
   </div>
   <div id="artist-line-right" class="col-md-7">
-    <span class="name d-inline align-middle mr-2">{{ name }}</span>
+    <span class="name d-inline align-middle mr-2">{{ name | addressshorten }}</span>
     <div class="d-inline" *ngIf="this.currentUser">
       <button *ngIf="_uid == id" class="d-inline btn_small align-middle" routerLink="/artist/basic">
         <i class="fas fa-pencil-alt"></i> {{ "EDITPROFILE" | translate }}

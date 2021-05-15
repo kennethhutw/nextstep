@@ -95,7 +95,7 @@ export class ArtistDetailComponent {
     });
 
     this.currentUser = this.authStoreSrv.getUserData();
-    console.log("this.currentUser ================", this.currentUser);
+
     // if (this.utility.IsNullOrEmpty(this.currentUser)) {
     //   this.router.navigate(['./index'], {});
     // }
