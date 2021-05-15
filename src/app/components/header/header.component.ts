@@ -1,9 +1,7 @@
 import {
   Component,
   OnInit,
-  ViewChild,
-  TemplateRef,
-  ElementRef
+  ViewChild
 } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
@@ -11,7 +9,6 @@ import { Utility } from "../../_helpers";
 import { Router, ActivatedRoute } from "@angular/router";
 import {
   AuthStore,
-  ToastService,
   Web3Service,
   DataService,
   EmailService,
@@ -44,7 +41,6 @@ export class HeaderComponent implements OnInit {
     private fb: FormBuilder,
     private userSrv: UserService,
     private translateSrv: TranslateService,
-    private toastSrv: ToastService,
     private web3Srv: Web3Service,
     private dataSrv: DataService,
     private router: Router,
