@@ -18,6 +18,7 @@ import { ToastService } from './toastr.service';
 import { PendingEditionService } from './pendingedition.service';
 import { DelegateEmailService } from './delegateEmail.service';
 import { AdminService } from "./admin.service";
+import { TableService } from "./table.service";
 
 export const services = [
     AdminService,
@@ -36,9 +37,10 @@ export const services = [
     GalleryService,
     OfferService,
     EmailService,
-    ToastService
-    , PendingEditionService,
-    DelegateEmailService];
+    ToastService,
+    PendingEditionService,
+    DelegateEmailService,
+    TableService];
 
 
 
@@ -62,3 +64,4 @@ export * from './toastr.service';
 export { PendingEditionService } from './pendingedition.service';
 export { DelegateEmailService } from './delegateEmail.service';
 export { AdminService } from "./admin.service";
+export { TableService } from "./table.service";

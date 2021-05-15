@@ -6,7 +6,8 @@ import {
   ArtistService,
   AuthStore,
   EditionService,
-  DataService
+  DataService,
+  TableService
 } from "./../../../_services";
 import { Utility } from "./../../../_helpers";
 
@@ -23,7 +24,17 @@ export class ArtistCollectionComponent implements OnInit {
   searchText = "";
   displayArtworks = [];
   defaultImg = "";
+
+  page = 1;
+  numberElementPerPage = 6;
+  pageMax = 1;
+  pages: number[] = [];
+  current5page: number[] = [0, 1, 2, 3, 4];
+  artworksPageMax = 1;
+  artworksPages: number[] = [];
+  //partnershipPages
   constructor(
+    private tableSrv: TableService,
     private dataSrv: DataService,
     private utility: Utility,
     private artistSrv: ArtistService,
@@ -44,6 +55,13 @@ export class ArtistCollectionComponent implements OnInit {
         this.artworks.forEach((element) => {
           element['imageUrl'] = environment.assetUrl + element['imageUrl'];
         });
+        this.artworksPageMax =
+          Math.floor((this.artworks.length - 1) / this.numberElementPerPage) + 1;
+        for (let p = 0; p < this.artworksPageMax; p++) {
+          this.artworksPages.push(p);
+        }
+        this.current5page = this.InitPagenation(this.artworks);
+        console.log("current5page ======== ", this.current5page);
         this.displayArtworks = this.artworks;
       }
       else {
@@ -161,6 +179,57 @@ export class ArtistCollectionComponent implements OnInit {
     } finally {
 
     }
+  }
+
+  // Sort of data
+  // onSort(key: string, isNumeric: boolean, objectTable: Array<any>) {
+  //   this.imgIf = this.tableSrv.onTableSort(key, isNumeric, objectTable);
+  // }
+
+  // Pagination
+  onPage(i) {
+    return this.tableSrv.Page(i, this.page, this.numberElementPerPage);
+  }
+
+  onChangePage(pageNumber: number) {
+    this.page = pageNumber;
+  }
+
+  more(current5Page, pages) {
+    if (current5Page[4] < pages.length - 1) {
+      current5Page[4] = current5Page[4] + 1;
+      current5Page[3] = current5Page[3] + 1;
+      current5Page[2] = current5Page[2] + 1;
+      current5Page[1] = current5Page[1] + 1;
+      current5Page[0] = current5Page[0] + 1;
+    }
+  }
+
+  less(current5Page) {
+    if (current5Page[0] > 0) {
+      current5Page[0] = current5Page[0] - 1;
+      current5Page[1] = current5Page[1] - 1;
+      current5Page[2] = current5Page[2] - 1;
+      current5Page[3] = current5Page[3] - 1;
+      current5Page[4] = current5Page[4] - 1;
+    }
+
+  }
+
+  InitPagenation(data) {
+    let current5Page = [];
+    let count = 0;
+    for (let i = 0; i < data.length; i++) {
+      if (i % 5 === 0) {
+        current5Page.push(count);
+        if (count < 4) {
+          count = count + 1;
+        } else {
+          break;
+        }
+      }
+    }
+    return current5Page;
   }
 
 }

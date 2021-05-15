@@ -117,7 +117,7 @@
       <div id="select_img" class="col-md-4 text-center">
         <!-- <img class="w-100" src="./assets/images/select_img.jpg" alt="">
              -->
-        <img class="w-100" *ngIf="assetImgUrl" height="239px" width="239px" [src]="assetImgUrl" alt="" />
+        <img *ngIf="assetImgUrl" [src]="assetImgUrl" alt="" />
         <img class="w-100" *ngIf="!assetImgUrl" src="./assets/images/select_img.jpg" alt="" />
       </div>
     </div>
