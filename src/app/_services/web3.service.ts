@@ -6,6 +6,7 @@ import { Observable } from "rxjs";
 import { environment } from '../../environments/environment';
 const contractAbi = require("./contractABI.json");
 declare var window: any;
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: "root",
@@ -14,6 +15,10 @@ export class Web3Service {
   private web3: Web3;
   private contract: any;
   private contractAddress = "0x8Cad66326e9c72C87971f3b945f15bE6A43bC4dD";
+
+  private ethTX = new BehaviorSubject('');
+  ethtx = this.ethTX.asObservable();
+
   constructor(private zone: NgZone) {
     // if (window.web3) {
     //   this.web3 = new Web3(window.ethereum);
@@ -81,9 +86,12 @@ export class Web3Service {
 
   async purchase(fnName: string, ethValue, ...args: any[]): Promise<void> {
     const acc = await this.getAccount();
-    return this.contract.methods[fnName](...args).send({ from: acc, value: ethValue }).on('transactionHash', function (hash) {
-      console.log(hash);
+    return this.contract.methods[fnName](...args).send({ from: acc, value: ethValue }).on('transactionHash', (hash) => {
+      console.log("transactionHash", hash);
+      this.ethTX.next(hash);
     });
+
+
   }
 
   async call(fnName: string, ...args: any[]) {

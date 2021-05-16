@@ -1,8 +1,8 @@
 <div *ngIf="currentArtwork" id="content-mt" class="container">
-  <button type="button" id="btnClose" class="btn btn-danger" (click)=" openModal(true)"><i
+  <!-- <button type="button" id="btnClose" class="btn btn-danger" (click)=" openModal(true)"><i
       class="fa fa-times fa-fw"></i>
     open</button>
-
+  {{tx}} -->
   <div style="height: 500px;" *ngIf="!currentArtwork"></div>
   <div id="project_info" *ngIf="currentArtwork" class="row">
     <div class="col-md-7">
@@ -35,7 +35,7 @@
           {{displayUSDPrice()}}</span>
       </h1>
       <a href="#" *ngIf="this.currentArtwork.status == 1" class="text-white" data-toggle="modal"
-        data-target="#modal_login_way"><button class="btn_large w-100" style="margin-top: 20px;" (click)="purchase()">{{
+        data-target="#modal_wallet"><button class="btn_large w-100" style="margin-top: 20px;">{{
           "BUYNOW" | translate
           }}</button></a>
       <a href="#" *ngIf="this.currentArtwork.status == 2" class="text-white" data-toggle="modal"
@@ -150,6 +150,7 @@
   <div class="modal-dialog modal-dialog-centered" style="    max-width: 700px;">
     <div class="modal-content model_padding">
       <div class="modal_header">
+
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">╳</span>
         </button>
@@ -165,20 +166,22 @@
   </div>
 </div>
 
-<div class="modal fade" #myModal id="modal_wallet"
-  [ngStyle]="{'display': mdlSampleIsOpen ? 'block' : 'none', 'opacity': 1}" tabindex="-1"
-  aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" #myModal id="modal_wallet" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content model_padding">
       <div class="modal_header">
-        <button type="button" (click)=" openModal(false)" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" id="close_wallet" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">╳</span>
         </button>
+
       </div>
       <div class="modal-body">
+        <div class="text-center mb-4">
+          <h2 class="modal-title">{{ "WALLET" | translate }}</h2>
+
+        </div>
         <div class="row">
-          <div style="    border: 1px solid rgb(205, 210, 234);
-    box-shadow: rgb(31 31 65 / 8%) 0px 5px 12px;padding:10px;">
+          <div (click)="purchase()" class="col-md-12 metamask">
             <img class="metamask_img" src="./../../../assets/images/metamask.svg" />
             <div style="padding-left: 40px;padding-top: 5px;">Connect MetaMask</div>
           </div>
@@ -216,8 +219,7 @@
         <div class="row mt-20">
           <div class="col-md-12 text-center">
 
-            <a
-              href="https://rinkeby.etherscan.io/tx/0x2829b5c5ff92753e4d09c08c7e976092c91cfcc40622b6ef813a51523f2462d2">
+            <a target="_blank" href="{{tx}}">
               View Transaction</a>
           </div>
         </div>
@@ -234,3 +236,14 @@
   <button type="button" (click)="timer.complete()">stop</button>
   <button type="button" (click)="timer.init()">Reset</button>
 </div> -->
+<!--Modal wallet wrong-->
+<app-modal modalid="modal_wallet_wrong">
+  <div body>
+    <div class="row text-center">
+      <p>{{ "NOTFOUNDWALLET" | translate }}</p>
+      <button class="model_btn_normal mb-2 w-100" data-dismiss="modal" aria-label="Close">
+        {{ "CONFRIM" | translate }}
+      </button>
+    </div>
+  </div>
+</app-modal>

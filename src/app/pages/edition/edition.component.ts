@@ -1,7 +1,9 @@
 import {
   Component,
   OnInit,
-  ViewChild
+  ViewChild,
+  ElementRef,
+  ChangeDetectorRef
 } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
@@ -22,7 +24,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { environment } from '../../../environments/environment';
 import { NgxSpinnerService } from "ngx-spinner";
 import { ModalService } from '../../_modal';
-import { CircleProgressComponent, CircleProgressOptions } from 'ng-circle-progress';
+import { CircleTimerComponent } from './../../components';
 
 @Component({
   selector: "edition",
@@ -44,11 +46,13 @@ export class EditionComponent implements OnInit {
   uid = "";
   ethSoldValue = 0;
   submitted = false;
-  _timer = null;
-  options = new CircleProgressOptions();
 
+  tx = "";
   duration = 30 * 1000; // 10 seconds
+
+  @ViewChild('timer') timer: ElementRef<CircleTimerComponent>;
   constructor(
+    private changeDetectorRef: ChangeDetectorRef,
     private modalService: ModalService,
     public settingSrv: SettingService,
     private dialogSrv: DialogService,
@@ -66,6 +70,7 @@ export class EditionComponent implements OnInit {
     private SpinnerService: NgxSpinnerService
   ) {
     this.SpinnerService.show();
+    console.log("tx ========", this.tx);
     this.currentUser = this.authStoreSrv.getUserData();
     let _lang = localStorage.getItem("lang");
     if (!this.utility.IsNullOrEmpty(_lang)) {
@@ -118,10 +123,21 @@ export class EditionComponent implements OnInit {
           console.error(`getEditionDetailByEditionId ${JSON.stringify(error)}`);
         }, () => {
           this.SpinnerService.hide();
-          console.log("getEditionDetailByEditionId =============== finish.");
+
         });
     });
 
+    this.Web3Srv.ethtx.subscribe((tx) => {
+      if (tx != "") {
+        this.openModal(true);
+        this.tx = tx;
+      }
+    });
+
+    this.Web3Srv.onEvents('transactionHash').subscribe(res => {
+      console.log("tx ========", res);
+      this.openModal(true);
+    })
   }
 
   ngOnInit() {
@@ -170,6 +186,7 @@ export class EditionComponent implements OnInit {
     }
   }
   async purchase() {
+    this.tx = "";
     if (this.currentUser) {
       if (this.Web3Srv.ethEnabled()) {
         let _networkId = await this.Web3Srv.getNetworkId();
@@ -195,7 +212,6 @@ export class EditionComponent implements OnInit {
         }
 
         let address = await this.Web3Srv.getAccount();
-        console.log(" address ", address);
         let weiSoldValue = this.Web3Srv.EthToWei(this.ethSoldValue.toString());
 
         //https://ethereum.stackexchange.com/questions/39237/how-to-get-transaction-hash-of-a-function-call-from-web3/67859
@@ -219,6 +235,7 @@ export class EditionComponent implements OnInit {
             this.currentArtwork.id,
             networkId).subscribe(purchaseRes => {
               console.log("purchaseRes" + purchaseRes);
+              this.openModal(false);
               this.dialogSrv.infoThis("Purchase successfully",
                 () => {
                   console.log("yes ===");
@@ -235,14 +252,14 @@ export class EditionComponent implements OnInit {
 
         }).catch(error => {
           console.error("purchase failed " + error.message);
-
+          this.openModal(false);
           this.dialogSrv.infoThis("Purchase failed!! Please inform us if you still cannot buy this.",
             () => {
               console.log("yed ===");
             }, () => {
               console.log("no ===");
             });
-        })
+        });
       }
     } else {
       if (this.Web3Srv.ethEnabled()) {
@@ -264,6 +281,7 @@ export class EditionComponent implements OnInit {
         );
       } else {
         console.warn("Metamask not found Install or enable Metamask");
+        this.showNotFoundWallet();
       }
     }
   }
@@ -333,7 +351,9 @@ export class EditionComponent implements OnInit {
 
   openModal(open: boolean): void {
     this.mdlSampleIsOpen = open;
-    this.start();
+    //this.start();
+    this.timer.start();
+    this.changeDetectorRef.detectChanges();
   }
 
   openModal2(id: string) {
@@ -344,28 +364,21 @@ export class EditionComponent implements OnInit {
     this.modalService.close(id);
   }
 
-  start = () => {
-    if (this._timer !== null) {
-      clearInterval(this._timer);
-    }
-    this._timer = window.setInterval(() => {
-      this.options.percent = (Math.round(Math.random() * 100));
-    }, 1000);
+  setTx() {
+    //0x4c05426276bad1abcdefa8aeeb781dd9eb7504f524e5fb405d35b03287658468
   }
-  titletFormat = (percent: number) => {
-    console.log("titletFormat =============== ", percent);
-    if (percent >= 100) {
-      return "Congratulations!"
-    } else {
-      return "Progress"
-    }
+
+  showNotFoundWallet() {
+    document.getElementById('close_wallet').click();
+    // let modal_t = document.getElementById('modal_wallet_wrong');
+    // modal_t.classList.remove('hhidden')
+    // modal_t.classList.add('sshow');
+    this.translateSrv.get("NOTFOUNDWALLET").subscribe((text: string) => {
+      this.dialogSrv.infoThis(text,
+        () => { }, () => {
+
+        });
+    });
   }
-  subtitleFormat = (percent: number) => {
-    console.log("subtitleFormat =============== ", percent);
-    if (percent >= 100) {
-      return "Congratulations!"
-    } else {
-      return "Progress"
-    }
-  }
+
 }

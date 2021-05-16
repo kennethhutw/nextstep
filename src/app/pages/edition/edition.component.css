@@ -134,6 +134,12 @@
   height: 140px!important;
 }
 
+.metamask{
+      border: 1px solid rgb(205, 210, 234);
+    box-shadow: rgb(31 31 65 / 8%) 0px 5px 12px;
+    padding: 10px;
+    border-radius: 5px;
+}
 .metamask_img {
   height: 30px;
   width: 30px;
