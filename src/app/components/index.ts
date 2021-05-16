@@ -22,6 +22,8 @@ export { DialogComponent } from "./dialog/dialog.component";
 export { CollectorDetailComponent } from "./collector-detail/collector-detail.component";
 export { CircleTimerComponent } from './circle-timer/circle-timer.component';
 
+export { StepDotComponent } from './stepdot/stepdot.component';
+
 export { SidebarComponent } from "./admin/sidebar/sidebar.component";
 export { NavbarComponent } from "./admin/navbar/navbar.component";
 export { AdminFooterComponent } from "./admin/footer/footer.component";

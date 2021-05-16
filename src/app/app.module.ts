@@ -45,7 +45,8 @@ import {
   NavbarComponent,
   SidebarComponent,
   AdminFooterComponent,
-  CircleTimerComponent
+  CircleTimerComponent,
+  StepDotComponent
 } from "./components";
 
 import {
@@ -196,6 +197,7 @@ export function createLoader(http: HttpClient) {
     CheckStatusComponent,
     LoginComponent,
     CircleTimerComponent,
+    StepDotComponent,
     Websitepages.containers
   ],
   imports: [
