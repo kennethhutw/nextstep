@@ -1,0 +1,47 @@
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+.search_input{
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #210b2c;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 0;
+}
+.bio {
+    font-size: 1.5rem;
+    color: #210b2c;
+}
+.text-center {
+    text-align: center!important;
+}
+.mt-4, .my-4 {
+    margin-top: 1.5rem!important;
+}
+
+.ml-3, .mx-3 {
+    margin-left: 1rem!important;
+}
+
+.name{
+        font-size: 30px;
+         font-family: "Noto Serif JP", sans-serif;
+}
+.profile-image {
+    vertical-align: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+}
+
+.card-body {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+}

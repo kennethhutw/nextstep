@@ -77,7 +77,7 @@ export class ArtistAccountComponent implements OnInit {
         ],
       ]
     });
-    this.showUserTour();
+    // this.showUserTour();
   }
 
   showUserTour() {

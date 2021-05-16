@@ -1,7 +1,7 @@
 <div *ngIf="currentArtwork" id="content-mt" class="container">
-  <!-- <button type="button" id="btnClose" class="btn btn-danger" (click)=" openModal(true)"><i
+  <button type="button" id="btnClose" class="btn btn-danger" (click)=" openModal(true)"><i
       class="fa fa-times fa-fw"></i>
-    open</button> -->
+    open</button>
 
   <div style="height: 500px;" *ngIf="!currentArtwork"></div>
   <div id="project_info" *ngIf="currentArtwork" class="row">
@@ -202,25 +202,35 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="row">
-          <circle-progress [percent]="100" [radius]="100" subtitle="Time Left" [outerStrokeWidth]="16"
-            [outerStrokeColor]="'#78C000'" [animation]="true" [animationDuration]="30000">
-          </circle-progress>
+        <div class="row ">
+          <div class="col-md-12 text-center">
+            <flx-circle-timer class="circle_center" #timer color="#17f596" [duration]="duration"></flx-circle-timer>
+          </div>
         </div>
-        <div class="row">
-          <div class="text-center" style="
-    box-shadow: rgb(31 31 65 / 8%) 0px 5px 12px;background-color: #fff;
-  border: 2px solid #17f596;
-  border-radius: 3px; width: 100%;">
+        <div class="row mt-20">
+          <div class="col-md-12 text-center">
 
-            <div>Verify Transaction</div>
+            <h3>Transaction on chain</h3>
+          </div>
+        </div>
+        <div class="row mt-20">
+          <div class="col-md-12 text-center">
+
+            <a
+              href="https://rinkeby.etherscan.io/tx/0x2829b5c5ff92753e4d09c08c7e976092c91cfcc40622b6ef813a51523f2462d2">
+              View Transaction</a>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<!--
-<button class="btn btn-outline-secondary input_btn_normal" type="button" (click)="openModal(true)">
+<!--<button class="btn btn-outline-secondary input_btn_normal" type="button" (click)="openModal(true)">
   tttttt
-</button> -->
+</button>
+
+<div class="controls">
+  <button type="button" [disabled]="timer.isTicking()" (click)="timer.start()">Start</button>
+  <button type="button" (click)="timer.complete()">stop</button>
+  <button type="button" (click)="timer.init()">Reset</button>
+</div> -->

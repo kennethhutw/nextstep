@@ -139,3 +139,10 @@
   width: 30px;
    float: left;
 }
+
+.circle_center{
+      display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}

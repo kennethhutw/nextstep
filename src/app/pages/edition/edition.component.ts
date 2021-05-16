@@ -46,6 +46,8 @@ export class EditionComponent implements OnInit {
   submitted = false;
   _timer = null;
   options = new CircleProgressOptions();
+
+  duration = 30 * 1000; // 10 seconds
   constructor(
     private modalService: ModalService,
     public settingSrv: SettingService,
@@ -349,5 +351,21 @@ export class EditionComponent implements OnInit {
     this._timer = window.setInterval(() => {
       this.options.percent = (Math.round(Math.random() * 100));
     }, 1000);
+  }
+  titletFormat = (percent: number) => {
+    console.log("titletFormat =============== ", percent);
+    if (percent >= 100) {
+      return "Congratulations!"
+    } else {
+      return "Progress"
+    }
+  }
+  subtitleFormat = (percent: number) => {
+    console.log("subtitleFormat =============== ", percent);
+    if (percent >= 100) {
+      return "Congratulations!"
+    } else {
+      return "Progress"
+    }
   }
 }

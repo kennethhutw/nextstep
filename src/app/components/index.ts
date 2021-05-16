@@ -20,7 +20,7 @@ export { ArtistHeaderComponent } from "./artist-header/artist-header.component";
 export { CollectorHeaderComponent } from "./collector-header/collector-header.component";
 export { DialogComponent } from "./dialog/dialog.component";
 export { CollectorDetailComponent } from "./collector-detail/collector-detail.component";
-
+export { CircleTimerComponent } from './circle-timer/circle-timer.component';
 
 export { SidebarComponent } from "./admin/sidebar/sidebar.component";
 export { NavbarComponent } from "./admin/navbar/navbar.component";

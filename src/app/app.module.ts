@@ -44,7 +44,8 @@ import {
   CollectorHeaderComponent,
   NavbarComponent,
   SidebarComponent,
-  AdminFooterComponent
+  AdminFooterComponent,
+  CircleTimerComponent
 } from "./components";
 
 import {
@@ -111,6 +112,7 @@ import * as Websitepages from './website/index';
 import { SharedModule } from "./_shared/shared.module";
 
 import { ModalModule } from './_modal';
+
 
 export function createLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -193,6 +195,7 @@ export function createLoader(http: HttpClient) {
     SetPasswordComponent,
     CheckStatusComponent,
     LoginComponent,
+    CircleTimerComponent,
     Websitepages.containers
   ],
   imports: [
