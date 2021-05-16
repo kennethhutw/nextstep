@@ -140,6 +140,15 @@
     padding: 10px;
     border-radius: 5px;
 }
+
+.metamask:hover{
+    background-color: #11e78b;
+  border: 2px solid #11e78b;
+  color: white;
+    box-shadow: rgb(31 31 65 / 8%) 0px 5px 12px;
+    padding: 10px;
+    border-radius: 5px;
+}
 .metamask_img {
   height: 30px;
   width: 30px;

@@ -213,7 +213,7 @@ export class EditionComponent implements OnInit {
 
         let address = await this.Web3Srv.getAccount();
         let weiSoldValue = this.Web3Srv.EthToWei(this.ethSoldValue.toString());
-
+        document.getElementById('close_wallet').click();
         //https://ethereum.stackexchange.com/questions/39237/how-to-get-transaction-hash-of-a-function-call-from-web3/67859
         this.Web3Srv.purchase('purchase', weiSoldValue, this.currentArtwork.firstnumber).then(async res => {
           console.log("purchase result " + res);
@@ -335,7 +335,6 @@ export class EditionComponent implements OnInit {
       link,
       this.currentArtwork.name,
       this.currentUser.id).subscribe(sendRes => {
-        console.log("error = ", sendRes);
         if (sendRes['result'] == 'successful') {
           //         this.toastSrv.showToast('Success', "Inform Email Sent", this.toastSrv.iconClasses.success);
         } else {
