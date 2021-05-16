@@ -12,12 +12,12 @@ import {
 
 import { TranslateService } from "@ngx-translate/core";
 @Component({
-  selector: "app-artist-detail",
-  templateUrl: "./artist-detail.component.html",
-  styleUrls: ["./artist-detail.component.css"],
+  selector: "app-stepdot",
+  templateUrl: "./stepdot.component.html",
+  styleUrls: ["./stepdot.component.css"],
   encapsulation: ViewEncapsulation.None,
 })
-export class ArtistDetailComponent {
+export class StepDotComponent {
   lang = "en";
   _uid = null;
   currentUser: any = null;
