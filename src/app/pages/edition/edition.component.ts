@@ -50,7 +50,7 @@ export class EditionComponent implements OnInit {
   tx = "";
   duration = 30 * 1000; // 10 seconds
 
-  @ViewChild('timer') timer: ElementRef<CircleTimerComponent>;
+  @ViewChild(CircleTimerComponent) timer: any;
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
     private modalService: ModalService,
@@ -352,6 +352,8 @@ export class EditionComponent implements OnInit {
   openModal(open: boolean): void {
     this.mdlSampleIsOpen = open;
     //this.start();
+
+    // document.getElementById('timer').start();
     this.timer.start();
     this.changeDetectorRef.detectChanges();
   }

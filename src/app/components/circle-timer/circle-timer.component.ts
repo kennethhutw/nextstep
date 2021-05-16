@@ -72,7 +72,7 @@ export class CircleTimerComponent implements OnInit, OnDestroy {
     return timeLeftSeconds % 1;
   }
 
-  start(startDate?: StartDate, delayMs = 0, replaying = false): void {
+  public start(startDate?: StartDate, delayMs = 0, replaying = false): void {
     if (this.ticking) {
       console.log('Cannot start: timer already running.');
       return;
