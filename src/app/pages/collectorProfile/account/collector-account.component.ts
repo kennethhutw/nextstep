@@ -99,7 +99,7 @@ export class CollectorAccountComponent implements OnInit {
     console.log("============= showUserTour");
 
     const step1 = this.userTourSrv.createStep("Step 1", "Link to your crypto wallet.", "#ethAddress", "top", ['next']);
-    const step2 = this.userTourSrv.createStep("Step 2", "Purchase artworks on FormosArt Gallery.", "#galleryLink", 'bottom', ['next']);
+    const step2 = this.userTourSrv.createStep("Step 2", "Purchase artworks in FormosArt Gallery.", "#galleryLink", 'bottom', ['next']);
     const step3 = this.userTourSrv.createStep("Step 3", "View your collection on FormosArt.", "#collector_profile_link", "left", ['next']);
 
     const steps = [step1, step2, step3];
