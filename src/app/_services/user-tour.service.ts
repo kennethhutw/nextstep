@@ -9,7 +9,7 @@ export class UserTourService {
     confirmCancel = false;
     confirmCancelMessage: string = null;
     defaultStepOptions = {
-        classes: 'shepherd-theme-arrows custom-default-class',
+        classes: 'shepherd-theme-arrows',
         // classes: 'shepherd-theme-arrows btn btn-outline btn-outline-secondary font-nunito',
         // scrollTo: true,
         cancelIcon: {
@@ -116,6 +116,16 @@ export class UserTourService {
             button = this.makeButton(button);
         }
 
+        let classes = "";
+        if (position != "") {
+            if (position == "left") {
+                classes = "shepherd-theme-arrows custom-shepherd-left-class";
+            }
+
+            if (position == "bottom") {
+                classes = "shepherd-theme-arrows custom-shepherd-top-class";
+            }
+        }
         return {
             title: title,
             text: text,
@@ -124,7 +134,8 @@ export class UserTourService {
                 on: position
             },
             buttons: buttons,
-            arrow: true
+            arrow: true,
+            classes: classes
         }
     }
 
