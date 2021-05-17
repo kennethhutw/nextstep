@@ -123,7 +123,8 @@ export class UserTourService {
                 element: element,
                 on: position
             },
-            buttons: buttons
+            buttons: buttons,
+            arrow: true
         }
     }
 
@@ -176,6 +177,7 @@ export class UserTourService {
                     action: tour.cancel
                 }],
                 id: 'error',
+                arrow: true,
                 title: this.errorTitle,
                 text: [this.messageForUser]
             });
@@ -186,7 +188,7 @@ export class UserTourService {
             if (step.buttons) {
                 step.buttons = step.buttons.map(this.makeButton.bind(this), this);
             }
-
+            step.arrow = true;
             tour.addStep(step);
         });
     }

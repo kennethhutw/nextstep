@@ -216,7 +216,6 @@ export class EditionComponent implements OnInit {
         document.getElementById('close_wallet').click();
         //https://ethereum.stackexchange.com/questions/39237/how-to-get-transaction-hash-of-a-function-call-from-web3/67859
         this.Web3Srv.purchase('purchase', weiSoldValue, this.currentArtwork.firstnumber).then(async res => {
-          console.log("purchase result " + res);
           this.currentArtwork.status = 3;
           let networkId = await this.Web3Srv.getNetworkId();
 

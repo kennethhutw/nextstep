@@ -4,7 +4,8 @@ import {
   DataService,
   AuthStore,
   UserService,
-  Web3Service
+  Web3Service,
+  UserTourService
 } from "./../../../_services";
 import {
   FormBuilder,
@@ -43,6 +44,7 @@ export class CollectorAccountComponent implements OnInit {
   submitted = false;
   emailForm: FormGroup;
   constructor(
+    private userTourSrv: UserTourService,
     private web3Srv: Web3Service,
     private router: Router,
     private translateSrv: TranslateService,
@@ -91,8 +93,19 @@ export class CollectorAccountComponent implements OnInit {
         ],
       ]
     });
+    this.showCollectorTour();
   }
+  showCollectorTour() {
+    console.log("============= showUserTour");
 
+    const step1 = this.userTourSrv.createStep("Step 1", "Link to your crypto wallet.", "#ethAddress", "top", ['next']);
+    const step2 = this.userTourSrv.createStep("Step 2", "Purchase artworks on FormosArt Gallery.", "#galleryLink", 'bottom', ['next']);
+    const step3 = this.userTourSrv.createStep("Step 3", "View your collection on FormosArt.", "#collector_profile_link", "left", ['next']);
+
+    const steps = [step1, step2, step3];
+
+    this.userTourSrv.startTour(steps);
+  }
 
   GetCurrentUserEmail() {
     if (!this.utility.IsNullOrEmpty(this.currentUser)) {

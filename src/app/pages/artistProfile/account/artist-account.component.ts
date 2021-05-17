@@ -77,19 +77,21 @@ export class ArtistAccountComponent implements OnInit {
         ],
       ]
     });
-    // this.showUserTour();
+    this.showArtisitTour();
   }
 
-  showUserTour() {
+  showArtisitTour() {
     console.log("============= showUserTour");
-    const step1 = this.userTourSrv.createStep("Step 1", "Link to your crypto wallet.", "#ethAddress", "", ['next']);
-    // const step2 = this.userTourSrv.createStep("This title is optional.", "This is a red square and I am pointing at it from the bottom.", ".red-square", 'bottom', ['back', 'next']);
-    // const step3 = this.userTourSrv.createStep("", "This is a yellow circle and there is no title. I am pointing at it from the left.", "#yellow-circle", "left", ['back', 'next']);
+    const step1 = this.userTourSrv.createStep("Step 1", "Link to your crypto wallet.", "#ethAddress", "top", ['next']);
+    const step2 = this.userTourSrv.createStep("Step 2", "Upload your artworks in JPG, PNG or GIF formats.", "#artisit_upload_artwork", 'left', ['next']);
+    const step3 = this.userTourSrv.createStep("Step 3", "Check your artwork. Once your artworks has been tokenized to an NFT.", "#artisit_manage_artwork", "left", ['next']);
+    const step4 = this.userTourSrv.createStep("Step 4", "View artworks on FormosArt Gallery.", "#galleryLink", "bottom", ['next']);
 
-    const steps = [step1];
+    const steps = [step1, step2, step3, step4];
 
     this.userTourSrv.startTour(steps);
   }
+
 
 
   GetCurrentUserEmail() {

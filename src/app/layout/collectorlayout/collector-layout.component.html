@@ -43,8 +43,8 @@
             <div class="row mt-50 mb-60">
                 <div class="col-md-2">
                     <ul class="member_ul">
-                        <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
-                            [routerLink]="['/',this.currentUser.uid]">
+                        <a id="collector_profile_link" [routerLinkActive]="['active']"
+                            [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/',this.currentUser.uid]">
                             <li class="member_side_navi w-100">
                                 {{ "PROFILE" | translate }}
                             </li>
