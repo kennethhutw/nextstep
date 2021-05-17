@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
   DataService,
@@ -8,7 +8,10 @@ import {
   UserTourService
 } from "./../../../_services";
 import { Utility } from "./../../../_helpers";
-import { Router } from "@angular/router";
+import {
+  Router,
+  ActivatedRoute
+} from "@angular/router";
 import {
   FormBuilder,
   FormGroup,
@@ -37,6 +40,7 @@ export class ArtistAccountComponent implements OnInit {
   emailForm: FormGroup;
   unamePattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"
   constructor(
+    private route: ActivatedRoute,
     private userTourSrv: UserTourService,
     private formBuilder: FormBuilder,
     private web3Srv: Web3Service,
@@ -77,7 +81,11 @@ export class ArtistAccountComponent implements OnInit {
         ],
       ]
     });
-    this.showArtisitTour();
+    let _first = this.route.snapshot.paramMap.get("first");
+    console.log("============ ", _first);
+    if (_first && _first == 'true') {
+      this.showArtisitTour();
+    }
   }
 
   showArtisitTour() {
@@ -85,7 +93,7 @@ export class ArtistAccountComponent implements OnInit {
     const step1 = this.userTourSrv.createStep("Step 1", "Link to your crypto wallet.", "#ethAddress", "top", ['next']);
     const step2 = this.userTourSrv.createStep("Step 2", "Upload your artworks in JPG, PNG or GIF formats.", "#artisit_upload_artwork", 'left', ['next']);
     const step3 = this.userTourSrv.createStep("Step 3", "Check your artwork. Once your artworks has been tokenized to an NFT.", "#artisit_manage_artwork", "left", ['next']);
-    const step4 = this.userTourSrv.createStep("Step 4", "View artworks on FormosArt Gallery.", "#galleryLink", "bottom", ['next']);
+    const step4 = this.userTourSrv.createStep("Step 4", "View artworks in FormosArt Gallery.", "#galleryLink", "bottom", ['next']);
 
     const steps = [step1, step2, step3, step4];
 

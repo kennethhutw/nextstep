@@ -294,13 +294,13 @@ export class HeaderComponent implements OnInit {
   GotoArtist() {
     this.collectorStep = 0;
     this.artistStep = 0;
-    this.router.navigate(['/artist/account'], {});
+    this.router.navigate(['/artist/account', { first: 'true' }], {});
   }
 
   GotoCollector() {
     this.collectorStep = 0;
     this.artistStep = 0;
-    this.router.navigate(['/collector/account'], {});
+    this.router.navigate(['/collector/account', { first: 'true' }], {});
   }
 
 

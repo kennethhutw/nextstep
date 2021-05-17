@@ -13,8 +13,8 @@ import {
   Validators
 } from "@angular/forms";
 import { Utility } from "./../../../_helpers";
-import { Router } from "@angular/router";
-import { resResult, UserModel } from "../../../_models";
+import { Router, ActivatedRoute } from "@angular/router";
+import { UserModel } from "../../../_models";
 
 @Component({
   selector: "app-collector-account",
@@ -44,6 +44,7 @@ export class CollectorAccountComponent implements OnInit {
   submitted = false;
   emailForm: FormGroup;
   constructor(
+    private route: ActivatedRoute,
     private userTourSrv: UserTourService,
     private web3Srv: Web3Service,
     private router: Router,
@@ -93,7 +94,12 @@ export class CollectorAccountComponent implements OnInit {
         ],
       ]
     });
-    this.showCollectorTour();
+    let _first = this.route.snapshot.paramMap.get("first");
+    console.log("============ ", _first);
+    if (_first && _first == 'true') {
+      this.showCollectorTour();
+    }
+
   }
   showCollectorTour() {
     console.log("============= showUserTour");
