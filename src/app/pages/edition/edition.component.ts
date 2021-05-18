@@ -235,7 +235,7 @@ export class EditionComponent implements OnInit {
             networkId).subscribe(purchaseRes => {
               console.log("purchaseRes" + purchaseRes);
               this.openModal(false);
-              this.dialogSrv.infoThis("Purchase successfully",
+              this.dialogSrv.infoThis("Purchase successful",
                 () => {
                   console.log("yes ===");
                   this.informArtist();
