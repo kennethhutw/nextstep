@@ -11,3 +11,18 @@
 .w-30{
      font-size: 25px;
 }
+.countdown {
+      width: 100%;
+      height: 100px;
+      background: black;
+}
+       :host ::ng-deep .countdown  .measurements {
+        color: white;
+        margin-right: 5px;
+        font-size: 60px;
+        padding: 15px;
+     }
+
+     .divider {
+      font-size: 30px;
+     }

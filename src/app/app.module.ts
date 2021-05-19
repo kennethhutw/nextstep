@@ -115,7 +115,7 @@ import { SharedModule } from "./_shared/shared.module";
 import { ModalModule } from './_modal';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { environment } from "../environments/environment";
-
+import { CountdownModule } from "@aigre87/ng2-date-countdown";
 
 const config: SocketIoConfig = { url: environment.apiUrl, options: {} };
 
@@ -218,6 +218,7 @@ export function createLoader(http: HttpClient) {
     CollapseModule,
     NgxSpinnerModule,
     SharedModule,
+    CountdownModule,
     SocketIoModule.forRoot(config),
     NgCircleProgressModule.forRoot({
       // set defaults here

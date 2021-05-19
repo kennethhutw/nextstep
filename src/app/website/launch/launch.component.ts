@@ -17,6 +17,7 @@ export class LaunchComponent implements OnInit {
   socket;
   total = 100;
   count = 100;
+  isLaunch = false;
   constructor(
     private translateSrv: TranslateService,
     private utility: Utility,
@@ -45,5 +46,9 @@ export class LaunchComponent implements OnInit {
     } catch (error) {
       console.log("rrr ", error);
     }
+  }
+
+  callback() {
+    this.isLaunch = true;
   }
 }

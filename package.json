@@ -17,6 +17,7 @@
   },
   "private": true,
   "dependencies": {
+    "@aigre87/ng2-date-countdown": "^1.0.1",
     "@angular-devkit/build-angular": "~0.11.0",
     "@angular/animations": "^6.1.0",
     "@angular/cdk": "^10.2.7",
