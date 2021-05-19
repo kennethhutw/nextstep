@@ -59,7 +59,7 @@ export class ArtistFavoriteComponent implements OnInit {
   initArtist() {
     this.likeSrv.getUserLikeArtist(this.currentUser.id).subscribe(res => {
 
-      console.log("getUserLikeArtist ================", res);
+
       if (res['result'] == 'successful') {
         this.artists = res['data'];
         this.artists.forEach((element) => {

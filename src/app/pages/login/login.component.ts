@@ -92,7 +92,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSignIn() {
-    console.log("===========");
+
     // this.closeModal.nativeElement.click();
     //  this.closeModal['el'].nativeElement.style.display = 'none';
     //  this.closeModal['el'].nativeElement.classList.add('sshow');

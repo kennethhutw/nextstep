@@ -49,7 +49,7 @@ export class ArtistCollectionComponent implements OnInit {
     this.currentUser = this.authStoreSrv.getUserData();
 
     this.editionSrv.getEditionByArtistId(this.currentUser.id).subscribe(res => {
-      console.log("artworks ==========", res);
+
       if (res['result'] === 'successful') {
         this.artworks = res['data'];
         this.artworks.forEach((element) => {
@@ -61,7 +61,7 @@ export class ArtistCollectionComponent implements OnInit {
           this.artworksPages.push(p);
         }
         this.current5page = this.InitPagenation(this.artworks);
-        console.log("current5page ======== ", this.current5page);
+
         this.displayArtworks = this.artworks;
       }
       else {

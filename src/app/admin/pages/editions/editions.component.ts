@@ -136,7 +136,6 @@ export class AdminEditionComponent implements OnInit {
   }
   getAllEdition() {
     this.editionSrv.getEditions().subscribe(res => {
-      console.log("getEditions ========", res);
       this.editions = res['data'];
       this.editions.forEach((element) => {
         if (element.imageUrl != null) {

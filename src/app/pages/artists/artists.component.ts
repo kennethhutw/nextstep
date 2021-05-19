@@ -87,9 +87,8 @@ export class ArtistsComponent implements OnInit {
   }
 
   initTags(lang) {
-    console.log("initTags =======", lang)
+
     this.appSettingsSrv.getTagOptions(lang).subscribe((data) => {
-      console.log("initTags ======= data", data)
       this.tags = data;
     });
   }

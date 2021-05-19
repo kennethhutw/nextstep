@@ -53,7 +53,7 @@ export class ApplicationComponent implements OnInit, OnDestroy {
     this.route.params.subscribe(params => {
       const _uid = params["id"];
       this.userSrv.getUserBasicInfo(_uid).then(res => {
-        console.log("res ===========", res);
+
         if (res["result"] === "successful") {
           this.editedUser = res["data"];
           if (!!this.editedUser) {

@@ -23,6 +23,12 @@ export class TokenInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>,
         next: HttpHandler):
         Observable<HttpEvent<any>> {
+
+        request = request.clone({
+            setHeaders: {
+                Authorization: `Formoas ${localStorage.getItem('access_token')}`
+            }
+        });
         /*     if (request.url.indexOf('https://pro-api.coinmarketcap.com') == -1) {
                 request = request.clone({
                     setHeaders: {

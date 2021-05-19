@@ -95,15 +95,13 @@ export class CollectorAccountComponent implements OnInit {
       ]
     });
     let _first = this.route.snapshot.paramMap.get("first");
-    console.log("============ ", _first);
+
     if (_first && _first == 'true') {
       this.showCollectorTour();
     }
 
   }
   showCollectorTour() {
-    console.log("============= showUserTour");
-
     const step1 = this.userTourSrv.createStep("Step 1", "Link to your crypto wallet.", "#ethAddress", "top", ['next']);
     const step2 = this.userTourSrv.createStep("Step 2", "Purchase artworks in FormosArt Gallery.", "#galleryLink", 'bottom', ['next']);
     const step3 = this.userTourSrv.createStep("Step 3", "View your collection on FormosArt.", "#collector_profile_link", "left", ['next']);
@@ -210,7 +208,7 @@ export class CollectorAccountComponent implements OnInit {
     try {
       this.ethAddressActionMsg = null;
       this.ethAddressActionMsgFailed = false;
-      console.log("this.ethAddress =============", this.ethAddress);
+
       let result = this.web3Srv.verifyEthAddress(this.ethAddress.toLowerCase());
       if (result) {
         this.translateSrv.get("VALIDADDRESS").subscribe((text: string) => {

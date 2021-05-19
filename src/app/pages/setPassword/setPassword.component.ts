@@ -112,7 +112,7 @@ export class SetPasswordComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("========= onSubmit");
+
     try {
       this.submittedPSW = true;
       this.pswActionMsg = null;
@@ -127,7 +127,7 @@ export class SetPasswordComponent implements OnInit {
 
       this.userSrv.setPassword(_password,
         this.uid).subscribe(res => {
-          console.log("=========", res);
+
           if (res["result"] === "successful") {
             this.submittedPSW = false;
             this.translateSrv.get("UPDATEDSUCC").subscribe((text: string) => {

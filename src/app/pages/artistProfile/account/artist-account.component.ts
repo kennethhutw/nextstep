@@ -82,14 +82,14 @@ export class ArtistAccountComponent implements OnInit {
       ]
     });
     let _first = this.route.snapshot.paramMap.get("first");
-    console.log("============ ", _first);
+
     if (_first && _first == 'true') {
       this.showArtisitTour();
     }
   }
 
   showArtisitTour() {
-    console.log("============= showUserTour");
+
     const step1 = this.userTourSrv.createStep("Step 1", "Link to your crypto wallet.", "#ethAddress", "top", ['next']);
     const step2 = this.userTourSrv.createStep("Step 2", "Upload your artworks in JPG, PNG or GIF formats.", "#artisit_upload_artwork", 'left', ['next']);
     const step3 = this.userTourSrv.createStep("Step 3", "Check your artwork. Once your artworks has been tokenized to an NFT.", "#artisit_manage_artwork", "left", ['next']);

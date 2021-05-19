@@ -212,7 +212,7 @@ export class TokenizeComponent implements OnInit, OnDestroy {
     if (this.web3Srv.ethEnabled()) {
 
       var unixtimestamp = (new Date(this.tokenizeForm.value.startDate)).getTime() / 1000;
-      console.log('ethEnabled ==========');
+
       let priceInWei = this.web3Srv.EthToWei(this.tokenizeForm.value.priceInEth.toString());
       if (this.web3Srv.loadContract()) {
         this.web3Srv.executeTransaction('createActiveEdition',

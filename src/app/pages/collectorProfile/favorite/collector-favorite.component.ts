@@ -82,7 +82,7 @@ export class CollectorFavoriteComponent implements OnInit {
       if (res['result'] == 'successful') {
         this.artworks = res['data'];
         this.artworks.forEach((element) => {
-          console.log("===================", element);
+
           if (!this.utility.IsNullOrEmpty(element['imageUrl'])) {
             element['imageUrl'] = environment.assetUrl + element['imageUrl'];
           } else {

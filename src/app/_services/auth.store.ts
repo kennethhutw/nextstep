@@ -76,11 +76,12 @@ export class AuthStore {
         tap((resResult) => {
           if (resResult["result"] === "successful") {
             const _user = resResult.data as UserInterface;
-            this.subject.next(_user);
+
             localStorage.setItem("access_token", resResult.token);
             if (!this.utility.IsNullOrEmpty(_user)) {
               localStorage.setItem(AUTH_DATA, JSON.stringify(_user));
             }
+            this.subject.next(_user);
           }
         }),
         shareReplay(),
@@ -160,6 +161,8 @@ export class AuthStore {
       .pipe(
         tap((resResult) => {
           const _user = resResult.data as UserInterface;
+
+          localStorage.setItem("access_token", resResult["token"]);
           localStorage.setItem(AUTH_DATA, JSON.stringify(_user));
           this.subject.next(_user);
         }),
