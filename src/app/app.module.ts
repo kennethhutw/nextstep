@@ -115,7 +115,7 @@ import { SharedModule } from "./_shared/shared.module";
 import { ModalModule } from './_modal';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { environment } from "../environments/environment";
-import { CountdownModule } from "@aigre87/ng2-date-countdown";
+import { CountdownModule } from "ng2-countdown-timer";
 
 const config: SocketIoConfig = { url: environment.apiUrl, options: {} };
 
