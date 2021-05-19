@@ -19,6 +19,13 @@
           {{ "BASICINFO" | translate }}
         </div>
         <div class="row w-100 mt-10" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <div class="col-md-10 offset-md-1">
+            <div class="form-group">
+              <label for="exampleInputEmail1">
+                {{ "INVITATIONCODE" | translate }}<span>(*)</span></label>
+              <input type="text" class="form-control" id="code" formControlName="code" aria-describedby="code" />
+            </div>
+          </div>
           <div class="col-md-5 offset-md-1">
             <div class="form-group">
               <label for="exampleInputEmail1">

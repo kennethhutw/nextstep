@@ -35,9 +35,7 @@ export class EditionService {
     );
   }
 
-  getPopularEditions() { }
 
-  getRecentEditions() { }
 
   public createEdition(formdata) {
     return this.http

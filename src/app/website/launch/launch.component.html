@@ -37,20 +37,38 @@
             <p class="text-green1">(Only one code allowed per email address)</p>
         </div>
     </div>
+    <ng-container *ngIf="isLaunch">
+        <div class="row " *ngIf="!IsGoToRegister ">
+            <div class="col-md-4 offset-md-4">
+                <input type="text" class="form-control" style="border: 3px solid #18F596;border-radius: 5px;
+opacity: 1;background-color :black;     padding: 10px 10px;color:white;
+    height: 59px;" aria-label="code" [(ngModel)]="email" />
+            </div>
 
-    <div class="row " *ngIf="isLaunch">
-        <div class="col-md-4 offset-md-4">
-            <input type="text" class="form-control" style="border: 3px solid #18F596;border-radius: 5px;
-opacity: 1;background-color :black;     padding: 10px 10px;
-    height: 59px;" aria-label="Artwork Name" aria-describedby="button-addon2" />
         </div>
+        <div class="row mt-20" *ngIf="!IsGoToRegister">
+            <div class="col-md-4 offset-md-4">
+                <button class="btn_large w-100 " (click)="GetCode()" style="  font-weight: bold;">GET
+                    THE
+                    CODE</button>
+            </div>
 
-    </div>
-    <div class="row mt-20" *ngIf="isLaunch">
-        <div class="col-md-4 offset-md-4">
-            <a href="index.html" class="text-white"><button class="btn_large w-100" style="  font-weight: bold;">GET THE
-                    CODE</button></a>
         </div>
+        <div class="row " *ngIf="IsGoToRegister ">
+            <div class="col-md-4 offset-md-4">
+                <input type="text" class="form-control" style="border: 3px solid #18F596;border-radius: 5px;
+        opacity: 1;background-color :black; text-align: center; font-size: 26px;    padding: 10px 10px;color:#18F596;
+            height: 59px;" aria-label="code" [(ngModel)]="code" />
+            </div>
 
-    </div>
+        </div>
+        <div class="row mt-20" *ngIf="IsGoToRegister">
+            <div class="col-md-4 offset-md-4">
+                <a [routerLink]="['/register-artist',code]" class="text-white"><button class="btn_large w-100"
+                        style="  font-weight: bold;">
+                        GO TO SIGNUP</button></a>
+            </div>
+
+        </div>
+    </ng-container>
 </div>

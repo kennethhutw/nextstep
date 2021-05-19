@@ -192,6 +192,7 @@ const routes: Routes = [
         }]
       },
       { path: "register-artist", component: RegisterArtistComponent },
+      { path: "register-artist/:code", component: RegisterArtistComponent },
       { path: "register-collector", component: RegisterBuyerComponent },
       { path: "login", component: LoginComponent },
       { path: "", redirectTo: "index", pathMatch: "full" }

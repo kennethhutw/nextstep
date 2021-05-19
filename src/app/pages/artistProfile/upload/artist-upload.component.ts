@@ -14,7 +14,8 @@ import {
   AuthStore,
   EditionService,
   DialogService,
-  EmailService
+  EmailService,
+  PromoService
 } from "./../../../_services";
 import { Utility } from "./../../../_helpers";
 import {
@@ -52,8 +53,12 @@ export class ArtistUploadComponent implements OnInit {
   maxWordCount = 300;
   wordCount: any;
   words = 300;
+  isQuota = false;
+  quotaType = "0";
+  specialPrice = "5%";
   @ViewChild("text") text: ElementRef;
   constructor(
+    private promoSrv: PromoService,
     private emailSrv: EmailService,
     private changeDetectorRef: ChangeDetectorRef,
     private dataSrv: DataService,
@@ -72,6 +77,20 @@ export class ArtistUploadComponent implements OnInit {
     if (!this.utility.IsNullOrEmpty(localStorage.getItem("ETHPRICE"))) {
       this.ethPrice = Number(localStorage.getItem("ETHPRICE"));
     }
+
+    this.promoSrv.getQuota(this.currentUser.id).subscribe(res => {
+      console.log("==========", res);
+      if (res['result'] == 'successful') {
+        this.quotaType = res["type"];
+        let nQuota = parseFloat(res["data"]);
+        if (nQuota > 0) {
+          this.isQuota = true;
+          if (this.quotaType == "1") {
+            this.specialPrice = "10.5%";
+          }
+        }
+      }
+    })
 
     this.artworkForm = this.formBuilder.group({
       name: ["", Validators.required],

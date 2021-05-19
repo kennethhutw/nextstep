@@ -158,3 +158,8 @@ input:checked + .slider:before {
   font-weight: 300;
   font-size: 16px;
 }
+
+
+.special-price {
+  text-decoration:line-through;
+}

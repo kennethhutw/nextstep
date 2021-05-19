@@ -65,7 +65,10 @@
         <input type="number" formControlName="sellingPrice" (change)="TotalUSDAmount($event)" class="form-control" id=""
             placeholder="ETH 0.00" aria-describedby="">
         <span class="d-block pt-05 "><i class="fas fa-arrow-alt-circle-right "></i><span class="text-danger"> USD
-                $ {{usdAmount}}</span><small> {{ "PLATFORMFEE" | translate }}</small></span>
+                $ {{usdAmount}}</span><small [ngClass]="{ 'special-price': isQuota === true }"> {{ "PLATFORMFEE" |
+                translate }}</small><small *ngIf="isQuota" style="color:red; margin-left: 5px;">{{specialPrice}} {{
+                "PLATFORMFEE1" |
+                translate }}</small></span>
         <div *ngIf="submitted && f.sellingPrice.errors">
             <div class="error-msg" *ngIf="f.sellingPrice.errors.required">
                 {{ "SELLPRICEISREQ" | translate }}

@@ -4,11 +4,12 @@ import {
   DataService,
   AuthStore,
   DialogService,
-  EmailService
+  EmailService,
+  PromoService
 } from "./../../../_services";
 import { Utility } from "./../../../_helpers";
 import { NewArtist, ApplyEdition } from "./../../../_models";
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import {
   FormBuilder,
   FormGroup,
@@ -42,7 +43,9 @@ export class RegisterArtistComponent implements OnInit {
 
   verifiedMsg = "";
   constructor(
+    private promoSrv: PromoService,
     private router: Router,
+    private route: ActivatedRoute,
     private dialogSrv: DialogService,
     private authStore: AuthStore,
     private formBuilder: FormBuilder,
@@ -70,6 +73,7 @@ export class RegisterArtistComponent implements OnInit {
     for (let i = 0; i < 3; i++) {
       // let _newEdition = new ApplyEdition();
       let _newEdition = this.formBuilder.group({
+
         name: [""],
         description: [""],
         imageName: [""],
@@ -80,6 +84,7 @@ export class RegisterArtistComponent implements OnInit {
       this.newEditions.push(_newEdition);
     }
     this.registerForm = this.formBuilder.group({
+      code: [""],
       name: ["", Validators.required],
       email: [
         "",
@@ -101,17 +106,14 @@ export class RegisterArtistComponent implements OnInit {
     this.translateSrv.get("ARTISTREGISTER").subscribe((text: string) => {
       this.verifiedMsg = text;
     });
+    this.route.params.subscribe(params => {
+      console.log("pr", params);
+      const _code = params["code"];
 
+      this.registerForm.controls['code'].setValue(_code);
+    })
   }
 
-  //   onDetectCompLogo(event) {
-  //   this.uploadedCompLogo = false;
-  //   this.selectedMaterial = event.target.files;
-  //   this.complogoFile = '';
-  //   this.IsAnyNewImage = ImageState.new;
-  //   this.preview(this.selectedMaterial);
-  //      let file = this.selectedMaterial.item(0);
-  // }
 
   onDetectImage(event, index) {
     if (event.target.files.length === 0)
@@ -122,7 +124,7 @@ export class RegisterArtistComponent implements OnInit {
 
       return;
     }
-    console.log("event.target.files[0]", event.target);
+
     var reader = new FileReader();
     let controls = this.registerForm.controls["editions"];
     controls["controls"][index].patchValue({ image: event.target.files[0] });
@@ -143,8 +145,7 @@ export class RegisterArtistComponent implements OnInit {
           break;
       }
       controls["controls"][index].patchValue({ imageUrl: reader.result });
-      //controls["controls"][index].patchValue({ name: reader.result });
-      // this.imgURL = reader.result;
+
     }
   }
 
@@ -184,7 +185,7 @@ export class RegisterArtistComponent implements OnInit {
     }
   }
 
-  onSubmit() {
+  async onSubmit() {
     this.loading = true;
     this.message = null;
     this.theFirstImageNameRequire = false;
@@ -195,6 +196,29 @@ export class RegisterArtistComponent implements OnInit {
       this.message = "Name or Email cannot be empty";
       return;
     }
+
+
+    if (!this.utility.IsNullOrEmpty(this.registerForm.value.code)) {
+      if (this.registerForm.value.code.indexOf('inv') > -1) {
+        let result = await this.promoSrv.checkCode(this.registerForm.value.email, this.registerForm.value.code);
+
+        if (result['result'] == 'failed') {
+          this.loading = false;
+          this.message = "Code or Email does not match.";
+          return;
+        }
+      } else {
+        let result = await this.promoSrv.IsExist(this.registerForm.value.code);
+
+        if (result['result'] == 'failed') {
+          this.loading = false;
+          this.message = "Code does not exist.";
+          return;
+        }
+      }
+    }
+
+
     const _editions = this.registerForm.get('editions') as FormArray;
     for (let i = 0; i < _editions.controls.length; i++) {
       let _edition = _editions.controls[i];
@@ -241,6 +265,7 @@ export class RegisterArtistComponent implements OnInit {
 
 
     let formData = new FormData();
+    formData.append("code", this.registerForm.value.code);
     formData.append("name", newArtist.name);
     formData.append("email", newArtist.email);
     formData.append("location", newArtist.location);

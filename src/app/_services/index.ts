@@ -20,6 +20,7 @@ import { DelegateEmailService } from './delegateEmail.service';
 import { AdminService } from "./admin.service";
 import { TableService } from "./table.service";
 import { UserTourService } from './user-tour.service';
+import { PromoService } from './promo.service';
 export const services = [
     AdminService,
     UserService,
@@ -41,7 +42,8 @@ export const services = [
     PendingEditionService,
     DelegateEmailService,
     TableService,
-    UserTourService];
+    UserTourService,
+    PromoService];
 
 
 
@@ -67,3 +69,4 @@ export { DelegateEmailService } from './delegateEmail.service';
 export { AdminService } from "./admin.service";
 export { TableService } from "./table.service";
 export { UserTourService } from './user-tour.service';
+export { PromoService } from './promo.service';
