@@ -1,18 +1,23 @@
 <div id="content-mt" class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1 class="footer_title_line"><span class="footer_title">{{ "FORCOLLECTORTITLE" | translate }}</span></h1>
+            <h1 class="footer_title_line"><span class="page-title">{{ "FORCOLLECTORTITLE" | translate }}</span></h1>
         </div>
     </div>
     <div class="row mt-60 mb-40">
-        <div class="col-md-4 offset-md-2  footer_text ">
+        <div class="col-md-12   footer_text f-22">
             {{ "FORCOLLECTOR1" | translate }}
-            <a routerLink="/gallery" class="text-white">
-                <button class="btn_large w-100 mt-30 mb-40"> {{ "FORCOLLECTORLOOKING" | translate }}</button>
-            </a>
         </div>
-        <div id="footer_buyer_img" class="col-md-5">
+        <!-- <div id="footer_buyer_img" class="col-md-5">
             <img class="w-75" src="./../../../assets/images/footer_buyer.jpg" alt="">
+        </div> -->
+    </div>
+    <div class="row">
+        <div class="col-md-8"></div>
+        <div class="col-md-4" style="float: right;">
+            <a routerLink="/gallery" class="text-white">
+                <button class="index_btn_explore1 w-100 mt-30 mb-40"> {{ "FORCOLLECTORLOOKING" | translate }}</button>
+            </a>
         </div>
     </div>
 </div>

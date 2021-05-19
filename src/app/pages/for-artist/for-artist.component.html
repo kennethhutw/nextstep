@@ -1,19 +1,36 @@
-    <div id="content-mt" class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class="footer_title_line"><span class="footer_title"> {{ "FORARTISTTITLE" | translate }}</span></h1>
-            </div>
-        </div>
-        <div class="row mt-40 ">
-            <div class="col-md-5 offset-md-1">
-                <img class="w-100" src="./../../../assets/images/footer_artist.jpg" alt="">
-            </div>
-            <div class="col-md-4 text-justify footer_text mt-30 ">
-                {{ "FORARTIST1" | translate }}
-                <a routerLink="/register-artist" class="text-white">
-                    <button class="btn_large w-100 mt-30 mb-40"> {{ "FORARTISTLOOKING" | translate }}</button>
-                </a>
-            </div>
-
+<div id="content-mt" class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="footer_title_line"><span class="page-title"> {{ "FORARTISTTITLE" | translate }}</span></h1>
         </div>
     </div>
+
+    <div class="row mt-40 ">
+        <!-- <div class="col-md-5 offset-md-1">
+                <img class="w-100" src="./../../../assets/images/footer_artist.jpg" alt="">
+            </div> -->
+        <div class="col-md-12 text-justify footer_text mt-30  f-22">
+
+            {{ "FORARTIST1" | translate }}
+
+        </div>
+
+    </div>
+    <div class="row mt-40 ">
+        <!-- <div class="col-md-5 offset-md-1">
+                    <img class="w-100" src="./../../../assets/images/footer_artist.jpg" alt="">
+                </div> -->
+        <div class="col-md-12 text-justify footer_text  f-22">
+            {{ "FORARTIST2" | translate }}
+        </div>
+
+    </div>
+    <div class="row mt-40">
+        <div class="col-md-8"></div>
+        <div class="col-md-4" style="float: right;">
+            <a routerLink="/register-artist" class="text-white">
+                <button class="index_btn_explore1 w-100 mt-30 mb-40"> {{ "FORARTISTLOOKING" | translate }}</button>
+            </a>
+        </div>
+    </div>
+</div>
