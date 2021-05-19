@@ -3,6 +3,8 @@ import { TranslateService } from "@ngx-translate/core";
 import { DataService } from "../../_services";
 import { Utility } from "../../_helpers";
 
+import { environment } from "../../../environments/environment";
+
 @Component({
   selector: "app-launch",
   templateUrl: "./launch.component.html",
@@ -12,6 +14,9 @@ import { Utility } from "../../_helpers";
 })
 export class LaunchComponent implements OnInit {
 
+  socket;
+  total = 100;
+  count = 100;
   constructor(
     private translateSrv: TranslateService,
     private utility: Utility,
@@ -30,6 +35,15 @@ export class LaunchComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.setupSocketConnection();
+  }
 
+  setupSocketConnection() {
+    try {
+
+
+    } catch (error) {
+      console.log("rrr ", error);
+    }
   }
 }

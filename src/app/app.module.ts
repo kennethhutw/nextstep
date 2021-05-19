@@ -113,7 +113,11 @@ import * as Websitepages from './website/index';
 import { SharedModule } from "./_shared/shared.module";
 
 import { ModalModule } from './_modal';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { environment } from "../environments/environment";
 
+
+const config: SocketIoConfig = { url: environment.apiUrl, options: {} };
 
 export function createLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -214,6 +218,7 @@ export function createLoader(http: HttpClient) {
     CollapseModule,
     NgxSpinnerModule,
     SharedModule,
+    SocketIoModule.forRoot(config),
     NgCircleProgressModule.forRoot({
       // set defaults here
       radius: 100,
