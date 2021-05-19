@@ -55,7 +55,7 @@ export class CheckStatusComponent implements OnInit {
             }
           } else if (_artistData.status == 1) {
             this.msg = "Your application is approve.";
-            this.msg2 = " Please login Formosart and upload your artwork."
+            this.msg2 = " Please login FormosArt and upload your artwork."
           } else if (_artistData.status == 2) {
             this.isAlarm = true;
             this.msg = "Your application is rejected. ";

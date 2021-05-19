@@ -414,7 +414,7 @@ export class TokenizeComponent implements OnInit, OnDestroy {
     let url = '/gallery/' + id;
     let link = domain + url;
     this.emailSrv.sendAvailableEmail(
-      'Your artwork is available now on Formosart',
+      'Your artwork is available now on FormosArt',
       this.artist.name,
       this.artist.email,
       link,
