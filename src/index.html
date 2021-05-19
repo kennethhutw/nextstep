@@ -20,11 +20,28 @@
 
   <!-- font awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
-
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
 </head>
 
 <body>
   <app-root></app-root>
+  <div id="cookieconsent"></div>
 </body>
+<script>
+  window.cookieconsent.initialise({
+    container: document.getElementById("cookieconsent"),
+    palette: {
+      popup: { background: "#1aa3ff" },
+      button: { background: "#e0e0e0" },
+    },
+    revokable: true,
+    onStatusChange: function (status) {
+      console.log(this.hasConsented() ?
+        'enable cookies' : 'disable cookies');
+      document.getElementById("cookieconsent").style.display = "none";
+    },
+    "theme": "edgeless"
+  });
+</script>
 
 </html>

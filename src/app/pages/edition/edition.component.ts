@@ -134,10 +134,7 @@ export class EditionComponent implements OnInit {
       }
     });
 
-    this.Web3Srv.onEvents('transactionHash').subscribe(res => {
-      console.log("tx ========", res);
-      this.openModal(true);
-    })
+
   }
 
   ngOnInit() {
