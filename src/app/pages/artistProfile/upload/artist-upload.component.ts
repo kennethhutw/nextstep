@@ -79,7 +79,7 @@ export class ArtistUploadComponent implements OnInit {
     }
 
     this.promoSrv.getQuota(this.currentUser.id).subscribe(res => {
-      console.log("==========", res);
+
       if (res['result'] == 'successful') {
         this.quotaType = res["type"];
         let nQuota = parseFloat(res["data"]);

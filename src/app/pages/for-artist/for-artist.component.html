@@ -25,7 +25,12 @@
         </div>
 
     </div>
-    <div class="row mt-40">
+    <div class="row">
+        <div class="col-md-12 text-justify">
+            <img class="w-100" *ngIf="!artworkImage" src="./../../../assets/artist_flow.svg" alt="" />
+        </div>
+    </div>
+    <div class="row mt-40 mb-20">
         <div class="col-md-8"></div>
         <div class="col-md-4" style="float: right;">
             <a routerLink="/register-artist" class="text-white">
@@ -34,3 +39,15 @@
         </div>
     </div>
 </div>
+<!-- We hope to enable digital creators to monetize their work and interact with their public and collectors on a significant
+and transparent basis.
+
+Join our art community to tokenized, authenticate, showcase and sell your artworks via FormosArt.io. All artworks files
+are stored on IPFS (a distributed storage solution), which is permanently embedded in a blockchain.
+
+These assets have unique identifiers, which can be tracked for chain of ownership and provenance with a trustworthy and
+reliable source that everyone can view online.
+
+To become an artist or contributor on FormosArt you must create a profile page. This is typically a profile picture, bio
+and social accounts such as Twitter and Instagram and can be done via the profile settings page. Artists will need to
+have a digital wallet such as MetaMask.io installed before upload artworks. -->
