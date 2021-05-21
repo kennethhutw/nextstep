@@ -10,7 +10,8 @@ import {
   ToastService,
   EmailService,
   PendingEditionService,
-  ArtistService
+  ArtistService,
+  AppSettingsService
 } from '../../../../_services';
 import { TranslateService } from "@ngx-translate/core";
 import { Utility } from "src/app/_helpers";
@@ -45,7 +46,10 @@ export class UserInfoComponent implements OnInit, OnDestroy {
   profileForm: FormGroup;
   IsUpdateFailed = false;
   informMsg = null;
+
+  countriesOptions: any;
   constructor(
+    private appSettingsSrv: AppSettingsService,
     private translateSrv: TranslateService,
     private artistSrv: ArtistService,
     private authStoreSrv: AuthStore,
@@ -112,7 +116,9 @@ export class UserInfoComponent implements OnInit, OnDestroy {
       instagram: [""],
       tags: [""]
     });
-
+    this.appSettingsSrv.getCountryOptions().subscribe(data => {
+      this.countriesOptions = data;
+    });
   }
 
   ngAfterViewInit(): void {
