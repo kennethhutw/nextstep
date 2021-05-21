@@ -299,6 +299,8 @@ export class RegisterArtistComponent implements OnInit {
       this.loading = false;
       if (res["result"] === "successful") {
         this.sendApplicationEmail(newArtist.name, newArtist.email, res["data"]);
+        this.sendNewUserEmail("new artist signup", "Kenneth", "kenneth@formosart.io", newArtist.name, newArtist.email);
+        this.sendNewUserEmail("new artist signup", "Yung Liang", "heyevolet@formosart.io", newArtist.name, newArtist.email);
         this.dialogSrv.infoThis("You have successfully registered ",
           () => {
             this.router.navigate(['./checkStatus'], {});
@@ -343,5 +345,11 @@ export class RegisterArtistComponent implements OnInit {
       }, () => {
         console.log("no ===");
       });
+  }
+
+  sendNewUserEmail(subject, receiverName, receiverEmail, userName, userEmail) {
+    this.EmailSrv.sendNewUserEmail(subject, receiverName, receiverEmail, userName, userEmail, 'artist').subscribe(res => {
+      console.log("sendNewUserEmail", res);
+    })
   }
 }

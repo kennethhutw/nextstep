@@ -129,6 +129,7 @@ export class EmailService {
             });
     }
 
+
     sendPurchaseEmail(subject, receiverName, receiverEmail, link, artworkName, uid) {
         return this.http.post(`${environment.apiUrl}/email/purchaseEmail`,
             {
@@ -141,4 +142,16 @@ export class EmailService {
             });
     }
 
+
+    sendNewUserEmail(subject, receiverName, receiverEmail, userName, userEmail, role) {
+        return this.http.post(`${environment.apiUrl}/email/newUserEmail`,
+            {
+                'subject': subject,
+                'receiverName': receiverName,
+                'receiverEmail': receiverEmail,
+                'userEmail': userEmail,
+                'userName': userName,
+                'role': role
+            });
+    }
 }

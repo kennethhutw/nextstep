@@ -11,7 +11,8 @@ import {
   Web3Service,
   DataService,
   AuthStore,
-  DialogService
+  DialogService,
+  EmailService
 } from "../../../_services";
 import { Router } from "@angular/router";
 
@@ -41,7 +42,8 @@ export class RegisterBuyerComponent implements OnInit {
     private translateSrv: TranslateService,
     private utility: Utility,
     private dataSrv: DataService,
-    private dialogSrv: DialogService
+    private dialogSrv: DialogService,
+    private EmailSrv: EmailService
   ) {
     let _lang = localStorage.getItem("lang");
 
@@ -168,6 +170,12 @@ export class RegisterBuyerComponent implements OnInit {
             // this.auth.setUserData(_user);
             // localStorage.setItem("token", res["token"]);
             let AuthEmailRes = this.auth.sendAuthEmail(_user['id'], this.registerForm.value.email);
+            this.sendNewUserEmail("new collector signup",
+              "Kenneth", "kenneth@formosart.io",
+              this.registerForm.value.name, this.registerForm.value.email);
+            this.sendNewUserEmail("new collector signup",
+              "Yung Liang", "heyevolet@formosart.io",
+              this.registerForm.value.name, this.registerForm.value.email);
             // this.auth.sendAuthEmail(_user['id'], this.registerForm.value.email);
             // redirect to profile
             AuthEmailRes.subscribe(_res => {
@@ -259,5 +267,11 @@ export class RegisterBuyerComponent implements OnInit {
     console.log("authenticateMail ============");
     let AuthEmailRes = this.auth.sendAuthEmail('11', 'kenneth.hu.tw@gmail.com').subscribe(res => { });
 
+  }
+
+  sendNewUserEmail(subject, receiverName, receiverEmail, userName, userEmail) {
+    this.EmailSrv.sendNewUserEmail(subject, receiverName, receiverEmail, userName, userEmail, 'collector').subscribe(res => {
+      console.log("sendNewUserEmail", res);
+    })
   }
 }
