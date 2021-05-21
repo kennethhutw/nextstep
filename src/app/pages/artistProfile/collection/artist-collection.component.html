@@ -45,7 +45,7 @@
 </div>
 
 <!-- *ngIf="artworks.length >3" -->
-<div *ngIf="current5page.length>1" class="text-center pagenation_center mb-40">
+<div *ngIf="displayArtworks.length>1" class="text-center pagenation_center mb-40">
     <nav aria-label="..">
         <ul class="pagination">
             <button (click)="less(current5page)" [disabled]="current5page[0]==0" type="button"
