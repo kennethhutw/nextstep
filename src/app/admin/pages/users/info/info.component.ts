@@ -276,8 +276,8 @@ export class UserInfoComponent implements OnInit, OnDestroy {
     newArtist.tags = this.profileForm.value.tags;
 
     let formData = new FormData();
-    formData.append("id", this.currentUser.id);
-    formData.append("uid", this.currentUser.id);
+    formData.append("id", this.editedUser.id);
+    formData.append("uid", this.editedUser.id);
     formData.append("name", newArtist.name);
     formData.append("bio", newArtist.bio);
     formData.append("facebook", newArtist.facebook);
