@@ -12,7 +12,33 @@ export class PromoService {
         return this.http.get(`${environment.apiUrl}/promo/code/${email}/${type}`);
     }
 
+    getAllPromo() {
+        return this.http.get(`${environment.apiUrl}/promo/getAllPromo`);
+    }
 
+    generateCode(type) {
+        console.log("generateCode ========== type", type)
+        return this.http.post(`${environment.apiUrl}/promo/generateCode`,
+            {
+                type
+            })
+    }
+
+    deleletCode(id) {
+        return this.http.post(`${environment.apiUrl}/promo/deleteCode`,
+            {
+                id
+            })
+    }
+
+    updateCode(id, email, userId) {
+        return this.http.post(`${environment.apiUrl}/promo/updateCode`,
+            {
+                id,
+                email,
+                userId
+            })
+    }
 
     async checkCode(email, code) {
         return await this.http.post(`${environment.apiUrl}/promo/checkCode`,

@@ -18,5 +18,6 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'editions', component: Containers.AdminEditionComponent },
   { path: 'editions/tokenize/:id', component: Containers.TokenizeComponent },
   { path: 'editions/artworks/:editionId', component: Containers.AdminArtworkComponent },
-  { path: 'delegate', component: Containers.AdminDelegateEmailComponent }
+  { path: 'delegate', component: Containers.AdminDelegateEmailComponent },
+  { path: 'promo', component: Containers.AdminPromoComponent }
 ];
