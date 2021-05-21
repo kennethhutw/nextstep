@@ -80,3 +80,76 @@
   </div>
 
 </div>
+
+<hr>
+<h5 class="pb-10">PROFILE IMAGE</h5>
+
+<div [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <div class="member-info-box">
+    <div class="row">
+      <div id="select_img" class="col-md-4 text-center">
+        <!-- <span *ngIf="this.profileImage != null " (click)="onRemoveImg($event,'1')" class="close">&times;</span> -->
+        <button *ngIf="this.profileImage != null" class="member_artist_delete" (click)="onRemoveImg($event,'1')"><i
+            class="fas fa-times"></i></button>
+        <img class="w-100" *ngIf="profileImage" height="239px" width="239px" [src]="profileImage" alt="" />
+        <img class="w-100" *ngIf="!profileImage" src="./assets/images/select_img.jpg" alt="" />
+      </div>
+      <div id="member_choice_btn" class="col-md-8">
+        <label class="btn_select_img mb-20" for="profileImage">UPLOADPROFILEIMAGE</label>
+        <input id="profileImage" type="file" accept="image/gif, image/jpeg, image/png, image/gif"
+          (change)="onDetectImage($event)" style="visibility: hidden; padding: 0px" />
+      </div>
+    </div>
+  </div>
+
+  <h5 class="mt-50 pb-10">NAME</h5>
+  <div class="form-group member-info-box">
+    <input type="text" formControlName="name" class="form-control" id="name" aria-describedby="">
+  </div>
+
+  <h5 class="mt-50 pb-10">BIO</h5>
+  <div class="form-group member-info-box">
+    <label for="">BIOINTRO</label>
+    <textarea type="text" formControlName="bio" class="form-control" id="" rows="4" cols="50"></textarea>
+  </div>
+
+  <h5 class="mt-50 pb-10">SOCIALMEDIALINK</h5>
+  <div class="member-info-box">
+    <div class="form-group ">
+      <div><i class="fab fa-twitter"></i> <label class="pl-10" for="twitter">Twitter</label></div>
+      <input type="text" formControlName="twitter" class="form-control" id="twitter" aria-describedby=""
+        placeholder="ex- https://twitter.com/formosa">
+    </div>
+
+    <div class="form-group">
+      <div><i class="fab fa-instagram-square"></i><label class="pl-10" for="instagram">Instagram</label></div>
+      <input type="textg" formControlName="instagram" class="form-control" id="instagram" aria-describedby=""
+        placeholder="ex- https://www.instagram.com/formosa">
+    </div>
+
+    <div class="form-group">
+      <div><i class="fas fa-globe"></i><label class="pl-10" for="website">Website</label></div>
+      <input type="text" formControlName="website" class="form-control" id="website" aria-describedby=""
+        placeholder="personal website">
+    </div>
+
+    <div class="form-group">
+      <div><i class="fas fa-map-marker"></i><label class="pl-10" for="location">LOCATION</label></div>
+      <select style="height:52px;" name="location" formControlName="location" id="location" class="form-control">
+        <option value="" selected>Select country...</option>
+        <option *ngFor="let opt of countriesOptions" [value]="opt.text">{{opt.text}}
+        </option>
+      </select>
+    </div>
+  </div>
+
+
+  <div class="text-center mt-40">
+    <button (click)="onSubmit()" id="member_last_btn_w100" class="btn_normal mb-20">
+      Save
+    </button>
+  </div>
+  <div class="text-center  mb-40">
+    <div [ngClass]="{ 'error-msg': IsUpdateFailed === true }" *ngIf="informMsg">{{informMsg}}</div>
+  </div>
+</div>
