@@ -201,7 +201,7 @@ export class Utility {
       return ethAmount;
     }
     catch (err) {
-      console.error(`Convert USD to ETH failed : ${err}`);
+      console.error(`Convert USD to ETH failed : `, err);
       return 0;
     }
   }
@@ -215,7 +215,7 @@ export class Utility {
       return ethAmount;
     }
     catch (err) {
-      console.error(`Convert USD to ETH failed : ${err}`);
+      console.error(`Convert USD to ETH failed :`, err);
       return 0;
     }
   }

@@ -145,12 +145,12 @@ export class SetPasswordComponent implements OnInit {
             this.pswActionMsg = text;
             this.pswMsgFailed = true;
           });
-          console.error(`setPassword failed : ${error}`);
+          console.error(`setPassword failed : `, error);
         })
 
     }
-    catch (err) {
-      console.warn(`changePassword ${err}`);
+    catch (error) {
+      console.warn(`changePassword `, error);
       this.submittedPSW = false;
     }
 

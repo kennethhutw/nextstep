@@ -187,7 +187,7 @@ export class AuthStore {
         return null;
       }
     } catch (error) {
-      console.error(`getUserData failed : ${error}`);
+      console.error(`getUserData failed :`, error);
       return null;
     }
   }
@@ -198,7 +198,7 @@ export class AuthStore {
       this.subject.next(userData);
       return true;
     } catch (error) {
-      console.error(`setUserData failed : ${error}`);
+      console.error(`setUserData failed : `, error);
       return false;
     }
   }
@@ -236,6 +236,14 @@ export class AuthStore {
   async checkUserData(email, walletAddress) {
     const params = new HttpParams().set('email', email).set('walletAddress', walletAddress);
     return await this.http.get<any>(`${environment.apiUrl}/authenticate/checkUserData`, { params: params }).toPromise();
+  }
+
+
+  verifyToken(token) {
+    return this.http.post(`${environment.apiUrl}/authenticate/verifyToken`,
+      {
+        token: token
+      });
   }
 
 

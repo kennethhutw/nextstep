@@ -56,8 +56,8 @@ export class ArtistSoldArtWorkComponent implements OnInit {
       else {
 
       }
-    }, err => {
-      console.error(`getSoldArtwrokByArtistId failed ${err}`);
+    }, error => {
+      console.error(`getSoldArtwrokByArtistId failed `, error);
     });
   }
 
@@ -88,7 +88,7 @@ export class ArtistSoldArtWorkComponent implements OnInit {
           break;
       }
     } catch (error) {
-      console.error(`getSellArtwork error message ${error}`);
+      console.error(`getSellArtwork error message `, error);
     } finally {
 
     }

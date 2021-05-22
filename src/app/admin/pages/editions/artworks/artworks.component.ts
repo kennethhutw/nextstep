@@ -95,7 +95,7 @@ export class AdminArtworkComponent implements OnInit {
       this.route.params.subscribe(params => {
         const _editionId = params["editionId"];
         this.artworkSrv.getArtwrokByEditionId(_editionId).subscribe(res => {
-          console.log("res ===========", res);
+
           if (res["result"] === "successful") {
             this.artworks = res["data"];
             this.displayArtworks = this.artworks;
@@ -105,7 +105,7 @@ export class AdminArtworkComponent implements OnInit {
             //tags: "bizarre,love,romantic"
           }
         }, error => {
-          console.error(` res error : ${error} `);
+          console.error(` getArtwrokByEditionId error : `, error);
         }, () => {
           this.isLoading = false;
         });
@@ -113,7 +113,7 @@ export class AdminArtworkComponent implements OnInit {
       })
 
     } catch (error) {
-      console.error(` res error : ${error} `);
+      console.error(` getArtwrokByEditionId error : `, error);
     }
   }
 

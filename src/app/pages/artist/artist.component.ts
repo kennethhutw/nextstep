@@ -86,7 +86,7 @@ export class ArtistPageComponent implements OnInit {
         }
       },
         error => {
-          console.error(`ArtistPage error ${error}`);
+          console.error(`ArtistPage error `, error);
         },
         () => {
 
@@ -101,7 +101,7 @@ export class ArtistPageComponent implements OnInit {
         }
       },
         error => {
-          console.error(`getArtistArtwork error ${error}`);
+          console.error(`getArtistArtwork error `, error);
         },
         () => {
 
@@ -127,7 +127,7 @@ export class ArtistPageComponent implements OnInit {
 
       }
     }, error => {
-      console.error(`getUserOwnArtworksByUid error ${error}`);
+      console.error(`getUserOwnArtworksByUid error `, error);
     })
   }
 

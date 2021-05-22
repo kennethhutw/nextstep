@@ -86,7 +86,7 @@ export class GalleryComponent implements OnInit {
 
       }
     }, error => {
-      console.error(`getSellArtwork error message ${error}`);
+      console.error(`getSellArtwork error message `, error);
     }, () => {
       this.SpinnerService.hide();
     });
@@ -129,7 +129,7 @@ export class GalleryComponent implements OnInit {
           break;
       }
     } catch (error) {
-      console.error(`getSellArtwork error message ${error}`);
+      console.error(`getSellArtwork error message `, error);
     } finally {
       this.SpinnerService.hide();
     }

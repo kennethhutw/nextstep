@@ -166,16 +166,16 @@ export class CollectorAccountComponent implements OnInit {
             this.informMsg = text;
             this.IsUpdateInformEmailFailed = true;
           });
-          console.error(`updateUserInfoEmail failed : ${error}`);
+          console.error(`updateUserInfoEmail failed :`, error);
         }, () => {
           this.authStoreSrv.reloadCurrentUserInfo();
         });
-    } catch (err) {
+    } catch (error) {
       this.translateSrv.get("UPDATEDFAILED").subscribe((text: string) => {
         this.informMsg = text;
         this.IsUpdateInformEmailFailed = true;
       });
-      console.error(`updateUserInfoEmail failed : ${err}`);
+      console.error(`updateUserInfoEmail failed : `, error);
     }
   }
 
@@ -188,7 +188,7 @@ export class CollectorAccountComponent implements OnInit {
           this.ethAddress = data.address;
         },
         (error) => {
-          console.warn(`NOTFOUNDWALLET ${error}`);
+          console.warn(`NOTFOUNDWALLET`, error);
           this.translateSrv.get("NOTFOUNDWALLET").subscribe((text: string) => {
             this.ethAddressActionMsg = text;
             this.ethAddressActionMsgFailed = true;
@@ -222,8 +222,8 @@ export class CollectorAccountComponent implements OnInit {
         });
       }
     }
-    catch (err) {
-      console.warn(`NOTFOUNDWALLET ${err}`);
+    catch (error) {
+      console.warn(`NOTFOUNDWALLET `, error);
       this.translateSrv.get("INVALIDADDRESS").subscribe((text: string) => {
         this.ethAddressActionMsg = text;
         this.ethAddressActionMsgFailed = true;
@@ -258,7 +258,7 @@ export class CollectorAccountComponent implements OnInit {
               this.ethAddressActionMsg = text;
               this.ethAddressActionMsgFailed = true;
             });
-            console.error(`updateUserInfoEmail failed : ${error}`);
+            console.error(`updateUserInfoEmail failed : `, error);
           }, () => {
             this.authStoreSrv.reloadCurrentUserInfo();
           });
@@ -270,8 +270,8 @@ export class CollectorAccountComponent implements OnInit {
         });
       }
     }
-    catch (err) {
-      console.warn(`NOTFOUNDWALLET ${err}`);
+    catch (error) {
+      console.warn(`NOTFOUNDWALLET `, error);
       this.translateSrv.get("INVALIDADDRESS").subscribe((text: string) => {
         this.ethAddressActionMsg = text;
         this.ethAddressActionMsgFailed = true;
@@ -311,7 +311,7 @@ export class CollectorAccountComponent implements OnInit {
             this.pswActionMsg = text;
             this.pswMsgFailed = true;
           });
-          console.error(`changePassword failed : ${error}`);
+          console.error(`changePassword failed : `, error);
         })
       // let result = this.web3Srv.verifyEthAddress(this.ethAddress);
       // if(result){
@@ -339,8 +339,8 @@ export class CollectorAccountComponent implements OnInit {
       //   });
       // }
     }
-    catch (err) {
-      console.warn(`changePassword ${err}`);
+    catch (error) {
+      console.warn(`changePassword `, error);
       this.submittedPSW = false;
     }
   }

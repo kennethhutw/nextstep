@@ -14,16 +14,27 @@ import { AuthStore } from "./../_services/auth.store";
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(private auth: AuthStore,
-     private router: Router) {}
+    private router: Router) { }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (localStorage.getItem("access_token")) {
-      return true;
+    console.log("canActivate =================")
+    if (!!localStorage.getItem("access_token")) {
+      return this.auth.verifyToken(localStorage.getItem('access_token')).pipe(map(res => {
+        console.log("verifyToken =================", res);
+        if (res['data']) {
+          return true;
+        } else {
+          this.auth.logout();
+          this.router.navigate(['/']);
+          return false;
+        }
+      }));
     }
-
-    this.router.navigate(["login"]);
-    return false;
-    //return this.auth.isLoggedIn$.pipe(map(loggedIn=> loggedIn? true:  this.router.parseUrl('/home')));
+    else {
+      this.auth.logout();
+      this.router.navigate(['/']);
+      return false;
+    }
   }
 
   //CanActivateChild

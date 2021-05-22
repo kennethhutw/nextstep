@@ -57,8 +57,8 @@ export class CollectorSalesComponent implements OnInit {
       else {
         this.artworks = [];
       }
-    }, err => {
-      console.error(`getArtwrokByArtistId failed ${err}`);
+    }, error => {
+      console.error(`getArtwrokByArtistId failed `, error);
     });
   }
 
@@ -94,7 +94,7 @@ export class CollectorSalesComponent implements OnInit {
           break;
       }
     } catch (error) {
-      console.error(`getSellArtwork error message ${error}`);
+      console.error(`getSellArtwork error message `, error);
     } finally {
 
     }

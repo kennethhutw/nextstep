@@ -17,7 +17,7 @@ import { LoadingSpinnerComponent } from "./loading-spinner/loading-spinner.compo
 import { NgxSpinnerModule } from "ngx-spinner";
 
 import * as AppServices from "./../_services";
-
+import { AuthGuard } from './../_guards';
 import {
   UploadFileComponent,
   ModalComponent,
@@ -90,6 +90,7 @@ const sharedComponents = [
     ...sharedComponents,
   ],
   providers: [
+    AuthGuard,
     Utility,
     TimeUtility,
     SocialMediaUtility,

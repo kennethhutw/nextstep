@@ -67,8 +67,8 @@ export class ArtistCollectionComponent implements OnInit {
       else {
 
       }
-    }, err => {
-      console.error(`getArtwrokByArtistId failed ${err}`);
+    }, error => {
+      console.error(`getArtwrokByArtistId failed `, error);
     });
 
     this._lang = localStorage.getItem("lang");
@@ -175,7 +175,7 @@ export class ArtistCollectionComponent implements OnInit {
           break;
       }
     } catch (error) {
-      console.error(`getSellArtwork error message ${error}`);
+      console.error(`getSellArtwork error message `, error);
     } finally {
 
     }

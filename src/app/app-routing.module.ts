@@ -64,6 +64,7 @@ import {
 } from "./layout";
 
 import * as Websitepages from './website/index';
+import { AuthGuard } from './_guards';
 
 
 const routes: Routes = [
@@ -141,6 +142,7 @@ const routes: Routes = [
       { path: "profile/collector/:id", component: CollectorProfilePageComponent },
       {
         path: "artist",
+        canActivate: [AuthGuard],
         component: ArtistLayoutComponent,
         children: [{
           path: "account",
@@ -170,6 +172,7 @@ const routes: Routes = [
       },
       {
         path: "collector",
+        canActivate: [AuthGuard],
         component: CollectorLayoutComponent,
         children: [{
           path: "account",
@@ -224,7 +227,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminLayoutComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',

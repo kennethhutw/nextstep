@@ -50,7 +50,7 @@ export class UserSettingComponent implements OnInit {
         }
       }
       ).catch(error => {
-        console.error(` get data error ${error}`);
+        console.error(` get data error`, error);
       });
 
     })
@@ -75,6 +75,7 @@ export class UserSettingComponent implements OnInit {
         this.toastSrv.showToast('Failed', _res['message'], this.toastSrv.iconClasses.error);
       }
     }, error => {
+      console.error(` AuthEmailRes error`, error);
       this.toastSrv.showToast('Failed', error, this.toastSrv.iconClasses.error);
     });
 
@@ -93,9 +94,9 @@ export class UserSettingComponent implements OnInit {
         } else {
           this.toastSrv.showToast('Failed', sendRes['message'], this.toastSrv.iconClasses.error);
         }
-        // this.msg = true;
-        // this.message = 'E-mail has been sent to reset your password.';
+
       }, error => {
+        console.error(` sendResetEmail error`, error);
         this.toastSrv.showToast('Failed', error, this.toastSrv.iconClasses.error);
       });
   }

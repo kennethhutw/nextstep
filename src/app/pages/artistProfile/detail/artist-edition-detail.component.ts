@@ -69,8 +69,8 @@ export class ArtistEditionDetailComponent implements OnInit {
       else {
 
       }
-    }, err => {
-      console.error(`getArtwrokById failed ${err}`);
+    }, error => {
+      console.error(`getArtwrokById failed`, error);
     });
 
 

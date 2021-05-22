@@ -151,7 +151,7 @@ export class ArtistFavoriteComponent implements OnInit {
           break;
       }
     } catch (error) {
-      console.error(`getSellArtwork error message ${error}`);
+      console.error(`getSellArtwork error message `, error);
     } finally {
 
     }
@@ -181,7 +181,7 @@ export class ArtistFavoriteComponent implements OnInit {
           break;
       }
     } catch (error) {
-      console.error(`displayArtists error message ${error}`);
+      console.error(`displayArtists error message `, error);
     } finally {
 
     }

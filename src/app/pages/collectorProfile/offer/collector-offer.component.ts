@@ -52,8 +52,8 @@ export class CollectorOfferComponent implements OnInit {
       else {
         this.bids = [];
       }
-    }, err => {
-      console.error(`getArtwrokByArtistId failed ${err}`);
+    }, error => {
+      console.error(`getArtwrokByArtistId failed `, error);
     });
 
   }

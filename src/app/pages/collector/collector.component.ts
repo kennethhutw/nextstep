@@ -78,7 +78,7 @@ export class CollectorPageComponent implements OnInit {
 
           }
         }).catch(error => {
-          console.error(`ArtistPage error ${error}`);
+          console.error(`ArtistPage error `, error);
         })
       }
       //   this.userSrv.getUserOwnArtworks(_collectorAddress).subscribe(res => {

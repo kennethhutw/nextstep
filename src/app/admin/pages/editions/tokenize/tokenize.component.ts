@@ -182,11 +182,11 @@ export class TokenizeComponent implements OnInit, OnDestroy {
           });
         }
       }, error => {
-        console.error(` get initEdition : ${error} `);
+        console.error(` get initEdition :  `, error);
 
       })
     } catch (error) {
-
+      console.error(` get initEdition :  `, error);
     }
   }
 
@@ -269,7 +269,7 @@ export class TokenizeComponent implements OnInit, OnDestroy {
       }
 
     }, error => {
-      console.error(` res error : ${error} `);
+      console.error(` createTokenUri error :  `, error);
       this.tokenizeUri = "failed!!!" + this.tokenUri;
     });
   }
@@ -292,7 +292,7 @@ export class TokenizeComponent implements OnInit, OnDestroy {
       }
 
     }, error => {
-      console.error(` res error : ${error} `);
+      console.error(` getTokenizeEdition error : `, error);
     })
   }
 
@@ -301,7 +301,7 @@ export class TokenizeComponent implements OnInit, OnDestroy {
       this.web3Srv.call('highestEditionNumber').then(res => {
         this.highestEditionNumber = res;
       }, error => {
-        console.error(` highestEditionNumber error : ${error} `);
+        console.error(` highestEditionNumber error :  `, error);
       })
     }
   }
@@ -321,7 +321,7 @@ export class TokenizeComponent implements OnInit, OnDestroy {
     }, error => {
       this.highestDBEditionNumber = -1;
       this.highestDBArtworkNumber = -1;
-      console.error(` res error : ${error} `);
+      console.error(` getDBHighestNumber error :  `, error);
     })
   }
 
@@ -341,7 +341,7 @@ export class TokenizeComponent implements OnInit, OnDestroy {
         }
 
       }, error => {
-        console.error(` res error : ${error} `);
+        console.error(` updateFirstnumber error :  `, error);
         this.toastSrv.showToast('Failed',
           error,
           this.toastSrv.iconClasses.error);
@@ -375,13 +375,13 @@ export class TokenizeComponent implements OnInit, OnDestroy {
           }
 
         }, error => {
-          console.error(` res error : ${error} `);
+          console.error(` generateArtwork error :  `, error);
           this.toastSrv.showToast('Failed',
             error,
             this.toastSrv.iconClasses.error);
         })
     } catch (error) {
-      console.error(` res error : ${error} `);
+      console.error(` generateArtwork error :  `, error);
       this.toastSrv.showToast('Failed',
         error,
         this.toastSrv.iconClasses.error);
@@ -400,7 +400,7 @@ export class TokenizeComponent implements OnInit, OnDestroy {
           this.toastSrv.iconClasses.error);
       }
     }, error => {
-      console.error(` res error : ${error} `);
+      console.error(` updateStatus error : `, error);
       this.toastSrv.showToast('Failed',
         "update Status failed" + error,
         this.toastSrv.iconClasses.error);

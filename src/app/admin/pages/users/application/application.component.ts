@@ -65,7 +65,7 @@ export class ApplicationComponent implements OnInit, OnDestroy {
         }
       }
       ).catch(error => {
-        console.error(` get data error ${error}`);
+        console.error(` get data error `, error);
       });
 
     })
@@ -106,11 +106,10 @@ export class ApplicationComponent implements OnInit, OnDestroy {
           }
         }
       }, error => {
-        console.error(` get PendingEdition : ${error} `);
-
+        console.error(` get PendingEdition : `, error);
       })
     } catch (error) {
-
+      console.error(` get PendingEdition : `, error);
     }
   }
 
