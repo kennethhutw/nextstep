@@ -56,6 +56,8 @@ export class ArtistUploadComponent implements OnInit {
   isQuota = false;
   quotaType = "0";
   specialPrice = "5%";
+
+  isUploading = false;
   @ViewChild("text") text: ElementRef;
   constructor(
     private promoSrv: PromoService,
@@ -181,6 +183,7 @@ export class ArtistUploadComponent implements OnInit {
 
   upload() {
     try {
+      this.isUploading = true;
       let sellprice = this.artworkForm.value.sellingPrice
       if (sellprice > 0)
         sellprice = sellprice * 100;
@@ -226,6 +229,8 @@ export class ArtistUploadComponent implements OnInit {
       });
     } catch (error) {
       console.error("upload failed", error);
+    } finally {
+      this.isUploading = false;
     }
   }
 

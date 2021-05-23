@@ -81,7 +81,10 @@ export class HeaderComponent implements OnInit {
     if (!!this.currentUser) {
       this.uid = this.currentUser.uid;
     }
-    this.authStoreSrv.user$.subscribe(user => { this.currentUser = user });
+    this.authStoreSrv.user$.subscribe(user => {
+      console.log("authStoreSrv ===========", user);
+      this.currentUser = user
+    });
   }
 
   close() {
@@ -100,11 +103,12 @@ export class HeaderComponent implements OnInit {
 
     this.authStoreSrv.login(val.email, val.password).subscribe(
       (res) => {
+        console.log("login ===========", res);
         if (res["result"] === "successful") {
           this.closebutton.nativeElement.click();
 
           this.currentUser = this.authStoreSrv.getUserData();
-
+          this.uid = this.currentUser.uid;
 
           if (this.currentUser.firstTime == 1) {
             this.userSrv.setFirstTime(this.currentUser.id, "0").subscribe(res => {

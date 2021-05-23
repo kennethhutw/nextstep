@@ -2,10 +2,8 @@ import { Injectable } from "@angular/core";
 import {
   ActivatedRouteSnapshot,
   CanActivate,
-  CanActivateChild,
   Router,
   RouterStateSnapshot,
-  UrlTree,
 } from "@angular/router";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
@@ -17,10 +15,10 @@ export class AuthGuard implements CanActivate {
     private router: Router) { }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    console.log("canActivate =================")
+
     if (!!localStorage.getItem("access_token")) {
       return this.auth.verifyToken(localStorage.getItem('access_token')).pipe(map(res => {
-        console.log("verifyToken =================", res);
+
         if (res['data']) {
           return true;
         } else {

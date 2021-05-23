@@ -65,7 +65,7 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                <a class="dropdown-item" *ngIf="this.currentUser.uid" [routerLink]="['/',this.currentUser.uid]">{{
+                <a class="dropdown-item" *ngIf="currentUser.uid" [routerLink]="['/',currentUser?.uid]">{{
                   "PROFILE" | translate }}</a>
                 <a class="dropdown-item" routerLink="/artist/basic">{{ "EDITPROFILE" | translate }}</a>
                 <a class="dropdown-item" routerLink="/artist/account">{{ "ACCOUNTPASSWORD" | translate }}</a>
@@ -95,8 +95,8 @@
                 <i class="far fa-user-circle par-5"></i>{{ "MEMBERMANAGEMENT" | translate }}
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" *ngIf="this.currentUser.ethaddress"
-                  [routerLink]="['/',this.currentUser.uid]">{{ "PROFILE" | translate
+                <a class="dropdown-item" *ngIf="currentUser.uid" [routerLink]="['/',currentUser?.uid]">{{
+                  "PROFILE" | translate
                   }}</a>
                 <a class="dropdown-item" routerLink="/collector/basic">{{ "EDITPROFILE" | translate }}</a>
                 <a class="dropdown-item" routerLink="/collector/account">{{ "ACCOUNTPASSWORD" | translate }}</a>

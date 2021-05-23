@@ -195,12 +195,15 @@
 </a> 已選擇完畢，確認上傳-->
 
 
-<div class="text-center mt-40 mb-40">
+<div class="text-center mt-40">
     <button (click)="onSubmit()" id="member_last_btn_w100" class="btn_normal ">
         {{ "UPLOAD" | translate }}
     </button>
     <div style="margin-top: 10px;" class="error-msg" *ngIf="informMsg">{{informMsg}}
     </div>
+</div>
+<div class="text-center mb-40 mt-20">
+    <app-loading *ngIf="isUploading"></app-loading>
 </div>
 <div class="modal fade" id="modal_select_channel" tabindex="-1" aria-labelledby="channelModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" style="max-width: 1000px !important;">

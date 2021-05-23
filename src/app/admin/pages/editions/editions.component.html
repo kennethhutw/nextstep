@@ -85,10 +85,10 @@
             <td><b>{{edition.purchaseway}}</b></td>
             <td>{{edition.createdAt | date : 'yyyy-MM-dd
               HH:mm:ss'}}</td>
-            <td><a class="clickable" [routerLink]="['/admin/editions/artworks',edition.id]" style="color: #7F7F7F;">
+            <td><a class="clickable" [routerLink]="['/admin/editions/artworks',edition?.id]" style="color: #7F7F7F;">
                 details</a>
             </td>
-            <td><a class="clickable" [routerLink]="['/admin/editions/tokenize',edition.id]" style="color: #7F7F7F;"><i
+            <td><a class="clickable" [routerLink]="['/admin/editions/tokenize',edition?.id]" style="color: #7F7F7F;"><i
                   class="fa fa-cog"></i>
                 tokenize</a>
             </td>

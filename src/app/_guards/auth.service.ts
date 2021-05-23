@@ -31,5 +31,11 @@ export class AuthService {
         return localStorage.getItem('access_token');
     }
 
+    verifyToken(token) {
+        return this.http.post(`${environment.apiUrl}/authenticate/verifyToken`,
+            {
+                token: token
+            });
+    }
 
 }
