@@ -26,3 +26,19 @@
      .divider {
       font-size: 30px;
      }
+@media (max-width: 1024px){
+    .page_launch_bg{
+        background-image:none;
+        background-position: left bottom; /*Positioning*/
+        background-repeat: no-repeat; /*Prevent showing multiple background images*/
+        background-color: black;
+        min-height:900px;
+        min-width: 100%;
+    }
+    .logo{
+        width: 100%;
+    }
+    :host ::ng-deep .countdown{
+            display: contents!important;
+    }
+}

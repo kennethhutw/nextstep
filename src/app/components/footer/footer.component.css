@@ -6,3 +6,10 @@ a:hover {
   color: #fff;
   cursor: pointer;
 }
+
+@media (max-width: 500px){
+.col-sm-6 {
+    flex: 0 0 50%;
+    max-width: 60%;
+}
+}
