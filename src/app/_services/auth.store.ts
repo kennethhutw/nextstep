@@ -246,5 +246,8 @@ export class AuthStore {
       });
   }
 
+  async IsExistEmail(email) {
+    return await this.http.get<any>(`${environment.apiUrl}/authenticate/email/${email}`).toPromise();
+  }
 
 }

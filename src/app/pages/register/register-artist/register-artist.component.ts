@@ -188,6 +188,7 @@ export class RegisterArtistComponent implements OnInit {
   async onSubmit() {
     this.loading = true;
     this.message = null;
+    this.submitted = true;
     this.theFirstImageNameRequire = false;
     this.theSecodnImageNameRequire = false;
     this.theThirdImageNameRequire = false;
@@ -197,6 +198,14 @@ export class RegisterArtistComponent implements OnInit {
       return;
     }
 
+    let CheckEmailResponse = await this.authStore.IsExistEmail(this.registerForm.value.email);
+    if (!this.utility.IsNullOrEmpty(CheckEmailResponse)) {
+      if (!this.utility.IsNullOrEmpty(CheckEmailResponse.message)) {
+        this.loading = false;
+        this.message = CheckEmailResponse.message;
+        return;
+      }
+    }
 
     if (!this.utility.IsNullOrEmpty(this.registerForm.value.code)) {
       if (this.registerForm.value.code.indexOf('inv') > -1) {
@@ -298,6 +307,7 @@ export class RegisterArtistComponent implements OnInit {
     this.authStore.ArtistSignup(formData).subscribe(res => {
       this.loading = false;
       if (res["result"] === "successful") {
+        this.submitted = false;
         this.sendApplicationEmail(newArtist.name, newArtist.email, res["data"]);
         this.sendNewUserEmail("new artist signup", "Kenneth", "kenneth@formosart.io", newArtist.name, newArtist.email);
         this.sendNewUserEmail("new artist signup", "Yung Liang", "heyevolet@formosart.io", newArtist.name, newArtist.email);
@@ -351,5 +361,11 @@ export class RegisterArtistComponent implements OnInit {
     this.EmailSrv.sendNewUserEmail(subject, receiverName, receiverEmail, userName, userEmail, 'artist').subscribe(res => {
       console.log("sendNewUserEmail", res);
     })
+  }
+
+  async IsExistEmail() {
+    console.log("email ========", this.registerForm.value.email);
+    let userEmail = await this.authStore.IsExistEmail(this.registerForm.value.email);
+    console.log("email ========", userEmail);
   }
 }
