@@ -198,14 +198,14 @@ export class RegisterArtistComponent implements OnInit {
       return;
     }
 
-    let CheckEmailResponse = await this.authStore.IsExistEmail(this.registerForm.value.email);
-    if (!this.utility.IsNullOrEmpty(CheckEmailResponse)) {
-      if (!this.utility.IsNullOrEmpty(CheckEmailResponse.message)) {
-        this.loading = false;
-        this.message = CheckEmailResponse.message;
-        return;
-      }
-    }
+    // let CheckEmailResponse = await this.authStore.IsExistEmail(this.registerForm.value.email);
+    // if (!this.utility.IsNullOrEmpty(CheckEmailResponse)) {
+    //   if (!this.utility.IsNullOrEmpty(CheckEmailResponse.message)) {
+    //     this.loading = false;
+    //     this.message = CheckEmailResponse.message;
+    //     return;
+    //   }
+    // }
 
     if (!this.utility.IsNullOrEmpty(this.registerForm.value.code)) {
       if (this.registerForm.value.code.indexOf('inv') > -1) {
