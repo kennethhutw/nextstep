@@ -114,7 +114,7 @@
               <label class="btn_select_img mb-20" for="theFirstImageInput">{{ "SELECTEDITION" | translate }}
               </label>
 
-              <input id="theFirstImageInput" type="file" accept="image/gif, image/jpeg, image/png, image/gif"
+              <input id="theFirstImageInput" type="file" accept="image/gif, image/jpg, image/jpeg, image/png, image/gif"
                 (change)="onDetectImage($event,0)" style="visibility: hidden; padding: 0px" />
 
               <div class="form-group">
@@ -154,8 +154,9 @@
               <label class="btn_select_img mb-20" for="theSecondImageInput">{{ "SELECTEDITION" | translate }}
               </label>
 
-              <input id="theSecondImageInput" type="file" accept="image/gif, image/jpeg, image/png, image/gif"
-                (change)="onDetectImage($event,1)" style="visibility: hidden; padding: 0px" />
+              <input id="theSecondImageInput" type="file"
+                accept="image/gif, image/jpg, image/jpeg, image/png, image/gif" (change)="onDetectImage($event,1)"
+                style="visibility: hidden; padding: 0px" />
 
               <div class="form-group">
                 <label for="InputEdition2Name">{{

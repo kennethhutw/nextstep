@@ -8,7 +8,7 @@ export const environment = {
   assetUrl: 'http://localhost:3000',
   assetAPIUrl: 'http://localhost:3000',
   environment: 'staging',
-  contractAddress: '0xFc3a6059ddd3cED1b59df596C49f83244A4f64f7'
+  contractAddress: '0xD805D8154cc248ADe9B076AC3Da2D9a39C936b1e'
 };
 
 // export const environment = {
