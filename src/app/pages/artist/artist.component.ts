@@ -38,6 +38,7 @@ export class ArtistPageComponent implements OnInit {
 
   currentTab = "artworks";
   constructor(
+    private router: Router,
     private settingSrv: SettingService,
     private authStoreSrv: AuthStore,
     private route: ActivatedRoute,
@@ -82,7 +83,7 @@ export class ArtistPageComponent implements OnInit {
           }
           //tags: "bizarre,love,romantic"
         } else {
-
+          this.router.navigate(['./index'], {});
         }
       },
         error => {
@@ -98,6 +99,8 @@ export class ArtistPageComponent implements OnInit {
           this.artistArtworks.forEach((element) => {
             element.imageUrl = environment.assetUrl + element.imageUrl;
           });
+        } else {
+          this.router.navigate(['./index'], {});
         }
       },
         error => {
@@ -124,7 +127,7 @@ export class ArtistPageComponent implements OnInit {
         }
 
       } else {
-
+        // this.router.navigate(['./index'], {});
       }
     }, error => {
       console.error(`getUserOwnArtworksByUid error `, error);

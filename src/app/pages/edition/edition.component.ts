@@ -130,7 +130,7 @@ export class EditionComponent implements OnInit {
     this.Web3Srv.ethtx.subscribe((tx) => {
       if (tx != "") {
         this.openModal(true);
-        this.tx = tx;
+        this.tx = "https://etherscan.io/tx/" + tx;
       }
     });
 

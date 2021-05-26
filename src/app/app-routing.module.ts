@@ -236,6 +236,7 @@ const routes: Routes = [
     ]
   },
   { path: ":uid", component: ArtistPageComponent },
+  { path: '**', redirectTo: 'index' }
 ];
 
 // @NgModule({
