@@ -4,5 +4,5 @@ export const environment = {
   assetUrl: 'https://host.formosa.finance:5443',
   assetAPIUrl: 'https://host.formosa.finance:5443',
   environment: 'production',
-  contractAddress: '0xFc3a6059ddd3cED1b59df596C49f83244A4f64f7'
+  contractAddress: '0xb84735160528d1884bb99261ba91f88a92701008'
 };
