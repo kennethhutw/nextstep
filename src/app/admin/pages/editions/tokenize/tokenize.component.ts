@@ -162,7 +162,7 @@ export class TokenizeComponent implements OnInit, OnDestroy {
             artistAddress: this.edition.ethaddress,
             tags: this.edition.tags,
             asset_type: this.edition.image_type,
-            external_uri: link,
+            external_uri: 'https://www.formosart.io',
             imageUri: "./.." + this.edition.imageUrl,
           });
           console.log("_eth", _eth);
