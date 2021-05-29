@@ -4,11 +4,11 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://host.formosa.finance:5443',
-  assetUrl: 'https://host.formosa.finance:5443',
-  assetAPIUrl: 'https://host.formosa.finance:5443',
+  apiUrl: 'http://server.formosa.finance:52584',
+  assetUrl: 'http://server.formosa.finance:52584',
+  assetAPIUrl: 'http://server.formosa.finance:52584',
   environment: 'staging',
-  contractAddress: '0xb84735160528d1884bb99261ba91f88a92701008'
+  contractAddress: '0xfc3a6059ddd3ced1b59df596c49f83244a4f64f7'
 };
 
 // export const environment = {

@@ -40,24 +40,30 @@
       <thead>
         <tr>
           <th style="width: 10%;">
+            id
+          </th>
+          <th style="width: 10%;">
             Name
           </th>
           <th style="width: 10%;">
             Artist
           </th>
-          <th style="width: 20%;">
+          <th style="width: 15%;">
             Description
           </th>
-          <th style="width: 20%;">
+          <!-- <th style="width: 5%;">
             Tags
+          </th> -->
+          <th style="width: 5%;">
+            Eth price
           </th>
           <th style="width: 5%;">
-            isBid
+            totalamount
           </th>
-          <th style="width: 5%;">
+          <!-- <th style="width: 5%;">
             Purchase way
-          </th>
-          <th style="width: 10%;">
+          </th> -->
+          <th style="width: 5%;">
             created date
           </th>
           <th>Artworks</th>
@@ -76,20 +82,22 @@
         <ng-container *ngFor="let edition of displayEditions let i=index ;">
 
           <tr>
-            <td class="text_left">{{edition.artworkName}} <img src="{{ edition.imageUrl }}" height="50px" width="50px"
-                alt="" /></td>
+            <td class="text_left">{{edition.id}}</td>
+            <td class="text_left">{{edition.artworkName}} <img src="{{ edition.imageUrl }}"
+                (click)="viewImage(edition.imageUrl)" height="50px" width="50px" alt="" /></td>
             <td class="text_left">{{edition.ArtistName}}</td>
             <td class="text_left">{{edition.description}}</td>
-            <td class="text_left">{{edition.tags}}</td>
-            <td><b>{{edition.isBid}}</b></td>
-            <td><b>{{edition.purchaseway}}</b></td>
+            <!-- <td class="text_left">{{edition.tags}}</td> -->
+            <td><b>{{edition.ethValue / 100}}</b></td>
+            <td><b>{{edition.totalamount}}</b></td>
+            <!-- <td><b>{{edition.purchaseway}}</b></td> -->
             <td>{{edition.createdAt | date : 'yyyy-MM-dd
               HH:mm:ss'}}</td>
             <td><a class="clickable" [routerLink]="['/admin/editions/artworks',edition?.id]" style="color: #7F7F7F;">
                 details</a>
             </td>
-            <td><a class="clickable" [routerLink]="['/admin/editions/tokenize',edition?.id]" style="color: #7F7F7F;"><i
-                  class="fa fa-cog"></i>
+            <td><a *ngIf="edition.status==0" class="clickable" [routerLink]="['/admin/editions/tokenize',edition?.id]"
+                style="color: #7F7F7F;"><i class="fa fa-cog"></i>
                 tokenize</a>
             </td>
 
@@ -98,5 +106,28 @@
       </tbody>
     </table>
 
+  </div>
+</div>
+
+<button id="openViewImgModalButton" [hidden]="true" data-toggle="modal" data-target="#modal_view_image_guide">Open
+  Modal</button>
+<div class="modal fade" id="modal_view_image_guide" tabindex="-1" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" style="    max-width: 700px;">
+    <div class="modal-content model_padding">
+      <div class="modal_header">
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">╳</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div *ngIf="currentArtworkURL" class="col-md-12">
+            <img class="viewImg" src="{{this.currentArtworkURL}}" actual-image="profileImage" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

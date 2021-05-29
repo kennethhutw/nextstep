@@ -77,7 +77,8 @@
             <td class="text_left">{{user.name}}</td>
             <td class="text_left">{{user.uid}}</td>
             <td class="text_left">{{user.email}}</td>
-            <td class="text_left">{{user.ethaddress | addressshorten}}</td>
+            <td class="text_left">{{user.ethaddress |
+              addressshorten}}</td>
             <td><b>{{DisplayRoles(user.roles)}}</b></td>
             <td><b>{{getVerified(user.verified)}}</b></td>
             <td>{{user.createdAt | date : 'yyyy-MM-dd HH:mm:ss'}}</td>

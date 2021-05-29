@@ -100,7 +100,6 @@ export class ArtistsComponent implements OnInit {
       return value.name.toLowerCase().indexOf(key) != -1 ? value : null;
     });
     this.displayArtists = this.splitArr(result, 3);
-    console.log("key event", key);
   }
 
   IsShowAllTags() {
@@ -123,7 +122,6 @@ export class ArtistsComponent implements OnInit {
   }
 
   onChange(deviceValue) {
-    console.log(deviceValue);
     let _artists = this.artists;
 
     switch (deviceValue) {

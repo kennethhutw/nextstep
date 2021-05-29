@@ -1,7 +1,8 @@
 import {
   Component, OnInit,
   ViewChild,
-  HostListener
+  HostListener,
+  ChangeDetectorRef
 } from '@angular/core';
 import {
   UserService, EditionService,
@@ -77,7 +78,9 @@ export class AdminEditionComponent implements OnInit {
     }
   }
 
+  currentArtworkURL = "";
   constructor(
+    private changeDetectorRef: ChangeDetectorRef,
     private settingSrv: SettingService,
     private editionSrv: EditionService,
     private userSrv: UserService
@@ -151,5 +154,11 @@ export class AdminEditionComponent implements OnInit {
   }
 
 
+  viewImage(path) {
+
+    this.currentArtworkURL = path;
+    this.changeDetectorRef.detectChanges();
+    document.getElementById('openViewImgModalButton').click();
+  }
 
 }

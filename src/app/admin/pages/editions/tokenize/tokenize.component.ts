@@ -409,7 +409,7 @@ export class TokenizeComponent implements OnInit, OnDestroy {
 
 
   informArtist() {
-    let id = this.edition.firstnumber + 1;
+    let id = this.newFirstnumber + 1;
     let domain = window.location.origin;
     let url = '/gallery/' + id;
     let link = domain + url;

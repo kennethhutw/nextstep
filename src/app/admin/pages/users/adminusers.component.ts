@@ -85,6 +85,7 @@ export class AdminUsersComponent implements OnInit {
       pagingType: 'full_numbers',
       pageLength: 10,
     };
+
   }
 
   ngAfterViewInit(): void {
