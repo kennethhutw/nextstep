@@ -117,7 +117,6 @@ export class ArtistPageComponent implements OnInit {
 
   initCollection(uid) {
     this.userSrv.getUserOwnArtworksByUid(uid).subscribe(res => {
-      console.log("res initCollection", res)
       if (res["result"] === "successful") {
         this.collection = res["data"];
         if (this.collection) {
@@ -137,7 +136,6 @@ export class ArtistPageComponent implements OnInit {
 
   initFavourites(uid) {
     this.likeSrv.getUserLikeArtWorkByUid(uid).subscribe(res => {
-      console.log("res initFavourites", res)
       if (res['result'] == 'successful') {
         this.favourites = res['data'];
         this.favourites.forEach((element) => {

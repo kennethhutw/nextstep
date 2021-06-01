@@ -17,7 +17,6 @@ export class PromoService {
     }
 
     generateCode(type) {
-        console.log("generateCode ========== type", type)
         return this.http.post(`${environment.apiUrl}/promo/generateCode`,
             {
                 type

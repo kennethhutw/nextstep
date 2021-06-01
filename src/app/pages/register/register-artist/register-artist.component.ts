@@ -364,8 +364,6 @@ export class RegisterArtistComponent implements OnInit {
   }
 
   async IsExistEmail() {
-    console.log("email ========", this.registerForm.value.email);
     let userEmail = await this.authStore.IsExistEmail(this.registerForm.value.email);
-    console.log("email ========", userEmail);
   }
 }

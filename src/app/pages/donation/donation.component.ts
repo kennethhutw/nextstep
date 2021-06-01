@@ -31,7 +31,7 @@ export class DonationComponent implements OnInit {
     private formBuilder: FormBuilder,
     private CryptoSrv: CryptoService,
     private web3Srv: Web3Service
-  ) {}
+  ) { }
   ngOnInit() {
     this.tokenunit = "btc";
     this.qrcodevalue =
@@ -41,7 +41,6 @@ export class DonationComponent implements OnInit {
     });
     this.CryptoSrv.getCrypto("btc").then(
       (data) => {
-        console.log("CreateInDB srv", data);
         var eth = data["data"].filter((r) => r.id == "ethereum");
         var btc = data["data"].filter((r) => r.id == "bitcoin");
 
@@ -61,7 +60,6 @@ export class DonationComponent implements OnInit {
 
     this.web3Srv.getAccountDetail().then(
       (data) => {
-        console.log("User", data);
         this.userAccount = data.address;
       },
       (error) => {

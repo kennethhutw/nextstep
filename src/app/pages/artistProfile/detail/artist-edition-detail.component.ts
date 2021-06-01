@@ -58,7 +58,6 @@ export class ArtistEditionDetailComponent implements OnInit {
       this.ethPrice = Number(localStorage.getItem("ETHPRICE"));
     }
     this.editionSrv.getEditionById(this.editionId).subscribe(res => {
-      console.log("getEditionById =====", res);
       if (res['result'] === 'successful') {
         const _data = res['data'];
         if (!this.utility.IsNullOrEmpty(_data.imageUrl)) {

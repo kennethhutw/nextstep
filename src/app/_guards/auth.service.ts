@@ -13,7 +13,7 @@ export class AuthService {
         return this.http.post<any>(`${environment.apiUrl}/auth/login`, { email: email, password: password })
             .pipe(
                 map(result => {
-                    console.log("token2 =======", result);
+
                     localStorage.setItem('access_token', result.token);
                     return result;
                 })

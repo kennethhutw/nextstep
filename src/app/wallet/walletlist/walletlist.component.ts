@@ -13,10 +13,9 @@ export class WalletListComponent implements OnInit {
   constructor(
     private router: Router,
     private walletSrv: WalletService,
-    private route: ActivatedRoute)
-    {
+    private route: ActivatedRoute) {
 
-     }
+  }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -25,12 +24,11 @@ export class WalletListComponent implements OnInit {
       for (let i in walletPromise) {
         this.wallets.push(walletPromise[i])
       }
-      console.log("wallettsss", this.wallets);
     });
   }
 
-  clear(){
-    this.wallets =[];
+  clear() {
+    this.wallets = [];
   }
 
 }

@@ -70,7 +70,6 @@ export class EditionComponent implements OnInit {
     private SpinnerService: NgxSpinnerService
   ) {
     this.SpinnerService.show();
-    console.log("tx ========", this.tx);
     this.currentUser = this.authStoreSrv.getUserData();
     let _lang = localStorage.getItem("lang");
     if (!this.utility.IsNullOrEmpty(_lang)) {
@@ -230,17 +229,17 @@ export class EditionComponent implements OnInit {
             res['to'],
             this.currentArtwork.id,
             networkId).subscribe(purchaseRes => {
-              console.log("purchaseRes" + purchaseRes);
+
               this.openModal(false);
               this.dialogSrv.infoThis("Purchase successful",
                 () => {
-                  console.log("yes ===");
+
                   this.informArtist();
                   this.informBuyer();
                 }, () => {
                   this.informArtist();
                   this.informBuyer();
-                  console.log("no ===");
+
                 });
             }, error => {
               console.log("purchaseRes failed" + error);

@@ -106,7 +106,7 @@ export class WalletService {
 
   fakeCoinTypeData = ["BTC", "ETH", "BNB"];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   async getWalletByUid(uid: string) {
     let params = new HttpParams().set("uid", uid);
@@ -125,7 +125,6 @@ export class WalletService {
 
   getTransactionDataByWallet(wallet) {
     let transactionList = [];
-    console.log(wallet);
     for (let i = 0; i < this.fakeTxData.length; i++) {
       const transaction = this.fakeTxData[i];
       if (

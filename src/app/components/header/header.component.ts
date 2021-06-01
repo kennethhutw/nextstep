@@ -77,12 +77,11 @@ export class HeaderComponent implements OnInit {
     });
 
     this.currentUser = this.authStoreSrv.getUserData();
-    console.log("  this.currentUser ", this.currentUser);
+
     if (!!this.currentUser) {
       this.uid = this.currentUser.uid;
     }
     this.authStoreSrv.user$.subscribe(user => {
-      console.log("authStoreSrv ===========", user);
       this.currentUser = user
     });
   }
@@ -103,7 +102,6 @@ export class HeaderComponent implements OnInit {
 
     this.authStoreSrv.login(val.email, val.password).subscribe(
       (res) => {
-        console.log("login ===========", res);
         if (res["result"] === "successful") {
           this.closebutton.nativeElement.click();
 
@@ -112,7 +110,7 @@ export class HeaderComponent implements OnInit {
 
           if (this.currentUser.firstTime == 1) {
             this.userSrv.setFirstTime(this.currentUser.id, "0").subscribe(res => {
-              console.log(" setFirstTime", res);
+
               this.currentUser.firstTime = 0;
               this.authStoreSrv.setUserData(this.currentUser);
             }, error => {

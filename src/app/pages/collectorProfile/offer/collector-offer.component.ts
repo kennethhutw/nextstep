@@ -40,7 +40,6 @@ export class CollectorOfferComponent implements OnInit {
 
     this.currentUser = this.authStoreSrv.getUserData();
     this.offerSrv.getBidArtWork(this.currentUser.id).subscribe(res => {
-      console.log(" getbidArtwork", res);
       if (res['result'] === 'successful') {
         if (res['data'] != null) {
           this.bids = res['data'];

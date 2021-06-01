@@ -6,7 +6,6 @@ import { KeyValueDiffers, Pipe, PipeTransform } from "@angular/core";
 export class AddressShortenPipe implements PipeTransform {
     transform(value: any) {
         if (!!value) {
-            console.log(" AddressShortenPipe", value.indexOf('0x'));
             if (value.length > 12 && value.indexOf('0x') > -1) {
                 let first = value.substring(0, 6);
                 let last = value.substring(
