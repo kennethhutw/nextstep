@@ -64,11 +64,15 @@ export class EditionService {
     return this.http.get<any>(`${environment.apiUrl}/edition/tokenUriById/${id}`);
   }
 
-  public createIPFSLink(editionId, tokenId, name, description, artist, tags, asset_type, external_uri, imageUri) {
+  public createIPFSLink(editionId, tokenId, name,
+    description, artist, tags, asset_type,
+    external_uri, imageUri, artistAddress) {
     return this.http
       .post<resResult>(`${environment.apiUrl}/ipfs/createIPFSLink`,
         {
-          editionId, tokenId, name, description, artist, tags, asset_type, external_uri, imageUri
+          editionId, tokenId, name,
+          description, artist, tags, asset_type,
+          external_uri, imageUri, artistAddress
         }
       );
   }

@@ -253,7 +253,8 @@ export class TokenizeComponent implements OnInit, OnDestroy {
       this.tokenUriForm.value.tags,
       this.tokenUriForm.value.asset_type,
       this.tokenUriForm.value.external_uri,
-      this.tokenUriForm.value.imageUri
+      this.tokenUriForm.value.imageUri,
+      this.tokenUriForm.value.artistAddress
     ).subscribe(res => {
       if (res["result"] == "successful") {
         this.tokenUri = res['data'];
