@@ -75,7 +75,6 @@ export class ArtistPageComponent implements OnInit {
       this.initFavourites(this.uid)
       this.initCollection(this.uid)
       this.artistSrv.getArtistBasicInfoByUid(this.uid).subscribe(res => {
-        debugger;
         if (res["result"] === "successful") {
           this.artist = res["data"];
           if (this.artist && this.artist.imageUrl != null) {

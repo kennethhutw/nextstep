@@ -129,10 +129,10 @@
     height: 100%;
  object-fit: cover;
 }
-.profile_image{
+/* .profile_image{
   width: 140px !important;
   height: 140px!important;
-}
+} */
 
 .metamask{
       border: 1px solid rgb(205, 210, 234);
