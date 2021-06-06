@@ -91,7 +91,7 @@ export class AdminPromoComponent implements OnInit, OnDestroy {
   // Deletes the entry
   deletecode(id: any, title: string) {
     const that = this;
-    console.log("delete ============= ");
+
     this.confirmDialogService.confirmThis('Are you sure you want to delete?',
       () => {
         that.promoSrv.deleletCode(id).subscribe(res => {
@@ -125,7 +125,6 @@ export class AdminPromoComponent implements OnInit, OnDestroy {
     // const emailExistsInTable = this.isInArray(this.testEmailToAdd, this.Emails);
 
     this.promoSrv.generateCode(this.codeType).subscribe(res => {
-      console.log("code ==========", res);
       if (res['result'] === 'successful') {
         this.newCode = res["data"];
 

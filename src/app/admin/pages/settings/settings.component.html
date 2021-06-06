@@ -1,0 +1,118 @@
+<div class="mx-auto">
+  <div class="row">
+    <div class="m-3">
+      <button type='button' id='newShorOrg' data-toggle="modal" [attr.data-target]="'#AddShowOrg'"
+        class="btn btn-md btn-primary">New</button>
+    </div>
+  </div>
+
+  <div>
+    <ng-container *ngIf="!loading; else Loading">
+      <div class="row">
+        <div class="col-md-3">
+          <input type="file" class="form-control" (change)="onUploadChange($event)" accept=".png, .jpg, .jpeg, .pdf" />
+        </div>
+        <div class="col-md-9">
+          <button type="button" class="btn btn-danger btn-width" (click)="CleanImage()">Clean</button>
+          <button type="button" style="margin-left: 10px;" class="btn btn-danger btn-width"
+            (click)="PreviewBGImage()">Preview</button>
+          <button type="button" style="margin-left: 10px;" class="btn btn-primary btn-width"
+            (click)="InsertBGImage()">Save</button>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <img *ngFor="let item of base64textString" src={{item}} alt="" id="img">
+        </div>
+      </div>
+      <div style="margin-top: 40px;" class="row">
+        <div class="col-md-12">
+          <table style="margin-top:20px;" datatable class="table table-striped table-borderless"
+            style="text-align: center;">
+            <thead>
+              <tr>
+                <th style="width: 10%;">Action</th>
+                <th>Field </th>
+                <th>Value</th>
+                <th>Enbale</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let setting of displaySettings">
+                <td>
+                  <button type="button" class="btn btn-danger btn-width"
+                    (click)="deleteSetting(setting.id)">Delete</button>
+                  <button type="button" class="btn btn-primary  btn-width"
+                    (click)="EnableSetting(setting.id)">Enable</button>
+                  <a class="nav-link" target="_blank" [routerLink]="['/prehome',setting.id]">View</a>
+                </td>
+                <td class="text_left">{{setting.field}}</td>
+                <td class="text_left">{{setting.value}} <img src="{{ setting.value }}"
+                    (click)="viewImage(setting.value)" height="50px" width="50px" alt="" /></td>
+                <td class="text_left">{{setting.enable}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #Loading>
+      <i class="text_center fa fa-spin fa-spinner"></i>
+    </ng-template>
+  </div>
+</div>
+
+<app-modal [modalid]="'AddShowOrg'">
+  <div body style="padding: 20px;">
+    <div class="row comheader">
+      <h2>Add delegation email</h2>
+    </div>
+    <hr class="splitLinesilver">
+
+    <form [formGroup]="emailsForm">
+      <div class="form-group">
+        <label for="testEmail">Test Email</label>
+        <input type="text" class="form-control" id="testEmail" placeholder="Email for testing"
+          formControlName="testEmail" (input)="isInvalid()" required>
+      </div>
+      <div class="form-group">
+        <label for="delegatingEmail">Delegating Email</label>
+        <input type="text" id="delegatingEmail" formControlName="delegatingEmail" class="form-control"
+          placeholder="Real email" (input)="isInvalid()" required>
+      </div>
+    </form>
+
+    <div style="text-align: end;">
+      <button type='button' id='InsertDisplay' (click)="addEmailEntry()" [disabled]="isInvalid()"
+        class="btn btn-md btn-primary btn-width" data-dismiss="modal">Add</button>
+      <button type='button' class="btn btn-md btn-secondary btn_wrap ml-3 btn-width"
+        data-dismiss="modal">Cancel</button>
+    </div>
+  </div>
+</app-modal>
+<app-dialog></app-dialog>
+<button id="openViewImgModalButton" [hidden]="true" data-toggle="modal" data-target="#modal_view_image_guide">Open
+  Modal</button>
+<div class="modal fade" id="modal_view_image_guide" tabindex="-1" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" style="    max-width: 700px;">
+    <div class="modal-content model_padding">
+      <div class="modal_header">
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">╳</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div *ngIf="currentImageURL" class="col-md-12">
+            <img class="viewImg" src="{{this.currentImageURL}}" actual-image="profileImage" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

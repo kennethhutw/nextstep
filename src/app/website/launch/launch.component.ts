@@ -63,7 +63,7 @@ export class LaunchComponent implements OnInit {
 
   GetCount() {
     this.promoSrv.getCount().subscribe(res => {
-      console.log("============", res);
+
       if (res["result"] == "successful") {
         this.count = res["data"];
       }

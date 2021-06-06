@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://host.formosa.finance',
-  assetUrl: 'https://host.formosa.finance',
-  assetAPIUrl: 'https://host.formosa.finance',
+  apiUrl: 'http://localhost:3000',
+  assetUrl: 'http://localhost:3000',
+  assetAPIUrl: 'http://localhost:3000',
   environment: 'staging',
   contractAddress: '0xfc3a6059ddd3ced1b59df596c49f83244a4f64f7'
 };

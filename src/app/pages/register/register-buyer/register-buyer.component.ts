@@ -264,7 +264,7 @@ export class RegisterBuyerComponent implements OnInit {
   }
 
   test() {
-    console.log("authenticateMail ============");
+
     let AuthEmailRes = this.auth.sendAuthEmail('11', 'kenneth.hu.tw@gmail.com').subscribe(res => { });
 
   }

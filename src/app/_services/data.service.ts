@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DataService {
   isSidebarPinned = false;
   isSidebarToggeled = false;
@@ -14,9 +16,19 @@ export class DataService {
   ethpriceKey = this.ethprice.asObservable();
 
 
-
+  private previewBG = new BehaviorSubject('');
+  previewBGKey = this.previewBG.asObservable();
   constructor(
   ) {
+  }
+
+  setPreviewBG(value: any) {
+
+    this.previewBG.next(value);
+  }
+
+  getPreviewBG() {
+    return this.previewBG;
   }
 
   setLang(lang) {

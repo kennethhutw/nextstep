@@ -55,7 +55,7 @@ import {
   SetPasswordComponent,
   CheckStatusComponent
 } from "./pages";
-
+import * as Pages from './pages';
 import {
   MainLayoutComponent,
   AdminLayoutComponent,
@@ -235,6 +235,7 @@ const routes: Routes = [
       }
     ]
   },
+  { path: "prehome/:id", component: Pages.PreviewHomeComponent },
   { path: ":uid", component: ArtistPageComponent },
   { path: '**', redirectTo: 'index' }
 ];

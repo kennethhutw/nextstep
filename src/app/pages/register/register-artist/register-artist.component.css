@@ -5,6 +5,12 @@
     color: #dc3545;
 }
 
+@media (max-width: 768px) {
+  .row{
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}
 #select_img{
        position: relative;
 }

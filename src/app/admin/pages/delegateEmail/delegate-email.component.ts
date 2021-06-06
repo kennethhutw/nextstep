@@ -6,7 +6,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {
   DelegateEmailService,
   ToastService,
-  DialogService
+  DialogService,
+  AuthStore
 } from "../../../_services";
 import { Router, ActivatedRoute, Routes } from '@angular/router';
 import { Utility } from 'src/app/_helpers';
@@ -40,6 +41,7 @@ export class AdminDelegateEmailComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private router: Router,
     private utility: Utility,
+    private authStoreSrv: AuthStore,
     private delSrv: DelegateEmailService,
     private toasterSrv: ToastService,
     private route: ActivatedRoute,
@@ -53,6 +55,11 @@ export class AdminDelegateEmailComponent implements OnInit, OnDestroy {
   get delegatingEmail() { return this.emailsForm.get('delegatingEmail'); }
 
   ngOnInit() {
+    this.currentUser = this.authStoreSrv.getUserData();
+    if (this.currentUser == null) {
+      this.authStoreSrv.logout();
+      this.router.navigate(['/']);
+    }
     this.dtOptions = {
       pagingType: 'full_numbers'
     };
@@ -127,7 +134,7 @@ export class AdminDelegateEmailComponent implements OnInit, OnDestroy {
 
     // const emailExistsInTable = this.isInArray(this.testEmailToAdd, this.Emails);
 
-    this.delSrv.createDelegatingEmail(this.testEmailToAdd, this.delegatingEmailToAdd, "aaaaa").subscribe(result => {
+    this.delSrv.createDelegatingEmail(this.testEmailToAdd, this.delegatingEmailToAdd, this.currentUser.id).subscribe(result => {
       if (result['result'] === 'successful') {
         this.showToaster(true, `${this.testEmailToAdd} added!`);
         this.refreshTable();

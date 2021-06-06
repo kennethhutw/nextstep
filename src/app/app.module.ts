@@ -58,50 +58,8 @@ import {
 
 import { DisqusModule } from "ngx-disqus";
 
-import {
-  DonationComponent,
-  HomeComponent,
-  ExampleComponent,
-  EditionComponent,
-  ArtistsComponent,
-  ArtistProfileComponent,
-  ActivityComponent,
-  GalleryComponent,
 
-  TokenComponent,
-  NewArtistComponent,
-  RegisterArtistComponent,
-  PageNotFoundComponent,
-  RegisterBuyerComponent,
-  ArtistPageComponent,
-  CollectorPageComponent,
-  CollectorProfilePageComponent,
-  QAComponent,
-  PolicyComponent,
-  AboutComponent,
-  ForArtistComponent,
-  ForBuyerComponent,
-  ErrorComponent,
-  CollectorAccountComponent,
-  CollectorBasicComponent,
-  CollectorCollectionComponent,
-  CollectorFavoriteComponent,
-  CollectorOfferComponent,
-  CollectorSalesComponent,
-  ArtistAccountComponent,
-  ArtistCollectionComponent,
-  ArtistFavoriteComponent,
-  ArtistOfferComponent,
-  ArtistSoldArtWorkComponent,
-  ArtistBasicComponent,
-  ArtistEditionDetailComponent,
-  ArtistUploadComponent,
-  VerificationComponent,
-  SetPasswordComponent,
-  CheckStatusComponent,
-  LoginComponent
-} from "./pages";
-
+import * as Pages from './pages';
 
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { AnQrcodeModule } from "an-qrcode";
@@ -125,6 +83,7 @@ export function createLoader(http: HttpClient) {
 
 @NgModule({
   declarations: [
+    ...Pages.containers,
     MainLayoutComponent,
     AppComponent,
     NewWalletComponent,
@@ -137,12 +96,7 @@ export function createLoader(http: HttpClient) {
     MetamaskComponent,
     ImportAddressComponent,
     ImportMnemonicComponent,
-    DonationComponent,
-    HomeComponent,
-    ArtistsComponent,
-    ArtistProfileComponent,
-    ExampleComponent,
-    EditionComponent,
+
     ArtWorkComponent,
     ArtWorkLogoComponent,
     HeaderComponent,
@@ -151,55 +105,27 @@ export function createLoader(http: HttpClient) {
     SubTabsComponent,
     SubTableComponent,
     ProfileEditorComponent,
-    ActivityComponent,
-    GalleryComponent,
-    TokenComponent,
+
     ArtistComponent,
-    NewArtistComponent,
+
     Edition1Component,
     Edition2Component,
     Edition3Component,
     Edition4Component,
-    RegisterArtistComponent,
-    PageNotFoundComponent,
-    RegisterBuyerComponent,
+
     ArtistDetailComponent,
     CollectorDetailComponent,
-    ArtistPageComponent,
-    CollectorPageComponent,
-    CollectorProfilePageComponent,
-    QAComponent,
-    PolicyComponent,
-    AboutComponent,
-    ForArtistComponent,
-    ForBuyerComponent,
-    ErrorComponent,
+
     ArtistHeaderComponent,
     CollectorHeaderComponent,
     AdminLayoutComponent,
     ArtistLayoutComponent,
     CollectorLayoutComponent,
-    CollectorAccountComponent,
-    CollectorBasicComponent,
-    CollectorCollectionComponent,
-    CollectorFavoriteComponent,
-    CollectorOfferComponent,
-    CollectorSalesComponent,
-    ArtistAccountComponent,
-    ArtistCollectionComponent,
-    ArtistFavoriteComponent,
-    ArtistOfferComponent,
-    ArtistSoldArtWorkComponent,
-    ArtistBasicComponent,
-    ArtistEditionDetailComponent,
-    ArtistUploadComponent,
+
     NavbarComponent,
     SidebarComponent,
     AdminFooterComponent,
-    VerificationComponent,
-    SetPasswordComponent,
-    CheckStatusComponent,
-    LoginComponent,
+
     CircleTimerComponent,
     StepDotComponent,
     Websitepages.containers

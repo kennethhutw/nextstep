@@ -14,9 +14,10 @@ import { AdminArtworkComponent } from './pages/editions/artworks/artworks.compon
 import { AdminDelegateEmailComponent } from './pages/delegateEmail/delegate-email.component';
 import { UserInfoComponent } from './pages/users/info/info.component';
 import { AdminPromoComponent } from './pages/promo/promo.component';
+import { AdminSettingsComponent } from './pages/settings/settings.component';
 
-
-export const containers = [DashboardComponent,
+export const containers = [
+    DashboardComponent,
     ApplicationComponent,
     TablesComponent,
     FormsComponent,
@@ -31,7 +32,8 @@ export const containers = [DashboardComponent,
     AdminArtworkComponent,
     AdminDelegateEmailComponent,
     UserInfoComponent,
-    AdminPromoComponent
+    AdminPromoComponent,
+    AdminSettingsComponent
 ];
 
 export { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -50,3 +52,4 @@ export { AdminArtworkComponent } from './pages/editions/artworks/artworks.compon
 export { AdminDelegateEmailComponent } from './pages/delegateEmail/delegate-email.component';
 export { UserInfoComponent } from './pages/users/info/info.component';
 export { AdminPromoComponent } from './pages/promo/promo.component';
+export { AdminSettingsComponent } from './pages/settings/settings.component';

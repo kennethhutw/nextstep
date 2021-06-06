@@ -1,0 +1,35 @@
+
+/* a {
+  color: #08ab65 !important;
+} */
+.nft-section{
+  min-height: 500px;
+    padding-top: 150px;
+    padding-bottom: 150px;
+    background-color: 	#181818;
+}
+.nft{
+  margin-top: 7%;
+  font-weight: 300;
+  font-size: 3rem;
+  line-height: 3.5rem;
+  font-family: "Noto Serif JP", sans-serif;
+
+}
+
+.nft-desc{
+   font-size: 22px;
+}
+ /* #recentEditions img{
+  height:241px;
+} */
+
+/* #popularDisplayEditions  img{
+  height:241px;
+} */
+
+.desc{
+     font-family: "Roboto", sans-serif;
+     font-weight: 300;
+     font-size:22px;
+}
