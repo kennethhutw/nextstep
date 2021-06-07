@@ -161,3 +161,9 @@
     margin-right: auto;
     width: 50%;
 }
+@media (max-width: 768px) {
+  .btn_small{
+    width: 120px;
+    margin-left: -25px;
+  }
+}
