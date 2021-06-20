@@ -5,7 +5,8 @@ import {
   AppSettingsService,
   EditionService,
   AuthStore,
-  ArtWorkService
+  ArtWorkService,
+  SeoService
 } from "./../../_services";
 import { Utility } from "./../../_helpers";
 import { environment } from '../../../environments/environment';
@@ -26,6 +27,7 @@ export class GalleryComponent implements OnInit {
   selectOption = 'LATEST';
   currentUser: any;
   constructor(
+    private SeoSrv: SeoService,
     private authStoreSrv: AuthStore,
     private translateSrv: TranslateService,
     private utility: Utility,
@@ -65,6 +67,7 @@ export class GalleryComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.SeoSrv.updateTitle('Gallery');
     this.SpinnerService.show();
     this.currentUser = this.authStoreSrv.getUserData();
     this.artworkSrv.getSellArtwork().subscribe(res => {

@@ -10,7 +10,8 @@ import {
   SettingService,
   UserService,
   DataService,
-  LikeService
+  LikeService,
+  SeoService
 } from "../../_services";
 
 import { Router, ActivatedRoute } from "@angular/router";
@@ -38,6 +39,7 @@ export class ArtistPageComponent implements OnInit {
 
   currentTab = "artworks";
   constructor(
+    private SeoSrv: SeoService,
     private router: Router,
     private settingSrv: SettingService,
     private authStoreSrv: AuthStore,
@@ -80,6 +82,14 @@ export class ArtistPageComponent implements OnInit {
           if (this.artist && this.artist.imageUrl != null) {
 
             this.artist.imageUrl = environment.assetUrl + this.artist.imageUrl;
+            this.SeoSrv.updateTitle(this.artist.name);
+            const url = window.location.origin + '/' + this.artist.uid;
+
+            this.SeoSrv.updateTag(url,
+              this.artist.name,
+              this.artist.bio,
+              this.artist.imageUrl
+            )
           }
           //tags: "bizarre,love,romantic"
         } else {

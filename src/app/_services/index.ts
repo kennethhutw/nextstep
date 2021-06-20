@@ -21,7 +21,7 @@ import { AdminService } from "./admin.service";
 import { TableService } from "./table.service";
 import { UserTourService } from './user-tour.service';
 import { PromoService } from './promo.service';
-import { SeoService} from './seo.service';
+import { SeoService } from './seo.service';
 export const services = [
     AdminService,
     UserService,
@@ -73,3 +73,4 @@ export { TableService } from "./table.service";
 export { UserTourService } from './user-tour.service';
 export { PromoService } from './promo.service';
 export { SeoService } from './seo.service';
+export { GoogleAnalyticsService } from './google-analytics.service';

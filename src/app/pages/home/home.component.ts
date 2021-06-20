@@ -7,6 +7,10 @@ import {
 } from "./../../_services";
 import { Utility } from "./../../_helpers";
 import { environment } from '../../../environments/environment';
+import { GoogleAnalyticsService } from "../../_services"; // import our analytics service
+
+
+
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
@@ -36,6 +40,7 @@ export class HomeComponent implements OnInit {
   }
 
   constructor(
+    private gaSrv: GoogleAnalyticsService,
     private settingSrv: SettingService,
     private translateSrv: TranslateService,
     private utility: Utility,
@@ -92,5 +97,10 @@ export class HomeComponent implements OnInit {
     };
     //{background-image: 'url( main_bg)'}
     return styles;
+  }
+
+  SendLikeEvent(editionId) {
+    //We call the event emmiter function from our service and pass in the details
+    this.gaSrv.eventEmitter("artwork", "view", "artwork", editionId);
   }
 }

@@ -75,6 +75,8 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { environment } from "../environments/environment";
 import { CountdownModule } from "ng2-countdown-timer";
 
+import { GoogleAnalyticsService } from "./_services";
+
 const config: SocketIoConfig = { url: environment.apiUrl, options: {} };
 
 export function createLoader(http: HttpClient) {
@@ -165,7 +167,7 @@ export function createLoader(http: HttpClient) {
     }),
     DisqusModule.forRoot("disqus_shortname"),
   ],
-  providers: [],
+  providers: [GoogleAnalyticsService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

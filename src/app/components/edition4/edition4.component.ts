@@ -3,7 +3,8 @@ import { TranslateService } from "@ngx-translate/core";
 import { Router } from "@angular/router";
 
 import { Utility } from "../../_helpers";
-import { DataService, LikeService } from "../../_services";
+import { DataService, LikeService, GoogleAnalyticsService } from "../../_services";
+
 @Component({
   selector: "app-edition4",
   templateUrl: "./edition4.component.html",
@@ -19,6 +20,7 @@ export class Edition4Component implements OnInit {
   @Input() uid: string;
   IsFollowed = false;
   constructor(
+    private gaSrv: GoogleAnalyticsService,
     private likeSrv: LikeService,
     private utility: Utility,
     private translateSrv: TranslateService,
@@ -52,10 +54,13 @@ export class Edition4Component implements OnInit {
   }
 
   ViewDetails() {
+
+    this.gaSrv.eventEmitter("artwork", "page_view", "artwork", Number(this.artworkId));
     this.router.navigate(["/gallery/" + this.artworkId]);
   }
 
   onDislike() {
+    this.gaSrv.eventEmitter("artwork", "dislike", "artwork", Number(this.artworkId));
     this.likeSrv.removeLike(this.uid, this.artworkId).subscribe(res => {
       if (res['result'] == "successful") {
         this.IsFollowed = false;
@@ -63,11 +68,13 @@ export class Edition4Component implements OnInit {
     });
   }
   onLike() {
+    this.gaSrv.eventEmitter("artwork", "like", "artwork", Number(this.artworkId));
     this.likeSrv.like(this.uid, this.artworkId).subscribe(res => {
       if (res['result'] == "successful") {
         this.IsFollowed = true;
       }
     });
   }
+
 
 }

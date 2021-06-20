@@ -17,7 +17,8 @@ import {
   ArtWorkService,
   UserService,
   DialogService,
-  SettingService
+  SettingService,
+  SeoService
 } from "./../../_services";
 import { Utility } from "./../../_helpers";
 import { Router, ActivatedRoute } from "@angular/router";
@@ -52,6 +53,7 @@ export class EditionComponent implements OnInit {
 
   @ViewChild(CircleTimerComponent) timer: any;
   constructor(
+    private SeoSrv: SeoService,
     private changeDetectorRef: ChangeDetectorRef,
     private modalService: ModalService,
     public settingSrv: SettingService,
@@ -113,6 +115,15 @@ export class EditionComponent implements OnInit {
             this.editions = this.currentArtwork.editions;
             //this.currentArtwork.artist.imageUrl = environment.assetUrl + this.currentArtwork.artist.imageUrl;
           }
+          this.SeoSrv.updateTitle(this.currentArtwork.name);
+          const url = window.location.origin + '/gallery/' + this.currentArtwork.id;
+
+          this.SeoSrv.updateTag(url,
+            this.currentArtwork.name,
+            this.currentArtwork.description,
+            this.currentArtwork.imageUrl
+          )
+
         }
         else {
 
