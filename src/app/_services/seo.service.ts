@@ -25,9 +25,9 @@ export class SeoService {
         //     ]
         // );
         let metaTags = [
-            { name: 'og:title', content: title + " | FormosArt " },
-            { name: 'og:description', content: description },
-            { name: 'og:url', content: url },
+            { property: 'og:title', content: title + " | FormosArt " },
+            { property: 'og:description', content: description },
+            { property: 'og:url', content: url },
             { name: 'description', content: description },
             { name: 'image', content: image },
             { name: 'twitter:title', content: title + " | FormosArt " },
