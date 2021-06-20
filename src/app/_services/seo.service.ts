@@ -28,6 +28,7 @@ export class SeoService {
         let metaTags = [
             { name: 'title', content: title + " | FormosArt " },
             { property: 'og:title', content: title + " | FormosArt " },
+            { property: 'og:type', content: "article" },
             { property: 'og:description', content: description },
             { property: 'og:image', content: image },
             { property: 'og:image:secure_url', content: image },
