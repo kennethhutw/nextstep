@@ -1,8 +1,8 @@
 export const environment = {
     production: true,
-    apiUrl: 'http://server.formosa.finance:52584',
-    assetUrl: 'http://server.formosa.finance:52584',
-    assetAPIUrl: 'http://server.formosa.finance:52584',
+    apiUrl: 'https://www.formosa.finance:8443',
+    assetUrl: 'https://www.formosa.finance:8443',
+    assetAPIUrl: 'https://www.formosa.finance:8443',
     environment: 'staging',
     contractAddress: '0xFc3a6059ddd3cED1b59df596C49f83244A4f64f7',
     gtag: 'G-3T59MY55H9'
