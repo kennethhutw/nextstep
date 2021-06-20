@@ -24,9 +24,13 @@ export class SeoService {
         //     { "data-n-head": "ssr", "data-hid": "og:description", "name": "og:description", "content": description }
         //     ]
         // );
+
         let metaTags = [
+            { name: 'title', content: title + " | FormosArt " },
             { property: 'og:title', content: title + " | FormosArt " },
             { property: 'og:description', content: description },
+            { property: 'og:image', content: image },
+            { property: 'og:image:secure_url', content: image },
             { property: 'og:url', content: url },
             { name: 'description', content: description },
             { name: 'image', content: image },
@@ -34,7 +38,7 @@ export class SeoService {
             { name: 'twitter:description', content: description },
             { name: 'twitter:image', content: image }];
 
-
+        console.log(" seo ============= ", metaTags);
         metaTags.forEach(m => this.meta.updateTag(m));
 
     }
