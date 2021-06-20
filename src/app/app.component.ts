@@ -26,7 +26,7 @@ export class AppComponent {
         if (event.urlAfterRedirects.includes('/post/')) {
           url = event.urlAfterRedirects;
         }
-        console.log("gtag ===================", environment.gtag);
+
         if (typeof gtag !== 'undefined' && environment.gtag != '') {
           gtag('config', environment.gtag,
             {

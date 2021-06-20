@@ -58,20 +58,6 @@ export class ArtistPageComponent implements OnInit {
       this.currentUid = this.currentUser.id;
     }
     this.defaultProfileLogo = this.settingSrv.defaultProfileLogo;
-  }
-
-  ngOnInit() {
-
-    let _lang = localStorage.getItem("lang");
-    if (!this.utility.IsNullOrEmpty(_lang)) {
-      this.translateSrv.use(_lang);
-    }
-    this.dataSrv.langKey.subscribe((lang) => {
-      if (!this.utility.IsNullOrEmpty(lang)) {
-        this.translateSrv.use(lang);
-      }
-    });
-    this.lang = localStorage.getItem("lang");
     this.route.params.subscribe(params => {
       this.uid = params["uid"];
       this.initFavourites(this.uid)
@@ -120,6 +106,21 @@ export class ArtistPageComponent implements OnInit {
 
         });
     });
+  }
+
+  ngOnInit() {
+
+    let _lang = localStorage.getItem("lang");
+    if (!this.utility.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
+    }
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utility.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+      }
+    });
+    this.lang = localStorage.getItem("lang");
+
 
 
   }
