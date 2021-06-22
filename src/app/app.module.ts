@@ -83,6 +83,7 @@ export function createLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
+
 @NgModule({
   declarations: [
     ...Pages.containers,
@@ -98,7 +99,6 @@ export function createLoader(http: HttpClient) {
     MetamaskComponent,
     ImportAddressComponent,
     ImportMnemonicComponent,
-
     ArtWorkComponent,
     ArtWorkLogoComponent,
     HeaderComponent,
@@ -107,27 +107,21 @@ export function createLoader(http: HttpClient) {
     SubTabsComponent,
     SubTableComponent,
     ProfileEditorComponent,
-
     ArtistComponent,
-
     Edition1Component,
     Edition2Component,
     Edition3Component,
     Edition4Component,
-
     ArtistDetailComponent,
     CollectorDetailComponent,
-
     ArtistHeaderComponent,
     CollectorHeaderComponent,
     AdminLayoutComponent,
     ArtistLayoutComponent,
     CollectorLayoutComponent,
-
     NavbarComponent,
     SidebarComponent,
     AdminFooterComponent,
-
     CircleTimerComponent,
     StepDotComponent,
     Websitepages.containers

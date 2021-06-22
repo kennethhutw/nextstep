@@ -57,6 +57,7 @@ export class ArtistUploadComponent implements OnInit {
   quotaType = "0";
   specialPrice = "5%";
 
+
   isUploading = false;
   @ViewChild("text") text: ElementRef;
   constructor(
@@ -225,11 +226,15 @@ export class ArtistUploadComponent implements OnInit {
           this.IsUpdateFailed = true;
         });
         console.error("update Basic infor failed", error);
+      }, () => {
+        this.submitted = false;
+        this.isUploading = false;
       });
     } catch (error) {
       console.error("upload failed", error);
-    } finally {
       this.isUploading = false;
+    } finally {
+
     }
   }
 
@@ -291,6 +296,7 @@ export class ArtistUploadComponent implements OnInit {
         this.upload();
       }, () => {
         console.log("NO");
+        this.submitted = false;
       });
 
   }

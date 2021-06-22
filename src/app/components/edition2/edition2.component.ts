@@ -14,6 +14,8 @@ export class Edition2Component implements OnInit {
   @Input() editionAuthor: string;
   @Input() editionImg: string;
   @Input() editionId: string;
+  @Input() artworkId: string;
+
   constructor(
     private utility: Utility,
     private translateSrv: TranslateService,

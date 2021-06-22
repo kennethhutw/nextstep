@@ -14,7 +14,7 @@
         <div id="member_choice_btn" class="col-md-8">
             <!-- <button class="btn_select_img">{{ "CHOOSEARTWORK" | translate }}</button> -->
             <!-- <button class="btn_select_img d-block mt-10">預覽作品</button> -->
-            <span class="warming-msg" style="font-size: 12px;">Maximum file size:50MB</span><br>
+            <span class="warming-msg" style="font-size: 12px;">Maximum file size : 50 MB</span><br>
             <label class="btn_select_img mb-20" for="artworkImage">{{ "CHOOSEARTWORK" | translate }}</label>
             <input id="artworkImage" type="file" accept="image/gif, image/jpg, image/jpeg, image/png"
                 (change)="onDetectImage($event)" style="visibility: hidden; padding: 0px" />
@@ -196,7 +196,7 @@
 
 
 <div class="text-center mt-40">
-    <button (click)="onSubmit()" id="member_last_btn_w100" class="btn_normal ">
+    <button [disabled]="loading" (click)="onSubmit()" id="member_last_btn_w100" class="btn_normal ">
         {{ "UPLOAD" | translate }}
     </button>
     <div style="margin-top: 10px;" class="error-msg" *ngIf="informMsg">{{informMsg}}

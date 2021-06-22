@@ -14,6 +14,7 @@ import {
   SeoService
 } from "../../_services";
 
+
 import { Router, ActivatedRoute } from "@angular/router";
 import { environment } from '../../../environments/environment';
 import { Utility } from "../../_helpers";
@@ -39,6 +40,7 @@ export class ArtistPageComponent implements OnInit {
 
   currentTab = "artworks";
   constructor(
+
     private SeoSrv: SeoService,
     private router: Router,
     private settingSrv: SettingService,
@@ -128,6 +130,8 @@ export class ArtistPageComponent implements OnInit {
   initCollection(uid) {
     this.userSrv.getUserOwnArtworksByUid(uid).subscribe(res => {
       if (res["result"] === "successful") {
+        console.log("collection ================", res
+        )
         this.collection = res["data"];
         if (this.collection) {
 
