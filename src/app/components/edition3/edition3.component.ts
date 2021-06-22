@@ -3,7 +3,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { Router } from "@angular/router";
 
 import { Utility } from "../../_helpers";
-import { DataService, LikeService } from "../../_services";
+import { DataService, LikeService, SettingService } from "../../_services";
 @Component({
   selector: "app-edition3",
   templateUrl: "./edition3.component.html",
@@ -18,13 +18,16 @@ export class Edition3Component implements OnInit {
   @Input() editionPrice: string;
   @Input() uid: string;
   IsFollowed = false;
+  defaultProfileLogo = null;
   constructor(
+    private settingSrv: SettingService,
     private likeSrv: LikeService,
     private utility: Utility,
     private translateSrv: TranslateService,
     private dataSrv: DataService,
     private router: Router
   ) {
+    this.defaultProfileLogo = this.settingSrv.defaultProfileLogo;
     let _lang = localStorage.getItem("lang");
     if (!this.utility.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
