@@ -6,11 +6,14 @@ import {
   EditionService,
   AuthStore,
   ArtWorkService,
-  SeoService
+  SeoService,
+  ScrollService
 } from "./../../_services";
 import { Utility } from "./../../_helpers";
 import { environment } from '../../../environments/environment';
 import { NgxSpinnerService } from "ngx-spinner";
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: "app-gallery",
@@ -26,7 +29,11 @@ export class GalleryComponent implements OnInit {
   searchText = '';
   selectOption = 'LATEST';
   currentUser: any;
+  private ngUnsubscribe = new Subject();
+  itemCount = 6;
+
   constructor(
+    private scrollService: ScrollService,
     private SeoSrv: SeoService,
     private authStoreSrv: AuthStore,
     private translateSrv: TranslateService,
@@ -51,9 +58,6 @@ export class GalleryComponent implements OnInit {
       }
     });
 
-
-
-
   }
 
   initTags(lang) {
@@ -67,6 +71,10 @@ export class GalleryComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.scrollService.onScrolledDown$
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(() => this.fetchMoreItems());
+
     this.SeoSrv.updateTitle('Gallery');
     this.SpinnerService.show();
     this.currentUser = this.authStoreSrv.getUserData();
@@ -135,6 +143,20 @@ export class GalleryComponent implements OnInit {
       console.error(`getSellArtwork error message `, error);
     } finally {
       this.SpinnerService.hide();
+    }
+  }
+
+  private fetchMoreItems() {
+    // add more items
+    this.itemCount += 6;
+  }
+
+  checkDisplayAmount(i) {
+    if (i < this.itemCount) {
+      return true;
+    }
+    else {
+      return false;
     }
   }
 }
