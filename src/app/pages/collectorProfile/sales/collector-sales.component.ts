@@ -4,7 +4,7 @@ import { TranslateService } from "@ngx-translate/core";
 import {
   DataService,
   AppSettingsService,
-  ArtistService,
+  TableService,
   ArtWorkService,
   AuthStore,
   EditionService
@@ -24,7 +24,16 @@ export class CollectorSalesComponent implements OnInit {
   displayArtworks = [];
   ethPrice = 0;
   searchText = "";
+
+  page = 1;
+  numberElementPerPage = 6;
+  pageMax = 1;
+  pages: number[] = [];
+  current5page: number[] = [0, 1, 2, 3, 4];
+  artworksPageMax = 1;
+  artworksPages: number[] = [];
   constructor(
+    private tableSrv: TableService,
     private translateSrv: TranslateService,
     private utility: Utility,
     private editionSrv: EditionService,
@@ -51,6 +60,14 @@ export class CollectorSalesComponent implements OnInit {
           this.artworks.forEach((element) => {
             element['imageUrl'] = environment.assetUrl + element['imageUrl'];
           });
+
+          this.artworksPageMax =
+            Math.floor((this.artworks.length - 1) / this.numberElementPerPage) + 1;
+          for (let p = 0; p < this.artworksPageMax; p++) {
+            this.artworksPages.push(p);
+          }
+          this.current5page = this.InitPagenation(this.artworks);
+
           this.displayArtworks = this.artworks;
         }
       }
@@ -99,4 +116,50 @@ export class CollectorSalesComponent implements OnInit {
 
     }
   }
+
+  onPage(i) {
+    return this.tableSrv.Page(i, this.page, this.numberElementPerPage);
+  }
+
+  onChangePage(pageNumber: number) {
+    this.page = pageNumber;
+  }
+
+  more(current5Page, pages) {
+    if (current5Page[4] < pages.length - 1) {
+      current5Page[4] = current5Page[4] + 1;
+      current5Page[3] = current5Page[3] + 1;
+      current5Page[2] = current5Page[2] + 1;
+      current5Page[1] = current5Page[1] + 1;
+      current5Page[0] = current5Page[0] + 1;
+    }
+  }
+
+  less(current5Page) {
+    if (current5Page[0] > 0) {
+      current5Page[0] = current5Page[0] - 1;
+      current5Page[1] = current5Page[1] - 1;
+      current5Page[2] = current5Page[2] - 1;
+      current5Page[3] = current5Page[3] - 1;
+      current5Page[4] = current5Page[4] - 1;
+    }
+
+  }
+
+  InitPagenation(data) {
+    let current5Page = [];
+    let count = 0;
+    for (let i = 0; i < data.length; i++) {
+      if (i % 5 === 0) {
+        current5Page.push(count);
+        if (count < 4) {
+          count = count + 1;
+        } else {
+          break;
+        }
+      }
+    }
+    return current5Page;
+  }
+
 }

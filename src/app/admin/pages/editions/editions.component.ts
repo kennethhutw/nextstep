@@ -144,6 +144,9 @@ export class AdminEditionComponent implements OnInit {
         if (element.imageUrl != null) {
           element.imageUrl = environment.assetUrl + element.imageUrl;
         }
+        if (element.thumbnail != null) {
+          element.thumbnail = environment.assetUrl + element.thumbnail;
+        }
       });
       this.displayEditions = this.editions;
     }, error => {

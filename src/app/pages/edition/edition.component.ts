@@ -102,6 +102,9 @@ export class EditionComponent implements OnInit {
           if (!this.utility.IsNullOrEmpty(this.currentArtwork.imageUrl)) {
             this.currentArtwork.imageUrl = environment.assetUrl + this.currentArtwork.imageUrl;
           }
+          if (!this.utility.IsNullOrEmpty(this.currentArtwork.thumbnail)) {
+            this.currentArtwork.thumbnail = environment.assetUrl + this.currentArtwork.thumbnail;
+          }
 
           if (!this.utility.IsNullOrEmpty(this.currentArtwork.artist.imageUrl)) {
             this.currentArtwork.artist.imageUrl = environment.assetUrl + this.currentArtwork.artist.imageUrl;
@@ -109,7 +112,12 @@ export class EditionComponent implements OnInit {
 
           if (!this.utility.IsNullOrEmpty(this.currentArtwork.editions)) {
             this.currentArtwork.editions.forEach((element) => {
-              element.imageUrl = environment.assetUrl + element.imageUrl;
+              if (element.thumbnail != null) {
+                element.thumbnail = environment.assetUrl + element.thumbnail;
+              }
+              if (element.imageUrl != null) {
+                element.imageUrl = environment.assetUrl + element.imageUrl;
+              }
             });
 
             this.editions = this.currentArtwork.editions;

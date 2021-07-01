@@ -83,7 +83,12 @@ export class GalleryComponent implements OnInit {
       if (res["result"] == "successful") {
         this.editions = res["data"];
         this.editions.forEach((element) => {
-          element.imageUrl = environment.assetUrl + element.imageUrl;
+          if (element.thumbnail != null) {
+            element.thumbnail = environment.assetUrl + element.thumbnail;
+          }
+          if (element.imageUrl != null) {
+            element.imageUrl = environment.assetUrl + element.imageUrl;
+          }
           if (!this.utility.IsNullOrEmpty(element['ethValue'])) {
             let eth = parseFloat(element['ethValue']);
             element['ethValue'] = +(eth / 100).toFixed(3);

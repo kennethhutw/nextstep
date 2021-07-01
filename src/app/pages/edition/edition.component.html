@@ -8,7 +8,7 @@
     <div class="col-md-7">
       <div class="mb-20">
         <img style="cursor: zoom-in;" data-toggle="modal" data-target="#modal_collector_guide"
-          src="{{this.currentArtwork.imageUrl || this.settingSrv.defaultProfileLogo}}" actual-image="profileImage"
+          src="{{this.currentArtwork.thumbnail || this.settingSrv.defaultProfileLogo}}" actual-image="profileImage"
           alt="" />
       </div>
 
@@ -132,7 +132,7 @@
       <div id="project_info_more" class="row">
         <ng-container *ngFor="let edition of editions| slice:0:6; let i = index">
           <div class="col-md-4 col-6 mb-30">
-            <a routerLink="/gallery/{{ edition.id }}"><img src="{{ edition.imageUrl }}" alt="" /></a>
+            <a routerLink="/gallery/{{ edition.id }}"><img src="{{ edition.thumbnail }}" alt="" /></a>
           </div>
         </ng-container>
 

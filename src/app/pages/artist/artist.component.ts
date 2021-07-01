@@ -95,7 +95,12 @@ export class ArtistPageComponent implements OnInit {
         if (res["result"] === "successful") {
           this.artistArtworks = res["data"];
           this.artistArtworks.forEach((element) => {
-            element.imageUrl = environment.assetUrl + element.imageUrl;
+            if (element.thumbnail != null) {
+              element.thumbnail = environment.assetUrl + element.thumbnail;
+            }
+            if (element.imageUrl != null) {
+              element.imageUrl = environment.assetUrl + element.imageUrl;
+            }
           });
         } else {
 
@@ -136,7 +141,12 @@ export class ArtistPageComponent implements OnInit {
         if (this.collection) {
 
           this.collection.forEach((element) => {
-            element.imageUrl = environment.assetUrl + element.imageUrl;
+            if (element.thumbnail != null) {
+              element.thumbnail = environment.assetUrl + element.thumbnail;
+            }
+            if (element.imageUrl != null) {
+              element.imageUrl = environment.assetUrl + element.imageUrl;
+            }
           });
         }
 
@@ -155,6 +165,9 @@ export class ArtistPageComponent implements OnInit {
         this.favourites.forEach((element) => {
           if (element['imageUrl']) {
             element['imageUrl'] = environment.assetUrl + element['imageUrl'];
+          }
+          if (element['thumbnail'] != null) {
+            element['thumbnail'] = environment.assetUrl + element['thumbnail'];
           }
         });
         this.displayFavourites = this.favourites;

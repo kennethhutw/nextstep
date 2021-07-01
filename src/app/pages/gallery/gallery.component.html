@@ -54,13 +54,13 @@
       <ng-container *ngIf="checkDisplayAmount(i)">
         <ng-container *ngIf="currentUser; else NoLogin">
           <app-edition3 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
-            editionImg="{{ edition.imageUrl }}" artworkId="{{ edition.artworkId }}"
+            editionImg="{{ edition.thumbnail }}" artworkId="{{ edition.artworkId }}"
             editionDate="{{ edition.editionDate }}" editionPrice="{{ edition.ethValue }}" uid="{{currentUser.id}}">
           </app-edition3>
         </ng-container>
         <ng-template #NoLogin>
           <app-edition3 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
-            editionImg="{{ edition.imageUrl }}" artworkId="{{ edition.artworkId }}"
+            editionImg="{{ edition.thumbnail }}" artworkId="{{ edition.artworkId }}"
             editionDate="{{ edition.editionDate }}" editionPrice="{{ edition.ethValue }}"></app-edition3>
         </ng-template>
       </ng-container>

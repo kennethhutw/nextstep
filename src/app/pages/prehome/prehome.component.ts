@@ -58,7 +58,6 @@ export class PreviewHomeComponent implements OnInit {
   ngOnInit() {
 
     let id = this.route.snapshot.paramMap.get("id");
-    console.log(" ======================= id", id);
     this.settingSrv.getSettingById(id).subscribe(res => {
       if (res["result"] == "successful") {
         this.main_bg = environment.assetUrl + res["data"];
@@ -71,10 +70,14 @@ export class PreviewHomeComponent implements OnInit {
       if (res["result"] == "successful") {
         this.popularEditions = res["data"];
         this.popularEditions.forEach((element) => {
-          element.imageUrl = environment.assetUrl + element.imageUrl;
+          if (element.thumbnail != null) {
+            element.thumbnail = environment.assetUrl + element.thumbnail;
+          }
+          if (element.imageUrl != null) {
+            element.imageUrl = environment.assetUrl + element.imageUrl;
+          }
           element.ethValue = element.ethValue / 100;
         });
-        // this.popularDisplayEditions = this.chunk(this.popularEditions, 3);
       }
     });
 
@@ -83,20 +86,22 @@ export class PreviewHomeComponent implements OnInit {
       if (res["result"] == "successful") {
         this.recentEditions = res["data"];
         this.recentEditions.forEach((element) => {
-          element.imageUrl = environment.assetUrl + element.imageUrl;
+          if (element.thumbnail != null) {
+            element.thumbnail = environment.assetUrl + element.thumbnail;
+          }
+          if (element.imageUrl != null) {
+            element.imageUrl = environment.assetUrl + element.imageUrl;
+          }
           element.ethValue = element.ethValue / 100;
         });
       }
     });
 
     this.dataSrv.previewBGKey.subscribe((image) => {
-      console.log(" =======================", image);
       if (!this.utility.IsNullOrEmpty(image)) {
         this.main_bg = image;
       }
     });
-
-
   }
 
   setMyStyles() {
@@ -120,8 +125,6 @@ export class PreviewHomeComponent implements OnInit {
 
   handleReaderLoaded(e) {
     this.base64textString.push('data:image/png;base64,' + btoa(e.target.result));
-    console.log("base64 ============", this.base64textString);
-
     this.main_bg = 'data:image/png;base64,' + btoa(e.target.result);
   }
 

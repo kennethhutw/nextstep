@@ -67,11 +67,12 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
     this.artworkSrv.getPopularArtwork().subscribe(res => {
-
+      console.log("environment.assetUrl======", environment.assetUrl);
       if (res["result"] == "successful") {
         this.popularEditions = res["data"];
         this.popularEditions.forEach((element) => {
           element.imageUrl = environment.assetUrl + element.imageUrl;
+          element.thumbnail = environment.assetUrl + element.thumbnail;
           element.ethValue = element.ethValue / 100;
         });
         // this.popularDisplayEditions = this.chunk(this.popularEditions, 3);
@@ -84,6 +85,7 @@ export class HomeComponent implements OnInit {
         this.recentEditions = res["data"];
         this.recentEditions.forEach((element) => {
           element.imageUrl = environment.assetUrl + element.imageUrl;
+          element.thumbnail = environment.assetUrl + element.thumbnail;
           element.ethValue = element.ethValue / 100;
         });
       }

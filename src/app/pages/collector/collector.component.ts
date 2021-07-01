@@ -69,7 +69,12 @@ export class CollectorPageComponent implements OnInit {
             if (this.collector && this.collector.ownedartwork && this.collector.ownedartwork.length > 0) {
               this.popularEditions = this.collector.ownedartwork;
               this.popularEditions.forEach((element) => {
-                element.imageUrl = environment.assetUrl + element.imageUrl;
+                if (element.thumbnail != null) {
+                  element.thumbnail = environment.assetUrl + element.thumbnail;
+                }
+                if (element.imageUrl != null) {
+                  element.imageUrl = environment.assetUrl + element.imageUrl;
+                }
               });
 
             }
@@ -108,6 +113,9 @@ export class CollectorPageComponent implements OnInit {
         this.favourites.forEach((element) => {
           if (element['imageUrl']) {
             element['imageUrl'] = environment.assetUrl + element['imageUrl'];
+          }
+          if (element['thumbnail']) {
+            element['thumbnail'] = environment.assetUrl + element['thumbnail'];
           }
         });
         this.displayFavourites = this.favourites;

@@ -167,12 +167,17 @@ export class UserInfoComponent implements OnInit, OnDestroy {
   initArtworks(uid) {
     try {
       this.pendingEditionSrv.getPendingEdition(uid).subscribe(res => {
-        console.log(` getPendingEdition ${res}`, res);
+
         if (res['result'] == 'successful') {
           this.editions = res['data'];
           if (this.editions.length > 0) {
             this.editions.forEach((element) => {
-              element.imageUrl = environment.assetUrl + element.imageUrl;
+              if (element.thumbnail != null) {
+                element.thumbnail = environment.assetUrl + element.thumbnail;
+              }
+              if (element.imageUrl != null) {
+                element.imageUrl = environment.assetUrl + element.imageUrl;
+              }
             });
           }
         }
