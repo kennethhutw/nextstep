@@ -67,7 +67,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
     this.artworkSrv.getPopularArtwork().subscribe(res => {
-      console.log("environment.assetUrl======", environment.assetUrl);
+
       if (res["result"] == "successful") {
         this.popularEditions = res["data"];
         this.popularEditions.forEach((element) => {

@@ -192,7 +192,7 @@ export class TokenizeComponent implements OnInit, OnDestroy {
 
   initArtist(id) {
     this.artistSrv.getArtistBasicInfo(id).subscribe(res => {
-      console.log(" getArtistBasicInfoByUid ==== ", res);
+
       if (res["result"] === "successful") {
         this.artist = res["data"];
 

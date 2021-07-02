@@ -92,6 +92,7 @@ export class ArtistPageComponent implements OnInit {
         });
 
       this.artistSrv.getArtistArtwork(this.uid).subscribe(res => {
+
         if (res["result"] === "successful") {
           this.artistArtworks = res["data"];
           this.artistArtworks.forEach((element) => {
@@ -135,8 +136,7 @@ export class ArtistPageComponent implements OnInit {
   initCollection(uid) {
     this.userSrv.getUserOwnArtworksByUid(uid).subscribe(res => {
       if (res["result"] === "successful") {
-        console.log("collection ================", res
-        )
+
         this.collection = res["data"];
         if (this.collection) {
 
