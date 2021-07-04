@@ -101,6 +101,7 @@ export class TokenizeComponent implements OnInit, OnDestroy {
       image_type: [""],
       imageName: [""],
       imageUri: [""],
+      thumbnail: [""],
       totalamount: [""],
       firstnumber: [""],
     });
@@ -177,6 +178,7 @@ export class TokenizeComponent implements OnInit, OnDestroy {
             image_type: this.edition.image_type,
             imageName: this.edition.imageName,
             imageUri: this.edition.imageUrl,
+            thumbnail: this.edition.thumbnail,
             firstnumber: this.edition.firstnumber,
             totalamount: this.edition.totalamount,
           });
@@ -361,6 +363,7 @@ export class TokenizeComponent implements OnInit, OnDestroy {
         this.newArtWorkForm.value.image_type,
         this.newArtWorkForm.value.imageName,
         this.newArtWorkForm.value.imageUri,
+        this.newArtWorkForm.value.thumbnail,
         this.newArtWorkForm.value.totalamount,
         this.newArtWorkForm.value.firstnumber,
         this.currentUser.id).subscribe(res => {

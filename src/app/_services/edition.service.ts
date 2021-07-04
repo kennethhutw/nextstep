@@ -100,6 +100,7 @@ export class EditionService {
     image_type,
     imageName,
     imageUrl,
+    thumbnail,
     totalamount,
     firstnumber,
     uid) {
@@ -116,6 +117,7 @@ export class EditionService {
           image_type,
           imageName,
           imageUrl,
+          thumbnail,
           totalamount,
           firstnumber,
           uid
