@@ -5,8 +5,10 @@ import {
   ChangeDetectorRef
 } from '@angular/core';
 import {
-  UserService, EditionService,
-  SettingService
+  UserService,
+  EditionService,
+  SettingService,
+  ToastService
 } from '../../../_services';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
@@ -80,6 +82,7 @@ export class AdminEditionComponent implements OnInit {
 
   currentArtworkURL = "";
   constructor(
+    private toastSrv: ToastService,
     private changeDetectorRef: ChangeDetectorRef,
     private settingSrv: SettingService,
     private editionSrv: EditionService,
@@ -162,6 +165,21 @@ export class AdminEditionComponent implements OnInit {
     this.currentArtworkURL = path;
     this.changeDetectorRef.detectChanges();
     document.getElementById('openViewImgModalButton').click();
+  }
+
+  generateThumbnail(editionId) {
+    this.editionSrv.generateThumbnail(editionId).subscribe(res => {
+      console.log("================", res);
+      if (res["result"] == "successful") {
+        this.toastSrv.showToast('Success',
+          "updated Highest EditionNumber",
+          this.toastSrv.iconClasses.success);
+      } else {
+        this.toastSrv.showToast('Failed',
+          res['message'],
+          this.toastSrv.iconClasses.error);
+      }
+    })
   }
 
 }

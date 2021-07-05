@@ -133,4 +133,13 @@ export class EditionService {
         }
       );
   }
+
+  generateThumbnail(editionId) {
+    return this.http
+      .post<resResult>(`${environment.apiUrl}/edition/generateThumbnail/${editionId}`,
+        {
+
+        }
+      );
+  }
 }
