@@ -261,10 +261,14 @@ button{
 
 .btn_large {
   font-size: 25px;
-  background-color: #17f596;
-  border: 1px solid #17f596;
-  border-radius: 3px;
-  color: #000;
+  /* background-color: #17f596;
+  border: 1px solid #17f596; */
+  background-color: #000;
+  border: 1px solid #000;
+  color:#FFFFFF;
+    border-radius: 15px;
+  /* border-radius: 3px; */
+  /* color: #000; */
   padding: 10px 0;
 }
 .btn_large_disable {
@@ -390,11 +394,12 @@ nav {
 }
 
 a {
-  color: #08ab65 ;
+   color: #08ab65 ;
+  /* color:#000000 !important; */
 }
 
 a:hover {
-  color: #17f596 !important;
+   color: #17f596 !important;
   text-decoration: none !important;
 }
 

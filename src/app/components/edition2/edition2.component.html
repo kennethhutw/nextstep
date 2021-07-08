@@ -3,9 +3,6 @@
   <div class="overlay">
     <h2>{{ editionTitle }}</h2>
     <p><i class="fas fa-user"></i> {{ editionAuthor }}</p>
-    <!-- <button (click)="ViewDetails()" class="info">
-      {{ "VIEWDETAILS" | translate }}
-    </button> -->
     <a [routerLink]="['/gallery', editionId]">
       <button class="info">
         {{ "VIEWDETAILS" | translate }}

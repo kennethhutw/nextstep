@@ -22,13 +22,13 @@
   </div>
   <div id="popularDisplayEditions" class="row">
     <ng-container *ngFor="let edition of popularEditions">
-      <div class="col-md-4 mb-4" style="height: 241px;">
+      <div class="col-md-4 mb-50" style="height: 584px;">
         <!-- <app-edition1 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
           editionImg="{{ edition.imageUrl }}" editionId="{{ edition.artworkId }}"></app-edition1> -->
-        <app-edition4 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
+        <app-edition5 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
           editionImg="{{ edition.thumbnail }}" artworkId="{{ edition.artworkId }}"
           editionDate="{{ edition.editionDate }}" editionPrice="{{ edition.ethValue }}">
-        </app-edition4>
+        </app-edition5>
       </div>
     </ng-container>
 
@@ -78,18 +78,18 @@
     {{ "RECENT" | translate }}
   </div>
 
-  <div id="recentEditions" class="row">
+  <div id="recentEditions" class="row ">
     <ng-container *ngFor="let edition of recentEditions">
-      <div class="col-md-4 mb-4" style="height: 241px;">
-        <app-edition4 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
+      <div class="col-md-4 mb-50" style="height: 584px;">
+        <app-edition5 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
           editionImg="{{ edition.thumbnail }}" artworkId="{{ edition.artworkId }}"
           editionDate="{{ edition.editionDate }}" editionPrice="{{ edition.ethValue }}">
-        </app-edition4>
+        </app-edition5>
       </div>
     </ng-container>
 
   </div>
-  <div class="row">
+  <div class="row mt-50">
     <div class="text-center mx-auto">
       <button class="index_btn_explore1" routerLink="/gallery">{{ "VIEWMORE" | translate }}</button>
     </div>

@@ -167,3 +167,12 @@
     margin-left: -25px;
   }
 }
+a {
+   /* color: #08ab65 ;  */
+   color:#000000 !important;
+}
+
+a:hover {
+  color:#000000 !important;
+  text-decoration: none !important;
+}
