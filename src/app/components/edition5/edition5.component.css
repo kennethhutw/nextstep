@@ -54,3 +54,12 @@ font-weight: 300;
   height: 32px!important;
   margin-top: 5px;
 }
+a {
+   /* color: #08ab65 ;  */
+   color:#000000 !important;
+}
+
+a:hover {
+  color:#000000 !important;
+  text-decoration: none !important;
+}
