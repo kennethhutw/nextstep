@@ -25,7 +25,7 @@ export class Edition5Component implements OnInit {
   @Input() uid: string;
   IsFollowed = false;
   constructor(
-
+    public settingSrv: SettingService,
     private gaSrv: GoogleAnalyticsService,
     private likeSrv: LikeService,
     private utility: Utility,
