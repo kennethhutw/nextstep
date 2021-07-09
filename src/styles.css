@@ -170,6 +170,14 @@
 .mt-60 {
   margin-top: 60px;
 }
+
+.mt-70 {
+  margin-top: 70px;
+}
+
+.mt-80 {
+  margin-top: 80px;
+}
 .mb-10 {
   margin-bottom: 10px;
 }
@@ -466,7 +474,7 @@ input:focus:-ms-input-placeholder {
 
 .index-title {
   margin-top: 30px;
-  border-bottom: 3px solid #17f596;
+  border-bottom:1px solid #000000;
   padding-bottom: 5px;
   font-size: 30px;
   margin-bottom: 20px;
@@ -1013,8 +1021,9 @@ box-shadow:0 0 5px #fff;
   border-radius: 10px;
   margin: 15px 0;
   padding: 20px 20px 10px 20px;
-  background-color: #f5f5f5;
-  border: 1px solid #f5f5f5;
+  background-color: #fff;
+  border: 1px solid #fff;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.15);
 }
 
 .artist_intro_box:hover {
@@ -1392,8 +1401,8 @@ font-size:12px;
 }
 
 .profile_image{
-  height: 150px  !important;
-  width: 150px !important;
+  height: 120px  !important;
+  width: 120px !important;
 }
 
 .no-msg{

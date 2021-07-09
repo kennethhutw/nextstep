@@ -3,7 +3,7 @@
     <div class="col-md-12">
       <p class="title">Gallery</p>
 
-      <p class="subtitle" style="font-size:20px;">Discover artworks by world class artists</p>
+      <p class="subtitle" style="font-size:18px;">Discover artworks by world class artists</p>
     </div>
   </div>
   <!-- <div id="project_tag" [ngClass]="{ show_tags: IsShowTags === true }" class="text-center">
@@ -57,7 +57,7 @@
             editionImg="{{ edition.thumbnail }}" artworkId="{{ edition.artworkId }}"
             editionDate="{{ edition.editionDate }}" editionPrice="{{ edition.ethValue }}" uid="{{currentUser.id}}">
           </app-edition3> -->
-          <div class="col-md-4 mb-50" style="height: 584px;">
+          <div class="col-md-4  mb-30" style="height: 524px;">
             <app-edition5 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
               editionImg="{{ edition.thumbnail }}" artworkId="{{ edition.artworkId }}"
               editionDate="{{ edition.editionDate }}" editionPrice="{{ edition.ethValue }}" uid="{{currentUser.id}}">
@@ -65,7 +65,7 @@
           </div>
         </ng-container>
         <ng-template #NoLogin>
-          <div class="col-md-4 mb-50" style="height: 584px;">
+          <div class="col-md-4  mb-30" style="height: 524px;">
             <app-edition5 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
               editionImg="{{ edition.thumbnail }}" artworkId="{{ edition.artworkId }}"
               editionDate="{{ edition.editionDate }}" editionPrice="{{ edition.ethValue }}">
