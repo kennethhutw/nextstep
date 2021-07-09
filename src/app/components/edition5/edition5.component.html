@@ -5,7 +5,7 @@
     </div>
     <div class="card-body">
       <div class="content">
-        <span class="title">{{ editionTitle }}</span><span class="edition">1/2</span>
+        <span class="title">{{ editionTitle }}</span><span class="edition">{{number}} / {{totalamount}}</span>
       </div>
       <div class="content">
         <!-- <p><i class="fas fa-user"></i> {{ editionAuthor }}</p> -->
@@ -13,13 +13,14 @@
           <img class="rounded-circle profile_image" src="{{this.settingSrv.defaultProfileLogo}}" alt="" />
         </div>
         <div class="d-inline p-2">
-          <span class="artist-name">{{editionAuthor}}</span>
+          <span class="artist-name"> {{editionAuthor}}</span>
         </div>
       </div>
     </div>
     <footer class="card-footer">
       <p class="title" *ngIf="editionPrice"> Buy now</p>
-      <p class="price" *ngIf="editionPrice"><span style="font-weight: 100;"> Ξ </span> {{ editionPrice }}</p>
+      <p class="price" *ngIf="editionPrice"><span style="font-weight: 100;"> Ξ </span> {{ editionPrice }}
+        {{displayUSDPrice(editionPrice)}}</p>
     </footer>
   </div>
 </a>

@@ -22,8 +22,12 @@ export class Edition5Component implements OnInit {
   @Input() artworkId: string;
   @Input() editionDate: string;
   @Input() editionPrice: string;
+  @Input() totalamount: string = "0";
+  @Input() number: string = "0";
   @Input() uid: string;
   IsFollowed = false;
+  ethPrice = 0;
+
   constructor(
     public settingSrv: SettingService,
     private gaSrv: GoogleAnalyticsService,
@@ -53,6 +57,9 @@ export class Edition5Component implements OnInit {
         }
       });
     }
+    if (!this.utility.IsNullOrEmpty(localStorage.getItem("ETHPRICE"))) {
+      this.ethPrice = Number(localStorage.getItem("ETHPRICE"));
+    }
   }
 
   changeLanguage(lang: string) {
@@ -81,6 +88,18 @@ export class Edition5Component implements OnInit {
       }
     });
   }
+  displayUSDPrice(ethValue) {
+    try {
+      if (Number(ethValue)) {
+        let eth = parseFloat(ethValue);
 
+        return "/ USD " + (+(eth * this.ethPrice).toFixed(2)).toString();
+
+      }
+      return "";
+    } catch (error) {
+      console.error("displayUSDPrice ", error);
+    }
+  }
 
 }
