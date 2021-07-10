@@ -71,8 +71,16 @@ export class HomeComponent implements OnInit {
       if (res["result"] == "successful") {
         this.popularEditions = res["data"];
         this.popularEditions.forEach((element) => {
-          element.imageUrl = environment.assetUrl + element.imageUrl;
-          element.thumbnail = environment.assetUrl + element.thumbnail;
+          if (element.thumbnail != null) {
+            element.thumbnail = environment.assetUrl + element.thumbnail;
+          }
+          if (element.imageUrl != null) {
+            element.imageUrl = environment.assetUrl + element.imageUrl;
+          }
+          if (element.userImageUrl != null) {
+            element.userImageUrl = environment.assetUrl + element.userImageUrl;
+          }
+
           element.ethValue = element.ethValue / 100;
         });
         // this.popularDisplayEditions = this.chunk(this.popularEditions, 3);
@@ -84,8 +92,15 @@ export class HomeComponent implements OnInit {
       if (res["result"] == "successful") {
         this.recentEditions = res["data"];
         this.recentEditions.forEach((element) => {
-          element.imageUrl = environment.assetUrl + element.imageUrl;
-          element.thumbnail = environment.assetUrl + element.thumbnail;
+          if (element.thumbnail != null) {
+            element.thumbnail = environment.assetUrl + element.thumbnail;
+          }
+          if (element.imageUrl != null) {
+            element.imageUrl = environment.assetUrl + element.imageUrl;
+          }
+          if (element.userImageUrl != null) {
+            element.userImageUrl = environment.assetUrl + element.userImageUrl;
+          }
           element.ethValue = element.ethValue / 100;
         });
       }

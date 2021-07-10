@@ -30,3 +30,6 @@ a:hover{
         font-weight:700;
         font-size: 36px;
 }
+.mb-30{
+  margin-bottom: 40px !important;
+}

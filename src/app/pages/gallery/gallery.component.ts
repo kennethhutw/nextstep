@@ -89,6 +89,10 @@ export class GalleryComponent implements OnInit {
           if (element.imageUrl != null) {
             element.imageUrl = environment.assetUrl + element.imageUrl;
           }
+          if (element.userImageUrl != null) {
+            element.userImageUrl = environment.assetUrl + element.userImageUrl;
+          }
+
           if (!this.utility.IsNullOrEmpty(element['ethValue'])) {
             let eth = parseFloat(element['ethValue']);
             element['ethValue'] = +(eth / 100).toFixed(3);

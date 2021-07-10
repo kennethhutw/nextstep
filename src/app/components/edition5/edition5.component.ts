@@ -24,6 +24,7 @@ export class Edition5Component implements OnInit {
   @Input() editionPrice: string;
   @Input() totalamount: string = "0";
   @Input() number: string = "0";
+  @Input() userImageUrl: string = "";
   @Input() uid: string;
   IsFollowed = false;
   ethPrice = 0;
