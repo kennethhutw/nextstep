@@ -135,6 +135,7 @@ export class ArtistPageComponent implements OnInit {
 
   initCollection(uid) {
     this.userSrv.getUserOwnArtworksByUid(uid).subscribe(res => {
+      console.log("========initCollection", res);
       if (res["result"] === "successful") {
 
         this.collection = res["data"];

@@ -1,0 +1,72 @@
+.frame{
+    padding-left: 15px;
+    padding-right: 15px;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.15);
+}
+
+.title{
+     font-family: 'Roboto',sans-serif!important;
+     font-weight: bold;
+     line-height: 26px;
+     font-size: 16px;
+     /* padding-top: 1.5rem!important;
+     padding-left: 2.5rem!important; */
+     flex: none;
+     width: 80%;
+}
+.content{
+    display: flex;
+}
+.edition{
+     font-family: "Roboto", sans-serif !important;
+font-weight: 300;
+     line-height: 26px;
+     font-size: 18px;
+
+    flex: none;
+    width: 20%;
+margin-left: 30px;
+}
+.card-image {
+    display: block;
+    position: relative;
+}
+.card-image-cover {
+    -o-object-fit: cover!important;
+    object-fit: cover!important;
+    height: 18rem!important;
+    flex-shrink: 0;
+    width: 100%;
+}
+.price{
+       font-family: 'Roboto',sans-serif!important;
+     font-weight: bold;
+     line-height: 26px;
+     font-size: 18px;
+}
+.artist-name{
+    font-family: 'Noto Serif JP', sans-serif;
+    font-size:18px;
+    font-weight: 300;
+    margin-left: .5rem;
+}
+ .profile_image{
+  width: 32px !important;
+  height: 32px!important;
+  margin-top: 5px;
+}
+a {
+   /* color: #08ab65 ;  */
+   color:#000000 !important;
+}
+
+a:hover {
+  color:#000000 !important;
+  text-decoration: none !important;
+}
+
+.card-footer{
+        padding: .75rem 1.25rem;
+    background-color: #fff;
+    border-top: 1px solid rgba(0,0,0,.125);
+}

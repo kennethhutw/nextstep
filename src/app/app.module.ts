@@ -36,9 +36,10 @@ import {
   ArtistComponent,
   Edition1Component,
   Edition2Component,
-  Edition3Component,
+  Edition7Component,
   Edition4Component,
   Edition5Component,
+  Edition6Component,
   ArtistDetailComponent,
   CollectorDetailComponent,
   ArtistHeaderComponent,
@@ -49,6 +50,7 @@ import {
   CircleTimerComponent,
   StepDotComponent
 } from "./components";
+
 
 import {
   AdminLayoutComponent,
@@ -111,9 +113,10 @@ export function createLoader(http: HttpClient) {
     ArtistComponent,
     Edition1Component,
     Edition2Component,
-    Edition3Component,
+    Edition7Component,
     Edition4Component,
     Edition5Component,
+    Edition6Component,
     ArtistDetailComponent,
     CollectorDetailComponent,
     ArtistHeaderComponent,

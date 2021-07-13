@@ -14,9 +14,11 @@ export { Edition1Component } from "./edition1/edition1.component";
 export { ModalComponent } from "./modal/modal.component";
 export { ArtistDetailComponent } from "./artist-detail/artist-detail.component";
 export { Edition2Component } from "./edition2/edition2.component";
-export { Edition3Component } from "./edition3/edition3.component";
+
 export { Edition4Component } from "./edition4/edition4.component";
 export { Edition5Component } from "./edition5/edition5.component";
+export { Edition6Component } from "./edition6/edition6.component";
+export { Edition7Component } from "./edition7/edition7.component";
 export { ArtistHeaderComponent } from "./artist-header/artist-header.component";
 export { CollectorHeaderComponent } from "./collector-header/collector-header.component";
 export { DialogComponent } from "./dialog/dialog.component";
