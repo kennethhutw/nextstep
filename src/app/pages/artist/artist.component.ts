@@ -102,6 +102,14 @@ export class ArtistPageComponent implements OnInit {
             if (element.imageUrl != null) {
               element.imageUrl = environment.assetUrl + element.imageUrl;
             }
+            if (!this.utility.IsNullOrEmpty(element['ethValue'])) {
+              let eth = parseFloat(element['ethValue']);
+              element['ethValue'] = +(eth / 100).toFixed(3);
+              element['usdValue'] = this.utility.getSellUSDPrice(eth);
+            } else {
+              element['ethValue'] = 0;
+              element['usdValue'] = 0;
+            }
           });
         } else {
 
@@ -147,6 +155,14 @@ export class ArtistPageComponent implements OnInit {
             }
             if (element.imageUrl != null) {
               element.imageUrl = environment.assetUrl + element.imageUrl;
+            }
+            if (!this.utility.IsNullOrEmpty(element['ethValue'])) {
+              let eth = parseFloat(element['ethValue']);
+              element['ethValue'] = +(eth / 100).toFixed(3);
+              element['usdValue'] = this.utility.getSellUSDPrice(eth);
+            } else {
+              element['ethValue'] = 0;
+              element['usdValue'] = 0;
             }
           });
         }
