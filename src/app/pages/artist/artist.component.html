@@ -36,9 +36,10 @@
         <ng-container *ngFor="let edition of artistArtworks">
           <div class="col-md-4 mb-30" style="height: 524px;">
             <app-edition5 editionTitle="{{ edition.name }}" editionAuthor="{{ edition.artistName }}"
-              editionImg="{{ edition.thumbnail }}" artworkId="{{ edition.id }}" editionDate="{{ edition.editionDate }}"
-              editionPrice="{{ edition.ethValue }}" totalamount="{{ edition.totalamount }}"
-              number="{{ edition.number }}" userImageUrl="{{ edition.userImageUrl }}">
+              editionImg="{{ edition.thumbnail }}" artworkId="{{ edition.artworkId }}"
+              editionDate="{{ edition.editionDate }}" editionPrice="{{ edition.ethValue }}"
+              totalamount="{{ edition.totalamount }}" number="{{ edition.number }}"
+              userImageUrl="{{ edition.userImageUrl }}">
             </app-edition5>
           </div>
         </ng-container>
