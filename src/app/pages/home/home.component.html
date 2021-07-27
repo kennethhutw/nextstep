@@ -6,12 +6,14 @@
 
   <div class="row">
     <div id="main-bg" [ngStyle]="setMyStyles()">
-      <div class="main-slogen">
-        {{ "HOMETITLE" | translate }}<br />{{ "DIGITALARTWORKS" | translate }}
+      <div class="container">
+        <div class="main-slogen">
+          {{ "HOMETITLE" | translate }}<br />{{ "DIGITALARTWORKS" | translate }}
+        </div>
+        <button class="main-btn-explore" routerLink="/gallery">
+          {{ "DISCOVER" | translate }}
+        </button>
       </div>
-      <button class="main-btn-explore" routerLink="/gallery">
-        {{ "DISCOVER" | translate }}
-      </button>
     </div>
   </div>
 </div>
