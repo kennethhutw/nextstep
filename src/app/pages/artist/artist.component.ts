@@ -94,6 +94,7 @@ export class ArtistPageComponent implements OnInit {
       this.artistSrv.getArtistArtwork(this.uid).subscribe(res => {
 
         if (res["result"] === "successful") {
+
           this.artistArtworks = res["data"];
           this.artistArtworks.forEach((element) => {
             if (element.thumbnail != null) {
@@ -101,6 +102,9 @@ export class ArtistPageComponent implements OnInit {
             }
             if (element.imageUrl != null) {
               element.imageUrl = environment.assetUrl + element.imageUrl;
+            }
+            if (element.userImageUrl != null) {
+              element.userImageUrl = environment.assetUrl + element.userImageUrl;
             }
             if (!this.utility.IsNullOrEmpty(element['ethValue'])) {
               let eth = parseFloat(element['ethValue']);
@@ -143,7 +147,6 @@ export class ArtistPageComponent implements OnInit {
 
   initCollection(uid) {
     this.userSrv.getUserOwnArtworksByUid(uid).subscribe(res => {
-      console.log("========initCollection", res);
       if (res["result"] === "successful") {
 
         this.collection = res["data"];
@@ -155,6 +158,9 @@ export class ArtistPageComponent implements OnInit {
             }
             if (element.imageUrl != null) {
               element.imageUrl = environment.assetUrl + element.imageUrl;
+            }
+            if (element.userImageUrl != null) {
+              element.userImageUrl = environment.assetUrl + element.userImageUrl;
             }
             if (!this.utility.IsNullOrEmpty(element['ethValue'])) {
               let eth = parseFloat(element['ethValue']);
@@ -185,6 +191,9 @@ export class ArtistPageComponent implements OnInit {
           }
           if (element['thumbnail'] != null) {
             element['thumbnail'] = environment.assetUrl + element['thumbnail'];
+          }
+          if (element.userImageUrl != null) {
+            element.userImageUrl = environment.assetUrl + element.userImageUrl;
           }
         });
         this.displayFavourites = this.favourites;
