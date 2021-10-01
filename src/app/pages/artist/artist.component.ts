@@ -114,6 +114,9 @@ export class ArtistPageComponent implements OnInit {
               element['ethValue'] = 0;
               element['usdValue'] = 0;
             }
+            if (element['status'] == 3) {
+              element['number'] = 0;
+            }
           });
         } else {
 
