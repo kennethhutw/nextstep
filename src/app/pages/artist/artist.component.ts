@@ -94,7 +94,7 @@ export class ArtistPageComponent implements OnInit {
       this.artistSrv.getArtistArtwork(this.uid).subscribe(res => {
 
         if (res["result"] === "successful") {
-
+          console.log("artistArtworks=============", res);
           this.artistArtworks = res["data"];
           this.artistArtworks.forEach((element) => {
             if (element.thumbnail != null) {

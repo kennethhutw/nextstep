@@ -206,26 +206,27 @@ export class RegisterArtistComponent implements OnInit {
     //     return;
     //   }
     // }
-
-    if (!this.utility.IsNullOrEmpty(this.registerForm.value.code)) {
-      if (this.registerForm.value.code.indexOf('inv') > -1) {
-        let result = await this.promoSrv.checkCode(this.registerForm.value.email, this.registerForm.value.code);
-
-        if (result['result'] == 'failed') {
-          this.loading = false;
-          this.message = "Code or Email does not match.";
-          return;
+    /*
+        if (!this.utility.IsNullOrEmpty(this.registerForm.value.code)) {
+          if (this.registerForm.value.code.indexOf('inv') > -1) {
+            let result = await this.promoSrv.checkCode(this.registerForm.value.email, this.registerForm.value.code);
+    
+            if (result['result'] == 'failed') {
+              this.loading = false;
+              this.message = "Code or Email does not match.";
+              return;
+            }
+          } else {
+            let result = await this.promoSrv.IsExist(this.registerForm.value.code);
+    
+            if (result['result'] == 'failed') {
+              this.loading = false;
+              this.message = "Code does not exist.";
+              return;
+            }
+          }
         }
-      } else {
-        let result = await this.promoSrv.IsExist(this.registerForm.value.code);
-
-        if (result['result'] == 'failed') {
-          this.loading = false;
-          this.message = "Code does not exist.";
-          return;
-        }
-      }
-    }
+        */
 
 
     const _editions = this.registerForm.get('editions') as FormArray;
@@ -272,6 +273,13 @@ export class RegisterArtistComponent implements OnInit {
     newArtist.instagram = this.registerForm.value.instagram;
     newArtist.blog = this.registerForm.value.blog;
 
+    const _emailResult = await this.authStore.checkUserData(newArtist.email, null);
+    if (_emailResult["result"] === "successful"
+      && _emailResult["email"] !== null) {
+      this.message = "Email already exists!";
+      this.loading = false;
+      return;
+    }
 
     let formData = new FormData();
     formData.append("code", this.registerForm.value.code);

@@ -238,6 +238,11 @@ export class AuthStore {
     return await this.http.get<any>(`${environment.apiUrl}/authenticate/checkUserData`, { params: params }).toPromise();
   }
 
+  async checkUserEmail(email) {
+
+    return await this.http.get<any>(`${environment.apiUrl}/authenticate/checkUserData/${email}`, {}).toPromise();
+  }
+
 
   verifyToken(token) {
     return this.http.post(`${environment.apiUrl}/authenticate/verifyToken`,
