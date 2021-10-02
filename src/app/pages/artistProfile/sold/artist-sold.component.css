@@ -1,0 +1,7 @@
+.page-item.disabled .page-link {
+    color: #fff !important;
+    pointer-events: none;
+    cursor: auto;
+    background-color: #4A4A4A;;
+    border-color: #dee2e6;
+}

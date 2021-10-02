@@ -16,13 +16,7 @@
             </div>
           </div>
         </div>
-        <div class="card-footer d-flex ">
-          <small class="text-muted">Artists</small>
-          <small class="text-success ml-auto">
-            <i class="fa fa-caret-up" aria-hidden="true"></i>
-            {{artists}}
-          </small>
-        </div>
+
       </div>
     </div>
 
@@ -39,13 +33,7 @@
             </div>
           </div>
         </div>
-        <div class="card-footer d-flex ">
-          <small class="text-muted">Since last month</small>
-          <small class="text-success ml-auto">
-            <i class="fa fa-caret-up" aria-hidden="true"></i>
-            8,66%
-          </small>
-        </div>
+
       </div>
     </div>
 
@@ -62,13 +50,27 @@
             </div>
           </div>
         </div>
-        <div class="card-footer d-flex ">
-          <small class="text-muted">Since last month</small>
-          <small class="text-danger ml-auto">
-            <i class="fa fa-caret-down" aria-hidden="true"></i>
-            2,81%
-          </small>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-6 col-lg-3 mb-4">
+      <div class="card border-0 rounded-0">
+        <div class="card-body">
+          <div class="card-innerBody d-flex align-items-center">
+            <div class="card-icon text-light">
+              <i class="fas fa-dollar-sign" aria-hidden="true"></i>
+            </div>
+            <div class="ml-auto">
+              <p class="card-label text-right text-muted">Total Edition</p>
+              <h4 class="card-text text-right ">{{totalEdition}}</h4>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
 
@@ -77,27 +79,54 @@
         <div class="card-body">
           <div class="card-innerBody d-flex align-items-center">
             <div class="card-icon text-light">
-              <i class="fa fa-heartbeat" aria-hidden="true"></i>
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
             </div>
             <div class="ml-auto">
-              <p class="card-label text-right text-muted">Followers</p>
-              <h4 class="card-text text-right "> +50K</h4>
+              <p class="card-label text-right text-muted">Sold artwork</p>
+              <h4 class="card-text text-right ">{{soldArtwork}}</h4>
             </div>
           </div>
         </div>
-        <div class="card-footer d-flex ">
-          <small class="text-muted">Since last month</small>
-          <small class="text-success ml-auto">
-            <i class="fa fa-caret-up" aria-hidden="true"></i>
-            1,74%
-          </small>
+
+      </div>
+    </div>
+
+    <!-- <div class="col-md-6 col-lg-3 mb-4">
+      <div class="card border-0 rounded-0">
+        <div class="card-body">
+          <div class="card-innerBody d-flex align-items-center">
+            <div class="card-icon text-light">
+              <i class="fa fa-users" aria-hidden="true"></i>
+            </div>
+            <div class="ml-auto">
+              <p class="card-label text-right text-muted">Collector</p>
+              <h4 class="card-text text-right ">{{collectors}}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+
+
+  </div>
+  <div class="row">
+    <div class="col-12 col-xl-6 mb-4">
+      <div class="card border-0 rounded-0">
+        <div class="card-title mb-1 p-3 d-flex">
+          <h6>Chart Bar</h6>
+          <a class="btn ml-auto p-0 text-lightning"> <i class="fas fa-ellipsis-h"></i> </a>
+        </div>
+        <div class="card-body">
+          <div class="chart-container" style="position: relative;">
+            <canvas id="chart-bar" width="2" height="1"></canvas>
+          </div>
         </div>
       </div>
     </div>
 
   </div>
-
-
+  <!--
   <div class="row">
     <div class="col-12 col-xl-6 mb-4">
       <div class="card border-0 rounded-0">
@@ -217,5 +246,5 @@
     </div>
 
   </div>
-
+-->
 </div>

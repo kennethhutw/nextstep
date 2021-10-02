@@ -94,7 +94,7 @@ export class EditionComponent implements OnInit {
         this.InitLike(this.currentUser.id, this.artworkId);
       //  this.editionId = this.route.snapshot.paramMap.get("editionId");
       this.gallerySrv.getEditionDetailByEditionId(this.artworkId).subscribe(res => {
-
+        console.log("getEditionDetailByEditionId ==================", res);
         if (res['result'] === 'successful') {
 
           this.currentArtwork = res['data'];
@@ -394,6 +394,10 @@ export class EditionComponent implements OnInit {
 
         });
     });
+  }
+
+  goToUrl(tx): void {
+    window.open("https://etherscan.io/tx/" + tx, "_blank");
   }
 
 }

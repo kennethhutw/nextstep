@@ -5,7 +5,8 @@ import {
   LikeService,
   AuthStore,
   SettingService,
-  AppSettingsService
+  AppSettingsService,
+  TableService
 } from "./../../../_services";
 import { Utility } from "./../../../_helpers";
 import { environment } from '../../../../environments/environment';
@@ -26,7 +27,16 @@ export class ArtistFavoriteComponent implements OnInit {
   defaultProfileLogo = null;
   searchArtworkText = "";
   searchArtistText = "";
+
+  currentPageIndex = 1;
+  numberElementPerPage = 6;
+  pageMax = 1;
+  pages: number[] = [];
+  current5page: number[] = [0, 1, 2, 3, 4];
+  artworksPageMax = 1;
+  artworksPages: number[] = [];
   constructor(
+    private tableSrv: TableService,
     private appSettingsSrv: AppSettingsService,
     private settingSrv: SettingService,
     private authStoreSrv: AuthStore,
@@ -58,8 +68,6 @@ export class ArtistFavoriteComponent implements OnInit {
 
   initArtist() {
     this.likeSrv.getUserLikeArtist(this.currentUser.id).subscribe(res => {
-
-
       if (res['result'] == 'successful') {
         this.artists = res['data'];
         this.artists.forEach((element) => {
@@ -78,6 +86,7 @@ export class ArtistFavoriteComponent implements OnInit {
 
   initArtWork() {
     this.likeSrv.getUserLikeArtWork(this.currentUser.id).subscribe(res => {
+
       if (res['result'] == 'successful') {
         this.artworks = res['data'];
         this.artworks.forEach((element) => {
@@ -96,6 +105,13 @@ export class ArtistFavoriteComponent implements OnInit {
             element['usdValue'] = 0;
           }
         });
+
+        this.artworksPageMax =
+          Math.floor((this.artworks.length - 1) / this.numberElementPerPage) + 1;
+        for (let p = 0; p < this.artworksPageMax; p++) {
+          this.artworksPages.push(p);
+        }
+        this.current5page = this.InitPagenation(this.artworks);
 
         this.displayArtworks = this.artworks;
       }
@@ -186,4 +202,50 @@ export class ArtistFavoriteComponent implements OnInit {
 
     }
   }
+
+  onPage(i) {
+    return this.tableSrv.Page(i, this.currentPageIndex, this.numberElementPerPage);
+  }
+
+  onChangePage(pageNumber: number) {
+    this.currentPageIndex = pageNumber;
+  }
+
+  more(current5Page, pages) {
+    if (current5Page[4] < pages.length - 1) {
+      current5Page[4] = current5Page[4] + 1;
+      current5Page[3] = current5Page[3] + 1;
+      current5Page[2] = current5Page[2] + 1;
+      current5Page[1] = current5Page[1] + 1;
+      current5Page[0] = current5Page[0] + 1;
+    }
+  }
+
+  less(current5Page) {
+    if (current5Page[0] > 0) {
+      current5Page[0] = current5Page[0] - 1;
+      current5Page[1] = current5Page[1] - 1;
+      current5Page[2] = current5Page[2] - 1;
+      current5Page[3] = current5Page[3] - 1;
+      current5Page[4] = current5Page[4] - 1;
+    }
+
+  }
+
+  InitPagenation(data) {
+    let current5Page = [];
+    let count = 0;
+    for (let i = 0; i < data.length; i++) {
+      if (i % 5 === 0) {
+        current5Page.push(count);
+        if (count < 4) {
+          count = count + 1;
+        } else {
+          break;
+        }
+      }
+    }
+    return current5Page;
+  }
+
 }

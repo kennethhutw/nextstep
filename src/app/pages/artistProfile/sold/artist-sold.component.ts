@@ -6,7 +6,8 @@ import {
   AppSettingsService,
   ArtistService,
   AuthStore,
-  ArtWorkService
+  ArtWorkService,
+  TableService
 } from "../../../_services";
 import { Utility } from "../../../_helpers";
 import { environment } from '../../../../environments/environment';
@@ -22,11 +23,20 @@ export class ArtistSoldArtWorkComponent implements OnInit {
   artworks = [];
   searchText = "";
   displayArtworks = [];
+
+
+  currentPageIndex = 1;
+  numberElementPerPage = 6;
+  pageMax = 1;
+  pages: number[] = [];
+  current5page: number[] = [0, 1, 2, 3, 4];
+  artworksPageMax = 1;
+  artworksPages: number[] = [];
   constructor(
     private artistSrv: ArtistService,
     private artworkSrv: ArtWorkService,
     private appSettingsSrv: AppSettingsService,
-
+    private tableSrv: TableService,
     private authStoreSrv: AuthStore,
     private translateSrv: TranslateService,
     private utility: Utility,
@@ -51,7 +61,15 @@ export class ArtistSoldArtWorkComponent implements OnInit {
         this.artworks.forEach((element) => {
           element['imageUrl'] = environment.assetUrl + element['imageUrl'];
         });
+        this.artworksPageMax =
+          Math.floor((this.artworks.length - 1) / this.numberElementPerPage) + 1;
+        for (let p = 0; p < this.artworksPageMax; p++) {
+          this.artworksPages.push(p);
+        }
+        this.current5page = this.InitPagenation(this.artworks);
+
         this.displayArtworks = this.artworks;
+
       }
       else {
 
@@ -92,5 +110,50 @@ export class ArtistSoldArtWorkComponent implements OnInit {
     } finally {
 
     }
+  }
+
+  onPage(i) {
+    return this.tableSrv.Page(i, this.currentPageIndex, this.numberElementPerPage);
+  }
+
+  onChangePage(pageNumber: number) {
+    this.currentPageIndex = pageNumber;
+  }
+
+  more(current5Page, pages) {
+    if (current5Page[4] < pages.length - 1) {
+      current5Page[4] = current5Page[4] + 1;
+      current5Page[3] = current5Page[3] + 1;
+      current5Page[2] = current5Page[2] + 1;
+      current5Page[1] = current5Page[1] + 1;
+      current5Page[0] = current5Page[0] + 1;
+    }
+  }
+
+  less(current5Page) {
+    if (current5Page[0] > 0) {
+      current5Page[0] = current5Page[0] - 1;
+      current5Page[1] = current5Page[1] - 1;
+      current5Page[2] = current5Page[2] - 1;
+      current5Page[3] = current5Page[3] - 1;
+      current5Page[4] = current5Page[4] - 1;
+    }
+
+  }
+
+  InitPagenation(data) {
+    let current5Page = [];
+    let count = 0;
+    for (let i = 0; i < data.length; i++) {
+      if (i % 5 === 0) {
+        current5Page.push(count);
+        if (count < 4) {
+          count = count + 1;
+        } else {
+          break;
+        }
+      }
+    }
+    return current5Page;
   }
 }

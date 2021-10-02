@@ -29,5 +29,15 @@ export class AdminService {
         return this.http.get<any>(`${environment.apiUrl}/admin/userNumber`);
     }
 
+    artworkNumber() {
+        return this.http.get<any>(`${environment.apiUrl}/admin/artworkNumber`);
+    }
+
+
+
+    getNewSignUpsperDay() {
+        return this.http.get(`${environment.apiUrl}/admin/newSignUps`, {});
+    }
+
 
 }

@@ -426,6 +426,7 @@ body {
 
 .wrapper.default-theme {
   background: #f2f3f8;
+   min-height: 90vh;
 }
 .wrapper.default-theme nav.navbar {
   background: #242939;

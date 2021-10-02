@@ -1,23 +1,16 @@
 <aside class="sidebar shadow-sm">
 
-  <div class="sidebar-profile d-flex flex-column justify-content-center pt-5 pb-3">
-    <div class="picture-wrapper mb-4">
-      <div class="user-picture m-auto">
-        <img src="./assets/img/user.png" class="img-fluid" alt="">
-      </div>
-    </div>
+  <!-- <div class="sidebar-profile d-flex flex-column justify-content-center pt-5 pb-3">
+
     <div class="profile-details text-center pb-4">
       <p class="mb-0 text-uppercase name">{{userUid}}</p>
       <small class="text-uppercase role">Administrator</small>
     </div>
-  </div>
-  <div class="sidebar-search pt-1 pb-1 pl-3 pr-3">
+  </div>-->
+  <!-- <div class="sidebar-search pt-1 pb-1 pl-3 pr-3">
     <input type="search" class="form-control rounded-pill" name="search" placeholder="Search ...">
-  </div>
+  </div> -->
   <nav class="sidebar-menu pt-3 pb-3">
-    <div class="menu-header mt-3 mb-2">
-      Components
-    </div>
     <ul class="menu-items">
       <li>
         <a (click)="logout()">
@@ -37,21 +30,21 @@
         <a href="#" routerLink="/admin/dashboard" routerLinkActive="active">
           <i class="fa fa-tv"></i>
           <span>Dashboard</span>
-          <span class="badge badge-warning rounded-0 text-dark p-1">NEW</span>
+          <!-- <span class="badge badge-warning rounded-0 text-dark p-1">NEW</span> -->
         </a>
       </li>
       <li>
         <a href="#" routerLink="/admin/blockchain" routerLinkActive="active">
           <i class="fa fa-square"></i>
           <span>blockchain</span>
-          <span class="badge badge-warning rounded-0 text-dark p-1">NEW</span>
+          <!-- <span class="badge badge-warning rounded-0 text-dark p-1">NEW</span> -->
         </a>
       </li>
       <li>
         <a href="#" routerLink="/admin/users" routerLinkActive="active">
           <i class="fa fa-user"></i>
           <span>Users</span>
-          <span class="badge badge-warning rounded-0 text-dark p-1">NEW</span>
+          <!-- <span class="badge badge-warning rounded-0 text-dark p-1">NEW</span> -->
         </a>
       </li>
       <li>
@@ -59,7 +52,6 @@
         <a href="#" routerLink="/admin/editions" routerLinkActive="active">
           <i class="fa fa-image"></i>
           <span>Edition</span>
-
         </a>
       </li>
       <li>
@@ -68,56 +60,8 @@
           <span>Settings</span>
         </a>
       </li>
-      <li>
-        <a href="#" routerLink="/admin/delegate" routerLinkActive="active">
-          <i class="fas fa-envelope"></i>
-          <span>Delegate</span>
-        </a>
-      </li>
-      <li>
-        <a href="#" routerLink="/admin/promo" routerLinkActive="active">
-          <i class="fas fa-code"></i>
-          <span>Promo</span>
 
-        </a>
-      </li>
-      <li>
-        <a href="#" routerLink="/admin/forms" routerLinkActive="active">
-          <i class="fas fa-gem"></i>
-          <span>Forms</span>
-        </a>
-      </li>
-      <li>
-        <a href="#" routerLink="/admin/tables" routerLinkActive="active">
-          <i class="fa fa-table"></i>
-          <span>Tables</span>
-        </a>
-      </li>
-      <li>
-        <a href="#" routerLink="/admin/typography" routerLinkActive="active">
-          <i class="fa fa-align-center"></i>
-          <span>Typography</span>
-        </a>
-      </li>
-      <li>
-        <a href="#" routerLink="/admin/maps" routerLinkActive="active">
-          <i class="fa fa-globe"></i>
-          <span>Maps</span>
-        </a>
-      </li>
-      <li>
-        <a href="#" routerLink="/admin/notifications" routerLinkActive="active">
-          <i class="fas fa-bell"></i>
-          <span>Notifications</span>
-        </a>
-      </li>
     </ul>
-    <div class="menu-header mt-4 mb-4">
-      Github Repo
-    </div>
-    <div class="view-source mb-3">
-      <a href="https://github.com/azouaoui-med/lightning-admin-angular" target="_blank"
-        class="btn btn-block btn-lightning rounded-0">View Source</a>
-    </div>
+
   </nav>
 </aside>

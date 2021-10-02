@@ -80,23 +80,23 @@
       </div>
       <hr class="mt-30 mb-30" />
       <h6 style="font-size: 18px;">{{ "HISTORY" | translate }}</h6>
-      <table class="table project_info_trans_record" style="    margin-bottom: 150px;">
+      <table class="table project_info_trans_record" style="margin-bottom: 150px;">
         <thead>
           <tr>
             <th scope="col" style="font-weight: 300;">{{ "OWNER" | translate }}</th>
-            <th scope="col" style="font-weight: 300;">{{ "PRICE" | translate }}</th>
+            <th scope="col" style="font-weight: 300;">{{ "TX" | translate }}</th>
             <th scope="col" style="font-weight: 300;">{{ "DATE" | translate }}</th>
           </tr>
         </thead>
         <tbody>
 
-          <!-- <ng-container *ngFor="let tx of transactions| slice:0:6; let i = index">
+          <ng-container *ngFor="let tx of this.currentArtwork.transactions; let i = index">
             <tr>
-              <td>Mark Liu</td>
-              <td>Ξ 0.11 / NTD 138</td>
-              <td>{{tx.createdAt}}</td>
+              <td>{{tx.from | addressshorten}}</td>
+              <td> <a (click)="goToUrl(tx.transactionHash)" target="_blank">[view tx]</a></td>
+              <td>{{tx.createdAt | date : 'yyyy-MM-dd HH:mm:ss'}}</td>
             </tr>
-          </ng-container> -->
+          </ng-container>
           <!-- <tr>
             <td>Mark Liu</td>
             <td>Ξ 0.11 / NTD 138</td>
