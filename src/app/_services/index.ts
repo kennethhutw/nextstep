@@ -23,6 +23,7 @@ import { UserTourService } from './user-tour.service';
 import { PromoService } from './promo.service';
 import { SeoService } from './seo.service';
 import { ScrollService } from './scroll.service';
+import { TxService } from './tx.service';
 
 export const services = [
     AdminService,
@@ -48,7 +49,8 @@ export const services = [
     UserTourService,
     PromoService,
     SeoService,
-    ScrollService];
+    ScrollService,
+    TxService];
 
 
 
@@ -78,3 +80,4 @@ export { PromoService } from './promo.service';
 export { SeoService } from './seo.service';
 export { GoogleAnalyticsService } from './google-analytics.service';
 export { ScrollService } from './scroll.service';
+export { TxService } from './tx.service';

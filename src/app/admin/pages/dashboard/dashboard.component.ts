@@ -146,7 +146,6 @@ export class DashboardComponent implements OnInit {
     })
 
     this.adminSrv.getNewSignUpsperDay().subscribe(res => {
-      console.log(" ======== ", res);
       if (res["result"] == "successful") {
         const series: any = {
           name: 'Users',

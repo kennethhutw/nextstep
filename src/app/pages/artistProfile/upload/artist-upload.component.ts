@@ -208,7 +208,12 @@ export class ArtistUploadComponent implements OnInit {
             .map((ch) => {
               ch.selected = false;
             });
-          this.informArtist(this.artworkForm.value.name);
+          this.informArtist(this.artworkForm.value.name, 'We have received your artwork for tokenize',
+            this.currentUser.name,
+            this.currentUser.email);
+          this.informArtist(this.artworkForm.value.name, this.artworkForm.value.name + 'upload An artwork',
+            "Kenneth",
+            "kenneth@formosart.io");
           this.artworkForm.reset();
           this.artworkImageFile = null;
           this.artworkImage = null;
@@ -310,15 +315,15 @@ export class ArtistUploadComponent implements OnInit {
   }
 
 
-  informArtist(artworkName) {
+  informArtist(artworkName, subject, name, email) {
     //let id = this.edition.firstnumber + 1;
     let domain = window.location.origin;
     let url = '/artist/collection';
     let link = domain + url;
     this.emailSrv.sendReceivedArtworkEmail(
-      'We have received your artwork for tokenize',
-      this.currentUser.name,
-      this.currentUser.email,
+      subject,
+      name,
+      email,
       link,
       artworkName,
       this.currentUser.id).subscribe(sendRes => {

@@ -2,9 +2,10 @@ import {
   Component, OnInit,
   ViewChild,
   HostListener,
-  AfterViewInit, OnDestroy
+  OnDestroy,
+  ChangeDetectorRef
 } from '@angular/core';
-import { UserService, ToastService } from '../../../_services';
+import { TxService, ToastService } from '../../../_services';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
 import { BsDaterangepickerDirective } from 'ngx-bootstrap/datepicker';
@@ -15,10 +16,13 @@ import {
   animate,
   transition,
 } from '@angular/animations';
+
+import { environment } from './../../../../environments/environment';
+
 @Component({
-  selector: 'app-adminusers',
-  templateUrl: './adminusers.component.html',
-  styleUrls: ['./adminusers.component.css'],
+  selector: 'app-tx',
+  templateUrl: './tx.component.html',
+  styleUrls: ['./tx.component.css'],
   animations: [
     trigger('slideInOut', [
       state('in', style({
@@ -37,17 +41,19 @@ import {
     ])
   ]
 })
-export class AdminUsersComponent implements OnInit {
+export class TransactionComponent implements OnInit {
 
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
-  users: Array<any> = [];
-  displayUsers: Array<any> = [];
+  items: Array<any> = [];
+  displayItems: Array<any> = [];
   isLoading = true;
 
   dtTrigger: Subject<any> = new Subject();
 
   dtOptions: DataTables.Settings = {};
+  currentArtworkURL = "";
+
   datepickerConfig = {
     containerClass: 'theme-default',
     isAnimated: true,
@@ -57,11 +63,8 @@ export class AdminUsersComponent implements OnInit {
     returnFocusToInput: true
   };
 
-  sendEmail = '';
-  // fiter
-  filterPanelOpen: string;
-  FromDate: string;
-  ToDate: string;
+
+
   @ViewChild(BsDaterangepickerDirective) datepicker: BsDaterangepickerDirective;
 
   @HostListener('window:scroll')
@@ -74,13 +77,13 @@ export class AdminUsersComponent implements OnInit {
   }
 
   constructor(
+    private changeDetectorRef: ChangeDetectorRef,
     private toastSrv: ToastService,
-    private userSrv: UserService
+    private txSrv: TxService
   ) { }
 
   ngOnInit() {
-    this.filterPanelOpen = 'out';
-    this.getAllUser();
+    this.getTxs();
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
@@ -111,32 +114,28 @@ export class AdminUsersComponent implements OnInit {
           pageLength: 2,
           order: [[7, 'desc']]
         };
-        this.getAllUser();
+        this.getTxs();
         //  dtInstance.draw();
       });
     }
   }
 
-  getVerified(verified: number): string {
-    if (verified === 1) {
-      return 'Verified';
-    } else {
-      return 'No';
-    }
-  }
 
-  getAdmin(IsAdmin: boolean): string {
-    if (IsAdmin === true) {
-      return 'Admin';
-    }
-  }
-  getAllUser() {
-    this.userSrv.getAllUser().subscribe(res => {
-
-      this.users = res['data'];
-      this.displayUsers = this.users;
+  getTxs() {
+    this.txSrv.getTxs().subscribe(res => {
+      console.log("====================", res);
+      this.items = res['data'];
+      this.items.forEach((element) => {
+        if (element.imageUrl != null) {
+          element.imageUrl = environment.assetUrl + element.imageUrl;
+        }
+        if (element.thumbnail != null) {
+          element.thumbnail = environment.assetUrl + element.thumbnail;
+        }
+      });
+      this.displayItems = this.items;
     }, error => {
-      console.error("Get all users failed :", error);
+      console.error("Get getTxs failed :", error);
     }, () => {
       this.isLoading = false;
     });
@@ -157,41 +156,10 @@ export class AdminUsersComponent implements OnInit {
     return _role;
   }
 
-  deleteUser(id, name) {
-    try {
-      this.userSrv.deleteUser(id).subscribe(res => {
-        if (res["result"] == "successful") {
-          this.getAllUser();
-          this.toastSrv.showToast('Success',
-            "delete " + name,
-            this.toastSrv.iconClasses.success);
-        } else {
-          this.toastSrv.showToast('Failed',
-            res['message'],
-            this.toastSrv.iconClasses.error);
-        }
-      })
-    } catch (error) {
-      console.error('delete user failed', error);
-      this.toastSrv.showToast('Failed',
-        error.message,
-        this.toastSrv.iconClasses.error);
-    }
-  }
+  viewImage(path) {
 
-  onChange(value) {
-    if (value !== "") {
-      this.displayUsers = this.users.filter(user => {
-        if (value == 'admin' && user.roles.admin) {
-          return true;
-        } else if (value == 'artist' && user.roles.artist) {
-          return true;
-        } else if (value == 'collector' && user.roles.collector) {
-          return true;
-        }
-      });
-    } else {
-      this.displayUsers = this.users;
-    }
+    this.currentArtworkURL = path;
+    this.changeDetectorRef.detectChanges();
+    document.getElementById('openViewImgModalButton').click();
   }
 }

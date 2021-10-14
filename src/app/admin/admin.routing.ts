@@ -21,4 +21,5 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'delegate', component: Containers.AdminDelegateEmailComponent },
   { path: 'promo', component: Containers.AdminPromoComponent },
   { path: 'settings', component: Containers.AdminSettingsComponent },
+  { path: 'tx', component: Containers.TransactionComponent },
 ];

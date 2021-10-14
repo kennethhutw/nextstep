@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:3000',
-  assetUrl: 'http://localhost:3000',
+  assetUrl: 'https://host.formosa.finance',
   assetAPIUrl: 'http://localhost:3000',
   environment: 'staging',
   contractAddress: '0xfc3a6059ddd3ced1b59df596c49f83244a4f64f7',

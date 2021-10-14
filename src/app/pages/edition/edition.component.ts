@@ -233,7 +233,8 @@ export class EditionComponent implements OnInit {
         this.Web3Srv.purchase('purchase', weiSoldValue, this.currentArtwork.firstnumber).then(async res => {
           this.currentArtwork.status = 3;
           let networkId = await this.Web3Srv.getNetworkId();
-
+          this.informUser("Kenneth", "kenneth@formosart.io");
+          this.informUser("Yung Liang", "heyevolet@formosart.io");
           this.artworkSrv.purchase(this.currentUser.id,
             res['from'],
             this.currentArtwork.usdValue * 100,
@@ -317,7 +318,6 @@ export class EditionComponent implements OnInit {
       link,
       this.currentArtwork.name,
       this.currentUser.id).subscribe(sendRes => {
-        console.log("error = ", sendRes);
         if (sendRes['result'] == 'successful') {
           //         this.toastSrv.showToast('Success', "Inform Email Sent", this.toastSrv.iconClasses.success);
         } else {
@@ -328,6 +328,29 @@ export class EditionComponent implements OnInit {
       }, error => {
         console.error("error = ", error);
         //       this.toastSrv.showToast('Failed', error, this.toastSrv.iconClasses.error);
+      });
+  }
+
+  informUser(name, email) {
+
+    let domain = window.location.origin;
+    let url = '/gallery/' + this.artworkId;
+    let link = domain + url;
+    this.emailSrv.sendSoldEmail(
+      'Artwork sold',
+      name,
+      email,
+      link,
+      this.currentArtwork.name,
+      this.currentUser.id).subscribe(sendRes => {
+        if (sendRes['result'] == 'successful') {
+          //         this.toastSrv.showToast('Success', "Inform Email Sent", this.toastSrv.iconClasses.success);
+        } else {
+          //       this.toastSrv.showToast('Failed', sendRes['message'], this.toastSrv.iconClasses.error);
+        }
+
+      }, error => {
+        console.error("error = ", error);
       });
   }
 

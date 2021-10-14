@@ -15,8 +15,10 @@ import { AdminDelegateEmailComponent } from './pages/delegateEmail/delegate-emai
 import { UserInfoComponent } from './pages/users/info/info.component';
 import { AdminPromoComponent } from './pages/promo/promo.component';
 import { AdminSettingsComponent } from './pages/settings/settings.component';
+import { TransactionComponent } from './pages/tx/tx.component';
 
 export const containers = [
+    TransactionComponent,
     DashboardComponent,
     ApplicationComponent,
     TablesComponent,
@@ -53,3 +55,4 @@ export { AdminDelegateEmailComponent } from './pages/delegateEmail/delegate-emai
 export { UserInfoComponent } from './pages/users/info/info.component';
 export { AdminPromoComponent } from './pages/promo/promo.component';
 export { AdminSettingsComponent } from './pages/settings/settings.component';
+export { TransactionComponent } from './pages/tx/tx.component';
