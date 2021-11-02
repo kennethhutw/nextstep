@@ -1,0 +1,80 @@
+<div id="findcontent" class="container mb-50 row">
+  <div class="col-md-3">
+    <aside class="sidebar  shadow-lg">
+      <nav class="sidebar-menu pt-3 pb-3">
+        <ul class="menu-items" style="padding-left: 20px;">
+          <li>
+            <h4>專長</h4>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">設計</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">行銷</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">產品管理</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">專案管理</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">軟體開發</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">創業創新</label>
+          </li>
+        </ul>
+        <ul class="menu-items" style="padding-left: 20px;">
+          <li>
+            <h4>主題</h4>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">找工作</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">職涯建議</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">領導能力</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">導師能力</label>
+          </li>
+
+        </ul>
+      </nav>
+    </aside>
+
+  </div>
+  <div class="col-md-9">
+
+
+    <div class="row" *ngIf="displayItems.length ===0" style="height:300px">
+    </div>
+    <!--person-->
+    <ng-container *ngIf="displayItems">
+      <div class="row">
+        <ng-container *ngFor="let item of  displayItems; let i = index">
+          <div class="col-md-6 text-center">
+            <app-user-card [user]="item"></app-user-card>
+          </div>
+        </ng-container>
+      </div>
+
+    </ng-container>
+  </div>
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+  <p style="color: white">Please Wait. </p>
+</ngx-spinner>

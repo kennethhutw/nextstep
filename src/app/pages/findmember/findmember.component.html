@@ -1,0 +1,113 @@
+<div id="findcontent" class="container mb-50 row">
+  <div class="col-md-3">
+    <aside class="sidebar  shadow-lg">
+      <nav class="sidebar-menu pt-3 pb-3">
+        <ul class="menu-items" style="padding-left: 20px;">
+          <li>
+            <h4>合作方式</h4>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">遠端/線上</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">實體</label>
+          </li>
+          <li>
+            <h4>技能</h4>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">設計</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">金融相關</label>
+          </li>
+
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">行銷/品牌成長</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">產品管理</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">公共關係</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">業務開發</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">資金募集</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">法律</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">品牌營運/策略</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">程式撰寫</label>
+          </li>
+          <li>
+            <h4>每周願意投入時長</h4>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">1至2小時</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">3至4小時</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">5至6小時</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">7至8小時</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">9小時以上(含)</label>
+          </li>
+          <li>
+            <input type="text" class="form-control search" aria-label="" aria-describedby="button-addon2" />
+          </li>
+        </ul>
+
+      </nav>
+    </aside>
+
+  </div>
+  <div class="col-md-9">
+
+
+    <div class="row" *ngIf="displayItems.length ===0" style="height:300px">
+    </div>
+    <!--person-->
+    <ng-container *ngIf="displayItems">
+      <div class="row">
+        <ng-container *ngFor="let item of  displayItems; let i = index">
+          <div class="col-md-6 text-center">
+            <app-user-card [user]="item"></app-user-card>
+          </div>
+        </ng-container>
+      </div>
+
+    </ng-container>
+  </div>
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+  <p style="color: white">Please Wait. </p>
+</ngx-spinner>

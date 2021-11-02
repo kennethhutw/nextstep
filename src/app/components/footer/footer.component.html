@@ -2,58 +2,23 @@
 <div class="container-fluid" id="footer_bg">
   <div class="row">
     <div class="col-md-3">
-      <a class="navbar-brand" routerLink="/index">
+      <h3 style="color: white;">Next</h3>
+      <!-- <a class="navbar-brand" routerLink="/index">
         <img class="footer-logo" src="./../../../assets/images/formosart_footer_logo.svg" />
-      </a>
+      </a> -->
     </div>
 
-    <div class="col-md-7">
-      <div class=" col-sm-6 col-xs-6 col-md-12">
-        <ul>
-          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-            <a routerLink="/about">
-              {{ "ABOUTUS" | translate }}
-            </a>
-          </li>
-          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-            <a routerLink="/policy">
-              {{ "PRIVACY" | translate }}
-            </a>
-          </li>
-          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-            <a routerLink="/qa">
-              {{ "Q&A" | translate }}
-            </a>
-          </li>
-          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-            <a routerLink="/for-artist">
-              {{ "FORARTIST" | translate }}
-            </a>
-          </li>
-          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-            <a routerLink="/for-buyer">
-              {{ "FORCOLLECTOR" | translate }}
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div class="col-xs-6 col-md-12  col-sm-5">
-        <ul>
-          <li>
-            <a href="https://t.me/formosart" target="_blank"><i class="fab fa-telegram-plane"></i>
-              Telegram</a>
-          </li>
-          <li>
-            <a href="https://medium.com/formosaart" target="_blank"><i class="fab fa-medium-m"></i> Medium</a>
-          </li>
-          <li> <a href="https://twitter.com/FormosArt" target="_blank">
-              <i class="fab fa-twitter"> </i> twitter
-            </a></li>
-        </ul>
-      </div>
+    <div class=" form-inline col-md-9 text-white">
+      <span style="padding-left:20px;padding-right: 20px;">關於我們</span>
+      <span style="padding-left:20px;padding-right: 20px;">常見問題</span>
+      <span style="padding-left:20px;padding-right: 20px;">意見回饋</span>
+      <span style="padding-left:20px;padding-right: 20px;">支持我們</span>
+      <span style="padding-left:20px;padding-right: 20px;">服務條款</span>
     </div>
 
-    <div class="col-md-2 test">
+
+
+    <!-- <div class="col-md-2 test">
       <div>
         <select [(ngModel)]="SelectedLang" class="footer_dropdown" #Lang (change)="changeLanguage(Lang.value)">
           <option value="zh-tw">繁體中文</option>
@@ -61,7 +26,7 @@
           <option value="en">English</option>
         </select>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>
 <!-- footer area end -->

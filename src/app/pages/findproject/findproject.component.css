@@ -1,0 +1,25 @@
+.show_tags {
+  height: auto !important;
+}
+
+.search {
+      background-color: #fff;
+    border-radius: 0;
+    color: #363636;
+     border: 2px solid #dbdbdb;
+  /* border: 2px solid #17f596; */
+  border-radius: 3px;
+    padding: 22px 15px 22px 60px;
+  background-image: url("../../../assets/images/icon_search.png");
+  background-position: left;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+}
+
+
+.title{
+  font-family: "Noto Serif JP", sans-serif;
+  margin-bottom: 12px;
+  font-weight:700;
+  font-size: 36px;
+}

@@ -1,0 +1,89 @@
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+.search_input{
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #210b2c;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 0;
+}
+.bio {
+    font-size: 1.5rem;
+    color: #210b2c;
+}
+.text-center {
+    text-align: center!important;
+}
+.mt-4, .my-4 {
+    margin-top: 1.5rem!important;
+}
+
+.ml-3, .mx-3 {
+    margin-left: 1rem!important;
+}
+
+
+.profile-image {
+    vertical-align: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+
+.card {
+    background-color: white;
+    box-shadow: 0 .5rem 1rem rgba(43,42,53,.075)!important;
+    border: 1px solid #e1eaea !important;
+    color: black;
+}
+
+.card.card-white {
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    box-shadow: 0 0.05rem 0.01rem rgba(75, 75, 90, 0.075);
+    padding: 25px;
+}
+.grid-margin {
+    margin-bottom: 2rem;
+}
+.artist{
+    cursor: pointer;
+}
+.name {
+      font-family: "Noto Serif JP", sans-serif;
+      font-weight: 400;
+}
+th{
+    font-weight: 300;
+}
+
+.discr{
+    min-height: 70px;
+    text-align: left;
+    padding:10px;
+}
+
+.mr-5{
+    margin-right:5px !important;
+}
+.label.label-success {
+    background: #43d39e;
+}
+.label {
+    font-weight: 400;
+    padding: 4px 8px;
+    font-size: 11px;
+    display: inline-block;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25em;
+}

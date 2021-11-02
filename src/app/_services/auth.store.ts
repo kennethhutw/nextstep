@@ -1,18 +1,21 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 import { EmailService, UserService } from '../_services';
-
-
 import { environment } from "./../../environments/environment";
 import { UserInterface } from "../_models/user.model";
 import { resResult } from "./../_models";
 import { map, shareReplay, tap } from "rxjs/operators";
-
-
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Utility } from "../_helpers";
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import {
+  AuthService,
+  FacebookLoginProvider,
+  GoogleLoginProvider,
+  LinkedinLoginProvider
+} from 'angular-6-social-login';
+
 const AUTH_DATA = "auth_data";
 @Injectable({
   providedIn: "root",
@@ -34,7 +37,8 @@ export class AuthStore {
     private http: HttpClient,
     private utility: Utility,
     private emailService: EmailService,
-    private userSrv: UserService) {
+    private userSrv: UserService,
+    private socialAuthService: AuthService) {
     this.isLoggedIn$ = this.user$.pipe(map((user) => !!user));
 
     this.isLoggedOut$ = this.isLoggedIn$.pipe(map((LoggedIn) => !LoggedIn));
@@ -48,90 +52,6 @@ export class AuthStore {
     }
   }
 
-  walletSignup(walletAddress: string, role: string): Observable<resResult> {
-    return this.http
-      .post<resResult>(`${environment.apiUrl}/authenticate/walletSignUp`, {
-        address: walletAddress,
-        role: role,
-      })
-      .pipe(
-        tap((resResult) => {
-          const _user = resResult.data as UserInterface;
-
-          localStorage.setItem(AUTH_DATA, JSON.stringify(_user));
-          this.subject.next(_user);
-        }),
-        shareReplay()
-      );
-  }
-
-  walletSignin(walletAddress: string, role: string): Observable<any> {
-    return this.http
-      .post<any>(`${environment.apiUrl}/authenticate/walletLogin`, {
-        address: walletAddress,
-        role: role,
-      })
-
-      .pipe(
-        tap((resResult) => {
-          if (resResult["result"] === "successful") {
-            const _user = resResult.data as UserInterface;
-
-            localStorage.setItem("access_token", resResult.token);
-            if (!this.utility.IsNullOrEmpty(_user)) {
-              localStorage.setItem(AUTH_DATA, JSON.stringify(_user));
-            }
-            this.subject.next(_user);
-          }
-        }),
-        shareReplay(),
-        catchError(errorRes => {
-          let errorMsg = 'An unknow error occurred!';
-          if (!errorRes.error || !errorRes.error.error
-          ) {
-            return throwError(errorMsg);
-          }
-          switch (errorRes.error.error.message) {
-            case 'EMAIL_EXISTS':
-              errorMsg = 'This wallet exists already';
-          }
-          return throwError(errorMsg);
-        })
-      );
-  }
-
-  ArtistSignup(artist): Observable<resResult> {
-    return this.http
-      .post<resResult>(`${environment.apiUrl}/authenticate/artistSignup`,
-        artist
-      )
-      .pipe(
-        tap((resResult) => {
-          console.log("ArtistSignup resResult :", resResult);
-          // const _user = resResult.data as UserInterface;
-          // this.subject.next(_user);
-          // localStorage.setItem(AUTH_DATA, JSON.stringify(_user));
-        }),
-        shareReplay()
-      );
-  }
-
-  // signup(email: string, password: string, role: string): Observable<resResult> {
-  //   return this.http
-  //     .post<resResult>(`${environment.apiUrl}/authenticate/emailSignUp`, {
-  //       email,
-  //       password,
-  //       role,
-  //     })
-  //     .pipe(
-  //       tap((resResult) => {
-  //         const _user = resResult.data as UserInterface;
-  //         this.subject.next(_user);
-  //         localStorage.setItem(AUTH_DATA, JSON.stringify(_user));
-  //       }),
-  //       shareReplay()
-  //     );
-  // }
 
   signup(name: string, email: string, password: string, walletAddress: string, role: string): Observable<resResult> {
     return this.http
@@ -168,6 +88,26 @@ export class AuthStore {
         }),
         shareReplay()
       );
+  }
+
+  public socialSignIn(socialPlatform: string) {
+    let socialPlatformProvider;
+    if (socialPlatform == "facebook") {
+      socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
+    } else if (socialPlatform == "google") {
+      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+    } else if (socialPlatform == "linkedin") {
+      socialPlatformProvider = LinkedinLoginProvider.PROVIDER_ID;
+    }
+
+    return this.socialAuthService.signIn(socialPlatformProvider).then(
+      (userData) => {
+        console.log(socialPlatform + " sign in data : ", userData);
+        // Now sign-in with userData
+        // ...
+
+      }
+    );
   }
 
   logout() {

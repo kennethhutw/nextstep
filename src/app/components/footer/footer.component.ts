@@ -22,7 +22,7 @@ export class FooterComponent implements OnInit {
       this.SelectedLang = _lang;
     } else {
       this.translateSrv.use(this.SelectedLang);
-      localStorage.setItem("lang", "en")
+      localStorage.setItem("lang", "zh-tw")
     }
     // } else {
     //   let _browserLang = this.translateSrv.getBrowserLang();

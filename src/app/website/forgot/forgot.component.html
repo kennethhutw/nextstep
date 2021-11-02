@@ -1,0 +1,47 @@
+<div class="container" style="background-color: white;">
+    <div style="margin-top:100px;" class="row">
+
+    </div>
+    <div class="row">
+
+        <div class="col-md-6">
+            <img class="img-fluid" src="https://fakeimg.pl/500x500/">
+        </div>
+        <div class="col-md-6 frame">
+            <div class="w-100">
+                <a routerLink="/"> <i class="far fa-arrow-alt-circle-left"></i></a>
+            </div>
+            <div class="w-100 next-font mt-30">
+                <h2>忘記密碼?</h2>
+            </div>
+            <div class="w-100 mt-30">
+                請輸入電子信箱，我們將寄送重設密碼的連結給您。
+            </div>
+
+            <form class="mt-30" [formGroup]="loginForm">
+                <div class="form-group" style="font-family: var(--font-nunito);">
+
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        formControlName="email"
+                        [ngClass]="{ 'is-invalid': (loginForm.get('email').touched || loginForm.get('email').dirty) && loginForm.get('email').invalid || submit && loginForm.get('email').invalid }"
+                        placeholder="hi@next.com">
+                    <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i> Invalid email
+                        address.</span>
+                </div>
+                <div>
+
+                </div>
+                <button type="submit" class="btn btn-social w-100 d-flex align-items-center justify-content-center"
+                    style="height: 45px; margin-top: 30px;" [disabled]="disableSignUp" (click)="onSubmit()">
+                    寄送
+                    <div *ngIf="disableSignUp" class="spinner-border ml-3" style="height: 1.5rem; width: 1.5rem;"
+                        role="status"></div>
+                </button>
+            </form>
+
+
+
+        </div>
+
+    </div>
+</div>

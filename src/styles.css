@@ -105,8 +105,10 @@
         border-bottom:1px solid #17F596;
     }
 
+
+
     #content-mt{
-        padding-top:120px;
+        padding-top:100px;
     }
 
     #content-mt-60{
@@ -358,6 +360,11 @@ body {
     color:#08AB65 !important;
 }
 
+    #findcontent{
+      margin-right: 61.5px;
+      margin-left: 61.5px;
+      margin-top: 120px;
+    }
 #content-mt {
   margin-top: 120px;
 }
@@ -474,6 +481,31 @@ input:focus:-ms-input-placeholder {
   box-shadow: 0 0 10px #17f596;
   transition: all 0.3s ease-in-out;
 }
+
+.main-btn {
+  font-size: 15px;
+  /* padding: 15px 60px; */
+  /* padding: 3px 8px; */
+ padding-left: 4px;
+ padding-right: 4px;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  color: rgba(0, 0, 0, 0.5);
+  margin-top: 20px;
+}
+
+.main-btn:hover {
+  font-size: 15px;
+ padding-left: 4px;
+ padding-right: 4px;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  color: rgba(0, 0, 0, 0.5);
+  margin-top: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease-in-out;
+}
+
 
 .index-title {
   margin-top: 30px;
@@ -664,12 +696,13 @@ box-shadow:0 0 5px #fff;
 
 .index_title {
   font-size: 60px;
-  margin-top: 80px;
+  margin-top: 40px;
   /* font-weight: bold; */
   line-height: 60px;
   margin-bottom: 30px;
     font-family: "Noto Serif JP", sans-serif;
     font-weight: 200;
+        margin-bottom: 100px;
 }
 
 .index_title span {
@@ -1121,7 +1154,7 @@ box-shadow:0 0 5px #fff;
 
 /**member artist**/
 .bgc-member{
-    background-image:url("./assets/images/bgc_member.jpg");
+    background-image:url("./assets/images/home1.jpg");
 }
 
 .member_img_w{
@@ -1377,7 +1410,7 @@ box-shadow:0 0 5px #fff;
 }
 
 .page_404_bg{
-    background-image:url("./assets/images/bgc_member.jpg");
+    background-image:url("./assets/images/home1.jpg");
     min-height:600px;
 }
 .page_launch_bg{
@@ -1404,8 +1437,8 @@ font-size:12px;
 }
 
 .profile_image{
-  height: 120px  !important;
-  width: 120px !important;
+  height: 120px  ;
+  width: 120px ;
 }
 
 .no-msg{
@@ -1674,4 +1707,138 @@ font-size:12px;
 }
 .f-22{
     font-size: 22px;
+}
+
+
+
+  .sidebar {
+  height: 100%;
+    /* width: 200px; */
+  position: absolute;
+  transition: left 0.3s ease;
+  left: -260px;
+  top: 0;
+  z-index: 111;
+  overflow: auto;
+}
+  .sidebar > div {
+  border-bottom: 1px solid;
+}
+  .sidebar > div:last-child {
+  border-bottom: none;
+}
+  .sidebar .sidebar-profile .user-picture {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+  .sidebar .sidebar-profile .user-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+  .sidebar .sidebar-profile .profile-details .name {
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+  .sidebar .sidebar-profile .profile-details .role {
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+  .sidebar .sidebar-search {
+  display: none;
+}
+  .sidebar .sidebar-menu > div {
+  padding: 0 1.5rem;
+}
+  .sidebar .sidebar-menu .menu-header {
+  padding: 0 1.5rem;
+  font-size: 1.75rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+  .sidebar .sidebar-menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+  .sidebar .sidebar-menu ul li {
+  display: block;
+}
+  .sidebar .sidebar-menu ul li a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 45px;
+  line-height: 45px;
+  padding: 0 1.5rem;
+  font-size: 0.8rem;
+  letter-spacing: 0px;
+  font-weight: 600;
+  color: black;
+}
+.active{
+    display:block;
+    /* border:1px solid #4A4A4A; */
+    /* background-color: #4A4A4A; */
+    /* text-align:center;
+    border-radius:25px;
+    line-height:45px;
+    margin-bottom:10px; */
+    color:#FFF !important;
+}
+
+
+
+  .sidebar .sidebar-menu ul li a i {
+  font-size: 1rem;
+}
+  .sidebar .sidebar-menu ul li a span {
+  color: inherit;
+  margin-left: 1rem;
+}
+@media (min-width: 768px) {
+    .sidebar {
+    position: static;
+    height: 100%;
+  }
+}
+@media (min-width: 768px) {
+  .pinned-sidebar .navbar-header {
+    width: 70px !important;
+  }
+  .pinned-sidebar .navbar-header span {
+    display: none !important;
+  }
+  .pinned-sidebar .sidebar {
+    width: 70px;
+  }
+  .pinned-sidebar .sidebar .sidebar-profile .user-picture {
+    width: 40px;
+    height: 40px;
+  }
+  .pinned-sidebar .sidebar .profile-details,
+.pinned-sidebar .sidebar .menu-header,
+.pinned-sidebar .sidebar .view-source {
+    display: none;
+  }
+  .pinned-sidebar .sidebar .sidebar-menu ul a {
+    padding: 0.5rem;
+    justify-content: center;
+  }
+  .pinned-sidebar .sidebar .sidebar-menu ul a span {
+    display: none;
+  }
+}
+.toggeled-sidebar .sidebar {
+  left: 0;
+}
+.invalid {
+  width: 100%;
+  margin-top: .25rem;
+  color: #dc3545;
 }

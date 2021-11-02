@@ -167,42 +167,7 @@ export class HeaderComponent implements OnInit {
     // }
   }
 
-  walletSignin() {
 
-    if (this.web3Srv.ethEnabled()) {
-      this.web3Srv.getAccountDetail().then(
-        (data) => {
-          this.authStoreSrv.walletSignin(data.address, "collector").subscribe((result) => {
-            this.currentUser = this.authStoreSrv.getUserData();
-            if (this.currentUser) {
-              this.authStoreSrv.user$.subscribe(user => { this.currentUser = user });
-            }
-            if (this.currentUser.firstTime == 1) {
-              this.userSrv.setFirstTime(this.currentUser.id, "0").subscribe(res => {
-                console.log(" setFirstTime", res);
-              }, error => {
-                console.log(" setFirstTime", error);
-              });
-              if (this.currentUser.roles.collector) {
-                document.getElementById("openCollectorheaderModalButton").click();
-              }
-              if (this.currentUser.roles.artist) {
-                document.getElementById("openArtistModalButton").click();
-              }
-            }
-          },
-            errorMsg => {
-              console.log('error', errorMsg);
-            });
-        },
-        (error) => {
-          console.log("getAccountDetail error", error);
-        }
-      );
-    } else {
-      console.warn("Metamask not found Install or enable Metamask");
-    }
-  }
 
   emailsignin() {
     // let _password = this.signinEmailForm.value.password;

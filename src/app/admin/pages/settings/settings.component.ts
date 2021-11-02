@@ -43,7 +43,7 @@ export class AdminSettingsComponent implements OnInit, OnDestroy {
   testEmailToAdd;
   delegatingEmailToAdd;
   submitted = false;
-  main_bg = "./assets/images/test.jpg";
+  main_bg = "./assets/images/home1.jpg";
 
   base64textString = [];
   BGImageFile: any;

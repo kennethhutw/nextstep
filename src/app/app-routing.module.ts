@@ -1,232 +1,76 @@
 import { RouterModule, Routes, UrlSerializer } from "@angular/router";
 
 import {
-  NewWalletComponent,
-  WalletListComponent,
-  ImportWalletComponent,
-  CreateWalletComponent,
-  SuccessComponent,
-  ImportAddressComponent,
+
   ImportMnemonicComponent,
-  PrivateKeyComponent,
-  WithoutPrivateKeyComponent,
-  MetamaskComponent,
+
 } from "./wallet";
 
-import {
-  DonationComponent,
-  HomeComponent,
-  ExampleComponent,
-  EditionComponent,
-  ArtistsComponent,
-  ArtistProfileComponent,
-  ActivityComponent,
-  GalleryComponent,
-  TokenComponent,
-  NewArtistComponent,
-  RegisterArtistComponent,
-  PageNotFoundComponent,
-  RegisterBuyerComponent,
-  LoginComponent,
-  ArtistPageComponent,
-  CollectorPageComponent,
-  CollectorProfilePageComponent,
-  QAComponent,
-  PolicyComponent,
-  AboutComponent,
-  ForArtistComponent,
-  ForBuyerComponent,
-  ErrorComponent,
-  CollectorAccountComponent,
-  CollectorBasicComponent,
-  CollectorCollectionComponent,
-  CollectorFavoriteComponent,
-  CollectorOfferComponent,
-  CollectorSalesComponent,
-  ArtistAccountComponent,
-  ArtistCollectionComponent,
-  ArtistFavoriteComponent,
-  ArtistOfferComponent,
-  ArtistSoldArtWorkComponent,
-  ArtistBasicComponent,
-  ArtistEditionDetailComponent,
-  ArtistUploadComponent,
-  VerificationComponent,
-  SetPasswordComponent,
-  CheckStatusComponent
-} from "./pages";
-import * as Pages from './pages';
-import {
-  MainLayoutComponent,
-  AdminLayoutComponent,
-  ArtistLayoutComponent,
-  CollectorLayoutComponent
-} from "./layout";
 
+import * as Pages from './pages';
+import * as AppLayouts from "./layout";
 import * as Websitepages from './website/index';
 import { AuthGuard } from './_guards';
 
 
 const routes: Routes = [
   { path: "", redirectTo: "index", pathMatch: "full" },
-  { path: "example", component: ExampleComponent, pathMatch: "full" },
-  { path: "donation", component: DonationComponent, pathMatch: "full" },
-  { path: "edition", component: EditionComponent, pathMatch: "full" },
-
-  { path: "u/:address", component: CollectorPageComponent },
-  { path: "token/:id", component: TokenComponent },
-  { path: "launch", component: Websitepages.LaunchComponent },
-  //  {
-  //    path: "**",
-  //    component: HomeComponent
-  // },
+  { path: "example", component: Pages.ExampleComponent, pathMatch: "full" },
+  { path: "forgot", component: Websitepages.ForgotComponent },
+  { path: "signup", component: Websitepages.SignupComponent },
+  { path: "signin", component: Websitepages.SigninComponent },
   {
     path: "index",
-    component: HomeComponent,
+    component: Pages.HomeComponent,
   },
   {
     path: "",
-    component: MainLayoutComponent,
+    component: AppLayouts.MainLayoutComponent,
     children: [
+      { path: "projects", component: Pages.FindProjectComponent },
+      { path: "members", component: Pages.FindMemberComponent },
+      { path: "mentors", component: Pages.FindMentorComponent },
+      { path: "profile/:userId", component: Pages.ProfileComponent },
+      { path: "u/:userId", component: Pages.ProfileComponent },
       {
         path: "checkStatus",
-        component: CheckStatusComponent
+        component: Pages.CheckStatusComponent
       },
       {
         path: "verifyEmail",
-        component: VerificationComponent
+        component: Pages.VerificationComponent
       },
       {
         path: "setPassword",
-        component: SetPasswordComponent
+        component: Pages.SetPasswordComponent
       },
       {
         path: "qa",
-        component: QAComponent,
+        component: Pages.QAComponent,
         pathMatch: "full"
       },
       {
         path: "notfound",
-        component: PageNotFoundComponent,
+        component: Pages.PageNotFoundComponent,
       },
       {
-        path: "artists",
-        component: ArtistsComponent,
+        path: "feedback",
+        component: Pages.FeedbackComponent,
         pathMatch: "full"
       },
-      {
-        path: "newArtist",
-        component: NewArtistComponent,
-        pathMatch: "full"
-      },
-      {
-        path: "gallery",
-        component: GalleryComponent,
-        pathMatch: "full"
-      },
-      {
-        path: "activity",
-        component: ActivityComponent,
-        pathMatch: "full"
-      },
-      {
-        path: "gallery/:artworkId",
-        component: EditionComponent
-      },
-      { path: "policy", component: PolicyComponent, pathMatch: "full" },
-      { path: "about", component: AboutComponent, pathMatch: "full" },
-      { path: "for-artist", component: ForArtistComponent, pathMatch: "full" },
-      { path: "for-buyer", component: ForBuyerComponent, pathMatch: "full" },
-      { path: "error", component: ErrorComponent, pathMatch: "full" },
-      { path: "profile/artist/:id", component: ArtistProfileComponent },
-      { path: "profile/collector/:id", component: CollectorProfilePageComponent },
-      {
-        path: "artist",
-        canActivate: [AuthGuard],
-        component: ArtistLayoutComponent,
-        children: [{
-          path: "account",
-          component: ArtistAccountComponent,
-        }, {
-          path: "collection",
-          component: ArtistCollectionComponent,
-        }, {
-          path: "favorite",
-          component: ArtistFavoriteComponent,
-        }, {
-          path: "offer",
-          component: ArtistOfferComponent,
-        }, {
-          path: "sold",
-          component: ArtistSoldArtWorkComponent,
-        }, {
-          path: "basic",
-          component: ArtistBasicComponent,
-        }, {
-          path: "collection/detail/:id",
-          component: ArtistEditionDetailComponent,
-        }, {
-          path: "upload",
-          component: ArtistUploadComponent,
-        }]
-      },
-      {
-        path: "collector",
-        canActivate: [AuthGuard],
-        component: CollectorLayoutComponent,
-        children: [{
-          path: "account",
-          component: CollectorAccountComponent,
-        }, {
-          path: "basic",
-          component: CollectorBasicComponent,
-        }, {
-          path: "collection",
-          component: CollectorCollectionComponent,
-        }, {
-          path: "favorite",
-          component: CollectorFavoriteComponent,
-        }, {
-          path: "offer",
-          component: CollectorOfferComponent,
-        }, {
-          path: "sales",
-          component: CollectorSalesComponent,
-        }]
-      },
-      { path: "register-artist", component: RegisterArtistComponent },
-      { path: "register-artist/:code", component: RegisterArtistComponent },
-      { path: "register-collector", component: RegisterBuyerComponent },
-      { path: "login", component: LoginComponent },
+      { path: "policy", component: Pages.PolicyComponent, pathMatch: "full" },
+      { path: "about", component: Pages.AboutComponent, pathMatch: "full" },
+
+      { path: "error", component: Pages.ErrorComponent, pathMatch: "full" },
+      { path: "login", component: Pages.LoginComponent },
       { path: "", redirectTo: "index", pathMatch: "full" }
     ],
   },
-  // {
-  //   path: "index",
-  //   component: HomeComponent,
-  //   children: [
-  //     {
-  //       path: "notfound",
-  //       component: PageNotFoundComponent,
-  //     },
-  //   ],
-  // },
 
-  { path: "wallet/new-wallet", component: NewWalletComponent },
-  { path: "wallet/walletlist", component: WalletListComponent },
-  { path: "wallet/import-wallet", component: ImportWalletComponent },
-  { path: "wallet/create-wallet", component: CreateWalletComponent },
-  { path: "wallet/success", component: SuccessComponent },
-  { path: "wallet/private-key", component: PrivateKeyComponent },
-  { path: "wallet/without-private-key", component: WithoutPrivateKeyComponent },
-  { path: "wallet/metamask", component: MetamaskComponent },
-  { path: "wallet/importAddress", component: ImportAddressComponent },
-  { path: "wallet/importMnemonic", component: ImportMnemonicComponent },
   { path: "page-not-found", component: ImportMnemonicComponent },
-
   {
     path: 'admin',
-    component: AdminLayoutComponent,
+    component: AppLayouts.AdminLayoutComponent,
     canActivate: [AuthGuard],
     children: [
       {
@@ -235,34 +79,10 @@ const routes: Routes = [
       }
     ]
   },
-  { path: "prehome/:id", component: Pages.PreviewHomeComponent },
-  { path: ":uid", component: ArtistPageComponent },
   { path: '**', redirectTo: 'index' }
 ];
 
-// @NgModule({
-//   imports: [
-//     CommonModule,
-//     RouterModule.forRoot(routes,{
-//       malformedUriErrorHandler :(
-//         error: URIError,
-//         urlSerializer: UrlSerializer,
-//         url: string
-//        ) => urlSerializer.parse("/page-not-found"),
-//     }),
-//   ],
-//   declarations: [],
-//   exports: [RouterModule],
-// })
-// export class AppRoutingModule {}
-// export const AppRoutingModule = RouterModule.forRoot(routes, {
-//   scrollPositionRestoration: 'top',
-//     malformedUriErrorHandler :(
-//          error: URIError,
-//          urlSerializer: UrlSerializer,
-//          url: string
-//         ) => urlSerializer.parse("/page-not-found"),
-// });
+
 export const routing = RouterModule.forRoot(routes, {
   scrollPositionRestoration: 'top'
 });

@@ -15,106 +15,41 @@
               class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-          <a id="galleryLink" class="nav-link" routerLink="/gallery" (click)="ToggleNavBar()">{{
-            "GALLERY" | translate
-            }}</a>
-        </li>
-
-        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link" routerLink="/artists" (click)="ToggleNavBar()">{{
-            "ARTISTS" | translate
+          <a id="galleryLink" class="nav-link" routerLink="/projects" (click)="ToggleNavBar()">{{
+            "PROJECT" | translate
             }}</a>
         </li>
         <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link" routerLink="/activity" (click)="ToggleNavBar()">{{
-            "ACTIVITY" | translate
+          <a class="nav-link" routerLink="/members" (click)="ToggleNavBar()">{{
+            "MEMBER" | translate
+            }}</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav-link" routerLink="/mentors" (click)="ToggleNavBar()">{{
+            "MENTOR" | translate
+            }}</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav-link" routerLink="/feedback" (click)="ToggleNavBar()">{{
+            "FEEDBACK" | translate
             }}</a>
         </li>
         <div>
           <!-- <h4 style="color:red">{{this.DemoSite}}</h4> -->
         </div>
-        <!-- <li class="nav-item">
-          <a *ngIf="authStoreSrv.isLoggedOut$ | async" [routerLinkActive]="['active']"
-            [routerLinkActiveOptions]="{ exact: true }" data-toggle="modal" [attr.data-target]="'#modal_register'"
-            class="nav-link">{{ "SIGNUP" | translate }}</a>
-        </li> -->
+
       </ul>
 
       <!-- <i style="color: #fff!important;" class="fas fa-globe"></i> -->
       <form id="index_login" *ngIf="authStoreSrv.isLoggedOut$ | async" class="form-inline my-2 my-lg-0 ">
 
-        <a (click)="walletSignin()">
-          <i class="far fa-arrow-alt-circle-right"></i>
-          {{ "WALLETSIGNIN" | translate }}</a>｜
-        <a data-toggle="modal" [attr.data-target]="'#modal_login_mail'">{{ "EMAILSIGNIN" | translate
-          }}</a>｜<a [routerLinkActive]="['active']" data-toggle="modal" [attr.data-target]="'#modal_register'">{{
+        <a routerLink="/signin">{{ "SIGNIN" | translate
+          }}</a>｜<a routerLink="/signup" [routerLinkActive]="['active']">{{
           "SIGNUP" | translate }}</a>
 
       </form>
 
-      <form *ngIf="authStoreSrv.isLoggedIn$ | async" id="index_login" class="form-inline my-2 my-lg-0 text-white">
-        <div *ngIf="this.currentUser.roles.admin">
 
-          <a class="dropdown-item" style="color:rgba(255, 255, 255, 0.5)" routerLink="/admin/dashboard">Admin</a>
-        </div>
-        <div *ngIf="this.currentUser.roles.artist" class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto text-center">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="far fa-user-circle par-5"></i>{{ "MEMBERMANAGEMENT" | translate }}
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-                <a class="dropdown-item" *ngIf="currentUser.uid" [routerLink]="['/',currentUser?.uid]">{{
-                  "PROFILE" | translate }}</a>
-                <a class="dropdown-item" routerLink="/artist/basic">{{ "EDITPROFILE" | translate }}</a>
-                <a class="dropdown-item" routerLink="/artist/account">{{ "ACCOUNTPASSWORD" | translate }}</a>
-                <a class="dropdown-item" routerLink="/artist/upload">{{ "UPLOADEDITION" | translate }}</a>
-                <a class="dropdown-item" routerLink="/artist/collection">{{ "MANAGEMENTEDITION" | translate }}</a>
-                <a class="dropdown-item" routerLink="/artist/sold">{{ "SOLDEDITION" | translate }}</a>
-
-                <a class="dropdown-item" routerLink="/artist/favorite">{{ "MYFAVOURITES" | translate }}</a>
-                <div class="dropdown-divider"> </div>
-                <!-- <a class="dropdown-item" href="#">登出</a> -->
-                <button class="dropdown-item signout" (click)="Signout()">{{ "SIGNOUT" | translate }}</button>
-              </div>
-
-            </li>
-
-          </ul>
-        </div>
-      </form>
-      <!-- <ng-container *ngIf="auth.user$ | async as user"> -->
-      <form *ngIf="authStoreSrv.isLoggedIn$ | async" id="index_login" class="form-inline my-2 my-lg-0 ">
-
-        <div *ngIf="this.currentUser.roles.collector" class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto text-center">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="far fa-user-circle par-5"></i>{{ "MEMBERMANAGEMENT" | translate }}
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" *ngIf="currentUser.uid" [routerLink]="['/',currentUser?.uid]">{{
-                  "PROFILE" | translate
-                  }}</a>
-                <a class="dropdown-item" routerLink="/collector/basic">{{ "EDITPROFILE" | translate }}</a>
-                <a class="dropdown-item" routerLink="/collector/account">{{ "ACCOUNTPASSWORD" | translate }}</a>
-                <a class="dropdown-item" routerLink="/collector/collection">{{ "COLLECTION" | translate }}</a>
-                <a class="dropdown-item" routerLink="/collector/offer">{{ "BIDEDITION" | translate }}</a>
-                <a class="dropdown-item" routerLink="/collector/sales">{{ "SALESEDITION" | translate }}</a>
-
-                <a class="dropdown-item" routerLink="/collector/favorite">{{ "MYFAVOURITES" | translate }}</a>
-                <div class="dropdown-divider"> </div>
-                <button class="dropdown-item signout" (click)="Signout()">{{ "SIGNOUT" | translate }}</button>
-              </div>
-
-            </li>
-
-          </ul>
-        </div>
-      </form>
     </div>
   </div>
 </nav>

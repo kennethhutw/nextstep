@@ -25,26 +25,12 @@ import {
   MetamaskComponent,
 } from "./wallet";
 import {
-  ArtWorkComponent,
-  ArtWorkLogoComponent,
   FooterComponent,
   HeaderComponent,
   SubTabComponent,
   SubTabsComponent,
   SubTableComponent,
   ProfileEditorComponent,
-  ArtistComponent,
-  Edition1Component,
-  Edition3Component,
-  Edition2Component,
-  Edition7Component,
-  Edition4Component,
-  Edition5Component,
-  Edition6Component,
-  ArtistDetailComponent,
-  CollectorDetailComponent,
-  ArtistHeaderComponent,
-  CollectorHeaderComponent,
   NavbarComponent,
   SidebarComponent,
   AdminFooterComponent,
@@ -52,16 +38,37 @@ import {
   StepDotComponent
 } from "./components";
 
-
 import {
-  AdminLayoutComponent,
-  ArtistLayoutComponent,
-  CollectorLayoutComponent,
-  MainLayoutComponent
-} from "./layout";
+  SocialLoginModule,
+  AuthServiceConfig,
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+  LinkedinLoginProvider
+} from "angular-6-social-login";
+// Configs
+export function getAuthServiceConfigs() {
+  let config = new AuthServiceConfig(
+    [
+      {
+        id: FacebookLoginProvider.PROVIDER_ID,
+        provider: new FacebookLoginProvider("4372722732764052")
+      },
+      {
+        id: GoogleLoginProvider.PROVIDER_ID,
+        provider: new GoogleLoginProvider("1011219418037-iaktg7f1qo860efoq7h1nmpansh9acj4.apps.googleusercontent.com")
+      },
+      {
+        id: LinkedinLoginProvider.PROVIDER_ID,
+        provider: new LinkedinLoginProvider("1098828800522-m2ig6bieilc3tpqvmlcpdvrpvn86q4ks.apps.googleusercontent.com")
+      },
+    ]
+  );
+  return config;
+}
 
-import { DisqusModule } from "ngx-disqus";
+import * as AppComponents from "./components";
 
+import * as AppLayouts from "./layout";
 
 import * as Pages from './pages';
 
@@ -91,7 +98,8 @@ export function createLoader(http: HttpClient) {
 @NgModule({
   declarations: [
     ...Pages.containers,
-    MainLayoutComponent,
+    ...AppComponents.components,
+    ...AppLayouts.layouts,
     AppComponent,
     NewWalletComponent,
     WalletListComponent,
@@ -103,29 +111,13 @@ export function createLoader(http: HttpClient) {
     MetamaskComponent,
     ImportAddressComponent,
     ImportMnemonicComponent,
-    ArtWorkComponent,
-    ArtWorkLogoComponent,
     HeaderComponent,
     FooterComponent,
     SubTabComponent,
     SubTabsComponent,
     SubTableComponent,
     ProfileEditorComponent,
-    ArtistComponent,
-    Edition1Component,
-    Edition2Component,
-    Edition3Component,
-    Edition7Component,
-    Edition4Component,
-    Edition5Component,
-    Edition6Component,
-    ArtistDetailComponent,
-    CollectorDetailComponent,
-    ArtistHeaderComponent,
-    CollectorHeaderComponent,
-    AdminLayoutComponent,
-    ArtistLayoutComponent,
-    CollectorLayoutComponent,
+
     NavbarComponent,
     SidebarComponent,
     AdminFooterComponent,
@@ -166,9 +158,13 @@ export function createLoader(http: HttpClient) {
         deps: [HttpClient],
       },
     }),
-    DisqusModule.forRoot("disqus_shortname"),
+    SocialLoginModule
   ],
-  providers: [GoogleAnalyticsService],
+  providers: [GoogleAnalyticsService,
+    {
+      provide: AuthServiceConfig,
+      useFactory: getAuthServiceConfigs
+    }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

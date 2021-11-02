@@ -3,16 +3,13 @@
 
 <head>
   <base href="/" />
-  <title>FormosArt Digital Art Marketplace | NFT Marketplace</title>
+  <title>Next</title>
   <meta charset="UTF-8">
-  <meta name="description"
-    content="FormosArt is a digital art marketplace powered by Ethereum blockchain. Discover, collect and invest in rare, limited edition digital artworks from artists and creatives all over the world">
+  <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta data-n-head="ssr" data-hid="subject" name="subject"
-    content="FormosArt is a digital art marketplace powered by Ethereum blockchain. Discover, collect and invest in rare, limited edition digital artworks from artists and creatives all over the world">
+  <meta data-n-head="ssr" data-hid="subject" name="subject" content="">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="keywords"
-    content="NFT, NFT Marketplace, digital art, art,australia, gallery, museum, design, studio, non fungible tokens, fungible, token,  artists, creative, Singapore, defi, crypto, cryptocurrency, FormosArt" />
+  <meta name="keywords" content="" />
   <meta name="twitter:card" content="summary">
   </meta>
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
@@ -51,6 +48,26 @@
     },
     "theme": "edgeless"
   });
+
+  $('.carousel .carousel-item').each(function () {
+    var minPerSlide = 3;
+    var next = $(this).next();
+    if (!next.length) {
+      next = $(this).siblings(':first');
+    }
+    next.children(':first-child').clone().appendTo($(this));
+
+    for (var i = 0; i < minPerSlide; i++) {
+      next = next.next();
+      if (!next.length) {
+        next = $(this).siblings(':first');
+      }
+
+      next.children(':first-child').clone().appendTo($(this));
+    }
+  });
+
 </script>
+
 
 </html>

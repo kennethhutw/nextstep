@@ -1,0 +1,16 @@
+<app-header></app-header>
+<div style="min-height: 80vh;">
+    <router-outlet></router-outlet>
+</div>
+
+<app-navbar></app-navbar>
+<main style="margin-top: 65px;">
+    <app-sidebar></app-sidebar>
+    <div class="pages container-fluid pt-4 pb-4 pr-4 ">
+        <router-outlet></router-outlet>
+        <hr>
+
+    </div>
+    <div class="overlay" (click)="toggleSidebar()"></div>
+</main>
+<app-footer></app-footer>

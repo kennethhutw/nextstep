@@ -21,13 +21,62 @@ import { GoogleAnalyticsService } from "../../_services"; // import our analytic
   encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent implements OnInit {
-  popularEditions = [];
-  recentEditions = [];
+  popularProjects = [{
+    name: "Next",
+    description: "找尋side project, 找尋team member, 建立side project, 找尋side project意見",
+    type: "Startup"
+  }, {
+    name: "Karma",
+    description: "WFH sorted: praise, rewards, surveys and watercooler chats",
+    type: "Startup"
+  }, {
+    name: "Early Bird",
+    description: "If Appsumo and Product Hunt had a baby.",
+    type: "Startup"
+  }, {
+    name: "Ragg",
+    description: "Cleaning platform app",
+    type: "Startup"
+  }];
+  recentProjects = [];
+  popularUsers = [{
+    name: "John Doe",
+    position: "Front End Developer",
+    type: "Startup"
+  }, {
+    name: "Kitty",
+    description: "UI/UX Designer",
+    type: "Startup"
+  }, {
+    name: "Eduardo Braga",
+    description: "Product manager",
+    type: "Startup"
+  }, {
+    name: "Chhail Khalsa",
+    description: "UI Designer",
+    type: "Startup"
+  }];
+  popularMentors = [{
+    name: "John Doe",
+    position: "Front End Developer",
+    type: "Startup"
+  }, {
+    name: "Kitty",
+    description: "UI/UX Designer",
+    type: "Startup"
+  }, {
+    name: "Eduardo Braga",
+    description: "Product manager",
+    type: "Startup"
+  }, {
+    name: "Chhail Khalsa",
+    description: "UI Designer",
+    type: "Startup"
+  }];
 
+  default_main_bg = "./assets/images/home1.jpg";
 
-  default_main_bg = "./assets/images/main-bg.jpg";
-
-  main_bg = "./assets/images/main-bg.jpg";
+  main_bg = "./assets/images/home1.jpg";
 
 
   popularDisplayEditions: any = [[]];
@@ -48,11 +97,6 @@ export class HomeComponent implements OnInit {
     private artworkSrv: ArtWorkService
   ) {
 
-    this.settingSrv.getSetting('main_bg').subscribe(res => {
-      if (res["result"] == "successful") {
-        this.main_bg = environment.assetUrl + res["data"];
-      }
-    })
     let _lang = localStorage.getItem("lang");
     if (!this.utility.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
@@ -66,45 +110,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-    this.artworkSrv.getPopularArtwork().subscribe(res => {
-      console.log("==============", res);
-      if (res["result"] == "successful") {
-        this.popularEditions = res["data"];
-        this.popularEditions.forEach((element) => {
-          if (element.thumbnail != null) {
-            element.thumbnail = environment.assetUrl + element.thumbnail;
-          }
-          if (element.imageUrl != null) {
-            element.imageUrl = environment.assetUrl + element.imageUrl;
-          }
-          if (element.userImageUrl != null) {
-            element.userImageUrl = environment.assetUrl + element.userImageUrl;
-          }
 
-          element.ethValue = element.ethValue / 100;
-        });
-        // this.popularDisplayEditions = this.chunk(this.popularEditions, 3);
-      }
-    });
-
-    this.artworkSrv.getLatestArtWork().subscribe(res => {
-
-      if (res["result"] == "successful") {
-        this.recentEditions = res["data"];
-        this.recentEditions.forEach((element) => {
-          if (element.thumbnail != null) {
-            element.thumbnail = environment.assetUrl + element.thumbnail;
-          }
-          if (element.imageUrl != null) {
-            element.imageUrl = environment.assetUrl + element.imageUrl;
-          }
-          if (element.userImageUrl != null) {
-            element.userImageUrl = environment.assetUrl + element.userImageUrl;
-          }
-          element.ethValue = element.ethValue / 100;
-        });
-      }
-    });
 
   }
 

@@ -1,0 +1,126 @@
+<div id="findcontent" class="container mb-50 row">
+  <div class="col-md-3">
+    <aside class="sidebar  shadow-lg">
+      <nav class="sidebar-menu pt-3 pb-3">
+        <ul class="menu-items" style="padding-left: 20px;">
+          <li>
+            <h4>專案類型</h4>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">Side Project</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">Project</label>
+          </li>
+
+        </ul>
+        <ul class="menu-items" style="padding-left: 20px;">
+          <li>
+            <h4>專案類型</h4>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">網站</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">App</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">硬體</label>
+          </li>
+
+        </ul>
+        <ul class="menu-items" style="padding-left: 20px;">
+          <li>
+            <h4>產業類型</h4>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">電子商務</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">醫學科技</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">人工智慧</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">運輸服務</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">教育技術</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">金融科技</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">共享</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">遊戲產業</label>
+          </li>
+        </ul>
+        <ul class="menu-items" style="padding-left: 20px;">
+          <li>
+            <h4>每周願意投入時長</h4>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">1至2小時</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">3至4小時</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">5至6小時</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">7至8小時</label>
+          </li>
+          <li>
+            <input type="checkbox" />
+            <label style="margin-left: 10px;" for="firsttimeInput">9小時以上(含)</label>
+          </li>
+          <li>
+            <input type="text" class="form-control search" aria-label="" aria-describedby="button-addon2" />
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+  </div>
+  <div class="col-md-9">
+
+
+    <div class="row" *ngIf="displayItems.length ===0" style="height:300px">
+    </div>
+    <!--person-->
+    <ng-container *ngIf="displayItems">
+      <div class="row">
+        <ng-container *ngFor="let item of  displayItems; let i = index">
+          <div class="col-md-6 text-center">
+            <app-project-card [project]="item"></app-project-card>
+          </div>
+        </ng-container>
+      </div>
+
+    </ng-container>
+  </div>
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+  <p style="color: white">Please Wait. </p>
+</ngx-spinner>
