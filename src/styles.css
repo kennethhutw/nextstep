@@ -28,28 +28,6 @@
     );
   }
 
-  #index_arts_bg {
-    background-image: url("./assets/images/index_arts_bg1.jpg");
-    height: 600px;
-    background-size: cover;
-    background-position: center center;
-    width: 100%;
-    font-size: 20px;
-    position: relative;
-  }
-
-  #index_arts_bg .index_art_slogen {
-    font-size: 40px;
-    line-height: 50px;
-  }
-
-  #index_arts_bg .index_arts_text {
-    display: block;
-    position: absolute;
-    top: 70px;
-    left: 10px;
-    text-align: center;
-  }
   #footer_bg .footer_dropdown {
     width: 100%;
   }
@@ -736,16 +714,6 @@ box-shadow:0 0 5px #fff;
   );
 }
 
-#index_arts_bg {
-  background-image: url("./assets/images/index_arts_bg.jpg");
-  height: 600px;
-  background-size: cover;
-  background-position: center center;
-  width: 100%;
-  font-size: 20px;
-  position: relative;
-}
-
 .index_art_slogen {
   color: #000;
   font-size: 60px;
@@ -1153,9 +1121,7 @@ box-shadow:0 0 5px #fff;
 
 
 /**member artist**/
-.bgc-member{
-    background-image:url("./assets/images/home1.jpg");
-}
+
 
 .member_img_w{
     width:150px;
@@ -1413,14 +1379,14 @@ box-shadow:0 0 5px #fff;
     background-image:url("./assets/images/home1.jpg");
     min-height:600px;
 }
-.page_launch_bg{
+/* .page_launch_bg{
     background-image: url("./assets/images/launch_artist1.png");
     background-position: left bottom; /*Positioning*/
-   background-repeat: no-repeat; /*Prevent showing multiple background images*/
-    background-color: black;
+  /* background-repeat: no-repeat; /*Prevent showing multiple background images*/
+/*    background-color: black;
     min-height:900px;
     min-width: 100%;
-}
+} */
 
 .btn_normal-disable {
   font-size: 20px;
