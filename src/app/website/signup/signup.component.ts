@@ -26,7 +26,7 @@ import {
 export class SignupComponent implements OnInit {
   width = false;
   loginForm: FormGroup;
-  submit = false;
+  submitted = false;
 
   InvalidUser = false;
   unverifiedUser = false;

@@ -88,4 +88,8 @@ export class FindLayoutComponent implements OnInit {
     });
 
   }
+
+  toggleSidebar() {
+    this.dataSrv.toggleSidebar();
+  }
 }

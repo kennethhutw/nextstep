@@ -87,7 +87,6 @@
                     <!-- <label for="password" style="width: 100%;">Password <span (click)="changeInput(pw)"
                             class="fa fa-fw fa-eye toggle-password"></span></label> -->
                     <input #pw type="password" class="form-control" id="password" formControlName="password"
-                        (input)="onChange()"
                         [ngClass]="{ 'is-invalid': (loginForm.get('password').touched || loginForm.get('password').dirty) && loginForm.get('password').invalid || submitted && loginForm.get('password').invalid }"
                         placeholder="Enter password">
                     <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i> Password is required.
@@ -111,8 +110,8 @@
                 <button type="submit" class="btn  btn-social w-100 d-flex align-items-center justify-content-center"
                     style="height: 45px; margin-top: 30px;" [disabled]="inValid()" (click)="onSubmit()">
                     註冊
-                    <div *ngIf="disableSignUp" class="spinner-border ml-3" style="height: 1.5rem; width: 1.5rem;"
-                        role="status"></div>
+                    <!-- <div *ngIf="disableSignUp" class="spinner-border ml-3" style="height: 1.5rem; width: 1.5rem;"
+                        role="status"></div> -->
                 </button>
             </form>
 
