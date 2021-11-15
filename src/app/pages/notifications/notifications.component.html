@@ -1,0 +1,23 @@
+<div id="content-mt" class="container mb-80">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>My Notifications</h1>
+        </div>
+    </div>
+    <ng-container *ngIf="notifications">
+        <ng-container *ngFor="let item of  notifications; let i = index">
+            <div class="row mt-10">
+
+                <div class="col-md-12 form-inline">
+                    <span class="icon_gray"><i class="far fa-bell icon"></i></span>
+                    <p class="msg-content">
+                        <b>{{item.type}}
+                        </b>{{item.content}}
+                    </p>
+                </div>
+
+            </div>
+        </ng-container>
+    </ng-container>
+
+</div>

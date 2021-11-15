@@ -1,0 +1,70 @@
+.container{
+    min-height: 95vh;
+}
+h4 {
+   width: 100%;
+   text-align: center;
+   border-bottom: 1px solid #000;
+   line-height: 0.1em;
+   margin: 10px 0 20px;
+}
+
+h4 span {
+    background:#fff;
+    padding:0 10px;
+}
+
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.separator::before, .separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--grey-12);
+}
+
+.separator:not(:empty)::before {
+    margin-right: .5em;
+}
+
+.separator:not(:empty)::after {
+    margin-left: .5em;
+}
+.next-font{
+    font-family: 'Roboto';
+    font-weight: 600;
+    line-height: 56px;
+}
+
+a{
+    color:black;
+}
+
+.btn-social{
+      border: 2px solid #ced4da;
+  border-radius: 3px;
+  height: 50px;
+}
+.frame{
+    padding: 15px;
+    background-color: white;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.btn-continue{
+        background-color: black;
+    color: white;
+}
+
+.mr-5{
+    margin-right: 5px;
+}
+
+.option{
+    min-height: 312px;
+}

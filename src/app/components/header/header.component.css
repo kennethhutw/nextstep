@@ -58,3 +58,9 @@ a{
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
 }
+.icon{
+  padding: 8px;
+  padding-top: 12px;
+  font-size: 25px;
+  margin-left: 5px;
+}

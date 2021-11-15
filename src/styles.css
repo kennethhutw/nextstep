@@ -1808,3 +1808,27 @@ font-size:12px;
   margin-top: .25rem;
   color: #dc3545;
 }
+
+.mr-10{
+  margin-right: 10px;
+}
+.mt-10{
+   margin-top: 10px;
+}
+input[type=checkbox] {
+    transform: scale(1.5);
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+}
+
+input[type=radio] {
+    transform: scale(1.5);
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+}
+.icon{
+  padding: 8px;
+  padding-top: 12px;
+  font-size: 25px;
+  margin-left: 5px;
+}

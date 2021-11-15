@@ -2,35 +2,35 @@ import { Component, OnInit, HostListener } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
   DataService,
-  PromoService,
+
   AuthStore
-} from "../../_services";
-import { Utility } from "../../_helpers";
+} from "../../../_services";
+import { Utility } from "../../../_helpers";
 import {
   FormBuilder,
   FormGroup,
   Validators
 } from "@angular/forms";
-import { environment } from "../../../environments/environment";
+
 import {
   Router,
   ActivatedRoute
 } from "@angular/router";
 @Component({
-  selector: "app-signup",
-  templateUrl: "./signup.component.html",
+  selector: "app-signup-info",
+  templateUrl: "./info.component.html",
   styleUrls: [
-    "./signup.component.css",
+    "./info.component.css",
   ]
 })
-export class SignupComponent implements OnInit {
+export class SignupInfoComponent implements OnInit {
   width = false;
   loginForm: FormGroup;
   submitted = false;
 
-  InvalidUser = false;
-  unverifiedUser = false;
-  GooglePlusNotExist = false;
+  profileImage = null;
+  profileImageFile = null;
+  step = 0;
 
   @HostListener("window:resize", ["$event"])
   getScreenSize(event?) {
@@ -47,7 +47,6 @@ export class SignupComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private authSrv: AuthStore,
-    private promoSrv: PromoService,
     private translateSrv: TranslateService,
     private utility: Utility,
     private dataSrv: DataService
@@ -70,19 +69,40 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() {
-    // this.router.navigate(["./profile/Christian"], {});
-    this.router.navigate(["./info"], {});
-
+    this.router.navigate(["./profile/Christian"], {});
   }
 
   socialSignIn(socialPlatform: string) {
     console.log("socialSignIn =========", socialPlatform);
     this.authSrv.socialSignIn(socialPlatform).then(res => {
       console.log(" =========", res);
-      // this.router.navigate(["./profile/" + res['data'].id], {});
-      this.router.navigate(["./info"], {});
+      this.router.navigate(["./profile/" + res['data'].id], {});
     });
 
   }
 
+  NextStep(value) {
+    this.step = value;
+  }
+
+  onDetectImage(event) {
+    if (event.target.files.length === 0)
+      return;
+
+    var mimeType = event.target.files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      return;
+    }
+
+    var reader = new FileReader();
+    this.profileImageFile = event.target.files[0];
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload = (_event) => {
+      this.profileImage = reader.result;
+    }
+  }
+  onRemoveImg(event) {
+    this.profileImage = null;
+    this.profileImageFile = null;
+  }
 }

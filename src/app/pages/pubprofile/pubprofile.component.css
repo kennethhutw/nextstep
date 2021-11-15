@@ -1,0 +1,68 @@
+.fb-profile img.fb-image-lg{
+    z-index: 0;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.fb-image-profile
+{
+    margin: -90px 10px 0px 50px;
+    z-index: 9;
+    width: 20%;
+}
+
+
+@media (max-width:768px)
+{
+
+    .fb-profile-text>h1{
+        font-weight: 700;
+        font-size:16px;
+    }
+
+    .fb-image-profile
+    {
+        margin: -45px 10px 0px 25px;
+        z-index: 9;
+        width: 20%;
+    }
+}
+.mt-100{
+       margin-top:100px;
+}
+.frame{
+     border: 1px solid rgba(0, 0, 0, 0.6);
+
+     padding-top:15px;
+     padding-bottom:15px;
+     padding-left:10px;
+     padding-right:10px;
+}
+.icon{
+  padding: 8px;
+  padding-top: 12px;
+  font-size: 25px;
+  margin-left: 5px;
+}
+
+
+.tags{
+    border:1px solid #DDD;
+    display:inline-block;
+    color:#717171;
+    background:#FFF;
+    -webkit-box-shadow:0 1px 1px 0 rgba(180,180,180,0.1);
+    box-shadow:0 1px 1px 0 rgba(180,180,180,0.1);
+    -webkit-transition:all .1s ease-in-out;
+    -moz-transition:all .1s ease-in-out;
+    -o-transition:all .1s ease-in-out;
+    -ms-transition:all .1s ease-in-out;
+    transition:all .1s ease-in-out;
+    border-radius:2px;
+    margin:0 3px 6px 0;
+    padding:5px 10px}
+.tags:hover{border-color:#08C;}
+
+.content{
+    min-height: 100px;
+}

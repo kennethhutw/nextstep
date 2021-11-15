@@ -19,6 +19,7 @@ const routes: Routes = [
   { path: "forgot", component: Websitepages.ForgotComponent },
   { path: "signup", component: Websitepages.SignupComponent },
   { path: "signin", component: Websitepages.SigninComponent },
+  { path: "info", component: Websitepages.SignupInfoComponent },
   {
     path: "index",
     component: Pages.HomeComponent,
@@ -31,7 +32,7 @@ const routes: Routes = [
       { path: "members", component: Pages.FindMemberComponent },
       { path: "mentors", component: Pages.FindMentorComponent },
       { path: "profile/:userId", component: Pages.ProfileComponent },
-      { path: "u/:userId", component: Pages.ProfileComponent },
+      { path: "u/:userId", component: Pages.PubProfileComponent },
       {
         path: "checkStatus",
         component: Pages.CheckStatusComponent
@@ -43,6 +44,13 @@ const routes: Routes = [
       {
         path: "setPassword",
         component: Pages.SetPasswordComponent
+      },
+      {
+        path: "settings",
+        component: Pages.SettingsComponent
+      }, {
+        path: "notifications",
+        component: Pages.NotificationsComponent
       },
       {
         path: "qa",
@@ -63,10 +71,10 @@ const routes: Routes = [
 
       { path: "error", component: Pages.ErrorComponent, pathMatch: "full" },
       { path: "login", component: Pages.LoginComponent },
+      { path: "newProject", component: Pages.newProjectComponent, pathMatch: "full" },
       { path: "", redirectTo: "index", pathMatch: "full" }
     ],
   },
-
   { path: "page-not-found", component: ImportMnemonicComponent },
   {
     path: 'admin',

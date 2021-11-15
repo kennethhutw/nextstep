@@ -34,12 +34,61 @@
             "FEEDBACK" | translate
             }}</a>
         </li>
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+          <i class="fa-fw fab fa-telegram icon"></i>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+          <i class="fa-fw fab fa-discord icon"></i>
+        </li>
         <div>
           <!-- <h4 style="color:red">{{this.DemoSite}}</h4> -->
         </div>
 
       </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav-link" routerLink="/newProject" (click)="ToggleNavBar()">建立專案 <span
+              class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav-link" routerLink="/notifications"> <i class="far fa-bell icon"></i></a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+          <i class="far fa-comment-dots icon"></i>
+        </li>
+        <!-- <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+          <i class="far fa-user-circle par-5 icon"></i>
+        </li> -->
+      </ul>
 
+      <!-- <form *ngIf="authStoreSrv.isLoggedIn$ | async" id="index_login" class="form-inline my-2 my-lg-0 text-white"> -->
+      <form id="index_login" class="form-inline my-2 my-lg-0 text-white">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto text-center">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-user-circle par-5 icon"></i>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                <a class="dropdown-item" [routerLink]="['/u/kenneth']">{{
+                  "PROFILE" | translate }}</a>
+                <a class="dropdown-item" [routerLink]="['/u/kenneth']">{{
+                  "PUBPROFILE" | translate }}</a>
+                <a class="dropdown-item" [routerLink]="['/settings']">{{
+                  "DASHBOARD" | translate }}</a>
+                <!-- <a class="dropdown-item" routerLink="/artist/basic">{{ "EDITPROFILE" | translate }}</a> -->
+
+                <div class="dropdown-divider"> </div>
+                <!-- <a class="dropdown-item" href="#">登出</a> -->
+                <button class="dropdown-item signout" (click)="Signout()">{{ "SIGNOUT" | translate }}</button>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </form>
       <!-- <i style="color: #fff!important;" class="fas fa-globe"></i> -->
       <form id="index_login" *ngIf="authStoreSrv.isLoggedOut$ | async" class="form-inline my-2 my-lg-0 ">
 
@@ -68,10 +117,9 @@
       <h3>{{ "EMAILSIGNIN" | translate }}</h3>
     </div>
     <div [formGroup]="signinEmailForm" class="row text-center">
-      <input class="modal_input w-100 mb-2" type="text" id="emailsignin" formControlName="email"
-        placeholder="{{ 'EMAILSIGNIN' | translate }}" (focus)="this.placeholder = ''"
-        (blur)="setBlur('emailsignin', 'EMAILSIGNIN')" />
-      <input class="modal_input w-100 mb-2" type="password" id="emailpassword" formControlName="password"
+      <input class="modal_input w-100 mb-2" type="text" id="emailsignin" placeholder="{{ 'EMAILSIGNIN' | translate }}"
+        (focus)="this.placeholder = ''" (blur)="setBlur('emailsignin', 'EMAILSIGNIN')" />
+      <input class="modal_input w-100 mb-2" type="password" id="emailpassword"
         placeholder="{{ 'PASSWORD' | translate }}" (focus)="this.placeholder = ''"
         (blur)="setBlur('emailpassword', 'PASSWORD')" />
       <button (click)="onSignIn()" class="model_btn_normal mb-2 w-100">

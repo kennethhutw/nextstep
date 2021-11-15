@@ -1,0 +1,79 @@
+<div id="content-mt" class="container mb-80">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>建立專案</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 mb-12 form-group ">
+            <label class="pr-2" for="projectname">
+                <h5> 專案名稱 :</h5>
+            </label>
+            <input type="text" id="projectname" class="form-control mr-10">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 mb-12 form-group ">
+            <label class="pr-2" for="projectname">
+                <h5> 專案類型 :</h5>
+            </label>
+            <input type="checkbox" name="eComm" value="eComm"><small>電子商務</small>
+            <input type="checkbox" name="ai" value="ai"><small>人工智慧</small>
+            <input type="checkbox" name="edutech" value="edutech"><small>教育科技</small>
+            <input type="checkbox" name="sharingeconomy" value="sharingeconomy"><small>共享經濟</small>
+            <input type="checkbox" name="medical" value="medical"><small>醫學科技</small>
+            <input type="checkbox" name="ai" value="ai"><small>運輸服務</small>
+            <input type="checkbox" name="fintech" value="fintech"><small>金融科技</small>
+            <input type="checkbox" name="game" value="game"><small>遊戲產業</small>
+        </div>
+        <div class="col-md-12 mb-12 form-group ">
+            <label class="pr-2" for="projectname">
+                <h5> 簡介 :</h5>
+            </label>
+            <textarea type="text" formControlName="bio" class="form-control" id="" rows="4" cols="50"></textarea>
+        </div>
+        <div class="col-md-12 mb-12 form-group ">
+            <label class="pr-2" for="projectname">
+                <h5> 尋找夥伴 :</h5>
+            </label>
+            <input type="radio" name="isPartner" [value]="0" class="mr-1" /><span>是</span>
+            <input type="radio" name="isPartner" [value]="1" class="mr-1" /><span>否</span>
+        </div>
+        <div class="col-md-12 mb-12 form-group">
+            <label class="pr-2" for="projectname">
+                <h5> 每周需花費時長 :</h5>
+            </label>
+            <input type="checkbox" name="eComm" value="eComm"><small>1~2小時</small>
+            <input type="checkbox" name="ai" value="ai"><small>3~4小時</small>
+            <input type="checkbox" name="edutech" value="edutech"><small>5~6小時</small>
+            <input type="checkbox" name="sharingeconomy" value="sharingeconomy"><small>7~8小時</small>
+            <input type="checkbox" name="medical" value="medical"><small>9小時以上(含)</small>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 mb-12 form-group ">
+            <label class="pr-2" for="projectname">
+                <h5>夥伴 :</h5>
+            </label>
+        </div>
+        <div class="col-md-12 mb-12 form-group ">
+            <label class="pr-2" for="projectname">
+                <h5> 需要的技能 :</h5>
+            </label>
+            <input type="text" id="projectname" class="form-control mr-10">
+        </div>
+        <div class="col-md-12 mb-12 form-group ">
+            <label class="pr-2" for="projectname">
+                <h5> 簡介 :</h5>
+            </label>
+            <input type="text" id="projectname" class="form-control mr-10">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 mb-12 form-group button-center">
+            <button type="button" class="btn btn-primary mr-10">存為草稿 </button>
+            <button type="button" class="btn btn-primary mr-10"> 發布</button>
+        </div>
+
+    </div>
+</div>
