@@ -2,7 +2,7 @@ import { Component, OnInit, HostListener } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
   DataService,
-  PromoService,
+
   AuthStore
 } from "../../_services";
 import { Utility } from "../../_helpers";
@@ -47,7 +47,7 @@ export class ForgotComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private authSrv: AuthStore,
-    private promoSrv: PromoService,
+
     private translateSrv: TranslateService,
     private utility: Utility,
     private dataSrv: DataService

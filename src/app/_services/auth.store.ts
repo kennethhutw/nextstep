@@ -53,14 +53,12 @@ export class AuthStore {
   }
 
 
-  signup(name: string, email: string, password: string, walletAddress: string, role: string): Observable<resResult> {
+  signup(name: string, email: string, password: string): Observable<resResult> {
     return this.http
       .post<resResult>(`${environment.apiUrl}/authenticate/emailSignUp`, {
         name,
         email,
-        password,
-        walletAddress,
-        role,
+        password
       })
       .pipe(
         tap((resResult) => {
@@ -112,6 +110,9 @@ export class AuthStore {
 
   logout() {
     this.subject.next(null);
+    this.isLoggedIn$ = this.user$.pipe(map((user) => !!user));
+
+    this.isLoggedOut$ = this.isLoggedIn$.pipe(map((LoggedIn) => !LoggedIn));
     localStorage.removeItem(AUTH_DATA);
   }
 
@@ -176,6 +177,10 @@ export class AuthStore {
   async checkUserData(email, walletAddress) {
     const params = new HttpParams().set('email', email).set('walletAddress', walletAddress);
     return await this.http.get<any>(`${environment.apiUrl}/authenticate/checkUserData`, { params: params }).toPromise();
+  }
+
+  async getCheckData() {
+    return await this.http.get<any>(`${environment.apiUrl}/authenticate/checkdata`, {}).toPromise();
   }
 
   async checkUserEmail(email) {

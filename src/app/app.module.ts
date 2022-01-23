@@ -12,18 +12,7 @@ import { AppComponent } from "./app.component";
 import { routing } from "./app-routing.module";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { TooltipModule } from 'ng2-tooltip-directive';
-import {
-  NewWalletComponent,
-  WalletListComponent,
-  ImportWalletComponent,
-  CreateWalletComponent,
-  SuccessComponent,
-  ImportAddressComponent,
-  ImportMnemonicComponent,
-  PrivateKeyComponent,
-  WithoutPrivateKeyComponent,
-  MetamaskComponent,
-} from "./wallet";
+
 import {
   FooterComponent,
   HeaderComponent,
@@ -72,13 +61,12 @@ import * as AppLayouts from "./layout";
 
 import * as Pages from './pages';
 
+import * as Websitepages from './website/index';
+
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { AnQrcodeModule } from "an-qrcode";
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
-
-import * as Websitepages from './website/index';
-
 import { SharedModule } from "./_shared/shared.module";
 
 import { ModalModule } from './_modal';
@@ -101,16 +89,6 @@ export function createLoader(http: HttpClient) {
     ...AppComponents.components,
     ...AppLayouts.layouts,
     AppComponent,
-    NewWalletComponent,
-    WalletListComponent,
-    ImportWalletComponent,
-    CreateWalletComponent,
-    SuccessComponent,
-    PrivateKeyComponent,
-    WithoutPrivateKeyComponent,
-    MetamaskComponent,
-    ImportAddressComponent,
-    ImportMnemonicComponent,
     HeaderComponent,
     FooterComponent,
     SubTabComponent,

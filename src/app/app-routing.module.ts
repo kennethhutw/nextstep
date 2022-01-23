@@ -1,12 +1,5 @@
 import { RouterModule, Routes, UrlSerializer } from "@angular/router";
 
-import {
-
-  ImportMnemonicComponent,
-
-} from "./wallet";
-
-
 import * as Pages from './pages';
 import * as AppLayouts from "./layout";
 import * as Websitepages from './website/index';
@@ -29,8 +22,11 @@ const routes: Routes = [
     component: AppLayouts.MainLayoutComponent,
     children: [
       { path: "projects", component: Pages.FindProjectComponent },
+      { path: "project/:id", component: Pages.ProjectComponent },
+      { path: "job/:id", component: Pages.JobComponent },
       { path: "members", component: Pages.FindMemberComponent },
       { path: "mentors", component: Pages.FindMentorComponent },
+      { path: "message", component: Pages.ChatComponent },
       { path: "profile/:userId", component: Pages.ProfileComponent },
       { path: "u/:userId", component: Pages.PubProfileComponent },
       {
@@ -75,7 +71,29 @@ const routes: Routes = [
       { path: "", redirectTo: "index", pathMatch: "full" }
     ],
   },
-  { path: "page-not-found", component: ImportMnemonicComponent },
+  {
+    path: 'myproject',
+    component: AppLayouts.ProjectLayoutComponent,
+    children: [
+      {
+        path: ':projectId/profile',
+        component: Pages.MyProjectProfileComponent
+      },
+      {
+        path: ':projectId/logs',
+        component: Pages.MyProjectLogComponent
+      },
+      {
+        path: ':projectId/settings',
+        component: Pages.MyProjectSettingsComponent
+      },
+      {
+        path: ':projectId/members',
+        component: Pages.MyProjectMemberComponent
+      },
+      { path: ":projectId", component: Pages.MyProjectProfileComponent }
+    ]
+  },
   {
     path: 'admin',
     component: AppLayouts.AdminLayoutComponent,
@@ -85,6 +103,38 @@ const routes: Routes = [
         path: '',
         loadChildren: './admin/admin.module#AdminLayoutModule'
       }
+    ]
+  },
+  {
+    path: 'dashboard',
+    component: AppLayouts.SettingLayoutComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'myproject',
+        component: Pages.MyProjectComponent
+      },
+      {
+        path: "settings",
+        component: Pages.SettingsComponent
+      },
+      {
+        path: "notifications",
+        component: Pages.NotificationsComponent
+      },
+      { path: "message", component: Pages.ChatComponent },
+      {
+        path: 'myproject/:projectId',
+        component: Pages.ProjectDetailComponent
+      },
+      {
+        path: 'collection',
+        component: Pages.MyCollectionComponent
+      },
+      {
+        path: 'application',
+        component: Pages.MyApplicationComponent
+      },
     ]
   },
   { path: '**', redirectTo: 'index' }

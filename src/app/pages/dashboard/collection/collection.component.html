@@ -1,0 +1,69 @@
+<div class=" mb-80">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>我的收藏</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link " id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+                        [ngClass]="{ 'active': currentTab === 'project' }" type="button" role="tab"
+                        (click)="changeTab('project')">專案</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'partner' }"
+                        type="button" role="tab" (click)="changeTab('partner')">夥伴</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'mentor' }"
+                        type="button" role="tab" (click)="changeTab('mentor')">導師</button>
+                </li>
+
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'project' }" id="home" role="tabpanel"
+                    aria-labelledby="home-tab">
+                    <div class="row" *ngIf="publishedprojects.length ===0" style="height:300px">
+                        沒有專案
+                    </div>
+                    <ng-container *ngIf="publishedprojects">
+                        <div class="row" style="padding-left:15px;">
+                            <ng-container *ngFor="let item of  publishedprojects; let i = index">
+                                <app-project-bar style="width: 90%;" [project]="item"></app-project-bar>
+                            </ng-container>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'partner' }" role="tabpanel"
+                    aria-labelledby="profile-tab">
+                    <div class=" text-center" *ngIf="draftedprojects.length ===0" style="height:300px;padding:15px;">
+                        <h3>沒有專案</h3>
+                    </div>
+                    <ng-container *ngIf="draftedprojects">
+                        <div class="row">
+                            <ng-container *ngFor="let item of  draftedprojects; let i = index">
+                                <h1>{{item.name}}</h1>
+                            </ng-container>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'mentor' }" role="tabpanel"
+                    aria-labelledby="profile-tab">
+                    <div class=" text-center" *ngIf="draftedprojects.length ===0" style="height:300px;padding:15px;">
+                        <h3>沒有專案</h3>
+                    </div>
+                    <ng-container *ngIf="draftedprojects">
+                        <div class="row">
+                            <ng-container *ngFor="let item of  draftedprojects; let i = index">
+                                <h1>{{item.name}}</h1>
+                            </ng-container>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+            </div>
+        </div>
+    </div>
+</div>

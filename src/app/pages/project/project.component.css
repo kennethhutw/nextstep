@@ -1,0 +1,123 @@
+#profile-upper
+{
+    position: relative;
+}
+
+#profile-d
+{
+    position: absolute;
+    left: 59px;
+    bottom: 0px;
+    right: 0px;
+    height: 180px;
+    z-index: 2;
+}
+
+#profile-banner-image
+{
+    height: 360px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+#profile-banner-image img
+{
+    width: 100%;
+    margin-top: -20%;
+}
+
+#profile-pic
+{
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    margin-top: 28px;
+    overflow: hidden;
+    box-shadow: 0 0 0 5px #fff;
+}
+
+#profile-pic img
+{
+    width: 100%;
+}
+
+#u-name
+{
+    position: absolute;
+    top: 120px;
+    left: 208px;
+    color: #fff;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+#m-btns
+{
+    position: absolute;
+    right: 56px;
+    bottom: 20px;
+    width: 211px;
+}
+
+#m-btns .td
+{
+    padding: 0 8px;
+}
+
+.m-btn
+{
+    cursor: pointer;
+    color: #0e0e0e;
+    font-size: 14px;
+    white-space: pre;
+    padding: 5px 8px 6px 8px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 2px;
+}
+
+.frame{
+      border: 2px solid #C4C4C4;
+      min-height: 300px;
+      margin-bottom: 30px;
+}
+.btn_item {
+  font-size: 16px;
+  padding: 5px 13px;
+  background-color: #fff;
+  border: 2px solid #C4C4C4;
+  border-radius: 3px;
+}
+
+
+.btn_item:hover {
+  background-color: #11e78b;
+  border: 2px solid #11e78b;
+}
+.name{
+    font-family:'Roboto', sans-serif;
+    font-size:24px;
+    font-weight:400;
+    margin-bottom:0px;
+    margin-top:5px;
+    word-wrap: break-word;
+}
+.position{
+     font-family:'Roboto', sans-serif;
+    font-size:16px;
+    font-weight:400;
+    margin-bottom:0px;
+    margin-top:5px;
+    word-wrap: break-word;
+}
+.dot {
+  height: 15px;
+  width: 15px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+.frame-news{
+        border: 2px solid #C4C4C4;
+    min-height: 100px;
+    margin-bottom: 30px;
+}

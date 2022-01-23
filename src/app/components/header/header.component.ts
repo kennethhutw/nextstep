@@ -9,7 +9,7 @@ import { Utility } from "../../_helpers";
 import { Router, ActivatedRoute } from "@angular/router";
 import {
   AuthStore,
-  Web3Service,
+
   DataService,
   EmailService,
   UserService
@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
     private fb: FormBuilder,
     private userSrv: UserService,
     private translateSrv: TranslateService,
-    private web3Srv: Web3Service,
+
     private dataSrv: DataService,
     private router: Router,
     private route: ActivatedRoute,
@@ -49,17 +49,18 @@ export class HeaderComponent implements OnInit {
     public authStoreSrv: AuthStore
   ) {
     let _lang = localStorage.getItem("lang");
-    if (!this.utility.IsNullOrEmpty(_lang)) {
-      this.translateSrv.use(_lang);
-    }
-    this.dataSrv.langKey.subscribe((lang) => {
-      if (!this.utility.IsNullOrEmpty(lang)) {
-        this.translateSrv.use(lang);
-      }
-    });
+    // if (!this.utility.IsNullOrEmpty(_lang)) {
+    //   this.translateSrv.use(_lang);
+    // }
+    // this.dataSrv.langKey.subscribe((lang) => {
+    //   if (!this.utility.IsNullOrEmpty(lang)) {
+    //     this.translateSrv.use(lang);
+    //   }
+    // });
   }
 
   ngOnInit() {
+    this.translateSrv.use("zh-tw");
     if (environment.environment !== "production") {
       this.DemoSite = "This is a demo site.";
     }
@@ -77,7 +78,7 @@ export class HeaderComponent implements OnInit {
     });
 
     this.currentUser = this.authStoreSrv.getUserData();
-
+    console.log(" ============= ", this.currentUser);
     if (!!this.currentUser) {
       this.uid = this.currentUser.uid;
     }
@@ -271,9 +272,23 @@ export class HeaderComponent implements OnInit {
   }
 
   ToggleNavBar() {
+
     let element: HTMLElement = document.getElementsByClassName('navbar-toggler')[0] as HTMLElement;
     if (element.getAttribute('aria-expanded') == 'true') {
       element.click();
+    }
+
+  }
+
+  RouteToNewProject() {
+    if (!this.currentUser) {
+      this.router.navigate(['/signin', { first: 'true' }], {});
+    } else {
+      this.router.navigate(['/newProject', { first: 'true' }], {});
+      let element: HTMLElement = document.getElementsByClassName('navbar-toggler')[0] as HTMLElement;
+      if (element.getAttribute('aria-expanded') == 'true') {
+        element.click();
+      }
     }
   }
 

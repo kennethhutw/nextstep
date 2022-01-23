@@ -4,11 +4,10 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000',
-  assetUrl: 'http://localhost:3000',
-  assetAPIUrl: 'http://localhost:3000',
+  apiUrl: 'http://localhost:3003',
+  assetUrl: 'http://localhost:3003',
+  assetAPIUrl: 'http://localhost:3003',
   environment: 'staging',
-  contractAddress: '0xfc3a6059ddd3ced1b59df596c49f83244a4f64f7',
   gtag: 'G-3T59MY55H9'
 };
 

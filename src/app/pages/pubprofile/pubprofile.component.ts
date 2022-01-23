@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
-  ArtistService,
+  AuthStore,
   DataService,
   AppSettingsService,
   SettingService
@@ -16,43 +16,7 @@ import { NgxSpinnerService } from "ngx-spinner";
   styleUrls: ["./pubprofile.component.css"]
 })
 export class PubProfileComponent implements OnInit {
-  items = [{
-    name: "Kenneth",
-    position: "Software developer",
-    imageUrl: "https://bootdey.com/img/Content/avatar/avatar2.png",
-    isFavortie: false,
-    isFollow: false,
-    description: "添加到收藏夹",
-    tags: [
-      "full-stack",
-      "blockchain"
-    ]
-
-  },
-  {
-    name: "Anne",
-    position: "UI/UX designer",
-    imageUrl: "https://bootdey.com/img/Content/avatar/avatar3.png",
-    isFavortie: true,
-    isFollow: false,
-    description: "添加到收藏夹",
-    tags: [
-      "UI/UX",
-      "Front-end"
-    ]
-  },
-  {
-    name: "Ken",
-    position: "DevOps developer",
-    imageUrl: "https://bootdey.com/img/Content/avatar/avatar4.png",
-    isFavortie: false,
-    isFollow: false,
-    description: "添加到收藏夹",
-    tags: [
-      "DevOps ",
-      "IT"
-    ]
-  }];
+  items = [];
   displayItems = [];
   values = "";
   tags = [];
@@ -60,13 +24,14 @@ export class PubProfileComponent implements OnInit {
   defaultProfileLogo = null;
   filterValue = null;
   searchText = '';
+  currentUser: any;
   constructor(
+    private authSrv: AuthStore,
     private settingSrv: SettingService,
     private translateSrv: TranslateService,
     private utility: Utility,
     private dataSrv: DataService,
     private appSettingsSrv: AppSettingsService,
-    private artistSrv: ArtistService,
     private SpinnerService: NgxSpinnerService
   ) {
     this.defaultProfileLogo = this.settingSrv.defaultProfileLogo;
@@ -74,6 +39,8 @@ export class PubProfileComponent implements OnInit {
 
   ngOnInit() {
     this.SpinnerService.show();
+    this.currentUser = this.authSrv.getUserData();
+    console.log("==================", this.currentUser);
     let _lang = localStorage.getItem("lang");
     if (!this.utility.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
@@ -92,6 +59,11 @@ export class PubProfileComponent implements OnInit {
 
     this.SpinnerService.hide();
     this.displayItems = this.items;
+    if (this.utility.IsNullOrEmpty(this.currentUser.imageUrl)) {
+      this.currentUser.imageUrl = this.defaultProfileLogo;
+    } else {
+      this.currentUser.imageUrl = environment.assetUrl + this.currentUser.imageUrl;
+    }
   }
 
   splitArr(arr, size) {

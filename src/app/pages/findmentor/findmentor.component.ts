@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
-  ArtistService,
+
   DataService,
   AppSettingsService,
   SettingService
@@ -52,6 +52,30 @@ export class FindMentorComponent implements OnInit {
       "DevOps ",
       "IT"
     ]
+  },
+  {
+    name: "Ken",
+    position: "DevOps developer",
+    imageUrl: "https://bootdey.com/img/Content/avatar/avatar4.png",
+    isFavortie: false,
+    isFollow: false,
+    description: "添加到收藏夹",
+    tags: [
+      "DevOps ",
+      "IT"
+    ]
+  },
+  {
+    name: "Ken",
+    position: "DevOps developer",
+    imageUrl: "https://bootdey.com/img/Content/avatar/avatar4.png",
+    isFavortie: false,
+    isFollow: false,
+    description: "添加到收藏夹",
+    tags: [
+      "DevOps ",
+      "IT"
+    ]
   }];
   displayItems = [];
   constructor(
@@ -60,7 +84,6 @@ export class FindMentorComponent implements OnInit {
     private utility: Utility,
     private dataSrv: DataService,
     private appSettingsSrv: AppSettingsService,
-    private artistSrv: ArtistService,
     private SpinnerService: NgxSpinnerService
   ) {
 
@@ -68,21 +91,22 @@ export class FindMentorComponent implements OnInit {
 
   ngOnInit() {
     this.SpinnerService.show();
-    let _lang = localStorage.getItem("lang");
-    if (!this.utility.IsNullOrEmpty(_lang)) {
-      this.translateSrv.use(_lang);
+    // let _lang = localStorage.getItem("lang");
+    // if (!this.utility.IsNullOrEmpty(_lang)) {
+    //   this.translateSrv.use(_lang);
 
-    } else {
-      let _browserLang = this.translateSrv.getBrowserLang();
-      this.translateSrv.use(_browserLang);
+    // } else {
+    //   let _browserLang = this.translateSrv.getBrowserLang();
+    //   this.translateSrv.use(_browserLang);
 
-    }
-    this.dataSrv.langKey.subscribe((lang) => {
-      if (!this.utility.IsNullOrEmpty(lang)) {
-        this.translateSrv.use(lang);
+    // }
+    // this.dataSrv.langKey.subscribe((lang) => {
+    //   if (!this.utility.IsNullOrEmpty(lang)) {
+    //     this.translateSrv.use(lang);
 
-      }
-    });
+    //   }
+    // });
+    this.translateSrv.use("zh-tw");
     this.displayItems = this.items;
     this.SpinnerService.hide();
   }

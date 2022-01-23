@@ -1,8 +1,15 @@
-import { ProjectItemComponent } from "./projectItem/project-itemcomponent";
+import { ProjectItemComponent } from "./projectItem/project-item.component";
 import { PersonCardComponent } from "./person/person.component";
 import { UserCardComponent } from "./userCard/userCard.component";
 import { ProjectCardComponent } from './projectCard/projectCard.component';
+import { ProjectBarComponent } from './projectBar/project-bar.component';
+
+import { LogBarComponent } from './log-bar/log-bar.component';
+import { RadioItemComponent } from './radioItem/radio-item.component';
 export const components = [
+    RadioItemComponent,
+    LogBarComponent,
+    ProjectBarComponent,
     ProjectCardComponent,
     ProjectItemComponent,
     PersonCardComponent,
@@ -10,8 +17,11 @@ export const components = [
 ];
 export { UserCardComponent } from "./userCard/userCard.component";
 export { ProjectCardComponent } from './projectCard/projectCard.component';
-export { ProjectItemComponent } from "./projectItem/project-itemcomponent";
+export { ProjectItemComponent } from "./projectItem/project-item.component";
 export { PersonCardComponent } from "./person/person.component";
+export { ProjectBarComponent } from './projectBar/project-bar.component';
+
+
 
 export { FooterComponent } from "./footer/footer.component";
 export { HeaderComponent } from "./header/header.component";
@@ -37,3 +47,5 @@ export { ViewModeDirective } from "./editableInput/view-mode.directive";
 export { EditableOnEnterDirective } from './editableInput/editable-on-enter.directive';
 
 export { LoadingComponent } from './loading/loading.component';
+export { LogBarComponent } from './log-bar/log-bar.component';
+export { RadioItemComponent } from './radioItem/radio-item.component';

@@ -1,0 +1,41 @@
+<app-header></app-header>
+<div id="setting" class=" mb-50 row">
+    <div class="col-md-2">
+        <aside class="sidebar shadow-lg">
+            <nav class="sidebar-menu pt-3 pb-3">
+                <ul class="menu-items" style="padding-left: 20px;">
+                    <li>
+                        <a class="dropdown-item" [routerLinkActive]="['active']"
+                            [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard/settings']">個人設定</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" [routerLinkActive]="['active']"
+                            [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard/myproject']">我的專案</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" [routerLink]="['/dashboard/collection']">
+                            我的收藏</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" [routerLinkActive]="['active']"
+                            [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard/message']">我的訊息</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" [routerLinkActive]="['active']"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                            [routerLink]="['/dashboard/notifications']">我的通知</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" [routerLinkActive]="['active']"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                            [routerLink]="['/dashboard/application']">成為導師</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+    <div class="col-md-10">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+<app-footer></app-footer>

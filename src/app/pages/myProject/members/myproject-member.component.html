@@ -1,0 +1,165 @@
+<div class=" mb-80">
+    <div class="row">
+        <div class="col-md-12 " style="  display: inline-block;">
+            <span>成員管理 </span>
+            <button type="button" style="float: right;" class="btn mr-10" (click)="onSaveDraft()"><i
+                    class="fas fa-plus"></i> 邀請成員
+            </button>
+            <button type="button" style="float: right;" class="btn  mr-10" (click)="onSave()"><i
+                    class="fas fa-plus"></i> 招募成員</button>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+
+                    <button class="nav-link " id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+                        [ngClass]="{ 'active': currentTab === 'current' }" type="button" role="tab"
+                        (click)="changeTab('current')"><span class="num">7</span>目前成員</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'new' }"
+                        type="button" role="tab" (click)="changeTab('new')"><span class="num">2</span>申請加入</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'interview' }"
+                        type="button" role="tab" (click)="changeTab('interview')"><span class="num">2</span>面談中</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'rejected' }"
+                        type="button" role="tab" (click)="changeTab('rejected')"><span class="num">10</span>已拒絕</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'history' }"
+                        type="button" role="tab" (click)="changeTab('history')"><span class="num">1</span>歷程成員</button>
+                </li>
+
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'current' }" id="home" role="tabpanel"
+                    aria-labelledby="home-tab">
+                    <div class="row" *ngIf="publishedprojects.length ===0" style="height:300px">
+                        There are no member.
+                    </div>
+                    <ng-container *ngIf="publishedprojects">
+                        <div class="row" style="padding-left:15px;">
+                            <div class="card mt-3 cursor-pointer w-100">
+                                <div class="d-flex align-items-center" style="margin-top: 10px;">
+                                    <label class="switch" for="checkbox2">
+                                        <input type="checkbox" id="checkbox2" />
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                                <div class="item"> <i style="font-size: 30px;" class="far fa-user-circle fa-2x"></i>
+                                </div>
+                                <div class="item">
+                                    <p class="text-md m-0">姓名
+                                    </p>
+                                </div>
+                                <div class="item">
+                                    <p class="text-md m-0">職務名稱
+                                    </p>
+                                </div>
+                                <div class="item">
+                                    <p class="text-md m-0">申請時間
+                                    </p>
+                                </div>
+                                <div class="item">
+                                    <p class="text-md m-0"><i class="far fa-comment-alt"></i>
+                                    </p>
+                                </div>
+                                <div class="item" style="  margin-left: auto;padding-right: 20px;">
+                                    <p class="text-md m-0">前往對話
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'new' }" role="tabpanel"
+                    aria-labelledby="new-tab">
+                    <div class=" text-center" *ngIf="draftedprojects.length ===0" style="height:300px;padding:15px;">
+                        There are no candidates
+                    </div>
+                    <ng-container *ngIf="draftedprojects">
+                        <div class="row" style="padding-left:15px;">
+                            <div class="card mt-3 cursor-pointer w-100">
+                                <div class="d-flex align-items-center" style="margin-top: 10px;">
+                                    <label class="switch" for="checkbox2">
+                                        <input type="checkbox" id="checkbox2" />
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                                <div class="item"> <i style="font-size: 30px;" class="far fa-user-circle fa-2x"></i>
+                                </div>
+                                <div class="item">
+                                    <p class="text-md m-0">姓名
+                                    </p>
+                                </div>
+                                <div class="item">
+                                    <p class="text-md m-0">申請職務
+                                    </p>
+                                </div>
+                                <div class="item">
+                                    <p class="text-md m-0">申請時間
+                                    </p>
+                                </div>
+                                <div class="item">
+                                    <p class="text-md m-0"><i class="far fa-comment-alt"></i>
+                                    </p>
+                                </div>
+                                <div class="item" style="  margin-left: auto;padding-right: 20px;">
+                                    <p class="text-md m-0">前往對話
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'interview' }" role="tabpanel"
+                    aria-labelledby="interview-tab">
+                    <div class=" text-center" *ngIf="draftedprojects.length ===0" style="height:300px;padding:15px;">
+                        There are no candidates
+                    </div>
+                    <ng-container *ngIf="draftedprojects">
+                        <div class="row">
+                            <ng-container *ngFor="let item of  draftedprojects; let i = index">
+                                <h1>{{item.name}}</h1>
+                            </ng-container>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'rejected' }" role="tabpanel"
+                    aria-labelledby="rejected-tab">
+                    <div class=" text-center" *ngIf="draftedprojects.length ===0" style="height:300px;padding:15px;">
+                        There are no candidates
+                    </div>
+                    <ng-container *ngIf="draftedprojects">
+                        <div class="row">
+                            <ng-container *ngFor="let item of  draftedprojects; let i = index">
+                                <h1>{{item.name}}</h1>
+                            </ng-container>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'history' }" role="tabpanel"
+                    aria-labelledby="history-tab">
+                    <div class=" text-center" *ngIf="draftedprojects.length ===0" style="height:300px;padding:15px;">
+                        There are no candidates
+                    </div>
+                    <ng-container *ngIf="draftedprojects">
+                        <div class="row">
+                            <ng-container *ngFor="let item of  draftedprojects; let i = index">
+                                <h1>{{item.name}}</h1>
+                            </ng-container>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

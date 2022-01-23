@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
-  ArtistService,
+
   DataService,
   AppSettingsService,
   SettingService
@@ -66,7 +66,6 @@ export class ProfileComponent implements OnInit {
     private utility: Utility,
     private dataSrv: DataService,
     private appSettingsSrv: AppSettingsService,
-    private artistSrv: ArtistService,
     private SpinnerService: NgxSpinnerService
   ) {
     this.defaultProfileLogo = this.settingSrv.defaultProfileLogo;

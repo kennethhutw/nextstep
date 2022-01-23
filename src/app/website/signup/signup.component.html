@@ -65,29 +65,40 @@
                 style="color: var(--grey-50); font-weight: 500; margin-top: 20px; margin-bottom: 20px;">Or
             </div> -->
             <h4 style="margin-bottom: 30px !important; margin-top: 30px !important;"><span>OR</span></h4>
-            <form [formGroup]="loginForm">
+            <form [formGroup]="signupForm">
                 <div class="form-group">
 
-                    <input type="email" class="form-control" id="inputName" aria-describedby="nameHelp"
-                        formControlName="name" [ngClass]="{ 'is-invalid':  submitted && loginForm.get('name').invalid }"
+                    <input type="text" class="form-control" id="inputName" aria-describedby="nameHelp"
+                        formControlName="name"
+                        [ngClass]="{ 'is-invalid':  submitted && signupForm.get('name').invalid }"
                         placeholder="User name">
                     <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i> User name is
                         required.</span>
+                    <div *ngIf="nameExistant">
+                        <p class="invalid">
+                            <i class="fas fa-exclamation-triangle"></i> Name already taken.
+                        </p>
+                    </div>
                 </div>
                 <div class="form-group">
 
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                         formControlName="email"
-                        [ngClass]="{ 'is-invalid': (loginForm.get('email').touched || loginForm.get('email').dirty) && loginForm.get('email').invalid || submitted && loginForm.get('email').invalid }"
+                        [ngClass]="{ 'is-invalid': (signupForm.get('email').touched || signupForm.get('email').dirty) && signupForm.get('email').invalid || submitted && signupForm.get('email').invalid }"
                         placeholder="hi@next.com">
                     <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i> Invalid email
                         address.</span>
+                    <div *ngIf="emailExistant">
+                        <p class="invalid">
+                            <i class="fas fa-exclamation-triangle"></i> email already exist.
+                        </p>
+                    </div>
                 </div>
                 <div class="form-group">
                     <!-- <label for="password" style="width: 100%;">Password <span (click)="changeInput(pw)"
                             class="fa fa-fw fa-eye toggle-password"></span></label> -->
                     <input #pw type="password" class="form-control" id="password" formControlName="password"
-                        [ngClass]="{ 'is-invalid': (loginForm.get('password').touched || loginForm.get('password').dirty) && loginForm.get('password').invalid || submitted && loginForm.get('password').invalid }"
+                        [ngClass]="{ 'is-invalid': (signupForm.get('password').touched || signupForm.get('password').dirty) && signupForm.get('password').invalid || submitted && signupForm.get('password').invalid }"
                         placeholder="Enter password">
                     <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i> Password is required.
                     </span>

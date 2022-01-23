@@ -15,15 +15,18 @@ export class NotificationsComponent implements OnInit {
 
   notifications = [{
     type: "Notification",
-    content: "有人注視妳"
+    content: "有人注視妳",
+    time: "1642506026"
   },
   {
     type: "Announcement",
-    content: "新活動發布"
+    content: "新活動發布",
+    time: "1642505026"
   },
   {
     type: "Announcement",
-    content: "Next 有新功能喔!!"
+    content: "Next 有新功能喔!!",
+    time: "1642541026"
   }]
 
   constructor(

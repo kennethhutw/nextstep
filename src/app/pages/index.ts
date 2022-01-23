@@ -1,4 +1,4 @@
-import { DonationComponent } from "./donation/donation.component";
+
 import { HomeComponent } from "./home/home.component";
 import { ExampleComponent } from "./example/example.component";
 import { TokenComponent } from "./token/token.component";
@@ -21,7 +21,38 @@ import { newProjectComponent } from './newProject/newProject.component';
 import { PubProfileComponent } from './pubprofile/pubprofile.component';
 import { SettingsComponent } from './settings/settings.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { ChatComponent } from './chat/chat.component';
+import { MyProjectComponent } from './myProject/myProject.component';
+import { ProjectDetailComponent } from './project-detail/projectDetail.component';
+import { ProjectComponent } from './project/project.component';
+import {
+    MyProjectLogComponent,
+    MyProjectMemberComponent,
+    MyProjectProfileComponent,
+    MyProjectSettingsComponent
+} from './myProject';
+
+import {
+    MyApplicationComponent,
+    MyCollectionComponent
+} from './dashboard';
+
+
+
+import { JobComponent } from './job/job.component';
+
 export const containers = [
+    MyApplicationComponent,
+    MyCollectionComponent,
+    JobComponent,
+    MyProjectLogComponent,
+    MyProjectMemberComponent,
+    MyProjectProfileComponent,
+    MyProjectSettingsComponent,
+    ProjectDetailComponent,
+    ProjectComponent,
+    MyProjectComponent,
+    ChatComponent,
     NotificationsComponent,
     SettingsComponent,
     PubProfileComponent,
@@ -29,7 +60,6 @@ export const containers = [
     FindMentorComponent,
     FindProjectComponent,
     FindMemberComponent,
-    DonationComponent,
     HomeComponent,
     ExampleComponent,
     ProfileComponent,
@@ -54,7 +84,7 @@ export { FindMentorComponent } from './findmentor/findmentor.component';
 export { FindProjectComponent } from './findproject/findproject.component';
 export { FindMemberComponent } from './findmember/findmember.component';
 export { ProfileComponent } from './profile/profile.component';
-export { DonationComponent } from "./donation/donation.component";
+
 export { HomeComponent } from "./home/home.component";
 export { ExampleComponent } from "./example/example.component";
 export { TokenComponent } from "./token/token.component";
@@ -73,3 +103,15 @@ export { newProjectComponent } from './newProject/newProject.component';
 export { PubProfileComponent } from './pubprofile/pubprofile.component';
 export { SettingsComponent } from './settings/settings.component';
 export { NotificationsComponent } from './notifications/notifications.component';
+export { ChatComponent } from './chat/chat.component';
+export { MyProjectComponent } from './myProject/myProject.component';
+export { ProjectDetailComponent } from './project-detail/projectDetail.component';
+export {
+    MyProjectLogComponent,
+    MyProjectMemberComponent,
+    MyProjectProfileComponent,
+    MyProjectSettingsComponent
+} from './myProject';
+export { ProjectComponent } from './project/project.component';
+export { JobComponent } from './job/job.component';
+export * from './dashboard';

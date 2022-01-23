@@ -83,11 +83,7 @@
                         placeholder="Enter password">
                     <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i> Password is required.
                     </span>
-                    <div *ngIf="invalidUser">
-                        <p class="invalid">
-                            <i class="fas fa-exclamation-triangle"></i> Incorrect email or password.
-                        </p>
-                    </div>
+
                     <div *ngIf="unverifiedUser">
                         <p class="invalid">
                             <i class="fas fa-exclamation-triangle"></i> Please check your inbox to verify your
@@ -105,6 +101,12 @@
                     <!-- <div *ngIf="disableSignUp" class="spinner-border ml-3" style="height: 1.5rem; width: 1.5rem;"
                         role="status"></div> -->
                 </button>
+
+                <div *ngIf="invalidUser">
+                    <p class="invalid">
+                        <i class="fas fa-exclamation-triangle"></i> Incorrect email or password.
+                    </p>
+                </div>
             </form>
 
             <div class="w-100 ">

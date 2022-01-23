@@ -13,9 +13,9 @@
                     (change)="onDetectImage($event)" style="opacity:0; padding: 0px" />
                 <label for="profileImage">
                     <!-- <span *ngIf="this.profileImage != null " (click)="onRemoveImg($event,'1')" class="close">&times;</span> -->
-                    <button *ngIf="profileImage != null" class="member_artist_delete"
-                        (click)="onRemoveImg($event,'1')"><i class="fas fa-times"></i></button>
-                    <img for="profileImage" class="w-100" *ngIf="profileImage" height="239px" width="239px"
+                    <button *ngIf="profileImage != null" class="image_deleted" (click)="onRemoveImg($event,'1')"><i
+                            class="fas fa-times"></i></button>
+                    <img for="profileImage" style="width: 310px; height: 310px;" class="w-100" *ngIf="profileImage"
                         [src]="profileImage" alt="" />
                     <img for="profileImage" class="w-100" *ngIf="!profileImage"
                         src="https://fakeimg.pl/350x350/?text=Image" alt="" />
@@ -23,10 +23,9 @@
 
             </div>
             <div class="col-md-12 mt-2 mb-2">
-                <button type="button" class="btn ">
-                    < Back</button>
-                        <button type="button" (click)="NextStep(1)"
-                            class="btn btn-continue float-right">Continue</button>
+                <!-- <button type="button" class="btn ">
+                    < Back</button> -->
+                <button type="button" (click)="NextStep(1)" class="btn btn-continue float-right">Continue</button>
             </div>
         </div>
         <div *ngIf="step==1" class="col-md-6 frame">
@@ -35,24 +34,29 @@
             </div>
             <div class="col-md-12 mt-2 mb-2 option">
 
-                <div class="form-check">
+                <div class="form-check mt-2">
                     <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input mr-5" value="">找專案
+                        <input type="checkbox" [(ngModel)]="isProject" class="form-check-input mr-5" value="isProject">
+                        <span style="margin-left: 20px;">找專案</span>
                     </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check mt-2">
                     <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input mr-5" value="">找夥伴
+                        <input type="checkbox" [(ngModel)]="isPartner" class="form-check-input mr-5" value="isPartner">
+                        <span style="margin-left: 20px;">找夥伴</span>
                     </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check mt-2">
                     <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input mr-5" value="">當任導師
+                        <input type="checkbox" [(ngModel)]="beMentor" class="form-check-input mr-5" value="beMentor">
+                        <span style="margin-left: 20px;">
+                            當任導師</span>
                     </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check mt-2">
                     <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input mr-5" value="">找導師
+                        <input type="checkbox" [(ngModel)]="isMentor" class="form-check-input mr-5"
+                            value="isMentor"><span style="margin-left: 20px;">找導師</span>
                     </label>
                 </div>
 
@@ -61,8 +65,7 @@
             <div class="col-md-12 mt-2 mb-2">
                 <button type="button" (click)="NextStep(0)" class="btn">
                     < Back</button>
-                        <button type="button" (click)="NextStep(1)"
-                            class="btn btn-continue float-right">Continue</button>
+                        <button type="button" (click)="onSubmit()" class="btn btn-continue float-right">Save</button>
             </div>
         </div>
         <div class="col-md-6">

@@ -68,3 +68,23 @@ a{
 .option{
     min-height: 312px;
 }
+.image_deleted{
+        position: absolute;
+    display: block;
+
+    left: calc(75% + 32px);
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 18px;
+     background-color: #00FF90;
+    border-color: #00FF90;
+    color: #FFF;
+    border-radius: 50%;
+}
+
+input[type=checkbox] {
+    transform: scale(2);
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}

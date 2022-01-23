@@ -2,15 +2,11 @@ import { Component, OnInit, HostListener } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
   DataService,
-
+  UserService,
   AuthStore
 } from "../../../_services";
 import { Utility } from "../../../_helpers";
-import {
-  FormBuilder,
-  FormGroup,
-  Validators
-} from "@angular/forms";
+
 
 import {
   Router,
@@ -25,12 +21,14 @@ import {
 })
 export class SignupInfoComponent implements OnInit {
   width = false;
-  loginForm: FormGroup;
-  submitted = false;
-
+  currentUser: any = null;
   profileImage = null;
   profileImageFile = null;
   step = 0;
+  isProject = false;
+  isPartner = false;
+  beMentor = false;
+  isMentor = false;
 
   @HostListener("window:resize", ["$event"])
   getScreenSize(event?) {
@@ -45,8 +43,8 @@ export class SignupInfoComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private fb: FormBuilder,
     private authSrv: AuthStore,
+    private userSrv: UserService,
     private translateSrv: TranslateService,
     private utility: Utility,
     private dataSrv: DataService
@@ -56,30 +54,46 @@ export class SignupInfoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.currentUser = this.authSrv.getUserData();
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    this.loginForm = this.fb.group({
-      name: ["", Validators.required],
-      email: ["", [Validators.required, Validators.pattern(emailRegex)]],
-      password: ["", Validators.required],
-    });
-  }
 
-  inValid() {
-    return this.loginForm.invalid;
   }
 
   onSubmit() {
-    this.router.navigate(["./profile/Christian"], {});
+    try {
+      let _tags = "";
+      if (this.isProject) {
+        _tags += "findProject,";
+      }
+      if (this.isPartner) {
+        _tags += "findPartner,";
+      }
+      if (this.beMentor) {
+        _tags += "beMentor,";
+      }
+      if (this.isMentor) {
+        _tags += "findMentor,";
+      }
+
+      let formData = new FormData();
+      formData.append("id", this.currentUser.id);
+      formData.append("tags", _tags);
+      if (this.profileImageFile)
+        formData.append("profileImage", this.profileImageFile);
+
+      this.userSrv.updateUserBasicInfo(formData).subscribe(res => {
+        console.log("=========== ", res)
+        if (res['result'] == 'successful') {
+          this.router.navigate(["./profile/Christian"], {});
+        }
+      })
+    } catch (error) {
+      console.log("failed", error);
+    }
+
   }
 
-  socialSignIn(socialPlatform: string) {
-    console.log("socialSignIn =========", socialPlatform);
-    this.authSrv.socialSignIn(socialPlatform).then(res => {
-      console.log(" =========", res);
-      this.router.navigate(["./profile/" + res['data'].id], {});
-    });
 
-  }
 
   NextStep(value) {
     this.step = value;

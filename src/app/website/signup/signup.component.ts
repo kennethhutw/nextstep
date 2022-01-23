@@ -2,7 +2,6 @@ import { Component, OnInit, HostListener } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
   DataService,
-  PromoService,
   AuthStore
 } from "../../_services";
 import { Utility } from "../../_helpers";
@@ -16,6 +15,7 @@ import {
   Router,
   ActivatedRoute
 } from "@angular/router";
+
 @Component({
   selector: "app-signup",
   templateUrl: "./signup.component.html",
@@ -25,12 +25,17 @@ import {
 })
 export class SignupComponent implements OnInit {
   width = false;
-  loginForm: FormGroup;
+  signupForm: FormGroup;
   submitted = false;
 
   InvalidUser = false;
   unverifiedUser = false;
   GooglePlusNotExist = false;
+  nameExistant = false;
+  emailExistant = false;
+
+  checkData = null;
+  errMessage = ""
 
   @HostListener("window:resize", ["$event"])
   getScreenSize(event?) {
@@ -47,7 +52,6 @@ export class SignupComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private authSrv: AuthStore,
-    private promoSrv: PromoService,
     private translateSrv: TranslateService,
     private utility: Utility,
     private dataSrv: DataService
@@ -58,20 +62,51 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    this.loginForm = this.fb.group({
+    this.signupForm = this.fb.group({
       name: ["", Validators.required],
       email: ["", [Validators.required, Validators.pattern(emailRegex)]],
       password: ["", Validators.required],
     });
+
+    this.authSrv.getCheckData().then(res => {
+      if (res['result'] == 'successful') {
+        this.checkData = res['data'];
+      }
+    }).catch(error => {
+      console.error("check data failed", error);
+    })
   }
 
   inValid() {
-    return this.loginForm.invalid;
+    return this.signupForm.invalid;
   }
 
   onSubmit() {
+
     // this.router.navigate(["./profile/Christian"], {});
-    this.router.navigate(["./info"], {});
+    const values = this.signupForm.value;
+    if (this.checkData != null) {
+      let _name = values.name.replace(" ", "_");
+      let checkNameResult = this.checkData.find(data => data.uid == _name);
+      if (checkNameResult) {
+        this.nameExistant = true;
+        return;
+      }
+      let checkEmailResult = this.checkData.find(data => data.email == values.email);
+      if (checkEmailResult) {
+        this.emailExistant = true;
+        return;
+      }
+
+    }
+    this.authSrv.signup(values.name, values.email, values.password).subscribe(res => {
+      if (res['result'] == 'successful') {
+        this.router.navigate(["./info"], {});
+      } else {
+
+      }
+    })
+
 
   }
 

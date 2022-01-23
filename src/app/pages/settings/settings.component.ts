@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
-  ArtistService,
+
   DataService,
   AppSettingsService,
   SettingService
@@ -60,35 +60,38 @@ export class SettingsComponent implements OnInit {
   defaultProfileLogo = null;
   filterValue = null;
   searchText = '';
+  currentTab = 'privacy';
   constructor(
     private settingSrv: SettingService,
     private translateSrv: TranslateService,
     private utility: Utility,
     private dataSrv: DataService,
     private appSettingsSrv: AppSettingsService,
-    private artistSrv: ArtistService,
     private SpinnerService: NgxSpinnerService
   ) {
     this.defaultProfileLogo = this.settingSrv.defaultProfileLogo;
   }
 
+  changeTab(tab) {
+    this.currentTab = tab;
+  }
   ngOnInit() {
     this.SpinnerService.show();
-    let _lang = localStorage.getItem("lang");
-    if (!this.utility.IsNullOrEmpty(_lang)) {
-      this.translateSrv.use(_lang);
-      this.initTags(_lang);
-    } else {
-      let _browserLang = this.translateSrv.getBrowserLang();
-      this.translateSrv.use(_browserLang);
-      this.initTags(_browserLang);
-    }
-    this.dataSrv.langKey.subscribe((lang) => {
-      if (!this.utility.IsNullOrEmpty(lang)) {
-        this.translateSrv.use(lang);
-        this.initTags(lang);
-      }
-    });
+    // let _lang = localStorage.getItem("lang");
+    // if (!this.utility.IsNullOrEmpty(_lang)) {
+    //   this.translateSrv.use(_lang);
+    //   this.initTags(_lang);
+    // } else {
+    //   let _browserLang = this.translateSrv.getBrowserLang();
+    //   this.translateSrv.use(_browserLang);
+    //   this.initTags(_browserLang);
+    // }
+    // this.dataSrv.langKey.subscribe((lang) => {
+    //   if (!this.utility.IsNullOrEmpty(lang)) {
+    //     this.translateSrv.use(lang);
+    //     this.initTags(lang);
+    //   }
+    // });
 
     this.SpinnerService.hide();
     this.displayItems = this.items;
@@ -133,21 +136,6 @@ export class SettingsComponent implements OnInit {
   }
 
   onChange(deviceValue) {
-    let _items = this.items;
 
-    // switch (deviceValue) {
-    //   case 'LATEST':
-    //     _items = this.items.sort((a, b) => b.approvedDate - a.approvedDate);
-    //     break;
-    //   case 'OLDEST':
-    //     _items = this.items.sort((a, b) => a.approvedDate - b.approvedDate);
-    //     break;
-
-    //   case 'POPULAR':
-    //     _items = this.items.sort((a, b) => b.liked - a.liked);
-    //     break;
-    // }
-
-    // this.displayItems = this.splitArr(_items, 3);
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
-  ArtistService,
+
   DataService,
   AppSettingsService,
   SettingService
@@ -66,7 +66,7 @@ export class FindMemberComponent implements OnInit {
     private utility: Utility,
     private dataSrv: DataService,
     private appSettingsSrv: AppSettingsService,
-    private artistSrv: ArtistService,
+
     private SpinnerService: NgxSpinnerService
   ) {
     this.defaultProfileLogo = this.settingSrv.defaultProfileLogo;
@@ -74,22 +74,22 @@ export class FindMemberComponent implements OnInit {
 
   ngOnInit() {
     this.SpinnerService.show();
-    let _lang = localStorage.getItem("lang");
-    if (!this.utility.IsNullOrEmpty(_lang)) {
-      this.translateSrv.use(_lang);
-      this.initTags(_lang);
-    } else {
-      let _browserLang = this.translateSrv.getBrowserLang();
-      this.translateSrv.use(_browserLang);
-      this.initTags(_browserLang);
-    }
-    this.dataSrv.langKey.subscribe((lang) => {
-      if (!this.utility.IsNullOrEmpty(lang)) {
-        this.translateSrv.use(lang);
-        this.initTags(lang);
-      }
-    });
-
+    // let _lang = localStorage.getItem("lang");
+    // if (!this.utility.IsNullOrEmpty(_lang)) {
+    //   this.translateSrv.use(_lang);
+    //   this.initTags(_lang);
+    // } else {
+    //   let _browserLang = this.translateSrv.getBrowserLang();
+    //   this.translateSrv.use(_browserLang);
+    //   this.initTags(_browserLang);
+    // }
+    // this.dataSrv.langKey.subscribe((lang) => {
+    //   if (!this.utility.IsNullOrEmpty(lang)) {
+    //     this.translateSrv.use(lang);
+    //     this.initTags(lang);
+    //   }
+    // });
+    this.translateSrv.use("zh-tw");
     this.SpinnerService.hide();
     this.displayItems = this.items;
   }

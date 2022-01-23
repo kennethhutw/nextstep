@@ -1,8 +1,7 @@
-import { Component, OnInit, HostListener } from "@angular/core";
+import { Component, OnInit, HostListener, ChangeDetectorRef } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
   DataService,
-  PromoService,
   AuthStore
 } from "../../_services";
 import { Utility } from "../../_helpers";
@@ -47,7 +46,7 @@ export class SigninComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private authSrv: AuthStore,
-    private promoSrv: PromoService,
+    private changeDetectorRef: ChangeDetectorRef,
     private translateSrv: TranslateService,
     private utility: Utility,
     private dataSrv: DataService
@@ -71,13 +70,26 @@ export class SigninComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     const value = this.loginForm.value;
-    if (value.email != "aaa@aa.com" || value.password != "aaa") {
-      this.invalidUser = true;
-      return;
-    }
 
-    this.invalidUser = false;
-    this.router.navigate(["./profile/Christian"], {});
+    this.authSrv.login(value.email, value.password).subscribe(
+      (res) => {
+        console.log("=========login", res)
+        if (res["result"] === "successful") {
+          this.router.navigate(["./profile/Christian"], {});
+
+        } else {
+          this.invalidUser = true;
+        }
+        this.changeDetectorRef.detectChanges();
+      },
+      (err) => {
+        console.log(" Sign in failed! ", err);
+        this.invalidUser = true;
+        this.changeDetectorRef.detectChanges();
+      }
+    );
+
+
   }
 
   socialSignIn(socialPlatform: string) {

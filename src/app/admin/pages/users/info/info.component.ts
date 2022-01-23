@@ -9,8 +9,6 @@ import {
   AuthStore,
   ToastService,
   EmailService,
-  PendingEditionService,
-  ArtistService,
   AppSettingsService
 } from '../../../../_services';
 import { TranslateService } from "@ngx-translate/core";
@@ -51,9 +49,8 @@ export class UserInfoComponent implements OnInit, OnDestroy {
   constructor(
     private appSettingsSrv: AppSettingsService,
     private translateSrv: TranslateService,
-    private artistSrv: ArtistService,
+
     private authStoreSrv: AuthStore,
-    private pendingEditionSrv: PendingEditionService,
     private emailSrv: EmailService,
     private toastSrv: ToastService,
     private route: ActivatedRoute,
@@ -166,25 +163,7 @@ export class UserInfoComponent implements OnInit, OnDestroy {
 
   initArtworks(uid) {
     try {
-      this.pendingEditionSrv.getPendingEdition(uid).subscribe(res => {
 
-        if (res['result'] == 'successful') {
-          this.editions = res['data'];
-          if (this.editions.length > 0) {
-            this.editions.forEach((element) => {
-              if (element.thumbnail != null) {
-                element.thumbnail = environment.assetUrl + element.thumbnail;
-              }
-              if (element.imageUrl != null) {
-                element.imageUrl = environment.assetUrl + element.imageUrl;
-              }
-            });
-          }
-        }
-      }, error => {
-        console.error(` get PendingEdition :  `, error);
-
-      })
     } catch (error) {
       console.error(` get PendingEdition :  `, error);
     }
@@ -193,23 +172,7 @@ export class UserInfoComponent implements OnInit, OnDestroy {
   // 0: not decide ,1: approve, 2:reject;
   setApprove(value) {
     try {
-      this.pendingEditionSrv.updatePendingEdition(this.editedUser.id,
-        this.currentUser.id, value).subscribe(_res => {
-          if (_res["result"] === 'successful') {
-            let _status = 'Approved';
-            if (!value)
-              _status = 'Rejected';
-            if (value) {
-              this.editedUser.approved = true;
-            }
-            this.toastSrv.showToast('Success', _status, this.toastSrv.iconClasses.success);
-          } else {
-            this.toastSrv.showToast('Failed', _res['message'], this.toastSrv.iconClasses.error);
-          }
-        }, error => {
-          console.error(`setApprove failed `, error);
-          this.toastSrv.showToast('Failed', error.message, this.toastSrv.iconClasses.error);
-        });
+
     }
     catch (err) {
       console.error(`setApprove failed `, err);
@@ -293,16 +256,6 @@ export class UserInfoComponent implements OnInit, OnDestroy {
     formData.append("tags", newArtist.tags);
     formData.append("profileImage", this.profileImageFile);
 
-    this.artistSrv.updateArtistBasicInfo(formData).subscribe(res => {
-      if (res["result"] === "successful") {
-        this.informMsg = "save successful";
-      }
-      else {
-        this.informMsg = "save failed";
-      }
-    }, error => {
-      this.informMsg = "save failed";
-      console.error("update Basic infor failed", error);
-    });
+
   }
 }

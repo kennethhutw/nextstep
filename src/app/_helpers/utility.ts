@@ -205,31 +205,5 @@ export class Utility {
   }
 
 
-  getSellETHPrice(usdvalue) {
-    try {
-      let usd = parseFloat(usdvalue);
-      let ethPrice = Number(localStorage.getItem("ETHPRICE"));
 
-      const ethAmount = +((usd / 100) / ethPrice).toFixed(5);
-      return ethAmount;
-    }
-    catch (err) {
-      console.error(`Convert USD to ETH failed : `, err);
-      return 0;
-    }
-  }
-
-  getSellUSDPrice(usdvalue) {
-    try {
-      let usd = parseFloat(usdvalue);
-      let ethPrice = Number(localStorage.getItem("ETHPRICE"));
-
-      const ethAmount = +(usd / 100 * ethPrice).toFixed(2);
-      return ethAmount;
-    }
-    catch (err) {
-      console.error(`Convert USD to ETH failed :`, err);
-      return 0;
-    }
-  }
 }

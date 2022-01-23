@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { CryptoService } from "./_services";
+
 import { Router, NavigationEnd } from '@angular/router';
 import { environment } from "../environments/environment";
 declare let gtag: Function;
@@ -12,7 +12,7 @@ declare let gtag: Function;
 })
 export class AppComponent {
   title = "Formosa";
-  constructor(public router: Router, private CryptoSrv: CryptoService) {
+  constructor(public router: Router) {
 
 
     this.router.events.subscribe(event => {

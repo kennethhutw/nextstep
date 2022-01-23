@@ -30,7 +30,14 @@
   margin-top: .25rem;
   color: #dc3545;
 }
-
+#index_login{
+     margin-top: 7px !important;
+   }
+@media (min-width: 992px){
+   #index_login{
+     margin-top: 12px !important;
+   }
+}
 
 .error-msg {
   color: #dc3545;
@@ -45,11 +52,15 @@
 .f16{
     font-size: 16px;
 }
+.navbar-light .navbar-nav .nav-link {
+    color: #000000;
+}
 a{
-  color: #210b2c;
+color: #000000;
   font-size: 18px;
   font-family:'Roboto', sans-serif;
   font-weight: 300;
+  padding-left: 8px;
 }
 
 .signout{

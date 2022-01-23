@@ -1,0 +1,40 @@
+<app-header></app-header>
+<div id="setting" class=" mb-50 row">
+    <div class="col-md-2">
+        <aside class="sidebar shadow-lg">
+            <nav class="sidebar-menu pt-3 pb-3">
+                <ul class="menu-items" style="padding-left: 20px;">
+                    <li>
+                        <h3> <a class="dropdown-item" [routerLinkActive]="['active']"
+                                [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard/myproject']">
+                                <i class="fas fa-angle-left"></i> 我的專案</a></h3>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" [routerLinkActive]="['active']"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                            [routerLink]="['/myproject/'+project.id+'/profile']">內容管理
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" [routerLinkActive]="['active']"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                            [routerLink]="['/myproject/'+project.id+'/members']">成員管理</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" [routerLink]="['/myproject/'+project.id+'/settings']">專案設定</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" [routerLinkActive]="['active']"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                            [routerLink]="['/myproject/'+project.id+'/logs']">專案紀錄</a>
+                    </li>
+
+                </ul>
+            </nav>
+        </aside>
+    </div>
+    <div class="col-md-10">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+<app-footer></app-footer>

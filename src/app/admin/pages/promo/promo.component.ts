@@ -7,7 +7,7 @@ import {
   DelegateEmailService,
   ToastService,
   DialogService,
-  PromoService
+
 } from "../../../_services";
 import { Router, ActivatedRoute, Routes } from '@angular/router';
 import { Utility } from 'src/app/_helpers';
@@ -46,7 +46,7 @@ export class AdminPromoComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private router: Router,
     private utility: Utility,
-    private promoSrv: PromoService,
+
     private toasterSrv: ToastService,
     private route: ActivatedRoute,
     private confirmDialogService: DialogService,
@@ -67,12 +67,7 @@ export class AdminPromoComponent implements OnInit, OnDestroy {
 
   refreshTable() {
     this.loading = true;
-    this.promoSrv.getAllPromo().subscribe(result => {
-      if (result['result'] === 'successful') {
-        this.promos = result['data'];
-      }
-      this.loading = false;
-    });
+
   }
 
   ngOnDestroy(): void {
@@ -94,14 +89,7 @@ export class AdminPromoComponent implements OnInit, OnDestroy {
 
     this.confirmDialogService.confirmThis('Are you sure you want to delete?',
       () => {
-        that.promoSrv.deleletCode(id).subscribe(res => {
-          if (res['result'] = 'successful') {
-            that.showToaster(true, `delete ${title} successfully`);
-            that.refreshTable();
-          } else {
-            that.showToaster(false, `delete ${title} failed`);
-          }
-        });
+
       }, () => {
         console.log("No ----");
       });
@@ -124,20 +112,6 @@ export class AdminPromoComponent implements OnInit, OnDestroy {
 
     // const emailExistsInTable = this.isInArray(this.testEmailToAdd, this.Emails);
 
-    this.promoSrv.generateCode(this.codeType).subscribe(res => {
-      if (res['result'] === 'successful') {
-        this.newCode = res["data"];
-
-        this.showToaster(true, `${this.newCode} added!`);
-        this.refreshTable();
-        this.promoForm.reset();
-      } else {
-        this.showToaster(false, `add ${this.newCode} failed`);
-      }
-    }, err => {
-      this.showToaster(false, `add ${this.newCode} failed`);
-    });
-
 
     this.submitted = false;
   }
@@ -149,17 +123,7 @@ export class AdminPromoComponent implements OnInit, OnDestroy {
   updateCode() {
 
 
-    this.promoSrv.updateCode(this.editCodeId,
-      this.codeForm.value.email
-      , this.codeForm.value.userId).subscribe(res => {
-        if (res['result'] = 'successful') {
-          this.showToaster(true, `update ${this.editCodeId} successfully`);
-          this.editCodeId = "";
-          this.refreshTable();
-        } else {
-          this.showToaster(false, `update ${this.editCodeId} failed`);
-        }
-      });
+
 
   }
 }

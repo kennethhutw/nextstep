@@ -15,20 +15,13 @@ import { LoadingSpinnerComponent } from "./_shared/loading-spinner/loading-spinn
 import { NgxSpinnerModule } from "ngx-spinner";
 import {
     UserService,
-    WalletService,
-    CryptoService,
-    Web3Service,
-    ArtistService,
-    ArtWorkService,
-    EditionService,
+
     DataService,
     AuthStore,
     AppSettingsService,
     DialogService,
     SettingService,
     LikeService,
-    GalleryService,
-    OfferService,
     EmailService
 } from "./_services";
 
@@ -41,21 +34,16 @@ import {
         LoadingDialogService,
         BsModalService,
         UserService,
-        WalletService,
+
         AuthService,
-        CryptoService,
-        Web3Service,
-        ArtistService,
-        ArtWorkService,
-        EditionService,
+
         DataService,
         AppSettingsService,
         AuthStore,
         LikeService,
-        OfferService,
+
         SettingService,
         DialogService,
-        GalleryService,
         EmailService,
         {
             provide: ErrorHandler,

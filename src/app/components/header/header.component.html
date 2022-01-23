@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg  navbar-light  bg-white fixed-top">
   <div class="container">
     <a class="navbar-brand" routerLink="/index">
-      <img src="./../../../assets/img/logo.jpg" width="170" height="40" alt="" /></a>
+      <img src="./../../../assets/images/logo.png" height="40" alt="" /></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -11,28 +11,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link" routerLink="/index" (click)="ToggleNavBar()">{{ "HOME" | translate }} <span
-              class="sr-only">(current)</span></a>
+          <a class="nav-link" routerLink="/index" (click)="ToggleNavBar()">首頁 <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-          <a id="galleryLink" class="nav-link" routerLink="/projects" (click)="ToggleNavBar()">{{
-            "PROJECT" | translate
-            }}</a>
+          <a id="galleryLink" class="nav-link" routerLink="/projects" (click)="ToggleNavBar()">專案</a>
         </li>
         <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link" routerLink="/members" (click)="ToggleNavBar()">{{
-            "MEMBER" | translate
-            }}</a>
+          <a class="nav-link" routerLink="/members" (click)="ToggleNavBar()">夥伴</a>
         </li>
         <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link" routerLink="/mentors" (click)="ToggleNavBar()">{{
-            "MENTOR" | translate
-            }}</a>
+          <a class="nav-link" routerLink="/mentors" (click)="ToggleNavBar()">導師</a>
         </li>
         <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link" routerLink="/feedback" (click)="ToggleNavBar()">{{
-            "FEEDBACK" | translate
-            }}</a>
+          <a class="nav-link" routerLink="/feedback" (click)="ToggleNavBar()">意見回饋</a>
         </li>
         <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
           <i class="fa-fw fab fa-telegram icon"></i>
@@ -46,15 +37,17 @@
 
       </ul>
       <ul class="navbar-nav">
-        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link" routerLink="/newProject" (click)="ToggleNavBar()">建立專案 <span
-              class="sr-only">(current)</span></a>
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+          style="    padding-top: 13px;">
+          <a class="nav-link" (click)="RouteToNewProject()">建立專案 </a>
         </li>
-        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+        <li *ngIf="!authStoreSrv.isLoggedOut$ | async" class="nav-item" [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }">
           <a class="nav-link" routerLink="/notifications"> <i class="far fa-bell icon"></i></a>
         </li>
-        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-          <i class="far fa-comment-dots icon"></i>
+        <li *ngIf="!authStoreSrv.isLoggedOut$ | async" class="nav-item" [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav-link" routerLink="/message"> <i class="far fa-comment-dots icon"></i></a>
         </li>
         <!-- <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
           <i class="far fa-user-circle par-5 icon"></i>
@@ -62,7 +55,7 @@
       </ul>
 
       <!-- <form *ngIf="authStoreSrv.isLoggedIn$ | async" id="index_login" class="form-inline my-2 my-lg-0 text-white"> -->
-      <form id="index_login" class="form-inline my-2 my-lg-0 text-white">
+      <form id="index_login" *ngIf="authStoreSrv.isLoggedIn$ | async" class="form-inline my-2 my-lg-0 text-white">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto text-center">
             <li class="nav-item dropdown">
@@ -71,13 +64,24 @@
                 <i class="fas fa-user-circle par-5 icon"></i>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+                  [routerLink]="['/u/',currentUser?.uid]">個人資料</a>
+                <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+                  [routerLink]="['/dashboard/settings']">個人設定</a>
 
-                <a class="dropdown-item" [routerLink]="['/u/kenneth']">{{
-                  "PROFILE" | translate }}</a>
-                <a class="dropdown-item" [routerLink]="['/u/kenneth']">{{
-                  "PUBPROFILE" | translate }}</a>
-                <a class="dropdown-item" [routerLink]="['/settings']">{{
-                  "DASHBOARD" | translate }}</a>
+                <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+                  [routerLink]="['/dashboard/myproject']">我的專案</a>
+                <a class="dropdown-item" [routerLink]="['/dashboard/collection']">我的收藏</a>
+                <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+                  [routerLink]="['/dashboard/message']">我的訊息</a>
+                <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+                  [routerLink]="['/dashboard/notifications']">我的通知</a>
+
+                <a class="dropdown-item" [routerLink]="['/dashboard/application']">成為導師</a>
+                <!-- <a class="dropdown-item" [routerLink]="['/u/',currentUser?.uid]">{{
+                  "PUBPROFILE" | translate }}</a> -->
+                <!-- <a class="dropdown-item" [routerLink]="['/settings']">{{
+                  "DASHBOARD" | translate }}</a> -->
                 <!-- <a class="dropdown-item" routerLink="/artist/basic">{{ "EDITPROFILE" | translate }}</a> -->
 
                 <div class="dropdown-divider"> </div>
@@ -90,12 +94,8 @@
         </div>
       </form>
       <!-- <i style="color: #fff!important;" class="fas fa-globe"></i> -->
-      <form id="index_login" *ngIf="authStoreSrv.isLoggedOut$ | async" class="form-inline my-2 my-lg-0 ">
-
-        <a routerLink="/signin">{{ "SIGNIN" | translate
-          }}</a>｜<a routerLink="/signup" [routerLinkActive]="['active']">{{
-          "SIGNUP" | translate }}</a>
-
+      <form id="index_login" *ngIf="authStoreSrv.isLoggedOut$ | async" class="form-inline my-2 my-lg-0">
+        <a routerLink="/signin">登入</a> <a routerLink="/signup" [routerLinkActive]="['active']">註冊</a>
       </form>
 
 

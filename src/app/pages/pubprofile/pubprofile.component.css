@@ -1,3 +1,9 @@
+.profile-text{
+    min-height: 200px;
+}
+.fb-profile{
+     min-height: 430px;
+}
 .fb-profile img.fb-image-lg{
     z-index: 0;
     width: 100%;

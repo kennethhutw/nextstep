@@ -1,6 +1,6 @@
-<div id="findcontent" class="container mb-50 row">
-  <div class="col-md-3">
-    <aside class="sidebar  shadow-lg">
+<div id="findcontent" class="row" style="padding-bottom: 30px;">
+  <div class="col-md-2">
+    <aside class="sidebar shadow-lg">
       <nav class="sidebar-menu pt-3 pb-3">
         <ul class="menu-items" style="padding-left: 20px;">
           <li>
@@ -96,14 +96,15 @@
             <label style="margin-left: 10px;" for="firsttimeInput">9小時以上(含)</label>
           </li>
           <li>
-            <input type="text" class="form-control search" aria-label="" aria-describedby="button-addon2" />
+            <input type="text" class="form-control search" style="    width: 90%;" aria-label=""
+              aria-describedby="button-addon2" />
           </li>
         </ul>
       </nav>
     </aside>
 
   </div>
-  <div class="col-md-9">
+  <div class="col-md-10">
 
 
     <div class="row" *ngIf="displayItems.length ===0" style="height:300px">
@@ -112,7 +113,7 @@
     <ng-container *ngIf="displayItems">
       <div class="row">
         <ng-container *ngFor="let item of  displayItems; let i = index">
-          <div class="col-md-6 text-center">
+          <div class="col-md-4 text-center">
             <app-project-card [project]="item"></app-project-card>
           </div>
         </ng-container>

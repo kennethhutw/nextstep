@@ -1,32 +1,5 @@
-<div id="findcontent" class="container mb-50 row">
-  <div class="col-md-3">
-    <aside class="sidebar  shadow-lg">
-      <nav class="sidebar-menu pt-3 pb-3">
-        <ul class="menu-items" style="padding-left: 20px;">
-          <li>
-            <i class="fas fa-home icon"></i>
-            <p>Home</p>
-          </li>
-          <li>
-            <p>訊息</p>
-          </li>
-          <li>
-            <p>我的專案</p>
-          </li>
-          <li>
-            <p>我的收藏</p>
-          </li>
-          <li>
-            <p>設定</p>
-          </li>
-        </ul>
-
-      </nav>
-    </aside>
-
-  </div>
-  <div class="col-md-9">
-
+<!-- <div id="findcontent" class="container mb-50 row">
+  <div class="col-md-12">
     <div class="frame mt-100">
       <div class="row">
         <div class="col-md-6">
@@ -85,7 +58,83 @@
       </div>
     </div>
   </div>
+   <div class="col-md-3">
+    <aside class="sidebar  shadow-lg">
+      <nav class="sidebar-menu pt-3 pb-3">
+        <ul class="menu-items" style="padding-left: 20px;">
+          <li>
+            <i class="fas fa-home icon"></i>
+            <p>Home</p>
+          </li>
+          <li>
+            <p>訊息</p>
+          </li>
+          <li>
+            <p>我的專案</p>
+          </li>
+          <li>
+            <p>我的收藏</p>
+          </li>
+          <li>
+            <p>設定</p>
+          </li>
+        </ul>
+
+      </nav>
+    </aside>
+
+  </div>
+  <div class="col-md-9">
+
+  </div>
+</div> -->
+<div class=" mb-80">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>個人設定</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link " id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+            [ngClass]="{ 'active': currentTab === 'privacy' }" type="button" role="tab"
+            (click)="changeTab('privacy')">隱私相關</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'notifications' }"
+            type="button" role="tab" (click)="changeTab('notifications')">通知設定</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'password' }" type="button"
+            role="tab" (click)="changeTab('password')">修改密碼</button>
+        </li>
+
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'privacy' }" id="home" role="tabpanel"
+          aria-labelledby="home-tab">
+          <ui-radio-item [title]="'是否顯示上限狀態'"></ui-radio-item>
+          <ui-radio-item [title]="'檔案隱私是否公開'"></ui-radio-item>
+
+        </div>
+        <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'notifications' }" role="tabpanel"
+          aria-labelledby="profile-tab">
+          <ui-radio-item [title]="'追蹤與收藏'"></ui-radio-item>
+          <ui-radio-item [title]="'訊息'"></ui-radio-item>
+          <ui-radio-item [title]="'系統相關'"></ui-radio-item>
+        </div>
+        <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'password' }" role="tabpanel"
+          aria-labelledby="profile-tab">
+
+        </div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+      </div>
+    </div>
+  </div>
 </div>
+
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
   <p style="color: white">Please Wait. </p>
 </ngx-spinner>
