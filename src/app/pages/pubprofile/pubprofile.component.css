@@ -1,4 +1,87 @@
-.profile-text{
+#profile-upper
+{
+    position: relative;
+}
+
+#profile-d
+{
+    position: absolute;
+    left: 59px;
+    bottom: 0px;
+    right: 0px;
+    height: 180px;
+    z-index: 2;
+}
+
+#profile-banner-image
+{
+    height: 360px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+#profile-banner-image img
+{
+    width: 100%;
+    margin-top: -20%;
+}
+
+#profile-pic
+{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-top: 108px;
+    overflow: hidden;
+    box-shadow: 0 0 0 5px #fff;
+}
+
+#profile-pic img
+{
+    width: 100%;
+}
+
+#u-name
+{
+    position: absolute;
+    top: 200px;
+    left: 208px;
+    color: #0e0e0e;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+#m-btns
+{
+    position: absolute;
+    right: 56px;
+    bottom: 20px;
+    width: 211px;
+}
+
+#m-btns .td
+{
+    padding: 0 8px;
+}
+
+.m-btn
+{
+    cursor: pointer;
+    color: #0e0e0e;
+    font-size: 14px;
+    white-space: pre;
+    padding: 5px 8px 6px 8px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 2px;
+}
+
+.frame{
+      border: 2px solid #C4C4C4;
+      min-height: 300px;
+      margin-bottom: 30px;
+}
+
+/* .profile-text{
     min-height: 200px;
 }
 .fb-profile{
@@ -15,7 +98,7 @@
     margin: -90px 10px 0px 50px;
     z-index: 9;
     width: 20%;
-}
+} */
 
 
 @media (max-width:768px)
@@ -34,7 +117,14 @@
     }
 }
 .mt-100{
-       margin-top:100px;
+    margin-top:100px;
+}
+.mt-120{
+    margin-top:120px;
+}
+
+.mt-180{
+    margin-top:180px;
 }
 .frame{
      border: 1px solid rgba(0, 0, 0, 0.6);

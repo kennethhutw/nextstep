@@ -1,3 +1,13 @@
+#findcontent{
+  padding-bottom: 30px;
+}
+
+@media  (min-width: 1900px) {
+  #findcontent {
+   margin-left: 15%;
+   margin-right: 15%;
+  }
+}
 .show_tags {
   height: auto !important;
 }

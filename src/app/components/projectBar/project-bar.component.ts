@@ -1,9 +1,15 @@
-import { Component, OnInit, Input, ViewEncapsulation } from "@angular/core";
+import {
+  Component, OnInit, Input, Output,
+  EventEmitter
+} from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { Router } from "@angular/router";
 
 import { Utility } from "../../_helpers";
-import { DataService } from "../../_services";
+import {
+  DataService,
+  DialogService
+} from "../../_services";
 @Component({
   selector: "app-project-bar",
   templateUrl: "./project-bar.component.html",
@@ -12,10 +18,11 @@ import { DataService } from "../../_services";
 export class ProjectBarComponent implements OnInit {
   _project = null;
   @Input() set project(value) {
-    console.log("value ============", value);
     this._project = value;
   };
 
+
+  @Output() onDelete = new EventEmitter<any>();
   constructor(
     private utility: Utility,
     private translateSrv: TranslateService,
@@ -36,5 +43,9 @@ export class ProjectBarComponent implements OnInit {
     });
   }
 
-
+  onClickDelete(projectId) {
+    this.onDelete.emit({
+      id: projectId
+    });
+  }
 }

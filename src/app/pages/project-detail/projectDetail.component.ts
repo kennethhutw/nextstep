@@ -33,7 +33,6 @@ export class ProjectDetailComponent implements OnInit {
     ).then(res => {
       if (res['result'] == 'successful') {
         let data = res['data'];
-        console.log("data =========", data);
         if (data.length > 0) {
           this.publishedprojects = data.filter((project) => {
             return project.status == 'published'

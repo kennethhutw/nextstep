@@ -39,6 +39,8 @@
                     [checked]="isInValue('fintech', f.type.value)" value="fintech"><small>金融科技</small>
                 <input type="checkbox" (change)="onTypeChange($event, 'game')"
                     [checked]="isInValue('game', f.type.value)" value="game"><small>遊戲產業</small>
+                <input type="checkbox" (change)="onTypeChange($event, 'platform')"
+                    [checked]="isInValue('platform', f.type.value)" value="platform"><small>平台</small>
             </div>
             <div class="col-md-12 mb-12 form-group ">
                 <label class="pr-2" for="stage">

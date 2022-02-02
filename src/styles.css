@@ -390,6 +390,10 @@ a {
    color: #08ab65 ;
   /* color:#000000 !important; */
 }
+.active {
+   color: #17f596 !important;
+
+}
 
 a:hover {
    color: #17f596 !important;

@@ -78,7 +78,6 @@ export class HeaderComponent implements OnInit {
     });
 
     this.currentUser = this.authStoreSrv.getUserData();
-    console.log(" ============= ", this.currentUser);
     if (!!this.currentUser) {
       this.uid = this.currentUser.uid;
     }

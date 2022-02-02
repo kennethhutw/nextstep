@@ -1,10 +1,11 @@
-import { HostListener, HostBinding, Component, OnInit } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { Component, OnInit } from '@angular/core';
+
 import {
   DialogService,
   AuthStore,
   ProjectService
 } from '../../../_services';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-myproject-settings',
@@ -13,14 +14,15 @@ import {
 })
 export class MyProjectSettingsComponent implements OnInit {
 
-  isFindPartnerPanel: boolean = false;
+  isPublic: boolean = false;
+  isShowMember: boolean = false;
   submitted = false;
   currentUser;
   projectMsg = "";
-  currentTab = "published";
-  publishedprojects = [];
-  draftedprojects = [];
+  msg = "";
+  currentProject = null;
   constructor(
+    private route: ActivatedRoute,
     private dialogSrv: DialogService,
     private projectSrv: ProjectService,
     private authStoreSrv: AuthStore) {
@@ -28,28 +30,34 @@ export class MyProjectSettingsComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = this.authStoreSrv.getUserData();
-    this.projectSrv.getProjectsByUid(
-      this.currentUser.id
-    ).then(res => {
-      if (res['result'] == 'successful') {
-        let data = res['data'];
-        console.log("data =========", data);
-        if (data.length > 0) {
-          this.publishedprojects = data.filter((project) => {
-            return project.status == 'published'
-          });
-          this.draftedprojects = data.filter((project) => {
-            return project.status == 'draft'
-          });
-
-        }
+    let projectId = this.route.snapshot.paramMap.get("projectId");
+    this.projectSrv.getProject(projectId).then(res => {
+      if (res['result'] === 'successful') {
+        this.currentProject = res['data'];
+        this.isPublic = this.currentProject.isPublic;
+        this.isShowMember = this.currentProject.isShowMember;
       }
+    }).catch(error => {
+      console.error("error", error);
     })
 
   }
 
-  changeTab(tab) {
-    this.currentTab = tab;
+  onSave() {
+    this.msg = "";
+    this.projectSrv.update(this.currentProject.id, {
+      isPublic: this.isPublic,
+      isShowMember: this.isShowMember
+    }).subscribe(res => {
+      if (res['result'] === 'successful') {
+        this.msg = "Update successfully.";
+      } else {
+        this.msg = "Update failed.";
+      }
+    }, error => {
+      this.msg = "Update failed.";
+      console.error("updated error", error);
+    })
   }
 
 }

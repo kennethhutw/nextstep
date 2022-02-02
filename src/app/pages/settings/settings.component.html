@@ -1,94 +1,4 @@
-<!-- <div id="findcontent" class="container mb-50 row">
-  <div class="col-md-12">
-    <div class="frame mt-100">
-      <div class="row">
-        <div class="col-md-6">
-          <h3>身分驗證</h3>
-        </div>
-        <div class="col-md-6 text-right form-inline">
-          <div class="w3-light-grey" style="width: 80%;padding-right: 10px;">
-            <div class="w3-grey" style="height:24px;width:20%"></div>
-          </div>
-          <span style="margin-left: 10px;">20%</span>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12 content">
-          <ul class="menu-items" style="padding-left: 20px;">
-
-            <li>
-              <input type="checkbox" />
-              <label style="margin-left: 10px;" for="firsttimeInput">Email驗證</label>
-            </li>
-            <li>
-              <input type="checkbox" />
-              <label style="margin-left: 10px;" for="firsttimeInput">個人資料</label>
-            </li>
-            <li>
-              <input type="checkbox" />
-              <label style="margin-left: 10px;" for="firsttimeInput">與一名會員互相追蹤</label>
-            </li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="row mt-50">
-      <div class="col-md-12">
-        <h3>近期動態</h3>
-      </div>
-    </div>
-    <div class="frame mb-20">
-      <div class="row">
-        <div class="col-md-6" style=" display:inline-block;">
-          <span style="font-size: 25px;padding-right: 20px;">專案名稱</span>
-          <span>YYYY年MM月</span>~<span>YYYY年MM月</span>
-        </div>
-        <div class="col-md-6 text-right">
-          <i class="fas fa-pencil-alt"></i>
-        </div>
-      </div>
-      <div class="row mt-20">
-        <div class="col-md-12 content">
-          工作內容
-        </div>
-
-      </div>
-    </div>
-  </div>
-   <div class="col-md-3">
-    <aside class="sidebar  shadow-lg">
-      <nav class="sidebar-menu pt-3 pb-3">
-        <ul class="menu-items" style="padding-left: 20px;">
-          <li>
-            <i class="fas fa-home icon"></i>
-            <p>Home</p>
-          </li>
-          <li>
-            <p>訊息</p>
-          </li>
-          <li>
-            <p>我的專案</p>
-          </li>
-          <li>
-            <p>我的收藏</p>
-          </li>
-          <li>
-            <p>設定</p>
-          </li>
-        </ul>
-
-      </nav>
-    </aside>
-
-  </div>
-  <div class="col-md-9">
-
-  </div>
-</div> -->
-<div class=" mb-80">
+<div *ngIf="!loading" class=" mb-80">
   <div class="row">
     <div class="col-md-12">
       <h1>個人設定</h1>
@@ -115,21 +25,81 @@
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'privacy' }" id="home" role="tabpanel"
           aria-labelledby="home-tab">
-          <ui-radio-item [title]="'是否顯示上限狀態'"></ui-radio-item>
-          <ui-radio-item [title]="'檔案隱私是否公開'"></ui-radio-item>
-
+          <ui-radio-item [title]="'是否顯示上限狀態'" [id]="'displayOnline'" [value]="currentSetting.displayOnline"
+            (onChange)="onChange($event)"></ui-radio-item>
+          <ui-radio-item [title]="'檔案隱私是否公開'" [id]="'isPublic'" [value]="currentSetting.isPublic"
+            (onChange)="onChange($event)"></ui-radio-item>
+          <div class="col-md-12 mb-12 form-group button-center">
+            <button type="button" class="btn btn-primary mr-10" (click)="onSavePrivacy()">重設
+            </button>
+          </div>
+          <div class="col-md-12 mb-12 form-group button-center">
+            <span>{{privacyMsg}}</span>
+          </div>
         </div>
         <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'notifications' }" role="tabpanel"
           aria-labelledby="profile-tab">
-          <ui-radio-item [title]="'追蹤與收藏'"></ui-radio-item>
-          <ui-radio-item [title]="'訊息'"></ui-radio-item>
-          <ui-radio-item [title]="'系統相關'"></ui-radio-item>
+          <ui-radio-item [title]="'追蹤與收藏'" [id]="'notiFollow'" [value]="currentSetting.notiFollow"
+            (onChange)="onChange($event)"></ui-radio-item>
+          <ui-radio-item [title]="'訊息'" [id]="'notiMsg'" [value]="currentSetting.notiMsg" (onChange)="onChange($event)">
+          </ui-radio-item>
+          <ui-radio-item [title]="'系統相關'" [id]="'notiSystem'" [value]="currentSetting.notiSystem"
+            (onChange)="onChange($event)"></ui-radio-item>
+          <div class="col-md-12 mb-12 form-group button-center">
+            <button type="button" class="btn btn-primary mr-10" (click)="onSaveNotif()">重設
+            </button>
+          </div>
+          <div class="col-md-12 mb-12 form-group button-center">
+            <span>{{notifMsg}}</span>
+          </div>
         </div>
         <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'password' }" role="tabpanel"
           aria-labelledby="profile-tab">
+          <div class="row" id="reset_form" [formGroup]="PasswordForm" style="margin-top: 20px;">
+            <div class="col-md-12">
+              <div class="form-group">
+                <input type="password" class="form-control" placeholder="current password"
+                  formControlName="currentPassword" style="margin-bottom: 15px;" />
+                <div *ngIf="submitted && f.currentPassword.errors">
+                  <div class="error-msg" *ngIf="f.currentPassword.errors.required">Old Password is required</div>
+                </div>
+              </div>
+            </div>
 
+            <div class="col-md-12">
+              <div class="form-group">
+                <input type="password" class="form-control" placeholder="new password" formControlName="newPassword"
+                  autocomplete="off" style="margin-bottom: 15px;" />
+                <div *ngIf="submitted && f.newPassword.errors">
+                  <div class="error-msg" *ngIf="f.newPassword.errors.required">New Password is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+
+                <input type="password" class="form-control" placeholder="re-enter new password" [autocomplete]="'off'"
+                  formControlName="confirmPassword" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }">
+                <div class="error-msg" *ngIf="checkPasswords()"> Password & Confirm Password does not match.</div>
+                <div *ngIf="submitted && f.confirmPassword.errors">
+                  <div class="error-msg" *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+                </div>
+              </div>
+
+
+            </div>
+
+            <div class="col-md-12 mb-12 form-group button-center">
+              <button type="button" class="btn btn-primary mr-10" (click)="onResetPassword()">重設
+              </button>
+
+            </div>
+            <div class="col-md-12 mb-12 form-group button-center">
+              <span>{{passwordMsg}}</span>
+            </div>
+          </div>
         </div>
-        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+
       </div>
     </div>
   </div>

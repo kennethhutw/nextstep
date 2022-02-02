@@ -5,6 +5,7 @@ import {
   AuthStore,
   ProjectService
 } from '../../../_services';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-myproject-member',
@@ -18,9 +19,13 @@ export class MyProjectMemberComponent implements OnInit {
   currentUser;
   projectMsg = "";
   currentTab = "current";
-  publishedprojects = [];
-  draftedprojects = [];
+  current = [];
+  candidates = [];
+  interviews = [];
+  rejected = [];
+  past = [];
   constructor(
+    private route: ActivatedRoute,
     private dialogSrv: DialogService,
     private projectSrv: ProjectService,
     private authStoreSrv: AuthStore) {
@@ -28,18 +33,29 @@ export class MyProjectMemberComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = this.authStoreSrv.getUserData();
-    this.projectSrv.getProjectsByUid(
-      this.currentUser.id
+    let projectId = this.route.snapshot.paramMap.get("projectId");
+    this.projectSrv.getMembers(
+      projectId
     ).then(res => {
+      console.log("==============", res);
       if (res['result'] == 'successful') {
         let data = res['data'];
-        console.log("data =========", data);
+
         if (data.length > 0) {
-          this.publishedprojects = data.filter((project) => {
-            return project.status == 'published'
+          this.current = data.filter((member) => {
+            return member.status == 'current'
           });
-          this.draftedprojects = data.filter((project) => {
-            return project.status == 'draft'
+          this.candidates = data.filter((member) => {
+            return member.status == 'candidate'
+          });
+          this.interviews = data.filter((member) => {
+            return member.status == 'interview'
+          });
+          this.rejected = data.filter((member) => {
+            return member.status == 'rejected'
+          });
+          this.past = data.filter((member) => {
+            return member.status == 'past'
           });
 
         }

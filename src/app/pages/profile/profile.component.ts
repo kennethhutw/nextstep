@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
-
+  UserService,
   DataService,
   AppSettingsService,
   SettingService
@@ -9,6 +9,8 @@ import {
 import { Utility } from "../../_helpers";
 import { environment } from '../../../environments/environment';
 import { NgxSpinnerService } from "ngx-spinner";
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: "app-profile",
@@ -61,10 +63,13 @@ export class ProfileComponent implements OnInit {
   filterValue = null;
   searchText = '';
   constructor(
+    private UserSrv: UserService,
     private settingSrv: SettingService,
     private translateSrv: TranslateService,
     private utility: Utility,
     private dataSrv: DataService,
+    private router: Router,
+    private route: ActivatedRoute,
     private appSettingsSrv: AppSettingsService,
     private SpinnerService: NgxSpinnerService
   ) {
@@ -89,6 +94,18 @@ export class ProfileComponent implements OnInit {
       }
     });
 
+
+    this.route.queryParams.subscribe((params) => {
+      console.log(" ==================", params);
+      if (params['userId']) {
+        this.UserSrv.getUserInfo(params['userId']).then(res => {
+          console.log(" ==================", res);
+          if (res['result'] == 'successful') {
+
+          }
+        })
+      }
+    });
     this.SpinnerService.hide();
     this.displayItems = this.items;
   }

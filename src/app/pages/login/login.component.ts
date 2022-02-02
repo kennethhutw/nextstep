@@ -117,7 +117,7 @@ export class LoginComponent implements OnInit {
           if (this.currentUser.roles.artist) {
             this.currentUser.firstTime = 0;
             this.authStoreSrv.setUserData(this.currentUser);
-            // this.router.navigate(['/artist/account'], {});
+
             document.getElementById("openModalButton").click();
           } else if (this.currentUser.roles.collector) {
             document.getElementById("openCollectorModalButton").click();

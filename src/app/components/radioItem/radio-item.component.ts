@@ -26,6 +26,9 @@ export class RadioItemComponent implements OnInit {
   }
 
   checkValue() {
-    this.onChange.emit(this.value);
+    this.onChange.emit({
+      id: this.id,
+      value: this.value
+    });
   }
 }

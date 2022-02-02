@@ -17,3 +17,18 @@
 a {
   color: #08ab65 !important;
 } */
+.active {
+    color: #fff !important;
+    text-decoration: none;
+    background-color: #007bff;
+    border-radius: 3px;
+    width: 95%!important;
+}
+
+.dropdown-item:hover{
+color: #fff !important;
+    text-decoration: none;
+    background-color: #007bff;
+    border-radius: 3px;
+    width: 95%;
+}

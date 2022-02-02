@@ -7,11 +7,11 @@
   <div class="d-flex">
 
     <p class="text-xs grey-50 mb-0">
-      追隨XX人數
+      追隨 {{_project.liked? _project.liked: 0}}人數
     </p>
-    <p class="text-xs grey-50 mb-0">
+    <!-- <p class="text-xs grey-50 mb-0">
       瀏覽XX人數
-    </p>
+    </p> -->
 
   </div>
 
@@ -19,9 +19,15 @@
     <a class="clickable" [routerLink]="['/myproject/'+this._project?.id+'/profile']" style="color: #7F7F7F;"> <i
         class="fas fa-pencil-alt icon"></i>
     </a>
-    <i class="far fa-user icon"></i>
-    <i class="fas fa-cog icon"></i>
-    <i class="far fa-trash-alt icon"></i>
+    <a class="clickable" [routerLink]="['/myproject/'+this._project?.id+'/members']" style="color: #7F7F7F;">
+      <i class="far fa-user icon"></i>
+    </a>
+    <a class="clickable" [routerLink]="['/myproject/'+this._project?.id+'/settings']" style="color: #7F7F7F;">
+      <i class="fas fa-cog icon"></i>
+    </a>
+    <a class="clickable" (click)="onClickDelete(this._project?.id)" style="color: #7F7F7F;">
+      <i class="far fa-trash-alt icon"></i>
+    </a>
 
   </div>
 </div>

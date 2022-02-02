@@ -1,3 +1,6 @@
+.btn{
+  min-width: 150px;
+}
 .button-center{
       display: flex;
   align-items: center;
@@ -131,4 +134,22 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+#reset_form input {
+  border: 1px solid #979797;
+  border-radius: 3px;
+  padding: 25px 15px;
+}
+
+#reset_form textarea{
+    border:1px solid #979797;
+    border-radius:3px;
+    padding:15px;
+}
+
+#reset_form select {
+  border: 1px solid #979797;
+  border-radius: 3px;
+  padding: 15px;
+  width: 100%;
 }

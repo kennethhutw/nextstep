@@ -52,5 +52,12 @@ export class MyProjectComponent implements OnInit {
   changeTab(tab) {
     this.currentTab = tab;
   }
-
+  onClickDelete($event) {
+    this.dialogSrv.confirmThis("Are you sure you want to delete ",
+      () => {
+        console.log("yed ===");
+      }, () => {
+        console.log("No ----");
+      });
+  }
 }

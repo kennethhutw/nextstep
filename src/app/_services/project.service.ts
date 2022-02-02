@@ -13,7 +13,7 @@ export class ProjectService {
     }
 
     insertProject(params) {
-        return this.http.put(`${environment.apiUrl}/projects`, params);
+        return this.http.post(`${environment.apiUrl}/projects`, params);
     }
 
     async getProjectsByUid(uid: string) {
@@ -21,6 +21,26 @@ export class ProjectService {
         return await this.http
             .get<any>(`${environment.apiUrl}/projects/projectsByUid/${uid}`, {
 
+            })
+            .toPromise();
+    }
+
+    async getProject(id: string) {
+
+        return await this.http
+            .get<any>(`${environment.apiUrl}/projects/${id}`, {
+            })
+            .toPromise();
+    }
+
+    update(id, params) {
+        return this.http.put(`${environment.apiUrl}/projects/${id}`, params);
+    }
+
+    async getMembers(projectId: string) {
+        // const params = new HttpParams().set("uid", uid);
+        return await this.http
+            .get<any>(`${environment.apiUrl}/members/getByProjectId/${projectId}`, {
             })
             .toPromise();
     }

@@ -13,14 +13,17 @@ import { DelegateEmailService } from './delegateEmail.service';
 import { AdminService } from "./admin.service";
 import { TableService } from "./table.service";
 import { UserTourService } from './user-tour.service';
+import { UserSettingService } from './userSetting.service';
 import { SeoService } from './seo.service';
 import { ScrollService } from './scroll.service';
 import { TxService } from './tx.service';
 import { ProjectService } from './Project.service';
 
+
 export const services = [
     AdminService,
     UserService,
+    UserSettingService,
     ProjectService,
     DataService,
     AppSettingsService,
@@ -56,6 +59,7 @@ export { DelegateEmailService } from './delegateEmail.service';
 export { AdminService } from "./admin.service";
 export { TableService } from "./table.service";
 export { UserTourService } from './user-tour.service';
+export * from './userSetting.service';
 export { SeoService } from './seo.service';
 export { GoogleAnalyticsService } from './google-analytics.service';
 export { ScrollService } from './scroll.service';

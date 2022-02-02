@@ -4,11 +4,13 @@ import {
   AuthStore,
   DataService,
   AppSettingsService,
-  SettingService
+  SettingService,
+  UserService
 } from "../../_services";
 import { Utility } from "../../_helpers";
 import { environment } from '../../../environments/environment';
 import { NgxSpinnerService } from "ngx-spinner";
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: "app-pub-profile",
@@ -25,7 +27,10 @@ export class PubProfileComponent implements OnInit {
   filterValue = null;
   searchText = '';
   currentUser: any;
+  userProfile = null;
   constructor(
+    private UserSrv: UserService,
+    private route: ActivatedRoute,
     private authSrv: AuthStore,
     private settingSrv: SettingService,
     private translateSrv: TranslateService,
@@ -64,6 +69,28 @@ export class PubProfileComponent implements OnInit {
     } else {
       this.currentUser.imageUrl = environment.assetUrl + this.currentUser.imageUrl;
     }
+    let userId = this.route.snapshot.paramMap.get('userId');
+    console.log("userId ==================", userId);
+    this.UserSrv.getUserInfo(userId).then(res => {
+      console.log(" ==================", res);
+      if (res['result'] == 'successful') {
+        this.userProfile = res['data'];
+        if (this.userProfile.skills != null) {
+          this.userProfile.skills = this.userProfile.skills.split(",");
+        }
+      }
+    })
+    this.route.queryParams.subscribe((params) => {
+      console.log(" ==================", params);
+      if (params['userId']) {
+        this.UserSrv.getUserInfo(params['userId']).then(res => {
+          console.log(" ==================", res);
+          if (res['result'] == 'successful') {
+
+          }
+        })
+      }
+    });
   }
 
   splitArr(arr, size) {
@@ -104,6 +131,16 @@ export class PubProfileComponent implements OnInit {
     this.displayItems = this.splitArr(this.items, 3);
   }
 
+  onCoverImgError(event) {
+    event.target.src = "https://imagizer.imageshack.com/img921/9628/VIaL8H.jpg";
+  }
 
+  onImgError(event) {
+    event.target.src = "./../../../assets/icon/profile.png";
+  }
+
+  IsNullorEmpty(value) {
+    return !this.utility.IsNullOrEmpty(value)
+  }
 }
 //https://www.sliderrevolution.com/resources/bootstrap-profile/

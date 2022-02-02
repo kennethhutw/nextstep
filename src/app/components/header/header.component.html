@@ -13,17 +13,21 @@
         <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
           <a class="nav-link" routerLink="/index" (click)="ToggleNavBar()">首頁 <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-          <a id="galleryLink" class="nav-link" routerLink="/projects" (click)="ToggleNavBar()">專案</a>
+        <li class="nav-item">
+          <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+            routerLink="/projects" (click)="ToggleNavBar()">專案</a>
         </li>
-        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link" routerLink="/members" (click)="ToggleNavBar()">夥伴</a>
+        <li class="nav-item">
+          <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+            routerLink="/members" (click)="ToggleNavBar()">夥伴</a>
         </li>
-        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link" routerLink="/mentors" (click)="ToggleNavBar()">導師</a>
+        <li class="nav-item">
+          <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+            routerLink="/mentors" (click)="ToggleNavBar()">導師</a>
         </li>
-        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link" routerLink="/feedback" (click)="ToggleNavBar()">意見回饋</a>
+        <li class="nav-item">
+          <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+            routerLink="/feedback" (click)="ToggleNavBar()">意見回饋</a>
         </li>
         <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
           <i class="fa-fw fab fa-telegram icon"></i>

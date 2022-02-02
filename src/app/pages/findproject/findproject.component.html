@@ -1,5 +1,5 @@
-<div id="findcontent" class="row" style="padding-bottom: 30px;">
-  <div class="col-md-2">
+<div id="findcontent" class="row">
+  <div class="col-md-2 col-lg-2">
     <aside class="sidebar shadow-lg">
       <nav class="sidebar-menu pt-3 pb-3">
         <ul class="menu-items" style="padding-left: 20px;">
@@ -104,7 +104,7 @@
     </aside>
 
   </div>
-  <div class="col-md-10">
+  <div class="col-md-10  col-lg-10">
 
 
     <div class="row" *ngIf="displayItems.length ===0" style="height:300px">
@@ -113,7 +113,7 @@
     <ng-container *ngIf="displayItems">
       <div class="row">
         <ng-container *ngFor="let item of  displayItems; let i = index">
-          <div class="col-md-4 text-center">
+          <div class="col-md-6 text-center">
             <app-project-card [project]="item"></app-project-card>
           </div>
         </ng-container>

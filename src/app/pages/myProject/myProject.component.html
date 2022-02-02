@@ -21,13 +21,14 @@
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'published' }" id="home" role="tabpanel"
                     aria-labelledby="home-tab">
-                    <div class="row" *ngIf="publishedprojects.length ===0" style="height:300px;margin-top: 28px;">
-                        沒有專案
+                    <div class="row noProject" *ngIf="publishedprojects.length ===0">
+                        <span>沒有專案</span>
                     </div>
                     <ng-container *ngIf="publishedprojects">
                         <div class="row" style="padding-left:15px;">
                             <ng-container *ngFor="let item of  publishedprojects; let i = index">
-                                <app-project-bar style="width: 90%;" [project]="item"></app-project-bar>
+                                <app-project-bar style="width: 100%;" (onDelete)="onClickDelete($event)"
+                                    [project]="item"></app-project-bar>
                             </ng-container>
                         </div>
                     </ng-container>
@@ -51,3 +52,4 @@
         </div>
     </div>
 </div>
+<app-dialog></app-dialog>

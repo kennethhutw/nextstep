@@ -94,7 +94,6 @@ export class newProjectComponent implements OnInit {
     } else {
       _values = value.replace("," + value, "");
       _values = value.replace(value, "");
-
     }
     this.projectForm.get('stages').setValue(_values);
   }
@@ -133,7 +132,6 @@ export class newProjectComponent implements OnInit {
       isFindPartner: value.isFindPartner,
       uid: this.currentUser.id
     }).subscribe(res => {
-      console.log("res ======= ", res)
       if (res['result'] === 'successful') {
         this.submitted = false;
         this.projectForm.reset();

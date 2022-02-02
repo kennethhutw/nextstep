@@ -3,3 +3,9 @@
   align-items: center;
   justify-content: center;
 }
+.noProject{
+  height:300px;
+  margin-top: 28px;
+
+  justify-content: center;
+}

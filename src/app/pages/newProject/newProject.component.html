@@ -4,6 +4,62 @@
             <h1>建立專案</h1>
         </div>
     </div>
+    <div class="wizard">
+        <div class="wizard-inner">
+            <div class="connecting-line"></div>
+            <ul class="nav nav-tabs" role="tablist">
+
+                <li role="presentation" class="active">
+                    <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+                        <span class="round-tab">
+                            <i class="glyphicon glyphicon-folder-open"></i>
+                        </span>
+                    </a>
+                </li>
+
+                <li role="presentation" class="disabled">
+                    <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+                        <span class="round-tab">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </span>
+                    </a>
+                </li>
+                <li role="presentation" class="disabled">
+                    <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                        <span class="round-tab">
+                            <i class="glyphicon glyphicon-picture"></i>
+                        </span>
+                    </a>
+                </li>
+
+                <li role="presentation" class="disabled">
+                    <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                        <span class="round-tab">
+                            <i class="glyphicon glyphicon-ok"></i>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <!-- <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link " id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+                [ngClass]="{ 'active': currentTab === 'current' }" type="button" role="tab"
+                (click)="changeTab('current')"><span class="num">1</span>基本資訊</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'new' }" type="button"
+                role="tab" (click)="changeTab('new')"><span class="num">2</span>專案成員</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'interview' }" type="button"
+                role="tab" (click)="changeTab('interview')"><span class="num">3</span>夥伴招募</button>
+        </li>
+
+
+    </ul> -->
     <form [formGroup]="projectForm">
         <div class="row">
             <div class="col-md-12 mb-12 form-group ">
