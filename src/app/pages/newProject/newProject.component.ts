@@ -2,9 +2,11 @@ import { HostListener, HostBinding, Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import {
   DialogService,
-  AuthStore,
   ProjectService
 } from '../../_services';
+import {
+  AuthStore
+} from "../../_services/auth.store";
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 

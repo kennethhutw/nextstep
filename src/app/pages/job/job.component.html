@@ -1,6 +1,6 @@
 <div class="row mt-50" style="margin-top: 100px;">
   <div class="col-md-4 text-center">
-    <h1>職缺名稱</h1>
+    <h1>{{this.currentRecruit.position? this.currentRecruit.position :'職缺名稱'}}</h1>
   </div>
 
   <div class="col-md-8 text-right">
@@ -37,7 +37,7 @@
         <h3>職缺介紹</h3>
       </div>
       <div class="col-md-12 frame-news">
-        專案內容
+        {{this.currentRecruit.skills? this.currentRecruit.skills :'skills'}}
       </div>
     </div>
     <div class="row ">
@@ -45,7 +45,7 @@
         <h3>職務需求</h3>
       </div>
       <div class="col-md-12 frame-news">
-        專案內容
+        {{this.currentRecruit.scopes? this.currentRecruit.scopes :'職缺名稱'}}
       </div>
 
     </div>
@@ -56,52 +56,28 @@
         <h3>專案成員募集中</h3>
       </div>
     </div>
-    <div class="row frame" style="margin-left: 10px;padding: 10px">
-      <div class="col-md-12" style="display: inline-flex;">
-        <div class="col-md-4 ">
-          <span class="position">職缺名稱</span>
-          <small>技能需求</small>
+    <ng-container *ngIf="this.currentRecruit?.others">
+      <ng-container *ngFor="let item of  this.currentRecruit.others; let i = index">
+        <div class="row frame mt-10" style="margin-left: 10px;padding: 10px">
+          <a class="clickable" [routerLink]="['/job/',item.id ]" style="color: #7F7F7F;">
+            <div class="col-md-12" style="display: inline-flex;">
+              <div class="col-md-12 ">
+                <p class="position"><b>{{item.position}}</b></p>
+                <small>{{item.skills}}</small>
+              </div>
+            </div>
+          </a>
+          <div class="col-md-12">
+            {{item.scopes}}
+          </div>
+          <div class="col-md-12">
+            <button type="button" style="float: right;" class="btn btn_item mr-10" (click)="onSave()"><i
+                class="far fa-envelope"></i>
+              申請加入</button>
+          </div>
         </div>
-
-        <div class="col-md-8 text-right">
-          <button type="button" style="float: right;" class="btn btn_item mr-10" (click)="onSave()"><i
-              class="far fa-envelope"></i>
-            申請加入</button>
-        </div>
-      </div>
-      <div class="col-md-12">
-        <div class="col-md-12">
-          <ul>
-            <li>Simply reply to our customers promptly and give them your listening ear.</li>
-            <li>You will spend most of your time answering email enquiries from the public and members.</li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-    <div class="row frame mt-10" style="margin-left: 10px;padding: 10px">
-      <div class="col-md-12" style="display: inline-flex;">
-        <div class="col-md-4 ">
-          <span class="position">職缺名稱</span>
-          <small>技能需求</small>
-        </div>
-
-        <div class="col-md-8 text-right">
-          <button type="button" style="float: right;" class="btn btn_item mr-10" (click)="onSave()"><i
-              class="far fa-envelope"></i>
-            申請加入</button>
-        </div>
-      </div>
-      <div class="col-md-12">
-        <div class="col-md-12">
-          <ul>
-            <li>Simply reply to our customers promptly and give them your listening ear.</li>
-            <li>You will spend most of your time answering email enquiries from the public and members.</li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
+      </ng-container>
+    </ng-container>
   </div>
 </div>
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">

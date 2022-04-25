@@ -15,7 +15,6 @@ import { GoogleAnalyticsService } from "../../_services"; // import our analytic
   selector: "app-home",
   templateUrl: "./home.component.html",
   styleUrls: [
-    "./../../../../node_modules/ng-masonry-grid/ng-masonry-grid.css",
     "./home.component.css",
   ],
   encapsulation: ViewEncapsulation.None,

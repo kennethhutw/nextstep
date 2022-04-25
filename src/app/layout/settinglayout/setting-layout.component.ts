@@ -1,6 +1,13 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
-import { DataService, AuthStore, UserService, SettingService } from "../../_services";
+import {
+  DataService,
+  UserService,
+  SettingService
+} from "../../_services";
+import {
+  AuthStore
+} from "../../_services/auth.store";
 import { Utility } from "../../_helpers";
 import { Router } from "@angular/router";
 import { environment } from '../../../environments/environment';

@@ -1,5 +1,31 @@
-.container{
+
+* {
+   background-color: white;
+  }
+.signup-container{
     min-height: 95vh;
+      position: relative;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: calc(50%) minmax(0, 100%);
+    max-width: 1680px;
+    margin: 0 auto;
+    transition: 0.15s linear;
+    height: 100%;
+}
+.facebook{
+        background-color: #4267b2;
+    border-radius: 4px;
+    color: #fff;
+}
+.btn-signup{
+    height: 45px;
+     margin-top: 30px;
+      background-color: #2EC2E2;
+      color:white;
+}
+.icon{
+    width: 25px;
 }
 h4 {
    width: 100%;
@@ -52,6 +78,15 @@ a{
 .frame{
     padding: 15px;
     background-color: white;
-    padding-left: 10%;
-    padding-right: 10%;
+    /* padding-left: 10%; */
+    padding-right: 40%;
+    margin-top: 100px;
+}
+.signup-bg {
+
+  background-image: url("./../../../assets/images/signup-bg-2.jpg");
+  background-position: left;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  height: 100%;
 }

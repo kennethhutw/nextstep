@@ -8,7 +8,7 @@ import { AuthGuard } from './_guards';
 
 const routes: Routes = [
   { path: "", redirectTo: "index", pathMatch: "full" },
-  { path: "example", component: Pages.ExampleComponent, pathMatch: "full" },
+
   { path: "forgot", component: Websitepages.ForgotComponent },
   { path: "signup", component: Websitepages.SignupComponent },
   { path: "signin", component: Websitepages.SigninComponent },
@@ -135,6 +135,11 @@ const routes: Routes = [
         path: 'application',
         component: Pages.MyApplicationComponent
       },
+      {
+        path: 'dashboard',
+        component: Pages.DashboardComponent
+      },
+      { path: '**', redirectTo: 'dashboard' }
     ]
   },
   { path: '**', redirectTo: 'index' }

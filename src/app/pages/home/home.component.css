@@ -80,3 +80,11 @@
 .carousel-inner .carousel-item-left{
   transform: translateX(0);
 }
+.btn{
+  font-size: 15px;
+  color:black;
+
+  border: 1px solid #6e7899;
+  border-radius: 5px;
+  padding: 5px 10px;
+}

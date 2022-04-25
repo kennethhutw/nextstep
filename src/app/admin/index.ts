@@ -7,17 +7,14 @@ import { NotificationsComponent } from './pages/notifications/notifications.comp
 
 import { AdminUsersComponent } from './pages/users/adminusers.component';
 import { UserSettingComponent } from './pages/users/usersetting/usersetting.component';
-import { ApplicationComponent } from './pages/users/application/application.component';
 import { AdminDelegateEmailComponent } from './pages/delegateEmail/delegate-email.component';
 import { UserInfoComponent } from './pages/users/info/info.component';
-import { AdminPromoComponent } from './pages/promo/promo.component';
+
 import { AdminSettingsComponent } from './pages/settings/settings.component';
-import { TransactionComponent } from './pages/tx/tx.component';
+
 
 export const containers = [
-    TransactionComponent,
     DashboardComponent,
-    ApplicationComponent,
     TablesComponent,
     FormsComponent,
     TypographyComponent,
@@ -28,7 +25,7 @@ export const containers = [
 
     AdminDelegateEmailComponent,
     UserInfoComponent,
-    AdminPromoComponent,
+
     AdminSettingsComponent
 ];
 
@@ -40,9 +37,7 @@ export { MapsComponent } from './pages/maps/maps.component';
 export { NotificationsComponent } from './pages/notifications/notifications.component';
 export { AdminUsersComponent } from './pages/users/adminusers.component';
 export { UserSettingComponent } from './pages/users/usersetting/usersetting.component';
-export { ApplicationComponent } from './pages/users/application/application.component';
 export { AdminDelegateEmailComponent } from './pages/delegateEmail/delegate-email.component';
 export { UserInfoComponent } from './pages/users/info/info.component';
-export { AdminPromoComponent } from './pages/promo/promo.component';
+
 export { AdminSettingsComponent } from './pages/settings/settings.component';
-export { TransactionComponent } from './pages/tx/tx.component';

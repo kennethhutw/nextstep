@@ -5,7 +5,6 @@ import {
   AfterViewInit, OnDestroy
 } from '@angular/core';
 import { UserService, ToastService } from '../../../_services';
-import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
 import { BsDaterangepickerDirective } from 'ngx-bootstrap/datepicker';
 import {
@@ -39,15 +38,14 @@ import {
 })
 export class AdminUsersComponent implements OnInit {
 
-  @ViewChild(DataTableDirective)
-  dtElement: DataTableDirective;
+
   users: Array<any> = [];
   displayUsers: Array<any> = [];
   isLoading = true;
 
   dtTrigger: Subject<any> = new Subject();
 
-  dtOptions: DataTables.Settings = {};
+
   datepickerConfig = {
     containerClass: 'theme-default',
     isAnimated: true,
@@ -81,11 +79,6 @@ export class AdminUsersComponent implements OnInit {
   ngOnInit() {
     this.filterPanelOpen = 'out';
     this.getAllUser();
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 10,
-      order: [[7, 'desc']]
-    };
 
   }
 
@@ -100,21 +93,7 @@ export class AdminUsersComponent implements OnInit {
 
 
   rerender(): void {
-    if (this.dtElement.dtInstance) {
-      this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-        // Destroy the table first
-        dtInstance.destroy();
-        // Call the dtTrigger to rerender again
-        this.dtTrigger.next();
-        this.dtOptions = {
-          pagingType: 'full_numbers',
-          pageLength: 2,
-          order: [[7, 'desc']]
-        };
-        this.getAllUser();
-        //  dtInstance.draw();
-      });
-    }
+
   }
 
   getVerified(verified: number): string {

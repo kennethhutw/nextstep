@@ -1,10 +1,14 @@
+
+* {
+   background-color: white;
+  }
 .container{
     min-height: 95vh;
 }
 h4 {
    width: 100%;
    text-align: center;
-   border-bottom: 1px solid #000;
+   /* border-bottom: 1px solid #000; */
    line-height: 0.1em;
    margin: 10px 0 20px;
 }
@@ -57,8 +61,9 @@ a{
 }
 
 .btn-continue{
-        background-color: black;
+    background-color: black;
     color: white;
+    width: 100%;
 }
 
 .mr-5{
@@ -68,6 +73,17 @@ a{
 .option{
     min-height: 312px;
 }
+.profile_image{
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+}
+.align-items-center{
+  flex-direction: column;
+    justify-content: center;
+    display: flex;
+}
+
 .image_deleted{
         position: absolute;
     display: block;
@@ -87,4 +103,23 @@ input[type=checkbox] {
     transform: scale(2);
     margin-left: 0px !important;
     margin-right: 0px !important;
+}
+
+.active{
+    border-color: #17f596;
+     color: #17f596 !important;
+}
+
+.option:hover {
+   color: #17f596 !important;
+   border-color: #17f596 !important;
+  text-decoration: none !important;
+}
+
+.btn-step{
+padding: 6px 169px;
+
+      background-color: #2EC2E2;
+      color:white;
+
 }

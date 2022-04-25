@@ -36,7 +36,7 @@ export { DragDropFileDirective } from "./drag.directive";
 
 export { ModalComponent } from "./modal/modal.component";
 export { DialogComponent } from "./dialog/dialog.component";
-export { CircleTimerComponent } from './circle-timer/circle-timer.component';
+
 export { StepDotComponent } from './stepdot/stepdot.component';
 export { SidebarComponent } from "./admin/sidebar/sidebar.component";
 export { NavbarComponent } from "./admin/navbar/navbar.component";

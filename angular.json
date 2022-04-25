@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "formosa": {
+    "nextstep": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/formosa",
+            "outputPath": "dist/nextstep",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -84,18 +84,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "formosa:build"
+            "browserTarget": "nextstep:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "formosa:build:production"
+              "browserTarget": "nextstep:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "formosa:build"
+            "browserTarget": "nextstep:build"
           }
         },
         "test": {
@@ -138,7 +138,7 @@
         }
       }
     },
-    "formosa-e2e": {
+    "nextstep-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -146,11 +146,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "formosa:serve"
+            "devServerTarget": "nextstep:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "formosa:serve:production"
+              "devServerTarget": "nextstep:serve:production"
             }
           }
         },
@@ -166,5 +166,5 @@
       }
     }
   },
-  "defaultProject": "formosa"
+  "defaultProject": "next"
 }

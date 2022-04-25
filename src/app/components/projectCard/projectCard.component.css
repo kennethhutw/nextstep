@@ -2,6 +2,10 @@ p {
     margin-top: 0;
     margin-bottom: 1rem;
 }
+a:hover {
+  cursor: pointer;
+}
+
 .search_input{
     background: transparent;
     border: none;
@@ -48,6 +52,7 @@ p {
     border-radius: 4px;
     box-shadow: 0 0.05rem 0.01rem rgba(75, 75, 90, 0.075);
     padding: 25px;
+    min-height: 195px;
 }
 .grid-margin {
     margin-bottom: 2rem;

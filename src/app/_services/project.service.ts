@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import { catchError, retry } from "rxjs/operators";
 import { environment } from "../../environments/environment";
@@ -25,10 +25,21 @@ export class ProjectService {
             .toPromise();
     }
 
-    async getProject(id: string) {
 
+    async getProject(id: string, userId: string) {
+        const params = new HttpParams().set('userId', userId);
         return await this.http
-            .get<any>(`${environment.apiUrl}/projects/${id}`, {
+            .get<any>(`${environment.apiUrl}/projects/project/${id}`, {
+                params: params
+            })
+            .toPromise();
+    }
+
+    async getPublicProjects(userId) {
+        const params = new HttpParams().set('userId', userId);
+        return await this.http
+            .get<any>(`${environment.apiUrl}/projects/publicprojects`, {
+                params: params
             })
             .toPromise();
     }
@@ -40,7 +51,15 @@ export class ProjectService {
     async getMembers(projectId: string) {
         // const params = new HttpParams().set("uid", uid);
         return await this.http
-            .get<any>(`${environment.apiUrl}/members/getByProjectId/${projectId}`, {
+            .get<any>(`${environment.apiUrl}/members/projectId/${projectId}`, {
+            })
+            .toPromise();
+    }
+
+    async addMembers(projectId: string) {
+        // const params = new HttpParams().set("uid", uid);
+        return await this.http
+            .post<any>(`${environment.apiUrl}/members/projectId/${projectId}`, {
             })
             .toPromise();
     }

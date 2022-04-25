@@ -1,11 +1,14 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
-
+  UserService,
   DataService,
-  AppSettingsService,
+  LikeService,
   SettingService
 } from "../../_services";
+import {
+  AuthStore
+} from "../../_services/auth.store";
 import { Utility } from "../../_helpers";
 import { environment } from '../../../environments/environment';
 import { NgxSpinnerService } from "ngx-spinner";
@@ -16,74 +19,36 @@ import { NgxSpinnerService } from "ngx-spinner";
   styleUrls: ["./findmentor.component.css"]
 })
 export class FindMentorComponent implements OnInit {
-  items = [{
-    name: "Kenneth",
-    position: "Software developer",
-    imageUrl: "https://bootdey.com/img/Content/avatar/avatar2.png",
-    isFavortie: false,
-    isFollow: false,
-    description: "添加到收藏夹",
-    tags: [
-      "full-stack",
-      "blockchain"
-    ]
+  filterCondition = {
 
-  },
-  {
-    name: "Anne",
-    position: "UI/UX designer",
-    imageUrl: "https://bootdey.com/img/Content/avatar/avatar3.png",
-    isFavortie: true,
-    isFollow: false,
-    description: "添加到收藏夹",
-    tags: [
-      "UI/UX",
-      "Front-end"
-    ]
-  },
-  {
-    name: "Ken",
-    position: "DevOps developer",
-    imageUrl: "https://bootdey.com/img/Content/avatar/avatar4.png",
-    isFavortie: false,
-    isFollow: false,
-    description: "添加到收藏夹",
-    tags: [
-      "DevOps ",
-      "IT"
-    ]
-  },
-  {
-    name: "Ken",
-    position: "DevOps developer",
-    imageUrl: "https://bootdey.com/img/Content/avatar/avatar4.png",
-    isFavortie: false,
-    isFollow: false,
-    description: "添加到收藏夹",
-    tags: [
-      "DevOps ",
-      "IT"
-    ]
-  },
-  {
-    name: "Ken",
-    position: "DevOps developer",
-    imageUrl: "https://bootdey.com/img/Content/avatar/avatar4.png",
-    isFavortie: false,
-    isFollow: false,
-    description: "添加到收藏夹",
-    tags: [
-      "DevOps ",
-      "IT"
-    ]
-  }];
+    design: true,
+    finance: true,
+    marketing: true,
+    product: true,
+    public: true,
+    sale: true,
+    funding: true,
+    law: true,
+    strategy: true,
+    programming: true,
+    work12: true,
+    work34: true,
+    work56: true,
+    work78: true,
+    work9: true
+
+  }
+  items = [];
   displayItems = [];
+  currentUser;
   constructor(
     private settingSrv: SettingService,
     private translateSrv: TranslateService,
     private utility: Utility,
     private dataSrv: DataService,
-    private appSettingsSrv: AppSettingsService,
+    private authStore: AuthStore,
+    private userSrv: UserService,
+    private likeSrv: LikeService,
     private SpinnerService: NgxSpinnerService
   ) {
 
@@ -91,6 +56,29 @@ export class FindMentorComponent implements OnInit {
 
   ngOnInit() {
     this.SpinnerService.show();
+    this.currentUser = this.authStore.getUserData();
+    let _id = null;
+    if (this.currentUser.id) {
+      _id = this.currentUser.id;
+    }
+
+    this.userSrv.getPublicMentors(_id).then(res => {
+      if (res['result'] == 'successful') {
+        this.items = res['data'];
+        if (this.items && this.items.length > 0) {
+          this.items.forEach(element => {
+            if (!this.utility.IsNullOrEmpty(element.tags)) {
+              element.tags = element.tags.split(',');
+            }
+          });
+        }
+        this.displayItems = this.items ? this.items : [];
+      }
+      this.SpinnerService.hide();
+    }).catch(error => {
+      console.error("error", error);
+      this.SpinnerService.hide();
+    })
     // let _lang = localStorage.getItem("lang");
     // if (!this.utility.IsNullOrEmpty(_lang)) {
     //   this.translateSrv.use(_lang);
@@ -111,14 +99,21 @@ export class FindMentorComponent implements OnInit {
     this.SpinnerService.hide();
   }
 
-  splitArr(arr, size) {
-    let newArr = [];
-    for (let i = 0; i < arr.length; i += size) {
-      newArr.push(arr.slice(i, i + size));
-    }
-    return newArr;
-  }
+  onCollect($event) {
+    if ($event.isCollect) {
+      this.likeSrv.like(this.currentUser.id, $event.id, $event.type).subscribe(res => {
+        if (res['result'] == 'successful') {
 
+        }
+      })
+    } else {
+      this.likeSrv.removeLike(this.currentUser.id, $event.id, $event.type).subscribe(res => {
+        if (res['result'] == 'successful') {
+
+        }
+      })
+    }
+  }
 
 
   onKey(event: any) {
@@ -136,6 +131,114 @@ export class FindMentorComponent implements OnInit {
   }
 
   onChange(deviceValue) {
+
+  }
+
+  onSkills(event) {
+    this.displayItems = [];
+    console.log("onSkills===================", event)
+    if (this.filterCondition.design &&
+      this.filterCondition.finance &&
+      this.filterCondition.marketing &&
+      this.filterCondition.product &&
+      this.filterCondition.public &&
+      this.filterCondition.sale &&
+      this.filterCondition.funding &&
+      this.filterCondition.law &&
+      this.filterCondition.strategy &&
+      this.filterCondition.programming) {
+      this.displayItems = this.items;
+    } else if (!this.filterCondition.design &&
+      !this.filterCondition.finance &&
+      !this.filterCondition.marketing &&
+      !this.filterCondition.product &&
+      !this.filterCondition.public &&
+      this.filterCondition.sale &&
+      this.filterCondition.funding &&
+      this.filterCondition.law &&
+      this.filterCondition.strategy &&
+      this.filterCondition.programming) {
+      this.displayItems = [];
+    } else {
+      let currentItem = []
+      this.items.map(item => {
+        if (this.filterCondition.design &&
+          item.skills.indexOf('design') > -1) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+        if (this.filterCondition.finance &&
+          item.skills.indexOf('finance') > -1) {
+
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+
+        }
+        if (this.filterCondition.marketing &&
+          item.skills.indexOf('marketing') > -1) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+        if (this.filterCondition.product &&
+          item.skills.indexOf('product') > -1) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+        if (this.filterCondition.public &&
+          item.skills.indexOf('public') > -1) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+        if (this.filterCondition.sale &&
+          item.skills.indexOf('sale') > -1) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+        if (this.filterCondition.funding &&
+          item.skills.indexOf('funding') > -1) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+        if (this.filterCondition.law &&
+          item.skills.indexOf('law') > -1) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+        if (this.filterCondition.strategy &&
+          item.skills.indexOf('strategy') > -1) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+        if (this.filterCondition.programming &&
+          item.skills.indexOf('programming') > -1) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+        this.displayItems = currentItem;
+      })
+
+    }
+
+
+  }
+
+  isExist(items, id) {
+    let isExist = items.filter(item => item.id == id);
+    if (isExist.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
 
   }
 }

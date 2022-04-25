@@ -17,13 +17,16 @@ import {
     UserService,
 
     DataService,
-    AuthStore,
+
     AppSettingsService,
     DialogService,
     SettingService,
     LikeService,
     EmailService
 } from "./_services";
+import {
+    AuthStore
+} from "./_services/auth.store";
 
 @NgModule({
     providers: [
@@ -34,14 +37,11 @@ import {
         LoadingDialogService,
         BsModalService,
         UserService,
-
         AuthService,
-
         DataService,
         AppSettingsService,
         AuthStore,
         LikeService,
-
         SettingService,
         DialogService,
         EmailService,

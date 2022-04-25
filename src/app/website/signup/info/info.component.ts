@@ -2,12 +2,16 @@ import { Component, OnInit, HostListener } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
   DataService,
-  UserService,
-  AuthStore
+  UserService
 } from "../../../_services";
+import {
+  FormBuilder,
+  FormGroup
+} from "@angular/forms";
 import { Utility } from "../../../_helpers";
-
-
+import {
+  AuthStore
+} from "../../../_services/auth.store";
 import {
   Router,
   ActivatedRoute
@@ -30,6 +34,8 @@ export class SignupInfoComponent implements OnInit {
   beMentor = false;
   isMentor = false;
 
+  profileForm: FormGroup;
+
   @HostListener("window:resize", ["$event"])
   getScreenSize(event?) {
     let screenHeight = window.innerHeight;
@@ -47,6 +53,7 @@ export class SignupInfoComponent implements OnInit {
     private userSrv: UserService,
     private translateSrv: TranslateService,
     private utility: Utility,
+    private formBuilder: FormBuilder,
     private dataSrv: DataService
   ) {
 
@@ -56,7 +63,33 @@ export class SignupInfoComponent implements OnInit {
   ngOnInit() {
     this.currentUser = this.authSrv.getUserData();
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    this.profileForm = this.formBuilder.group({
+      name: [""],
+      bio: [""],
+      location: [""],
+      website: [""],
+      facebook: [""],
+      twitter: [""],
+      instagram: [""],
+      tags: [""]
+    });
+  }
 
+  onSubmitInfo() {
+
+  }
+
+  onSelectedProject() {
+    this.isProject = !this.isProject;
+  }
+  onSelectedPartner() {
+    this.isPartner = !this.isPartner;
+  }
+  onSelectedBeMontor() {
+    this.beMentor = !this.beMentor;
+  }
+  onSelectedMentor() {
+    this.isMentor = !this.isMentor;
   }
 
   onSubmit() {

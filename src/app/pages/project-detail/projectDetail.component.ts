@@ -2,10 +2,11 @@ import { HostListener, HostBinding, Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import {
   DialogService,
-  AuthStore,
   ProjectService
 } from '../../_services';
-
+import {
+  AuthStore
+} from "../../_services/auth.store";
 @Component({
   selector: 'app-my-project-detail',
   templateUrl: './projectDetail.component.html',

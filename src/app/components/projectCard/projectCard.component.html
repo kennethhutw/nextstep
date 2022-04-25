@@ -1,15 +1,27 @@
-<a class="card card-white grid-margin" (click)="routeToUserProfile()">
+<div class="card card-white grid-margin">
   <div class="row">
-    <div class="col-md-4">
-      <h6 class="mt-10 mb-10 text-body name text-left">{{ project.name }}</h6>
-    </div>
-    <div class="col-md-3">
+    <div class="col-md-7">
+      <a (click)="routeToUserProfile()">
+        <h6 class="mt-10 mb-10 text-body name text-left">{{ project.name }}</h6>
+      </a>
 
     </div>
+    <!-- <div class="col-md-3">
+
+    </div> -->
     <div class="col-md-5">
-      <i *ngIf="project.isFavortie" class="fas fa-bookmark mr-5"></i> <i *ngIf="!project.isFavortie"
-        class="far fa-bookmark  mr-5"></i><i class="far fa-comment-alt mr-5"></i>
-      <span>追蹤</span>
+      <div *ngIf="user">
+        <i *ngIf="project.isCollect" (click)="onClickCollect()" class="fas fa-bookmark mr-5"></i>
+        <i *ngIf="!project.isCollect" (click)="onClickCollect()" class="far fa-bookmark mr-5"></i>
+        <!-- <i class="far fa-comment-alt mr-5"></i> -->
+        <span>追蹤</span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12" style="text-align: left;">
+      <span *ngIf="project.isFindPartner" class="label label-success mb-2 mr-5">找人中</span>
+      <span *ngIf="project.isFunding" class="label label-success mb-2 mr-5">募資中</span>
     </div>
   </div>
   <div class="row">
@@ -29,4 +41,4 @@
     </ng-container>
 
   </div>
-</a>
+</div>

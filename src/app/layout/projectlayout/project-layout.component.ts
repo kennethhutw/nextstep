@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
-import { DataService, AuthStore, UserService, SettingService } from "../../_services";
+import { DataService, UserService, SettingService } from "../../_services";
 import { Utility } from "../../_helpers";
 import { Router } from "@angular/router";
 import { environment } from '../../../environments/environment';
-
+import {
+  AuthStore
+} from "../../_services/auth.store";
 @Component({
   selector: "app-project-layout",
   templateUrl: "./project-layout.component.html",

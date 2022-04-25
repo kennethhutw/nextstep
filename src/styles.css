@@ -186,9 +186,7 @@
 
 
 /** buttons **/
-button{
-  font-weight: 300;
-}
+
 .btn_small:focus,
 .btn_normal:focus,
 .btn_large:focus,
@@ -339,8 +337,8 @@ body {
 }
 
     #findcontent{
-      margin-right: 61.5px;
-      margin-left: 61.5px;
+      /* margin-right: 61.5px;
+      margin-left: 61.5px; */
       margin-top: 120px;
     }
 #content-mt {
@@ -1835,4 +1833,11 @@ input[type=radio] {
   padding-top: 12px;
   font-size: 25px;
   margin-left: 5px;
+}
+
+.mt-100{
+  margin-top: 100px;
+}
+.ml-10{
+margin-left: 10px;
 }

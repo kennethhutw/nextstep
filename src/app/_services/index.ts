@@ -2,13 +2,12 @@ import { UserService } from "./user.service";
 import { DataService } from "./data.service";
 import { AppSettingsService } from "./appSettings.service";
 import { EmailService } from "./email.service";
-import { AuthStore } from "./auth.store";
+
 import { DialogService } from "./dialog.service";
 import { SettingService } from "./setting.service";
 import { LikeService } from "./like.service";
-
+import { MembersService } from "./members.service";
 import { ToastService } from './toastr.service';
-import { PendingEditionService } from './pendingedition.service';
 import { DelegateEmailService } from './delegateEmail.service';
 import { AdminService } from "./admin.service";
 import { TableService } from "./table.service";
@@ -16,52 +15,52 @@ import { UserTourService } from './user-tour.service';
 import { UserSettingService } from './userSetting.service';
 import { SeoService } from './seo.service';
 import { ScrollService } from './scroll.service';
-import { TxService } from './tx.service';
+import { InvitationService } from './invitation.service';
+
 import { ProjectService } from './Project.service';
+import { RecruitService } from './recruit.service';
 
 
 export const services = [
     AdminService,
-    UserService,
-    UserSettingService,
-    ProjectService,
-    DataService,
     AppSettingsService,
+    DataService,
     DialogService,
-    SettingService,
-    LikeService,
-
-    EmailService,
-    ToastService,
-    PendingEditionService,
     DelegateEmailService,
+    EmailService,
+    InvitationService,
+    ProjectService,
+    RecruitService,
+    LikeService,
+    MembersService,
     TableService,
-    UserTourService,
+    ToastService,
     SeoService,
     ScrollService,
-    TxService];
+    SettingService,
+    UserService,
+    UserSettingService,
+    UserTourService];
 
 
 
 export * from "./user.service";
-
-export { DataService } from "./data.service";
-export { AppSettingsService } from "./appSettings.service";
-export { EmailService } from "./email.service";
-export { AuthStore } from "./auth.store";
-export { DialogService } from "./dialog.service";
-export { SettingService } from "./setting.service";
-export { LikeService } from "./like.service";
-
+export * from "./appSettings.service";
+export * from "./admin.service";
+export * from "./email.service";
+export * from './delegateEmail.service';
+export * from "./data.service";
+export * from "./dialog.service";
+export * from "./setting.service";
+export * from "./like.service";
+export * from "./members.service";
 export * from './toastr.service';
-export { PendingEditionService } from './pendingedition.service';
-export { DelegateEmailService } from './delegateEmail.service';
-export { AdminService } from "./admin.service";
-export { TableService } from "./table.service";
-export { UserTourService } from './user-tour.service';
+export * from "./table.service";
+export * from './user-tour.service';
 export * from './userSetting.service';
-export { SeoService } from './seo.service';
-export { GoogleAnalyticsService } from './google-analytics.service';
-export { ScrollService } from './scroll.service';
-export { TxService } from './tx.service';
-export { ProjectService } from './Project.service';
+export * from './seo.service';
+export * from './google-analytics.service';
+export * from './scroll.service';
+export * from './Project.service';
+export * from './recruit.service';
+export * from './invitation.service';

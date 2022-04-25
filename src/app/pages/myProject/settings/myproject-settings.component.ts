@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 import {
   DialogService,
-  AuthStore,
   ProjectService
 } from '../../../_services';
+import {
+  AuthStore
+} from "../../../_services/auth.store";
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -31,7 +33,7 @@ export class MyProjectSettingsComponent implements OnInit {
   ngOnInit() {
     this.currentUser = this.authStoreSrv.getUserData();
     let projectId = this.route.snapshot.paramMap.get("projectId");
-    this.projectSrv.getProject(projectId).then(res => {
+    this.projectSrv.getProject(projectId, this.currentUser.id).then(res => {
       if (res['result'] === 'successful') {
         this.currentProject = res['data'];
         this.isPublic = this.currentProject.isPublic;

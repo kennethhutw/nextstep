@@ -1,5 +1,5 @@
 <div id="findcontent" class="row">
-  <div class="col-md-2">
+  <div class="col-md-3">
     <aside class="sidebar  shadow-lg">
       <nav class="sidebar-menu pt-3 pb-3">
         <ul class="menu-items" style="padding-left: 20px;">
@@ -7,28 +7,55 @@
             <h4>專長</h4>
           </li>
           <li>
-            <input type="checkbox" />
-            <label style="margin-left: 10px;" for="firsttimeInput">設計</label>
+            <input id="design" type="checkbox" [(ngModel)]="filterCondition.design" (change)="onSkills($event)"
+              data-key="design" />
+            <label class="ml-10" for="design">設計</label>
           </li>
           <li>
-            <input type="checkbox" />
-            <label style="margin-left: 10px;" for="firsttimeInput">行銷</label>
+            <input id="finance" type="checkbox" [(ngModel)]="filterCondition.finance" (change)="onSkills($event)"
+              data-key="finance" />
+            <label class="ml-10" for="finance">金融相關</label>
+          </li>
+
+          <li>
+            <input id="marketing" type="checkbox" [(ngModel)]="filterCondition.marketing" (change)="onSkills($event)"
+              data-key="marketing" />
+            <label class="ml-10" for="marketing">行銷/品牌成長</label>
           </li>
           <li>
-            <input type="checkbox" />
-            <label style="margin-left: 10px;" for="firsttimeInput">產品管理</label>
+            <input id="product" type="checkbox" [(ngModel)]="filterCondition.product" (change)="onSkills($event)"
+              data-key="product" />
+            <label class="ml-10" for="product">產品管理</label>
           </li>
           <li>
-            <input type="checkbox" />
-            <label style="margin-left: 10px;" for="firsttimeInput">專案管理</label>
+            <input id="public" type="checkbox" [(ngModel)]="filterCondition.public" (change)="onSkills($event)"
+              data-key="public" />
+            <label class="ml-10" for="public">公共關係</label>
           </li>
           <li>
-            <input type="checkbox" />
-            <label style="margin-left: 10px;" for="firsttimeInput">軟體開發</label>
+            <input id="sale" type="checkbox" [(ngModel)]="filterCondition.sale" (change)="onSkills($event)"
+              data-key="sale" />
+            <label class="ml-10" for="sale">業務開發</label>
           </li>
           <li>
-            <input type="checkbox" />
-            <label style="margin-left: 10px;" for="firsttimeInput">創業創新</label>
+            <input id="funding" type="checkbox" [(ngModel)]="filterCondition.funding" (change)="onSkills($event)"
+              data-key="funding" />
+            <label class="ml-10" for="funding">資金募集</label>
+          </li>
+          <li>
+            <input id="law" type="checkbox" [(ngModel)]="filterCondition.law" (change)="onSkills($event)"
+              data-key="law" />
+            <label class="ml-10" for="law">法律</label>
+          </li>
+          <li>
+            <input id="strategy" type="checkbox" [(ngModel)]="filterCondition.strategy" (change)="onSkills($event)"
+              data-key="strategy" />
+            <label class="ml-10" for="strategy">品牌營運/策略</label>
+          </li>
+          <li>
+            <input id="programming" type="checkbox" [(ngModel)]="filterCondition.programming"
+              (change)="onSkills($event)" data-key="programming" />
+            <label class="ml-10" for="programming">程式撰寫</label>
           </li>
         </ul>
         <ul class="menu-items" style="padding-left: 20px;">
@@ -57,7 +84,7 @@
     </aside>
 
   </div>
-  <div class="col-md-10">
+  <div class="col-md-9">
     <div class="row" *ngIf="displayItems.length ===0" style="height:300px">
     </div>
     <!--person-->
@@ -65,7 +92,9 @@
       <div class="row">
         <ng-container *ngFor="let item of  displayItems; let i = index">
           <div class="col-md-6 text-center">
-            <app-user-card [user]="item"></app-user-card>
+            <app-user-card (onCollect)="onCollect($event)" s [user]="item" [type]="'mentor'"
+              [currentuser]="currentUser">
+            </app-user-card>
           </div>
         </ng-container>
       </div>

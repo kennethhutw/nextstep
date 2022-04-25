@@ -3,8 +3,10 @@ import { TranslateService } from "@ngx-translate/core";
 import {
   DataService,
   UserService,
-  AuthStore
 } from "../../_services";
+import {
+  AuthStore
+} from "../../_services/auth.store";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {
   Router,

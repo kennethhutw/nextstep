@@ -1,9 +1,11 @@
 import { Component, OnInit, HostListener } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
-  DataService,
-  AuthStore
+  DataService
 } from "../../_services";
+import {
+  AuthStore
+} from "../../_services/auth.store";
 import { Utility } from "../../_helpers";
 import {
   FormBuilder,

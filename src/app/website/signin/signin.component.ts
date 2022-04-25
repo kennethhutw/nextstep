@@ -2,8 +2,10 @@ import { Component, OnInit, HostListener, ChangeDetectorRef } from "@angular/cor
 import { TranslateService } from "@ngx-translate/core";
 import {
   DataService,
-  AuthStore
 } from "../../_services";
+import {
+  AuthStore
+} from "../../_services/auth.store";
 import { Utility } from "../../_helpers";
 import {
   FormBuilder,

@@ -21,6 +21,10 @@ export class ProjectBarComponent implements OnInit {
     this._project = value;
   };
 
+  @Input() isShowEdit;
+  @Input() isShowUser;
+  @Input() isShowRemove;
+  @Input() isShowSetting;
 
   @Output() onDelete = new EventEmitter<any>();
   constructor(

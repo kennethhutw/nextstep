@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 import {
   DialogService,
-  AuthStore,
   ProjectService
 } from '../../../_services';
+import {
+  AuthStore
+} from "../../../_services/auth.store";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -39,19 +41,21 @@ export class MyProjectProfileComponent implements OnInit {
       type: ["", Validators.required],
       stages: ["", Validators.required],
     });
+    this.currentUser = this.authStoreSrv.getUserData();
     let projectId = this.route.snapshot.paramMap.get("projectId");
-    this.projectSrv.getProject(projectId).then(res => {
-      if (res['result'] === 'successful') {
-        this.currentProject = res['data'];
-        this.projectForm.setValue({
-          name: this.currentProject.name,
-          description: this.currentProject.description,
-          isFindPartner: this.currentProject.isFindPartner,
-          type: this.currentProject.type,
-          stages: this.currentProject.stage
-        });
-      }
-    })
+    this.projectSrv.getProject(projectId,
+      this.currentUser.id).then(res => {
+        if (res['result'] === 'successful') {
+          this.currentProject = res['data'];
+          this.projectForm.setValue({
+            name: this.currentProject.name,
+            description: this.currentProject.description,
+            isFindPartner: this.currentProject.isFindPartner,
+            type: this.currentProject.type,
+            stages: this.currentProject.stage
+          });
+        }
+      })
   }
 
   onStageChange($event, value) {

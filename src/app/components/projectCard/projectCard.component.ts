@@ -1,4 +1,7 @@
-import { Component, ViewEncapsulation, Input } from "@angular/core";
+import {
+  Component, Output, Input,
+  EventEmitter
+} from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Utility } from "../../_helpers";
 import {
@@ -13,8 +16,9 @@ import { TranslateService } from "@ngx-translate/core";
 })
 export class ProjectCardComponent {
   @Input() project;
+  @Input() user;
 
-
+  @Output() onCollect: EventEmitter<{ projectId: any, isCollect: any }> = new EventEmitter<{ projectId: any, isCollect: any }>();
   constructor(
     private utility: Utility,
     private router: Router,
@@ -45,5 +49,7 @@ export class ProjectCardComponent {
     });
 
   }
+
+
 }
 //https://www.bootdey.com/snippets/view/Assign-Project-List#html

@@ -25,25 +25,28 @@
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'project' }" id="home" role="tabpanel"
                     aria-labelledby="home-tab">
-                    <div class="row" *ngIf="publishedprojects.length ===0" style="height:300px">
+                    <div class=" noItem text-center" *ngIf="projects.length ===0">
                         沒有專案
                     </div>
-                    <ng-container *ngIf="publishedprojects">
+                    <ng-container *ngIf="projects">
                         <div class="row" style="padding-left:15px;">
-                            <ng-container *ngFor="let item of  publishedprojects; let i = index">
-                                <app-project-bar style="width: 90%;" [project]="item"></app-project-bar>
+                            <ng-container *ngFor="let item of  projects; let i = index">
+                                <app-project-bar style="width: 100%;" (onDelete)="onClickDelete($event)"
+                                    [isShowEdit]="'false'" [isShowUser]="'false'" isShowRemove="'false'"
+                                    [isShowSetting]="'false'" [project]="item"></app-project-bar>
+
                             </ng-container>
                         </div>
                     </ng-container>
                 </div>
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'partner' }" role="tabpanel"
                     aria-labelledby="profile-tab">
-                    <div class=" text-center" *ngIf="draftedprojects.length ===0" style="height:300px;padding:15px;">
-                        <h3>沒有專案</h3>
+                    <div class="noItem text-center" *ngIf="partners.length ===0">
+                        <h3>沒有追蹤的夥伴</h3>
                     </div>
-                    <ng-container *ngIf="draftedprojects">
+                    <ng-container *ngIf="partners">
                         <div class="row">
-                            <ng-container *ngFor="let item of  draftedprojects; let i = index">
+                            <ng-container *ngFor="let item of  partners; let i = index">
                                 <h1>{{item.name}}</h1>
                             </ng-container>
                         </div>
@@ -51,12 +54,12 @@
                 </div>
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'mentor' }" role="tabpanel"
                     aria-labelledby="profile-tab">
-                    <div class=" text-center" *ngIf="draftedprojects.length ===0" style="height:300px;padding:15px;">
-                        <h3>沒有專案</h3>
+                    <div class="noItem text-center" *ngIf="mentors.length ===0">
+                        沒有追蹤的導師
                     </div>
-                    <ng-container *ngIf="draftedprojects">
+                    <ng-container *ngIf="mentors">
                         <div class="row">
-                            <ng-container *ngFor="let item of  draftedprojects; let i = index">
+                            <ng-container *ngFor="let item of  mentors; let i = index">
                                 <h1>{{item.name}}</h1>
                             </ng-container>
                         </div>

@@ -140,6 +140,24 @@ export class UserService {
       .toPromise();
   }
 
+  async getPublicPartners(userId: string) {
+    const params = new HttpParams().set("userId", userId);
+    return await this.http
+      .get<any>(`${environment.apiUrl}/users/publicPartners`, {
+        params: params,
+      })
+      .toPromise();
+  }
+
+  async getPublicMentors(userId: string) {
+    const params = new HttpParams().set("userId", userId);
+    return await this.http
+      .get<any>(`${environment.apiUrl}/users/publicMentors`, {
+        params: params,
+      })
+      .toPromise();
+  }
+
   public updateUserBasicInfo(data) {
     return this.http
       .post<resResult>(`${environment.apiUrl}/users/updateUserBasicInfo`,

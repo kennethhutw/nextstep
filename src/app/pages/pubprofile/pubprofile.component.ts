@@ -1,12 +1,15 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
-  AuthStore,
+
   DataService,
   AppSettingsService,
   SettingService,
   UserService
 } from "../../_services";
+import {
+  AuthStore
+} from "../../_services/auth.store";
 import { Utility } from "../../_helpers";
 import { environment } from '../../../environments/environment';
 import { NgxSpinnerService } from "ngx-spinner";

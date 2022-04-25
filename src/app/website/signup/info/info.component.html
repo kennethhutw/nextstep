@@ -1,9 +1,177 @@
-<div class="container" style="background-color: white;">
-    <div style="margin-top:100px;" class="row">
+<div class="container">
+    <div class="row mt-60" *ngIf="step==0">
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-md-12">
 
+                    <span style="font-size: 2rem;">個人資料</span>
+                </div>
+                <div class="col-md-12 mt-2 mb-2 align-items-center" id="select_img">
+                    <input id="profileImage" type="file" accept="image/gif, image/jpg, image/jpeg, image/png, image/gif"
+                        (change)="onDetectImage($event)" style="opacity:0; padding: 0px" />
+                    <label for="profileImage">
+                        <!-- <span *ngIf="this.profileImage != null " (click)="onRemoveImg($event,'1')" class="close">&times;</span> -->
+                        <button *ngIf="profileImage != null" class="image_deleted" (click)="onRemoveImg($event,'1')"><i
+                                class="fas fa-times"></i></button>
+                        <img for="profileImage" class="profile_image" *ngIf="profileImage" [src]="profileImage"
+                            alt="" />
+                        <img for="profileImage" class="profile_image" *ngIf="!profileImage"
+                            src="https://fakeimg.pl/350x350/?text=Image" alt="" />
+                    </label>
+
+                </div>
+                <div class="col-md-12 mt-2 mb-2 align-items-center" id="select_img">
+                    <form style="width: 80%;">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">姓名</label>
+                            <input type="email" class="form-control rounded-0" id="name" aria-describedby="emailHelp"
+                                placeholder="Enter name">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">職稱</label>
+                            <input type="password" class="form-control rounded-0" id="exampleInputPassword1"
+                                placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">公司</label>
+                            <input type="password" class="form-control rounded-0" id="exampleInputPassword1"
+                                placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">技能</label>
+                            <input type="password" class="form-control rounded-0" id="exampleInputPassword1"
+                                placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Facebook連結</label>
+                            <input type="password" class="form-control rounded-0" id="exampleInputPassword1"
+                                placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Twitter連結</label>
+                            <input type="password" class="form-control rounded-0" id="exampleInputPassword1"
+                                placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">GitHub連結</label>
+                            <input type="password" class="form-control rounded-0" id="exampleInputPassword1"
+                                placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">網站連結</label>
+                            <input type="password" class="form-control rounded-0" id="exampleInputPassword1"
+                                placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <button type="button" (click)="NextStep(1)" class="btn btn-continue ">Continue</button>
+                        </div>
+                    </form>
+
+                </div>
+                <!--  <div class="col-md-12 mt-2 mb-2">
+                     <button type="button" class="btn ">
+                                    < Back</button>
+                    <button type="button" (click)="NextStep(1)" class="btn btn-continue float-right">Continue</button>
+                </div>-->
+            </div>
+        </div>
+        <div class="col-sm-3">
+
+        </div>
     </div>
+    <div class="row mt-60" *ngIf="step==1">
+        <div class="col-md-12">
+
+            <p style="font-size: 2rem;">Hi XXX,很高興見到您!</p>
+            <p style="font-size: 2rem;">請選擇使用NEXT STEP的主要目的(可複選)</p>
+        </div>
+        <div class="row mt-30">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 option" [ngClass]="{'active': isProject}"
+                (click)="onSelectedProject()">
+
+                <div class="box-part text-center">
+                    <img for="profileImage" src="https://fakeimg.pl/285x285/?text=Image" alt="" />
+                    <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
+
+                    <div class="title">
+                        <h4>找專案</h4>
+                    </div>
+
+                    <div class="text">
+                        <span>找有興趣的項目參加</span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12  option" [ngClass]="{'active': isPartner}"
+                (click)="onSelectedPartner()">
+
+                <div class="box-part text-center">
+                    <img for="profileImage" src="https://fakeimg.pl/285x285/?text=Image" alt="" />
+                    <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
+
+                    <div class="title">
+                        <h4>找夥伴</h4>
+                    </div>
+
+                    <div class="text">
+                        <span>尋找夥伴加入你的項目或</span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12  option" [ngClass]="{'active': isMentor}"
+                (click)="onSelectedMentor()">
+
+                <div class="box-part text-center">
+                    <img for="profileImage" src="https://fakeimg.pl/285x285/?text=Image" alt="" />
+                    <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
+
+                    <div class="title">
+                        <h4>找導師</h4>
+                    </div>
+
+                    <div class="text">
+                        <span>找有導師引導我跟給相關意見</span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12  option" [ngClass]="{'active': beMentor}"
+                (click)="onSelectedBeMontor()">
+
+                <div class="box-part text-center">
+                    <img for="profileImage" src="https://fakeimg.pl/285x285/?text=Image" alt="" />
+                    <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
+
+                    <div class="title">
+                        <h4>當導師</h4>
+                    </div>
+
+                    <div class="text">
+                        <span>我有能力給人意見引導團隊給予資源</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 mt-50 text-center">
+
+            <button type="button" (click)="NextStep(0)" class="btn btn-step" style="margin-right: 5px;">
+                上一步</button>
+            <button type="button" (click)="onSubmit()" class="btn btn-step" style="margin-left: 5px;">下一步</button>
+            <!-- <button type="button" (click)="NextStep(0)" class="btn">
+                    < Back</button>
+                        <button type="button" (click)="onSubmit()" class="btn btn-continue float-right">Save</button> -->
+
+        </div>
+    </div>
+
     <div class="row">
-        <div *ngIf="step==0" class="col-md-6 frame">
+        <div *ngIf="step==110" class="col-md-6 frame">
             <div class="w-100 ">
                 <span style="font-size: 2rem;">Add your profile photo</span>
                 <p>A nice smiley photo of you - where you can clearly see the face</p>
@@ -28,7 +196,7 @@
                 <button type="button" (click)="NextStep(1)" class="btn btn-continue float-right">Continue</button>
             </div>
         </div>
-        <div *ngIf="step==1" class="col-md-6 frame">
+        <div *ngIf="step==100" class="col-md-6 frame">
             <div class="w-100 ">
                 <span style="font-size: 2rem;">Sweet! Why do u want to join us</span>
             </div>
@@ -68,12 +236,8 @@
                         <button type="button" (click)="onSubmit()" class="btn btn-continue float-right">Save</button>
             </div>
         </div>
-        <div class="col-md-6">
-            <img class="img-fluid" src="https://fakeimg.pl/500x500/">
-        </div>
 
-        <div *ngIf="!width" class="col-md-2">
 
-        </div>
+
     </div>
 </div>

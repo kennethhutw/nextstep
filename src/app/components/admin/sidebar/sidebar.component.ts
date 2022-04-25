@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthStore } from './../../../_services';
+import { AuthStore } from './../../../_services/auth.store';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-sidebar',

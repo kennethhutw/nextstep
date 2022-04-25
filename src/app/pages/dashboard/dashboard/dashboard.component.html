@@ -1,0 +1,58 @@
+<div>
+  <h3>身分認證</h3>
+  <ul class="menu-items" style="padding-left: 20px;">
+
+    <li>
+      <input id="email" type="checkbox" [(ngModel)]="idverify.email" data-key="email" />
+      <label class="ml-10" for="email">信箱驗證</label>
+    </li>
+    <li>
+      <input id="info" type="checkbox" [(ngModel)]="idverify.info" data-key="info" />
+      <label class="ml-10" for="info">個人資料填寫完成</label>
+    </li>
+    <li>
+      <input id="interactive" type="checkbox" [(ngModel)]="idverify.interactive" data-key="interactive" />
+      <label class="ml-10" for="interactive">與一名成員互相追蹤</label>
+    </li>
+  </ul>
+</div>
+<div>
+  <h3>也許您會感興趣</h3>
+  <div class="row" *ngIf="items.length ===0" style="height:300px">
+    No project
+  </div>
+  <!--person-->
+  <ng-container *ngIf="items.length >0">
+    <div class="row">
+      <ng-container *ngFor="let item of  items; let i = index">
+        <div class="col-md-6 text-center">
+
+          <app-project-card (onCollect)="onCollect($event)" [project]="item" [user]="currentUser"></app-project-card>
+        </div>
+      </ng-container>
+    </div>
+
+  </ng-container>
+</div>
+<div>
+  <h3>推薦給您</h3>
+  <div class="row" *ngIf="items.length ===0" style="height:300px">
+    No project
+  </div>
+  <!--person-->
+  <ng-container *ngIf="items.length >0">
+    <div class="row">
+      <ng-container *ngFor="let item of  items; let i = index">
+        <div class="col-md-6 text-center">
+
+          <app-user-card (onCollect)="onCollect($event)" s [user]="item" [type]="'mentor'" [currentuser]="currentUser">
+          </app-user-card>
+        </div>
+      </ng-container>
+    </div>
+
+  </ng-container>
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+  <p style="color: white">Please Wait. </p>
+</ngx-spinner>

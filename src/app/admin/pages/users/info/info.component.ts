@@ -6,11 +6,13 @@ import {
 } from '@angular/core';
 import {
   UserService,
-  AuthStore,
   ToastService,
   EmailService,
   AppSettingsService
 } from '../../../../_services';
+import {
+  AuthStore
+} from "../../../../_services/auth.store";
 import { TranslateService } from "@ngx-translate/core";
 import { Utility } from "src/app/_helpers";
 import {

@@ -11,35 +11,25 @@ export class LikeService {
   getUserFollow(uid) {
     return this.http.get(`${environment.apiUrl}/likes/getUserFollow/${uid}`);
   }
-
-  getUserLikeArtist(user_id) {
-    return this.http.get(`${environment.apiUrl}/likes/getUserLikeArtist/${user_id}`);
+  async getCollection(uid) {
+    return await this.http.get(`${environment.apiUrl}/likes/collection/${uid}`).toPromise();
   }
 
-  getUserLikeByAddress(address) {
-    return this.http.get(`${environment.apiUrl}/likes/getUserLikeByAddress/${address}`);
-  }
-  getUserLikeArtWork(user_id) {
-    return this.http.get(`${environment.apiUrl}/likes/getUserLikeArtWork/${user_id}`);
-  }
-
-  getUserLikeArtWorkByUid(uid) {
-    return this.http.get(`${environment.apiUrl}/likes/getUserLikeArtWorkByUid/${uid}`);
-  }
-
-  removeLike(uid, liked_id) {
+  removeLike(uid, liked_id, type) {
     return this.http.post(`${environment.apiUrl}/likes/dislike`,
       {
-        'liked_id': liked_id,
-        'uid': uid
+        liked_id,
+        uid,
+        type
       });
   }
 
-  like(uid, liked_id) {
+  like(uid, liked_id, type) {
     return this.http.post(`${environment.apiUrl}/likes/like`,
       {
-        'liked_id': liked_id,
-        'uid': uid
+        liked_id,
+        uid,
+        type
       });
   }
 

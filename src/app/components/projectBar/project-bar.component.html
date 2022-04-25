@@ -16,16 +16,18 @@
   </div>
 
   <div class="d-flex align-items-center">
-    <a class="clickable" [routerLink]="['/myproject/'+this._project?.id+'/profile']" style="color: #7F7F7F;"> <i
-        class="fas fa-pencil-alt icon"></i>
+    <a *ngIf="isShowEdit" class="clickable" [routerLink]="['/myproject/'+this._project?.id+'/profile']"
+      style="color: #7F7F7F;"> <i class="fas fa-pencil-alt icon"></i>
     </a>
-    <a class="clickable" [routerLink]="['/myproject/'+this._project?.id+'/members']" style="color: #7F7F7F;">
+    <a *ngIf="isShowUser" class="clickable" [routerLink]="['/myproject/'+this._project?.id+'/members']"
+      style="color: #7F7F7F;">
       <i class="far fa-user icon"></i>
     </a>
-    <a class="clickable" [routerLink]="['/myproject/'+this._project?.id+'/settings']" style="color: #7F7F7F;">
+    <a *ngIf="isShowSetting" class="clickable" [routerLink]="['/myproject/'+this._project?.id+'/settings']"
+      style="color: #7F7F7F;">
       <i class="fas fa-cog icon"></i>
     </a>
-    <a class="clickable" (click)="onClickDelete(this._project?.id)" style="color: #7F7F7F;">
+    <a *ngIf="isShowRemove" class="clickable" (click)="onClickDelete(this._project?.id)" style="color: #7F7F7F;">
       <i class="far fa-trash-alt icon"></i>
     </a>
 

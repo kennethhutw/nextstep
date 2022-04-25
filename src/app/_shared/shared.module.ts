@@ -18,7 +18,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 
 import * as AppServices from "./../_services";
 import { AuthGuard } from './../_guards';
-import { TooltipModule } from 'ng2-tooltip-directive';
+
 import {
   UploadFileComponent,
   ModalComponent,
@@ -71,7 +71,6 @@ const sharedComponents = [
     CommonModule,
     RouterModule,
     NgxSpinnerModule,
-    TooltipModule,
 
     ModalModule.forRoot()],
   exports: [
@@ -81,7 +80,6 @@ const sharedComponents = [
     EditModeDirective,
     EditableOnEnterDirective,
     FocusableDirective,
-
     DialogComponent,
     ModalComponent,
     EditableInputComponent,

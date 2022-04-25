@@ -5,10 +5,11 @@ import {
   DataService,
   AppSettingsService,
   LikeService,
-  AuthStore,
   ToastService
 } from "../../_services";
-
+import {
+  AuthStore
+} from "../../_services/auth.store";
 
 import { TranslateService } from "@ngx-translate/core";
 @Component({
@@ -129,15 +130,15 @@ export class StepDotComponent {
   }
 
   onLike() {
-    this.likeSrv.like(this.currentUser.id, this.id).subscribe(res => {
-      this.isFollow = true
-    });
+    // this.likeSrv.like(this.currentUser.id, this.id).subscribe(res => {
+    //   this.isFollow = true
+    // });
   }
 
   onDislike() {
-    this.likeSrv.removeLike(this.currentUser.id, this.id).subscribe(res => {
-      this.isFollow = false
-    });
+    // this.likeSrv.removeLike(this.currentUser.id, this.id).subscribe(res => {
+    //   this.isFollow = false
+    // });
   }
 
   onShare() {

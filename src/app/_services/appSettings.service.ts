@@ -19,11 +19,4 @@ export class AppSettingsService {
   defulatImage: string = '././assets/images/default.png';
   defaultAssetUrl = environment.assetUrl;
   defaultApiUrl = environment.apiUrl;
-
-  // public getArtistStatus(value) {
-  //   switch (value){
-
-  //   }
-
-  // }
 }

@@ -1,4 +1,7 @@
-import { Component, ViewEncapsulation, Input } from "@angular/core";
+import {
+  Component, EventEmitter, Input,
+  Output
+} from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Utility } from "../../_helpers";
 import {
@@ -13,8 +16,18 @@ import { TranslateService } from "@ngx-translate/core";
 })
 export class UserCardComponent {
   @Input() user;
+  @Input() type;
+  @Input() currentuser;
 
-
+  @Output() onCollect: EventEmitter<{
+    id: any,
+    isCollect: any,
+    type: string
+  }> = new EventEmitter<{
+    id: any,
+    isCollect: any,
+    type: string
+  }>();
   constructor(
     private utility: Utility,
     private router: Router,
@@ -44,5 +57,15 @@ export class UserCardComponent {
       }
     });
 
+  }
+
+  onClickCollect() {
+
+    this.user.isCollect = !this.user.isCollect;
+    this.onCollect.emit({ id: this.user.id, isCollect: this.user.isCollect, type: this.type });
+  }
+
+  onImgError(event) {
+    event.target.src = "assets/images/defaultlogo.png";
   }
 }

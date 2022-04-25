@@ -1,4 +1,4 @@
-<div id="profile-upper">
+<div *ngIf="currentProject" id="profile-upper">
   <div id="profile-banner-image">
     <img src="https://imagizer.imageshack.com/img921/9628/VIaL8H.jpg" alt="Banner image">
   </div>
@@ -12,9 +12,9 @@
   </div>
   <div id="black-grd"></div>
 </div>
-<div class="row mt-50">
+<div *ngIf="currentProject" class="row mt-50">
   <div class="col-md-4 text-right">
-    <h1>專案名稱</h1>
+    <h1>{{this.currentProject?.name}}</h1>
   </div>
 
   <div class="col-md-8 text-right">
@@ -30,7 +30,7 @@
       收藏</button>
   </div>
 </div>
-<div class="row mt-10">
+<div *ngIf="currentProject" class="row mt-10">
   <div class="col-md-2">
 
   </div>
@@ -38,12 +38,12 @@
   <div class="col-md-6" style="    display: flex;
     justify-content: space-between;">
     <span>連結</span>
-    <span>一個月前創建</span>
-    <span>xx人關注/關注xx人</span>
+    <span>{{currentProject?.createdAt | date:"yyyy-MM-dd"}}</span>
+    <span>{{currentProject.liked}}人關注/關注xx人</span>
   </div>
 </div>
 
-<div class="row mt-50" style="margin-left: 5%;margin-right: 5%; padding:20px">
+<div *ngIf="currentProject" class="row mt-50" style="margin-left: 5%;margin-right: 5%; padding:20px">
   <div class="col-md-8">
     <div class="row">
       <div class="col-md-12">
@@ -52,7 +52,7 @@
     </div>
     <div class="row frame">
       <div class="col-md-12">
-        專案內容
+        {{this.currentProject?.description}}
       </div>
     </div>
   </div>
@@ -63,7 +63,18 @@
       </div>
     </div>
     <div class="row frame" style="margin-left: 10px;padding: 10px">
-      <div class="col-md-12" style="display: inline-flex;">
+      <div *ngIf="this.currentProject?.members">
+        <ng-container *ngFor="let member of  this.currentProject.members; let i = index">
+          <div class="col-md-12" style="display: inline-flex;">
+            <i style="font-size: 60px; margin-top: 10px;" class="far fa-user-circle"></i>
+            <div style="margin-left: 10px;">
+              <p class="name">{{member.userName}}</p>
+              <p class="position">{{member.position}}</p>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+      <!-- <div class="col-md-12" style="display: inline-flex;">
         <i style="font-size: 60px; margin-top: 10px;" class="far fa-user-circle"></i>
         <div style="margin-left: 10px;">
           <p class="name">Kenneth</p>
@@ -83,7 +94,7 @@
           <p class="name">Alice</p>
           <p class="position">PM</p>
         </div>
-      </div>
+      </div> -->
       <div class="col-md-12 text-center">
         <span class="dot"></span>
         <span class="dot"></span>
@@ -100,7 +111,15 @@
       </div>
     </div>
     <div class="row ">
-      <div class="col-md-12 frame-news">
+      <ng-container *ngIf="this.currentProject?.logs">
+        <ng-container *ngFor="let log of  this.currentProject.logs; let i = index">
+          <div class="col-md-12 frame-news" style="width: 100%;">
+            <p>{{log.content}}</p>
+            <span>{{log.createdAt | date:"yyyy-MM-dd"}}</span>
+          </div>
+        </ng-container>
+      </ng-container>
+      <!-- <div class="col-md-12 frame-news">
         專案內容
       </div>
       <div class="col-md-12 frame-news">
@@ -111,7 +130,7 @@
       </div>
       <div class="col-md-12 frame-news">
         專案內容
-      </div>
+      </div> -->
     </div>
   </div>
   <div class="col-md-4">
@@ -120,56 +139,61 @@
         <h3>專案成員募集中</h3>
       </div>
     </div>
-    <div class="row frame" style="margin-left: 10px;padding: 10px">
-      <div class="col-md-12" style="display: inline-flex;">
-        <div class="col-md-4 ">
-          <span class="position">職缺名稱</span>
-          <small>技能需求</small>
-        </div>
+    <ng-container *ngIf="this.currentProject?.recruit">
+      <ng-container *ngFor="let item of  this.currentProject.recruit; let i = index">
+        <div class="row frame mt-10" style="margin-left: 10px;padding: 10px">
+          <a class="clickable" [routerLink]="['/job/',item.id ]" style="color: #7F7F7F;">
+            <div class="col-md-12" style="display: inline-flex;">
+              <div class="col-md-12 ">
+                <p class="position"><b>{{item?.position}}</b></p>
+                <small>{{item.skills}}</small>
+              </div>
 
-        <div class="col-md-8 text-right">
-          <button type="button" style="float: right;" class="btn btn_item mr-10" (click)="onSave()"><i
-              class="far fa-envelope"></i>
-            申請加入</button>
-        </div>
-      </div>
-      <div class="col-md-12">
-        <div class="col-md-12">
-          <ul>
-            <li>Simply reply to our customers promptly and give them your listening ear.</li>
-            <li>You will spend most of your time answering email enquiries from the public and members.</li>
-          </ul>
-        </div>
-      </div>
+              <!-- <div class="col-md-6 text-right">
 
-    </div>
-    <div class="row frame mt-10" style="margin-left: 10px;padding: 10px">
-      <a class="clickable" [routerLink]="['/job/1']" style="color: #7F7F7F;">
-        <div class="col-md-12" style="display: inline-flex;">
-          <div class="col-md-4 ">
-            <span class="position">職缺名稱</span>
-            <small>技能需求</small>
+              </div> -->
+            </div>
+          </a>
+          <div class="col-md-12">
+            {{item.scopes}}
           </div>
-
-          <div class="col-md-8 text-right">
-            <button type="button" style="float: right;" class="btn btn_item mr-10" (click)="onSave()"><i
-                class="far fa-envelope"></i>
+          <div class="col-md-12">
+            <button type="button" data-toggle="modal" data-target="#modal_apply_job" data-dismiss="modal"
+              style="float: right;" class="btn btn_item mr-10" (click)="onApply(item)"><i class="far fa-envelope"></i>
               申請加入</button>
           </div>
         </div>
-      </a>
-      <div class="col-md-12">
-        <div class="col-md-12">
-          <ul>
-            <li>Simply reply to our customers promptly and give them your listening ear.</li>
-            <li>You will spend most of your time answering email enquiries from the public and members.</li>
-          </ul>
-        </div>
-      </div>
+      </ng-container>
+    </ng-container>
 
-    </div>
   </div>
 </div>
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
   <p style="color: white">Please Wait. </p>
 </ngx-spinner>
+<!--Modal login mail-->
+<app-modal [modalid]="'modal_apply_job'">
+  <div header>
+
+  </div>
+  <div body *ngIf="this.selectedApplication">
+    <button type="button" class="close" #closebutton data-dismiss="modal" aria-label="Close">
+      <span></span>
+    </button>
+    <div class="text-center mb-4">
+      <h4>我要申請加入 {{this.selectedApplication.position}}</h4>
+    </div>
+    <div>
+      <div class="form-group">
+        <label for="application_message">我要有話要說</label>
+        <textarea class="form-control rounded-0" [(ngModel)]="application_message" id="application_message"
+          rows="3"></textarea>
+      </div>
+    </div>
+    <div class="text-center mb-4">
+      <button (click)="onSubmit(this.selectedApplication)" class="model_btn_normal mb-2 w-100">
+        申請
+      </button>
+    </div>
+  </div>
+</app-modal>

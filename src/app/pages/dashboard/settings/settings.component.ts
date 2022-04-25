@@ -1,12 +1,13 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
-  UserService,
-  SettingService,
   UserSettingService,
+
+} from "../../../_services";
+import {
   AuthStore
-} from "../../_services";
-import { Utility } from "../../_helpers";
+} from "../../../_services/auth.store";
+import { Utility } from "../../../_helpers";
 import { NgxSpinnerService } from "ngx-spinner";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';

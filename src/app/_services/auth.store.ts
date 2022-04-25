@@ -22,16 +22,13 @@ const AUTH_DATA = "auth_data";
 })
 export class AuthStore {
   private subject = new BehaviorSubject<UserInterface>(null);
-  private web3Subject = new BehaviorSubject<any>(null);
 
   user$: Observable<UserInterface> = this.subject.asObservable();
 
-  web3$: Observable<any> = this.web3Subject.asObservable();
+
 
   isLoggedIn$: Observable<boolean>;
   isLoggedOut$: Observable<boolean>;
-  isWeb3In$: Observable<boolean>;
-  isWeb3Out$: Observable<boolean>;
 
   constructor(
     private http: HttpClient,
@@ -56,6 +53,28 @@ export class AuthStore {
   signup(name: string, email: string, password: string): Observable<resResult> {
     return this.http
       .post<resResult>(`${environment.apiUrl}/authenticate/emailSignUp`, {
+        name,
+        email,
+        password
+      })
+      .pipe(
+        tap((resResult) => {
+          const _user = resResult.data as UserInterface;
+          this.subject.next(_user);
+          localStorage.setItem(AUTH_DATA, JSON.stringify(_user));
+        }),
+        shareReplay()
+      );
+  }
+
+  invitedSignup(invitationId,
+    projectId,
+    name: string,
+    email: string, password: string): Observable<resResult> {
+    return this.http
+      .post<resResult>(`${environment.apiUrl}/authenticate/emailInvitedSignUp`, {
+        invitationId,
+        projectId,
         name,
         email,
         password

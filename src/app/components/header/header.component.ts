@@ -8,12 +8,13 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Utility } from "../../_helpers";
 import { Router, ActivatedRoute } from "@angular/router";
 import {
-  AuthStore,
-
   DataService,
   EmailService,
   UserService
 } from "../../_services";
+import {
+  AuthStore
+} from "../../_services/auth.store";
 import { environment } from '../../../environments/environment';
 @Component({
   selector: "app-header",

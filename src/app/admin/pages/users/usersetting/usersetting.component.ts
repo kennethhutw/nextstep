@@ -5,11 +5,12 @@ import {
 } from '@angular/core';
 import {
   UserService,
-  AuthStore,
   ToastService,
   EmailService
 } from '../../../../_services';
-
+import {
+  AuthStore
+} from "../../../../_services/auth.store";
 import {
   ActivatedRouteSnapshot,
   CanActivate,

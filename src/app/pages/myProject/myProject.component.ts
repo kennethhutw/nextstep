@@ -2,10 +2,12 @@ import { HostListener, HostBinding, Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import {
   DialogService,
-  AuthStore,
+
   ProjectService
 } from './../../_services';
-
+import {
+  AuthStore
+} from "../../_services/auth.store";
 @Component({
   selector: 'app-my-project',
   templateUrl: './myProject.component.html',
@@ -60,4 +62,6 @@ export class MyProjectComponent implements OnInit {
         console.log("No ----");
       });
   }
+
+
 }
