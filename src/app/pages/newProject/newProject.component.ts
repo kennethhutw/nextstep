@@ -21,6 +21,7 @@ export class newProjectComponent implements OnInit {
   submitted = false;
   currentUser;
   projectMsg = "";
+  currentStep = "basic";
 
   constructor(
     private http: HttpClient,
@@ -28,7 +29,8 @@ export class newProjectComponent implements OnInit {
     private formBuilder: FormBuilder,
     private dialogSrv: DialogService,
     private projectSrv: ProjectService,
-    public authStoreSrv: AuthStore) {
+    public authStoreSrv: AuthStore,
+    private fb: FormBuilder) {
   }
 
   ngOnInit() {
@@ -38,8 +40,11 @@ export class newProjectComponent implements OnInit {
       name: ["", Validators.required],
       description: ["", Validators.required],
       isFindPartner: [0, Validators.required],
+      industryType: ["", Validators.required],
       type: ["", Validators.required],
       stages: ["", Validators.required],
+      members: this.fb.array([this.createMember()]),
+      jobs: this.fb.array([this.createJob()]),
     });
 
 
@@ -54,25 +59,77 @@ export class newProjectComponent implements OnInit {
       });
   }
 
-  onIsPartner(event) {
-    this.isFindPartnerPanel = !this.isFindPartnerPanel;
+  onChangeStep(step) {
+    this.currentStep = step;
   }
+
+
   get f() {
     return this.projectForm.controls;
   }
+  get t() { return this.f.members as FormArray; }
+  get h() { return this.f.jobs as FormArray; }
+
+  createMember(): FormGroup {
+    return this.fb.group({
+      email: [''],
+      position: [''],
+      description: ['']
+    })
+  }
+
+  createJob(): FormGroup {
+    return this.fb.group({
+      position: [''],
+      skills: [''],
+      description: ['']
+    })
+  }
+
+  get members(): FormArray {
+    return <FormArray>this.projectForm.get('members');
+  }
+
+  get jobs(): FormArray {
+    return <FormArray>this.projectForm.get('jobs');
+  }
+
+  addMember() {
+    this.members.push(this.createMember());
+
+  }
+
+  addJob() {
+
+    this.jobs.push(this.createJob());
+  }
+  removeMember(index) {
+    this.members.removeAt(index);
+
+  }
+  removeJob(index) {
+    this.jobs.removeAt(index);
+  }
+
+
+
+
   inValid() {
     return this.projectForm.invalid;
   }
 
   onTypeChange($event, value) {
-    var _values = this.projectForm.get('type').value;
+  }
+
+  onIndustryTypeChange($event, value) {
+    var _values = this.projectForm.get('industryType').value;
 
     if ($event.target.checked) {
       _values += "," + value;
     } else {
       _values = value.replace("," + value, "");
     }
-    this.projectForm.get('type').setValue(_values);
+    this.projectForm.get('industryType').setValue(_values);
   }
 
   isInValue(value, types) {
@@ -100,7 +157,7 @@ export class newProjectComponent implements OnInit {
     this.projectForm.get('stages').setValue(_values);
   }
   onSave() {
-    console.log("Save ----");
+
     this.submitted = true;
     const value = this.projectForm.value;
     // stop here if form is invalid
