@@ -1,4 +1,4 @@
-<div *ngIf="!loading" class=" mb-80">
+<div id="set-sidebar" *ngIf="!loading" class=" mb-80">
   <div class="row">
     <div class="col-md-12">
       <h1>個人設定</h1>
@@ -25,14 +25,14 @@
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'privacy' }" id="home" role="tabpanel"
           aria-labelledby="home-tab">
-          <ui-radio-item [title]="'是否顯示上限狀態'" [id]="'displayOnline'" [value]="currentSetting.displayOnline"
+          <ui-radio-item [title]="'顯示狀態'" [description]="'是否顯示上限狀態'" [id]="'displayOnline'"
+            [value]="currentSetting.displayOnline" (onChange)="onChange($event)"></ui-radio-item>
+          <ui-radio-item [title]="'公開'" [description]="'檔案隱私是否公開'" [id]="'isPublic'" [value]="currentSetting.isPublic"
             (onChange)="onChange($event)"></ui-radio-item>
-          <ui-radio-item [title]="'檔案隱私是否公開'" [id]="'isPublic'" [value]="currentSetting.isPublic"
-            (onChange)="onChange($event)"></ui-radio-item>
-          <div class="col-md-12 mb-12 form-group button-center">
+          <!-- <div class="col-md-12 mb-12 form-group button-center">
             <button type="button" class="btn btn-primary mr-10" (click)="onSavePrivacy()">重設
             </button>
-          </div>
+          </div> -->
           <div class="col-md-12 mb-12 form-group button-center">
             <span>{{privacyMsg}}</span>
           </div>
@@ -45,10 +45,10 @@
           </ui-radio-item>
           <ui-radio-item [title]="'系統相關'" [id]="'notiSystem'" [value]="currentSetting.notiSystem"
             (onChange)="onChange($event)"></ui-radio-item>
-          <div class="col-md-12 mb-12 form-group button-center">
+          <!-- <div class="col-md-12 mb-12 form-group button-center">
             <button type="button" class="btn btn-primary mr-10" (click)="onSaveNotif()">重設
             </button>
-          </div>
+          </div> -->
           <div class="col-md-12 mb-12 form-group button-center">
             <span>{{notifMsg}}</span>
           </div>
@@ -58,8 +58,12 @@
           <div class="row" id="reset_form" [formGroup]="PasswordForm" style="margin-top: 20px;">
             <div class="col-md-12">
               <div class="form-group">
-                <input type="password" class="form-control" placeholder="current password"
-                  formControlName="currentPassword" style="margin-bottom: 15px;" />
+                <!-- <input type="password" class="form-control pwd" value="iamapassword"> -->
+                \ <input type="password" class="form-control" placeholder="current password"
+                  formControlName="currentPassword" style="margin-bottom: 15px;" />\
+                <!-- <span class="input-group-btn">
+                  <button class="btn btn-default reveal" type="button"><i class="fas fa-eye"></i></button>
+                </span> -->
                 <div *ngIf="submitted && f.currentPassword.errors">
                   <div class="error-msg" *ngIf="f.currentPassword.errors.required">Old Password is required</div>
                 </div>

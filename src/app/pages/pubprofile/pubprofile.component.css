@@ -49,6 +49,11 @@
     color: #0e0e0e;
     font-size: 36px;
     font-weight: bold;
+    display: flex;
+    flex-direction: column;
+}
+.bio{
+    font-size: 16px;
 }
 
 #m-btns

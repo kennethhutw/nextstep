@@ -34,6 +34,8 @@ export class MyProjectMemberComponent implements OnInit {
   projectMsg = "";
   currentTab = "current";
   invitedTab = "userId";
+
+  isChat: boolean = false;
   current = [];
   candidates = [];
   interviews = [];
@@ -233,5 +235,10 @@ export class MyProjectMemberComponent implements OnInit {
     }).catch(error => {
       console.log("delete failed", error);
     })
+  }
+
+  onChat() {
+    console.log("")
+    this.isChat = !this.isChat;
   }
 }

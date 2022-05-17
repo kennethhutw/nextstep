@@ -26,8 +26,8 @@ const routes: Routes = [
       { path: "job/:id", component: Pages.JobComponent },
       { path: "members", component: Pages.FindMemberComponent },
       { path: "mentors", component: Pages.FindMentorComponent },
-      { path: "message", component: Pages.ChatComponent },
-      { path: "profile/:userId", component: Pages.ProfileComponent },
+      { path: "messages", component: Pages.ChatComponent },
+      { path: "profile/:userId", component: Pages.PubProfileComponent },
       { path: "u/:userId", component: Pages.PubProfileComponent },
       {
         path: "checkStatus",
@@ -122,7 +122,7 @@ const routes: Routes = [
         path: "notifications",
         component: Pages.NotificationsComponent
       },
-      { path: "message", component: Pages.ChatComponent },
+      { path: "messages", component: Pages.ChatComponent },
       {
         path: 'myproject/:projectId',
         component: Pages.ProjectDetailComponent

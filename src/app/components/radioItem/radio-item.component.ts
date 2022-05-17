@@ -10,6 +10,7 @@ import { Utility } from "../../_helpers";
 })
 export class RadioItemComponent implements OnInit {
   @Input() title: string;
+  @Input() description: string;
   @Input() id: string;
   @Input() value: boolean = false;
 

@@ -17,9 +17,17 @@
                                     class="fas fa-cog menu-icon"></i>個人設定</a>
                         </li>
                         <li>
+                            <!-- <a class="menu-item" (click)="ddToggle()"><i class="fas fa-file-alt menu-icon"></i>我的專案</a> -->
                             <a class="menu-item" [routerLinkActive]="['active']"
                                 [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard/myproject']"><i
                                     class="fas fa-file-alt menu-icon"></i>我的專案</a>
+                            <div class="sub-menu" [ngClass]="{ 'show-menu': expand }">
+                                <ul *ngFor="let menu of projects">
+                                    <li>
+                                        <a>{{ menu.name }}</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </li>
                         <li>
                             <a class="menu-item" [routerLinkActive]="['active']"
@@ -29,7 +37,7 @@
                         </li>
                         <li>
                             <a class="menu-item" [routerLinkActive]="['active']"
-                                [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard/message']"><i
+                                [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard/messages']"><i
                                     class="far fa-comment-dots menu-icon"></i>我的訊息</a>
                         </li>
                         <li>

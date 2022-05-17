@@ -1,7 +1,9 @@
 <div class=" mb-80">
     <div class="row">
         <div class="col-md-12 " style="  display: inline-block;">
-            <span>成員管理 </span>
+            <span>成員管理
+
+            </span>
             <a type="button" style="float: right;" class="btn mr-10" data-toggle="modal"
                 [attr.data-target]="'#invitedMember'"><i class="fas fa-plus"></i> 邀請成員
             </a>
@@ -79,8 +81,8 @@
                                         </p>
                                     </div>
                                     <div class="item" style="  margin-left: auto;padding-right: 20px;">
-                                        <p class="text-md m-0">前往對話
-                                        </p>
+                                        <a class="text-md m-0" (click)="onChat()">前往對話
+                                        </a>
                                     </div>
                                 </div>
 
@@ -122,8 +124,8 @@
                                         </p>
                                     </div>
                                     <div class="item" style="  margin-left: auto;padding-right: 20px;">
-                                        <p class="text-md m-0">前往對話
-                                        </p>
+                                        <a class="text-md m-0" (click)="onChat()">前往對話
+                                        </a>
                                     </div>
                                 </div>
 
@@ -217,7 +219,7 @@
                                         </p>
                                     </div>
                                     <div class="item" style="  margin-left: auto;padding-right: 20px;">
-                                        <p class="text-md m-0">前往對話
+                                        <p class="text-md m-0" (click)="onChat()">前往對話
                                         </p>
                                     </div>
                                 </div>
@@ -260,8 +262,8 @@
                                         </p>
                                     </div>
                                     <div class="item" style="  margin-left: auto;padding-right: 20px;">
-                                        <p class="text-md m-0">前往對話
-                                        </p>
+                                        <a class="text-md m-0" (click)="onChat()">前往對話
+                                        </a>
                                     </div>
                                 </div>
 
@@ -303,8 +305,8 @@
                                         </p>
                                     </div>
                                     <div class="item" style="  margin-left: auto;padding-right: 20px;">
-                                        <p class="text-md m-0">前往對話
-                                        </p>
+                                        <a class="text-md m-0" (click)="onChat()">前往對話
+                                        </a>
                                     </div>
                                 </div>
 
@@ -409,6 +411,37 @@
                 </div>
 
             </div>
+        </div>
+    </div>
+</div>
+<div class="menu-wrap">
+    <input type="checkbox" class="toggler" />
+    <div class="hamburger">
+        <div></div>
+    </div>
+    <div class="menu" [ngClass]="{ 'active': isChat ==true }">
+
+        <div class="list">
+            <div>aaa</div>
+            <div>bbb</div>
+            <div>ccc</div>
+            <div>ddd</div>
+            <div>eee</div>
+            <div>aaa</div>
+            <div>bbb</div>
+            <div>ccc</div>
+            <div>ddd</div>
+            <div>eee</div>
+            <div>aaa</div>
+            <div>bbb</div>
+            <div>ccc</div>
+            <div>ddd</div>
+            <div>eee</div>
+            <div>aaa</div>
+            <div>bbb</div>
+            <div>ccc</div>
+            <div>ddd</div>
+            <div>eee</div>
         </div>
     </div>
 </div>

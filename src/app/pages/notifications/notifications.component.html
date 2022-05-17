@@ -3,12 +3,12 @@
         <h1>My Notifications</h1>
     </div>
 </div>
-<ng-container *ngIf="notifications">
+<ng-container *ngIf="notifications.length>0;else noItem ">
     <ng-container *ngFor="let item of  notifications; let i = index">
         <div class="row mt-10">
 
             <div class="col-md-12 form-inline">
-                <span style="padding-right: 5px;"><i class="far fa-bell icon"></i></span>
+                <span><i class="far fa-bell icon"></i></span>
                 <p class="msg-content">
                     <b>
                     </b>{{item.content}}
@@ -19,3 +19,8 @@
         </div>
     </ng-container>
 </ng-container>
+<ng-template #noItem>
+    <div class="row mt-10">
+        <div class="col-md-12 text-center">No notification</div>
+    </div>
+</ng-template>

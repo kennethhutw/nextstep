@@ -1,11 +1,6 @@
 import { HostListener, HostBinding, Component, OnInit } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { DialogService } from './../../_services';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
-declare var $: any; // ADD THIS
-
-
+import { DialogService, NotificationService, } from './../../_services';
+import { AuthStore } from './../../_services/auth.store';
 @Component({
   selector: 'app-my-notifications',
   templateUrl: './notifications.component.html',
@@ -13,32 +8,43 @@ declare var $: any; // ADD THIS
 })
 export class NotificationsComponent implements OnInit {
 
-  notifications = [{
-    type: "Notification",
-    content: "有人注視妳",
-    time: "1642506026"
-  },
-  {
-    type: "Announcement",
-    content: "新活動發布",
-    time: "1642505026"
-  },
-  {
-    type: "Announcement",
-    content: "Next 有新功能喔!!",
-    time: "1642541026"
-  }]
+  // notifications = [{
+  //   type: "Notification",
+  //   content: "有人注視妳",
+  //   time: "1642506026"
+  // },
+  // {
+  //   type: "Announcement",
+  //   content: "新活動發布",
+  //   time: "1642505026"
+  // },
+  // {
+  //   type: "Announcement",
+  //   content: "Next 有新功能喔!!",
+  //   time: "1642541026"
+  // }]
+  // }]
+  notifications: any[] = [];
 
+  currentUser: any;
   constructor(
-    private http: HttpClient,
-    private sanitizer: DomSanitizer,
-    private formBuilder: FormBuilder,
-    private dialogSrv: DialogService) {
+    private notificationSrv: NotificationService,
+    private dialogSrv: DialogService,
+    private authStore: AuthStore) {
   }
 
   ngOnInit() {
-    $('[data-toggle="popover"]').popover();
 
+    this.currentUser = this.authStore.getUserData();
+    this.notificationSrv.getNotifications(this.currentUser.id).then(res => {
+      if (res['result'] == 'successful') {
+        this.notifications = res['data'];
+      } else {
+        this.notifications = [];
+      }
+    }).catch(error => {
+      console.error("notificaiton error", error);
+    })
 
   }
 

@@ -51,7 +51,7 @@
         </li>
         <li *ngIf="!authStoreSrv.isLoggedOut$ | async" class="nav-item" [routerLinkActive]="['active']"
           [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link" routerLink="/message"> <i class="far fa-comment-dots icon"></i></a>
+          <a class="nav-link" routerLink="/messages"> <i class="far fa-comment-dots icon"></i></a>
         </li>
         <!-- <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
           <i class="far fa-user-circle par-5 icon"></i>
@@ -77,7 +77,7 @@
                   [routerLink]="['/dashboard/myproject']">我的專案</a>
                 <a class="dropdown-item" [routerLink]="['/dashboard/collection']">我的收藏</a>
                 <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
-                  [routerLink]="['/dashboard/message']">我的訊息</a>
+                  [routerLink]="['/dashboard/messages']">我的訊息</a>
                 <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
                   [routerLink]="['/dashboard/notifications']">我的通知</a>
 

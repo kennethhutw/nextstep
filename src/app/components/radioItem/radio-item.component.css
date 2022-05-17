@@ -12,6 +12,19 @@
   flex-direction: row;
       border: 0px;
 }
+
+.item-text{
+  display: flex;
+  flex-direction: column;
+}
+
+.item-title{
+  font-size: 24px;
+}
+
+.item-description{
+  font-size: 16px;
+}
 /*
 .card:hover {
   border: 2px solid var(--action-pri-active);

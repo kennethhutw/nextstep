@@ -32,8 +32,7 @@
                         <div class="row" style="padding-left:15px;">
                             <ng-container *ngFor="let item of  projects; let i = index">
                                 <app-project-bar style="width: 100%;" (onDelete)="onClickDelete($event)"
-                                    [isShowEdit]="'false'" [isShowUser]="'false'" isShowRemove="'false'"
-                                    [isShowSetting]="'false'" [project]="item"></app-project-bar>
+                                    [project]="item"></app-project-bar>
 
                             </ng-container>
                         </div>

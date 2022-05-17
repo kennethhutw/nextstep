@@ -3,7 +3,8 @@ import { TranslateService } from "@ngx-translate/core";
 import {
   DataService,
   UserService,
-  SettingService
+  SettingService,
+  ProjectService
 } from "../../_services";
 import {
   AuthStore
@@ -16,12 +17,15 @@ import { environment } from '../../../environments/environment';
   selector: "app-setting",
   templateUrl: "./setting-layout.component.html",
   styleUrls: [
-    "./setting-layout.component.css",
+    "./setting-layout.component.scss",
   ]
 })
 export class SettingLayoutComponent implements OnInit {
 
+  currentUser: any;
+  projects: any;
 
+  expand: boolean = false;
   constructor(
     private settingSrv: SettingService,
     private router: Router,
@@ -29,7 +33,7 @@ export class SettingLayoutComponent implements OnInit {
     private utility: Utility,
     private dataSrv: DataService,
     private authStoreSrv: AuthStore,
-    private userSrv: UserService
+    private projectSrv: ProjectService
   ) {
 
     let _lang = localStorage.getItem("lang");
@@ -46,11 +50,26 @@ export class SettingLayoutComponent implements OnInit {
 
   ngOnInit() {
     this.translateSrv.use("zh-tw");
+    this.currentUser = this.authStoreSrv.getUserData();
+    this.projectSrv.getProjectsByUid(
+      this.currentUser.id
+    ).then(res => {
+      if (res['result'] == 'successful') {
+        this.projects = res['data'];
+
+      }
+    }).catch(error => {
+      console.error("error", error);
+    })
   }
 
 
 
   toggleSidebar() {
     this.dataSrv.toggleSidebar();
+  }
+
+  ddToggle() {
+    this.expand = !this.expand;
   }
 }

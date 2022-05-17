@@ -7,9 +7,10 @@
       <div id="profile-pic">
         <img (error)="onImgError($event)" src="{{currentUser.imageUrl}}">
       </div>
-      <div id="u-name">{{currentUser.name}}</div>
+      <div id="u-name"> <span>{{currentUser.name}}</span>
+        <span class="bio">{{currentUser.bio?currentUser.bio:"我還沒有填寫bio"}}</span>
+      </div>
 
-      <div id="edit-profile"><i class="material-icons">{{currentUser.bio?currentUser.bio:"我還沒有填寫"}}</i></div>
     </div>
     <div id="black-grd"></div>
   </div>
@@ -30,13 +31,12 @@
         {{userProfile?.liked ? userProfile.liked:'0'}}人關注/關注{{userProfile?.like? userProfile.like:'0'}}人
       </div>
     </div>
-    <div class="row" style="margin-top: 10px;margin-bottom: 10px;">
+    <div class="row mt-10 mb-10">
       <div class="col-md-6">
         <ng-container *ngIf="
                   userProfile?.skills;
                   else noskill
                 ">
-
           <span *ngFor="let skill of userProfile.skills; let i = index" class="tags">{{skill}}</span>
 
         </ng-container>
@@ -62,38 +62,72 @@
     </div>
     <div class="row">
       <div class="col-md-12 content">
-        自我介紹
+        自我介紹 自我介紹 自我介紹 自我介紹
       </div>
 
     </div>
   </div>
+
+  <!-- 目前參與專案 start -->
   <div class="row mt-50">
     <div class="col-md-12">
-      <h3>專案</h3>
+      <h3>目前參與專案</h3>
     </div>
-  </div>
-  <ng-container *ngFor="let project of userProfile.projects; let i = index">
-    <div class="frame mb-20">
-      <div class="row">
-        <div class="col-md-6" style=" display:inline-block;">
-          <span style="font-size: 25px;padding-right: 20px;">{{project.position}}</span>
-          <span>{{project.name}}</span>
-          <span style="margin-left: 10px;">{{project.startDate | date : 'yyyy-MM-dd'}}</span><span
-            *ngIf="IsNullorEmpty(project.endDate)">~ {{project.endDate |
-            date : 'yyyy-MM-dd'}}</span>
+    <ng-container *ngFor="let project of userProfile.projects; let i = index">
+      <div class="frame mb-20">
+        <div class="row">
+          <div class="col-md-6" style=" display:inline-block;">
+            <span style="font-size: 25px;padding-right: 20px;">{{project.position}}</span>
+            <span>{{project.name}}</span>
+            <span style="margin-left: 10px;">{{project.startDate | date : 'yyyy-MM-dd'}}</span><span
+              *ngIf="IsNullorEmpty(project.endDate)">~ {{project.endDate |
+              date : 'yyyy-MM-dd'}}</span>
+          </div>
+          <div class="col-md-6 text-right">
+            <a data-toggle="modal" [attr.data-target]="'#modal_project'"><i class="fas fa-pencil-alt"></i></a>
+          </div>
         </div>
-        <div class="col-md-6 text-right">
-          <a data-toggle="modal" [attr.data-target]="'#modal_project'"><i class="fas fa-pencil-alt"></i></a>
-        </div>
-      </div>
-      <div class="row mt-20">
-        <div class="col-md-12 content">
-          {{project.scopes}}
-        </div>
+        <div class="row mt-20">
+          <div class="col-md-12 content">
+            {{project.scopes}}
+          </div>
 
+        </div>
       </div>
+    </ng-container>
+  </div>
+  <!-- 目前參與專案 end -->
+
+  <!-- 目前過去參與專案 start -->
+  <div class="row mt-50">
+    <div class="col-md-12">
+      <h3>目前過去參與專案</h3>
     </div>
-  </ng-container>
+    <ng-container *ngFor="let project of userProfile.projects; let i = index">
+      <div class="frame mb-20">
+        <div class="row">
+          <div class="col-md-6" style=" display:inline-block;">
+            <span style="font-size: 25px;padding-right: 20px;">{{project.position}}</span>
+            <span>{{project.name}}</span>
+            <span style="margin-left: 10px;">{{project.startDate | date : 'yyyy-MM-dd'}}</span><span
+              *ngIf="IsNullorEmpty(project.endDate)">~ {{project.endDate |
+              date : 'yyyy-MM-dd'}}</span>
+          </div>
+          <div class="col-md-6 text-right">
+            <a data-toggle="modal" [attr.data-target]="'#modal_project'"><i class="fas fa-pencil-alt"></i></a>
+          </div>
+        </div>
+        <div class="row mt-20">
+          <div class="col-md-12 content">
+            {{project.scopes}}
+          </div>
+
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <!-- 目前參與專案 end -->
+
   <div class="row mt-50" *ngIf="!userProfile.projects">
     <div class="col-md-12 text-center">
       <h3>還沒有參加任何專案</h3>

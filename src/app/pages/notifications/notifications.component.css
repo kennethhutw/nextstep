@@ -3,6 +3,9 @@
   align-items: center;
   justify-content: center;
 }
+.icon{
+  margin-right: 5px;
+}
 
 .icon_gray {
       background-color: #e3e6ea;
