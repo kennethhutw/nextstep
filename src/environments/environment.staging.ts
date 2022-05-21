@@ -1,8 +1,8 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://www.formosa.finance:8443',
-    assetUrl: 'https://www.formosa.finance:8443',
-    assetAPIUrl: 'https://www.formosa.finance:8443',
+    apiUrl: 'https://next.airland.io:8443',
+    assetUrl: 'https://next.airland.io:8443',
+    assetAPIUrl: 'https://next.airland.io:8443',
     environment: 'staging',
     contractAddress: '0xFc3a6059ddd3cED1b59df596C49f83244A4f64f7',
     gtag: 'G-3T59MY55H9'
