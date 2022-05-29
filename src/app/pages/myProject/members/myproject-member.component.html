@@ -11,12 +11,12 @@
             <button type="button" style="float: right;" class="btn  mr-10" data-target="#invitedMember"
                 data-dismiss="modal"><i class="fas fa-plus"></i> 招募成員</button>
             <select style="float: right;" class="btn mr-10" [value]="status" (change)="onStatusChange($event)">
-                <option [value]="null">移動成員去</option>
-                <option [value]="new">申請加入</option>
-                <option [value]="inviting">邀請中</option>
-                <option [value]="interview">面談中</option>
-                <option [value]="rejected">已拒絕</option>
-                <option [value]="history">歷程成員</option>
+                <option value="null">移動成員去</option>
+                <option value="new">申請加入</option>
+                <option value="inviting">邀請中</option>
+                <option value="interview">面談中</option>
+                <option value="rejected">已拒絕</option>
+                <option value="history">歷程成員</option>
                 <!-- </ng-template> -->
             </select>
         </div>
