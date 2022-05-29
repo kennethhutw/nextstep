@@ -1,6 +1,5 @@
 import { NgModule, ErrorHandler } from "@angular/core";
-import { LoadingDialogComponent } from "./loading/loading-dialog/loading-dialog.component";
-import { ErrorDialogComponent } from "./errors/error-dailog/error-dialog.component";
+
 import { ErrorDialogService } from "./errors/error-dialog.service";
 import { LoadingDialogService } from "./loading/loading-dialog.service";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
@@ -13,7 +12,6 @@ import { Utility, SocialMediaUtility, TimeUtility } from "../_helpers";
 import { BsModalService } from "ngx-bootstrap/modal";
 import { ModalModule } from "ngx-bootstrap";
 import { GlobalErrorHandler } from "./../_core/errors/global-error-handler";
-import { LoadingSpinnerComponent } from "./loading-spinner/loading-spinner.component";
 import { NgxSpinnerModule } from "ngx-spinner";
 
 import * as AppServices from "./../_services";
@@ -42,11 +40,10 @@ import {
   UserFilterPipe
 } from "../_pipe";
 
-const sharedComponents = [
-  LoadingSpinnerComponent,
-  LoadingDialogComponent,
-  ErrorDialogComponent,
-  LoadingComponent];
+
+
+import * as sharedComponents from "./../_shared"
+
 
 @NgModule({
   declarations: [
@@ -63,7 +60,8 @@ const sharedComponents = [
     AddressShortenPipe,
     ShortenPipe,
     UserFilterPipe,
-    ...sharedComponents,
+    LoadingComponent,
+    ...sharedComponents.components,
   ],
   imports: [
     FormsModule,
@@ -86,7 +84,8 @@ const sharedComponents = [
     AddressShortenPipe,
     ShortenPipe,
     UserFilterPipe,
-    ...sharedComponents,
+    LoadingComponent,
+    ...sharedComponents.components,
   ],
   providers: [
     AuthGuard,
@@ -108,6 +107,6 @@ const sharedComponents = [
       multi: true,
     },
   ],
-  entryComponents: [...sharedComponents],
+  entryComponents: [...sharedComponents.components],
 })
 export class SharedModule { }

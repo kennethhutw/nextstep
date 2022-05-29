@@ -43,7 +43,7 @@ export function getAuthServiceConfigs() {
       // },
       {
         id: GoogleLoginProvider.PROVIDER_ID,
-        provider: new GoogleLoginProvider("1011219418037-iaktg7f1qo860efoq7h1nmpansh9acj4.apps.googleusercontent.com")
+        provider: new GoogleLoginProvider("1093364473991-qplam6rjvpqmdldk50467kih0qb4kavm.apps.googleusercontent.com")
       },
       {
         id: LinkedinLoginProvider.PROVIDER_ID,

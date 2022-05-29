@@ -47,6 +47,9 @@ export class MyProjectMemberComponent implements OnInit {
   usersDisplayList;
   usersList;
 
+  status: string = "null";
+
+
   @ViewChild('selectCountry') selectCountry: ElementRef;
 
 
@@ -56,6 +59,7 @@ export class MyProjectMemberComponent implements OnInit {
     private dialogSrv: DialogService,
     private toastr: ToastService,
     private projectSrv: ProjectService,
+    private confirmDialogService: DialogService,
     private invitationSrv: InvitationService,
     private authStoreSrv: AuthStore) {
 
@@ -77,9 +81,15 @@ export class MyProjectMemberComponent implements OnInit {
     this.projectSrv.getMembers(
       this.projectId
     ).then(res => {
-      console.log("=========", res);
+
       if (res['result'] == 'successful') {
         let data = res['data'];
+
+        data.forEach((item) => {
+          item['isSelected'] = false;
+        });
+
+        //  isSelected
 
         if (data.length > 0) {
           this.current = data.filter((member) => {
@@ -103,7 +113,6 @@ export class MyProjectMemberComponent implements OnInit {
     })
 
     this.invitationSrv.getInvitingList(this.projectId).then(res => {
-      console.log("==================", res);
       if (res['result'] == 'successful') {
         let _invitingList = res['data'];
         this.invitingList = _invitingList.filter((member) => {
@@ -240,5 +249,15 @@ export class MyProjectMemberComponent implements OnInit {
   onChat() {
     console.log("")
     this.isChat = !this.isChat;
+  }
+
+  onStatusChange(event) {
+    console.log("===============")
+    this.confirmDialogService.confirmThis('Are you sure you want to delete this?', () => {
+      // Yes clicked
+
+    }, () => {
+      // No clicked
+    });
   }
 }

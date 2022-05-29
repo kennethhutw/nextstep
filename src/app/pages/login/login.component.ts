@@ -2,11 +2,12 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
   DataService,
-  UserService,
+  UserService
 } from "../../_services";
 import {
   AuthStore
 } from "../../_services/auth.store";
+import { AuthService, GoogleLoginProvider } from "angular-6-social-login";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {
   Router,
@@ -41,7 +42,7 @@ export class LoginComponent implements OnInit {
     private userSrv: UserService,
     private router: Router,
     private route: ActivatedRoute,
-
+    private socialAuthService: AuthService,
     public authStoreSrv: AuthStore,
     private translateSrv: TranslateService,
 
@@ -166,5 +167,62 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/collector/account', { first: 'true' }], {});
   }
 
+  public socialSignIn(socialPlatform: string) {
+    let socialPlatformProvider;
+    if (socialPlatform === "google") {
+      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+    }
+
+    this.socialAuthService.signIn(socialPlatformProvider).then((userData) => {
+      console.log("===============", userData);
+      this.authStoreSrv
+        .googleLogin(
+          userData.id,
+          userData.name,
+          userData.email,
+          userData.token
+        )
+        .subscribe(
+          (result) => {
+
+            if (result["result"] === "successful") {
+              const user = result["data"];
+              if (user !== undefined) {
+                localStorage.setItem("token", result["token"]);
+                localStorage.setItem("currentUser", JSON.stringify(user));
+                this.router.navigate(['/'], {});
+              }
+            } else if (result["result"] === "failed") {
+              // this.confirmDialogService.infoThis(
+              //   `We are sorry to inform you that you didn't sign up using a google login, please login manually.`,
+              //   () => { }
+              // );
+            } else if (result["result"] === "new") {
+              this.authStoreSrv
+                .googleSignUp(
+                  userData.id,
+                  userData.name,
+                  userData.email,
+                  userData.token
+                )
+                .subscribe((value) => {
+
+                  if (value["result"] === "successful") {
+                    const user = value["data"];
+                    if (user !== undefined) {
+                      localStorage.setItem("token", value["token"]);
+                      localStorage.setItem("currentUser", JSON.stringify(user));
+                      this.router.navigate(['/'], {});
+                    }
+                  }
+                });
+            } else if (result["error"]) {
+              console.error(result["error"]);
+            }
+          },
+          (error) => console.error("Error :", error)
+        );
+    });
+  }
 
 }

@@ -127,6 +127,29 @@ export class AuthStore {
     );
   }
 
+  googleLogin(id: string, name: string, email: string, token: string) {
+    return this.http
+      .post(`${environment.apiUrl}/authenticate/googleLogin`, {
+        'id': id,
+        'name': name,
+        'email': email,
+        'token': token,
+        'provider': 'google'
+      });
+  }
+
+  googleSignUp(id: string, name: string, email: string, token: string) {
+    return this.http
+      .post(`${environment.apiUrl}/authenticate/googleSignUp`, {
+        'id': id,
+        'name': name,
+        'email': email,
+        'token': token,
+        'provider': 'google'
+      });
+  }
+
+
   logout() {
     this.subject.next(null);
     this.isLoggedIn$ = this.user$.pipe(map((user) => !!user));

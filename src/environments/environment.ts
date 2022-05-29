@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3003',
-  assetUrl: 'http://localhost:3003',
-  assetAPIUrl: 'http://localhost:3003',
+  apiUrl: 'https://next.airland.io:8443',
+  assetUrl: 'https://next.airland.io:8443',
+  assetAPIUrl: 'https://next.airland.io:8443',
   environment: 'staging',
   gtag: 'G-3T59MY55H9'
 };

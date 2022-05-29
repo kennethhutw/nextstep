@@ -86,9 +86,7 @@
     </button> -->
     <div class="error-msg" *ngIf="IsSignInFailed">{{ LoginFailedMsg }}</div>
 </div>
-<div class="text-center mb-40">
-    <app-loading *ngIf="loading"></app-loading>
-</div>
+
 
 <button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#modal_user_guide">Open Modal</button>
 <div class="modal fade" id="modal_user_guide" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

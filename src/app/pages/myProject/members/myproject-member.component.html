@@ -1,14 +1,24 @@
 <div class=" mb-80">
     <div class="row">
-        <div class="col-md-12 " style="  display: inline-block;">
+        <div class="col-md-12 " style="display: inline-block;">
             <span>成員管理
 
             </span>
+
             <a type="button" style="float: right;" class="btn mr-10" data-toggle="modal"
                 [attr.data-target]="'#invitedMember'"><i class="fas fa-plus"></i> 邀請成員
             </a>
             <button type="button" style="float: right;" class="btn  mr-10" data-target="#invitedMember"
                 data-dismiss="modal"><i class="fas fa-plus"></i> 招募成員</button>
+            <select style="float: right;" class="btn mr-10" [value]="status" (change)="onStatusChange($event)">
+                <option [value]="null">移動成員去</option>
+                <option [value]="new">申請加入</option>
+                <option [value]="inviting">邀請中</option>
+                <option [value]="interview">面談中</option>
+                <option [value]="rejected">已拒絕</option>
+                <option [value]="history">歷程成員</option>
+                <!-- </ng-template> -->
+            </select>
         </div>
     </div>
     <div class="row">
@@ -49,7 +59,7 @@
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'current' }" id="home" role="tabpanel"
                     aria-labelledby="home-tab">
-                    <div class="row" *ngIf="current.length ===0" style="height:300px">
+                    <div class="empty text-center" *ngIf="current.length ===0">
                         There are no member.
                     </div>
                     <ng-container *ngIf="current.length >0">
@@ -58,11 +68,13 @@
                                 <div class="card mt-3 cursor-pointer w-100">
                                     <div class="d-flex align-items-center" style="margin-top: 10px;">
                                         <label class="switch" for="checkbox2">
-                                            <input type="checkbox" id="checkbox2" />
+                                            <input type="checkbox" id="checkbox2" [(ngModel)]="member.isSelected"
+                                                value="{{member.id}}" />
                                             <div class="slider round"></div>
                                         </label>
                                     </div>
-                                    <div class="item"> <i style="font-size: 30px;" class="far fa-user-circle fa-2x"></i>
+                                    <div class="item">
+                                        <i style="font-size: 30px;" class="far fa-user-circle fa-2x"></i>
                                     </div>
                                     <div class="item">
                                         <p class="text-md m-0">{{member.name}}
@@ -409,6 +421,22 @@
                         </form>
                     </div>
                 </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<app-confirm-dialog></app-confirm-dialog>
+<div class="modal fade" id="changeMemberStatusModal" tabindex="-1" aria-labelledby="invitedMember" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1>成員</h1>
+                <button type="button" id="close_invited" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
 
             </div>
         </div>

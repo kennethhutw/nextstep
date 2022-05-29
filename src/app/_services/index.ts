@@ -1,6 +1,7 @@
 import { ActivityService } from "./activity.service";
 import { AdminService } from "./admin.service";
 import { AppSettingsService } from "./appSettings.service";
+import { ConfirmDialogService } from "./confirm-dialog.service";
 import { DataService } from "./data.service";
 import { DialogService } from "./dialog.service";
 import { DelegateEmailService } from './delegateEmail.service';
@@ -24,6 +25,7 @@ export const services = [
     ActivityService,
     AdminService,
     AppSettingsService,
+    ConfirmDialogService,
     DataService,
     DialogService,
     DelegateEmailService,
@@ -48,6 +50,7 @@ export * from "./activity.service";
 export * from "./user.service";
 export * from "./appSettings.service";
 export * from "./admin.service";
+export * from "./confirm-dialog.service";
 export * from "./email.service";
 export * from './delegateEmail.service';
 export * from "./data.service";
