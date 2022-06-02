@@ -1,10 +1,10 @@
-
 * {
-   background-color: white;
-  }
-.signup-container{
+    background-color: white;
+}
+
+.signup-container {
     min-height: 95vh;
-      position: relative;
+    position: relative;
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: calc(50%) minmax(0, 100%);
@@ -13,37 +13,42 @@
     transition: 0.15s linear;
     height: 100%;
 }
-.facebook{
-        background-color: #4267b2;
+
+.facebook {
+    background-color: #4267b2;
     border-radius: 4px;
     color: #fff;
 }
-.signup{
+
+.signup {
     float: right;
     vertical-align: middle;
     text-align: center;
     line-height: 50px;
 }
-.btn-signup{
+
+.btn-signup {
     height: 45px;
-     margin-top: 30px;
-      background-color: #2EC2E2;
-      color:white;
+    margin-top: 30px;
+    background-color: #2EC2E2;
+    color: white;
 }
-.icon{
+
+.icon {
     width: 25px;
 }
+
 h4 {
-   width: 100%;
-   text-align: center;
-   border-bottom: 1px solid #000;
-   line-height: 0.1em;
-   margin: 10px 0 20px;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #000;
+    line-height: 0.1em;
+    margin: 10px 0 20px;
 }
 
 h4 span {
-    background:#fff;
-    padding:0 10px;
+    background: #fff;
+    padding: 0 10px;
 }
 
 
@@ -53,7 +58,8 @@ h4 span {
     text-align: center;
 }
 
-.separator::before, .separator::after {
+.separator::before,
+.separator::after {
     content: '';
     flex: 1;
     border-bottom: 1px solid var(--grey-12);
@@ -66,33 +72,36 @@ h4 span {
 .separator:not(:empty)::after {
     margin-left: .5em;
 }
-.next-font{
+
+.next-font {
     font-family: 'Roboto';
     font-weight: 600;
     line-height: 56px;
 }
 
-a{
-    color:black;
+a {
+    color: black;
 }
 
-.btn-social{
-      border: 2px solid #ced4da;
-  border-radius: 3px;
-  height: 50px;
+.btn-social {
+    border: 2px solid #ced4da;
+    border-radius: 3px;
+    height: 50px;
 }
-.frame{
+
+.frame {
     padding: 15px;
     background-color: white;
     /* padding-left: 10%; */
     padding-right: 40%;
     margin-top: 100px;
 }
+
 .signup-bg {
 
-  background-image: url("./../../../assets/images/signup-bg-2.jpg");
-  background-position: left;
-  background-size: auto 100%;
-  background-repeat: no-repeat;
-  height: 100%;
+    background-image: url("./../../../assets/images/signup-bg-2.jpg");
+    background-position: left;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    height: 100%;
 }

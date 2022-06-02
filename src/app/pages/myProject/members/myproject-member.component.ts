@@ -49,6 +49,8 @@ export class MyProjectMemberComponent implements OnInit {
 
   status: string = "null";
 
+  selectedItem: any[] = [];
+
 
   @ViewChild('selectCountry') selectCountry: ElementRef;
 
@@ -259,5 +261,20 @@ export class MyProjectMemberComponent implements OnInit {
     }, () => {
       // No clicked
     });
+  }
+
+  onSelectItem(event, id) {
+    console.log("===============", event);
+    if (event.target.checked) {
+      if (this.selectedItem.indexOf(id) == -1) {
+        this.selectedItem.push(id)
+      }
+    } else if (!event.target.checked) {
+      if (this.selectedItem.indexOf(id) > 0) {
+        this.selectedItem.forEach((element, index) => {
+          if (element == id) this.selectedItem.splice(index, 1);
+        });
+      }
+    }
   }
 }

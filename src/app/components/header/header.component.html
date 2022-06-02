@@ -57,7 +57,51 @@
           <i class="far fa-user-circle par-5 icon"></i>
         </li> -->
       </ul>
+      <!--
+      <li class="nav-item dropdown">
+        <a class="nav-link" [routerLink]="['/Notification']">
+          <i class="far fa-bell" style="font-size: 24px;"></i>
+          <span
+            [style.display]="this.userInvites + this.numOfToDo + postNotifications.length + programNotifications.length  > 0 ? 'block' : 'none'"
+            class="badge fa-inverse">
+            1
+          </span>
+        </a>
+      </li> -->
 
+      <ul class="navbar-nav ml-auto nav-flex-icons">
+        <li class="nav-item avatar dropdown">
+          <a class="nav-link waves-effect waves-light" id="navbarDropdownMenuLink-5" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="true">
+            <i class="fas fa-bell"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary notification-box"
+            aria-labelledby="navbarDropdownMenuLink-5">
+            <div class="notification">
+              <i class="fas fa-bell"></i>
+              <div class="notifciation-row">
+                <span>[帳號]提出加入[專案名稱]申請</span>
+                <span>剛剛</span>
+              </div>
+            </div>
+            <div class="notification">
+              <i class="fas fa-bell"></i>
+              <div class="notifciation-row">
+                <span>[帳號]提出加入[專案名稱]申請</span>
+                <span>5分鐘前</span>
+              </div>
+            </div>
+            <div class="notification">
+              <i class="fas fa-bell"></i>
+              <div class="notifciation-row">
+                <span>[帳號]提出加入[專案名稱]申請</span>
+                <span>1小時前</span>
+              </div>
+            </div>
+            <a href="" class="text-center">查看更多</a>
+          </div>
+        </li>
+      </ul>
       <!-- <form *ngIf="authStoreSrv.isLoggedIn$ | async" id="index_login" class="form-inline my-2 my-lg-0 text-white"> -->
       <form id="index_login" *ngIf="authStoreSrv.isLoggedIn$ | async" class="form-inline my-2 my-lg-0 text-white">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -123,9 +167,9 @@
     <div [formGroup]="signinEmailForm" class="row text-center">
       <input class="modal_input w-100 mb-2" type="text" id="emailsignin" placeholder="{{ 'EMAILSIGNIN' | translate }}"
         (focus)="this.placeholder = ''" (blur)="setBlur('emailsignin', 'EMAILSIGNIN')" />
-      <input class="modal_input w-100 mb-2" type="password" id="emailpassword"
+      <input class="modal_input w-100 mb-2" type="password" id="headeremailpassword"
         placeholder="{{ 'PASSWORD' | translate }}" (focus)="this.placeholder = ''"
-        (blur)="setBlur('emailpassword', 'PASSWORD')" />
+        (blur)="setBlur('headeremailpassword', 'PASSWORD')" />
       <button (click)="onSignIn()" class="model_btn_normal mb-2 w-100">
         {{ "SIGNIN" | translate }}
       </button>

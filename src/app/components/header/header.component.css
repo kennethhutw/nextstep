@@ -1,81 +1,111 @@
-.main-menu nav > ul > li {
-    display: inline-block;
-    margin: 0 18px;
-    position: relative;
-  }
-  .main-menu nav > ul > li > a {
-    color: #333333;
-    display: inline-block;
-    font-size: 15px;
-    letter-spacing: 0.4px;
-    padding: 0 0 15px;
-    text-transform: capitalize;
+.main-menu nav>ul>li {
+  display: inline-block;
+  margin: 0 18px;
+  position: relative;
+}
 
-  }
-  .main-menu nav > ul > li:hover > a,
-  .sidebar-mega-menu nav > ul > li:hover > a {
-    color: #fea1ac;
-  }
+.main-menu nav>ul>li>a {
+  color: #333333;
+  display: inline-block;
+  font-size: 15px;
+  letter-spacing: 0.4px;
+  padding: 0 0 15px;
+  text-transform: capitalize;
 
-  .par-5{
-    padding-right: 5px;
-  }
+}
 
-  a {
-      cursor: pointer;
-  }
+.main-menu nav>ul>li:hover>a,
+.sidebar-mega-menu nav>ul>li:hover>a {
+  color: #fea1ac;
+}
+
+.par-5 {
+  padding-right: 5px;
+}
+
+a {
+  cursor: pointer;
+}
 
 .invalid {
   width: 100%;
   margin-top: .25rem;
   color: #dc3545;
 }
-#index_login{
-     margin-top: 7px !important;
-   }
-@media (min-width: 992px){
-   #index_login{
-     margin-top: 12px !important;
-   }
+
+#index_login {
+  margin-top: 7px !important;
+}
+
+@media (min-width: 992px) {
+  #index_login {
+    margin-top: 12px !important;
+  }
 }
 
 .error-msg {
   color: #dc3545;
 }
-.full_width{
-        width: 100%;
+
+.full_width {
+  width: 100%;
 
 }
-.f20{
-    font-size: 20px;
+
+.f20 {
+  font-size: 20px;
 }
-.f16{
-    font-size: 16px;
+
+.f16 {
+  font-size: 16px;
 }
+
 .navbar-light .navbar-nav .nav-link {
-    color: #000000;
+  color: #000000;
 }
+
 .active {
-   color: #17f596 !important;
+  color: #17f596 !important;
 
 }
-a{
-color: #000000;
+
+a {
+  color: #000000;
   font-size: 18px;
-  font-family:'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 300;
   padding-left: 8px;
 }
 
-.signout{
-      color: #210b2c;
-    font-size: 18px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300;
+.signout {
+  color: #210b2c;
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
 }
-.icon{
+
+.icon {
   padding: 8px;
   padding-top: 12px;
   font-size: 25px;
   margin-left: 5px;
+}
+
+.notification-box {
+  padding: 16px 16px;
+  min-width: max-content;
+  gap: 16px;
+
+  box-shadow: -2px -2px 4px rgb(0 0 0 / 8%), 2px 2px 4px rgb(0 0 0 / 8%);
+  border-radius: 4px;
+}
+
+.notification {
+  display: flex;
+  gap: 10px;
+}
+
+.notifciation-row {
+  display: grid;
+  grid-auto-flow: row;
 }

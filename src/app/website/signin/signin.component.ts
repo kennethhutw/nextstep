@@ -13,6 +13,7 @@ import {
   Validators
 } from "@angular/forms";
 import { environment } from "../../../environments/environment";
+import { AuthService, GoogleLoginProvider } from "angular-6-social-login";
 import {
   Router,
   ActivatedRoute
@@ -48,6 +49,7 @@ export class SigninComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private authSrv: AuthStore,
+    private socialAuthService: AuthService,
     private changeDetectorRef: ChangeDetectorRef,
     private translateSrv: TranslateService,
     private utility: Utility,
@@ -95,10 +97,61 @@ export class SigninComponent implements OnInit {
 
   socialSignIn(socialPlatform: string) {
     console.log("socialSignIn =========", socialPlatform);
-    this.authSrv.socialSignIn(socialPlatform).then(res => {
-      console.log(" =========", res);
-      this.router.navigate(["./profile/" + res['data'].id], {});
+
+    let socialPlatformProvider;
+    if (socialPlatform === 'google') {
+      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+    }
+
+    this.socialAuthService.signIn(socialPlatformProvider).then(
+      (userData) => {
+        console.log("===============", userData);
+        this.authSrv.googleLogin(userData.id,
+          userData.name,
+          userData.email,
+          userData.token).subscribe(result => {
+
+            if (result['result'] === 'successful') {
+              const user = result['data'];
+              if (user !== undefined) {
+                if (user.dob) {
+                  localStorage.setItem('token', result['token']);
+                  localStorage.setItem('currentUser', JSON.stringify(user));
+                  // this.router.navigate(["./profile/" + res['data'].id], {});
+                } else {
+                  localStorage.setItem('token', result['token']);
+                  localStorage.setItem('currentUser', JSON.stringify(user));
+
+                }
+              }
+            } else if (result['result'] === 'failed') {
+              // this.confirmDialogService.infoThis(`This email address is already being used, please login manually.`, () => { });
+            } else if (result['result'] === 'new') {
+              this.authSrv.googleSignUp(userData.id, userData.name, userData.email, userData.token).subscribe(value => {
+
+                if (value['result'] === 'successful') {
+                  const user = value['data'];
+                  if (user.firstTime !== 1) {
+                    localStorage.setItem('token', value['token']);
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+
+                  } else if (user.firstTime === 1) {
+                    localStorage.setItem('token', value['token']);
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+
+                  }
+                }
+              });
+            } else if (result['error']) {
+              console.log(result['error']);
+            }
+          }, error => console.error('Error :', error));
+      }
+    ).catch(error => {
+      console.error('Error 111111:', error);
     });
+
+
 
   }
 }

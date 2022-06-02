@@ -43,11 +43,7 @@ export function getAuthServiceConfigs() {
       // },
       {
         id: GoogleLoginProvider.PROVIDER_ID,
-        provider: new GoogleLoginProvider("1093364473991-qplam6rjvpqmdldk50467kih0qb4kavm.apps.googleusercontent.com")
-      },
-      {
-        id: LinkedinLoginProvider.PROVIDER_ID,
-        provider: new LinkedinLoginProvider("1098828800522-m2ig6bieilc3tpqvmlcpdvrpvn86q4ks.apps.googleusercontent.com")
+        provider: new GoogleLoginProvider("1093364473991-ti8uurvtqd8995s7smn31utnn4c2pttk.apps.googleusercontent.com")
       },
     ]
   );
@@ -97,7 +93,6 @@ export function createLoader(http: HttpClient) {
   ],
   imports: [
     ModalModule,
-
     BrowserModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
