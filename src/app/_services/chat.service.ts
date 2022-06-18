@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import { catchError, retry } from "rxjs/operators";
 import { environment } from "../../environments/environment";
@@ -8,11 +8,21 @@ import { resResult } from "../_models";
 export class ChatService {
     constructor(private http: HttpClient) { }
 
-    async getUserChatRecord(uid) {
-        return await this.http.get(`${environment.apiUrl}/chat/${uid}`,
+    getUserChatRecord(uid, to_uid) {
+        const params = new HttpParams().set('uid', uid).set('to_uid', to_uid);
+        return this.http.get<any>(`${environment.apiUrl}/chat`,
             {
+                params: params
+            });
+    }
 
-            }).toPromise;
+    get(uid, to_uid) {
+        return this.http.get<any>(`${environment.apiUrl}/chat`
+        );
+    }
+
+    insert(params) {
+        return this.http.post(`${environment.apiUrl}/chat`, params);
     }
 
 

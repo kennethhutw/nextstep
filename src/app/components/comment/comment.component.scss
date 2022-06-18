@@ -1,0 +1,86 @@
+.comment {
+    background-color: var(--white);
+    box-shadow: 0 3px 6px rgba(192, 231, 197, 58%);
+    border-radius: 12px;
+    padding: 12px 12px 15px 12px;
+    display: grid;
+    grid-auto-flow: row;
+
+    .text {
+        color: var(--grey66);
+        font-size: var(--size15);
+        padding-top: 10px;
+        padding-left: 43px;
+    }
+
+    .readmore {
+        justify-self: center;
+
+        &[aria-hidden="true"] {
+            display: none;
+        }
+    }
+}
+
+.comment-info {
+    display: grid;
+    grid-template: auto / 1fr auto;
+    grid-template-areas: "info actions";
+
+
+    .user {
+        grid-area: info;
+        display: grid;
+        grid-template-columns: 36px 1fr;
+        grid-template-rows: repeat(2, 1fr);
+        grid-row-gap: 2px;
+        grid-column-gap: 8px;
+
+        .avatar {
+            grid-row-start: span 2;
+            display: grid;
+            place-items: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: url('/assets/images/default-avatar.png') no-repeat;
+            background-size: cover;
+        }
+
+        .name {
+            font-size: var(--size14);
+        }
+
+        .timestamp {
+            color: var(--grey88);
+            font-size: var(--size13);
+        }
+
+    }
+
+    .actions {
+        grid-area: actions;
+        align-items: start;
+
+        .report:hover {
+            .icon svg g path {
+                fill: var(--orange);
+            }
+        }
+
+        .icon {
+            width: 16px;
+
+            svg g path {
+                fill: var(--greyCC);
+            }
+        }
+
+    }
+
+    img {
+        height: 36px;
+    }
+
+}

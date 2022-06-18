@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 16 16">
+  <defs>
+    <clipPath id="clip-task-level">
+      <rect width="16" height="16"/>
+    </clipPath>
+  </defs>
+  <g id="task-level" clip-path="url(#clip-task-level)">
+    <path id="Path_38" data-name="Path 38" d="M12.368,4.132A1.043,1.043,0,0,0,11.326,3.09H2.042A1.047,1.047,0,0,0,1,4.132V6.4H12.368Z" transform="translate(1.316 0.546)" fill="#fff"/>
+    <path id="inside" data-name="Path 39" d="M1,8.33v5.7a1.043,1.043,0,0,0,1.042,1.042h9.291a1.043,1.043,0,0,0,1.042-1.042V8.33Z" transform="translate(1.316 -1.384)" fill="#2bbd7e"/>
+    <path id="Path_40" data-name="Path 40" d="M11.326,3.1h-.221V5.4H1V6.409H12.368V4.136A1.038,1.038,0,0,0,11.326,3.1Z" transform="translate(1.316 0.543)" fill="#ededed"/>
+    <path id="outside" data-name="Path 41" d="M11.105,8.33v4.434a1.043,1.043,0,0,1-1.042,1.042H1v.221a1.043,1.043,0,0,0,1.042,1.042h9.291a1.043,1.043,0,0,0,1.042-1.042V8.33Z" transform="translate(1.316 -1.384)" fill="#228d5e"/>
+    <path id="Path_42" data-name="Path 42" d="M11.087,3.784a.313.313,0,0,1-.316-.316V.816a.316.316,0,0,1,.632,0V3.468A.321.321,0,0,1,11.087,3.784Zm-6.1,0a.313.313,0,0,1-.316-.316V.816a.316.316,0,1,1,.632,0V3.468A.317.317,0,0,1,4.986,3.784Z" transform="translate(-0.036 1.5)" fill="#2d4356"/>
+    <path id="Path_43" data-name="Path 43" d="M12.184,6.531H.816A.313.313,0,0,1,.5,6.215V3.948A1.36,1.36,0,0,1,1.858,2.59h9.291a1.36,1.36,0,0,1,1.358,1.358V6.215A.322.322,0,0,1,12.184,6.531ZM1.132,5.9H11.868V3.948a.726.726,0,0,0-.726-.726H1.858a.73.73,0,0,0-.726.726Z" transform="translate(1.5 0.73)" fill="#2d4356"/>
+    <path id="Path_44" data-name="Path 44" d="M11.142,15.2H1.858A1.36,1.36,0,0,1,.5,13.843v-5.7A.313.313,0,0,1,.816,7.83H12.184a.313.313,0,0,1,.316.316v5.7A1.356,1.356,0,0,1,11.142,15.2ZM1.132,8.462v5.381a.726.726,0,0,0,.726.726h9.291a.726.726,0,0,0,.726-.726V8.462Z" transform="translate(1.5 -1.2)" fill="#2d4356"/>
+  </g>
+</svg>

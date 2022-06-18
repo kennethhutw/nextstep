@@ -1,0 +1,40 @@
+<!-- comment start -->
+<div class="comment">
+
+  <div class="comment-info">
+    <!-- user-info start -->
+    <div class="user">
+      <span class="avatar">
+        <img src="{{avatar}}" [attr.alt]="name">
+      </span>
+      <span class="name">{{ name }}</span>
+      <span class="timestamp">{{ timestamp }}</span>
+    </div>
+    <!-- user-info end -->
+
+    <!-- actions start -->
+    <aside class="actions">
+      <span class="icon private" *ngIf="private">
+        <svg-icon src="assets/icons/private.svg"></svg-icon>
+      </span>
+
+      <ui-button class="btn-icon grey report" (click)="onClick()">
+        <span class="icon">
+          <svg-icon src="assets/icons/report.svg"></svg-icon>
+        </span>
+      </ui-button>
+
+    </aside>
+    <!-- actions end -->
+  </div>
+
+
+  <!-- text start -->
+  <div class="text" *ngIf="text.length <= 300">{{ text }}</div>
+  <div #comment class="text" *ngIf="text.length > 300">{{ text.slice(0, 300) + '...' }}</div>
+  <!-- text end -->
+
+  <ui-button [attr.aria-hidden]="isExpanded" *ngIf="text.length > 300" class="text-green readmore" (click)="onExpand()">
+    Read More</ui-button>
+</div>
+<!-- comment end -->

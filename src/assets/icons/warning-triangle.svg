@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="path18" d="M0-47.5H24v24H0Z" transform="translate(0 47.5)"/>
+    </clipPath>
+    <clipPath id="clip-warning-triangle">
+      <rect width="24" height="24"/>
+    </clipPath>
+  </defs>
+  <g id="warning-triangle" clip-path="url(#clip-warning-triangle)">
+    <g id="g12">
+      <g id="g14" clip-path="url(#clip-path)">
+        <g id="g20" transform="translate(0.954 1.103)">
+          <path id="path22" d="M-1.325-21.184a1.182,1.182,0,0,1-1.141-1.878L7.393-42.043c.536-1.033,1.413-1.033,1.95,0L19.2-23.061a1.182,1.182,0,0,1-1.141,1.878Z" transform="translate(2.678 42.818)" fill="#ff695f"/>
+        </g>
+        <g id="g24" transform="translate(10.473 6.033)">
+          <path id="path26" d="M-.116-1.3a1.306,1.306,0,0,1,1.41-1.331A1.328,1.328,0,0,1,2.7-1.3v7.54a1.328,1.328,0,0,1-1.41,1.331A1.306,1.306,0,0,1-.116,6.236ZM-.234,10.25a1.528,1.528,0,1,1,1.528,1.528A1.53,1.53,0,0,1-.234,10.25" transform="translate(0.234 2.635)" fill="#fff"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

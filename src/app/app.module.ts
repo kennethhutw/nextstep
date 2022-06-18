@@ -10,7 +10,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { AppComponent } from "./app.component";
 import { routing } from "./app-routing.module";
 import { NgxSpinnerModule } from "ngx-spinner";
-
+import { AngularSvgIconModule } from 'angular-svg-icon';
 
 import {
   FooterComponent,
@@ -104,6 +104,7 @@ export function createLoader(http: HttpClient) {
     CollapseModule,
     NgxSpinnerModule,
     SharedModule,
+    AngularSvgIconModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

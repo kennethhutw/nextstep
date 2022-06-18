@@ -8,15 +8,16 @@
             <a type="button" style="float: right;" class="btn mr-10" data-toggle="modal"
                 [attr.data-target]="'#invitedMember'"><i class="fas fa-plus"></i> 邀請成員
             </a>
-            <button type="button" style="float: right;" [disabled]="'false'" class="btn  mr-10"
-                data-target="#invitedMember" data-dismiss="modal"><i class="fas fa-plus"></i> 招募成員</button>
-            <select style="float: right;" class="btn mr-10" [value]="status" (change)="onStatusChange($event)">
+            <button type="button" style="float: right;" class="btn  mr-10"><i class="fas fa-plus"></i> 招募成員</button>
+            <select style="float: right;" class="btn mr-10" [disabled]="!canMoveMember" [value]="status"
+                (change)="onStatusChange($event)">
                 <option value="null">移動成員去</option>
-                <option value="new">申請加入</option>
+                <option value="current">現在成員</option>
+                <option value="candidate">申請加入</option>
                 <option value="inviting">邀請中</option>
                 <option value="interview">面談中</option>
                 <option value="rejected">已拒絕</option>
-                <option value="history">歷程成員</option>
+                <option value="past">歷程成員</option>
                 <!-- </ng-template> -->
             </select>
         </div>
@@ -69,7 +70,7 @@
                                     <div class="d-flex align-items-center" style="margin-top: 10px;">
                                         <label class="switch" for="{{'checkbox'+i}}">
                                             <input type="checkbox" id="{{'checkbox'+i}}"
-                                                (change)="onSelectItem($event, member.id)"
+                                                (change)="onSelectItem($event, member.id)" [disabled]="member.isOwner"
                                                 [(ngModel)]="member.isSelected" value="{{member.id}}" />
                                             <div class="slider round"></div>
                                         </label>
@@ -94,7 +95,7 @@
                                         </p>
                                     </div>
                                     <div class="item" style="  margin-left: auto;padding-right: 20px;">
-                                        <a class="text-md m-0" (click)="onChat()">前往對話
+                                        <a class="text-md m-0" (click)="onChat(member)">前往對話
                                         </a>
                                     </div>
                                 </div>
@@ -114,7 +115,9 @@
                                 <div class="card mt-3 cursor-pointer w-100">
                                     <div class="d-flex align-items-center" style="margin-top: 10px;">
                                         <label class="switch" for="{{'checkbox'+i}}">
-                                            <input type="checkbox" id="{{'checkbox'+i}}" />
+                                            <input type="checkbox" id="{{'checkbox'+i}}"
+                                                (change)="onSelectItem($event, member.id)"
+                                                [(ngModel)]="member.isSelected" value="{{member.id}}" />
                                             <div class="slider round"></div>
                                         </label>
                                     </div>
@@ -137,7 +140,7 @@
                                         </p>
                                     </div>
                                     <div class="item" style="  margin-left: auto;padding-right: 20px;">
-                                        <a class="text-md m-0" (click)="onChat()">前往對話
+                                        <a class="text-md m-0" (click)="onChat(member)">前往對話
                                         </a>
                                     </div>
                                 </div>
@@ -157,7 +160,7 @@
                                 <div class="card mt-3 cursor-pointer w-100">
                                     <div class="d-flex align-items-center" style="margin-top: 10px;">
                                         <label class="switch" for="{{'checkbox'+i}}">
-                                            <input type="checkbox" id="{{'checkbox'+i}}" />
+                                            <input type="checkbox" id="{{'checkbox'+i}}" [disabled]="'true'" />
                                             <div class="slider round"></div>
                                         </label>
                                     </div>
@@ -209,7 +212,9 @@
                                 <div class="card mt-3 cursor-pointer w-100">
                                     <div class="d-flex align-items-center" style="margin-top: 10px;">
                                         <label class="switch" for="{{'checkbox'+i}}">
-                                            <input type="checkbox" id="{{'checkbox'+i}}" />
+                                            <input type="checkbox" id="{{'checkbox'+i}}"
+                                                (change)="onSelectItem($event, member.id)"
+                                                [(ngModel)]="member.isSelected" value="{{member.id}}" />
                                             <div class="slider round"></div>
                                         </label>
                                     </div>
@@ -232,7 +237,7 @@
                                         </p>
                                     </div>
                                     <div class="item" style="  margin-left: auto;padding-right: 20px;">
-                                        <p class="text-md m-0" (click)="onChat()">前往對話
+                                        <p class="text-md m-0" (click)="onChat(member)">前往對話
                                         </p>
                                     </div>
                                 </div>
@@ -252,7 +257,9 @@
                                 <div class="card mt-3 cursor-pointer w-100">
                                     <div class="d-flex align-items-center" style="margin-top: 10px;">
                                         <label class="switch" for="{{'checkbox'+i}}">
-                                            <input type="checkbox" id="{{'checkbox'+i}}" />
+                                            <input type="checkbox" id="{{'checkbox'+i}}"
+                                                (change)="onSelectItem($event, member.id)"
+                                                [(ngModel)]="member.isSelected" value="{{member.id}}" />
                                             <div class="slider round"></div>
                                         </label>
                                     </div>
@@ -275,7 +282,7 @@
                                         </p>
                                     </div>
                                     <div class="item" style="  margin-left: auto;padding-right: 20px;">
-                                        <a class="text-md m-0" (click)="onChat()">前往對話
+                                        <a class="text-md m-0" (click)="onChat(member)">前往對話
                                         </a>
                                     </div>
                                 </div>
@@ -295,7 +302,9 @@
                                 <div class="card mt-3 cursor-pointer w-100">
                                     <div class="d-flex align-items-center" style="margin-top: 10px;">
                                         <label class="switch" for="{{'checkbox'+i}}">
-                                            <input type="checkbox" id="{{'checkbox'+i}}" />
+                                            <input type="checkbox" id="{{'checkbox'+i}}"
+                                                (change)="onSelectItem($event, member.id)"
+                                                [(ngModel)]="member.isSelected" value="{{member.id}}" />
                                             <div class="slider round"></div>
                                         </label>
                                     </div>
@@ -318,7 +327,7 @@
                                         </p>
                                     </div>
                                     <div class="item" style="  margin-left: auto;padding-right: 20px;">
-                                        <a class="text-md m-0" (click)="onChat()">前往對話
+                                        <a class="text-md m-0" (click)="onChat(member)">前往對話
                                         </a>
                                     </div>
                                 </div>
@@ -443,34 +452,13 @@
         </div>
     </div>
 </div>
-<div class="menu-wrap">
-    <input type="checkbox" class="toggler" />
-    <div class="hamburger">
-        <div></div>
-    </div>
-    <div class="menu" [ngClass]="{ 'active': isChat ==true }">
+<div [class.show]="isChat" class="full">
+    <lab-custom-modal [open]="isChat" (close)="onToggleChat($event)">
+        <h3 class="title" title>Chat</h3>
+        <lab-comments [currentUser]="currentUser" [receiverUser]="reciver" (close)="onToggleChat($event)" body>
+        </lab-comments>
 
-        <div class="list">
-            <div>aaa</div>
-            <div>bbb</div>
-            <div>ccc</div>
-            <div>ddd</div>
-            <div>eee</div>
-            <div>aaa</div>
-            <div>bbb</div>
-            <div>ccc</div>
-            <div>ddd</div>
-            <div>eee</div>
-            <div>aaa</div>
-            <div>bbb</div>
-            <div>ccc</div>
-            <div>ddd</div>
-            <div>eee</div>
-            <div>aaa</div>
-            <div>bbb</div>
-            <div>ccc</div>
-            <div>ddd</div>
-            <div>eee</div>
-        </div>
-    </div>
+    </lab-custom-modal>
+
 </div>
+<app-dialog></app-dialog>

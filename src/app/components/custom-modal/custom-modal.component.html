@@ -1,0 +1,20 @@
+<div class="modal-container" [ngClass]="class" tabindex="-1" aria-modal="true" [attr.aria-hidden]="!open" role="dialog"
+  [@openClose]="open ? 'open' : 'close' ">
+
+  <!-- modal-header start -->
+  <div class="modal-header" [class.col-3]="(allowfullscreen ||allowadd)">
+    <ui-button *ngIf="allowfullscreen" class="btn-icon white expand" icon="assets/icons/expand.svg" (click)="onExpandModal($event)"></ui-button>
+    <ui-button *ngIf="allowadd" class="btn-icon white expand" icon="assets/icons/plus.svg" (click)="onAddModal($event)"></ui-button>
+    <ng-content select="[title]"></ng-content>
+    <ui-button class="btn-icon white collapse" icon="assets/icons/cross.svg" (click)="onCloseModal($event)"></ui-button>
+  </div>
+  <!-- modal-header end -->
+
+
+  <!-- modal-body start -->
+  <div class="modal-body">
+    <ng-content select="[body]"></ng-content>
+  </div>
+
+
+</div>

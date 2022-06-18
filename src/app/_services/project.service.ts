@@ -51,7 +51,7 @@ export class ProjectService {
     async getMembers(projectId: string) {
         // const params = new HttpParams().set("uid", uid);
         return await this.http
-            .get<any>(`${environment.apiUrl}/members/projectId/${projectId}`, {
+            .get<any>(`${environment.apiUrl}/members/project/${projectId}`, {
             })
             .toPromise();
     }
@@ -60,6 +60,18 @@ export class ProjectService {
         // const params = new HttpParams().set("uid", uid);
         return await this.http
             .post<any>(`${environment.apiUrl}/members/projectId/${projectId}`, {
+            })
+            .toPromise();
+    }
+
+    async updateMemberstatus(projectId: string, userId: string, status: string, uid: string) {
+
+        return await this.http
+            .put<any>(`${environment.apiUrl}/members/status`, {
+                projectId,
+                userId,
+                status,
+                uid
             })
             .toPromise();
     }

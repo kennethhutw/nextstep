@@ -1,0 +1,53 @@
+<aside class="aside comments">
+
+  <div class="comments-body">
+
+    <div *ngIf="!this.loading" class="list">
+
+      <ng-container *ngIf="chatData.length>0; else noComments">
+        <div *ngFor="let message of chatData;  let i = index">
+
+          <ng-container *ngIf="message.sender== currentUser.id">
+            <ui-comment name="{{message.nameSender}}" [avatar]="getImg(message)" timestamp="{{
+              (message?.createdAt !==null) ? this.utilitySrv.timeSince(message.createdAt ) : '' }}"
+              text={{message.content}} [private]="false">
+            </ui-comment>
+          </ng-container>
+          <ng-container *ngIf="message.sender !== currentUser.id">
+            <ui-comment name="{{message.nameReceiver}}" [avatar]="getImg(message)" timestamp="{{
+                          (message?.createdAt !==null) ? this.utilitySrv.timeSince(message.createdAt ) : '' }}"
+              text={{message.content}} [private]="false">
+            </ui-comment>
+          </ng-container>
+        </div>
+
+
+      </ng-container>
+
+      <ng-template #noComments>
+        <figure class="no-comment">
+          <span class="text">There is no comment. Make the first comment?</span>
+          <img src="assets/images/workspace/no-comment-default.svg" alt="no-comment">
+        </figure>
+      </ng-template>
+    </div>
+
+  </div>
+
+  <footer #comments class="comments-footer">
+
+    <div #textarea class="textarea" contenteditable="true" data-placeholder="Leave your thoughts here"
+      (keyup)="onChange($event)">
+    </div>
+
+    <div class="actions">
+      <div *ngIf="isSupportPrivate" class="control-form check" (click)="onToggleChecked()">
+        <input type="checkbox" [checked]="isChecked"> Private
+      </div>
+      <ui-button class="btn-outline round cancel" (click)="onClose()">Cancel</ui-button>
+      <ui-button class="btn-solid round send" (click)="onComment()">Send</ui-button>
+    </div>
+
+  </footer>
+
+</aside>

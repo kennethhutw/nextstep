@@ -1,0 +1,10 @@
+<button class="btn" [ngClass]="class" [attr.role]="role" [attr.data-index]="index" [attr.aria-selected]="selected"
+  [attr.tabindex]="tabindex" [attr.disabled]="disabled" [disabled]="disabled" [attr.aria-current]="active" [attr.data-tooltip]="tip"
+  (click)="onClick($event)">
+  <ng-content icon></ng-content>
+  <ng-content text></ng-content>
+  <span class="icon" *ngIf="icon">
+    <svg-icon [src]="icon"></svg-icon>
+  </span>
+  <span class="text" *ngIf="text">{{ text }}</span>
+</button>

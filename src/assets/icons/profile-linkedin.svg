@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 20 20">
+  <defs>
+    <clipPath id="clip-profile-linkedin">
+      <rect width="20" height="20"/>
+    </clipPath>
+  </defs>
+  <g id="profile-linkedin" clip-path="url(#clip-profile-linkedin)">
+    <path id="Path_67" data-name="Path 67" d="M137.786,120.229v4.123H135.4v-3.846c0-.966-.345-1.626-1.211-1.626a1.308,1.308,0,0,0-1.226.875,1.619,1.619,0,0,0-.079.582v4.015h-2.391s.032-6.515,0-7.189h2.391v1.019c0,.008-.011.016-.016.023h.016v-.023a2.373,2.373,0,0,1,2.154-1.188C136.607,116.994,137.786,118.022,137.786,120.229Zm-9.8-6.531a1.245,1.245,0,1,0-.031,2.484h.015a1.246,1.246,0,1,0,.017-2.484Zm-1.211,10.655h2.389v-7.189h-2.389Zm0,0" transform="translate(-122.637 -108.698)"/>
+  </g>
+</svg>

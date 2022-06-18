@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 16 16">
+  <defs>
+    <clipPath id="clip-solid-triangle">
+      <rect width="16" height="16"/>
+    </clipPath>
+  </defs>
+  <g id="solid-triangle" clip-path="url(#clip-solid-triangle)">
+    <path id="Union_12" data-name="Union 12" d="M.707.114a1.108,1.108,0,0,0-.707,1V12.888a1.108,1.108,0,0,0,.707,1A1.4,1.4,0,0,0,1.264,14a1.379,1.379,0,0,0,.773-.231l8.671-5.888a1.035,1.035,0,0,0,0-1.762L2.037.231A1.376,1.376,0,0,0,1.265,0,1.405,1.405,0,0,0,.707.114Zm.558,1L9.936,7Z" transform="translate(13.2 15) rotate(180)"/>
+  </g>
+</svg>
