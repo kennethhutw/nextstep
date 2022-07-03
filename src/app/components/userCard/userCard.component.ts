@@ -12,7 +12,7 @@ import { TranslateService } from "@ngx-translate/core";
 @Component({
   selector: "app-user-card",
   templateUrl: "./userCard.component.html",
-  styleUrls: ["./userCard.component.css"]
+  styleUrls: ["./userCard.component.scss"]
 })
 export class UserCardComponent {
   @Input() user;
@@ -47,7 +47,7 @@ export class UserCardComponent {
 
 
   routeToUserProfile() {
-    this.router.navigate(["./u/" + this.user.id], {});
+    this.router.navigate(["./u/" + this.user.uid], {});
   }
 
   ngOnInit() {
@@ -67,5 +67,36 @@ export class UserCardComponent {
 
   onImgError(event) {
     event.target.src = "assets/images/defaultlogo.png";
+  }
+
+  convertTag(term) {
+    let _term = "";
+    switch (term.toLowerCase()) {
+      case "ecomm":
+        _term = "電子商務";
+        break;
+      case "medical":
+        _term = "醫學科技";
+        break;
+      case "ai":
+        _term = "人工智慧";
+        break;
+      case "transport":
+        _term = "運輸服務";
+        break;
+      case "edutech":
+        _term = "教育技術";
+        break;
+      case "fintech":
+        _term = "金融科技";
+        break;
+      case "sharingeconomy":
+        _term = "共享經濟";
+        break;
+      case "game":
+        _term = "遊戲產業";
+        break;
+    }
+    return _term;
   }
 }

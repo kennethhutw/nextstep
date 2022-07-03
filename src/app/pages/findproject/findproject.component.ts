@@ -387,4 +387,8 @@ export class FindProjectComponent implements OnInit {
     })
     this.displayItems = currentItem;
   }
+
+  onCleanClick() {
+
+  }
 }

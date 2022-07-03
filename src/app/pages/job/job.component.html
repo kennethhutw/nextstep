@@ -1,79 +1,103 @@
-<div class="row mt-50" style="margin-top: 100px;">
-  <div class="col-md-4 text-center">
+<div *ngIf="currentRecruit" class="row mt-100">
+  <div class="col-md-8 text-center d-flex flex-row gap-10">
     <h1>{{this.currentRecruit.position? this.currentRecruit.position :'職缺名稱'}}</h1>
+    <span class="update_date">{{this.currentRecruit.createdAt | date:"MM/dd"}}更新</span>
   </div>
 
-  <div class="col-md-8 text-right">
+  <div class="col-md-4 text-right btn_items">
 
-    <button type="button" style="float: right;" class="btn btn_item  mr-10" (click)="onSave()"><i
-        class="far fa-comment-alt"></i>
+    <button type="button" class="btn btn_item " (click)="onSave()"><i class="far fa-comment-alt"></i>
       訊息</button>
-    <button type="button" style="float: right;" class="btn btn_item mr-10" (click)="onSave()"><i
-        class="fas fa-plus"></i>
+    <button type="button" class="btn btn_item " (click)="onSave()"><i class="fas fa-plus"></i>
       追蹤</button>
-    <button type="button" style="float: right;" class="btn btn_item mr-10" (click)="onSave()"><i
-        class="far fa-bookmark"></i>
-      收藏</button> <button type="button" style="float: right;" class="btn btn_item  mr-10" (click)="onSave()"><i
-        class="far fa-envelope"></i>
-      申請加入</button>
+    <button type="button" class="btn btn_item " (click)="onSave()"><i class="far fa-bookmark"></i>
+      收藏</button> <button type="button" class="btn btn_item" (click)="onSave()"><i class="far fa-envelope"></i>
+      申請</button>
   </div>
 </div>
-<div class="row mt-10">
-  <div class="col-md-2">
-
+<div *ngIf="currentRecruit" class="row mt-10 mb-33">
+  <div class="col-md-8  d-flex flex-row gap-10">
+    <img class="profile-image rounded-circle" src="{{ currentRecruit.projectImageUrl }}" (error)="onImgError($event)"
+      alt="" />
+    <span class="update_date">{{ currentRecruit.projectName }}</span>
   </div>
+  <div class="col-md-4 text-right">
 
-  <div class="col-md-6 text-right">
-
-    <span>xx人收藏/xx人追蹤</span>
+    <span class="update_date">xx人收藏/xx人追蹤</span>
   </div>
 </div>
 
 
-<div class="row" style="margin-left: 5%;margin-right: 5%; padding:20px">
+<div *ngIf="currentRecruit" class="row">
   <div class="col-md-8">
     <div class="row">
-      <div class="col-md-12">
-        <h3>職缺介紹</h3>
+      <div class="col-md-12 mb-24">
+        <span class="title">職缺簡介</span>
       </div>
       <div class="col-md-12 frame-news">
-        {{this.currentRecruit.skills? this.currentRecruit.skills :'skills'}}
+        <span>{{this.currentRecruit.skills? this.currentRecruit.skills :'skills'}}</span>
+        <span>{{this.currentRecruit.scopes? this.currentRecruit.scopes :'職缺名稱'}}</span>
       </div>
     </div>
     <div class="row ">
-      <div class="col-md-12">
-        <h3>職務需求</h3>
+      <div class="col-md-12 mb-24">
+        <span class="title">此專案其他職缺</span>
       </div>
-      <div class="col-md-12 frame-news">
-        {{this.currentRecruit.scopes? this.currentRecruit.scopes :'職缺名稱'}}
-      </div>
+      <ng-container *ngIf="this.currentRecruit?.others">
+        <ng-container *ngFor="let item of  this.currentRecruit.projectOthers; let i = index">
+          <div class=" frame" [ngClass]="{'mt-10':i>1}">
+            <a class="clickable" [routerLink]="['/job/',item.id ]" style="color: #7F7F7F;">
+              <div class="col-md-12" style="display: inline-flex;">
+                <div class="col-md-8">
+                  <p class="position"><b>{{item.position}}</b></p>
+                  <small>{{item.skills}}</small>
+                </div>
+                <div class="col-md-4 btn_items">
+                  <a href="#"> <i class="far fa-bookmark"></i></a>
+                  <a href="#" data-toggle="modal" data-target="#modal_apply" data-dismiss="modal"
+                    (click)="onSelectItem(item)"> <i class="far fa-envelope"></i></a>
+                </div>
+              </div>
+            </a>
+            <div class="col-md-12">
+              {{item.scopes}}
+            </div>
+            <div class="col-md-12 text-right">
+              <a class=" clickable" [routerLink]="['/job/',item.id ]" style="color: #4395E7;">查看詳情</a>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
 
     </div>
   </div>
   <div class="col-md-4">
     <div class="row">
-      <div class="col-md-12">
-        <h3>專案成員募集中</h3>
+      <div class="col-md-12 mb-24">
+        <span class="title">其他相似職缺</span>
       </div>
     </div>
-    <ng-container *ngIf="this.currentRecruit?.others">
-      <ng-container *ngFor="let item of  this.currentRecruit.others; let i = index">
-        <div class="row frame mt-10" style="margin-left: 10px;padding: 10px">
+    <ng-container *ngIf="this.currentRecruit?.projectOthers">
+      <ng-container *ngFor="let item of  this.currentRecruit.projectOthers; let i = index">
+        <div class="row frame" [ngClass]="{'mt-10':i>1}">
           <a class="clickable" [routerLink]="['/job/',item.id ]" style="color: #7F7F7F;">
             <div class="col-md-12" style="display: inline-flex;">
-              <div class="col-md-12 ">
+              <div class="col-md-8">
                 <p class="position"><b>{{item.position}}</b></p>
                 <small>{{item.skills}}</small>
+              </div>
+              <div class="col-md-4 btn_items">
+                <a href="#"> <i class="far fa-bookmark"></i></a>
+                <a href="#" data-toggle="modal" data-target="#modal_apply" data-dismiss="modal"
+                  (click)="onSelectItem(item)"> <i class="far fa-envelope"></i></a>
               </div>
             </div>
           </a>
           <div class="col-md-12">
             {{item.scopes}}
           </div>
-          <div class="col-md-12">
-            <button type="button" style="float: right;" class="btn btn_item mr-10" (click)="onSave()"><i
-                class="far fa-envelope"></i>
-              申請加入</button>
+          <div class="col-md-12 text-right">
+            <a class=" clickable" [routerLink]="['/job/',item.id ]" style="color: #4395E7;">查看詳情</a>
           </div>
         </div>
       </ng-container>
@@ -83,3 +107,28 @@
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
   <p style="color: white">Please Wait. </p>
 </ngx-spinner>
+
+
+<!--Modal register-->
+<div class="modal fade" id="modal_apply" tabindex="-1" aria-labelledby="applyModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content model_padding">
+      <div class="modal_header text-center">
+        <span>我要申請加入！</span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">╳</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center mb-4">
+          <textarea class="form-control" rows="5" id="bio" placeholder="自我介紹與為什麼想加入"></textarea>
+        </div>
+        <div class=" text-right">
+          <button type="button" class="btn btn-blue  mr-10" (click)="onSubmit()">
+            送出申請</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

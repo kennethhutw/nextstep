@@ -2,11 +2,8 @@ p {
     margin-top: 0;
     margin-bottom: 1rem;
 }
-a:hover {
-  cursor: pointer;
-}
 
-.search_input{
+.search_input {
     background: transparent;
     border: none;
     border-bottom: 1px solid #210b2c;
@@ -14,19 +11,24 @@ a:hover {
     box-shadow: none;
     border-radius: 0;
 }
+
 .bio {
     font-size: 1.5rem;
     color: #210b2c;
 }
+
 .text-center {
-    text-align: center!important;
-}
-.mt-4, .my-4 {
-    margin-top: 1.5rem!important;
+    text-align: center !important;
 }
 
-.ml-3, .mx-3 {
-    margin-left: 1rem!important;
+.mt-4,
+.my-4 {
+    margin-top: 1.5rem !important;
+}
+
+.ml-3,
+.mx-3 {
+    margin-left: 1rem !important;
 }
 
 
@@ -34,14 +36,14 @@ a:hover {
     vertical-align: center;
     -ms-flex-line-pack: center;
     align-content: center;
-    height: 75px;
-    width: 75px;
+    height: 60px;
+    width: 60px;
     border-radius: 50%;
 }
 
 .card {
     background-color: white;
-    box-shadow: 0 .5rem 1rem rgba(43,42,53,.075)!important;
+    box-shadow: 0 .5rem 1rem rgba(43, 42, 53, .075) !important;
     border: 1px solid #e1eaea !important;
     color: black;
 }
@@ -52,35 +54,39 @@ a:hover {
     border-radius: 4px;
     box-shadow: 0 0.05rem 0.01rem rgba(75, 75, 90, 0.075);
     padding: 25px;
-    min-height: 195px;
 }
+
 .grid-margin {
     margin-bottom: 2rem;
 }
-.artist{
+
+.artist {
     cursor: pointer;
 }
+
 .name {
-      font-family: "Noto Serif JP", sans-serif;
-      font-weight: 400;
+    font-family: "Noto Serif JP", sans-serif;
+    font-weight: 400;
 }
-th{
+
+th {
     font-weight: 300;
 }
 
-.discr{
+.discr {
     min-height: 70px;
     text-align: left;
-    padding:10px;
-    max-height: 120px;
+    padding: 10px;
 }
 
-.mr-5{
-    margin-right:5px !important;
+.mr-5 {
+    margin-right: 5px !important;
 }
+
 .label.label-success {
     background: #43d39e;
 }
+
 .label {
     font-weight: 400;
     padding: 4px 8px;
@@ -92,4 +98,35 @@ th{
     white-space: nowrap;
     vertical-align: baseline;
     border-radius: 0.25em;
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+    color: #56BDF4;
+
+    font-size: 22px;
+
+    i {
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    .follow {
+        color: #56BDF4;
+        border: 2px solid #56BDF4;
+        font-size: 12px;
+        font-weight: 400;
+        padding: 4px 8px 4px 8px;
+        border-radius: 4px;
+    }
+}
+
+.tag {
+    padding: 4px 8px 4px 8px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    border-radius: 100px;
+    background-color: #C0DAFE;
 }

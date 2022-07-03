@@ -7,7 +7,7 @@ import { PersonCardComponent } from "./person/person.component";
 import { UserCardComponent } from "./userCard/userCard.component";
 import { ProjectCardComponent } from './projectCard/projectCard.component';
 import { ProjectBarComponent } from './projectBar/project-bar.component';
-
+import { TagComponent } from './tag/tag.component';
 import { LogBarComponent } from './log-bar/log-bar.component';
 import { RadioItemComponent } from './radioItem/radio-item.component';
 export const components = [
@@ -21,6 +21,7 @@ export const components = [
     ProjectCardComponent,
     ProjectItemComponent,
     PersonCardComponent,
+    TagComponent,
     UserCardComponent
 ];
 
@@ -33,7 +34,7 @@ export { ProjectCardComponent } from './projectCard/projectCard.component';
 export { ProjectItemComponent } from "./projectItem/project-item.component";
 export { PersonCardComponent } from "./person/person.component";
 export { ProjectBarComponent } from './projectBar/project-bar.component';
-
+export { TagComponent } from './tag/tag.component';
 
 
 export { FooterComponent } from "./footer/footer.component";

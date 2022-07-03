@@ -6,96 +6,107 @@
     <div id="profile-pic">
       <img src="https://imagizer.imageshack.com/img921/3072/rqkhIb.jpg">
     </div>
-    <div id="u-name">Himalaya Singh</div>
+    <!--  <div id="u-name">Himalaya Singh</div> -->
 
-    <div id="edit-profile"><i class="material-icons">camera_alt</i></div>
+    <div *ngIf="currentProject?.owner == currentUser?.id" id="edit-profile"><i class="material-icons">camera_alt</i>
+    </div>
   </div>
   <div id="black-grd"></div>
 </div>
 <div *ngIf="currentProject" class="row mt-50">
-  <div class="col-md-4 text-right">
+  <div class="col-md-3 text-right">
+
+  </div>
+  <div class="col-md-5">
     <h1>{{this.currentProject?.name}}</h1>
   </div>
 
-  <div class="col-md-8 text-right">
+  <div class="col-md-4 text-right  btn_items">
 
-    <button type="button" style="float: right;" class="btn btn_item  mr-10" (click)="onSave()"><i
-        class="far fa-comment-alt"></i>
+    <button type="button" class="btn btn_item  " (click)="onSave()"><i class="far fa-comment-alt"></i>
       訊息</button>
-    <button type="button" style="float: right;" class="btn btn_item mr-10" (click)="onSave()"><i
-        class="fas fa-plus"></i>
+    <button type="button" class="btn btn_item " (click)="onSave()"><i class="fas fa-plus"></i>
       追蹤</button>
-    <button type="button" style="float: right;" class="btn btn_item mr-10" (click)="onSave()"><i
-        class="far fa-bookmark"></i>
+    <button type="button" class="btn btn_item " (click)="onSave()"><i class="far fa-bookmark"></i>
       收藏</button>
   </div>
 </div>
 <div *ngIf="currentProject" class="row mt-10">
-  <div class="col-md-2">
+  <div class="col-md-3 text-right">
 
   </div>
+  <div class="col-md-6">
+    <a *ngIf="IsNullorEmpty(currentProject.website)" href="{{ currentProject.website }}" target="_blank"> <i
+        class="fas fa-globe icon icon"></i></a>
+    <a *ngIf="IsNullorEmpty(currentProject.github)" href="{{ currentProject.github }}" target="_blank"> <i
+        class="fa-fw fab fa-github icon"></i></a>
+    <a *ngIf="IsNullorEmpty(currentProject.twitter)" href="{{ currentProject.twitter }}" target="_blank"><i
+        class="fa-fw fab fa-twitter icon"></i></a>
+    <a *ngIf="IsNullorEmpty(currentProject.discord)" href="{{ currentProject.discord }}" target="_blank"><i
+        class="fa-fw fab fa-discord icon"></i></a>
+    <a *ngIf="IsNullorEmpty(currentProject.facebook)" href="{{ currentProject.facebook }}" target="_blank"><i
+        class="fa-fw fab fa-facebook icon"></i></a>
+    <a *ngIf="IsNullorEmpty(currentProject.instagram)" href="{{ currentProject.instagram }}" target="_blank"> <i
+        class="fab fa-instagram-square icon"></i></a>
+  </div>
 
-  <div class="col-md-6" style="    display: flex;
-    justify-content: space-between;">
-    <span>連結</span>
-    <span>{{currentProject?.createdAt | date:"yyyy-MM-dd"}}</span>
-    <span>{{currentProject.liked}}人關注/關注xx人</span>
+  <div class="col-md-3 project-info">
+    <span>累積20次瀏覽</span>
+    <!--     <span>{{currentProject?.createdAt | date:"yyyy-MM-dd"}}</span> -->
+    <span>{{currentProject.liked}}人收藏/xx人追蹤</span>
   </div>
 </div>
 
-<div *ngIf="currentProject" class="row mt-50" style="margin-left: 5%;margin-right: 5%; padding:20px">
+<div *ngIf="currentProject" class="row mt-50">
   <div class="col-md-8">
+    <div class="row mb-24">
+      <div class="col-md-12">
+        <span class="title mb-24">專案簡介</span>
+      </div>
+    </div>
     <div class="row">
-      <div class="col-md-12">
-        <h3>專案簡介</h3>
+      <div class="col-md-12 frame">
+        <div class="tags">
+          <ui-tag *ngIf="currentProject.isFindPartner" [class]="'tag-hiring'" [tag]="'徵成員'"></ui-tag>
+          <ui-tag *ngIf="currentProject.isFunding" [class]="'tag-funding'" [tag]="'募資中'"></ui-tag>
+          <ui-tag *ngIf="currentProject.isCofounder" [class]="'tag-cofounder'" [tag]="'找聯合創始人'"></ui-tag>
+        </div>
+        <span>{{this.currentProject.description?this.currentProject.description:"尚未填寫專案內容"}}</span>
+        <div class="frame_bottom">
+          <span class="title pb-8">目前進度</span>
+          <div class="frame_bottom_items">
+            <span>#已有創業概念</span>
+            <span>#商業計畫初稿</span>
+            <span>#募資中</span>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="row frame">
-      <div class="col-md-12">
-        {{this.currentProject?.description}}
-      </div>
-    </div>
+
   </div>
   <div class="col-md-4">
-    <div class="row">
+    <div class="row mb-24">
       <div class="col-md-12">
-        <h3>專案成員</h3>
+        <span class="title mb-24">專案成員</span>
       </div>
     </div>
-    <div class="row frame" style="margin-left: 10px;padding: 10px">
+    <div class="row profile-frame">
       <div *ngIf="this.currentProject?.members">
-        <ng-container *ngFor="let member of  this.currentProject.members; let i = index">
-          <div class="col-md-12" style="display: inline-flex;">
-            <i style="font-size: 60px; margin-top: 10px;" class="far fa-user-circle"></i>
-            <div style="margin-left: 10px;">
-              <p class="name">{{member.userName}}</p>
-              <p class="position">{{member.position}}</p>
+        <ng-container *ngFor="let member of  this.currentProject.members ; let i = index">
+          <ng-container *ngIf="onPage(i,this.currentPageIndex)">
+            <div class="col-md-12 profile">
+              <img class="profile-image rounded-circle" src="{{ member.imageUrl }}" (error)="onImgError($event)"
+                alt="" />
+              <div>
+                <p class="profile-name">{{member.userName}}</p>
+                <p class="position">{{member.position}}</p>
+              </div>
             </div>
-          </div>
+          </ng-container>
         </ng-container>
       </div>
-      <!-- <div class="col-md-12" style="display: inline-flex;">
-        <i style="font-size: 60px; margin-top: 10px;" class="far fa-user-circle"></i>
-        <div style="margin-left: 10px;">
-          <p class="name">Kenneth</p>
-          <p class="position">Developer</p>
-        </div>
-      </div>
-      <div class="col-md-12" style="display: inline-flex;">
-        <i style="font-size: 60px; margin-top: 10px;" class="far fa-user-circle"></i>
-        <div style="margin-left: 10px;">
-          <p class="name">Ken</p>
-          <p class="position">Marketing</p>
-        </div>
-      </div>
-      <div class="col-md-12" style="display: inline-flex;">
-        <i style="font-size: 60px; margin-top: 10px;" class="far fa-user-circle"></i>
-        <div style="margin-left: 10px;">
-          <p class="name">Alice</p>
-          <p class="position">PM</p>
-        </div>
-      </div> -->
-      <div class="col-md-12 text-center">
+
+      <div class="col-md-12 text-center dots">
         <span class="dot"></span>
         <span class="dot"></span>
         <span class="dot"></span>
@@ -103,19 +114,19 @@
     </div>
   </div>
 </div>
-<div class="row" style="margin-left: 5%;margin-right: 5%; padding:20px">
+<div class="row">
   <div class="col-md-8">
-    <div class="row">
+    <div class="row mb-24">
       <div class="col-md-12">
-        <h3>近期動態</h3>
+        <span class="title mb-24">近期動態</span>
       </div>
     </div>
     <div class="row ">
       <ng-container *ngIf="this.currentProject?.logs">
         <ng-container *ngFor="let log of  this.currentProject.logs; let i = index">
-          <div class="col-md-12 frame-news" style="width: 100%;">
-            <p>{{log.content}}</p>
-            <span>{{log.createdAt | date:"yyyy-MM-dd"}}</span>
+          <div class="col-md-12 history">
+
+            <span>{{log.createdAt | date:"yyyy-MM-dd"}}</span><span>{{log.content}}</span>
           </div>
         </ng-container>
       </ng-container>
@@ -134,9 +145,9 @@
     </div>
   </div>
   <div class="col-md-4">
-    <div class="row">
+    <div class="row mb-24">
       <div class="col-md-12">
-        <h3>專案成員募集中</h3>
+        <span class="title mb-24">專案成員募集中</span>
       </div>
     </div>
     <ng-container *ngIf="this.currentProject?.recruit">

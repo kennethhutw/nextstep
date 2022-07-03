@@ -134,18 +134,20 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnChanges {
          }).then(() => {
            this.loading = false;
          }) */
-      this.chatSrv.getUserChatRecord(sender.id, receiver.id).subscribe
-        (res => {
-          console.log("init chat =========", res);
-          if (res['result'] == 'successful') {
-            this.chatData = res['data'];
-          }
-        }, error => {
-          console.log("init chat failed ", error);
-        }, () => {
-          this.loading = false;
-          this.cdf.detectChanges();
-        })
+      if (!this.utilitySrv.IsNullOrEmpty(sender.id) && !this.utilitySrv.IsNullOrEmpty(receiver.id)) {
+        this.chatSrv.getUserChatRecord(sender.id, receiver.id).subscribe
+          (res => {
+            console.log("init chat =========", res);
+            if (res['result'] == 'successful') {
+              this.chatData = res['data'];
+            }
+          }, error => {
+            console.log("init chat failed ", error);
+          }, () => {
+            this.loading = false;
+            this.cdf.detectChanges();
+          })
+      }
 
     } catch (error) {
       console.log("init chat ", error);

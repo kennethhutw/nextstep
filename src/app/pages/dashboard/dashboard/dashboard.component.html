@@ -27,7 +27,7 @@
       <ng-container *ngFor="let item of  items; let i = index">
         <div class="col-md-6 text-center">
 
-          <app-project-card (onCollect)="onCollect($event)" [project]="item" [user]="currentUser"></app-project-card>
+          <ui-project-card (onCollect)="onCollect($event)" [project]="item" [user]="currentUser"></ui-project-card>
         </div>
       </ng-container>
     </div>

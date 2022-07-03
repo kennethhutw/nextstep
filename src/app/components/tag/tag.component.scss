@@ -1,0 +1,58 @@
+ui-tag {
+
+
+    padding: 4px 4px 4px 4px;
+    border-radius: 4px;
+
+    .tag-improve {
+        color: #fff;
+        background-color: #2E83FB;
+        padding: 2px 4px 2px 4px;
+        border-radius: 4px;
+
+    }
+
+    .tag-help {
+        color: #4C3509;
+        background-color: #FCB11F;
+        padding: 2px 4px 2px 4px;
+        border-radius: 4px;
+    }
+
+    .tag-bug {
+        color: #fff;
+        background-color: #CC0023;
+        padding: 2px 4px 2px 4px;
+        border-radius: 4px;
+    }
+
+    .tag-hiring {
+        color: #fff;
+        background-color: #FF3356;
+        padding: 2px 4px 2px 4px;
+        border-radius: 4px;
+
+    }
+
+    .tag-funding {
+        color: #424B61;
+        background-color: #95CF19;
+        padding: 2px 4px 2px 4px;
+        border-radius: 4px;
+    }
+
+    .tag-cofounder {
+        color: #fff;
+        background-color: #BF5FE1;
+        padding: 2px 4px 2px 4px;
+        border-radius: 4px;
+    }
+
+    .text {
+        font-size: 12px;
+        line-height: 19.2px;
+        font-family: 'Noto Sans TC';
+        font-weight: 700;
+        white-space: nowrap;
+    }
+}

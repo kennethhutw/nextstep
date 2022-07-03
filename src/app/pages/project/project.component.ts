@@ -4,7 +4,7 @@ import {
   MembersService,
   ProjectService,
   LikeService,
-  DataService,
+  PagerService,
   AppSettingsService,
   SettingService,
   ToastService
@@ -32,8 +32,10 @@ export class ProjectComponent implements OnInit {
   projectId;
   application_message: string = "";
   selectedApplication: any;
+  currentPageIndex = 1;
   constructor(
     private ProjectSrv: ProjectService,
+    private pagerSrv: PagerService,
     private authStore: AuthStore,
     private likeSrv: LikeService,
     private settingSrv: SettingService,
@@ -108,6 +110,17 @@ export class ProjectComponent implements OnInit {
   }
 
   onSave() { }
+  IsNullorEmpty(value) {
+    return !this.utility.IsNullOrEmpty(value)
+  }
+  onImgError(event) {
+    event.target.src = "assets/images/defaultlogo.png";
+  }
 
+  // Pagination
+  onPage(i, currentPageIndex) {
+    let _num = this.pagerSrv.Page(i, currentPageIndex, 3);
+    return _num;
+  }
 }
 //https://www.sliderrevolution.com/resources/bootstrap-profile/

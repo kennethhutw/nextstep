@@ -10,9 +10,9 @@ import {
 
 import { TranslateService } from "@ngx-translate/core";
 @Component({
-  selector: "app-project-card",
+  selector: "ui-project-card",
   templateUrl: "./projectCard.component.html",
-  styleUrls: ["./projectCard.component.css"]
+  styleUrls: ["./projectCard.component.scss"]
 })
 export class ProjectCardComponent {
   @Input() project;

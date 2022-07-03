@@ -55,6 +55,7 @@ export class JobComponent implements OnInit {
     ]
   }];
   currentRecruit;
+  selectedItem;
   constructor(
     private settingSrv: SettingService,
     private recruitSrv: RecruitService,
@@ -82,5 +83,17 @@ export class JobComponent implements OnInit {
   }
 
   onSave() { }
+
+  onSelectItem(item) {
+    this.selectedItem = item;
+  }
+
+  onSubmit() {
+
+  }
+
+  onImgError(event) {
+    event.target.src = "assets/images/defaultlogo.png";
+  }
 }
 //https://www.sliderrevolution.com/resources/bootstrap-profile/

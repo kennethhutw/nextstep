@@ -1,128 +1,132 @@
 <div id="findcontent" class="container row">
-  <div class="col-md-3 col-lg-3">
-    <aside class="sidebar shadow-lg">
+  <div class="col-md-2 col-lg-2">
+    <div class="texe-center"><span class="btn-clean">清除全部</span></div>
+
+
+    <aside class="sidebar ">
       <nav class="sidebar-menu pt-3 pb-3">
         <ul class="menu-items" style="padding-left: 20px;">
-          <li>
-            <h4>專案類型</h4>
+
+          <li class="mb-12">
+            <span class="title">專案類型</span>
           </li>
           <li>
             <input type="checkbox" [(ngModel)]="filterCondition.sideproject" (change)="onProjectChange($event)"
               data-key="project" />
-            <label class="ml-10" for="firsttimeInput">Side Project</label>
+            <label class="option" for="firsttimeInput">Side Project</label>
           </li>
           <li>
             <input type="checkbox" [(ngModel)]="filterCondition.fullproject" (change)="onProjectChange($event)"
               data-key="project" />
-            <label class="ml-10" for="firsttimeInput">Project</label>
+            <label class="option" for="firsttimeInput">Project</label>
           </li>
 
         </ul>
         <ul class="menu-items" style="padding-left: 20px;">
-          <li>
-            <h4>專案類型</h4>
+          <li class="mb-12">
+            <span class="title">專案產品</span>
           </li>
           <li>
             <input id="websit" type="checkbox" [(ngModel)]="filterCondition.websit" (change)="onProductChange($event)"
               data-key="websit" />
-            <label class="ml-10" for="websit">網站</label>
+            <label class="option" for="websit">網站</label>
           </li>
           <li>
             <input id="app" type="checkbox" [(ngModel)]="filterCondition.app" (change)="onProductChange($event)"
               data-key="project" />
-            <label class="ml-10" for="app">App</label>
+            <label class="option" for="app">App</label>
           </li>
           <li>
             <input id="hardware" type="checkbox" [(ngModel)]="filterCondition.hardware"
               (change)="onProductChange($event)" data-key="project" />
-            <label class="ml-10" for="hardware">硬體</label>
+            <label class="option" for="hardware">硬體</label>
           </li>
 
         </ul>
         <ul class="menu-items" style="padding-left: 20px;">
-          <li>
-            <h4>產業類型</h4>
+          <li class="mb-12">
+            <span class="title">產業類型</span>
           </li>
           <li>
             <input id="eComm" type="checkbox" [(ngModel)]="filterCondition.eComm" (change)="onTypeChange($event)"
               data-key="project" />
-            <label class="ml-10" for="eComm">電子商務</label>
+            <label class="option" for="eComm">電子商務</label>
           </li>
           <li>
             <input id="medical" type="checkbox" [(ngModel)]="filterCondition.medical" (change)="onTypeChange($event)"
               data-key="project" />
-            <label class="ml-10" for="medical">醫學科技</label>
+            <label class="option" for="medical">醫學科技</label>
           </li>
           <li>
             <input id="ai" type="checkbox" [(ngModel)]="filterCondition.ai" (change)="onTypeChange($event)"
               data-key="project" />
-            <label class="ml-10" for="ai">人工智慧</label>
+            <label class="option" for="ai">人工智慧</label>
           </li>
           <li>
             <input id="transport" type="checkbox" [(ngModel)]="filterCondition.transport"
               (change)="onTypeChange($event)" data-key="project" />
-            <label class="ml-10" for="transport">運輸服務</label>
+            <label class="option" for="transport">運輸服務</label>
           </li>
           <li>
             <input id="edutech" type="checkbox" [(ngModel)]="filterCondition.edutech" (change)="onTypeChange($event)"
               data-key="project" />
-            <label class="ml-10" for="edutech">教育技術</label>
+            <label class="option" for="edutech">教育技術</label>
           </li>
           <li>
             <input id="fintech" type="checkbox" [(ngModel)]="filterCondition.fintech" (change)="onTypeChange($event)"
               data-key="project" />
-            <label class="ml-10" for="fintech">金融科技</label>
+            <label class="option" for="fintech">金融科技</label>
           </li>
           <li>
             <input id="sharingeconomy" type="checkbox" [(ngModel)]="filterCondition.sharingeconomy"
               (change)="onTypeChange($event)" data-key="project" />
-            <label class="ml-10" for="sharingeconomy">共享</label>
+            <label class="option" for="sharingeconomy">共享經濟</label>
           </li>
           <li>
             <input id="game" type="checkbox" [(ngModel)]="filterCondition.game" (change)="onTypeChange($event)"
               data-key="project" />
-            <label class="ml-10" for="game">遊戲產業</label>
+            <label class="option" for="game">遊戲產業</label>
           </li>
         </ul>
         <ul class="menu-items" style="padding-left: 20px;">
-          <li>
-            <h4>每周願意投入時長</h4>
+          <li class="mb-12">
+            <span class="title">每周願意投入時長</span>
           </li>
           <li>
             <input id="work12" type="checkbox" [(ngModel)]="filterCondition.work12" (change)="onHourChange($event)"
               data-key="hour" />
-            <label class="ml-10" for="work12">1至2小時</label>
+            <label class="option" for="work12">1至2小時</label>
           </li>
           <li>
             <input id="work34" type="checkbox" [(ngModel)]="filterCondition.work34" (change)="onHourChange($event)"
               data-key="hour" />
-            <label class="ml-10" for="work34">3至4小時</label>
+            <label class="option" for="work34">3至4小時</label>
           </li>
           <li>
             <input id="work56" type="checkbox" [(ngModel)]="filterCondition.work56" (change)="onHourChange($event)"
               data-key="hour" />
-            <label class="ml-10" for="work56">5至6小時</label>
+            <label class="option" for="work56">5至6小時</label>
           </li>
           <li>
             <input id="work78" type="checkbox" [(ngModel)]="filterCondition.work78" (change)="onHourChange($event)"
               data-key="hour" />
-            <label class="ml-10" for="work78">7至8小時</label>
+            <label class="option" for="work78">7至8小時</label>
           </li>
           <li>
             <input id="work9" type="checkbox" [(ngModel)]="filterCondition.work9" (change)="onHourChange($event)"
               data-key="hour" />
-            <label class="ml-10" for="work9">9小時以上(含)</label>
+            <label class="option" for="work9">9小時以上(含)</label>
           </li>
-          <li>
+          <!--  <li>
             <input type="text" class="form-control search" style="    width: 90%;" aria-label=""
               aria-describedby="button-addon2" />
-          </li>
+          </li> -->
         </ul>
       </nav>
     </aside>
 
   </div>
-  <div class="col-md-9  col-lg-9">
+  <div class="col-md-10  col-lg-10">
     <div class="row" *ngIf="displayItems.length ===0" style="height:300px">
       No project
     </div>
@@ -132,7 +136,7 @@
         <ng-container *ngFor="let item of  displayItems; let i = index">
           <div class="col-md-6 text-center">
 
-            <app-project-card (onCollect)="onCollect($event)" [project]="item" [user]="currentUser"></app-project-card>
+            <ui-project-card (onCollect)="onCollect($event)" [project]="item" [user]="currentUser"></ui-project-card>
           </div>
         </ng-container>
       </div>

@@ -1,388 +1,217 @@
-<h1>feedback</h1>
-<div style="margin-top: 50px;" class="container">
-    <div class="row">
-        <div class="col-12 col-sm-12 col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4>Proposal List</h4>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive" id="proTeamScroll" tabindex="2"
-                        style="height: 400px; overflow: hidden; outline: none;">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Cust.</th>
-                                    <th>Project</th>
-                                    <th>Assign Date</th>
-                                    <th>Team</th>
-                                    <th>Priority</th>
-                                    <th>Status</th>
-                                    <th>Edit</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="table-img"><img src="https://bootdey.com/img/Content/avatar/avatar8.png"
-                                            alt="">
-                                    </td>
-                                    <td>
-                                        <h6 class="mb-0 font-13">Wordpress Website</h6>
-                                        <p class="m-0 font-12">
-                                            Assigned to<span class="col-green font-weight-bold"> Airi Satou</span>
-                                        </p>
-                                    </td>
-                                    <td>20-02-2018</td>
-                                    <td class="text-truncate">
-                                        <ul class="list-unstyled order-list m-b-0">
-                                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                                    src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="user"
-                                                    data-toggle="tooltip" title="" data-original-title="Wildan Ahdian">
-                                            </li>
-                                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                                    src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="user"
-                                                    data-toggle="tooltip" title="" data-original-title="John Deo"></li>
-                                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                                    src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="user"
-                                                    data-toggle="tooltip" title="" data-original-title="Sarah Smith">
-                                            </li>
-                                            <li class="avatar avatar-sm"><span class="badge badge-primary">+4</span>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <div class="badge-outline col-red">High</div>
-                                    </td>
-                                    <td class="align-middle">
-                                        <div class="progress-text">50%</div>
-                                        <div class="progress" data-height="6" style="height: 6px;">
-                                            <div class="progress-bar bg-success" data-width="50%" style="width: 50%;">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a data-toggle="tooltip" title="" data-original-title="Edit"><i
-                                                class="fas fa-pencil-alt"></i></a>
-                                        <a data-toggle="tooltip" title="" data-original-title="Delete"><i
-                                                class="far fa-trash-alt"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="table-img"><img src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                                            alt="">
-                                    </td>
-                                    <td>
-                                        <h6 class="mb-0 font-13">Android Game App</h6>
-                                        <p class="m-0 font-12">
-                                            Assigned to<span class="col-green font-weight-bold"> Sarah Smith</span>
-                                        </p>
-                                    </td>
-                                    <td>22-05-2019</td>
-                                    <td class="text-truncate">
-                                        <ul class="list-unstyled order-list m-b-0">
-                                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                                    src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="user"
-                                                    data-toggle="tooltip" title="" data-original-title="Wildan Ahdian">
-                                            </li>
-                                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                                    src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="user"
-                                                    data-toggle="tooltip" title="" data-original-title="John Deo"></li>
-                                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                                    src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="user"
-                                                    data-toggle="tooltip" title="" data-original-title="Sarah Smith">
-                                            </li>
-                                            <li class="avatar avatar-sm"><span class="badge badge-primary">+4</span>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <div class="badge-outline col-green">Low</div>
-                                    </td>
-                                    <td class="align-middle">
-                                        <div class="progress-text">55%</div>
-                                        <div class="progress" data-height="6" style="height: 6px;">
-                                            <div class="progress-bar bg-purple" data-width="55%" style="width: 55%;">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a data-toggle="tooltip" title="" data-original-title="Edit"><i
-                                                class="fas fa-pencil-alt"></i></a>
-                                        <a data-toggle="tooltip" title="" data-original-title="Delete"><i
-                                                class="far fa-trash-alt"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="table-img"><img src="https://bootdey.com/img/Content/avatar/avatar5.png"
-                                            alt="">
-                                    </td>
-                                    <td>
-                                        <h6 class="mb-0 font-13">Java Web Service</h6>
-                                        <p class="m-0 font-12">
-                                            Assigned to<span class="col-green font-weight-bold"> Cara Stevens</span>
-                                        </p>
-                                    </td>
-                                    <td>11-04-2019</td>
-                                    <td class="text-truncate">
-                                        <ul class="list-unstyled order-list m-b-0">
-                                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                                    src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="user"
-                                                    data-toggle="tooltip" title="" data-original-title="Wildan Ahdian">
-                                            </li>
-                                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                                    src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="user"
-                                                    data-toggle="tooltip" title="" data-original-title="John Deo"></li>
-                                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                                    src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="user"
-                                                    data-toggle="tooltip" title="" data-original-title="Sarah Smith">
-                                            </li>
-                                            <li class="avatar avatar-sm"><span class="badge badge-primary">+4</span>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <div class="badge-outline col-blue">Medium</div>
-                                    </td>
-                                    <td class="align-middle">
-                                        <div class="progress-text">70%</div>
-                                        <div class="progress" data-height="6" style="height: 6px;">
-                                            <div class="progress-bar" data-width="70%" style="width: 70%;"></div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a data-toggle="tooltip" title="" data-original-title="Edit"><i
-                                                class="fas fa-pencil-alt"></i></a>
-                                        <a data-toggle="tooltip" title="" data-original-title="Delete"><i
-                                                class="far fa-trash-alt"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="table-img"><img src="https://bootdey.com/img/Content/avatar/avatar6.png"
-                                            alt="">
-                                    </td>
-                                    <td>
-                                        <h6 class="mb-0 font-13">Wedding IOS App</h6>
-                                        <p class="m-0 font-12">
-                                            Assigned to<span class="col-green font-weight-bold"> John Doe</span>
-                                        </p>
-                                    </td>
-                                    <td>19-05-2019</td>
-                                    <td class="text-truncate">
-                                        <ul class="list-unstyled order-list m-b-0">
-                                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                                    src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="user"
-                                                    data-toggle="tooltip" title="" data-original-title="Wildan Ahdian">
-                                            </li>
-                                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                                    src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="user"
-                                                    data-toggle="tooltip" title="" data-original-title="John Deo"></li>
-                                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                                    src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="user"
-                                                    data-toggle="tooltip" title="" data-original-title="Sarah Smith">
-                                            </li>
-                                            <li class="avatar avatar-sm"><span class="badge badge-primary">+4</span>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <div class="badge-outline col-red">High</div>
-                                    </td>
-                                    <td class="align-middle">
-                                        <div class="progress-text">45%</div>
-                                        <div class="progress" data-height="6" style="height: 6px;">
-                                            <div class="progress-bar bg-cyan" data-width="45%" style="width: 45%;">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a data-toggle="tooltip" title="" data-original-title="Edit"><i
-                                                class="fas fa-pencil-alt"></i></a>
-                                        <a data-toggle="tooltip" title="" data-original-title="Delete"><i
-                                                class="far fa-trash-alt"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="table-img"><img src="https://bootdey.com/img/Content/avatar/avatar6.png"
-                                            alt="">
-                                    </td>
-                                    <td>
-                                        <h6 class="mb-0 font-13">Blize Admin Template</h6>
-                                        <p class="m-0 font-12">
-                                            Assigned to<span class="col-green font-weight-bold"> Ashton Cox</span>
-                                        </p>
-                                    </td>
-                                    <td>25-07-2019</td>
-                                    <td class="text-truncate">
-                                        <ul class="list-unstyled order-list m-b-0">
-                                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                                    src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="user"
-                                                    data-toggle="tooltip" title="" data-original-title="Wildan Ahdian">
-                                            </li>
-                                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                                    src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="user"
-                                                    data-toggle="tooltip" title="" data-original-title="John Deo"></li>
-                                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                                    src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="user"
-                                                    data-toggle="tooltip" title="" data-original-title="Sarah Smith">
-                                            </li>
-                                            <li class="avatar avatar-sm"><span class="badge badge-primary">+4</span>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <div class="badge-outline col-blue">Medium</div>
-                                    </td>
-                                    <td class="align-middle">
-                                        <div class="progress-text">67%</div>
-                                        <div class="progress" data-height="6" style="height: 6px;">
-                                            <div class="progress-bar bg-red" data-width="67%" style="width: 67%;"></div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a data-toggle="tooltip" title="" data-original-title="Edit"><i
-                                                class="fas fa-pencil-alt"></i></a>
-                                        <a data-toggle="tooltip" title="" data-original-title="Delete"><i
-                                                class="far fa-trash-alt"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="table-img"><img src="https://bootdey.com/img/Content/avatar/avatar3.png"
-                                            alt="">
-                                    </td>
-                                    <td>
-                                        <h6 class="mb-0 font-13">React js website</h6>
-                                        <p class="m-0 font-12">
-                                            Assigned to<span class="col-green font-weight-bold"> Sarah Smith </span>
-                                        </p>
-                                    </td>
-                                    <td>11-08-2019</td>
-                                    <td class="text-truncate">
-                                        <ul class="list-unstyled order-list m-b-0">
-                                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                                    src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="user"
-                                                    data-toggle="tooltip" title="" data-original-title="Wildan Ahdian">
-                                            </li>
-                                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                                    src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="user"
-                                                    data-toggle="tooltip" title="" data-original-title="John Deo"></li>
-                                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                                    src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="user"
-                                                    data-toggle="tooltip" title="" data-original-title="Sarah Smith">
-                                            </li>
-                                            <li class="avatar avatar-sm"><span class="badge badge-primary">+4</span>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <div class="badge-outline col-green">Low</div>
-                                    </td>
-                                    <td class="align-middle">
-                                        <div class="progress-text">41%</div>
-                                        <div class="progress" data-height="6" style="height: 6px;">
-                                            <div class="progress-bar bg-orange" data-width="41%" style="width: 41%;">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a data-toggle="tooltip" title="" data-original-title="Edit"><i
-                                                class="fas fa-pencil-alt"></i></a>
-                                        <a data-toggle="tooltip" title="" data-original-title="Delete"><i
-                                                class="far fa-trash-alt"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="table-img"><img src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                                            alt="">
-                                    </td>
-                                    <td>
-                                        <h6 class="mb-0 font-13">SEO improvement</h6>
-                                        <p class="m-0 font-12">
-                                            Assigned to<span class="col-green font-weight-bold"> Janak Gandhi</span>
-                                        </p>
-                                    </td>
-                                    <td>22-02-2018</td>
-                                    <td class="text-truncate">
-                                        <ul class="list-unstyled order-list m-b-0">
-                                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                                    src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="user"
-                                                    data-toggle="tooltip" title="" data-original-title="Wildan Ahdian">
-                                            </li>
-                                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                                    src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="user"
-                                                    data-toggle="tooltip" title="" data-original-title="John Deo"></li>
-                                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                                    src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="user"
-                                                    data-toggle="tooltip" title="" data-original-title="Sarah Smith">
-                                            </li>
-                                            <li class="avatar avatar-sm"><span class="badge badge-primary">+4</span>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <div class="badge-outline col-red">High</div>
-                                    </td>
-                                    <td class="align-middle">
-                                        <div class="progress-text">70%</div>
-                                        <div class="progress" data-height="6" style="height: 6px;">
-                                            <div class="progress-bar bg-success" data-width="70%" style="width: 70%;">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a data-toggle="tooltip" title="" data-original-title="Edit"><i
-                                                class="fas fa-pencil-alt"></i></a>
-                                        <a data-toggle="tooltip" title="" data-original-title="Delete"><i
-                                                class="far fa-trash-alt"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="table-img"><img src="https://bootdey.com/img/Content/avatar/avatar6.png"
-                                            alt="">
-                                    </td>
-                                    <td>
-                                        <h6 class="mb-0 font-13">Laravel Website</h6>
-                                        <p class="m-0 font-12">
-                                            Assigned to<span class="col-green font-weight-bold"> Mili Rain</span>
-                                        </p>
-                                    </td>
-                                    <td>31-03-2019</td>
-                                    <td class="text-truncate">
-                                        <ul class="list-unstyled order-list m-b-0">
-                                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                                    src="https://bootdey.com/img/Content/avatar/avatar8.png" alt="user"
-                                                    data-toggle="tooltip" title="" data-original-title="Wildan Ahdian">
-                                            </li>
-                                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                                    src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="user"
-                                                    data-toggle="tooltip" title="" data-original-title="John Deo"></li>
-                                            <li class="team-member team-member-sm"><img class="rounded-circle"
-                                                    src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="user"
-                                                    data-toggle="tooltip" title="" data-original-title="Sarah Smith">
-                                            </li>
-                                            <li class="avatar avatar-sm"><span class="badge badge-primary">+4</span>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <div class="badge-outline col-green">Low</div>
-                                    </td>
-                                    <td class="align-middle">
-                                        <div class="progress-text">55%</div>
-                                        <div class="progress" data-height="6" style="height: 6px;">
-                                            <div class="progress-bar bg-purple" data-width="55%" style="width: 55%;">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a data-toggle="tooltip" title="" data-original-title="Edit"><i
-                                                class="fas fa-pencil-alt"></i></a>
-                                        <a data-toggle="tooltip" title="" data-original-title="Delete"><i
-                                                class="far fa-trash-alt"></i></a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+<div class="container">
+    <div class="row filter mt-80 ">
+        <select class="form-control" [value]="status" (change)="onSortChange($event)">
+            <option value="">從新到舊</option>
+            <option value="current">從舊到新</option>
+            <option value="candidate">最高票選</option>
+            <option value="inviting">邀請中</option>
+            <option value="interview">面談中</option>
+            <option value="rejected">已拒絕</option>
+            <option value="past">歷程成員</option>
+            <!-- </ng-template> -->
+        </select>
+        <select class="form-control" [value]="status" (change)="onSortChange($event)">
+            <option value="">從新到舊</option>
+            <option value="current">從舊到新</option>
+            <option value="candidate">最高票選</option>
+
+            <!-- </ng-template> -->
+        </select>
+        <input type="text" class="form-control search" aria-label="" aria-describedby="button-addon2" />
+
+        <span></span>
+        <a type="button" style="margin: auto;" class="btn btn-blue" data-toggle="modal"
+            [attr.data-target]="'#proposal'"><i class="fas fa-plus"></i> 我有話要說
+        </a>
+    </div>
+    <ul class="nav mb-20" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link " [ngClass]="{ 'active': currentTab === 'all' }" type="button" role="tab"
+                (click)="changeTab('all')">全部</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'processed' }" type="button"
+                role="tab" (click)="changeTab('processed')">已處理</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'myproposal' }"
+                type="button" role="tab" (click)="changeTab('myproposal')">我發布的意見</button>
+        </li>
+
+
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'all' }" id="all" role="tabpanel"
+            aria-labelledby="all-tab">
+            <div class="empty text-center" *ngIf="allitems.length ===0">
+                There are no proposal.
+            </div>
+            <ng-container *ngIf="allitems.length >0">
+                <ng-container *ngFor="let item of  allitems; let i = index">
+                    <div class="row bar">
+                        <div class="col-md-12 profile">
+                            <img class="profile-image rounded-circle" src="{{ item.imageUrl }}"
+                                (error)="onImgError($event)" alt="" />
+                            <div class="profile-detail">
+                                <span>{{item.name}}</span>
+                                <span class="createdTime">{{(item?.createdAt !==null) ?
+                                    this.utilitySrv.timeSince(item.createdAt ) : ''
+                                    }}</span>
+                            </div>
+                            <div [ngSwitch]="type">
+                                <ui-tag *ngSwitchCase="'improve'" [class]="'tag-improve'" [tag]="'改善'"></ui-tag>
+                                <ui-tag *ngSwitchCase="'help'" [class]="'tag-help'" [tag]="'需要協助'"></ui-tag>
+                                <ui-tag *ngSwitchCase="'bug'" [class]="'tag-bug'" [tag]="'有錯誤'"></ui-tag>
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-12 content">
+                            {{item.detail}}
+                        </div>
+
+                        <div class="col-md-12 footer">
+                            <div class="cell">
+                                <span>{{item.like_count}}</span>
+                                <i class="fas fa-arrow-up"></i>
+                            </div>
+                            <div class="cell">
+                                <span>{{item.dislike_count}}</span>
+                                <i class="fas fa-arrow-down"></i>
+                            </div>
+                            <div class="cell" data-toggle="modal" [attr.data-target]="'#new_comment'"
+                                (click)="new_comment(item)">
+                                <span>{{item.comment_count}}</span>
+                                <i class="far fa-comment"></i>
+                            </div>
+                            <div class="cell"></div>
+
+                        </div>
+
                     </div>
+                    <ng-container *ngFor="let comment of  item.comments; let j = index">
+                        <div class="row comment">
+                            <div class="col-md-12 profile">
+                                <img class="profile-image rounded-circle" src="{{ item.imageUrl }}"
+                                    (error)="onImgError($event)" alt="" />
+                                <div class="profile-detail">
+                                    <span>{{comment.userName}}</span>
+                                    <span class="createdTime">{{(comment?.createdAt !==null) ?
+                                        this.utilitySrv.timeSince(comment.createdAt ) : ''
+                                        }}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-12 content">
+                                {{comment.content}}
+                            </div>
+
+
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+        </div>
+        <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'processed' }" role="tabpanel"
+            aria-labelledby="processed-tab">
+            <div class="empty text-center" *ngIf="processed.length ===0">
+                There are no proposal
+            </div>
+            <ng-container *ngIf="processed">
+                <ng-container *ngFor="let item of processed; let i = index">
+                    <div class="row" style="padding-left:15px;">
+
+
+                    </div>
+                </ng-container>
+            </ng-container>
+        </div>
+        <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'myproposal' }" role="tabpanel"
+            aria-labelledby="myproposals-tab">
+            <div class="empty text-center" *ngIf="myproposals.length ===0">
+                你沒有任何提案
+            </div>
+            <ng-container *ngIf="myproposals">
+                <ng-container *ngFor="let item of myproposals; let i = index">
+                    {{item| json}}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img class="profile-image rounded-circle" src="{{ item.imageUrl }}"
+                                (error)="onImgError($event)" alt="" />
+                        </div>
+
+                    </div>
+                </ng-container>
+            </ng-container>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="modal fade" id="proposal" tabindex="-1" aria-labelledby="proposal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1></h1>
+                <button type="button" id="close_new_proposl" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body content">
+                <div class="row item-center">
+                    <p>歡迎提出你的建議,讓我們能夠一起讓此網站更好</p>
+                </div>
+                <div class=" ">
+                    <select class="form-control" style="width: 150px;" [value]="proposaltype"
+                        (change)="onTypeChange($event)">
+                        <option value="">請選擇</option>
+                        <option value="improvement">建議改善</option>
+                        <option value="bug">有錯誤</option>
+                        <option value="help">需要協助</option>
+                    </select>
+                </div>
+                <div class="row item-center">
+                    <textarea class="form-control" type="text" [(ngModel)]="propsoalContent" id="" rows="4"
+                        cols="50"></textarea>
+                </div>
+                <div class="row item-center">
+                    <button type="button" class="btn btn-white  mr-10" data-dismiss="modal" aria-label="Close">取消
+                    </button>
+                    <button type="button" class="btn btn-blue  mr-10" (click)="onSubmit()">
+                        分享</button>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="new_comment" tabindex="-1" aria-labelledby="new_comment" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1></h1>
+                <button type="button" id="close_new_comment" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body content">
+                <div class="row item-center">
+                    <p>{{this.editedItem?.detail?this.editedItem?.detail:""}}</p>
+                </div>
+
+                <div class="row item-center">
+                    <textarea class="form-control" type="text" [(ngModel)]="commentContent" id="" rows="4"
+                        cols="50"></textarea>
+                </div>
+                <div class="row item-center">
+                    <button type="button" class="btn btn-white  mr-10" data-dismiss="modal" aria-label="Close">取消
+                    </button>
+                    <button type="button" class="btn btn-blue  mr-10" (click)="onCommentSubmit()">
+                        送出</button>
+
+
                 </div>
             </div>
         </div>

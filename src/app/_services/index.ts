@@ -3,6 +3,7 @@ import { AdminService } from "./admin.service";
 import { AppSettingsService } from "./appSettings.service";
 import { ConfirmDialogService } from "./confirm-dialog.service";
 import { ChatService } from './chat.service';
+import { CommentsService } from './comments.service';
 import { DataService } from "./data.service";
 import { DialogService } from "./dialog.service";
 import { DelegateEmailService } from './delegateEmail.service';
@@ -11,7 +12,9 @@ import { InvitationService } from './invitation.service';
 import { LikeService } from "./like.service";
 import { MembersService } from "./members.service";
 import { NotificationService } from "./nofitications.service";
+import { PagerService } from './pager.service';
 import { ProjectService } from './project.service';
+import { ProposalService } from './proposal.service';
 import { RecruitService } from './recruit.service';
 import { SeoService } from './seo.service';
 import { ScrollService } from './scroll.service';
@@ -28,12 +31,15 @@ export const services = [
     AppSettingsService,
     ConfirmDialogService,
     ChatService,
+    CommentsService,
     DataService,
     DialogService,
     DelegateEmailService,
     EmailService,
     InvitationService,
+    PagerService,
     ProjectService,
+    ProposalService,
     RecruitService,
     LikeService,
     MembersService,
@@ -54,6 +60,7 @@ export * from "./appSettings.service";
 export * from "./admin.service";
 export * from "./confirm-dialog.service";
 export * from './chat.service';
+export * from './comments.service';
 export * from "./email.service";
 export * from './delegateEmail.service';
 export * from "./data.service";
@@ -69,6 +76,8 @@ export * from './userSetting.service';
 export * from './seo.service';
 export * from './google-analytics.service';
 export * from './scroll.service';
+export * from './pager.service';
 export * from './project.service';
+export * from './proposal.service';
 export * from './recruit.service';
 export * from './invitation.service';

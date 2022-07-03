@@ -81,6 +81,9 @@ export class FindMemberComponent implements OnInit {
             if (!this.utility.IsNullOrEmpty(element.tags)) {
               element.tags = element.tags.split(',');
             }
+            if (!this.utility.IsNullOrEmpty(element.interested)) {
+              element.interested = element.interested.split(',');
+            }
           });
         }
         this.displayItems = this.items ? this.items : [];

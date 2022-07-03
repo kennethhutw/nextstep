@@ -9,23 +9,23 @@
       <h6 class="mt-10 mb-10 text-body name">{{ user.name }}</h6>
     </div>
     <div class="col-md-5">
-      <div *ngIf="currentuser">
-        <i *ngIf="user.isCollect" (click)="onClickCollect()" class="fas fa-bookmark mr-5"></i>
-        <i *ngIf="!user.isCollect" (click)="onClickCollect()" class="far fa-bookmark mr-5"></i>
-        <!-- <i class="far fa-comment-alt mr-5"></i> -->
-        <span>追蹤</span>
+      <div class="actions" *ngIf="currentuser">
+        <i *ngIf="user.isCollect" (click)="onClickCollect()" class="fas fa-bookmark"></i>
+        <i *ngIf="!user.isCollect" (click)="onClickCollect()" class="far fa-bookmark"></i>
+        <i class="far fa-comment-alt "></i>
+        <span class="follow">追蹤</span>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-md-12 discr">
-      description
+      {{user.bio.length>39?user.bio.substring(0,40)+' ...':user.bio}}
     </div>
   </div>
-  <div class="row">
-    <ng-container *ngIf="user.tags">
-      <ng-container *ngFor="let tag of  user.tags; let i = index">
-        <a href="#" *ngIf="!this.utility.IsNullOrEmpty(tag)" class="label label-success mb-2 mr-5">{{tag}}</a>
+  <div class="row" style="min-height:27px">
+    <ng-container *ngIf="user.interested">
+      <ng-container *ngFor="let tag of  user.interested; let i = index">
+        <span *ngIf="!this.utility.IsNullOrEmpty(tag)" class="tag mb-2 mr-5">{{convertTag(tag)}}</span>
       </ng-container>
     </ng-container>
   </div>
