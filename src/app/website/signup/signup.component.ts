@@ -85,6 +85,7 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
 
+
     // this.router.navigate(["./profile/Christian"], {});
     const values = this.signupForm.value;
     if (this.checkData != null) {

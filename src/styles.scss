@@ -2120,6 +2120,10 @@ box-shadow:0 0 5px #fff;
   margin-top: 10px;
 }
 
+.mt-150 {
+  margin-top: 150px;
+}
+
 .pb-8 {
   padding-bottom: 8px;
 }
@@ -2179,4 +2183,8 @@ input[type=radio] {
   height: 60px;
   width: 60px;
   border-radius: 50%;
+}
+
+.gap-10 {
+  gap: 10px;
 }

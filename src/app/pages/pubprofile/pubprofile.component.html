@@ -7,151 +7,166 @@
       <div id="profile-pic">
         <img (error)="onImgError($event)" src="{{currentUser.imageUrl}}">
       </div>
-      <div id="u-name"> <span>{{currentUser.name}}</span>
-        <span class="bio">{{currentUser.bio?currentUser.bio:"我還沒有填寫bio"}}</span>
+      <div id="u-name">
+        <span>{{userProfile.name}}</span>
+        <span class="bio">{{userProfile.title?userProfile.title:"我還沒有填寫職稱"}}</span>
       </div>
 
     </div>
     <div id="black-grd"></div>
   </div>
-  <!-- <div class="fb-profile">
-    <img class="fb-image-lg" src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example" />
-    <img class="fb-image-profile thumbnail" src="{{currentUser.imageUrl}}" alt="Profile image example" />
-    <div class="profile-text">
-      <h1>{{currentUser.name}}</h1>
-      <p>{{currentUser.bio}}</p>
-    </div>
-  </div> -->
-  <div class="frame mt-180">
-    <div class="row">
-      <div class="col-md-6">
-        職業名稱
-      </div>
-      <div class="col-md-6 text-right">
-        {{userProfile?.liked ? userProfile.liked:'0'}}人關注/關注{{userProfile?.like? userProfile.like:'0'}}人
-      </div>
-    </div>
-    <div class="row mt-10 mb-10">
-      <div class="col-md-6">
-        <ng-container *ngIf="
-                  userProfile?.skills;
-                  else noskill
-                ">
-          <span *ngFor="let skill of userProfile.skills; let i = index" class="tags">{{skill}}</span>
+  <div class="row mt-50">
+    <div class="col-md-12 text-right">
+      <div class=" text-right btn_items">
 
+        <button type="button" class="btn btn_item " (click)="onSave()"><i class="far fa-comment-alt"></i>
+          訊息</button>
+        <button type="button" class="btn btn_item " (click)="onSave()"><i class="fas fa-plus"></i>
+          追蹤</button>
+        <button type="button" class="btn btn_item " (click)="onSave()"><i class="far fa-bookmark"></i>
+          收藏</button>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-10">
+    <div class="col-md-6">
+
+    </div>
+    <div class="col-md-6 text-right">
+      {{userProfile?.liked ? userProfile.liked:'0'}}人關注/關注{{userProfile?.like? userProfile.like:'0'}}人
+    </div>
+  </div>
+
+  <div *ngIf="userProfile" class="row mt-50">
+    <!--     個人簡介左邊 -->
+    <div class="col-md-8">
+      <!--     個人簡介 start -->
+      <div class="row mb-24">
+        <div class="col-md-12">
+          <span class="title mb-24">個人簡介</span>
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col-md-12 frame">
+          <div class="col-md-12 text-right  d-flex flex-row gap-10 end">
+            <a *ngIf="IsNullorEmpty(userProfile.website)" href="{{ userProfile.website }}" target="_blank"> <i
+                class="fas fa-globe icon"></i></a>
+            <a *ngIf="IsNullorEmpty(userProfile.github)" href="{{ userProfile.github }}" target="_blank"> <i
+                class="fa-fw fab fa-github icon"></i></a>
+            <a *ngIf="IsNullorEmpty(userProfile.twitter)" href="{{ userProfile.twitter }}" target="_blank"><i
+                class="fa-fw fab fa-twitter icon"></i></a>
+            <a *ngIf="IsNullorEmpty(userProfile.discord)" href="{{ userProfile.discord }}" target="_blank"><i
+                class="fa-fw fab fa-discord icon"></i></a>
+            <a *ngIf="IsNullorEmpty(userProfile.facebook)" href="{{ userProfile.facebook }}" target="_blank"><i
+                class="fa-fw fab fa-facebook icon"></i></a>
+            <a *ngIf="IsNullorEmpty(userProfile.instagram)" href="{{ userProfile.instagram }}" target="_blank"> <i
+                *ngIf="userProfile.instagram!=''" class="fab fa-instagram-square icon"></i></a>
+
+          </div>
+          <!--  <div class="tags">
+             <ng-container *ngIf="
+                            userProfile?.skills;
+                            else noskill
+                          ">
+              <span *ngFor="let skill of userProfile.skills; let i = index" class="tags">{{skill}}</span>
+
+            </ng-container>
+            <ng-template #noskill>
+              <span class="tags">我還沒填寫我的專長</span>
+
+            </ng-template>
+          </div>-->
+          <span>{{this.userProfile.bio?this.userProfile.bio:"尚未填寫專案內容"}}</span>
+
+        </div>
+      </div>
+      <!-- 個人簡介 end -->
+      <!-- 目前參與專案 start -->
+      <div class="row mt-50">
+        <div class="col-md-12">
+          <h3>目前參與專案</h3>
+        </div>
+        <ng-container *ngFor="let project of userProfile.projects; let i = index">
+
+          <div class="col-md-12 frame mb-20">
+            <div class="col-md-12" style=" display:inline-block;">
+              <div class="d-flex flex-column ">
+                <span style="font-size: 25px;padding-right: 20px;">{{project.position}}</span>
+                <!--  <a data-toggle="modal" [attr.data-target]="'#modal_project'"><i class="fas fa-pencil-alt"></i></a> -->
+              </div>
+              <div class="d-flex flex-row gap-10">
+                <span>{{project.name}}</span>
+                <span style="margin-left: 10px;">{{project.firstDate | date : 'yyyy-MM-dd'}}</span><span
+                  *ngIf="IsNullorEmpty(project.lastDate)">~ {{project.lastDate |
+                  date : 'yyyy-MM-dd'}}</span>
+                <span *ngIf="!IsNullorEmpty(project.lastDate)">~ Current</span>
+              </div>
+            </div>
+
+            <div class="col-md-12 content">
+              {{project.scopes}}
+            </div>
+          </div>
         </ng-container>
-        <ng-template #noskill>
-          <span class="tags">我還沒填寫我的專長</span>
-          <!--     <fa-icon icon="hand-spock"></fa-icon> -->
-        </ng-template>
+
+        <div *ngIf="!userProfile.projects" class="col-md-12 text-center frame">
+          <h3>還沒有參加任何專案</h3>
+        </div>
+
       </div>
-      <div class="col-md-6 text-right">
-        <a *ngIf="IsNullorEmpty(userProfile.website)" href="{{ userProfile.website }}" target="_blank"> <i
-            class="fas fa-globe icon icon"></i></a>
-        <a *ngIf="IsNullorEmpty(userProfile.github)" href="{{ userProfile.github }}" target="_blank"> <i
-            class="fa-fw fab fa-github icon"></i></a>
-        <a *ngIf="IsNullorEmpty(userProfile.twitter)" href="{{ userProfile.twitter }}" target="_blank"><i
-            class="fa-fw fab fa-twitter icon"></i></a>
-        <a *ngIf="IsNullorEmpty(userProfile.discord)" href="{{ userProfile.discord }}" target="_blank"><i
-            class="fa-fw fab fa-discord icon"></i></a>
-        <a *ngIf="IsNullorEmpty(userProfile.facebook)" href="{{ userProfile.facebook }}" target="_blank"><i
-            class="fa-fw fab fa-facebook icon"></i></a>
-        <a *ngIf="IsNullorEmpty(userProfile.instagram)" href="{{ userProfile.instagram }}" target="_blank"> <i
-            *ngIf="userProfile.instagram!=''" class="fab fa-instagram-square icon"></i></a>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12 content">
-        自我介紹 自我介紹 自我介紹 自我介紹
+      <!-- 目前參與專案 end -->
+
+      <!-- 目前過去參與專案 start -->
+      <div class="row mt-50">
+        <div class="col-md-12">
+          <h3>目前過去參與專案</h3>
+        </div>
+        <ng-container *ngFor="let project of userProfile.pastprojects; let i = index">
+          <div class="col-md-12 frame mb-20">
+            <div class="col-md-12" style=" display:inline-block;">
+              <div class="d-flex flex-column ">
+                <span style="font-size: 25px;padding-right: 20px;">{{project.position}}</span>
+                <!--  <a data-toggle="modal" [attr.data-target]="'#modal_project'"><i class="fas fa-pencil-alt"></i></a> -->
+              </div>
+              <div class="d-flex flex-row gap-10">
+                <span>{{project.name}}</span>
+                <span style="margin-left: 10px;">{{project.firstDate | date : 'yyyy-MM-dd'}}</span><span
+                  *ngIf="IsNullorEmpty(project.lastDate)">~ {{project.lastDate |
+                  date : 'yyyy-MM-dd'}}</span>
+                <span *ngIf="!IsNullorEmpty(project.lastDate)">~ Current</span>
+              </div>
+            </div>
+
+            <div class="col-md-12 content">
+              {{project.scopes}}
+            </div>
+          </div>
+        </ng-container>
       </div>
 
+      <div class="row mt-50" *ngIf="!userProfile.pastprojects">
+        <div class="col-md-12 text-center frame">
+          <h3>還沒有參加任何專案</h3>
+        </div>
+      </div>
+      <!-- 目前過去參與專案 end -->
+    </div>
+    <!--     工作簡介右邊 -->
+    <div class="col-md-4">
+      <div class="row mb-24">
+        <div class="col-md-12">
+          <span class="title mb-24">工作經歷</span>
+        </div>
+      </div>
+      <div class="row profile-frame">
+        <span>無工作經歷</span>
+      </div>
     </div>
   </div>
 
-  <!-- 目前參與專案 start -->
-  <div class="row mt-50">
-    <div class="col-md-12">
-      <h3>目前參與專案</h3>
-    </div>
-    <ng-container *ngFor="let project of userProfile.projects; let i = index">
-      <div class="frame mb-20">
-        <div class="row">
-          <div class="col-md-6" style=" display:inline-block;">
-            <span style="font-size: 25px;padding-right: 20px;">{{project.position}}</span>
-            <span>{{project.name}}</span>
-            <span style="margin-left: 10px;">{{project.startDate | date : 'yyyy-MM-dd'}}</span><span
-              *ngIf="IsNullorEmpty(project.endDate)">~ {{project.endDate |
-              date : 'yyyy-MM-dd'}}</span>
-          </div>
-          <div class="col-md-6 text-right">
-            <a data-toggle="modal" [attr.data-target]="'#modal_project'"><i class="fas fa-pencil-alt"></i></a>
-          </div>
-        </div>
-        <div class="row mt-20">
-          <div class="col-md-12 content">
-            {{project.scopes}}
-          </div>
 
-        </div>
-      </div>
-    </ng-container>
-  </div>
-  <!-- 目前參與專案 end -->
 
-  <!-- 目前過去參與專案 start -->
-  <div class="row mt-50">
-    <div class="col-md-12">
-      <h3>目前過去參與專案</h3>
-    </div>
-    <ng-container *ngFor="let project of userProfile.projects; let i = index">
-      <div class="frame mb-20">
-        <div class="row">
-          <div class="col-md-6" style=" display:inline-block;">
-            <span style="font-size: 25px;padding-right: 20px;">{{project.position}}</span>
-            <span>{{project.name}}</span>
-            <span style="margin-left: 10px;">{{project.startDate | date : 'yyyy-MM-dd'}}</span><span
-              *ngIf="IsNullorEmpty(project.endDate)">~ {{project.endDate |
-              date : 'yyyy-MM-dd'}}</span>
-          </div>
-          <div class="col-md-6 text-right">
-            <a data-toggle="modal" [attr.data-target]="'#modal_project'"><i class="fas fa-pencil-alt"></i></a>
-          </div>
-        </div>
-        <div class="row mt-20">
-          <div class="col-md-12 content">
-            {{project.scopes}}
-          </div>
-
-        </div>
-      </div>
-    </ng-container>
-  </div>
-  <!-- 目前參與專案 end -->
-
-  <div class="row mt-50" *ngIf="!userProfile.projects">
-    <div class="col-md-12 text-center">
-      <h3>還沒有參加任何專案</h3>
-    </div>
-  </div>
-
-  <!-- <div class="frame mb-20">
-    <div class="row">
-      <div class="col-md-6" style=" display:inline-block;">
-        <span style="font-size: 25px;padding-right: 20px;">角色名稱</span>
-        <span>專案名稱</span>
-        <span>YYYY年MM月</span>~<span>YYYY年MM月</span>
-      </div>
-      <div class="col-md-6 text-right">
-        <i class="fas fa-pencil-alt"></i>
-      </div>
-    </div>
-    <div class="row mt-20">
-      <div class="col-md-12 content">
-        工作內容
-      </div>
-
-    </div>
-  </div> -->
 </div> <!-- /container -->
 <app-modal [modalid]="'modal_project'">
   <div body>

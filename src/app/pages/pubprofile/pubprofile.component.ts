@@ -75,7 +75,7 @@ export class PubProfileComponent implements OnInit {
     let userId = this.route.snapshot.paramMap.get('userId');
     console.log("userId ==================", userId);
     this.UserSrv.getUserInfo(userId).then(res => {
-      console.log(" ==================", res);
+      console.log("userProfile ==================", res);
       if (res['result'] == 'successful') {
         this.userProfile = res['data'];
         if (this.userProfile.skills != null) {

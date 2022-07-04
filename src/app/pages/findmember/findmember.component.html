@@ -1,10 +1,10 @@
 <div id="findcontent" class="container mb-50 row">
   <div class="col-md-3">
     <aside class="sidebar ">
-      <nav class="sidebar-menu pt-3 pb-3">
+      <nav class="sidebar-menu pb-3">
         <ul class="menu-items" style="padding-left: 20px;">
-          <li>
-            <h4>合作方式</h4>
+          <li class="mb-12">
+            <span class="title">合作方式</span>
           </li>
           <li>
             <input id="online" type="checkbox" [(ngModel)]="filterCondition.online" (change)="onLine($event)"
@@ -16,8 +16,8 @@
               data-key="offline" />
             <label class="ml-10" for="offline">實體</label>
           </li>
-          <li>
-            <h4>技能</h4>
+          <li class="mb-12">
+            <span class="title">技能</span>
           </li>
           <li>
             <input id="design" type="checkbox" [(ngModel)]="filterCondition.design" (change)="onSkills($event)"
@@ -70,8 +70,8 @@
               (change)="onSkills($event)" data-key="programming" />
             <label class="ml-10" for="programming">程式撰寫</label>
           </li>
-          <li>
-            <h4>每周願意投入時長</h4>
+          <li class="mb-12">
+            <span class="title">每周願意投入時長</span>
           </li>
 
           <li>

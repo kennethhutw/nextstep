@@ -65,7 +65,8 @@ p {
 }
 
 .name {
-    font-family: "Noto Serif JP", sans-serif;
+    /*   font-family: "Noto Serif JP", sans-serif; */
+    text-align: left;
     font-weight: 400;
 }
 
@@ -129,4 +130,10 @@ th {
     font-weight: 400;
     border-radius: 100px;
     background-color: #C0DAFE;
+}
+
+.u-name {
+    display: grid;
+    grid-auto-flow: row;
+    gap: 6px;
 }

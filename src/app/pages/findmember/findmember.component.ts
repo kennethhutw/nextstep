@@ -73,7 +73,7 @@ export class FindMemberComponent implements OnInit {
     }
 
     this.userSrv.getPublicPartners(_id).then(res => {
-      console.log("===========", res);
+
       if (res['result'] == 'successful') {
         this.items = res['data'];
         if (this.items && this.items.length > 0) {
@@ -93,10 +93,6 @@ export class FindMemberComponent implements OnInit {
       console.error("error", error);
       this.SpinnerService.hide();
     })
-
-    this.translateSrv.use("zh-tw");
-    this.SpinnerService.hide();
-    this.displayItems = this.items;
   }
 
   onCollect($event) {

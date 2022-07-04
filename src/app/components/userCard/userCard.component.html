@@ -1,14 +1,16 @@
 <a class="card card-white grid-margin">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-7 d-flex flex-row gap-10">
       <a (click)="routeToUserProfile()">
         <img class="profile-image rounded-circle" src="{{ user.imageUrl }}" (error)="onImgError($event)" alt="" />
       </a>
+      <div class="u-name">
+        <span class=" text-body name">{{ user.name }}</span>
+        <span>{{ user.title }}</span>
+      </div>
     </div>
-    <div class="col-md-4">
-      <h6 class="mt-10 mb-10 text-body name">{{ user.name }}</h6>
-    </div>
-    <div class="col-md-5">
+
+    <div class="col-md-5 text-right">
       <div class="actions" *ngIf="currentuser">
         <i *ngIf="user.isCollect" (click)="onClickCollect()" class="fas fa-bookmark"></i>
         <i *ngIf="!user.isCollect" (click)="onClickCollect()" class="far fa-bookmark"></i>
@@ -17,8 +19,8 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-12 discr">
+  <div class="row" style="min-height:70px">
+    <div *ngIf="user.bio" class="col-md-12 discr">
       {{user.bio.length>39?user.bio.substring(0,40)+' ...':user.bio}}
     </div>
   </div>

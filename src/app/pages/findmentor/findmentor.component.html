@@ -1,10 +1,10 @@
 <div id="findcontent" class="container row">
   <div class="col-md-3">
-    <aside class="sidebar  shadow-lg">
-      <nav class="sidebar-menu pt-3 pb-3">
+    <aside class="sidebar">
+      <nav class="sidebar-menu pb-3">
         <ul class="menu-items" style="padding-left: 20px;">
-          <li>
-            <h4>專長</h4>
+          <li class="mb-12">
+            <span class="title">專長</span>
           </li>
           <li>
             <input id="design" type="checkbox" [(ngModel)]="filterCondition.design" (change)="onSkills($event)"
@@ -59,8 +59,8 @@
           </li>
         </ul>
         <ul class="menu-items" style="padding-left: 20px;">
-          <li>
-            <h4>主題</h4>
+          <li class="mb-12">
+            <span class="title">主題</span>
           </li>
           <li>
             <input type="checkbox" />
