@@ -58,7 +58,7 @@ export class FindMentorComponent implements OnInit {
     this.SpinnerService.show();
     this.currentUser = this.authStore.getUserData();
     let _id = null;
-    if (this.currentUser.id) {
+    if (this.currentUser && this.currentUser.id) {
       _id = this.currentUser.id;
     }
 

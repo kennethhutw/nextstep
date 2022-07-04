@@ -68,7 +68,7 @@ export class FindMemberComponent implements OnInit {
     this.SpinnerService.show();
     this.currentUser = this.authStore.getUserData();
     let _id = null;
-    if (this.currentUser.id) {
+    if (this.currentUser && this.currentUser.id) {
       _id = this.currentUser.id;
     }
 
@@ -96,7 +96,7 @@ export class FindMemberComponent implements OnInit {
   }
 
   onCollect($event) {
-    if ($event.isCollect) {
+    if ($event.isCollect && this.currentUser) {
       this.likeSrv.like(this.currentUser.id, $event.id, $event.type).subscribe(res => {
         if (res['result'] == 'successful') {
 
