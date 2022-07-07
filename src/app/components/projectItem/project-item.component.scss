@@ -1,0 +1,50 @@
+app-project-item {
+    background: #f2f2f2;
+    font-family: 'Poppins', sans-serif;
+
+    .box {
+        background: #FFF;
+        border-radius: 10px;
+        padding: 20px 10px 40px 10px;
+        margin: 20px 0px;
+        cursor: pointer;
+        transition: all 0.5s ease-out;
+    }
+
+    .box:hover {
+        box-shadow: 0 0 6px #4183D7;
+    }
+
+    .box .box-text {
+        margin: 20px 0px;
+        font-size: 15px;
+        line-height: 30px;
+        height: 170px;
+
+    }
+
+    .box .box-btn a {
+        text-decoration: none;
+        /* color: #4183D7; */
+        /*  color: black; */
+        font-size: 16px;
+
+    }
+
+    .align-item-left {
+        float: right;
+    }
+
+    .fa {
+        color: #4183D7;
+    }
+}
+
+body {
+    background: #f2f2f2;
+    /*  font-family: 'Poppins', sans-serif; */
+}
+
+/* h3 {
+    font-family: 'Poppins', sans-serif;
+} */

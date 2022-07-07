@@ -7,7 +7,7 @@ import { DataService } from "../../_services";
 @Component({
   selector: "app-project-item",
   templateUrl: "./project-item.component.html",
-  styleUrls: ["./project-item.component.css"],
+  styleUrls: ["./project-item.component.scss"],
   encapsulation: ViewEncapsulation.None,
 })
 export class ProjectItemComponent implements OnInit {
@@ -15,6 +15,7 @@ export class ProjectItemComponent implements OnInit {
   @Input() img: string;
   @Input() id: string;
   @Input() description: string;
+  @Input() project;
   constructor(
     private utility: Utility,
     private translateSrv: TranslateService,
@@ -41,5 +42,8 @@ export class ProjectItemComponent implements OnInit {
 
   ViewDetails() {
     this.router.navigate(["/project/" + this.id]);
+  }
+  routeToUserProfile() {
+    this.router.navigate(["./project/" + this.project.id], {});
   }
 }

@@ -44,6 +44,15 @@ export class ProjectService {
             .toPromise();
     }
 
+    async getLandingProjects(userId) {
+        const params = new HttpParams().set('userId', userId);
+        return await this.http
+            .get<any>(`${environment.apiUrl}/projects/landingproject`, {
+                params: params
+            })
+            .toPromise();
+    }
+
     update(id, params) {
         return this.http.put(`${environment.apiUrl}/projects/${id}`, params);
     }

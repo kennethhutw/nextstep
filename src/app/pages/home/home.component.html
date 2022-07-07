@@ -24,6 +24,7 @@
 </div>
 
 <div class="container">
+
   <div class="row">
 
     <div class="index-title w-100">
@@ -40,14 +41,15 @@
   </div>
 
   <div id="popularProjects" class="row">
-    <div id="carouselProjectControls" class="carousel slide w-100" data-ride="carousel">
-      <div class="carousel-inner" role="listbox">
-        <ng-container *ngFor="let project of popularProjects; let i = index">
-          <div class="carousel-item" [ngClass]="{ 'active': i === 0 }">
-            <div class="col-md-4 mb-30">
-              <app-project-item title="{{project.name}}" description="{{project.description}}">
-              </app-project-item>
-            </div>
+    <div id="carouselProjectControls" class="carousel slide w-100" data-ride="carousel" data-bs-wrap="true">
+      <div class="carousel-inner  row w-100 mx-auto" role="listbox">
+        <ng-container *ngFor="let project of popularProjects ; let i = index">
+
+          <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 " [ngClass]="{ 'active': i === 0 }">
+            <!--  <div class="col-md-4 mb-30"> -->
+            <app-project-item [project]="project" title="{{project.name}}" description="{{project.description}}">
+            </app-project-item>
+            <!-- </div> -->
           </div>
         </ng-container>
       </div>
@@ -68,12 +70,15 @@
   </div>
 
   <div id="popularUsers" class="row ">
-    <div id="carouselMemberControls" class="carousel slide w-100" data-ride="carousel">
+    <div id="carouselMemberControls" class="carousel slide w-100" data-ride="carousel" data-bs-wrap="true">
       <div class="carousel-inner" role="listbox">
         <ng-container *ngFor="let user of popularUsers; let i = index">
           <div class="carousel-item" [ngClass]="{ 'active': i === 0 }">
             <div class="col-md-4 mb-30">
-              <app-person name="{{user.name}}" position="{{user.position}}">
+              <!--  <app-person [user]="user" name="{{user.name}}" position="{{user.position}}">
+              </app-person> -->
+              <app-person [user]="user" [name]="user.name" [position]="user.title" [tags]="user.interested"
+                [uid]="user.uid" [imageUrl]="user.imageUrl">
               </app-person>
             </div>
           </div>
@@ -95,12 +100,13 @@
   </div>
 
   <div id="popularMentors" class="row ">
-    <div id="carouselMemtorControls" class="carousel slide w-100" data-ride="carousel">
+    <div id="carouselMemtorControls" class="carousel slide w-100" data-ride="carousel" data-bs-wrap="true">
       <div class="carousel-inner" role="listbox">
         <ng-container *ngFor="let mentor of popularMentors; let i = index">
           <div class="carousel-item" [ngClass]="{ 'active': i === 0 }">
             <div class="col-md-4 mb-30">
-              <app-person name="{{mentor.name}}" position="{{mentor.position}}">
+              <app-person [user]="mentor" [name]="mentor.name" [position]="mentor.title" [tags]="mentor.expertise"
+                [uid]="mentor.uid" [imageUrl]="mentor.imageUrl">
               </app-person>
             </div>
           </div>

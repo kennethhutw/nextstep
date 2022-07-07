@@ -9,6 +9,7 @@ import { DialogService } from "./dialog.service";
 import { DelegateEmailService } from './delegateEmail.service';
 import { EmailService } from "./email.service";
 import { InvitationService } from './invitation.service';
+import { LandingService } from './landing.service';
 import { LikeService } from "./like.service";
 import { MembersService } from "./members.service";
 import { NotificationService } from "./nofitications.service";
@@ -37,6 +38,7 @@ export const services = [
     DelegateEmailService,
     EmailService,
     InvitationService,
+    LandingService,
     PagerService,
     ProjectService,
     ProposalService,
@@ -66,6 +68,7 @@ export * from './delegateEmail.service';
 export * from "./data.service";
 export * from "./dialog.service";
 export * from "./setting.service";
+export * from './landing.service';
 export * from "./like.service";
 export * from "./members.service";
 export * from "./nofitications.service";

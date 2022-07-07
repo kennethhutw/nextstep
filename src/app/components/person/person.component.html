@@ -1,17 +1,21 @@
 <div class="box">
-  <img class="profile"
-    src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?h=350&auto=compress&cs=tinysrgb" alt="" />
-
-  <div class="box-title">John Doe</div>
+  <img class="profile" src="{{imageUrl}}" (error)="onImgError($event)" alt="" />
+  <!--   {{user|json}} -->
+  <div class="box-title" (click)="routeToUserProfile()">{{ name }}</div>
 
   <div class="box-text">
-    <span>Front End Developer</span>
+    <span>{{ position }}</span>
   </div>
 
   <div class="icons">
-    <a href="#"><i class="fab fa-facebook"></i></a>
+    <!-- <a href="#"><i class="fab fa-facebook"></i></a>
     <a href="#"><i class="fab fa-github"></i></a>
     <a href="#"><i class="fab fa-tumblr"></i></a>
-    <a href="#"><i class="fab fa-linkedin"></i></a>
+    <a href="#"><i class="fab fa-linkedin"></i></a> -->
+    <ng-container *ngIf="tags">
+      <ng-container *ngFor="let tag of  tags; let i = index">
+        <span *ngIf="!utility.IsNullOrEmpty(tag)" class="tag tag-{{tag}} ">{{convertTag(tag)}}</span>
+      </ng-container>
+    </ng-container>
   </div>
 </div>

@@ -1,22 +1,17 @@
-<!-- <div class="hovereffect">
-
-  <div class="overlay">
-    <h2>{{ title }}</h2>
-    <p><i class="fas fa-user"></i> {{ description }}</p>
-    <button (click)="ViewDetails()" class="info">
-      {{ "VIEWDETAILS" | translate }}
-    </button>
-  </div>
-</div> -->
 <div class="box">
 
   <div class="box-title">
     <h3>{{ title }}</h3>
+    <div class="item-left">
+      <ui-tag *ngIf="project.isFindPartner" [class]="'tag-hiring'" [tag]="'徵成員'"></ui-tag>
+      <ui-tag *ngIf="project.isFunding" [class]="'tag-funding'" [tag]="'募資中'"></ui-tag>
+      <ui-tag *ngIf="project.isCofounder" [class]="'tag-cofounder'" [tag]="'找聯合創始人'"></ui-tag>
+    </div>
   </div>
   <div class="box-text">
     <span>{{ description }}</span>
   </div>
   <div class="box-btn align-item-left">
-    <a href="#">查看詳情</a>
+    <a (click)="routeToUserProfile()">查看詳情</a>
   </div>
 </div>
