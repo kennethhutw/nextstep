@@ -24,24 +24,24 @@ export class FindProjectComponent implements OnInit {
   displayItems = [];
   currentUser;
   filterCondition = {
-    sideproject: true,
-    fullproject: true,
-    websit: true,
-    app: true,
-    hardware: true,
-    eComm: true,
-    ai: true,
-    edutech: true,
-    sharingeconomy: true,
-    medical: true,
-    transport: true,
-    fintech: true,
-    game: true,
-    work12: true,
-    work34: true,
-    work56: true,
-    work78: true,
-    work9: true
+    sideproject: false,
+    fullproject: false,
+    websit: false,
+    app: false,
+    hardware: false,
+    eComm: false,
+    ai: false,
+    edutech: false,
+    sharingeconomy: false,
+    medical: false,
+    transport: false,
+    fintech: false,
+    game: false,
+    work12: false,
+    work34: false,
+    work56: false,
+    work78: false,
+    work9: false
 
   }
   constructor(
@@ -104,29 +104,27 @@ export class FindProjectComponent implements OnInit {
   }
 
   onProjectChange(event) {
-
     if (this.filterCondition.sideproject && this.filterCondition.fullproject) {
       this.displayItems = this.items;
-    } else if (!this.filterCondition.sideproject && this.filterCondition.fullproject) {
-
-      this.displayItems = this.items.filter(item => {
-        return item.isSideProject == 0
-      })
     } else if (this.filterCondition.sideproject && !this.filterCondition.fullproject) {
       this.displayItems = this.items.filter(item => {
-        return item.isSideProject == 1
+        return item.isSideProject == 1 && item.isFullproject == 0
       })
-
+    } else if (!this.filterCondition.sideproject && this.filterCondition.fullproject) {
+      this.displayItems = this.items.filter(item => {
+        return item.isFullproject == 1 && item.isSideProject == 0
+      })
     } else if (!this.filterCondition.sideproject && !this.filterCondition.fullproject) {
       this.displayItems = [];
     }
-    if (this.displayItems.length > 0)
-      this.checkWorkTime(this.displayItems)
-    if (this.displayItems.length > 0)
-      this.checkType(this.displayItems)
+    /*   if (this.displayItems.length > 0)
+        this.checkWorkTime(this.displayItems)
+      if (this.displayItems.length > 0)
+        this.checkType(this.displayItems) */
   }
 
   onHourChange(event) {
+
     if (this.filterCondition.work12 &&
       this.filterCondition.work34 &&
       this.filterCondition.work56 &&
@@ -177,6 +175,7 @@ export class FindProjectComponent implements OnInit {
       this.checkProject(this.displayItems)
     if (this.displayItems.length > 0)
       this.checkType(this.displayItems)
+    this.finalCheck();
   }
 
 
@@ -192,6 +191,7 @@ export class FindProjectComponent implements OnInit {
   }
 
   onTypeChange(event) {
+
     if (this.filterCondition.eComm &&
       this.filterCondition.ai &&
       this.filterCondition.edutech &&
@@ -206,9 +206,9 @@ export class FindProjectComponent implements OnInit {
       !this.filterCondition.edutech &&
       !this.filterCondition.sharingeconomy &&
       !this.filterCondition.medical &&
-      this.filterCondition.transport &&
-      this.filterCondition.fintech &&
-      this.filterCondition.game) {
+      !this.filterCondition.transport &&
+      !this.filterCondition.fintech &&
+      !this.filterCondition.game) {
       this.displayItems = [];
     } else {
       let currentItem = []
@@ -271,10 +271,49 @@ export class FindProjectComponent implements OnInit {
       this.checkProject(this.displayItems)
     if (this.displayItems.length > 0)
       this.checkWorkTime(this.displayItems)
+    this.finalCheck();
   }
 
   onProductChange(event) {
 
+  }
+
+  finalCheck() {
+    if (
+      this.filterCondition.eComm &&
+      this.filterCondition.ai &&
+      this.filterCondition.edutech &&
+      this.filterCondition.sharingeconomy &&
+      this.filterCondition.medical &&
+      this.filterCondition.transport &&
+      this.filterCondition.fintech &&
+      this.filterCondition.game &&
+      this.filterCondition.sideproject &&
+      this.filterCondition.fullproject &&
+      this.filterCondition.work12 &&
+      this.filterCondition.work34 &&
+      this.filterCondition.work56 &&
+      this.filterCondition.work78 &&
+      this.filterCondition.work9) {
+      this.displayItems = this.items;;
+    } else if (
+      !this.filterCondition.eComm &&
+      !this.filterCondition.ai &&
+      !this.filterCondition.edutech &&
+      !this.filterCondition.sharingeconomy &&
+      !this.filterCondition.medical &&
+      !this.filterCondition.transport &&
+      !this.filterCondition.fintech &&
+      !this.filterCondition.game &&
+      !this.filterCondition.sideproject &&
+      !this.filterCondition.fullproject &&
+      !this.filterCondition.work12 &&
+      !this.filterCondition.work34 &&
+      !this.filterCondition.work56 &&
+      !this.filterCondition.work78 &&
+      !this.filterCondition.work9) {
+      this.displayItems = this.items;
+    }
   }
 
   onClearFilter() {
@@ -284,52 +323,66 @@ export class FindProjectComponent implements OnInit {
   checkProject(items) {
     if (this.filterCondition.sideproject && this.filterCondition.fullproject) {
       this.displayItems = items;
-    } else if (!this.filterCondition.sideproject && this.filterCondition.fullproject) {
+    } else if (this.filterCondition.sideproject && !this.filterCondition.fullproject) {
 
       this.displayItems = items.filter(item => {
-        return item.isSideProject == 0
+        return item.isSideProject == 1 && item.isFullproject == 0
       })
-    } else if (this.filterCondition.sideproject && !this.filterCondition.fullproject) {
+    } else if (!this.filterCondition.sideproject && this.filterCondition.fullproject) {
       this.displayItems = items.filter(item => {
-        return item.isSideProject == 1
+        return item.isFullproject == 1 && item.isSideProject == 0
       })
 
     } else if (!this.filterCondition.sideproject && !this.filterCondition.fullproject) {
-      this.displayItems = [];
+      this.displayItems = items;
     }
   }
 
   checkWorkTime(items) {
     let currentItem = []
-    items.map(item => {
-      if (this.filterCondition.work12 && item.work12) {
-        if (!this.isExist(currentItem, item.id)) {
-          currentItem.push(item);
+    if (!this.filterCondition.work12 &&
+      !this.filterCondition.work34 &&
+      !this.filterCondition.work56 &&
+      !this.filterCondition.work78 &&
+      !this.filterCondition.work9) {
+      this.displayItems = items;
+    } else if (this.filterCondition.work12 &&
+      this.filterCondition.work34 &&
+      this.filterCondition.work56 &&
+      this.filterCondition.work78 &&
+      this.filterCondition.work9) {
+      this.displayItems = items;
+    } else {
+      items.map(item => {
+        if (this.filterCondition.work12 && item.work12) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
         }
-      }
-      if (this.filterCondition.work34 && item.work34) {
-        if (!this.isExist(currentItem, item.id)) {
-          currentItem.push(item);
+        if (this.filterCondition.work34 && item.work34) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
         }
-      }
-      if (this.filterCondition.work56 && item.work56) {
-        if (!this.isExist(currentItem, item.id)) {
-          currentItem.push(item);
+        if (this.filterCondition.work56 && item.work56) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
         }
-      }
-      if (this.filterCondition.work78 && item.work78) {
-        if (!this.isExist(currentItem, item.id)) {
-          currentItem.push(item);
+        if (this.filterCondition.work78 && item.work78) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
         }
-      }
-      if (this.filterCondition.work9 && item.work9) {
-        if (!this.isExist(currentItem, item.id)) {
-          currentItem.push(item);
+        if (this.filterCondition.work9 && item.work9) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
         }
-      }
 
-      this.displayItems = currentItem;
-    })
+        this.displayItems = currentItem;
+      })
+    }
 
   }
 
@@ -389,6 +442,21 @@ export class FindProjectComponent implements OnInit {
   }
 
   onCleanClick() {
-
+    this.filterCondition.eComm = false;
+    this.filterCondition.ai = false;
+    this.filterCondition.edutech = false;
+    this.filterCondition.sharingeconomy = false;
+    this.filterCondition.medical = false;
+    this.filterCondition.transport = false;
+    this.filterCondition.fintech = false;
+    this.filterCondition.game = false;
+    this.filterCondition.sideproject = false;
+    this.filterCondition.fullproject = false;
+    this.filterCondition.work12 = false;
+    this.filterCondition.work34 = false;
+    this.filterCondition.work56 = false;
+    this.filterCondition.work78 = false;
+    this.filterCondition.work9 = false;
+    this.displayItems = this.items;
   }
 }

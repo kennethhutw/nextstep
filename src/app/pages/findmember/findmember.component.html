@@ -1,6 +1,8 @@
 <div id="findcontent" class="container mb-50 row">
   <div class="col-md-3">
-    <aside class="sidebar ">
+    <div (click)="onCleanClick()"><span class="btn-clean">清除全部</span></div>
+
+    <aside class="sidebar mt-10">
       <nav class="sidebar-menu pb-3">
         <ul class="menu-items" style="padding-left: 20px;">
           <li class="mb-12">
@@ -99,10 +101,10 @@
               data-key="hour" />
             <label class="ml-10" for="work9">9小時以上(含)</label>
           </li>
-          <li>
+          <!--  <li>
             <input type="text" class="form-control search" style="    width: 90%;" aria-label=""
               aria-describedby="button-addon2" />
-          </li>
+          </li> -->
         </ul>
 
       </nav>
@@ -117,8 +119,8 @@
       <div class="row">
         <ng-container *ngFor="let item of  displayItems; let i = index">
           <div class="col-md-6 text-center">
-            <app-user-card (onCollect)="onCollect($event)" s [user]="item" [type]="'partner'"
-              [currentuser]="currentUser"></app-user-card>
+            <app-user-card (onCollect)="onCollect($event)" [user]="item" [type]="'partner'" [currentuser]="currentUser">
+            </app-user-card>
           </div>
         </ng-container>
       </div>

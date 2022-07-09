@@ -1,6 +1,8 @@
 <div id="findcontent" class="container row">
   <div class="col-md-3">
-    <aside class="sidebar">
+    <div (click)="onCleanClick()"><span class="btn-clean">清除全部</span></div>
+
+    <aside class="sidebar  mt-10">
       <nav class="sidebar-menu pb-3">
         <ul class="menu-items" style="padding-left: 20px;">
           <li class="mb-12">
@@ -58,7 +60,7 @@
             <label class="ml-10" for="programming">程式撰寫</label>
           </li>
         </ul>
-        <ul class="menu-items" style="padding-left: 20px;">
+        <!--   <ul class="menu-items" style="padding-left: 20px;">
           <li class="mb-12">
             <span class="title">主題</span>
           </li>
@@ -79,7 +81,7 @@
             <label style="margin-left: 10px;" for="firsttimeInput">導師能力</label>
           </li>
 
-        </ul>
+        </ul> -->
       </nav>
     </aside>
 

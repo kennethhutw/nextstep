@@ -1,11 +1,11 @@
 <div class="container" *ngIf="userProfile">
   <div id="profile-upper">
     <div id="profile-banner-image">
-      <img (error)="onCoverImgError($event)" src="{{currentUser.cover}}" alt="Banner image">
+      <img (error)="onCoverImgError($event)" src="{{userProfile.cover}}" alt="Banner image">
     </div>
     <div id="profile-d">
       <div id="profile-pic">
-        <img (error)="onImgError($event)" src="{{currentUser.imageUrl}}">
+        <img (error)="onImgError($event)" src="{{userProfile.imageUrl}}">
       </div>
       <div id="u-name">
         <span>{{userProfile.name}}</span>

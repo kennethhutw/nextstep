@@ -31,23 +31,23 @@ export class FindMemberComponent implements OnInit {
   filterValue = null;
   searchText = '';
   filterCondition = {
-    online: true,
-    offline: true,
-    design: true,
-    finance: true,
-    marketing: true,
-    product: true,
-    public: true,
-    sale: true,
-    funding: true,
-    law: true,
-    strategy: true,
-    programming: true,
-    work12: true,
-    work34: true,
-    work56: true,
-    work78: true,
-    work9: true
+    online: false,
+    offline: false,
+    design: false,
+    finance: false,
+    marketing: false,
+    product: false,
+    public: false,
+    sale: false,
+    funding: false,
+    law: false,
+    strategy: false,
+    programming: false,
+    work12: false,
+    work34: false,
+    work56: false,
+    work78: false,
+    work9: false
 
   }
   constructor(
@@ -84,6 +84,9 @@ export class FindMemberComponent implements OnInit {
             if (!this.utility.IsNullOrEmpty(element.interested)) {
               element.interested = element.interested.split(',');
             }
+            if (!this.utility.IsNullOrEmpty(element.skills)) {
+              element.skills = element.skills.split(',');
+            }
           });
         }
         this.displayItems = this.items ? this.items : [];
@@ -111,7 +114,6 @@ export class FindMemberComponent implements OnInit {
     }
   }
 
-
   IsShowAllTags() {
     this.IsShowTags = !this.IsShowTags;
   }
@@ -123,7 +125,6 @@ export class FindMemberComponent implements OnInit {
 
   onClearFilter() {
     this.filterValue = null;
-
   }
 
   onChange(deviceValue) {
@@ -149,27 +150,22 @@ export class FindMemberComponent implements OnInit {
     if (this.filterCondition.online && this.filterCondition.offline) {
       this.displayItems = this.items;
     } else if (!this.filterCondition.online && this.filterCondition.offline) {
-      let items = this.items.filter(item => {
-        return item.offline == 1
-      })
-      this.displayItems = items.filter(item => {
-        return item.online == 0
+      this.displayItems = this.items.filter(item => {
+        return item.online == 0 && item.offline == 1
       })
     } else if (this.filterCondition.online && !this.filterCondition.offline) {
-      let items = this.items.filter(item => {
-        return item.online == 1
+      this.displayItems = this.items.filter(item => {
+        return item.offline == 0 && item.online == 1
       })
-      this.displayItems = items.filter(item => {
-        return item.offline == 0
-      })
-
     } else if (!this.filterCondition.online && !this.filterCondition.offline) {
-      this.displayItems = [];
+      this.displayItems = this.items;
     }
-    // if (this.displayItems.length > 0)
-    //   this.checkWorkTime(this.displayItems)
-    // if (this.displayItems.length > 0)
-    //   this.checkType(this.displayItems)
+    if (this.displayItems.length > 0)
+      this.checkWorkTime(this.displayItems);
+    if (this.displayItems.length > 0)
+      this.checkSkills(this.displayItems);
+    this.finalCheck();
+
   }
 
   onSkills(event) {
@@ -246,7 +242,11 @@ export class FindMemberComponent implements OnInit {
 
     }
 
-
+    if (this.displayItems.length > 0)
+      this.checkWorkTime(this.displayItems);
+    if (this.displayItems.length > 0)
+      this.checkLine(this.displayItems);
+    this.finalCheck();
   }
 
   onHourChange(event) {
@@ -261,7 +261,7 @@ export class FindMemberComponent implements OnInit {
       !this.filterCondition.work56 &&
       !this.filterCondition.work78 &&
       !this.filterCondition.work9) {
-      this.displayItems = [];
+      this.displayItems = this.items;
     } else {
       let currentItem = []
       this.items.map(item => {
@@ -296,10 +296,209 @@ export class FindMemberComponent implements OnInit {
 
     }
 
-    // if (this.displayItems.length > 0)
-    //   this.checkProject(this.displayItems)
-    // if (this.displayItems.length > 0)
-    //   this.checkType(this.displayItems)
+    if (this.displayItems.length > 0)
+      this.checkSkills(this.displayItems);
+    if (this.displayItems.length > 0)
+      this.checkLine(this.displayItems);
+    this.finalCheck();
+  }
+
+  checkLine(items) {
+    if (this.filterCondition.online && this.filterCondition.offline) {
+      this.displayItems = items;
+    } else if (!this.filterCondition.online && this.filterCondition.offline) {
+      this.displayItems = items.filter(item => {
+        return item.online == 0 && item.offline == 1
+      })
+    } else if (this.filterCondition.online && !this.filterCondition.offline) {
+      this.displayItems = items.filter(item => {
+        return item.offline == 0 && item.online == 1
+      })
+    } else if (!this.filterCondition.online && !this.filterCondition.offline) {
+      this.displayItems = items;
+    }
+  }
+
+  checkSkills(items) {
+
+    if (this.filterCondition.design &&
+      this.filterCondition.finance &&
+      this.filterCondition.marketing &&
+      this.filterCondition.product &&
+      this.filterCondition.public &&
+      this.filterCondition.sale &&
+      this.filterCondition.funding &&
+      this.filterCondition.law &&
+      this.filterCondition.strategy &&
+      this.filterCondition.programming) {
+      this.displayItems = items;
+    } else if (!this.filterCondition.design &&
+      !this.filterCondition.finance &&
+      !this.filterCondition.marketing &&
+      !this.filterCondition.product &&
+      !this.filterCondition.public &&
+      this.filterCondition.sale &&
+      this.filterCondition.funding &&
+      this.filterCondition.law &&
+      this.filterCondition.strategy &&
+      this.filterCondition.programming) {
+      this.displayItems = items;
+    } else {
+      let currentItem = []
+      this.items.map(item => {
+        if (this.filterCondition.design &&
+          item.skills.indexOf('design') > -1) {
+          currentItem.push(item);
+        }
+        if (this.filterCondition.finance &&
+          item.skills.indexOf('finance') > -1) {
+
+          currentItem.push(item);
+
+        }
+        if (this.filterCondition.marketing &&
+          item.skills.indexOf('marketing') > -1) {
+          currentItem.push(item);
+        }
+        if (this.filterCondition.product &&
+          item.skills.indexOf('product') > -1) {
+          currentItem.push(item);
+        }
+        if (this.filterCondition.public &&
+          item.skills.indexOf('public') > -1) {
+          currentItem.push(item);
+        }
+        if (this.filterCondition.sale &&
+          item.skills.indexOf('sale') > -1) {
+          currentItem.push(item);
+        }
+        if (this.filterCondition.funding &&
+          item.skills.indexOf('funding') > -1) {
+          currentItem.push(item);
+        }
+        if (this.filterCondition.law &&
+          item.skills.indexOf('law') > -1) {
+          currentItem.push(item);
+        }
+        if (this.filterCondition.strategy &&
+          item.skills.indexOf('strategy') > -1) {
+          currentItem.push(item);
+        }
+        if (this.filterCondition.programming &&
+          item.skills.indexOf('programming') > -1) {
+          currentItem.push(item);
+        }
+        this.displayItems = currentItem;
+      })
+
+    }
+
+
+  }
+
+  checkWorkTime(items) {
+    let currentItem = []
+    if (!this.filterCondition.work12 &&
+      !this.filterCondition.work34 &&
+      !this.filterCondition.work56 &&
+      !this.filterCondition.work78 &&
+      !this.filterCondition.work9) {
+      this.displayItems = items;
+    } else if (this.filterCondition.work12 &&
+      this.filterCondition.work34 &&
+      this.filterCondition.work56 &&
+      this.filterCondition.work78 &&
+      this.filterCondition.work9) {
+      this.displayItems = items;
+    } else {
+      items.map(item => {
+        if (this.filterCondition.work12 && item.work12) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+        if (this.filterCondition.work34 && item.work34) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+        if (this.filterCondition.work56 && item.work56) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+        if (this.filterCondition.work78 && item.work78) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+        if (this.filterCondition.work9 && item.work9) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+
+        this.displayItems = currentItem;
+      })
+    }
+
+  }
+
+  finalCheck() {
+    if (
+      this.filterCondition.design &&
+      this.filterCondition.finance &&
+      this.filterCondition.marketing &&
+      this.filterCondition.product &&
+      this.filterCondition.public &&
+      this.filterCondition.sale &&
+      this.filterCondition.funding &&
+      this.filterCondition.law &&
+      this.filterCondition.strategy &&
+      this.filterCondition.programming &&
+      this.filterCondition.work12 &&
+      this.filterCondition.work34 &&
+      this.filterCondition.work56 &&
+      this.filterCondition.work78 &&
+      this.filterCondition.work9) {
+      this.displayItems = this.items;;
+    } else if (
+      !this.filterCondition.design &&
+      !this.filterCondition.finance &&
+      !this.filterCondition.marketing &&
+      !this.filterCondition.product &&
+      !this.filterCondition.public &&
+      !this.filterCondition.sale &&
+      !this.filterCondition.funding &&
+      !this.filterCondition.law &&
+      !this.filterCondition.strategy &&
+      !this.filterCondition.programming &&
+      !this.filterCondition.work12 &&
+      !this.filterCondition.work34 &&
+      !this.filterCondition.work56 &&
+      !this.filterCondition.work78 &&
+      !this.filterCondition.work9) {
+      this.displayItems = this.items;
+    }
+  }
+
+  onCleanClick() {
+    this.filterCondition.design = false;
+    this.filterCondition.finance = false;
+    this.filterCondition.marketing = false;
+    this.filterCondition.product = false;
+    this.filterCondition.public = false;
+    this.filterCondition.sale = false;
+    this.filterCondition.funding = false;
+    this.filterCondition.law = false;
+    this.filterCondition.strategy = false;
+    this.filterCondition.programming = false;
+    this.filterCondition.work12 = false;
+    this.filterCondition.work34 = false;
+    this.filterCondition.work56 = false;
+    this.filterCondition.work78 = false;
+    this.filterCondition.work9 = false;
+    this.displayItems = this.items;
   }
 
   isExist(items, id) {

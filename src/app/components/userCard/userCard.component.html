@@ -6,7 +6,7 @@
       </a>
       <div class="u-name">
         <span class=" text-body name">{{ user.name }}</span>
-        <span>{{ user.title }}</span>
+        <span class="title">{{ user.title }}</span>
       </div>
     </div>
 
@@ -25,9 +25,14 @@
     </div>
   </div>
   <div class="row" style="min-height:27px">
-    <ng-container *ngIf="user.interested">
+    <ng-container *ngIf="user.skills ">
+      <ng-container *ngFor=" let tag of user.skills; let i=index">
+        <span *ngIf="!this.utility.IsNullOrEmpty(tag)" class="tag  tag-{{tag}}  mb-2 mr-5">{{convertTag(tag)}}</span>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="user.interested && type!=='partner'">
       <ng-container *ngFor="let tag of  user.interested; let i = index">
-        <span *ngIf="!this.utility.IsNullOrEmpty(tag)" class="tag mb-2 mr-5">{{convertTag(tag)}}</span>
+        <span *ngIf="!this.utility.IsNullOrEmpty(tag)" class="tag  tag-{{tag}}  mb-2 mr-5">{{convertTag(tag)}}</span>
       </ng-container>
     </ng-container>
   </div>

@@ -1,4 +1,9 @@
-import { HostListener, HostBinding, Component, OnInit } from '@angular/core';
+import {
+  HostListener,
+  ViewEncapsulation,
+  Component,
+  OnInit
+} from '@angular/core';
 import {
   ProposalService,
   CommentsService
@@ -10,7 +15,8 @@ import { Utility } from 'src/app/_helpers';
 @Component({
   selector: 'app-feedback',
   templateUrl: './feedback.component.html',
-  styleUrls: ['./feedback.component.scss']
+  styleUrls: ['./feedback.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class FeedbackComponent implements OnInit {
   status: string = "";

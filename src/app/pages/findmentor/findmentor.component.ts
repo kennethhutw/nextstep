@@ -20,22 +20,17 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class FindMentorComponent implements OnInit {
   filterCondition = {
+    design: false,
+    finance: false,
+    marketing: false,
+    product: false,
+    public: false,
+    sale: false,
+    funding: false,
+    law: false,
+    strategy: false,
+    programming: false,
 
-    design: true,
-    finance: true,
-    marketing: true,
-    product: true,
-    public: true,
-    sale: true,
-    funding: true,
-    law: true,
-    strategy: true,
-    programming: true,
-    work12: true,
-    work34: true,
-    work56: true,
-    work78: true,
-    work9: true
 
   }
   items = [];
@@ -70,6 +65,12 @@ export class FindMentorComponent implements OnInit {
             if (!this.utility.IsNullOrEmpty(element.tags)) {
               element.tags = element.tags.split(',');
             }
+            if (!this.utility.IsNullOrEmpty(element.skills)) {
+              element.skills = element.skills.split(',');
+            }
+            if (!this.utility.IsNullOrEmpty(element.interested)) {
+              element.interested = element.interested.split(',');
+            }
           });
         }
         this.displayItems = this.items ? this.items : [];
@@ -95,8 +96,8 @@ export class FindMentorComponent implements OnInit {
     //   }
     // });
     this.translateSrv.use("zh-tw");
-    this.displayItems = this.items;
-    this.SpinnerService.hide();
+    // this.displayItems = this.items;
+    //  this.SpinnerService.hide();
   }
 
   onCollect($event) {
@@ -136,7 +137,7 @@ export class FindMentorComponent implements OnInit {
 
   onSkills(event) {
     this.displayItems = [];
-    console.log("onSkills===================", event)
+
     if (this.filterCondition.design &&
       this.filterCondition.finance &&
       this.filterCondition.marketing &&
@@ -158,7 +159,7 @@ export class FindMentorComponent implements OnInit {
       this.filterCondition.law &&
       this.filterCondition.strategy &&
       this.filterCondition.programming) {
-      this.displayItems = [];
+      this.displayItems = this.items;
     } else {
       let currentItem = []
       this.items.map(item => {
@@ -230,6 +231,21 @@ export class FindMentorComponent implements OnInit {
     }
 
 
+  }
+
+  onCleanClick() {
+    this.filterCondition.design = false;
+    this.filterCondition.finance = false;
+    this.filterCondition.marketing = false;
+    this.filterCondition.product = false;
+    this.filterCondition.public = false;
+    this.filterCondition.sale = false;
+    this.filterCondition.funding = false;
+    this.filterCondition.law = false;
+    this.filterCondition.strategy = false;
+    this.filterCondition.programming = false;
+
+    this.displayItems = this.items;
   }
 
   isExist(items, id) {

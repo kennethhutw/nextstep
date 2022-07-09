@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-30">
     <div class="row filter mt-80 ">
         <select class="form-control" [value]="status" (change)="onSortChange($event)">
             <option value="">從新到舊</option>
@@ -26,16 +26,16 @@
     </div>
     <ul class="nav mb-20" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link " [ngClass]="{ 'active': currentTab === 'all' }" type="button" role="tab"
-                (click)="changeTab('all')">全部</button>
+            <a class="nav-link " [ngClass]="{ 'active': currentTab === 'all' }" role="tab"
+                (click)="changeTab('all')">全部</a>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'processed' }" type="button"
-                role="tab" (click)="changeTab('processed')">已處理</button>
+            <a class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'processed' }" role="tab"
+                (click)="changeTab('processed')">已處理</a>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'myproposal' }"
-                type="button" role="tab" (click)="changeTab('myproposal')">我發布的意見</button>
+            <a class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'myproposal' }" role="tab"
+                (click)="changeTab('myproposal')">我發布的意見</a>
         </li>
 
 

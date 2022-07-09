@@ -1,6 +1,9 @@
 import {
-  Component, EventEmitter, Input,
-  Output
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewEncapsulation
 } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Utility } from "../../_helpers";
@@ -12,7 +15,8 @@ import { TranslateService } from "@ngx-translate/core";
 @Component({
   selector: "app-user-card",
   templateUrl: "./userCard.component.html",
-  styleUrls: ["./userCard.component.scss"]
+  styleUrls: ["./userCard.component.scss"],
+  encapsulation: ViewEncapsulation.None
 })
 export class UserCardComponent {
   @Input() user;
@@ -95,6 +99,36 @@ export class UserCardComponent {
         break;
       case "game":
         _term = "遊戲產業";
+        break;
+      case "design":
+        _term = "UI/UX, 設計";
+        break;
+      case "finance":
+        _term = "金融相關";
+        break;
+      case "marketing":
+        _term = "行銷/品牌成長";
+        break;
+      case "pm":
+        _term = "產品管理";
+        break;
+      case "public":
+        _term = "公共關係";
+        break;
+      case "sale":
+        _term = "業務開發";
+        break;
+      case "funding":
+        _term = "資金募集";
+        break;
+      case "law":
+        _term = "法律";
+        break;
+      case "strategy":
+        _term = "品牌營運/策略";
+        break;
+      case "programming":
+        _term = "程式撰寫";
         break;
     }
     return _term;

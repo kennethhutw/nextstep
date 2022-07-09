@@ -48,7 +48,7 @@ export class PubProfileComponent implements OnInit {
   ngOnInit() {
     this.SpinnerService.show();
     this.currentUser = this.authSrv.getUserData();
-    console.log("==================", this.currentUser);
+
     let _lang = localStorage.getItem("lang");
     if (!this.utility.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
@@ -67,10 +67,12 @@ export class PubProfileComponent implements OnInit {
 
     this.SpinnerService.hide();
     this.displayItems = this.items;
-    if (this.utility.IsNullOrEmpty(this.currentUser.imageUrl)) {
-      this.currentUser.imageUrl = this.defaultProfileLogo;
-    } else {
-      this.currentUser.imageUrl = environment.assetUrl + this.currentUser.imageUrl;
+    if (this.currentUser) {
+      if (this.utility.IsNullOrEmpty(this.currentUser.imageUrl)) {
+        this.currentUser.imageUrl = this.defaultProfileLogo;
+      } else {
+        this.currentUser.imageUrl = environment.assetUrl + this.currentUser.imageUrl;
+      }
     }
     let userId = this.route.snapshot.paramMap.get('userId');
     console.log("userId ==================", userId);

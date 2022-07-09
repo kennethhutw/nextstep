@@ -13,10 +13,10 @@
 
         </div>
         <button class="main-btn-explore" routerLink="/projects">
-          找專案
+          <img src="assets/icons/projects.png" /> 找專案
         </button>
-        <button class="main-btn-explore" style="margin-left: 15px;" routerLink="/mentors">
-          找導師
+        <button class="main-btn-explore" style="margin-left: 15px;" routerLink="/members">
+          <img src="assets/icons/members.png" /> 找夥伴
         </button>
       </div>
     </div>
@@ -30,11 +30,15 @@
     <div class="index-title w-100">
       別人都做什麼呢?
       <div style="float: right;">
-        <a class=" pr-2 pl-2" style="color:black" href="#carouselProjectControls" role="button" data-slide="prev">
-          <i class="fas fa-chevron-circle-left "></i>
+        <a routerLink="/projects" class="btn btn-transparent  mr-10" (click)="onSubmit()">
+          查看更多</a>
+        <a class=" pr-2 pl-2" href="#carouselProjectControls" role="button" data-slide="prev">
+          <!--  <i class="fas fa-chevron-circle-left "></i> -->
+          <img src="assets/icons/arrow_left.png" />
         </a>
-        <a class=" pr-2 pl-2" style="color:black" href="#carouselProjectControls" role="button" data-slide="next">
-          <i class="fas fa-chevron-circle-right "></i>
+        <a class=" pr-2 pl-2" href="#carouselProjectControls" role="button" data-slide="next">
+          <!--         <i class="fas fa-chevron-circle-right "></i> -->
+          <img src="assets/icons/arrow_right.png" />
         </a>
       </div>
     </div>
@@ -60,11 +64,13 @@
   <div class="index-title w-100 mt-80">
     這裡有許多人在尋找專案
     <div style="float: right;">
-      <a class=" pr-2 pl-2" style="color:black" href="#carouselMemberControls" role="button" data-slide="prev">
-        <i class="fas fa-chevron-circle-left "></i>
+      <a routerLink="/members" class="btn btn-transparent  mr-10" (click)="onSubmit()">
+        查看更多</a>
+      <a class=" pr-2 pl-2" href="#carouselMemberControls" role="button" data-slide="prev">
+        <img src="assets/icons/arrow_left.png" />
       </a>
-      <a class=" pr-2 pl-2" style="color:black" href="#carouselMemberControls" role="button" data-slide="next">
-        <i class="fas fa-chevron-circle-right "></i>
+      <a class=" pr-2 pl-2" href="#carouselMemberControls" role="button" data-slide="next">
+        <img src="assets/icons/arrow_right.png" />
       </a>
     </div>
   </div>
@@ -88,13 +94,15 @@
   </div>
 
   <div class="index-title w-100 mt-80">
-    想和前輩對談?
+    想和顧問對談?
     <div style="float: right;">
+      <a routerLink="/mentors" class="btn btn-transparent  mr-10" (click)="onSubmit()">
+        查看更多</a>
       <a class=" pr-2 pl-2" style="color:black" href="#carouselMemtorControls" role="button" data-slide="prev">
-        <i class="fas fa-chevron-circle-left "></i>
+        <img src="assets/icons/arrow_left.png" />
       </a>
       <a class=" pr-2 pl-2" style="color:black" href="#carouselMemtorControls" role="button" data-slide="next">
-        <i class="fas fa-chevron-circle-right "></i>
+        <img src="assets/icons/arrow_right.png" />
       </a>
     </div>
   </div>
@@ -125,9 +133,9 @@
   </div>
   <div id="index_title" class="index_title text-center">
     <p class="title">我們想聽見你的聲音</p>
-    <p class="sub_title">讓我們一起將NextStep打造更棒的地方</p>
-    <a class="btn" routerLink="/feedback">
-      我有話想說
+    <p class="sub_title">讓我們一起將 Next Step 打造更棒的地方</p>
+    <a class="btn btn-blue" routerLink="/feedback">
+      <img src="assets/icons/chat_white.png" /> 我有話想說
     </a>
   </div>
   <div class="row">
@@ -139,10 +147,10 @@
     <p class="title">加入社群與成員們交流互動</p>
 
     <div style="justify-content:space-between">
-      <button class="btn">
+      <button class="btn btn-blue">
         Telegram
       </button>
-      <button class="btn" style="margin-left: 20px;">
+      <button class="btn btn-blue" style="margin-left: 20px;">
         Discord
       </button>
     </div>

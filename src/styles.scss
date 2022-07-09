@@ -406,22 +406,39 @@
 
 
 /** buttons **/
-
 .btn-blue {
-  background-color: #56BDF4;
-  color: white;
-  border: 2px solid #56BDF4;
-  border-radius: 4px;
-  padding: 6px 12px 6px 12px;
+  background-color: #56BDF4 !important;
+  color: white !important;
+  border: 2px solid #56BDF4 !important;
+  border-radius: 4px !important;
+  padding: 6px 12px 6px 12px !important;
 }
 
 .btn-white {
-  background-color: #fff;
-  color: #56BDF4;
-  border: 2px solid #56BDF4;
-  border-radius: 4px;
-  padding: 6px 12px 6px 12px;
+  background-color: #fff !important;
+  color: #56BDF4 !important;
+  border: 2px solid #56BDF4 !important;
+  border-radius: 4px !important;
+  padding: 6px 12px 6px 12px !important;
 }
+
+.btn-transparent {
+
+  color: #56BDF4 !important;
+  border: 2px solid #56BDF4 !important;
+  border-radius: 4px !important;
+  padding: 6px 12px 6px 12px !important;
+}
+
+.btn-gray {
+  background-color: #E3E5EC !important;
+  color: #fff !important;
+  border: 2px solid #E3E5EC !important;
+  border-radius: 4px !important;
+  padding: 6px 12px 6px 12px !important;
+}
+
+
 
 .btn_small:focus,
 .btn_normal:focus,
