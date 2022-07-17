@@ -1,17 +1,17 @@
-import { HostListener, HostBinding, Component, OnInit } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HostListener, ViewEncapsulation, Component, OnInit } from '@angular/core';
+
 import {
   DialogService,
-
   ProjectService
-} from './../../_services';
+} from './../../../_services';
 import {
   AuthStore
-} from "../../_services/auth.store";
+} from "../../../_services/auth.store";
 @Component({
   selector: 'app-my-project',
   templateUrl: './myProject.component.html',
-  styleUrls: ['./myProject.component.css']
+  styleUrls: ['./myProject.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MyProjectComponent implements OnInit {
 

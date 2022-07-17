@@ -1,0 +1,39 @@
+<div class="card card-white grid-margin">
+  <div class="header">
+    <div class="">
+      <a (click)="routeToUserProfile()">
+        <h6 class="mt-10 mb-10 text-body name text-left">{{ job.position }}</h6>
+      </a>
+
+    </div>
+    <div class="item-left">
+
+    </div>
+    <div class="item-left">
+      <div *ngIf="user">
+        <i *ngIf="job.isCollect" (click)="onClickCollect()" style="color:#56BDF4" class="fas fa-bookmark mr-5"></i>
+        <i *ngIf="!job.isCollect" (click)="onClickCollect()" style="color:#56BDF4" class="far fa-bookmark mr-5"></i>
+        <!-- <i class="far fa-comment-alt mr-5"></i> -->
+        <span class="follow" [ngClass]="{ 'Isfollow': job.isFollow === true }">追蹤</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 discr">
+      <span>{{job?.scopes.length>40?job?.scopes.substring(0,120)+"...":job.scopes}}</span>
+    </div>
+  </div>
+  <footer class="row">
+    <ng-container *ngIf="job.skills">
+
+      <ng-container *ngFor="let tag of  job.skills; let i = index">
+
+          <span *ngIf="!this.utility.IsNullOrEmpty(tag)" class="tag  tag-{{tag}}  mb-2 mr-5">{{convertTag(tag)}}</span>
+
+      </ng-container>
+
+    </ng-container>
+
+  </footer>
+</div>

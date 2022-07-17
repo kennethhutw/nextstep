@@ -1,0 +1,240 @@
+ui-project-card {
+    .tag {
+        padding: 4px 8px 4px 8px;
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 400;
+        border-radius: 100px;
+        background-color: #C0DAFE;
+    }
+
+    .tag-bd {
+        background-color: #D5ECA3 !important;
+    }
+
+    .tag-pm {
+        background-color: #E5BFF3 !important;
+    }
+
+    .tag-design {
+        background-color: #E5BFF3 !important;
+    }
+
+    .tag-op {
+        background-color: #FEE0A5 !important;
+    }
+
+    .tag-software {
+        background-color: #C0DAFE !important;
+    }
+
+    .tag-marketing {
+        background-color: #FFCCD5 !important;
+    }
+
+    .tag-game {
+        background-color: #E5BFF3 !important;
+    }
+
+    .tag-sharingeconomy {
+        background-color: #D5ECA3 !important;
+    }
+
+    .tag-fintech {
+        background-color: #C0DAFE !important;
+    }
+
+    .tag-edutech {
+        background-color: #E5BFF3 !important;
+    }
+
+    .tag-ai {
+        background-color: #E3E5EC !important;
+    }
+
+    .tag-medical {
+        background-color: #E5BFF3 !important;
+    }
+
+    .tag-eComm {
+        background-color: #E5BFF3 !important;
+    }
+
+
+    .tag-sale {
+        background-color: #D5ECA3 !important;
+    }
+
+    .tag-product {
+        background-color: #E5BFF3 !important;
+    }
+
+    .tag-strategy {
+        background-color: #FEE0A5 !important;
+    }
+
+    .tag-programming {
+        background-color: #C0DAFE !important;
+    }
+
+    .tag-finance {
+        background-color: #E5BFF3 !important;
+    }
+
+    .tag-public {
+        background-color: #D5ECA3 !important;
+    }
+
+    .tag-funding {
+        background-color: #C0DAFE !important;
+    }
+
+    .tag-law {
+        background-color: #E5BFF3 !important;
+    }
+
+    .tag-ai {
+        background-color: #E3E5EC !important;
+    }
+
+    .tag-medical {
+        background-color: #E5BFF3 !important;
+    }
+
+    .tag-eComm {
+        background-color: #E5BFF3 !important;
+    }
+}
+
+.header {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 180px 1fr 70px;
+}
+
+.item-left {
+    justify-content: end;
+    display: grid;
+    grid-auto-flow: column;
+
+    /* justify-content: end; */
+    width: 100%;
+    margin: auto;
+}
+
+.follow {
+    color: #56BDF4;
+    border: 2px solid #56BDF4;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 4px 8px 4px 8px;
+    border-radius: 4px;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+.search_input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #210b2c;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.bio {
+    font-size: 1.5rem;
+    color: #210b2c;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.mt-4,
+.my-4 {
+    margin-top: 1.5rem !important;
+}
+
+.ml-3,
+.mx-3 {
+    margin-left: 1rem !important;
+}
+
+
+.profile-image {
+    vertical-align: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+}
+
+.card {
+    background-color: white;
+    box-shadow: 0px 2px rgba(0, 0, 0, 0.075) !important;
+    border: 1px solid #e1eaea !important;
+    border-radius: 4px !important;
+    color: black;
+}
+
+.card.card-white {
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    box-shadow: 0 0.05rem 0.01rem rgba(75, 75, 90, 0.075);
+    padding: 25px;
+    min-height: 195px;
+}
+
+.grid-margin {
+    margin-bottom: 2rem;
+    padding: 18px 16px 18px 16px !important;
+}
+
+
+
+.name {
+    font-family: "Noto Serif JP", sans-serif;
+    font-weight: 400;
+}
+
+th {
+    font-weight: 300;
+}
+
+.discr {
+    min-height: 70px;
+    text-align: left;
+    /*  padding: 10px; */
+    max-height: 120px;
+}
+
+.mr-5 {
+    margin-right: 5px !important;
+}
+
+.label.label-success {
+    background: #43d39e;
+}
+
+.label {
+    font-weight: 400;
+    padding: 4px 8px;
+    font-size: 11px;
+    display: inline-block;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25em;
+}

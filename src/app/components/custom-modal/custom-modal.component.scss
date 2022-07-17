@@ -40,22 +40,23 @@ lab-custom-modal {
     }
 }
 
-.modal-header {
+.custom-modal-header {
     display: grid;
     grid-template-rows: 42px;
     grid-template-columns: 1fr 42px;
-    background: linear-gradient(270deg, #01B98E 0%, #00D552 100%);
+    background: #fff;
     justify-content: center;
     align-items: center;
+    color: #000;
 
     &.col-3 {
         grid-template-columns: 42px 1fr 42px;
     }
 
     .title {
-        font-size: var(--size15);
-        color: var(--white);
-        text-align: center;
+        font-size: 15px;
+        color: #000;
+        text-align: start;
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;

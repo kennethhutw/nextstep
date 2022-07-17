@@ -2,6 +2,12 @@
   z-index: 100;
 }
 
+.logo {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 29px;
+}
+
 .main-menu nav>ul>li {
   display: inline-block;
   margin: 0 18px;
@@ -118,4 +124,8 @@ a {
   font-size: 16px !important;
   font-weight: 500;
   line-height: 24px;
+}
+
+.p-8 {
+  padding: 8px;
 }

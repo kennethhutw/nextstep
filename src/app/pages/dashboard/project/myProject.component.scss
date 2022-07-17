@@ -1,0 +1,22 @@
+app-my-project {
+  .nav-link {
+    background-color: transparent !important;
+  }
+
+  .nav-link.active {
+    border-bottom-color: #56BDF4 !important;
+  }
+}
+
+.button-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.noProject {
+  height: 300px;
+  margin-top: 28px;
+
+  justify-content: center;
+}

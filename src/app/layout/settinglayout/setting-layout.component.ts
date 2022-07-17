@@ -18,7 +18,8 @@ import { environment } from '../../../environments/environment';
   templateUrl: "./setting-layout.component.html",
   styleUrls: [
     "./setting-layout.component.scss",
-  ]
+  ],
+  encapsulation: ViewEncapsulation.None,
 })
 export class SettingLayoutComponent implements OnInit {
 

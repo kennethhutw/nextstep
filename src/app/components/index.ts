@@ -7,6 +7,7 @@ import { PersonCardComponent } from "./person/person.component";
 import { UserCardComponent } from "./userCard/userCard.component";
 import { ProjectCardComponent } from './projectCard/projectCard.component';
 import { ProjectBarComponent } from './projectBar/project-bar.component';
+import { RecruitCardComponent } from './recruitCard/recruitCard.component';
 import { TagComponent } from './tag/tag.component';
 import { LogBarComponent } from './log-bar/log-bar.component';
 import { RadioItemComponent } from './radioItem/radio-item.component';
@@ -16,6 +17,7 @@ export const components = [
     CommentComponent,
     CommentsComponent,
     RadioItemComponent,
+    RecruitCardComponent,
     LogBarComponent,
     ProjectBarComponent,
     ProjectCardComponent,
@@ -34,11 +36,13 @@ export { ProjectCardComponent } from './projectCard/projectCard.component';
 export { ProjectItemComponent } from "./projectItem/project-item.component";
 export { PersonCardComponent } from "./person/person.component";
 export { ProjectBarComponent } from './projectBar/project-bar.component';
+export { RecruitCardComponent } from './recruitCard/recruitCard.component';
 export { TagComponent } from './tag/tag.component';
 
 
 export { FooterComponent } from "./footer/footer.component";
 export { HeaderComponent } from "./header/header.component";
+
 export { SubTabsComponent } from "./subTabs/subTabs.component";
 export { SubTabComponent } from "./subTab/subTab.component";
 export { SubTableComponent } from "./subTable/subTable.component";

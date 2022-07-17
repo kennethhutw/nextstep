@@ -1,26 +1,35 @@
 <app-header></app-header>
-<div class="container">
-    <div id="setting" class=" mb-50 row">
-        <div class="col-md-3">
+<div class=" container-bg">
+    <div class="container">
+        <div id="setting" class=" mb-50 row">
             <aside class="sidebar ">
                 <nav class="sidebar-menu pt-3 pb-3">
                     <ul class="menu-items" style="padding-left: 20px;">
                         <li>
 
                             <a class="menu-item" [routerLinkActive]="['active']"
-                                [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard/dashboard']"><i
-                                    class="fa fa-home menu-icon"></i>首頁</a>
+                                [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard']">
+                                <svg-icon class="icon" src="assets/icons/home.svg"></svg-icon>
+                                <!-- <i
+                                                class="fa fa-home menu-icon"></i> -->首頁
+                            </a>
                         </li>
                         <li>
                             <a class="menu-item" [routerLinkActive]="['active']"
-                                [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard/settings']"><i
-                                    class="fas fa-cog menu-icon"></i>個人設定</a>
+                                [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard/settings']">
+                                <svg-icon class="icon" src="assets/icons/cog.svg"></svg-icon>
+                                <!-- <i
+                                                class="fas fa-cog menu-icon"></i> -->設定
+                            </a>
                         </li>
                         <li>
                             <!-- <a class="menu-item" (click)="ddToggle()"><i class="fas fa-file-alt menu-icon"></i>我的專案</a> -->
                             <a class="menu-item" [routerLinkActive]="['active']"
-                                [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard/myproject']"><i
-                                    class="fas fa-file-alt menu-icon"></i>我的專案</a>
+                                [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard/myproject']">
+                                <svg-icon class="icon" src="assets/icons/file.svg"></svg-icon>
+                                <!-- <i
+                                                class="fas fa-file-alt menu-icon"></i> -->我的專案
+                            </a>
                             <div class="sub-menu" [ngClass]="{ 'show-menu': expand }">
                                 <ul *ngFor="let menu of projects">
                                     <li>
@@ -31,21 +40,30 @@
                         </li>
                         <li>
                             <a class="menu-item" [routerLinkActive]="['active']"
-                                [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard/collection']"><i
-                                    class="far fa-heart menu-icon"></i>
-                                我的收藏</a>
+                                [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard/collection']">
+                                <svg-icon class="icon" src="assets/icons/heart.svg"></svg-icon>
+                                <!--        <i
+                                                class="far fa-heart menu-icon"></i> -->
+                                我的收藏
+                            </a>
                         </li>
                         <li>
                             <a class="menu-item" [routerLinkActive]="['active']"
-                                [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard/messages']"><i
-                                    class="far fa-comment-dots menu-icon"></i>我的訊息</a>
+                                [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard/notifications']">
+                                <svg-icon class="icon" src="assets/icons/bell.svg"></svg-icon>
+                                <!--     <i
+                                                class="far fa-bell menu-icon"></i> -->我的通知
+                            </a>
                         </li>
                         <li>
                             <a class="menu-item" [routerLinkActive]="['active']"
-                                [routerLinkActiveOptions]="{ exact: true }"
-                                [routerLink]="['/dashboard/notifications']"><i
-                                    class="far fa-bell menu-icon"></i>我的通知</a>
+                                [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard/messages']">
+                                <svg-icon class="icon" src="assets/icons/message.svg"></svg-icon>
+                                <!-- <i
+                                                class="far fa-comment-dots menu-icon"></i> -->我的訊息
+                            </a>
                         </li>
+
                         <li>
                             <a class="menu-item" [routerLinkActive]="['active']"
                                 [routerLinkActiveOptions]="{ exact: true }"
@@ -54,9 +72,9 @@
                     </ul>
                 </nav>
             </aside>
-        </div>
-        <div class="col-md-9">
-            <router-outlet></router-outlet>
+            <div class="col-md-10">
+                <router-outlet></router-outlet>
+            </div>
         </div>
     </div>
 </div>

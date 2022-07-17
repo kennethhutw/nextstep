@@ -21,9 +21,10 @@ import { newProjectComponent } from './newProject/newProject.component';
 import { PubProfileComponent } from './pubprofile/pubprofile.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { ChatComponent } from './chat/chat.component';
-import { MyProjectComponent } from './myProject/myProject.component';
+
 import { ProjectDetailComponent } from './project-detail/projectDetail.component';
 import { ProjectComponent } from './project/project.component';
+import { RecruitComponent } from './recruit/recruit.component';
 import {
     MyProjectLogComponent,
     MyProjectMemberComponent,
@@ -35,86 +36,82 @@ import {
     DashboardComponent,
     MyApplicationComponent,
     MyCollectionComponent,
-    SettingsComponent
+    SettingsComponent,
+    MyProjectComponent
 } from './dashboard';
-
-
 
 import { JobComponent } from './job/job.component';
 
 export const containers = [
-    DashboardComponent,
-    MyApplicationComponent,
-    MyCollectionComponent,
-    JobComponent,
-    MyProjectLogComponent,
-    MyProjectMemberComponent,
-    MyProjectProfileComponent,
-    MyProjectSettingsComponent,
-    ProjectDetailComponent,
-    ProjectComponent,
-    MyProjectComponent,
+    ActivityComponent,
+    AboutComponent,
+    CheckStatusComponent,
     ChatComponent,
-    NotificationsComponent,
-    SettingsComponent,
-    PubProfileComponent,
-    newProjectComponent,
+    DashboardComponent,
+    ErrorComponent,
+    ExampleComponent,
+    FeedbackComponent,
     FindMentorComponent,
     FindProjectComponent,
     FindMemberComponent,
     HomeComponent,
-
-    ProfileComponent,
-    ActivityComponent,
-    TokenComponent,
-    FeedbackComponent,
-    PageNotFoundComponent,
-    QAComponent,
-    PolicyComponent,
-    AboutComponent,
-    ErrorComponent,
-    ExampleComponent,
-    VerificationComponent,
-    SetPasswordComponent,
-    CheckStatusComponent,
+    JobComponent,
     LoginComponent,
+    MyApplicationComponent,
+    MyCollectionComponent,
+    MyProjectLogComponent,
+    MyProjectMemberComponent,
+    MyProjectProfileComponent,
+    MyProjectSettingsComponent,
+    MyProjectComponent,
+    newProjectComponent,
+    NotificationsComponent,
+    PageNotFoundComponent,
+    PolicyComponent,
+    PubProfileComponent,
+    ProfileComponent,
+    ProjectDetailComponent,
+    ProjectComponent,
+    QAComponent,
+    RecruitComponent,
     SetPasswordComponent,
-    CheckStatusComponent,
-    LoginComponent
+    SettingsComponent,
+    TokenComponent,
+    VerificationComponent,
 ];
 
+export { ActivityComponent } from "./activity/activity.component";
+export { AboutComponent } from "./about/about.component";
+export { CheckStatusComponent } from './checkStatus/checkStatus.component';
+export { ChatComponent } from './chat/chat.component';
+export { ErrorComponent } from "./error/error.component";
 export { FindMentorComponent } from './findmentor/findmentor.component';
 export { FindProjectComponent } from './findproject/findproject.component';
 export { FindMemberComponent } from './findmember/findmember.component';
-export { ProfileComponent } from './profile/profile.component';
-
-export { HomeComponent } from "./home/home.component";
-
-export { TokenComponent } from "./token/token.component";
-export { ActivityComponent } from "./activity/activity.component";
 export { FeedbackComponent } from "./feedback/feedback.component";
-export { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
-export { QAComponent } from "./qa/qa.component";
-export { PolicyComponent } from "./policy/policy.component";
-export { AboutComponent } from "./about/about.component";
-export { ErrorComponent } from "./error/error.component";
-export { VerificationComponent } from './verification/verification.component';
-export { SetPasswordComponent } from './setPassword/setPassword.component';
-export { CheckStatusComponent } from './checkStatus/checkStatus.component';
+export { HomeComponent } from "./home/home.component";
 export { LoginComponent } from './login/login.component';
 export { newProjectComponent } from './newProject/newProject.component';
-export { PubProfileComponent } from './pubprofile/pubprofile.component';
 export { NotificationsComponent } from './notifications/notifications.component';
-export { ChatComponent } from './chat/chat.component';
-export { MyProjectComponent } from './myProject/myProject.component';
-export { ProjectDetailComponent } from './project-detail/projectDetail.component';
+
 export {
     MyProjectLogComponent,
     MyProjectMemberComponent,
     MyProjectProfileComponent,
     MyProjectSettingsComponent
 } from './myProject';
+export * from './dashboard';
+export { ProjectDetailComponent } from './project-detail/projectDetail.component';
 export { ProjectComponent } from './project/project.component';
 export { JobComponent } from './job/job.component';
-export * from './dashboard';
+export { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+export { PolicyComponent } from "./policy/policy.component";
+export { ProfileComponent } from './profile/profile.component';
+export { PubProfileComponent } from './pubprofile/pubprofile.component';
+export { QAComponent } from "./qa/qa.component";
+export { RecruitComponent } from './recruit/recruit.component';
+export { SetPasswordComponent } from './setPassword/setPassword.component';
+export { TokenComponent } from "./token/token.component";
+export { VerificationComponent } from './verification/verification.component';
+
 export * from "./example/example.component";

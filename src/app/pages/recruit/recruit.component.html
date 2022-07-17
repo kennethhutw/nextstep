@@ -1,0 +1,133 @@
+<div id="findcontent" class="container mb-50 row">
+  <div class="col-md-3">
+    <div (click)="onCleanClick()"><span class="btn-clean">清除全部</span></div>
+
+    <aside class="sidebar mt-10">
+      <nav class="sidebar-menu pb-3">
+        <ul class="menu-items" style="padding-left: 20px;">
+          <li class="mb-12">
+            <span class="title">合作方式</span>
+          </li>
+          <li>
+            <input id="online" type="checkbox" [(ngModel)]="filterCondition.online" (change)="onLine($event)"
+              data-key="online" />
+            <label class="ml-10" for="online">遠端/線上</label>
+          </li>
+          <li>
+            <input id="offline" type="checkbox" [(ngModel)]="filterCondition.offline" (change)="onLine($event)"
+              data-key="offline" />
+            <label class="ml-10" for="offline">實體</label>
+          </li>
+          <li class="mb-12">
+            <span class="title">技能</span>
+          </li>
+          <li>
+            <input id="design" type="checkbox" [(ngModel)]="filterCondition.design" (change)="onSkills($event)"
+              data-key="design" />
+            <label class="ml-10" for="design">設計</label>
+          </li>
+          <li>
+            <input id="finance" type="checkbox" [(ngModel)]="filterCondition.finance" (change)="onSkills($event)"
+              data-key="finance" />
+            <label class="ml-10" for="finance">金融相關</label>
+          </li>
+
+          <li>
+            <input id="marketing" type="checkbox" [(ngModel)]="filterCondition.marketing" (change)="onSkills($event)"
+              data-key="marketing" />
+            <label class="ml-10" for="marketing">行銷/品牌成長</label>
+          </li>
+          <li>
+            <input id="product" type="checkbox" [(ngModel)]="filterCondition.product" (change)="onSkills($event)"
+              data-key="product" />
+            <label class="ml-10" for="product">產品管理</label>
+          </li>
+          <li>
+            <input id="public" type="checkbox" [(ngModel)]="filterCondition.public" (change)="onSkills($event)"
+              data-key="public" />
+            <label class="ml-10" for="public">公共關係</label>
+          </li>
+          <li>
+            <input id="sale" type="checkbox" [(ngModel)]="filterCondition.sale" (change)="onSkills($event)"
+              data-key="sale" />
+            <label class="ml-10" for="sale">業務開發</label>
+          </li>
+          <li>
+            <input id="funding" type="checkbox" [(ngModel)]="filterCondition.funding" (change)="onSkills($event)"
+              data-key="funding" />
+            <label class="ml-10" for="funding">資金募集</label>
+          </li>
+          <li>
+            <input id="law" type="checkbox" [(ngModel)]="filterCondition.law" (change)="onSkills($event)"
+              data-key="law" />
+            <label class="ml-10" for="law">法律</label>
+          </li>
+          <li>
+            <input id="strategy" type="checkbox" [(ngModel)]="filterCondition.strategy" (change)="onSkills($event)"
+              data-key="strategy" />
+            <label class="ml-10" for="strategy">品牌營運/策略</label>
+          </li>
+          <li>
+            <input id="programming" type="checkbox" [(ngModel)]="filterCondition.programming"
+              (change)="onSkills($event)" data-key="programming" />
+            <label class="ml-10" for="programming">程式撰寫</label>
+          </li>
+          <li class="mb-12">
+            <span class="title">每周願意投入時長</span>
+          </li>
+
+          <li>
+            <input id="work12" type="checkbox" [(ngModel)]="filterCondition.work12" (change)="onHourChange($event)"
+              data-key="hour" />
+            <label class="ml-10" for="work12">1至2小時</label>
+          </li>
+          <li>
+            <input id="work34" type="checkbox" [(ngModel)]="filterCondition.work34" (change)="onHourChange($event)"
+              data-key="hour" />
+            <label class="ml-10" for="work34">3至4小時</label>
+          </li>
+          <li>
+            <input id="work56" type="checkbox" [(ngModel)]="filterCondition.work56" (change)="onHourChange($event)"
+              data-key="hour" />
+            <label class="ml-10" for="work56">5至6小時</label>
+          </li>
+          <li>
+            <input id="work78" type="checkbox" [(ngModel)]="filterCondition.work78" (change)="onHourChange($event)"
+              data-key="hour" />
+            <label class="ml-10" for="work78">7至8小時</label>
+          </li>
+          <li>
+            <input id="work9" type="checkbox" [(ngModel)]="filterCondition.work9" (change)="onHourChange($event)"
+              data-key="hour" />
+            <label class="ml-10" for="work9">9小時以上(含)</label>
+          </li>
+          <!--  <li>
+            <input type="text" class="form-control search" style="    width: 90%;" aria-label=""
+              aria-describedby="button-addon2" />
+          </li> -->
+        </ul>
+
+      </nav>
+    </aside>
+
+  </div>
+  <div class="col-md-9">
+    <div class="row" *ngIf="displayItems.length ===0" style="height:300px">
+    </div>
+    <!--person-->
+    <ng-container *ngIf="displayItems">
+      <div class="row">
+        <ng-container *ngFor="let item of  displayItems; let i = index">
+          <div class="col-md-6 text-center">
+            <ui-recruit-card (onCollect)="onCollect($event)" [job]="item" [user]="currentUser">
+            </ui-recruit-card>
+          </div>
+        </ng-container>
+      </div>
+
+    </ng-container>
+  </div>
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+  <p style="color: white">Please Wait. </p>
+</ngx-spinner>

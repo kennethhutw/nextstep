@@ -20,4 +20,12 @@ export class RecruitService {
             })
             .toPromise();
     }
+
+    async get() {
+
+        return await this.http
+            .get<any>(`${environment.apiUrl}/recruit`, {
+            })
+            .toPromise();
+    }
 }

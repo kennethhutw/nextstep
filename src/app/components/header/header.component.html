@@ -1,7 +1,9 @@
 <nav class="navbar navbar-expand-lg  navbar-light  bg-white fixed-top">
   <div class="container">
     <a class="navbar-brand" routerLink="/index">
-      <img src="./../../../assets/images/logo.png" height="40" alt="" /></a>
+      <!--  <img src="./../../../assets/images/logo.png" height="40" alt="" /></a> -->
+      <span class="logo">Next Step</span>
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -19,6 +21,10 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+            routerLink="/recruit" (click)="ToggleNavBar()">招募</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
             routerLink="/members" (click)="ToggleNavBar()">夥伴</a>
         </li>
         <li class="nav-item">
@@ -29,34 +35,23 @@
           <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
             routerLink="/feedback" (click)="ToggleNavBar()">意見回饋</a>
         </li>
-        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-          <!--           <i class="fa-fw fab fa-telegram icon"></i> -->
+        <!--  <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+                    <i class="fa-fw fab fa-telegram icon"></i>
           <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
             (click)="ToggleNavBar()">Telegram</a>
-        </li>
-        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-          <!--           <i class="fa-fw fab fa-discord icon"></i> -->
+        </li> -->
+        <!--  <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+                  <i class="fa-fw fab fa-discord icon"></i>
           <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
             (click)="ToggleNavBar()">Discord</a>
-        </li>
+        </li>-->
         <div>
           <!-- <h4 style="color:red">{{this.DemoSite}}</h4> -->
         </div>
 
       </ul>
       <ul class="navbar-nav">
-        <li *ngIf="authStoreSrv.isLoggedIn$ | async" class="nav-item" [routerLinkActive]="['active']"
-          [routerLinkActiveOptions]="{ exact: true }" style="padding-top: 13px;">
-          <a class="nav-link btn-blue font-16" (click)="RouteToNewProject()">建立專案 </a>
-        </li>
-        <li *ngIf="authStoreSrv.isLoggedIn$ | async" class="nav-item" [routerLinkActive]="['active']"
-          [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link" routerLink="/notifications"> <i class="far fa-bell icon"></i></a>
-        </li>
-        <li *ngIf="authStoreSrv.isLoggedIn$ | async" class="nav-item" [routerLinkActive]="['active']"
-          [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link" routerLink="/messages"> <i class="far fa-comment-dots icon"></i></a>
-        </li>
+
         <!-- <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
           <i class="far fa-user-circle par-5 icon"></i>
         </li> -->
@@ -74,17 +69,20 @@
       </li> -->
 
       <ul *ngIf="authStoreSrv.isLoggedIn$ | async" class="navbar-nav ml-auto nav-flex-icons">
-        <li class="nav-item avatar dropdown">
-          <a class="nav-link waves-effect waves-light" id="navbarDropdownMenuLink-5" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="true">
-            <i class="fas fa-bell"></i>
-          </a>
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+          style="padding-top: 13px;">
+          <a class="nav-link btn-blue font-16" (click)="RouteToNewProject()">建立專案 </a>
+        </li>
+        <li class="nav-item p-8" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+          id="navbarNotifDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <!--           <a class="nav-link" routerLink="/notifications"> <i class="far fa-bell icon"></i></a> -->
+          <i class="far fa-bell icon"></i>
           <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary notification-box"
-            aria-labelledby="navbarDropdownMenuLink-5">
+            aria-labelledby="navbarNotifDropdown">
             <div class="notification">
               <i class="fas fa-bell"></i>
               <div class="notifciation-row">
-                <span>[帳號]提出加入[專案名稱]申請</span>
+                <span>[帳號]3333提出加入[專案名稱]申請</span>
                 <span>剛剛</span>
               </div>
             </div>
@@ -102,49 +100,52 @@
                 <span>1小時前</span>
               </div>
             </div>
-            <a href="" class="text-center">查看更多</a>
+            <a routerLink="/notifications" class="text-center">查看更多</a>
+          </div>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav-link" routerLink="/messages"> <i class="far fa-comment-dots icon"></i></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle par-5 icon"></i>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+              [routerLink]="['/u/',currentUser?.uid]">個人資料</a>
+            <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+              [routerLink]="['/dashboard/settings']">個人設定</a>
+
+            <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+              [routerLink]="['/dashboard/myproject']">我的專案</a>
+            <a class="dropdown-item" [routerLink]="['/dashboard/collection']">我的收藏</a>
+            <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+              [routerLink]="['/dashboard/messages']">我的訊息</a>
+            <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+              [routerLink]="['/dashboard/notifications']">我的通知</a>
+
+            <a class="dropdown-item" [routerLink]="['/dashboard/application']">成為導師</a>
+            <!-- <a class="dropdown-item" [routerLink]="['/u/',currentUser?.uid]">{{
+                  "PUBPROFILE" | translate }}</a> -->
+            <!-- <a class="dropdown-item" [routerLink]="['/settings']">{{
+                  "DASHBOARD" | translate }}</a> -->
+            <!-- <a class="dropdown-item" routerLink="/artist/basic">{{ "EDITPROFILE" | translate }}</a> -->
+
+            <div class="dropdown-divider"> </div>
+            <!-- <a class="dropdown-item" href="#">登出</a> -->
+            <button class="dropdown-item signout" (click)="Signout()">{{ "SIGNOUT" | translate }}</button>
           </div>
         </li>
       </ul>
-      <!-- <form *ngIf="authStoreSrv.isLoggedIn$ | async" id="index_login" class="form-inline my-2 my-lg-0 text-white"> -->
-      <form id="index_login" *ngIf="authStoreSrv.isLoggedIn$ | async" class="form-inline my-2 my-lg-0 text-white">
+      <!--    <form id="index_login" *ngIf="authStoreSrv.isLoggedIn$ | async" class="form-inline my-2 my-lg-0 text-white">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto text-center">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-user-circle par-5 icon"></i>
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
-                  [routerLink]="['/u/',currentUser?.uid]">個人資料</a>
-                <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
-                  [routerLink]="['/dashboard/settings']">個人設定</a>
 
-                <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
-                  [routerLink]="['/dashboard/myproject']">我的專案</a>
-                <a class="dropdown-item" [routerLink]="['/dashboard/collection']">我的收藏</a>
-                <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
-                  [routerLink]="['/dashboard/messages']">我的訊息</a>
-                <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
-                  [routerLink]="['/dashboard/notifications']">我的通知</a>
-
-                <a class="dropdown-item" [routerLink]="['/dashboard/application']">成為導師</a>
-                <!-- <a class="dropdown-item" [routerLink]="['/u/',currentUser?.uid]">{{
-                  "PUBPROFILE" | translate }}</a> -->
-                <!-- <a class="dropdown-item" [routerLink]="['/settings']">{{
-                  "DASHBOARD" | translate }}</a> -->
-                <!-- <a class="dropdown-item" routerLink="/artist/basic">{{ "EDITPROFILE" | translate }}</a> -->
-
-                <div class="dropdown-divider"> </div>
-                <!-- <a class="dropdown-item" href="#">登出</a> -->
-                <button class="dropdown-item signout" (click)="Signout()">{{ "SIGNOUT" | translate }}</button>
-              </div>
-            </li>
 
           </ul>
         </div>
-      </form>
+      </form> -->
       <!-- <i style="color: #fff!important;" class="fas fa-globe"></i> -->
       <form id="index_login" *ngIf="authStoreSrv.isLoggedOut$ | async" class="form-inline my-2 my-lg-0 gap-10">
         <a class="btn-transparent font-16 " routerLink="/signin">登入</a> <a routerLink="/signup" class="btn-gray font-16"

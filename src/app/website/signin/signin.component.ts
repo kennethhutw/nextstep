@@ -78,7 +78,7 @@ export class SigninComponent implements OnInit {
     this.authSrv.login(value.email, value.password).subscribe(
       (res) => {
         if (res["result"] === "successful") {
-          this.router.navigate(["./dashboard/dashboard"], {});
+          this.router.navigate(["./dashboard"], {});
 
         } else {
           this.invalidUser = true;

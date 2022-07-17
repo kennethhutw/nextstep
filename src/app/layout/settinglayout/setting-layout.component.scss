@@ -1,4 +1,10 @@
-#setting{
+.container-bg {
+  background-color: #E5E5E5;
+  padding-top: 24px;
+  padding-bottom: 30px;
+}
+
+#setting {
   min-height: 80vh;
   margin-top: 100px;
   padding-left: 50px;
@@ -8,16 +14,19 @@
     transition: max-height 0.5s;
     max-height: 0;
     display: none;
+
     ul {
       margin: 0;
       padding: 0;
     }
+
     li {
       list-style-type: none;
       background-color: #161a26;
       font: normal 10pt sans-serif;
       line-height: 19px;
       letter-spacing: 0.1pt;
+
       a {
         color: white;
         padding: 7px 0 6px 20px;
@@ -25,50 +34,87 @@
         cursor: pointer;
         display: block;
       }
+
       &:hover {
         background-color: #03658c;
         color: #ffffff;
       }
     }
   }
+
   .show-menu {
-  max-height: 1000px !important;
+    max-height: 1000px !important;
+  }
 }
-}
-/* .active {
-    display:block;
-   border:1px solid #4A4A4A;
-    background-color: #4A4A4A;
-    text-align:center;
-    border-radius:25px;
-    line-height:45px;
-    margin-bottom:10px;
-    color:#FFF !important;
-}
-a {
-  color: #08ab65 !important;
-} */
+
+
 .active {
-    color: #fff !important;
-    text-decoration: none;
-    background-color: #007bff;
-    border-radius: 3px;
-    width: 95%!important;
+  color: #56BDF4 !important;
+  fill: #56BDF4 !important;
+  text-decoration: none;
+  /*     background-color: #007bff; */
+  border-radius: 3px;
+  width: 95% !important;
+
+  svg g path {
+    fill: #56BDF4;
+  }
+
+  svg-icon.icon {
+    svg g path {
+      fill: #56BDF4;
+    }
+
+    svg path {
+      fill: #56BDF4;
+    }
+  }
+
+
 }
 
-.dropdown-item:hover{
-color: #fff !important;
-    text-decoration: none;
-    background-color: #007bff;
-    border-radius: 3px;
-    width: 95%;
+svg-icon.icon {
+  fill: #56BDF4;
 }
-.menu-icon{
 
+
+
+
+
+.icon:hover svg g path {
+  fill: #56BDF4;
+}
+
+.dropdown-item:hover {
+  color: #fff !important;
+  text-decoration: none;
+  background-color: #007bff;
+  border-radius: 3px;
+  width: 95%;
+}
+
+.menu-icon {
   margin-right: 5px;
 }
 
-.menu-item{
+.menu-icon svg {
+  fill: #56BDF4;
+}
+
+.menu-item {
   font-size: 16px !important;
   line-height: 24px !important;
+}
+
+a:hover {
+  svg-icon.icon {
+    svg g path {
+      fill: #56BDF4;
+    }
+
+    svg path {
+      fill: #56BDF4;
+    }
+
+  }
 }

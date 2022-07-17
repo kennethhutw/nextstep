@@ -1,5 +1,25 @@
-.button-center{
-      display: flex;
+.button-center {
+  display: flex;
   align-items: center;
   justify-content: center;
+}
+
+::ng-deep input[type="checkbox"]:checked {
+  background-color: red;
+}
+
+input[type="checkbox"] {
+  background-color: red;
+}
+
+input:checked {
+  background-color: red;
+}
+
+.form-check-input:checked {
+  background-color: red;
+}
+
+input[type="checkbox"]:before {
+  background-color: red;
 }

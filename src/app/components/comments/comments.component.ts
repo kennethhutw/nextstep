@@ -67,7 +67,6 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log("======= ngOnChanges")
     if (
       changes.receiverUser !== null &&
       changes.receiverUser.currentValue !== null) {
@@ -99,7 +98,9 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnChanges {
 
     this.chatSrv.insert({
       sender: this.currentUser.id,
+      sender_name: this.currentUser.name,
       receiver: this._receiverUser.id,
+      receiver_name: this._receiverUser.name,
       content: this.message,
       type: "0",
       status: "0",
@@ -123,31 +124,22 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnChanges {
     try {
       this.loading = true;
       this.chatData = [];
-      /*  this.chatSrv.get(sender.id, receiver.id).subscribe
-         (res => {
-           console.log("init chat =========", res);
-           if (res['result'] == 'successful') {
-             this.chatData = res['data'];
-           }
-         }).catch(error => {
-           console.log("init chat failed ", error);
-         }).then(() => {
-           this.loading = false;
-         }) */
-      if (!this.utilitySrv.IsNullOrEmpty(sender.id) && !this.utilitySrv.IsNullOrEmpty(receiver.id)) {
-        this.chatSrv.getUserChatRecord(sender.id, receiver.id).subscribe
-          (res => {
-            console.log("init chat =========", res);
-            if (res['result'] == 'successful') {
-              this.chatData = res['data'];
-            }
-          }, error => {
-            console.log("init chat failed ", error);
-          }, () => {
-            this.loading = false;
-            this.cdf.detectChanges();
-          })
-      }
+
+      if (!this.utilitySrv.IsNullOrEmpty(sender) && !this.utilitySrv.IsNullOrEmpty(receiver))
+        if (!this.utilitySrv.IsNullOrEmpty(sender.id) && !this.utilitySrv.IsNullOrEmpty(receiver.id)) {
+          this.chatSrv.getUserChatRecord(sender.id, receiver.id).subscribe
+            (res => {
+              console.log("init chat =========", res);
+              if (res['result'] == 'successful') {
+                this.chatData = res['data'];
+              }
+            }, error => {
+              console.log("init chat failed ", error);
+            }, () => {
+              this.loading = false;
+              this.cdf.detectChanges();
+            })
+        }
 
     } catch (error) {
       console.log("init chat ", error);
