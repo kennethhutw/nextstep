@@ -3,23 +3,23 @@
   <div class="inbox_msg">
     <div class="inbox_people">
       <div class="headind_srch">
-        <div class="recent_heading">
+        <!--         <div class="recent_heading">
           <h4>Recent</h4>
-        </div>
+        </div> -->
         <div class="srch_bar">
           <div class="stylish-input-group">
-            <input type="text" class="search-bar" placeholder="Search">
+            <input type="text" class="search-bar" [(ngModel)]="searchText" placeholder="Search">
           </div>
         </div>
       </div>
       <div class="inbox_chat scroll">
-        <ng-container *ngFor="let item of items let i=index ;">
+        <ng-container *ngFor="let item of ( items | itemFilter: searchText : 'name' ) let i=index ;">
           <div class="chat_list" (click)="onClick(item)" [ngClass]="{ 'active_chat': item.name === selectedItem }">
             <div class="chat_people">
               <div class="chat_img"> <img [src]="item.image" alt="sunil"> </div>
               <div class="chat_ib">
                 <h5>{{item.name}} <span class="chat_date">{{item.date | date : 'yyyy-MM-dd'}}</span></h5>
-                <p>{{item.message}}</p>
+                <p class="chat_short_msg">{{item.message}}<span class="chat_num">10</span></p>
               </div>
             </div>
           </div>

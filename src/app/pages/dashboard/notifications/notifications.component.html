@@ -1,19 +1,21 @@
 <div class="row">
     <div class="col-md-12">
-        <h1>My Notifications</h1>
+        <h1>我的通知</h1>
     </div>
 </div>
 <ng-container *ngIf="notifications.length>0;else noItem ">
     <ng-container *ngFor="let item of  notifications; let i = index">
-        <div class="row mt-10">
+        <div class="row">
 
-            <div class="col-md-12 form-inline">
-                <span><i class="far fa-bell icon"></i></span>
+            <div class="col-md-12 form-inline msg-bar">
+                <span>
+                    <svg-icon src="assets/icons/msg-bell.svg"></svg-icon><!-- <i class="far fa-bell icon"></i> -->
+                </span>
                 <p class="msg-content">
-                    <b>
-                    </b>{{item.content}}
-                    <span style="float:right;margin-right: 10px;">{{item.time| date : 'yyyy-MM-dd HH:mm'}}</span>
-                </p>
+                    <b>{{item.content}}
+                    </b>
+
+                </p> <span class="msg-time">{{item.createdAt| date : 'yyyy-MM-dd'}}</span>
             </div>
 
         </div>

@@ -19,8 +19,7 @@ import { FindMemberComponent } from './findmember/findmember.component';
 import { ProfileComponent } from './profile/profile.component';
 import { newProjectComponent } from './newProject/newProject.component';
 import { PubProfileComponent } from './pubprofile/pubprofile.component';
-import { NotificationsComponent } from './notifications/notifications.component';
-import { ChatComponent } from './chat/chat.component';
+
 
 import { ProjectDetailComponent } from './project-detail/projectDetail.component';
 import { ProjectComponent } from './project/project.component';
@@ -33,11 +32,14 @@ import {
 } from './myProject';
 
 import {
+    ChatComponent,
     DashboardComponent,
     MyApplicationComponent,
     MyCollectionComponent,
+    MyProjectComponent,
+    NotificationsComponent,
     SettingsComponent,
-    MyProjectComponent
+
 } from './dashboard';
 
 import { JobComponent } from './job/job.component';
@@ -83,7 +85,6 @@ export const containers = [
 export { ActivityComponent } from "./activity/activity.component";
 export { AboutComponent } from "./about/about.component";
 export { CheckStatusComponent } from './checkStatus/checkStatus.component';
-export { ChatComponent } from './chat/chat.component';
 export { ErrorComponent } from "./error/error.component";
 export { FindMentorComponent } from './findmentor/findmentor.component';
 export { FindProjectComponent } from './findproject/findproject.component';
@@ -92,14 +93,8 @@ export { FeedbackComponent } from "./feedback/feedback.component";
 export { HomeComponent } from "./home/home.component";
 export { LoginComponent } from './login/login.component';
 export { newProjectComponent } from './newProject/newProject.component';
-export { NotificationsComponent } from './notifications/notifications.component';
 
-export {
-    MyProjectLogComponent,
-    MyProjectMemberComponent,
-    MyProjectProfileComponent,
-    MyProjectSettingsComponent
-} from './myProject';
+export * from './myProject';
 export * from './dashboard';
 export { ProjectDetailComponent } from './project-detail/projectDetail.component';
 export { ProjectComponent } from './project/project.component';

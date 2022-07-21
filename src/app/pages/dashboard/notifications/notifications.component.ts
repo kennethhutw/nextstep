@@ -1,10 +1,11 @@
-import { HostListener, HostBinding, Component, OnInit } from '@angular/core';
-import { DialogService, NotificationService, } from './../../_services';
-import { AuthStore } from './../../_services/auth.store';
+import { HostListener, ViewEncapsulation, Component, OnInit } from '@angular/core';
+import { DialogService, NotificationService, } from './../../../_services';
+import { AuthStore } from './../../../_services/auth.store';
 @Component({
   selector: 'app-my-notifications',
   templateUrl: './notifications.component.html',
-  styleUrls: ['./notifications.component.css']
+  styleUrls: ['./notifications.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class NotificationsComponent implements OnInit {
 
@@ -37,6 +38,7 @@ export class NotificationsComponent implements OnInit {
 
     this.currentUser = this.authStore.getUserData();
     this.notificationSrv.getNotifications(this.currentUser.id).then(res => {
+      console.log("=========", res);
       if (res['result'] == 'successful') {
         this.notifications = res['data'];
       } else {

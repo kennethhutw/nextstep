@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
-import { DataService } from "./../../_services";
-import { Utility } from "./../../_helpers";
+import { DataService } from "./../../../_services";
+import { Utility } from "./../../../_helpers";
 @Component({
   selector: "app-chat",
   templateUrl: "./chat.component.html",
@@ -27,6 +27,7 @@ export class ChatComponent implements OnInit {
     message: "BBB."
   }];
   selectedItem = "Kenneth";
+  searchText = '';
   constructor(
     private translateSrv: TranslateService,
     private utility: Utility,

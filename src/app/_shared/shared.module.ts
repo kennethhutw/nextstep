@@ -34,11 +34,8 @@ import {
 
 } from "../_directive";
 
-import {
-  AddressShortenPipe,
-  ShortenPipe,
-  UserFilterPipe
-} from "../_pipe";
+import
+  * as Pipes from "../_pipe";
 
 
 
@@ -57,9 +54,7 @@ import * as sharedComponents from "./../_shared"
     DialogComponent,
     ModalComponent,
     EditableInputComponent,
-    AddressShortenPipe,
-    ShortenPipe,
-    UserFilterPipe,
+    ...Pipes.pipes,
     LoadingComponent,
     ...sharedComponents.components,
   ],
@@ -81,9 +76,7 @@ import * as sharedComponents from "./../_shared"
     DialogComponent,
     ModalComponent,
     EditableInputComponent,
-    AddressShortenPipe,
-    ShortenPipe,
-    UserFilterPipe,
+    ...Pipes.pipes,
     LoadingComponent,
     ...sharedComponents.components,
   ],

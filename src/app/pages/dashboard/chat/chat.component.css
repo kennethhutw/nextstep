@@ -1,7 +1,8 @@
 /*---------chat window---------------*/
-.container{
-    max-width:900px;
+.container {
+	max-width: 900px;
 }
+
 .inbox_people {
 	background: #fff;
 	float: left;
@@ -28,7 +29,7 @@
 .srch_bar {
 	display: inline-block;
 	text-align: right;
-	width: 60%;
+	width: 100%;
 }
 
 .headind_srch {
@@ -39,16 +40,16 @@
 
 .recent_heading h4 {
 	color: #0465ac;
-    font-size: 16px;
-    margin: auto;
-    line-height: 29px;
+	font-size: 16px;
+	margin: auto;
+	line-height: 29px;
 }
 
 .srch_bar input {
 	outline: none;
 	border: 1px solid #cdcdcd;
 	border-width: 0 0 1px 0;
-	width: 80%;
+	width: 100%;
 	padding: 2px 0 4px 6px;
 	background: none;
 }
@@ -77,18 +78,33 @@
 }
 
 .chat_ib p {
-    font-size: 12px;
-    color: #989898;
-    margin: auto;
-    display: inline-block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+	font-size: 12px;
+	color: #989898;
+	margin: auto;
+	display: inline-block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .chat_img {
 	float: left;
 	width: 11%;
+}
+
+.chat_short_msg {
+	display: grid !important;
+	grid-template-columns: auto 30px;
+	gap: 8px;
+}
+
+.chat_num {
+	font-size: 14px;
+	padding: 2px 6px;
+	border: 1px solid #FF3356;
+	background-color: #FF3356;
+	border-radius: 50%;
+	color: #fff;
 }
 
 .chat_img img {
@@ -158,14 +174,15 @@
 	width: 57%;
 }
 
-.mesgs{
+.mesgs {
+	background-color: #fff;
 	float: left;
 	padding: 30px 15px 0 25px;
-	width:70%;
+	width: 70%;
 }
 
 .sent_msg p {
-	background:#0465ac;
+	background: #0465ac;
 	border-radius: 12px 15px 15px 0;
 	font-size: 14px;
 	margin: 0;
@@ -191,7 +208,7 @@
 	font-size: 15px;
 	min-height: 48px;
 	width: 100%;
-	outline:none;
+	outline: none;
 }
 
 .type_msg {
@@ -201,7 +218,7 @@
 
 .msg_send_btn {
 	background: #05728f none repeat scroll 0 0;
-	border:none;
+	border: none;
 	border-radius: 50%;
 	color: #fff;
 	cursor: pointer;

@@ -1,0 +1,45 @@
+app-my-notifications {
+
+  .msg-bar {
+    display: grid;
+    grid-template-columns: 3% auto 10%;
+    gap: 8px;
+    background-color: #fff;
+    padding: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.075);
+  }
+
+  .msg-time {
+    color: #343A4080;
+    font-size: 14px;
+  }
+
+  .button-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icon {
+    margin-right: 5px;
+  }
+
+  .icon_gray {
+    background-color: #e3e6ea;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    border-radius: 50%;
+    display: flex;
+  }
+
+  .msg-content {
+    font-size: 14px;
+    line-height: 1.5rem;
+    margin-left: 5px;
+    margin-bottom: 0px !important;
+    width: 80%;
+  }
+
+}
