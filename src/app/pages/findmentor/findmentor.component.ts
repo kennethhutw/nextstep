@@ -16,7 +16,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 @Component({
   selector: "app-find-mentor",
   templateUrl: "./findmentor.component.html",
-  styleUrls: ["./findmentor.component.css"]
+  styleUrls: ["./findmentor.component.scss"]
 })
 export class FindMentorComponent implements OnInit {
   filterCondition = {

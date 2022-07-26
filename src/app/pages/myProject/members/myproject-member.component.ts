@@ -23,7 +23,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-myproject-member',
   templateUrl: './myproject-member.component.html',
-  styleUrls: ['./myproject-member.component.css']
+  styleUrls: ['./myproject-member.component.scss']
 })
 export class MyProjectMemberComponent implements OnInit {
   projectId = "";

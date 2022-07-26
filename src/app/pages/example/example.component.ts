@@ -9,7 +9,7 @@ declare var $: any; // ADD THIS
 @Component({
   selector: 'app-example',
   templateUrl: './example.component.html',
-  styleUrls: ['./example.component.css']
+  styleUrls: ['./example.component.scss']
 })
 export class ExampleComponent implements OnInit {
   title = "owlcarouselinAngular";

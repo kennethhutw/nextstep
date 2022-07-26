@@ -13,7 +13,7 @@ import {
 @Component({
   selector: "app-project-bar",
   templateUrl: "./project-bar.component.html",
-  styleUrls: ["./project-bar.component.css"]
+  styleUrls: ["./project-bar.component.scss"]
 })
 export class ProjectBarComponent implements OnInit {
   _project = null;

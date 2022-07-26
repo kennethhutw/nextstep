@@ -22,7 +22,7 @@ import {
   selector: "app-signup",
   templateUrl: "./signup.component.html",
   styleUrls: [
-    "./signup.component.css",
+    "./signup.component.scss",
   ]
 })
 export class SignupComponent implements OnInit {

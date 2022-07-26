@@ -1,5 +1,5 @@
 import { HostListener, HostBinding, Component, OnInit } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+
 import {
   DialogService,
 
@@ -11,7 +11,7 @@ import {
 @Component({
   selector: 'app-myproject-logs',
   templateUrl: './myproject-logs.component.html',
-  styleUrls: ['./myproject-logs.component.css']
+  styleUrls: ['./myproject-logs.component.scss']
 })
 export class MyProjectLogComponent implements OnInit {
 

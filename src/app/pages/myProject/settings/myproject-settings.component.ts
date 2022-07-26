@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-myproject-settings',
   templateUrl: './myproject-settings.component.html',
-  styleUrls: ['./myproject-settings.component.css']
+  styleUrls: ['./myproject-settings.component.scss']
 })
 export class MyProjectSettingsComponent implements OnInit {
 

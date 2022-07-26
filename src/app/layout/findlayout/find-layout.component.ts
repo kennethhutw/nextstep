@@ -12,7 +12,7 @@ import {
   selector: "app-find-layout",
   templateUrl: "./find-layout.component.html",
   styleUrls: [
-    "./find-layout.component.css",
+    "./find-layout.component.scss",
   ]
 })
 export class FindLayoutComponent implements OnInit {

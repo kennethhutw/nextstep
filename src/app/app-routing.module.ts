@@ -43,10 +43,7 @@ const routes: Routes = [
       { path: "messages", component: Pages.ChatComponent },
       { path: "profile/:userId", component: Pages.PubProfileComponent },
       { path: "u/:userId", component: Pages.PubProfileComponent },
-      {
-        path: "checkStatus",
-        component: Pages.CheckStatusComponent
-      },
+
       {
         path: "verifyEmail",
         component: Pages.VerificationComponent

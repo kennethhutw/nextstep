@@ -7,7 +7,7 @@ import { Utility } from "./../../_helpers";
   selector: "app-policy",
   templateUrl: "./policy.component.html",
   styleUrls: [
-    "./policy.component.css",
+    "./policy.component.scss",
   ]
 })
 export class PolicyComponent implements OnInit {

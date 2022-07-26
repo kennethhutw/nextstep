@@ -43,9 +43,6 @@ export { TagComponent } from './tag/tag.component';
 export { FooterComponent } from "./footer/footer.component";
 export { HeaderComponent } from "./header/header.component";
 
-export { SubTabsComponent } from "./subTabs/subTabs.component";
-export { SubTabComponent } from "./subTab/subTab.component";
-export { SubTableComponent } from "./subTable/subTable.component";
 export { ProfileEditorComponent } from "./profile-editor/profile-editor.component";
 
 
@@ -55,7 +52,6 @@ export { DragDropFileDirective } from "./drag.directive";
 export { ModalComponent } from "./modal/modal.component";
 export { DialogComponent } from "./dialog/dialog.component";
 
-export { StepDotComponent } from './stepdot/stepdot.component';
 export { SidebarComponent } from "./admin/sidebar/sidebar.component";
 export { NavbarComponent } from "./admin/navbar/navbar.component";
 export { AdminFooterComponent } from "./admin/footer/footer.component";

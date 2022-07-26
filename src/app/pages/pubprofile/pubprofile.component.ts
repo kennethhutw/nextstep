@@ -18,7 +18,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: "app-pub-profile",
   templateUrl: "./pubprofile.component.html",
-  styleUrls: ["./pubprofile.component.css"]
+  styleUrls: ["./pubprofile.component.scss"]
 })
 export class PubProfileComponent implements OnInit {
   items = [];

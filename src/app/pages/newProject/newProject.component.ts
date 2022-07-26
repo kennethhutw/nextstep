@@ -13,7 +13,7 @@ import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browse
 @Component({
   selector: 'app-new-project',
   templateUrl: './newProject.component.html',
-  styleUrls: ['./newProject.component.css']
+  styleUrls: ['./newProject.component.scss']
 })
 export class newProjectComponent implements OnInit {
   projectForm: FormGroup;

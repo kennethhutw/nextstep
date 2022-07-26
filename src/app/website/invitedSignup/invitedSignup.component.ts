@@ -22,7 +22,7 @@ import {
   selector: "app-invitedSignup",
   templateUrl: "./invitedSignup.component.html",
   styleUrls: [
-    "./invitedSignup.component.css",
+    "./invitedSignup.component.scss",
   ]
 })
 export class InvitedSignupComponent implements OnInit {

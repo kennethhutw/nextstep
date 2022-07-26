@@ -5,7 +5,7 @@ import { DialogService } from './../../_services/dialog.service';
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
   styleUrls: [
-    './dialog.component.css',
+    './dialog.component.scss',
   ]
 })
 

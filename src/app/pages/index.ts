@@ -1,6 +1,6 @@
 
 import { HomeComponent } from "./home/home.component";
-import { TokenComponent } from "./token/token.component";
+
 import { ActivityComponent } from "./activity/activity.component";
 import { FeedbackComponent } from "./feedback/feedback.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
@@ -11,7 +11,6 @@ import { ErrorComponent } from "./error/error.component";
 import { ExampleComponent } from "./example/example.component";
 import { VerificationComponent } from './verification/verification.component';
 import { SetPasswordComponent } from './setPassword/setPassword.component';
-import { CheckStatusComponent } from './checkStatus/checkStatus.component';
 import { LoginComponent } from './login/login.component';
 import { FindMentorComponent } from './findmentor/findmentor.component';
 import { FindProjectComponent } from './findproject/findproject.component';
@@ -47,7 +46,6 @@ import { JobComponent } from './job/job.component';
 export const containers = [
     ActivityComponent,
     AboutComponent,
-    CheckStatusComponent,
     ChatComponent,
     DashboardComponent,
     ErrorComponent,
@@ -78,13 +76,12 @@ export const containers = [
     RecruitComponent,
     SetPasswordComponent,
     SettingsComponent,
-    TokenComponent,
+
     VerificationComponent,
 ];
 
 export { ActivityComponent } from "./activity/activity.component";
 export { AboutComponent } from "./about/about.component";
-export { CheckStatusComponent } from './checkStatus/checkStatus.component';
 export { ErrorComponent } from "./error/error.component";
 export { FindMentorComponent } from './findmentor/findmentor.component';
 export { FindProjectComponent } from './findproject/findproject.component';
@@ -106,7 +103,6 @@ export { PubProfileComponent } from './pubprofile/pubprofile.component';
 export { QAComponent } from "./qa/qa.component";
 export { RecruitComponent } from './recruit/recruit.component';
 export { SetPasswordComponent } from './setPassword/setPassword.component';
-export { TokenComponent } from "./token/token.component";
 export { VerificationComponent } from './verification/verification.component';
 
 export * from "./example/example.component";

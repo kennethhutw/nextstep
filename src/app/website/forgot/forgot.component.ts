@@ -21,7 +21,7 @@ import {
   selector: "app-forgot",
   templateUrl: "./forgot.component.html",
   styleUrls: [
-    "./forgot.component.css",
+    "./forgot.component.scss",
   ]
 })
 export class ForgotComponent implements OnInit {

@@ -17,7 +17,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 @Component({
   selector: "app-findproject",
   templateUrl: "./findproject.component.html",
-  styleUrls: ["./findproject.component.css"]
+  styleUrls: ["./findproject.component.scss"]
 })
 export class FindProjectComponent implements OnInit {
   items: any[] = [];

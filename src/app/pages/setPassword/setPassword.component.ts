@@ -7,7 +7,7 @@ import { TranslateService } from "@ngx-translate/core";
 @Component({
   selector: 'app-setPassword',
   templateUrl: './setPassword.component.html',
-  styleUrls: ['./setPassword.component.css']
+  styleUrls: ['./setPassword.component.scss']
 })
 export class SetPasswordComponent implements OnInit {
   Form: FormGroup;

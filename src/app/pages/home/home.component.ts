@@ -15,7 +15,7 @@ import { GoogleAnalyticsService } from "../../_services"; // import our analytic
   selector: "app-home",
   templateUrl: "./home.component.html",
   styleUrls: [
-    "./home.component.css",
+    "./home.component.scss",
   ],
   encapsulation: ViewEncapsulation.None,
 })

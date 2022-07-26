@@ -7,7 +7,7 @@ import { DataService } from "../../_services";
 @Component({
   selector: "app-project-log-bar",
   templateUrl: "./log-bar.component.html",
-  styleUrls: ["./log-bar.component.css"]
+  styleUrls: ["./log-bar.component.scss"]
 })
 export class LogBarComponent implements OnInit {
   _project = null;

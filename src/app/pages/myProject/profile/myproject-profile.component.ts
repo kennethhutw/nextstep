@@ -13,7 +13,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-myproject-profile.',
   templateUrl: './myproject-profile.component.html',
-  styleUrls: ['./myproject-profile.component.css']
+  styleUrls: ['./myproject-profile.component.scss']
 })
 export class MyProjectProfileComponent implements OnInit {
 

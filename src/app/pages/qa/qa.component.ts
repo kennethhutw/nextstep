@@ -6,7 +6,7 @@ import { Utility } from "./../../_helpers";
 @Component({
   selector: "app-qa",
   templateUrl: "./qa.component.html",
-  styleUrls: ["./qa.component.css"]
+  styleUrls: ["./qa.component.scss"]
 })
 export class QAComponent implements OnInit {
   constructor(private translateSrv: TranslateService,
@@ -16,7 +16,7 @@ export class QAComponent implements OnInit {
   }
 
   ngOnInit() {
-       let _lang = localStorage.getItem("lang");
+    let _lang = localStorage.getItem("lang");
     if (!this.utility.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
     }

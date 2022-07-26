@@ -10,7 +10,7 @@ import {
 @Component({
   selector: 'app-my-project-detail',
   templateUrl: './projectDetail.component.html',
-  styleUrls: ['./projectDetail.component.css']
+  styleUrls: ['./projectDetail.component.scss']
 })
 export class ProjectDetailComponent implements OnInit {
 

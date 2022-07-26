@@ -17,7 +17,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 @Component({
   selector: "app-findmember",
   templateUrl: "./findmember.component.html",
-  styleUrls: ["./findmember.component.css"]
+  styleUrls: ["./findmember.component.scss"]
 })
 export class FindMemberComponent implements OnInit {
 

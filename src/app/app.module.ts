@@ -15,15 +15,11 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import {
   FooterComponent,
   HeaderComponent,
-  SubTabComponent,
-  SubTabsComponent,
-  SubTableComponent,
+
   ProfileEditorComponent,
   NavbarComponent,
   SidebarComponent,
   AdminFooterComponent,
-
-  StepDotComponent
 } from "./components";
 
 import {
@@ -80,15 +76,11 @@ export function createLoader(http: HttpClient) {
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    SubTabComponent,
-    SubTabsComponent,
-    SubTableComponent,
     ProfileEditorComponent,
 
     NavbarComponent,
     SidebarComponent,
     AdminFooterComponent,
-    StepDotComponent,
     Websitepages.containers
   ],
   imports: [

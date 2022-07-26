@@ -20,7 +20,7 @@ import {
   selector: "app-signup-info",
   templateUrl: "./info.component.html",
   styleUrls: [
-    "./info.component.css",
+    "./info.component.scss",
   ]
 })
 export class SignupInfoComponent implements OnInit {

@@ -5,7 +5,7 @@ import { Utility } from "../../_helpers";
 @Component({
   selector: "ui-radio-item",
   templateUrl: "./radio-item.component.html",
-  styleUrls: ["./radio-item.component.css"],
+  styleUrls: ["./radio-item.component.scss"],
   encapsulation: ViewEncapsulation.None,
 })
 export class RadioItemComponent implements OnInit {

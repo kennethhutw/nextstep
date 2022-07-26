@@ -7,7 +7,7 @@ import { Utility } from "../../_helpers";
   selector: "app-error",
   templateUrl: "./error.component.html",
   styleUrls: [
-    "./error.component.css",
+    "./error.component.scss",
   ]
 })
 export class ErrorComponent implements OnInit {
