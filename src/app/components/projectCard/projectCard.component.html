@@ -1,5 +1,5 @@
 <div class="card card-white grid-margin">
-  <div class="header">
+  <div class="header" [ngClass]="{ 'header-nologin': !user }">
     <div class="">
       <a (click)="routeToUserProfile()">
         <h6 class="mt-10 mb-10 text-body name text-left">{{ project.name }}</h6>
