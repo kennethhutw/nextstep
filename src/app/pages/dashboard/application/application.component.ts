@@ -1,5 +1,7 @@
-import { HostListener, HostBinding, Component, OnInit } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import {
+  HostListener, HostBinding,
+  Component, OnInit
+} from '@angular/core';
 import {
   DialogService,
   ProjectService
@@ -10,7 +12,7 @@ import {
 @Component({
   selector: 'app-my-application',
   templateUrl: './application.component.html',
-  styleUrls: ['./application.component.css']
+  styleUrls: ['./application.component.scss']
 })
 export class MyApplicationComponent implements OnInit {
 

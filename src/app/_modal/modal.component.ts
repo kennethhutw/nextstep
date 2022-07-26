@@ -7,7 +7,7 @@ import { ModalService } from './modal.service';
     templateUrl: 'modal.component.html',
 
     styleUrls: [
-        "./modal.component.css",
+        "./modal.component.scss",
     ],
     encapsulation: ViewEncapsulation.None
 })

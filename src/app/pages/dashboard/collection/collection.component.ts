@@ -1,5 +1,5 @@
 import { HostListener, HostBinding, Component, OnInit } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+
 import {
   DialogService,
   ProjectService,
@@ -11,7 +11,7 @@ import {
 @Component({
   selector: 'app-my-collection',
   templateUrl: './collection.component.html',
-  styleUrls: ['./collection.component.css']
+  styleUrls: ['./collection.component.scss']
 })
 export class MyCollectionComponent implements OnInit {
 

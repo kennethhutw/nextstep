@@ -31,7 +31,7 @@ import { environment } from '../../../../../environments/environment';
 @Component({
   selector: 'app-admin-user-info',
   templateUrl: './info.component.html',
-  styleUrls: ['./info.component.css']
+  styleUrls: ['./info.component.scss']
 })
 export class UserInfoComponent implements OnInit, OnDestroy {
   subscription: Subscription = new Subscription();

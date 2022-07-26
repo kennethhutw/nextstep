@@ -3,27 +3,27 @@ import { DataService } from '../../_services';
 import { Router } from '@angular/router';
 
 @Component({
-    templateUrl: 'admin-layout.component.html',
-    styleUrls: ['admin-layout.component.css']
+  templateUrl: 'admin-layout.component.html',
+  styleUrls: ['admin-layout.component.scss']
 })
 export class AdminLayoutComponent implements OnInit {
 
-    display = true;
+  display = true;
 
 
-    constructor(
+  constructor(
 
-        private dataSrv: DataService,
-        private router: Router,
-    ) {
+    private dataSrv: DataService,
+    private router: Router,
+  ) {
 
-    }
+  }
 
-    ngOnInit() {
-      //  this.dataSrv.currentShowAdminSideBar.subscribe(value => (this.display = value));
-    }
+  ngOnInit() {
+    //  this.dataSrv.currentShowAdminSideBar.subscribe(value => (this.display = value));
+  }
 
-      getClasses() {
+  getClasses() {
     const classes = {
       'pinned-sidebar': this.dataSrv.getSidebarStat().isSidebarPinned,
       'toggeled-sidebar': this.dataSrv.getSidebarStat().isSidebarToggeled

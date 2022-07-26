@@ -23,7 +23,7 @@ import {
 @Component({
   selector: 'app-usersetting',
   templateUrl: './usersetting.component.html',
-  styleUrls: ['./usersetting.component.css']
+  styleUrls: ['./usersetting.component.scss']
 })
 export class UserSettingComponent implements OnInit {
 

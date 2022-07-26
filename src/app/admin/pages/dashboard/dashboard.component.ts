@@ -6,7 +6,7 @@ import {
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css', './../lightning-admin.css']
+  styleUrls: ['./dashboard.component.scss', './../lightning-admin.css']
 })
 export class DashboardComponent implements OnInit {
 

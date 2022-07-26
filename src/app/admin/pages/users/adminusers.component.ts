@@ -17,7 +17,7 @@ import {
 @Component({
   selector: 'app-adminusers',
   templateUrl: './adminusers.component.html',
-  styleUrls: ['./adminusers.component.css'],
+  styleUrls: ['./adminusers.component.scss'],
   animations: [
     trigger('slideInOut', [
       state('in', style({

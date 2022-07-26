@@ -5,7 +5,7 @@ import { ConfirmDialogService } from '../../_services';
   selector: 'app-confirm-dialog',
   templateUrl: './confirm-dialog.component.html',
   styleUrls: [
-    './confirm-dialog.component.css',
+    './confirm-dialog.component.scss',
   ]
 })
 

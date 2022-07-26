@@ -17,7 +17,7 @@ import {
 @Component({
   selector: 'app-admin-delegate-email',
   templateUrl: './delegate-email.component.html',
-  styleUrls: ['./delegate-email.component.css'],
+  styleUrls: ['./delegate-email.component.scss'],
 })
 export class AdminDelegateEmailComponent implements OnInit {
 

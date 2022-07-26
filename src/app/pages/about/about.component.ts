@@ -7,7 +7,7 @@ import { Utility } from "./../../_helpers";
   selector: "app-about",
   templateUrl: "./about.component.html",
   styleUrls: [
-    "./about.component.css",
+    "./about.component.scss",
   ]
 })
 export class AboutComponent implements OnInit {
