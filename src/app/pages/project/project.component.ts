@@ -58,6 +58,7 @@ export class ProjectComponent implements OnInit {
     }
     this.projectId = this.route.snapshot.paramMap.get("id");
     this.ProjectSrv.getProject(this.projectId, _id).then(res => {
+      console.log("======", res);
       if (res['result'] == 'successful') {
         this.currentProject = res['data'];
       }

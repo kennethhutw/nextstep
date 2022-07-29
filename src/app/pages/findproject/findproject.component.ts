@@ -24,6 +24,9 @@ export class FindProjectComponent implements OnInit {
   displayItems = [];
   currentUser;
   filterCondition = {
+    isFindPartner: false,
+    isFunding: false,
+    isCofounder: false,
     sideproject: false,
     fullproject: false,
     websit: false,
@@ -98,9 +101,40 @@ export class FindProjectComponent implements OnInit {
     }
   }
 
-  onfilter(value) {
 
+  onProjectStatusChange(event) {
+    console.log("=======");
+    if (!this.filterCondition.isFindPartner &&
+      !this.filterCondition.isFunding &&
+      !this.filterCondition.isCofounder) {
+      this.displayItems = this.items;
+    } else {
+      let currentItem = []
+      this.items.map(item => {
+        if (this.filterCondition.isFindPartner
+          && item.isFindPartner) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+        if (this.filterCondition.isFunding
+          && item.isFunding) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+        if (this.filterCondition.isCofounder && item.isCofounder) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+        this.displayItems = currentItem;
+      })
 
+    }
+    /*  if (this.displayItems.length > 0)
+       this.checkType(this.displayItems)
+     this.finalCheck(); */
   }
 
   onProjectChange(event) {
@@ -320,6 +354,42 @@ export class FindProjectComponent implements OnInit {
     this.displayItems = this.items;
   }
 
+  checkProjectStatus(items) {
+    if (this.filterCondition.isFindPartner &&
+      this.filterCondition.isFunding &&
+      this.filterCondition.isCofounder) {
+      this.displayItems = items;
+    } else if (!this.filterCondition.isFindPartner &&
+      !this.filterCondition.isFunding &&
+      !this.filterCondition.isCofounder) {
+
+      this.displayItems = items;
+    } else {
+      let currentItem = []
+      this.items.map(item => {
+        if (this.filterCondition.isFindPartner
+          && item.isFindPartner) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+        if (this.filterCondition.isFunding
+          && item.isFunding) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+        if (this.filterCondition.isCofounder && item.isCofounder) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+        this.displayItems = currentItem;
+      })
+
+    }
+  }
+
   checkProject(items) {
     if (this.filterCondition.sideproject && this.filterCondition.fullproject) {
       this.displayItems = items;
@@ -340,50 +410,36 @@ export class FindProjectComponent implements OnInit {
 
   checkWorkTime(items) {
     let currentItem = []
-    if (!this.filterCondition.work12 &&
-      !this.filterCondition.work34 &&
-      !this.filterCondition.work56 &&
-      !this.filterCondition.work78 &&
-      !this.filterCondition.work9) {
-      this.displayItems = items;
-    } else if (this.filterCondition.work12 &&
-      this.filterCondition.work34 &&
-      this.filterCondition.work56 &&
-      this.filterCondition.work78 &&
-      this.filterCondition.work9) {
-      this.displayItems = items;
-    } else {
-      items.map(item => {
-        if (this.filterCondition.work12 && item.work12) {
-          if (!this.isExist(currentItem, item.id)) {
-            currentItem.push(item);
-          }
-        }
-        if (this.filterCondition.work34 && item.work34) {
-          if (!this.isExist(currentItem, item.id)) {
-            currentItem.push(item);
-          }
-        }
-        if (this.filterCondition.work56 && item.work56) {
-          if (!this.isExist(currentItem, item.id)) {
-            currentItem.push(item);
-          }
-        }
-        if (this.filterCondition.work78 && item.work78) {
-          if (!this.isExist(currentItem, item.id)) {
-            currentItem.push(item);
-          }
-        }
-        if (this.filterCondition.work9 && item.work9) {
-          if (!this.isExist(currentItem, item.id)) {
-            currentItem.push(item);
-          }
-        }
 
-        this.displayItems = currentItem;
-      })
-    }
+    items.map(item => {
+      if (this.filterCondition.work12 && item.work12) {
+        if (!this.isExist(currentItem, item.id)) {
+          currentItem.push(item);
+        }
+      }
+      if (this.filterCondition.work34 && item.work34) {
+        if (!this.isExist(currentItem, item.id)) {
+          currentItem.push(item);
+        }
+      }
+      if (this.filterCondition.work56 && item.work56) {
+        if (!this.isExist(currentItem, item.id)) {
+          currentItem.push(item);
+        }
+      }
+      if (this.filterCondition.work78 && item.work78) {
+        if (!this.isExist(currentItem, item.id)) {
+          currentItem.push(item);
+        }
+      }
+      if (this.filterCondition.work9 && item.work9) {
+        if (!this.isExist(currentItem, item.id)) {
+          currentItem.push(item);
+        }
+      }
 
+      this.displayItems = currentItem;
+    })
   }
 
   checkType(items) {
@@ -442,6 +498,9 @@ export class FindProjectComponent implements OnInit {
   }
 
   onCleanClick() {
+    this.filterCondition.isCofounder = false;
+    this.filterCondition.isFindPartner = false;
+    this.filterCondition.isFunding = false;
     this.filterCondition.eComm = false;
     this.filterCondition.ai = false;
     this.filterCondition.edutech = false;

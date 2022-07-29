@@ -25,6 +25,8 @@ import { ToastService } from './toastr.service';
 import { UserService } from "./user.service";
 import { UserTourService } from './user-tour.service';
 import { UserSettingService } from './userSetting.service';
+import { ViewsService } from "./views.service";
+
 
 export const services = [
     ActivityService,
@@ -53,7 +55,8 @@ export const services = [
     SettingService,
     UserService,
     UserSettingService,
-    UserTourService];
+    UserTourService,
+    ViewsService];
 
 
 export * from "./activity.service";
@@ -84,3 +87,4 @@ export * from './project.service';
 export * from './proposal.service';
 export * from './recruit.service';
 export * from './invitation.service';
+export { ViewsService } from "./views.service";

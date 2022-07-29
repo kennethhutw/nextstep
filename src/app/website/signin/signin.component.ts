@@ -1,4 +1,10 @@
-import { Component, OnInit, HostListener, ChangeDetectorRef } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  HostListener,
+  ChangeDetectorRef,
+  ViewEncapsulation
+} from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
   DataService,
@@ -23,7 +29,8 @@ import {
   templateUrl: "./signin.component.html",
   styleUrls: [
     "./signin.component.scss",
-  ]
+  ],
+  encapsulation: ViewEncapsulation.None
 })
 export class SigninComponent implements OnInit {
   width = false;

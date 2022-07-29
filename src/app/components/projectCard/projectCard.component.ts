@@ -1,6 +1,9 @@
 import {
-  Component, Output, Input,
-  EventEmitter
+  Component,
+  Output,
+  Input,
+  EventEmitter,
+  ViewEncapsulation
 } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Utility } from "../../_helpers";
@@ -12,7 +15,9 @@ import { TranslateService } from "@ngx-translate/core";
 @Component({
   selector: "ui-project-card",
   templateUrl: "./projectCard.component.html",
-  styleUrls: ["./projectCard.component.scss"]
+  styleUrls: ["./projectCard.component.scss"],
+
+  encapsulation: ViewEncapsulation.None
 })
 export class ProjectCardComponent {
   @Input() project;

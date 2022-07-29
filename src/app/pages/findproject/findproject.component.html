@@ -7,17 +7,22 @@
       <nav class="sidebar-menu pt-3 pb-3">
         <ul class="menu-items" style="padding-left: 20px;">
           <li class="mb-12">
-            <span class="title">專案類型</span>
+            <span class="title">專案狀態</span>
           </li>
           <li>
-            <input type="checkbox" [(ngModel)]="filterCondition.sideproject" (change)="onProjectChange($event)"
+            <input type="checkbox" [(ngModel)]="filterCondition.isFindPartner" (change)="onProjectStatusChange($event)"
               data-key="project" />
-            <label class="option" for="firsttimeInput">Side Project</label>
+            <label class="option" for="firsttimeInput">徵成員</label>
           </li>
           <li>
-            <input type="checkbox" [(ngModel)]="filterCondition.fullproject" (change)="onProjectChange($event)"
+            <input type="checkbox" [(ngModel)]="filterCondition.isFunding" (change)="onProjectStatusChange($event)"
               data-key="project" />
-            <label class="option" for="firsttimeInput">Project</label>
+            <label class="option" for="firsttimeInput">募資中</label>
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="filterCondition.isCofounder" (change)="onProjectStatusChange($event)"
+              data-key="project" />
+            <label class="option" for="firsttimeInput">找共同創辦人</label>
           </li>
 
         </ul>

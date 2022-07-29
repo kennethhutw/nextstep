@@ -19,12 +19,12 @@
 <div>
   <h3>也許您會感興趣</h3>
   <div class="row" *ngIf="items.length ===0" style="height:300px">
-    No project
+    無推薦專案
   </div>
   <!--person-->
   <ng-container *ngIf="items.length >0">
     <div class="row">
-      <ng-container *ngFor="let item of  items; let i = index">
+      <ng-container *ngFor="let item of  items| slice:0:2;let i = index">
         <div class="col-md-6 text-center">
 
           <ui-project-card (onCollect)="onCollect($event)" [project]="item" [user]="currentUser"></ui-project-card>
@@ -36,16 +36,15 @@
 </div>
 <div>
   <h3>推薦給您</h3>
-  <div class="row" *ngIf="items.length ===0" style="height:300px">
-    No project
+  <div class="row" *ngIf="mentors.length ===0" style="height:300px">
+    無推薦導師
   </div>
   <!--person-->
-  <ng-container *ngIf="items.length >0">
+  <ng-container *ngIf="mentors.length >0">
     <div class="row">
-      <ng-container *ngFor="let item of  items; let i = index">
+      <ng-container *ngFor="let item of  mentors| slice:0:2; let i = index">
         <div class="col-md-6 text-center">
-
-          <app-user-card (onCollect)="onCollect($event)" s [user]="item" [type]="'mentor'" [currentuser]="currentUser">
+          <app-user-card (onCollect)="onCollect($event)" [user]="item" [type]="'mentor'" [currentuser]="currentUser">
           </app-user-card>
         </div>
       </ng-container>
