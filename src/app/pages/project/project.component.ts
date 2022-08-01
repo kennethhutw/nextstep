@@ -7,7 +7,8 @@ import {
   PagerService,
   AppSettingsService,
   SettingService,
-  ToastService
+  ToastService,
+  ViewsService
 } from "../../_services";
 import {
   AuthStore
@@ -42,33 +43,58 @@ export class ProjectComponent implements OnInit {
     private membersSrv: MembersService,
     private utility: Utility,
     private route: ActivatedRoute,
+    private viewsService: ViewsService,
     private appSettingsSrv: AppSettingsService,
     private SpinnerService: NgxSpinnerService,
     public toastr: ToastService
   ) {
     this.defaultProfileLogo = this.settingSrv.defaultProfileLogo;
+
   }
 
   ngOnInit() {
     this.SpinnerService.show();
     this.currentUser = this.authStore.getUserData();
+
+    this.projectId = this.route.snapshot.paramMap.get("id");
     let _id = null;
     if (this.currentUser && this.currentUser.id) {
       _id = this.currentUser.id;
     }
-    this.projectId = this.route.snapshot.paramMap.get("id");
     this.ProjectSrv.getProject(this.projectId, _id).then(res => {
       console.log("======", res);
       if (res['result'] == 'successful') {
         this.currentProject = res['data'];
       }
+      let _id = null;
+      if (this.currentUser && this.currentUser.id) {
+        _id = this.currentUser.id;
+        if (this.currentUser.owner != this.currentUser.id) {
+          this.viewsService.insert(
+            this.projectId,
+            "project",
+            _id,
+            "",
+            _id
+          );
+        }
+
+      } else {
+        this.viewsService.insert(
+          this.projectId,
+          "project",
+          _id,
+          "",
+          _id
+        );
+
+      }
+
       this.SpinnerService.hide();
     }).catch(error => {
       console.error("error", error);
       this.SpinnerService.hide();
     })
-
-
   }
 
 
@@ -122,6 +148,32 @@ export class ProjectComponent implements OnInit {
   onPage(i, currentPageIndex) {
     let _num = this.pagerSrv.Page(i, currentPageIndex, 3);
     return _num;
+  }
+
+  onClickFollow() {
+    this.viewsService.follow(
+      this.projectId,
+      "project",
+      this.currentUser.id
+    ).then(res => {
+      if (res['result'] == 'successful') {
+        this.currentProject.followCount += 1;
+      }
+    });
+
+
+  }
+  onClickCollect() {
+    this.viewsService.collect(
+      this.projectId,
+      "project",
+      this.currentUser.id
+    ).then(res => {
+      if (res['result'] == 'successful') {
+        this.currentProject.collectCount += 1;
+      }
+    });
+
   }
 }
 //https://www.sliderrevolution.com/resources/bootstrap-profile/
