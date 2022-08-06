@@ -16,8 +16,26 @@ export class NotificationService {
         return await this.http.get(`${environment.apiUrl}/notifications/${uid}`, {}).toPromise();
     }
 
-    async insertMember(params) {
-        return await this.http.post(`${environment.apiUrl}/members`, params).toPromise();
+    //  receiver_id,
+    //   sender_id,
+    //   content,
+    //   type,
+    // isRead,
+    // status
+    async insert(receiver_id,
+        sender_id,
+        content,
+        type,
+        isRead,
+        status) {
+        return await this.http.post(`${environment.apiUrl}/notifications`, {
+            receiver_id,
+            sender_id,
+            content,
+            type,
+            isRead,
+            status
+        }).toPromise();
     }
 
 

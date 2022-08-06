@@ -8,9 +8,30 @@ import {
 import { Utility } from "./../../_helpers";
 import { environment } from '../../../environments/environment';
 import { GoogleAnalyticsService } from "../../_services"; // import our analytics service
-
-
-
+import { SwiperComponent } from "swiper/angular";
+import SwiperCore, {
+  SwiperOptions,
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Virtual,
+  Zoom,
+  Autoplay,
+  Thumbs,
+  Controller
+} from "swiper";
+SwiperCore.use([
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Virtual,
+  Zoom,
+  Autoplay,
+  Thumbs,
+  Controller
+]);
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
@@ -20,61 +41,61 @@ import { GoogleAnalyticsService } from "../../_services"; // import our analytic
   encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent implements OnInit {
-  popularProjects = [];
+  // popularProjects = [];
   popularUsers = [];
   popularMentors = [];
-  /*   popularProjects = [{
-      name: "Next",
-      description: "找尋side project, 找尋team member, 建立side project, 找尋side project意見",
-      type: "Startup"
-    }, {
-      name: "Karma",
-      description: "WFH sorted: praise, rewards, surveys and watercooler chats",
-      type: "Startup"
-    }, {
-      name: "Early Bird",
-      description: "If Appsumo and Product Hunt had a baby.",
-      type: "Startup"
-    }, {
-      name: "Ragg",
-      description: "Cleaning platform app",
-      type: "Startup"
-    }];
-    recentProjects = [];
-    popularUsers = [{
-      name: "John Doe",
-      position: "Front End Developer",
-      type: "Startup"
-    }, {
-      name: "Kitty",
-      description: "UI/UX Designer",
-      type: "Startup"
-    }, {
-      name: "Eduardo Braga",
-      description: "Product manager",
-      type: "Startup"
-    }, {
-      name: "Chhail Khalsa",
-      description: "UI Designer",
-      type: "Startup"
-    }];
-    popularMentors = [{
-      name: "John Doe",
-      position: "Front End Developer",
-      type: "Startup"
-    }, {
-      name: "Kitty",
-      description: "UI/UX Designer",
-      type: "Startup"
-    }, {
-      name: "Eduardo Braga",
-      description: "Product manager",
-      type: "Startup"
-    }, {
-      name: "Chhail Khalsa",
-      description: "UI Designer",
-      type: "Startup"
-    }]; */
+  popularProjects = [{
+    name: "Next",
+    description: "找尋side project, 找尋team member, 建立side project, 找尋side project意見",
+    type: "Startup"
+  }, {
+    name: "Karma",
+    description: "WFH sorted: praise, rewards, surveys and watercooler chats",
+    type: "Startup"
+  }, {
+    name: "Early Bird",
+    description: "If Appsumo and Product Hunt had a baby.",
+    type: "Startup"
+  }, {
+    name: "Ragg",
+    description: "Cleaning platform app",
+    type: "Startup"
+  }];
+  // recentProjects = [];
+  // popularUsers = [{
+  //   name: "John Doe",
+  //   position: "Front End Developer",
+  //   type: "Startup"
+  // }, {
+  //   name: "Kitty",
+  //   description: "UI/UX Designer",
+  //   type: "Startup"
+  // }, {
+  //   name: "Eduardo Braga",
+  //   description: "Product manager",
+  //   type: "Startup"
+  // }, {
+  //   name: "Chhail Khalsa",
+  //   description: "UI Designer",
+  //   type: "Startup"
+  // }];
+  // popularMentors = [{
+  //   name: "John Doe",
+  //   position: "Front End Developer",
+  //   type: "Startup"
+  // }, {
+  //   name: "Kitty",
+  //   description: "UI/UX Designer",
+  //   type: "Startup"
+  // }, {
+  //   name: "Eduardo Braga",
+  //   description: "Product manager",
+  //   type: "Startup"
+  // }, {
+  //   name: "Chhail Khalsa",
+  //   description: "UI Designer",
+  //   type: "Startup"
+  // }];
 
   default_main_bg = "./assets/images/home1.jpg";
 
@@ -89,6 +110,17 @@ export class HomeComponent implements OnInit {
     }
     return R;
   }
+
+  swiperConfig: SwiperOptions = {
+    slidesPerView: 'auto',
+    spaceBetween: 10,
+    slidesPerGroup: 4,
+    loop: true,
+    loopFillGroupWithBlank: true,
+    navigation: true,
+    pagination: { clickable: true },
+    scrollbar: { draggable: true },
+  };
 
   constructor(
     private gaSrv: GoogleAnalyticsService,

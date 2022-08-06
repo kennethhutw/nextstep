@@ -41,12 +41,13 @@
     </div>
   </div>
 
+
   <div id="popularProjects" class="row">
     <div id="carouselProjectControls" class="carousel slide w-100" data-ride="carousel" data-bs-wrap="true">
       <div class="carousel-inner  row w-100 mx-auto" role="listbox">
         <ng-container *ngFor="let project of popularProjects ; let i = index">
 
-          <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 " [ngClass]="{ 'active': i === 0 }">
+          <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 " [ngClass]="{ 'active': i ===0 }">
             <!--  <div class="col-md-4 mb-30"> -->
             <app-project-item [project]="project" title="{{project.name}}" description="{{project.description}}">
             </app-project-item>

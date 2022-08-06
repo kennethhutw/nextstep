@@ -62,6 +62,8 @@ import { SharedModule } from "./_shared/shared.module";
 
 import { ModalModule } from './_modal';
 import { GoogleAnalyticsService } from "./_services";
+import { SwiperModule } from 'swiper/angular';
+
 
 export function createLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -104,7 +106,8 @@ export function createLoader(http: HttpClient) {
         deps: [HttpClient],
       },
     }),
-    SocialLoginModule
+    SocialLoginModule,
+    SwiperModule
   ],
   providers: [GoogleAnalyticsService,
     {

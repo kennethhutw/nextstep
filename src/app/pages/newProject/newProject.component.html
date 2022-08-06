@@ -4,17 +4,23 @@
             <div class="pos-rel">
                 <!-- Nav pills -->
                 <ul class="nav nav-pills justify-content-center nav-justified" role="tablist">
-                    <li class="nav-item" (click)="onChangeStep('basic')">
-                        <a data-toggle="pill" href="#organizer-details"><span class="step selected"
-                                [ngClass]="{ 'selected': currentStep === 'basic' }">1</span>基本資訊</a>
+                    <li class="nav-item">
+                        <span class="step selected" [ngClass]="{ 'selected': currentStep === 'basic' }">{{currentStep
+                            === 'basic'?"1":"V"}}</span>基本資訊
+                        <!-- <a data-toggle="pill" href="#organizer-details"><span class="step selected"
+                                [ngClass]="{ 'selected': currentStep === 'basic' }">1</span>基本資訊</a> -->
                     </li>
-                    <li class="nav-item" (click)="onChangeStep('addMember')">
-                        <a data-toggle="pill" href="#event-details"><span class="step"
-                                [ngClass]="{ 'selected': currentStep === 'addMember' }">2</span>加入成員</a>
+                    <li class="nav-item">
+                        <span class="step" [ngClass]="{ 'selected': currentStep === 'addMember' }">{{currentStep
+                            === 'addMember'?"2":currentStep
+                            === 'findMember'?"V":"2"}}</span>加入成員
+                        <!-- <a data-toggle="pill" href="#event-details"><span class="step"
+                                [ngClass]="{ 'selected': currentStep === 'addMember' }">2</span>加入成員</a> -->
                     </li>
-                    <li class="nav-item" (click)="onChangeStep('findMember')">
-                        <a data-toggle="pill" href="#confirm-details"><span class="step"
-                                [ngClass]="{ 'selected': currentStep === 'findMember' }">3</span>夥伴招募</a>
+                    <li class="nav-item">
+                        <span class="step" [ngClass]="{ 'selected': currentStep === 'findMember' }">3</span>夥伴招募
+                        <!-- <a data-toggle="pill" href="#confirm-details"><span class="step"
+                                [ngClass]="{ 'selected': currentStep === 'findMember' }">3</span>夥伴招募</a> -->
                     </li>
                 </ul>
             </div><!--   pos-rel end -->
@@ -22,7 +28,7 @@
     </div>
     <!--   row end -->
 
-    <div *ngIf="currentStep === 'basic'" class="row mt-30">
+    <div *ngIf="currentStep === 'basic'" class=" mt-30">
         <div class="row">
             <div class="col-md-12">
                 <h1>基本資料</h1>
@@ -31,7 +37,7 @@
                 <div class="row">
                     <div class="col-md-12 mb-12 form-group ">
                         <label class="pr-2" for="projectname">
-                            <h5> 專案名稱 :</h5>
+                            <h5> 專案名稱*</h5>
                         </label>
                         <input type="text" formControlName="name" id="projectname" class="form-control mr-10">
                         <div *ngIf="submitted && f.name.errors">
@@ -42,82 +48,82 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12 mb-12 form-group ">
+                    <!--  <div class="col-md-12 mb-12 form-group ">
                         <label class="pr-2" for="projectname">
-                            <h5> 專案類型 :</h5>
+                            <h5> 專案類型*</h5>
                         </label>
                         <div class="form-group">
-                            <input type="radio" formControlName="type" value="side"><small>Side
-                                project</small>
-                            <input type="radio" formControlName="type" value="full"><small>全職工作</small>
+                            <input type="radio" formControlName="type" value="side"><span>Side
+                                project</span>
+                            <input type="radio" formControlName="type" value="full"><span>全職工作</span>
                         </div>
 
                     </div>
-                    <div class="col-md-12 mb-12 form-group ">
+                   <div class="col-md-12 mb-12 form-group ">
                         <label class="pr-2" for="projectname">
-                            <h5> 專案產品 :</h5>
+                            <h5> 專案產品*</h5>
                         </label>
                         <div class="form-group">
                             <input type="checkbox" (change)="onTypeChange($event, 'website')"
-                                [checked]="isInValue('eComm', f.type.value)" value="website"><small>網站</small>
+                                [checked]="isInValue('eComm', f.type.value)" value="website"><span>網站</span>
                             <input type="checkbox" (change)="onTypeChange($event, 'app')"
-                                [checked]="isInValue('ai', f.type.value)" value="app"><small>App</small>
+                                [checked]="isInValue('ai', f.type.value)" value="app"><span>App</span>
                             <input type="checkbox" (change)="onTypeChange($event, 'hardware')"
-                                [checked]="isInValue('ai', f.type.value)" value="hardware"><small>硬體</small>
+                                [checked]="isInValue('ai', f.type.value)" value="hardware"><span>硬體</span>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-md-12 mb-12 form-group ">
                         <label class="pr-2" for="projectname">
-                            <h5> 產業類型 :</h5>
+                            <h5> 產業類型*</h5>
                         </label>
                         <div class="form-group">
-                            <input type="checkbox" (change)="onTypeChange($event, 'eComm')"
-                                [checked]="isInValue('eComm', f.type.value)" value="eComm"><small>電子商務</small>
-                            <input type="checkbox" (change)="onTypeChange($event, 'ai')"
-                                [checked]="isInValue('ai', f.type.value)" value="ai"><small>人工智慧</small>
-                            <input type="checkbox" (change)="onTypeChange($event, 'edutech')"
-                                [checked]="isInValue('edutech', f.type.value)" value="edutech"><small>教育科技</small>
-                            <input type="checkbox" (change)="onTypeChange($event, 'sharingeconomy')"
+                            <input type="checkbox" (change)="onIndustryTypeChange($event, 'eComm')"
+                                [checked]="isInValue('eComm', f.type.value)" value="eComm"><span>電子商務</span>
+                            <input type="checkbox" (change)="onIndustryTypeChange($event, 'ai')"
+                                [checked]="isInValue('ai', f.type.value)" value="ai"><span>人工智慧</span>
+                            <input type="checkbox" (change)="onIndustryTypeChange($event, 'edutech')"
+                                [checked]="isInValue('edutech', f.type.value)" value="edutech"><span>教育科技</span>
+                            <input type="checkbox" (change)="onIndustryTypeChange($event, 'sharingeconomy')"
                                 [checked]="isInValue('sharingeconomy', f.type.value)"
-                                value="sharingeconomy"><small>共享經濟</small>
-                            <input type="checkbox" (change)="onTypeChange($event, 'medical')"
-                                [checked]="isInValue('medical', f.type.value)" value="medical"><small>醫學科技</small>
-                            <input type="checkbox" (change)="onTypeChange($event, 'transport')"
-                                [checked]="isInValue('transport', f.type.value)" value="transport"><small>運輸服務</small>
-                            <input type="checkbox" (change)="onTypeChange($event, 'fintech')"
-                                [checked]="isInValue('fintech', f.type.value)" value="fintech"><small>金融科技</small>
-                            <input type="checkbox" (change)="onTypeChange($event, 'game')"
-                                [checked]="isInValue('game', f.type.value)" value="game"><small>遊戲產業</small>
+                                value="sharingeconomy"><span>共享經濟</span>
+                            <input type="checkbox" (change)="onIndustryTypeChange($event, 'medical')"
+                                [checked]="isInValue('medical', f.type.value)" value="medical"><span>醫學科技</span>
+                            <input type="checkbox" (change)="onIndustryTypeChange($event, 'transport')"
+                                [checked]="isInValue('transport', f.type.value)" value="transport"><span>運輸服務</span>
+                            <input type="checkbox" (change)="onIndustryTypeChange($event, 'fintech')"
+                                [checked]="isInValue('fintech', f.type.value)" value="fintech"><span>金融科技</span>
+                            <input type="checkbox" (change)="onIndustryTypeChange($event, 'game')"
+                                [checked]="isInValue('game', f.type.value)" value="game"><span>遊戲產業</span>
                         </div>
                     </div>
                     <div class="col-md-12 mb-12 form-group ">
                         <label class="pr-2" for="stage">
-                            <h5> 專案進度 :</h5>
+                            <h5> 專案進度*</h5>
                         </label>
                         <div class="form-group">
                             <input type="checkbox" (change)="onStageChange($event, 'idea')"
-                                [checked]="isInValue('idea', f.stages.value)" value="idea"><small>已有創業概念</small>
+                                [checked]="isInValue('idea', f.stages.value)" value="idea"><span>已有創業概念</span>
                             <input type="checkbox" (change)="onStageChange($event, 'businessplan')"
                                 [checked]="isInValue('businessplan', f.stages.value)"
-                                value="businessplan"><small>商業計畫初稿</small>
+                                value="businessplan"><span>商業計畫初稿</span>
                             <input type="checkbox" (change)="onStageChange($event, 'findpartner')"
                                 [checked]="isInValue('findpartner', f.stages.value)"
-                                value="findpartner"><small>找創業夥伴</small>
+                                value="findpartner"><span>找創業夥伴</span>
                             <input type="checkbox" (change)="onStageChange($event, 'buildMVP')"
                                 [checked]="isInValue('buildMVP', f.stages.value)"
-                                value="buildMVP"><small>建構最小可行性產品(MVP)</small>
+                                value="buildMVP"><span>建構最小可行性產品(MVP)</span>
                             <input type="checkbox" (change)="onStageChange($event, 'producttested')"
                                 [checked]="isInValue('producttested', f.stages.value)"
-                                value="producttested"><small>驗證產品中</small>
+                                value="producttested"><span>驗證產品中</span>
                             <input type="checkbox" (change)="onStageChange($event, 'findcustomers')"
                                 [checked]="isInValue('findcustomers', f.stages.value)"
-                                value="findcustomers"><small>找用戶中</small>
+                                value="findcustomers"><span>找用戶中</span>
                             <input type="checkbox" (change)="onStageChange($event, 'findpayingcustomers')"
                                 [checked]="isInValue('findpayingcustomers', f.stages.value)"
-                                value="findpayingcustomers"><small>找付費用戶中</small>
+                                value="findpayingcustomers"><span>找付費用戶中</span>
                             <input type="checkbox" (change)="onStageChange($event, 'findpayingcustomers')"
                                 [checked]="isInValue('findpayingcustomers', f.stages.value)"
-                                value="findpayingcustomers"><small>募資中</small>
+                                value="findpayingcustomers"><span>募資中</span>
                         </div>
                     </div>
                     <div class="col-md-12 mb-12 form-group ">
@@ -147,89 +153,22 @@
         </div>
         <div class="row">
             <div class="col-md-12 mb-12 form-group button-center">
-                <button type="button" class="btn btn-primary mr-10" (click)="onSaveDraft()">取消
+                <button type="button" class="btn btn-cancel mr-10" (click)="onCancel()">取消
                 </button>
-                <button type="button" class="btn btn-primary mr-10" (click)="onChangeStep('addMember')"> 下一步</button>
+                <button type="button" class="btn btn-blue mr-10" [disabled]="inValid()"
+                    (click)="onChangeStep('addMember')"> 下一步</button>
             </div>
 
         </div>
     </div>
-    <!-- <div class="wizard">
-        <div class="wizard-inner">
-            <div class="connecting-line"></div>
-            <ul class="nav nav-tabs" role="tablist">
-
-                <li role="presentation" class="active">
-                    <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
-                        <span class="round-tab">
-                            <i class="glyphicon glyphicon-folder-open"></i>
-                        </span>
-                    </a>
-                </li>
-
-                <li role="presentation" class="disabled">
-                    <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
-                        <span class="round-tab">
-                            <i class="glyphicon glyphicon-pencil"></i>
-                        </span>
-                    </a>
-                </li>
-                <li role="presentation" class="disabled">
-                    <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
-                        <span class="round-tab">
-                            <i class="glyphicon glyphicon-picture"></i>
-                        </span>
-                    </a>
-                </li>
-
-                <li role="presentation" class="disabled">
-                    <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
-                        <span class="round-tab">
-                            <i class="glyphicon glyphicon-ok"></i>
-                        </span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-    </div> -->
-    <!-- <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-            <button class="nav-link " id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
-                [ngClass]="{ 'active': currentTab === 'current' }" type="button" role="tab"
-                (click)="changeTab('current')"><span class="num">1</span>基本資訊</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'new' }" type="button"
-                role="tab" (click)="changeTab('new')"><span class="num">2</span>專案成員</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'interview' }" type="button"
-                role="tab" (click)="changeTab('interview')"><span class="num">3</span>夥伴招募</button>
-        </li>
-
-
-    </ul> -->
+    <!-- project info end -->
+    <!-- addMember start -->
     <div *ngIf="currentStep === 'addMember'" class="mt-30">
-        <div class="row">
-            <div class="col-md-3">
-                成員姓名
-            </div>
-            <div class="col-md-3">
-                職位名稱
-            </div>
-            <div class="col-md-3">
-                職務內容
-            </div>
-            <div class="col-md-3">
-
-            </div>
-        </div>
-
         <form [formGroup]="projectForm">
             <div formArrayName="members" *ngFor="let member of t.controls; let i = index">
                 <div [formGroup]="member" class="row">
-                    <div class="col-md-3 mb-3 form-group ">
+                    <div class="col-md-6 mb-3 form-group ">
+                        <label>成員姓名</label>
                         <input type="text" formControlName="email" id="email" class="form-control mr-10">
                         <div *ngIf="submitted && t.email.errors">
                             <div class="error-msg" *ngIf="t.email.errors.required">
@@ -237,8 +176,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 mb-3 form-group ">
-
+                    <div class="col-md-6 mb-3 form-group ">
+                        <label>職位名稱</label>
                         <input type="text" formControlName="position" id="position" class="form-control mr-10">
                         <div *ngIf="submitted && t.position.errors">
                             <div class="error-msg" *ngIf="t.position.errors.required">
@@ -246,9 +185,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 mb-3 form-group ">
-
-                        <input type="text" formControlName="description" id="description" class="form-control mr-10">
+                    <div class="col-md-12 mb-3 form-group ">
+                        <label>職務內容</label>
+                        <!-- <input type="text" formControlName="description" id="description" class="form-control mr-10"> -->
+                        <textarea type="text" formControlName="description" class="form-control" id="" rows="4"
+                            cols="50"></textarea>
                         <div *ngIf="submitted && t.description.errors">
                             <div class="error-msg" *ngIf="t.description.errors.required">
                                 Description is required
@@ -261,10 +202,9 @@
 
                         <button id="remove1" *ngIf="i < t.controls.length -1 " (click)="removeMember(i)"
                             class="btn btn-danger remove-me"><i class="far fa-trash-alt"></i></button>
-                        <button id="add1" *ngIf="t.controls.length ==i+1" (click)="addMember(i)"
-                            class="btn btn-primary add-me"><i class="fas fa-plus"></i></button>
-                        <!-- <i class="far fa-trash-alt"></i>
-                    <i class="fas fa-plus"></i> -->
+                        <button id="add1" *ngIf="t.controls.length ==i+1" (click)="addMember(i)" class="btn add-me"><i
+                                class="fas fa-plus"></i></button>
+
                     </div>
                 </div>
 
@@ -273,33 +213,21 @@
 
         <div class="row">
             <div class="col-md-12 mb-12 form-group button-center">
-                <button type="button" class="btn btn-primary mr-10" (click)="onChangeStep('basic')">上一步
+                <button type="button" class="btn btn-cancel mr-10" (click)="onChangeStep('basic')">上一步
                 </button>
-                <button type="button" class="btn btn-primary mr-10" (click)="onChangeStep('findMember')"> 下一步</button>
+                <button type="button" class="btn btn-blue mr-10" (click)="onChangeStep('findMember')"> 下一步</button>
             </div>
 
         </div>
     </div>
+    <!-- addMember info end -->
+    <!-- findMember start -->
     <div *ngIf="currentStep === 'findMember'" class="mt-30">
-        <div class="row">
-            <div class="col-md-3">
-                成員姓名
-            </div>
-            <div class="col-md-3">
-                職位名稱
-            </div>
-            <div class="col-md-3">
-                職務內容
-            </div>
-            <div class="col-md-3">
-
-            </div>
-        </div>
-
         <form [formGroup]="projectForm">
             <div formArrayName="jobs" *ngFor="let job of h.controls; let i = index">
                 <div [formGroup]="job" class="row">
-                    <div class="col-md-3 mb-3 form-group ">
+                    <div class="col-md-6 mb-3 form-group ">
+                        <label>成員姓名</label>
                         <input type="text" formControlName="position" id="position" class="form-control mr-10">
                         <div *ngIf="submitted && h.position.errors">
                             <div class="error-msg" *ngIf="h.position.errors.required">
@@ -307,8 +235,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 mb-3 form-group ">
-
+                    <div class="col-md-6 mb-3 form-group ">
+                        <label>職位名稱</label>
                         <input type="text" formControlName="skills" id="skills" class="form-control mr-10">
                         <div *ngIf="submitted && h.skills.errors">
                             <div class="error-msg" *ngIf="h.skills.errors.required">
@@ -316,8 +244,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 mb-3 form-group ">
-
+                    <div class="col-md-12 mb-3 form-group ">
+                        <label>職務內容</label>
                         <input type="text" formControlName="description" id="description" class="form-control mr-10">
                         <div *ngIf="submitted && h.description.errors">
                             <div class="error-msg" *ngIf="h.description.errors.required">
@@ -327,12 +255,12 @@
 
 
                     </div>
-                    <div class="col-md-3 mb-3 form-group ">
+                    <div class="col-md-12 mb-3 form-group">
 
-                        <button id="remove1" *ngIf="i < h.controls.length -1 " (click)="removeJob(i)"
+                        <button id="remove2" *ngIf="i < h.controls.length -1 " (click)="removeJob(i)"
                             class="btn btn-danger remove-me"><i class="far fa-trash-alt"></i></button>
-                        <button id="add1" *ngIf="h.controls.length ==i+1" (click)="addJob()"
-                            class="btn btn-primary add-me"><i class="fas fa-plus"></i></button>
+                        <button id="add2" *ngIf="h.controls.length ==i+1" (click)="addJob()" class="btn  add-me"><i
+                                class="fas fa-plus"></i></button>
                         <!-- <i class="far fa-trash-alt"></i>
                             <i class="fas fa-plus"></i> -->
                     </div>
@@ -343,48 +271,14 @@
 
         <div class="row">
             <div class="col-md-12 mb-12 form-group button-center">
-                <button type="button" class="btn btn-primary mr-10" (click)="onChangeStep('basic')">上一步
+                <button type="button" class="btn btn-cancel mr-10" (click)="onChangeStep('addMember')">上一步
                 </button>
-                <button type="button" class="btn btn-primary mr-10" (click)="onChangeStep('addMember')"> 下一步</button>
+                <button type="button" class="btn btn-blue mr-10" [disabled]="!projectForm.valid"
+                    (click)="onSaveDraft()"> 存為草稿</button>
+                <button type="button" class="btn btn-blue mr-10" [disabled]="!projectForm.valid" (click)="onSave()">
+                    發布</button>
             </div>
 
         </div>
-        <!-- <div class="col-md-12 mb-12 form-group ">
-            <label class="pr-2" for="projectname">
-                <h5>夥伴 :</h5>
-            </label>
-        </div>
-        <div class="col-md-12 mb-12 form-group">
-            <label class="pr-2" for="projectname">
-                <h5> 每周需花費時長 :</h5>
-            </label>
-            <input type="checkbox" value="12"><small>1~2小時</small>
-            <input type="checkbox" value="34"><small>3~4小時</small>
-            <input type="checkbox" value="56"><small>5~6小時</small>
-            <input type="checkbox" value="78"><small>7~8小時</small>
-            <input type="checkbox" value="9"><small>9小時以上(含)</small>
-        </div>
-        <div class="col-md-12 mb-12 form-group ">
-            <label class="pr-2" for="projectname">
-                <h5> 需要的技能 :</h5>
-            </label>
-            <input type="text" id="projectname" class="form-control mr-10">
-        </div>
-        <div class="col-md-12 mb-12 form-group ">
-            <label class="pr-2" for="projectname">
-                <h5> 簡介 :</h5>
-            </label>
-            <input type="text" id="projectname" class="form-control mr-10">
-        </div> -->
+
     </div>
-    <!-- <div class="row">
-        <div class="col-md-12 mb-12 form-group button-center">
-            <button type="button" class="btn btn-primary mr-10" (click)="onSaveDraft()">存為草稿
-            </button>
-            <button type="button" class="btn btn-primary mr-10" (click)="onSave()"> 發布</button>
-        </div>
-        <div class="col-md-12 mb-12 form-group text-center">
-            <div class="error-msg" *ngIf="projectMsg!=''">{{ projectMsg }}</div>
-        </div>
-    </div> -->
-</div>

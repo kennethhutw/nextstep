@@ -34,6 +34,10 @@ export class ProjectComponent implements OnInit {
   application_message: string = "";
   selectedApplication: any;
   currentPageIndex = 1;
+
+  isChat: boolean = false;
+  projectOwner = null;
+
   constructor(
     private ProjectSrv: ProjectService,
     private pagerSrv: PagerService,
@@ -62,9 +66,19 @@ export class ProjectComponent implements OnInit {
       _id = this.currentUser.id;
     }
     this.ProjectSrv.getProject(this.projectId, _id).then(res => {
-      console.log("======", res);
+      console.log("getProject ======", res);
       if (res['result'] == 'successful') {
         this.currentProject = res['data'];
+        if (this.currentProject) {
+          let _owners = this.currentProject.members.filter(member => {
+            return member.userId === this.currentProject.owner
+          })
+          console.log("_owners ========", _owners);
+          if (_owners.length > 0) {
+            this.projectOwner = _owners[0];
+          }
+          console.log("========", this.projectOwner);
+        }
       }
       let _id = null;
       if (this.currentUser && this.currentUser.id) {
@@ -99,10 +113,7 @@ export class ProjectComponent implements OnInit {
 
 
 
-  onfilter(value) {
 
-
-  }
   onApply(application) {
     this.selectedApplication = application;
   }
@@ -158,6 +169,9 @@ export class ProjectComponent implements OnInit {
     ).then(res => {
       if (res['result'] == 'successful') {
         this.currentProject.followCount += 1;
+        this.toastr.showToast('Success', "追蹤成功 ", this.toastr.iconClasses.success);
+      } else {
+        this.toastr.showToast('Failed', "追蹤失敗", this.toastr.iconClasses.error);
       }
     });
 
@@ -171,9 +185,22 @@ export class ProjectComponent implements OnInit {
     ).then(res => {
       if (res['result'] == 'successful') {
         this.currentProject.collectCount += 1;
+        this.toastr.showToast('Success', "收藏成功 ", this.toastr.iconClasses.success);
+      } else {
+        this.toastr.showToast('Failed', "收藏失敗", this.toastr.iconClasses.error);
       }
     });
 
   }
+
+  onChat() {
+
+    this.isChat = !this.isChat;
+  }
+
+  onToggleChat(event) {
+    this.isChat = !this.isChat;
+  }
+
 }
 //https://www.sliderrevolution.com/resources/bootstrap-profile/

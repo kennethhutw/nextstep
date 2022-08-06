@@ -92,7 +92,7 @@
                     <ng-container *ngFor="let comment of  item.comments; let j = index">
                         <div class="row comment">
                             <div class="col-md-12 profile">
-                                <img class="profile-image rounded-circle" src="{{ item.imageUrl }}"
+                                <img class="profile-image-small rounded-circle" src="{{ item.imageUrl }}"
                                     (error)="onImgError($event)" alt="" />
                                 <div class="profile-detail">
                                     <span>{{comment.userName}}</span>

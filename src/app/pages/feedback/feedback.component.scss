@@ -13,7 +13,7 @@ app-feedback {
         -ms-grid-row-align: center;
         align-self: center;
         width: 100%;
-        padding: 10px 25px;
+        padding: 0px 25px 10px 10px;
         display: grid;
         grid-auto-flow: column;
         grid-template-rows: 1fr;
@@ -55,7 +55,9 @@ app-feedback {
         border: 2px solid #56BDF4;
         border-radius: 4px;
         padding: 6px 12px 6px 12px;
+        font-size: 16px;
     }
+
 
     .btn-white {
         background-color: #fff;
@@ -134,6 +136,15 @@ app-feedback {
         align-content: center;
         height: 60px;
         width: 60px;
+        border-radius: 50%;
+    }
+
+    .profile-image-small {
+        vertical-align: center;
+        -ms-flex-line-pack: center;
+        align-content: center;
+        height: 40px;
+        width: 40px;
         border-radius: 50%;
     }
 

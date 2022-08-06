@@ -1,6 +1,6 @@
-/* a {
-  color: #08ab65 !important;
-} */
+@import '../../../../node_modules/swiper/swiper-bundle.min.css';
+@import '../../../../node_modules/swiper/components/pagination/pagination.scss';
+
 .nft-section {
   min-height: 500px;
   padding-top: 150px;
@@ -46,6 +46,10 @@
   font-size: 24px;
   line-height: 2em;
 }
+
+// .carousel-inner .carousel-item {
+//   display: flex;
+// }
 
 @media (max-width: 768px) {
   .carousel-inner .carousel-item>div {

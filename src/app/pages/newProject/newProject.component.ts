@@ -1,8 +1,10 @@
-import { HostListener, HostBinding, Component, OnInit } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HostListener, ViewEncapsulation, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   DialogService,
-  ProjectService
+  ProjectService,
+  ActivityService,
+  NotificationService
 } from '../../_services';
 import {
   AuthStore
@@ -13,7 +15,8 @@ import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browse
 @Component({
   selector: 'app-new-project',
   templateUrl: './newProject.component.html',
-  styleUrls: ['./newProject.component.scss']
+  styleUrls: ['./newProject.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class newProjectComponent implements OnInit {
   projectForm: FormGroup;
@@ -24,12 +27,14 @@ export class newProjectComponent implements OnInit {
   currentStep = "basic";
 
   constructor(
-    private http: HttpClient,
+    private router: Router,
     private sanitizer: DomSanitizer,
     private formBuilder: FormBuilder,
     private dialogSrv: DialogService,
     private projectSrv: ProjectService,
     public authStoreSrv: AuthStore,
+    private activitySrv: ActivityService,
+    private notificationSrv: NotificationService,
     private fb: FormBuilder) {
   }
 
@@ -38,16 +43,13 @@ export class newProjectComponent implements OnInit {
 
     this.projectForm = this.formBuilder.group({
       name: ["", Validators.required],
-      description: ["", Validators.required],
+      description: [""],
       isFindPartner: [0, Validators.required],
-      industryType: ["", Validators.required],
       type: ["", Validators.required],
       stages: ["", Validators.required],
       members: this.fb.array([this.createMember()]),
       jobs: this.fb.array([this.createJob()]),
     });
-
-
   }
 
   try() {
@@ -100,36 +102,40 @@ export class newProjectComponent implements OnInit {
   }
 
   addJob() {
-
     this.jobs.push(this.createJob());
   }
+
   removeMember(index) {
     this.members.removeAt(index);
-
   }
   removeJob(index) {
     this.jobs.removeAt(index);
   }
-
-
-
 
   inValid() {
     return this.projectForm.invalid;
   }
 
   onTypeChange($event, value) {
-  }
-
-  onIndustryTypeChange($event, value) {
-    var _values = this.projectForm.get('industryType').value;
+    var _values = this.projectForm.get('type').value;
 
     if ($event.target.checked) {
       _values += "," + value;
     } else {
       _values = value.replace("," + value, "");
     }
-    this.projectForm.get('industryType').setValue(_values);
+    this.projectForm.get('type').setValue(_values);
+  }
+
+  onIndustryTypeChange($event, value) {
+    var _values = this.projectForm.get('type').value;
+
+    if ($event.target.checked) {
+      _values += "," + value;
+    } else {
+      _values = value.replace("," + value, "");
+    }
+    this.projectForm.get('type').setValue(_values);
   }
 
   isInValue(value, types) {
@@ -167,6 +173,10 @@ export class newProjectComponent implements OnInit {
     this.saveProject('published', 0);
   }
 
+  onCancel() {
+    this.router.navigate(['./index'], {});
+  }
+
   onSaveDraft() {
     console.log("Draft ----");
 
@@ -181,6 +191,7 @@ export class newProjectComponent implements OnInit {
     this.submitted = true;
     const value = this.projectForm.value;
     console.log("saveProject", value)
+    let projectName = value.name;
     this.projectSrv.insertProject({
       name: value.name,
       description: value.description,
@@ -193,6 +204,22 @@ export class newProjectComponent implements OnInit {
     }).subscribe(res => {
       if (res['result'] === 'successful') {
         this.submitted = false;
+        this.activitySrv.insert(this.currentUser.id,
+          res['data'],
+          "create",
+          `${this.currentUser.name}成功建立${projectName}專案！`
+        ).subscribe(res => {
+          if (res['result'] === 'successful') { }
+        });
+        this.notificationSrv.insert(this.currentUser.id,
+          null,
+          `成功建立${projectName}專案！`,
+          "1",
+          '0',
+          '0'
+        ).then(res => {
+          if (res['result'] === 'successful') { }
+        })
         this.projectForm.reset();
       } else {
         this.projectMsg = res['error'].message;
