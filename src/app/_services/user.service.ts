@@ -104,7 +104,6 @@ export class UserService {
       });
   }
 
-
   setPassword(password: string, uid: string) {
     return this.http.post(`${environment.apiUrl}/authenticate/setPassword`,
       {
@@ -113,7 +112,6 @@ export class UserService {
       });
   }
 
-
   updateUserName(name: string, uid: string) {
     return this.http.post(`${environment.apiUrl}/users/updateUserName`,
       {
@@ -121,7 +119,6 @@ export class UserService {
         uid
       });
   }
-
 
   confirmVerifiedEmail(uid, status) {
     return this.http.post(`${environment.apiUrl}/users/setVerified`,
@@ -177,6 +174,14 @@ export class UserService {
 
   deleteUser(id: string) {
     return this.http.post(`${environment.apiUrl}/users/deleteUser/${id}`, {});
+  }
+
+  async verifiedStatus(uid) {
+
+    return await this.http
+      .get<any>(`${environment.apiUrl}/users/verifiedStatus/${uid}`, {
+      })
+      .toPromise();
   }
 
 }

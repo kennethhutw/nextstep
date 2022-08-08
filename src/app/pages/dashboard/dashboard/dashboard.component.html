@@ -3,15 +3,18 @@
   <ul class="menu-items" style="padding-left: 20px;">
 
     <li>
-      <input id="email" type="checkbox" [(ngModel)]="idverify.email" data-key="email" />
+      <input id="email" type="checkbox" [(ngModel)]="idverify.email" class="chk" data-key="email"
+        [attr.disabled]="'true'" />
       <label class="ml-10" for="email">信箱驗證</label>
     </li>
     <li>
-      <input id="info" type="checkbox" [(ngModel)]="idverify.info" data-key="info" />
+      <input id="info" type="checkbox" [(ngModel)]="idverify.info" class="chk" data-key="info"
+        [attr.disabled]="'true'" />
       <label class="ml-10" for="info">個人資料填寫完成</label>
     </li>
     <li>
-      <input id="interactive" type="checkbox" [(ngModel)]="idverify.interactive" data-key="interactive" />
+      <input id="interactive" type="checkbox" [(ngModel)]="idverify.interactive" class="chk" data-key="interactive"
+        [attr.disabled]="'true'" />
       <label class="ml-10" for="interactive">與一名成員互相追蹤</label>
     </li>
   </ul>
@@ -42,7 +45,7 @@
   <!--person-->
   <ng-container *ngIf="mentors.length >0">
     <div class="row">
-      <ng-container *ngFor="let item of  mentors| slice:0:2; let i = index">
+      <ng-container *ngFor="let item of mentors | slice:0:2; let i = index">
         <div class="col-md-6 text-center">
           <app-user-card (onCollect)="onCollect($event)" [user]="item" [type]="'mentor'" [currentuser]="currentUser">
           </app-user-card>

@@ -10,12 +10,11 @@ import {
 } from "../../../_services/auth.store";
 import { Utility } from "../../../_helpers";
 import { NgxSpinnerService } from "ngx-spinner";
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 @Component({
   selector: "app-dashboard",
   templateUrl: "./dashboard.component.html",
-  styleUrls: ["./dashboard.component.scss"]
+  styleUrls: ["./dashboard.component.scss"],
 })
 export class DashboardComponent implements OnInit {
 
@@ -34,7 +33,6 @@ export class DashboardComponent implements OnInit {
     private translateSrv: TranslateService,
     private utility: Utility,
     private projectSrv: ProjectService,
-    private userSettingSrv: UserSettingService,
     private authStore: AuthStore,
     private userSrv: UserService,
     private router: Router,
@@ -84,23 +82,34 @@ export class DashboardComponent implements OnInit {
     // })
 
     this.currentUser = this.authStore.getUserData();
-    console.log("=========", this.currentUser)
     let _id = null;
     if (this.currentUser && this.currentUser.id) {
       _id = this.currentUser.id;
     }
+
+    this.userSrv.verifiedStatus(_id).then(res => {
+      console.log("res =========", res);
+      if (res['result'] == 'successful') {
+        console.log("res =========", res)
+        this.idverify = {
+          email: res['email'],
+          info: res['isCompleted'],
+          interactive: res['isFollowEachOther']
+        }
+
+        console.log("idverify =========", this.idverify)
+      }
+    })
     this.projectSrv.getPublicProjects(_id).then(res => {
 
       if (res['result'] == 'successful') {
         this.items = res['data'];
-
       }
       this.spinnerSrv.hide();
     }).catch(error => {
       console.error("error", error);
       this.spinnerSrv.hide();
     })
-
 
     this.userSrv.getPublicMentors(_id).then(res => {
       if (res['result'] == 'successful') {
@@ -109,6 +118,9 @@ export class DashboardComponent implements OnInit {
           this.mentors.forEach(element => {
             if (!this.utility.IsNullOrEmpty(element.tags)) {
               element.tags = element.tags.split(',');
+            }
+            if (!this.utility.IsNullOrEmpty(element.skills)) {
+              element.skills = element.skills.split(',');
             }
           });
         }
