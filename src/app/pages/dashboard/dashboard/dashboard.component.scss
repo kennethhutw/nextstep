@@ -10,23 +10,3 @@ li {
     background-color: red;
     background: #00bf00;
 }
-
-::ng-deep input[type="checkbox"]:checked {
-    background-color: red;
-}
-
-input[type="checkbox"] {
-    background-color: red;
-}
-
-input:checked {
-    background-color: red;
-}
-
-.form-check-input:checked {
-    background-color: red;
-}
-
-input[type="checkbox"]:before {
-    background-color: red;
-}

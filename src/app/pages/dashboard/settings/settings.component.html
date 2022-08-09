@@ -39,12 +39,13 @@
         </div>
         <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'notifications' }" role="tabpanel"
           aria-labelledby="profile-tab">
-          <ui-radio-item [title]="'追蹤與收藏'" [id]="'notiFollow'" [value]="currentSetting.notiFollow"
-            (onChange)="onChange($event)"></ui-radio-item>
-          <ui-radio-item [title]="'訊息'" [id]="'notiMsg'" [value]="currentSetting.notiMsg" (onChange)="onChange($event)">
+          <ui-radio-item [title]="'追蹤與收藏'" [description]="'當有人追蹤或收藏時，發送通知給我。'" [id]="'notiFollow'"
+            [value]="currentSetting.notiFollow" (onChange)="onChange($event)"></ui-radio-item>
+          <ui-radio-item [title]="'訊息'" [description]="'當有人傳訊息給我時，發送通知給我。'" [id]="'notiMsg'"
+            [value]="currentSetting.notiMsg" (onChange)="onChange($event)">
           </ui-radio-item>
-          <ui-radio-item [title]="'系統相關'" [id]="'notiSystem'" [value]="currentSetting.notiSystem"
-            (onChange)="onChange($event)"></ui-radio-item>
+          <ui-radio-item [title]="'系統相關'" [description]="'當有與系統相關的消息時，發送通知給我。'" [id]="'notiSystem'"
+            [value]="currentSetting.notiSystem" (onChange)="onChange($event)"></ui-radio-item>
           <!-- <div class="col-md-12 mb-12 form-group button-center">
             <button type="button" class="btn btn-primary mr-10" (click)="onSaveNotif()">重設
             </button>
@@ -59,8 +60,8 @@
             <div class="col-md-12">
               <div class="form-group">
                 <!-- <input type="password" class="form-control pwd" value="iamapassword"> -->
-                <input type="password" class="form-control" placeholder="current password"
-                  formControlName="currentPassword" style="margin-bottom: 15px;" />
+                <input type="password" class="form-control" placeholder="目前密碼" formControlName="currentPassword"
+                  style="margin-bottom: 15px;" />
                 <!-- <span class="input-group-btn">
                   <button class="btn btn-default reveal" type="button"><i class="fas fa-eye"></i></button>
                 </span> -->
@@ -72,7 +73,7 @@
 
             <div class="col-md-12">
               <div class="form-group">
-                <input type="password" class="form-control" placeholder="new password" formControlName="newPassword"
+                <input type="password" class="form-control" placeholder="新密碼" formControlName="newPassword"
                   autocomplete="off" style="margin-bottom: 15px;" />
                 <div *ngIf="submitted && f.newPassword.errors">
                   <div class="error-msg" *ngIf="f.newPassword.errors.required">New Password is required</div>
@@ -82,7 +83,7 @@
             <div class="col-md-12">
               <div class="form-group">
 
-                <input type="password" class="form-control" placeholder="re-enter new password" [autocomplete]="'off'"
+                <input type="password" class="form-control" placeholder="再次輸入新密碼" [autocomplete]="'off'"
                   formControlName="confirmPassword" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }">
                 <div class="error-msg" *ngIf="checkPasswords()"> Password & Confirm Password does not match.</div>
                 <div *ngIf="submitted && f.confirmPassword.errors">
@@ -94,7 +95,7 @@
             </div>
 
             <div class="col-md-12 mb-12 form-group button-center">
-              <button type="button" class="btn btn-primary mr-10" (click)="onResetPassword()">重設
+              <button type="button" class="btn btn-blue mr-10" (click)="onResetPassword()">重設
               </button>
 
             </div>
