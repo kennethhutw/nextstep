@@ -9,7 +9,9 @@ import { Utility } from "../../_helpers";
 import { environment } from '../../../environments/environment';
 import { NgxSpinnerService } from "ngx-spinner";
 import { ActivatedRoute } from '@angular/router';
-
+import {
+  AuthStore
+} from "../../_services/auth.store";
 @Component({
   selector: "app-recruit",
   templateUrl: "./recruit.component.html",
@@ -40,7 +42,9 @@ export class RecruitComponent implements OnInit {
     work9: false
 
   }
+  currentUser;
   constructor(
+    private authStore: AuthStore,
     private settingSrv: SettingService,
     private recruitSrv: RecruitService,
     private utility: Utility,
@@ -53,7 +57,7 @@ export class RecruitComponent implements OnInit {
 
   ngOnInit() {
     this.SpinnerService.show();
-
+    this.currentUser = this.authStore.getUserData();
     this.recruitSrv.get().then(res => {
       console.log("result =========", res);
       if (res['result'] == 'successful') {

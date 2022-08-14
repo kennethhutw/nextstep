@@ -1,23 +1,21 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
+
 import { DataService } from "./../../_services";
 import { Utility } from "./../../_helpers";
-
 @Component({
-  selector: "app-about",
-  templateUrl: "./about.component.html",
-  styleUrls: [
-    "./about.component.scss",
-  ]
+  selector: "app-support",
+  templateUrl: "./support.component.html",
+  styleUrls: ["./support.component.scss"]
 })
-export class AboutComponent implements OnInit {
-
-
-  constructor(
-    private translateSrv: TranslateService,
+export class SupportComponent implements OnInit {
+  constructor(private translateSrv: TranslateService,
     private utility: Utility,
-    private dataSrv: DataService
-  ) {
+    private dataSrv: DataService) {
+
+  }
+
+  ngOnInit() {
     let _lang = localStorage.getItem("lang");
     if (!this.utility.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
@@ -27,14 +25,6 @@ export class AboutComponent implements OnInit {
         this.translateSrv.use(lang);
       }
     });
-
   }
 
-  ngOnInit() {
-
-  }
-
-  onImgError(event) {
-    event.target.src = "assets/images/defaultlogo.png";
-  }
 }

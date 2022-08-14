@@ -11,10 +11,14 @@
     </div>
     <div class="item-left">
       <div *ngIf="user">
+
         <i *ngIf="job.isCollect" (click)="onClickCollect()" style="color:#56BDF4" class="fas fa-bookmark mr-5"></i>
         <i *ngIf="!job.isCollect" (click)="onClickCollect()" style="color:#56BDF4" class="far fa-bookmark mr-5"></i>
+
         <!-- <i class="far fa-comment-alt mr-5"></i> -->
-        <span class="follow" [ngClass]="{ 'Isfollow': job.isFollow === true }">追蹤</span>
+        <button type="button" data-toggle="modal" data-target="#modal_apply_job" data-dismiss="modal"
+          style="float: right;" class="btn btn_item mr-10" (click)="onApply(item)"><i class="far fa-envelope"></i>
+        </button>
       </div>
     </div>
   </div>
@@ -29,7 +33,7 @@
 
       <ng-container *ngFor="let tag of  job.skills; let i = index">
 
-          <span *ngIf="!this.utility.IsNullOrEmpty(tag)" class="tag  tag-{{tag}}  mb-2 mr-5">{{convertTag(tag)}}</span>
+        <span *ngIf="!this.utility.IsNullOrEmpty(tag)" class="tag  tag-{{tag}}  mb-2 mr-5">{{convertTag(tag)}}</span>
 
       </ng-container>
 

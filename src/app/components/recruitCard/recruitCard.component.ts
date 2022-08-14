@@ -51,6 +51,7 @@ export class RecruitCardComponent {
   }
 
   convertTag(term) {
+    console.log("recruit =========", term)
     let _term = "";
     switch (term.toLowerCase()) {
       case "ecomm":

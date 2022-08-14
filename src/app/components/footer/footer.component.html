@@ -9,10 +9,10 @@
     </div>
 
     <div class=" form-inline col-md-9 text-white">
-      <span style="padding-left:20px;padding-right: 20px;">關於我們</span>
-      <span style="padding-left:20px;padding-right: 20px;">常見問題</span>
+      <a [routerLink]="['/about']"><span style="padding-left:20px;padding-right: 20px;">關於我們</span></a>
+      <a [routerLink]="['/qa']"><span style="padding-left:20px;padding-right: 20px;">常見問題</span></a>
       <span style="padding-left:20px;padding-right: 20px;">意見回饋</span>
-      <span style="padding-left:20px;padding-right: 20px;">支持我們</span>
+      <a [routerLink]="['/support']"> <span style="padding-left:20px;padding-right: 20px;">支持我們</span></a>
       <span style="padding-left:20px;padding-right: 20px;">服務條款</span>
     </div>
 

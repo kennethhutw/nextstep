@@ -30,6 +30,8 @@ import {
     MyProjectSettingsComponent
 } from './myProject';
 
+import { SupportComponent } from './support/support.component';
+
 import {
     ChatComponent,
     DashboardComponent,
@@ -78,7 +80,7 @@ export const containers = [
     RecruitComponent,
     SetPasswordComponent,
     SettingsComponent,
-
+    SupportComponent,
     VerificationComponent,
 ];
 
@@ -107,6 +109,7 @@ export { PubProfileComponent } from './pubprofile/pubprofile.component';
 export { QAComponent } from "./qa/qa.component";
 export { RecruitComponent } from './recruit/recruit.component';
 export { SetPasswordComponent } from './setPassword/setPassword.component';
+export { SupportComponent } from './support/support.component';
 export { VerificationComponent } from './verification/verification.component';
 
 export * from "./example/example.component";
