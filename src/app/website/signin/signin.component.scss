@@ -1,6 +1,6 @@
-* {
-    background-color: white;
-}
+// * {
+//     background-color: white;
+// }
 
 app-signin {
     .signup-container {
@@ -13,6 +13,7 @@ app-signin {
         margin: 0 auto;
         transition: 0.15s linear;
         height: 100%;
+        background-color: white;
     }
 
     .facebook {

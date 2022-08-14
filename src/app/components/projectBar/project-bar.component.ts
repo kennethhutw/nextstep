@@ -1,6 +1,7 @@
 import {
   Component, OnInit, Input, Output,
-  EventEmitter
+  EventEmitter,
+  ViewEncapsulation
 } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { Router } from "@angular/router";
@@ -13,7 +14,8 @@ import {
 @Component({
   selector: "app-project-bar",
   templateUrl: "./project-bar.component.html",
-  styleUrls: ["./project-bar.component.scss"]
+  styleUrls: ["./project-bar.component.scss"],
+  encapsulation: ViewEncapsulation.None
 })
 export class ProjectBarComponent implements OnInit {
   _project = null;

@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from "@angular/core";
+import { Component, OnInit, HostListener, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
   DataService
@@ -23,7 +23,8 @@ import {
   templateUrl: "./signup.component.html",
   styleUrls: [
     "./signup.component.scss",
-  ]
+  ],
+  encapsulation: ViewEncapsulation.None
 })
 export class SignupComponent implements OnInit {
   width = false;
