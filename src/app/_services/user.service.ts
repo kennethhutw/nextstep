@@ -39,7 +39,7 @@ export class UserService {
 
   async getUserInfo(uid: string) {
     return await this.http
-      .get<any>(`${environment.apiUrl}/users/getUserInfo/${uid}`)
+      .get<any>(`${environment.apiUrl}/users/info/${uid}`)
       .toPromise();
   }
 
@@ -157,7 +157,7 @@ export class UserService {
 
   public updateUserBasicInfo(data) {
     return this.http
-      .post<resResult>(`${environment.apiUrl}/users/updateUserBasicInfo`,
+      .put<resResult>(`${environment.apiUrl}/users/info`,
         data
       );
   }
@@ -183,5 +183,44 @@ export class UserService {
       })
       .toPromise();
   }
+
+  updateImage(id, params) {
+    return this.http.put(`${environment.apiUrl}/users/profileImage/${id}`, params);
+  }
+
+  updateCover(id, params) {
+    return this.http.put(`${environment.apiUrl}/users/profileCover/${id}`, params);
+  }
+
+  async getExperienceByUserId(userId: string) {
+
+    return await this.http
+      .get<any>(`${environment.apiUrl}/experience/users/${userId}`, {
+      })
+      .toPromise();
+  }
+
+  async updateExperience(params) {
+
+    return await this.http
+      .put<any>(`${environment.apiUrl}/experience`, params)
+      .toPromise();
+  }
+
+  async addExperience(params) {
+
+    return await this.http
+      .post<any>(`${environment.apiUrl}/experience`, params)
+      .toPromise();
+  }
+
+  async deleteExperience(id: string) {
+
+    return await this.http
+      .delete<any>(`${environment.apiUrl}/experience/${id}`, {
+      })
+      .toPromise();
+  }
+
 
 }

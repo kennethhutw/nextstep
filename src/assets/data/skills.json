@@ -1,0 +1,157 @@
+[
+    {
+        "value": "frontend",
+        "group": "software",
+        "text": "前端開發"
+    },
+    {
+        "value": "backend",
+        "group": "software",
+        "text": "後端開發"
+    },
+    {
+        "value": "fullstack",
+        "group": "software",
+        "text": "全端開發"
+    },
+    {
+        "value": "mobile",
+        "group": "software",
+        "text": "行動裝置開發"
+    },
+    {
+        "value": "qa",
+        "group": "software",
+        "text": "測試工程師"
+    },
+    {
+        "value": "devops",
+        "group": "software",
+        "text": "DevOps/SRE"
+    },
+    {
+        "value": "datamining",
+        "group": "ai",
+        "text": "資料探勘"
+    },
+    {
+        "value": "ml",
+        "group": "ai",
+        "text": "機器學習"
+    },
+    {
+        "value": "it",
+        "group": "it",
+        "text": "MIS/網路管理"
+    },
+    {
+        "value": "marketing",
+        "group": "A",
+        "text": "行銷企劃"
+    },
+    {
+        "value": "community",
+        "group": "A",
+        "text": "社群經營"
+    },
+    {
+        "value": "editor",
+        "group": "A",
+        "text": "編輯/內容經營"
+    },
+    {
+        "value": "advertising",
+        "group": "A",
+        "text": "廣告創意/企劃"
+    },
+    {
+        "value": "video",
+        "group": "A",
+        "text": "攝影/影音製作"
+    },
+    {
+        "value": "hacker",
+        "group": "A",
+        "text": "Growth Hacker"
+    },
+    {
+        "value": "media",
+        "group": "A",
+        "text": "媒體公關"
+    },
+    {
+        "value": "hr",
+        "group": "op",
+        "text": "人資"
+    },
+    {
+        "value": "accounting",
+        "group": "op",
+        "text": "財務/會計"
+    },
+    {
+        "value": "administrative",
+        "group": "op",
+        "text": "行政"
+    },
+    {
+        "value": "operation",
+        "group": "op",
+        "text": "營運"
+    },
+    {
+        "value": "crm",
+        "group": "op",
+        "text": "客戶服務"
+    },
+    {
+        "value": "law",
+        "group": "op",
+        "text": "法務"
+    },
+    {
+        "value": "bd",
+        "group": "market",
+        "text": "商業開發"
+    },
+    {
+        "value": "channel",
+        "group": "market",
+        "text": "通路開發"
+    },
+    {
+        "value": "entity",
+        "group": "market",
+        "text": "實體經營"
+    },
+    {
+        "value": "analysis",
+        "group": "market",
+        "text": "市場分析"
+    },
+    {
+        "value": "sale",
+        "group": "market",
+        "text": "銷售業務"
+    },
+    {
+        "value": "product",
+        "group": "management",
+        "text": "產品管理"
+    },
+    {
+        "value": "project",
+        "group": "management",
+        "text": "專案管理"
+    },
+    {
+        "value": "uiux",
+        "group": "design",
+        "text": "UIUX/視覺設計"
+    },
+    {
+        "value": "3d",
+        "group": "design",
+        "text": "3D/動畫設計"
+    }
+]

@@ -225,8 +225,6 @@
     margin-bottom: 10px;
   }
 
-
-
   #footer_bg .footer_dropdown {
     width: 100%;
   }
@@ -283,8 +281,6 @@
     padding-bottom: 25px;
     border-bottom: 1px solid #17F596;
   }
-
-
 
   #content-mt {
     padding-top: 100px;
@@ -380,6 +376,10 @@
 
 .mb-20 {
   margin-bottom: 20px !important;
+}
+
+.mb-24 {
+  margin-bottom: 24px;
 }
 
 .mb-30 {
@@ -1642,9 +1642,6 @@ box-shadow:0 0 5px #fff;
   margin-bottom: 20px;
 }
 
-
-
-
 .card-header .title {
   font-size: 17px;
   color: #000;
@@ -1683,14 +1680,6 @@ box-shadow:0 0 5px #fff;
   min-height: 600px;
 }
 
-/* .page_launch_bg{
-    background-image: url("./assets/images/launch_artist1.png");
-    background-position: left bottom; /*Positioning*/
-/* background-repeat: no-repeat; /*Prevent showing multiple background images*/
-/*    background-color: black;
-    min-height:900px;
-    min-width: 100%;
-} */
 
 .btn_normal-disable {
   font-size: 20px;
@@ -1965,13 +1954,7 @@ box-shadow:0 0 5px #fff;
   top: 20px !important;
 }
 
-.page-title {
-  font-family: "Noto Serif JP", sans-serif;
-  font-weight: 700;
-  font-size: 36px;
-  border-bottom: 9px solid #17F596;
-  padding-bottom: 10px;
-}
+
 
 .f-22 {
   font-size: 22px;
@@ -2201,6 +2184,10 @@ input[type=radio] {
   margin-left: 10px;
 }
 
+.ml-24 {
+  margin-left: 24px;
+}
+
 .full {
   position: fixed;
   left: 0;
@@ -2237,4 +2224,169 @@ input[type=radio] {
 
 .nav-link {
   white-space: nowrap;
+}
+
+.empty-text-center {
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+}
+
+.tag {
+  padding: 4px 8px 4px 8px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  border-radius: 100px;
+  background-color: #C0DAFE;
+}
+
+.tag-bd {
+  background-color: #D5ECA3 !important;
+}
+
+.tag-pm {
+  background-color: #E5BFF3 !important;
+}
+
+.tag-design {
+  background-color: #E5BFF3 !important;
+}
+
+.tag-op {
+  background-color: #FEE0A5 !important;
+}
+
+.tag-software {
+  background-color: #C0DAFE !important;
+}
+
+.tag-marketing {
+  background-color: #FFCCD5 !important;
+}
+
+.tag-game {
+  background-color: #E5BFF3 !important;
+}
+
+.tag-sharingeconomy {
+  background-color: #D5ECA3 !important;
+}
+
+.tag-fintech {
+  background-color: #C0DAFE !important;
+}
+
+.tag-edutech {
+  background-color: #E5BFF3 !important;
+}
+
+.tag-ai {
+  background-color: #E3E5EC !important;
+}
+
+.tag-medical {
+  background-color: #E5BFF3 !important;
+}
+
+.tag-eComm {
+  background-color: #E5BFF3 !important;
+}
+
+
+.tag-sale {
+  background-color: #D5ECA3 !important;
+}
+
+.tag-product {
+  background-color: #E5BFF3 !important;
+}
+
+.tag-strategy {
+  background-color: #FEE0A5 !important;
+}
+
+.tag-programming {
+  background-color: #C0DAFE !important;
+}
+
+.tag-finance {
+  background-color: #E5BFF3 !important;
+}
+
+.tag-public {
+  background-color: #D5ECA3 !important;
+}
+
+.tag-funding {
+  background-color: #C0DAFE !important;
+}
+
+.tag-law {
+  background-color: #E5BFF3 !important;
+}
+
+.tag-ai {
+  background-color: #E3E5EC !important;
+}
+
+.tag-medical {
+  background-color: #E5BFF3 !important;
+}
+
+.tag-eComm {
+  background-color: #E5BFF3 !important;
+}
+
+.tag-frontend,
+.tag-backend,
+.tag-fullstack,
+.tag-mobile,
+.tag-qa,
+.tag-devops,
+.tag-it {
+  background-color: #C0DAFE;
+}
+
+.tag-datamining,
+.tag-ml {
+  background-color: #E3E5EC;
+}
+
+.tag-marketing,
+.tag-community,
+.tag-editor,
+.tag-advertising,
+.tag-video,
+.tag-hacker,
+.tag-media {
+  background-color: #FFCCD5;
+}
+
+.tag-hr,
+.tag-accounting,
+.tag-administrative,
+.tag-operation,
+.tag-crm,
+.tag-law {
+  background-color: #FEE0A5;
+}
+
+.tag-bd,
+.tag-channel,
+.tag-entity,
+.tag-analysis,
+.tag-sale {
+  background-color: #D5ECA3;
+}
+
+.tag-product,
+.tag-project {
+  background-color: #E5BFF3;
+}
+
+.tag-uiux,
+.tag-3d {
+  background-color: #ADEFD0;
 }

@@ -190,7 +190,6 @@ export class newProjectComponent implements OnInit {
   saveProject(status, isPublic) {
     this.submitted = true;
     const value = this.projectForm.value;
-    console.log("saveProject", value)
     let projectName = value.name;
     this.projectSrv.insertProject({
       name: value.name,

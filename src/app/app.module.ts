@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { NgModule, APP_INITIALIZER } from "@angular/core";
 import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -61,12 +61,20 @@ import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { SharedModule } from "./_shared/shared.module";
 
 import { ModalModule } from './_modal';
-import { GoogleAnalyticsService } from "./_services";
+import {
+  GoogleAnalyticsService,
+  AppSettingsService
+} from "./_services";
 import { SwiperModule } from 'swiper/angular';
+import { TagInputModule } from '@vpetrusevici/ngx-chips';
 
 
 export function createLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
+}
+export function appConfigFactory(provider: AppSettingsService) {
+
+  return () => provider.init();
 }
 
 
@@ -107,12 +115,19 @@ export function createLoader(http: HttpClient) {
       },
     }),
     SocialLoginModule,
+    TagInputModule,
     SwiperModule
   ],
   providers: [GoogleAnalyticsService,
     {
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
+    }, AppSettingsService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appConfigFactory,
+      deps: [AppSettingsService],
+      multi: true
     }],
   bootstrap: [AppComponent],
 })

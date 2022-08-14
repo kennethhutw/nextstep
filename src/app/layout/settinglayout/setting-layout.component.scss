@@ -78,17 +78,26 @@ svg-icon.icon {
 }
 
 
-
-
-
 .icon:hover svg g path {
   fill: #56BDF4;
+}
+
+.dropdown-item {
+  width: 100% !important;
 }
 
 .dropdown-item:hover {
   color: #fff !important;
   text-decoration: none;
-  background-color: #007bff;
+  background-color: #56BDF4;
+  border-radius: 3px;
+  width: 95%;
+}
+
+.dropdown-item.active {
+  color: #fff !important;
+  text-decoration: none;
+  background-color: #56BDF4;
   border-radius: 3px;
   width: 95%;
 }

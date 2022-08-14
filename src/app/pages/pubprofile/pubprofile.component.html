@@ -2,11 +2,23 @@
   <div id="profile-upper">
     <div id="profile-banner-image">
       <img (error)="onCoverImgError($event)" src="{{userProfile.cover}}" alt="Banner image">
+      <a *ngIf="isOwner" type="button" class="btn-cover" for="profileCover" (click)="profileCover.click()">
+        <svg-icon src="./assets/icons/edit.svg"></svg-icon> 編輯封面相片
+      </a>
+      <input id="profileCover" #profileCover type="file" accept="image/gif, image/jpg, image/jpeg, image/png, image/gif"
+        (change)="onUploadProfileCover($event)" />
     </div>
     <div id="profile-d">
       <div id="profile-pic">
         <img (error)="onImgError($event)" src="{{userProfile.imageUrl}}">
+
       </div>
+      <div *ngIf="isOwner" id="edit-profileImage" for="profileImage" (click)="profileImage.click()">
+        <i class="material-icons">camera_alt</i>
+
+      </div>
+      <input id="profileImage" #profileImage type="file" accept="image/gif, image/jpg, image/jpeg, image/png, image/gif"
+        (change)="onUploadProfileImage($event)" style="display: none; padding: 0px" />
       <div id="u-name">
         <span>{{userProfile.name}}</span>
         <span class="bio">{{userProfile.title?userProfile.title:"我還沒有填寫職稱"}}</span>
@@ -17,7 +29,7 @@
   </div>
   <div class="row mt-50">
     <div class="col-md-12 text-right">
-      <div class=" text-right btn_items">
+      <div *ngIf="!isOwner" class=" text-right btn_items">
 
         <button type="button" class="btn btn_item " (click)="onSave()"><i class="far fa-comment-alt"></i>
           訊息</button>
@@ -41,13 +53,15 @@
     <!--     個人簡介左邊 -->
     <div class="col-md-8">
       <!--     個人簡介 start -->
-      <div class="row mb-24">
-        <div class="col-md-12">
-          <span class="title mb-24">個人簡介</span>
+      <div class="row">
+        <div class="col-md-12 mb-24 title">
+          <span>個人簡介</span>
+          <a type="button" class="btn-transparent" data-toggle="modal" [attr.data-target]="'#editprofile'"
+            (click)="initProfileForm()"><img src="./assets/icons/edit.png" alt="edit" width="21px"> 編輯
+          </a>
         </div>
       </div>
       <div class="row">
-
         <div class="col-md-12 frame">
           <div class="col-md-12 text-right  d-flex flex-row gap-10 end">
             <a *ngIf="IsNullorEmpty(userProfile.website)" href="{{ userProfile.website }}" target="_blank"> <i
@@ -64,36 +78,36 @@
                 *ngIf="userProfile.instagram!=''" class="fab fa-instagram-square icon"></i></a>
 
           </div>
-          <!--  <div class="tags">
-             <ng-container *ngIf="
+          <div class="tags">
+            <ng-container *ngIf="
                             userProfile?.skills;
                             else noskill
                           ">
-              <span *ngFor="let skill of userProfile.skills; let i = index" class="tags">{{skill}}</span>
-
+              Skill: <span *ngFor="let skill of userProfile.skills; let i = index"
+                class="tag  tag-{{skill}}  mb-2 mr-3">{{convertTag(skill)}}</span>
             </ng-container>
             <ng-template #noskill>
               <span class="tags">我還沒填寫我的專長</span>
 
             </ng-template>
-          </div>-->
-          <span>{{this.userProfile.bio?this.userProfile.bio:"尚未填寫專案內容"}}</span>
+          </div>
+          <span class="sub-title">想說的話</span>
+          <p>{{this.userProfile.bio?this.userProfile.bio:"尚未有話要說"}}</p>
 
         </div>
       </div>
       <!-- 個人簡介 end -->
       <!-- 目前參與專案 start -->
-      <div class="row mt-50">
-        <div class="col-md-12">
-          <h3>目前參與專案</h3>
+      <div class="row mt-40">
+        <div class="col-md-12 mb-24 title">
+          <span>目前參與專案</span>
         </div>
         <ng-container *ngFor="let project of userProfile.projects; let i = index">
 
           <div class="col-md-12 frame mb-20">
             <div class="col-md-12" style=" display:inline-block;">
-              <div class="d-flex flex-column ">
+              <div class="d-flex flex-column">
                 <span style="font-size: 25px;padding-right: 20px;">{{project.position}}</span>
-                <!--  <a data-toggle="modal" [attr.data-target]="'#modal_project'"><i class="fas fa-pencil-alt"></i></a> -->
               </div>
               <div class="d-flex flex-row gap-10">
                 <span>{{project.name}}</span>
@@ -110,7 +124,7 @@
           </div>
         </ng-container>
 
-        <div *ngIf="!userProfile.projects" class="col-md-12 text-center frame">
+        <div *ngIf="!userProfile.projects" class="col-md-12 empty-text-center frame">
           <h3>還沒有參加任何專案</h3>
         </div>
 
@@ -118,9 +132,9 @@
       <!-- 目前參與專案 end -->
 
       <!-- 目前過去參與專案 start -->
-      <div class="row mt-50">
-        <div class="col-md-12">
-          <h3>目前過去參與專案</h3>
+      <div class="row mt-40">
+        <div class="col-md-12 mb-24 title">
+          <span>過去參與專案</span>
         </div>
         <ng-container *ngFor="let project of userProfile.pastprojects; let i = index">
           <div class="col-md-12 frame mb-20">
@@ -145,26 +159,66 @@
         </ng-container>
       </div>
 
-      <div class="row mt-50" *ngIf="!userProfile.pastprojects">
-        <div class="col-md-12 text-center frame">
-          <h3>還沒有參加任何專案</h3>
+      <div class="row" *ngIf="!userProfile.pastprojects">
+        <div class="col-md-12 empty-text-center frame">
+          <span>還沒有參加任何專案</span>
         </div>
       </div>
       <!-- 目前過去參與專案 end -->
     </div>
     <!--     工作簡介右邊 -->
     <div class="col-md-4">
-      <div class="row mb-24">
-        <div class="col-md-12">
-          <span class="title mb-24">工作經歷</span>
+      <div class="row ">
+        <div class="col-md-12 mb-24 title">
+          <span>工作經歷</span>
+          <a type="button" class="btn-transparent" data-toggle="modal" [attr.data-target]="'#experienceModal'"><i
+              class="fas fa-plus"></i> 新增
+          </a>
         </div>
       </div>
-      <div class="row profile-frame">
+      <div class="row exp-empty-frame empty-text-center" *ngIf="userProfile.experience.length ==0">
+
         <span>無工作經歷</span>
+
+      </div>
+      <div class="row exp-frame" *ngIf="userProfile.experience.length >0">
+        <ng-container *ngFor="let exp of userProfile.experience; let i = index">
+          <div class="exp_row">
+            <svg-icon src="./assets/icons/experience.svg"></svg-icon>
+            <div>
+              <span><b>{{exp.company}}</b>&nbsp;{{exp.position}}</span><br />
+              <span *ngIf="exp.isCurrent; else hasExp">
+                Since {{exp.startYear}}.{{exp.startMonth}}
+              </span>
+              <ng-template #hasExp>
+                <span>
+                  {{exp.startYear}}.{{exp.startMonth}} - {{exp.endYear}}.{{exp.endMonth}}
+                </span>
+              </ng-template>
+            </div>
+            <div class="dropdown">
+
+              <!--Trigger-->
+
+              <a type="button" href="#" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false"><i class="fas fa-ellipsis-h" style="color:black"></i></a>
+
+
+              <!--Menu-->
+              <div class="dropdown-menu dropdown-primary" aria-labelledby="dropdownMenu2">
+                <a class="dropdown-item" (click)="onEditExp(exp)" data-toggle="modal"
+                  [attr.data-target]="'#experienceModal'"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Edit</a>
+                <a class="dropdown-item" (click)="onDeleteExp(exp)"><i class="fas fa-trash"></i>&nbsp;&nbsp;Delete</a>
+                <!-- <a class="dropdown-item" href="#"><i class="far fa-envelope"></i>&nbsp;&nbsp;Check mail</a> -->
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+
       </div>
     </div>
   </div>
-
 
 
 </div> <!-- /container -->
@@ -178,3 +232,210 @@
     </div>
   </div>
 </app-modal>
+
+<!-- edit profile -->
+<div class="modal fade" id="editprofile" tabindex="-1" aria-labelledby="editprofile" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span>編輯個人資料</span>
+        <button type="button" #closeInfobutton class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body content">
+        <form [formGroup]="profileForm">
+          <div class="form-group">
+            <label for="inputName">姓名</label>
+            <input type="text" class="form-control rounded-0" formControlName="name" id="inputName"
+              aria-describedby="emailHelp" placeholder="Enter name">
+            <div *ngIf="submitted && f.name.errors">
+              <div class="error-msg" *ngIf="f.name.errors.required">
+                姓名是必要的
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input type="text" class="form-control rounded-0" formControlName="email" id="inputEmail"
+              aria-describedby="emailHelp" placeholder="Enter email">
+            <div *ngIf="submitted && f.email.errors">
+              <div class="error-msg" *ngIf="f.email.errors.required">
+                Email是必要的
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPosition">職稱</label>
+            <input type="text" class="form-control rounded-0" formControlName="position" id="inputPosition"
+              placeholder="職稱">
+          </div>
+          <div class="form-group">
+            <label for="inputCompany">公司</label>
+            <input type="text" class="form-control rounded-0" formControlName="company" id="inputCompany"
+              placeholder="公司名稱">
+          </div>
+          <div class="form-group">
+            <label for="inputSkills">技能</label>
+            <tag-input id="skills" formControlName="skills" [onlyFromAutocomplete]="true"
+              [secondaryPlaceholder]="'前端開發, 市場開發, UIUX...'">
+              <tag-input-dropdown [displayBy]="'text'" [appendToBody]="false" [autocompleteItems]="skillOptions"
+                [showDropdownIfEmpty]="true" [dynamicUpdate]="false">
+              </tag-input-dropdown>
+            </tag-input>
+          </div>
+          <div class="form-group">
+            <label for="inputWebsite">Website</label>
+            <input type="text" class="form-control rounded-0" formControlName="website" id="inputWebsite"
+              placeholder="Website">
+            <div *ngIf="submitted && f.website.errors">
+              <div class="error-msg" *ngIf="f.website.errors.pattern">
+                URL 格式不對
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputLinkedIn">LinkedIn</label>
+            <input type="text" class="form-control rounded-0" formControlName="linkedin" id="inputLinkedIn"
+              placeholder="LinkedIn url">
+            <div *ngIf="submitted && f.linkedin.errors">
+              <div class="error-msg" *ngIf="f.linkedin.errors.pattern">
+                URL 格式不對
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputFB">Facebook</label>
+            <input type="text" class="form-control rounded-0" formControlName="facebook" id="inputFB"
+              placeholder="Facebook url">
+            <div *ngIf="submitted && f.facebook.errors">
+              <div class="error-msg" *ngIf="f.facebook.errors.pattern">
+                URL 格式不對
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputTwitter">Twitter</label>
+            <input type="text" class="form-control rounded-0" formControlName="twitter" id="inputTwitter"
+              placeholder="Twitter">
+            <div *ngIf="submitted && f.twitter.errors">
+              <div class="error-msg" *ngIf="f.twitter.errors.pattern">
+                URL 格式不對
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputGithub">Github</label>
+            <input type="text" class="form-control rounded-0" formControlName="github" id="inputGithub"
+              placeholder="Github">
+            <div *ngIf="submitted && f.github.errors">
+              <div class="error-msg" *ngIf="f.github.errors.pattern">
+                URL 格式不對
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputContent">自我介紹</label>
+            <textarea class="form-control" type="text" id="bio" formControlName="bio" rows="4" cols="50"></textarea>
+          </div>
+          <button type="button" class="btn btn-white  mr-10" data-dismiss="modal" aria-label="Close">取消
+          </button>
+          <button type="button" class="btn btn-blue  mr-10" (click)="onProfileSubmit()">
+            儲存</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- edit experience start -->
+<div class="modal fade" id="experienceModal" tabindex="-1" aria-labelledby="experienceModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span>編輯工作經驗</span>
+        <button type="button" #closeExpbutton class="close" data-dismiss="modal" aria-label="Close"
+          (click)="onCancelEditExp()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body content">
+        <form [formGroup]="experienceForm">
+
+          <div class="form-group">
+            <label for="inputExpCompany">公司</label>
+            <input type="text" class="form-control rounded-0" formControlName="company" id="inputExpCompany"
+              placeholder="公司名稱">
+          </div>
+          <div class="form-group">
+            <label for="inputExpPosition">職稱</label>
+            <input type="text" class="form-control rounded-0" formControlName="position" id="inputExpPosition"
+              placeholder="職稱">
+          </div>
+
+          <div class="form-group">
+            <label for="inputSkills">期間</label>
+            <div class=" rounded-0">
+              <input id="isCurrent" type="checkbox" formControlName="isCurrent" data-key="isCurrent" />
+              <label for="isCurrent">現任工作</label>
+            </div>
+            <div class="during rounded-0">
+              <select id="startYear" formControlName="startYear">
+                <option>年</option>
+                <option *ngFor="let year of  years" value="{{year}}">{{year}}</option>
+              </select>
+              <select id="startMonth" formControlName="startMonth">
+                <option>月</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <span>至</span>
+              <select id="endYear" formControlName="endYear">
+                <option>年</option>
+                <option *ngFor="let year of  years" value="{{year}}">{{year}}</option>
+              </select>
+              <select id="endMonth" formControlName="endMonth">
+                <option>月</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputPosition">簡介</label>
+            <textarea class="form-control" type="text" id="content" formControlName="content" rows="4"
+              cols="50"></textarea>
+          </div>
+          <button type="button" class="btn btn-white mr-10" data-dismiss="modal" aria-label="Close"
+            (click)="onCancelEditExp()">取消
+          </button>
+          <button type="button" class="btn btn-blue mr-10" (click)="onExperienceSubmit()">
+            儲存</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
