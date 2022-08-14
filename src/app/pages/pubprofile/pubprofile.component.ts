@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
-
+  ViewsService,
   DataService,
   AppSettingsService,
   SettingService,
@@ -58,6 +58,7 @@ export class PubProfileComponent implements OnInit {
     private authSrv: AuthStore,
     private settingSrv: SettingService,
     private translateSrv: TranslateService,
+    private viewsService: ViewsService,
     private utility: Utility,
     private formBuilder: FormBuilder,
     private appSettingsSrv: AppSettingsService,
@@ -130,8 +131,35 @@ export class PubProfileComponent implements OnInit {
           this.userProfile.cover = environment.assetUrl + this.userProfile.cover;
         }
         this.isOwner = (this.currentUser.id === this.userProfile.id);
+
+        //init view
+        let _id = null;
+        if (this.currentUser && this.currentUser.id) {
+          _id = this.currentUser.id;
+          if (this.userProfile.id != this.currentUser.id) {
+            this.viewsService.insert(
+              this.currentUser.id,
+              "user",
+              _id,
+              "",
+              _id
+            );
+          }
+
+        } else {
+          this.viewsService.insert(
+            this.userProfile.id,
+            "user",
+            _id,
+            "",
+            _id
+          );
+
+        }
       }
     })
+
+
 
   }
 

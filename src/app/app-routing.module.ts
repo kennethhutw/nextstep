@@ -38,6 +38,7 @@ const routes: Routes = [
       { path: "projects", component: Pages.FindProjectComponent },
       { path: "project/:id", component: Pages.ProjectComponent },
       { path: "job/:id", component: Pages.JobComponent },
+      { path: "joinproject/:id", component: Pages.JoinProjectComponent },
       { path: "members", component: Pages.FindMemberComponent },
       { path: "mentors", component: Pages.FindMentorComponent },
       { path: "messages", component: Pages.ChatComponent },

@@ -1,0 +1,14 @@
+<div class="container text-center">
+    <span class="title text-center mb-20">是否接受加入[{{invitation? invitation.name:"專案名稱"}}]的邀請？</span>
+    <div class="btns">
+        <button type="button" class="btn btn-white mr-10" data-dismiss="modal" aria-label="Close"
+            (click)="onReject()">婉拒
+        </button>
+        <button type="button" class="btn btn-blue mr-10" (click)="onAccept()">
+            接受</button>
+    </div>
+    <div class="text-center">
+        <a class="later text-center" [routerLink]="['/project/',projectId]">晚點再說</a>
+        <!-- <a>晚點再說</a> -->
+    </div>
+</div>

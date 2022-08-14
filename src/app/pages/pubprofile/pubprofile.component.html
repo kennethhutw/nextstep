@@ -29,6 +29,7 @@
   </div>
   <div class="row mt-50">
     <div class="col-md-12 text-right">
+
       <div *ngIf="!isOwner" class=" text-right btn_items">
 
         <button type="button" class="btn btn_item " (click)="onSave()"><i class="far fa-comment-alt"></i>
@@ -45,6 +46,7 @@
 
     </div>
     <div class="col-md-6 text-right">
+      <span>累積{{ userProfile.viewCount?userProfile.viewCount:"0"}}次瀏覽&nbsp;&nbsp;</span>
       {{userProfile?.liked ? userProfile.liked:'0'}}人關注/關注{{userProfile?.like? userProfile.like:'0'}}人
     </div>
   </div>
@@ -56,8 +58,9 @@
       <div class="row">
         <div class="col-md-12 mb-24 title">
           <span>個人簡介</span>
-          <a type="button" class="btn-transparent" data-toggle="modal" [attr.data-target]="'#editprofile'"
-            (click)="initProfileForm()"><img src="./assets/icons/edit.png" alt="edit" width="21px"> 編輯
+          <a type="button" *ngIf="currentUser?.id == userProfile.id" class="btn-transparent" data-toggle="modal"
+            [attr.data-target]="'#editprofile'" (click)="initProfileForm()"><img src="./assets/icons/edit.png"
+              alt="edit" width="21px"> 編輯
           </a>
         </div>
       </div>
@@ -171,8 +174,8 @@
       <div class="row ">
         <div class="col-md-12 mb-24 title">
           <span>工作經歷</span>
-          <a type="button" class="btn-transparent" data-toggle="modal" [attr.data-target]="'#experienceModal'"><i
-              class="fas fa-plus"></i> 新增
+          <a type="button" *ngIf="currentUser?.id == userProfile.id" class="btn-transparent" data-toggle="modal"
+            [attr.data-target]="'#experienceModal'"><i class="fas fa-plus"></i> 新增
           </a>
         </div>
       </div>

@@ -73,11 +73,10 @@ export class ProjectComponent implements OnInit {
           let _owners = this.currentProject.members.filter(member => {
             return member.userId === this.currentProject.owner
           })
-          console.log("_owners ========", _owners);
+
           if (_owners.length > 0) {
             this.projectOwner = _owners[0];
           }
-          console.log("========", this.projectOwner);
         }
       }
       let _id = null;

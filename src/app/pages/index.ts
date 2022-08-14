@@ -1,12 +1,12 @@
 
 import { HomeComponent } from "./home/home.component";
-
+import { AboutComponent } from "./about/about.component";
 import { ActivityComponent } from "./activity/activity.component";
 import { FeedbackComponent } from "./feedback/feedback.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { QAComponent } from "./qa/qa.component";
 import { PolicyComponent } from "./policy/policy.component";
-import { AboutComponent } from "./about/about.component";
+
 import { ErrorComponent } from "./error/error.component";
 import { ExampleComponent } from "./example/example.component";
 import { VerificationComponent } from './verification/verification.component';
@@ -42,6 +42,7 @@ import {
 } from './dashboard';
 
 import { JobComponent } from './job/job.component';
+import { JoinProjectComponent } from './joinproject/joinproject.component';
 
 export const containers = [
     ActivityComponent,
@@ -56,6 +57,7 @@ export const containers = [
     FindMemberComponent,
     HomeComponent,
     JobComponent,
+    JoinProjectComponent,
     LoginComponent,
     MyApplicationComponent,
     MyCollectionComponent,
@@ -96,6 +98,8 @@ export * from './dashboard';
 export { ProjectDetailComponent } from './project-detail/projectDetail.component';
 export { ProjectComponent } from './project/project.component';
 export { JobComponent } from './job/job.component';
+export { JoinProjectComponent } from './joinproject/joinproject.component';
+
 export { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 export { PolicyComponent } from "./policy/policy.component";
 export { ProfileComponent } from './profile/profile.component';

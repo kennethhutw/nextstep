@@ -27,4 +27,13 @@ export class InvitationService {
         return await this.http.delete(`${environment.apiUrl}/invitations/${id}`).toPromise();
     }
 
+    async getInvitation(projectId, userId) {
+        return await this.http.get(`${environment.apiUrl}/invitations/invitation/${projectId}/${userId
+            }`).toPromise();
+    }
+
+    updateInvitation(id, params) {
+        return this.http.put(`${environment.apiUrl}/invitations/${id}`, params);
+    }
+
 }
