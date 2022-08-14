@@ -31,6 +31,8 @@ export class FeedbackComponent implements OnInit {
   editedItem = null;
   commentContent: string = "";
 
+  replyComment: string = "";
+
   constructor(
     private utilitySrv: Utility,
     private authStoreSrv: AuthStore,
@@ -42,21 +44,29 @@ export class FeedbackComponent implements OnInit {
   ngOnInit() {
     this.currentUser = this.authStoreSrv.getUserData();
     this.proposalSrv.getall().subscribe(res => {
-      console.log("init proposal =======", res);
+      console.log(" proposalSrv ===============", res)
       if (res["result"] == "successful") {
         this.allitems = res["data"];
+        // process_status
+        this.processed = this.allitems.filter(item => {
+          return item.process_status = "processed"
+        })
+        this.myproposals = this.allitems.filter(item => {
+          return item.createdBy = this.currentUser.id
+        })
+
       }
     })
-    if (this.currentUser) {
+    // if (this.currentUser) {
 
-    } else {
-      this.proposalSrv.getall().subscribe(res => {
-        console.log("init proposal =======", res);
-        if (res["result"] == "successful") {
-          this.allitems = res["data"];
-        }
-      })
-    }
+    // } else {
+    //   this.proposalSrv.getall().subscribe(res => {
+    //     console.log("init proposal =======", res);
+    //     if (res["result"] == "successful") {
+    //       this.allitems = res["data"];
+    //     }
+    //   })
+    // }
 
   }
 
@@ -72,7 +82,6 @@ export class FeedbackComponent implements OnInit {
       && !this.utilitySrv.IsNullOrEmpty(this.proposaltype)
       && this.currentUser) {
       this.proposalSrv.insert(this.proposaltype, this.propsoalContent, this.proposaltype, this.currentUser.id).subscribe(res => {
-        console.log("insert proposal =======", res);
         if (res['result'] == "successful") {
           document.getElementById("close_new_proposl").click();
         }
@@ -98,7 +107,6 @@ export class FeedbackComponent implements OnInit {
       && this.currentUser) {
       this.CommentsSrv.insertComment(this.currentUser.id,
         this.editedItem.id, this.commentContent).subscribe(res => {
-          console.log("insert comment =======", res);
           if (res['result'] == "successful") {
             let objIndex = this.allitems.findIndex((obj => obj.id == this.editedItem.id));
             this.allitems[objIndex].comments.push(res['data']);
@@ -109,5 +117,18 @@ export class FeedbackComponent implements OnInit {
           console.log("error", error);
         })
     }
+  }
+
+  onComment(event, feedback) {
+
+    this.CommentsSrv.insertComment(this.currentUser.id,
+      feedback.id, event.target.value).subscribe(res => {
+        if (res['result'] == "successful") {
+          feedback.comments.push(res['data']);
+          event.target.value = "";
+        }
+      }, (error) => {
+        console.log("error", error);
+      })
   }
 }

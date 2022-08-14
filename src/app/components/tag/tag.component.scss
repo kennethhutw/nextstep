@@ -1,29 +1,38 @@
 ui-tag {
-
-
     padding: 4px 4px 4px 4px;
     border-radius: 4px;
 
     .tag-improve {
         color: #fff;
         background-color: #2E83FB;
-        padding: 2px 4px 2px 4px;
+        padding: 2px;
         border-radius: 4px;
-
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        display: flex;
     }
 
     .tag-help {
         color: #4C3509;
         background-color: #FCB11F;
-        padding: 2px 4px 2px 4px;
+        padding: 2px;
         border-radius: 4px;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        display: flex;
     }
 
     .tag-bug {
         color: #fff;
         background-color: #CC0023;
-        padding: 2px 4px 2px 4px;
+        padding: 2px;
         border-radius: 4px;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        display: flex;
     }
 
     .tag-hiring {
