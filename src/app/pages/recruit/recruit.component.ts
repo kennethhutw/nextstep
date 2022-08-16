@@ -92,5 +92,26 @@ export class RecruitComponent implements OnInit {
   onImgError(event) {
     event.target.src = "assets/images/defaultlogo.png";
   }
+
+  onCleanClick() {
+    this.filterCondition.online = false,
+      this.filterCondition.offline = false;
+    this.filterCondition.design = false;
+    this.filterCondition.finance = false;
+    this.filterCondition.marketing = false;
+    this.filterCondition.product = false;
+    this.filterCondition.public = false;
+    this.filterCondition.sale = false;
+    this.filterCondition.funding = false;
+    this.filterCondition.law = false;
+    this.filterCondition.strategy = false;
+    this.filterCondition.programming = false;
+    this.filterCondition.work12 = false;
+    this.filterCondition.work34 = false;
+    this.filterCondition.work56 = false;
+    this.filterCondition.work78 = false;
+    this.filterCondition.work9 = false;
+    this.displayItems = this.items;
+  }
 }
 //https://www.sliderrevolution.com/resources/bootstrap-profile/
