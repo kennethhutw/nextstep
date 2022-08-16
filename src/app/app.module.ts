@@ -66,7 +66,7 @@ import {
   AppSettingsService
 } from "./_services";
 import { SwiperModule } from 'swiper/angular';
-import { TagInputModule } from '@vpetrusevici/ngx-chips';
+import { TagInputModule } from 'ngx-chips';
 
 
 export function createLoader(http: HttpClient) {
