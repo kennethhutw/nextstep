@@ -92,6 +92,319 @@ export class RecruitComponent implements OnInit {
   onImgError(event) {
     event.target.src = "assets/images/defaultlogo.png";
   }
+  onSkills(event) {
+
+    if (this.filterCondition.design &&
+      this.filterCondition.finance &&
+      this.filterCondition.marketing &&
+      this.filterCondition.product &&
+      this.filterCondition.public &&
+      this.filterCondition.sale &&
+      this.filterCondition.funding &&
+      this.filterCondition.law &&
+      this.filterCondition.strategy &&
+      this.filterCondition.programming) {
+      this.displayItems = this.items;
+    } else if (!this.filterCondition.design &&
+      !this.filterCondition.finance &&
+      !this.filterCondition.marketing &&
+      !this.filterCondition.product &&
+      !this.filterCondition.public &&
+      this.filterCondition.sale &&
+      this.filterCondition.funding &&
+      this.filterCondition.law &&
+      this.filterCondition.strategy &&
+      this.filterCondition.programming) {
+      this.displayItems = [];
+    } else {
+      let currentItem = []
+      this.items.map(item => {
+        if (this.filterCondition.design &&
+          item.skills.indexOf('design') > -1) {
+          currentItem.push(item);
+        }
+        if (this.filterCondition.finance &&
+          item.skills.indexOf('finance') > -1) {
+
+          currentItem.push(item);
+
+        }
+        if (this.filterCondition.marketing &&
+          item.skills.indexOf('marketing') > -1) {
+          currentItem.push(item);
+        }
+        if (this.filterCondition.product &&
+          item.skills.indexOf('product') > -1) {
+          currentItem.push(item);
+        }
+        if (this.filterCondition.public &&
+          item.skills.indexOf('public') > -1) {
+          currentItem.push(item);
+        }
+        if (this.filterCondition.sale &&
+          item.skills.indexOf('sale') > -1) {
+          currentItem.push(item);
+        }
+        if (this.filterCondition.funding &&
+          item.skills.indexOf('funding') > -1) {
+          currentItem.push(item);
+        }
+        if (this.filterCondition.law &&
+          item.skills.indexOf('law') > -1) {
+          currentItem.push(item);
+        }
+        if (this.filterCondition.strategy &&
+          item.skills.indexOf('strategy') > -1) {
+          currentItem.push(item);
+        }
+        if (this.filterCondition.programming &&
+          item.skills.indexOf('programming') > -1) {
+          currentItem.push(item);
+        }
+        this.displayItems = currentItem;
+      })
+
+    }
+
+    if (this.displayItems.length > 0)
+      this.checkWorkTime(this.displayItems);
+    if (this.displayItems.length > 0)
+      this.checkLine(this.displayItems);
+    this.finalCheck();
+  }
+
+  onHourChange(event) {
+    if (this.filterCondition.work12 &&
+      this.filterCondition.work34 &&
+      this.filterCondition.work56 &&
+      this.filterCondition.work78 &&
+      this.filterCondition.work9) {
+      this.displayItems = this.items;
+    } else if (!this.filterCondition.work12 &&
+      !this.filterCondition.work34 &&
+      !this.filterCondition.work56 &&
+      !this.filterCondition.work78 &&
+      !this.filterCondition.work9) {
+      this.displayItems = this.items;
+    } else {
+      let currentItem = []
+      this.items.map(item => {
+        if (this.filterCondition.work12 && item.work12) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+        if (this.filterCondition.work34 && item.work34) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+        if (this.filterCondition.work56 && item.work56) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+        if (this.filterCondition.work78 && item.work78) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+        if (this.filterCondition.work9 && item.work9) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+
+        this.displayItems = currentItem;
+      })
+
+    }
+
+    if (this.displayItems.length > 0)
+      this.checkSkills(this.displayItems);
+    if (this.displayItems.length > 0)
+      this.checkLine(this.displayItems);
+    this.finalCheck();
+  }
+
+  checkLine(items) {
+    if (this.filterCondition.online && this.filterCondition.offline) {
+      this.displayItems = items;
+    } else if (!this.filterCondition.online && this.filterCondition.offline) {
+      this.displayItems = items.filter(item => {
+        return item.online == 0 && item.offline == 1
+      })
+    } else if (this.filterCondition.online && !this.filterCondition.offline) {
+      this.displayItems = items.filter(item => {
+        return item.offline == 0 && item.online == 1
+      })
+    } else if (!this.filterCondition.online && !this.filterCondition.offline) {
+      this.displayItems = items;
+    }
+  }
+
+  checkSkills(items) {
+
+    if (this.filterCondition.design &&
+      this.filterCondition.finance &&
+      this.filterCondition.marketing &&
+      this.filterCondition.product &&
+      this.filterCondition.public &&
+      this.filterCondition.sale &&
+      this.filterCondition.funding &&
+      this.filterCondition.law &&
+      this.filterCondition.strategy &&
+      this.filterCondition.programming) {
+      this.displayItems = items;
+    } else if (!this.filterCondition.design &&
+      !this.filterCondition.finance &&
+      !this.filterCondition.marketing &&
+      !this.filterCondition.product &&
+      !this.filterCondition.public &&
+      this.filterCondition.sale &&
+      this.filterCondition.funding &&
+      this.filterCondition.law &&
+      this.filterCondition.strategy &&
+      this.filterCondition.programming) {
+      this.displayItems = items;
+    } else {
+      let currentItem = []
+      this.items.map(item => {
+        if (this.filterCondition.design &&
+          item.skills.indexOf('design') > -1) {
+          currentItem.push(item);
+        }
+        if (this.filterCondition.finance &&
+          item.skills.indexOf('finance') > -1) {
+
+          currentItem.push(item);
+
+        }
+        if (this.filterCondition.marketing &&
+          item.skills.indexOf('marketing') > -1) {
+          currentItem.push(item);
+        }
+        if (this.filterCondition.product &&
+          item.skills.indexOf('product') > -1) {
+          currentItem.push(item);
+        }
+        if (this.filterCondition.public &&
+          item.skills.indexOf('public') > -1) {
+          currentItem.push(item);
+        }
+        if (this.filterCondition.sale &&
+          item.skills.indexOf('sale') > -1) {
+          currentItem.push(item);
+        }
+        if (this.filterCondition.funding &&
+          item.skills.indexOf('funding') > -1) {
+          currentItem.push(item);
+        }
+        if (this.filterCondition.law &&
+          item.skills.indexOf('law') > -1) {
+          currentItem.push(item);
+        }
+        if (this.filterCondition.strategy &&
+          item.skills.indexOf('strategy') > -1) {
+          currentItem.push(item);
+        }
+        if (this.filterCondition.programming &&
+          item.skills.indexOf('programming') > -1) {
+          currentItem.push(item);
+        }
+        this.displayItems = currentItem;
+      })
+
+    }
+
+
+  }
+
+  checkWorkTime(items) {
+    let currentItem = []
+    if (!this.filterCondition.work12 &&
+      !this.filterCondition.work34 &&
+      !this.filterCondition.work56 &&
+      !this.filterCondition.work78 &&
+      !this.filterCondition.work9) {
+      this.displayItems = items;
+    } else if (this.filterCondition.work12 &&
+      this.filterCondition.work34 &&
+      this.filterCondition.work56 &&
+      this.filterCondition.work78 &&
+      this.filterCondition.work9) {
+      this.displayItems = items;
+    } else {
+      items.map(item => {
+        if (this.filterCondition.work12 && item.work12) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+        if (this.filterCondition.work34 && item.work34) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+        if (this.filterCondition.work56 && item.work56) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+        if (this.filterCondition.work78 && item.work78) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+        if (this.filterCondition.work9 && item.work9) {
+          if (!this.isExist(currentItem, item.id)) {
+            currentItem.push(item);
+          }
+        }
+
+        this.displayItems = currentItem;
+      })
+    }
+
+  }
+
+  finalCheck() {
+    if (
+      this.filterCondition.design &&
+      this.filterCondition.finance &&
+      this.filterCondition.marketing &&
+      this.filterCondition.product &&
+      this.filterCondition.public &&
+      this.filterCondition.sale &&
+      this.filterCondition.funding &&
+      this.filterCondition.law &&
+      this.filterCondition.strategy &&
+      this.filterCondition.programming &&
+      this.filterCondition.work12 &&
+      this.filterCondition.work34 &&
+      this.filterCondition.work56 &&
+      this.filterCondition.work78 &&
+      this.filterCondition.work9) {
+      this.displayItems = this.items;;
+    } else if (
+      !this.filterCondition.design &&
+      !this.filterCondition.finance &&
+      !this.filterCondition.marketing &&
+      !this.filterCondition.product &&
+      !this.filterCondition.public &&
+      !this.filterCondition.sale &&
+      !this.filterCondition.funding &&
+      !this.filterCondition.law &&
+      !this.filterCondition.strategy &&
+      !this.filterCondition.programming &&
+      !this.filterCondition.work12 &&
+      !this.filterCondition.work34 &&
+      !this.filterCondition.work56 &&
+      !this.filterCondition.work78 &&
+      !this.filterCondition.work9) {
+      this.displayItems = this.items;
+    }
+  }
 
   onCleanClick() {
     this.filterCondition.online = false,
@@ -112,6 +425,39 @@ export class RecruitComponent implements OnInit {
     this.filterCondition.work78 = false;
     this.filterCondition.work9 = false;
     this.displayItems = this.items;
+  }
+
+
+  onLine(event) {
+    if (this.filterCondition.online && this.filterCondition.offline) {
+      this.displayItems = this.items;
+    } else if (!this.filterCondition.online && this.filterCondition.offline) {
+      this.displayItems = this.items.filter(item => {
+        return item.online == 0 && item.offline == 1
+      })
+    } else if (this.filterCondition.online && !this.filterCondition.offline) {
+      this.displayItems = this.items.filter(item => {
+        return item.offline == 0 && item.online == 1
+      })
+    } else if (!this.filterCondition.online && !this.filterCondition.offline) {
+      this.displayItems = this.items;
+    }
+    if (this.displayItems.length > 0)
+      this.checkWorkTime(this.displayItems);
+    if (this.displayItems.length > 0)
+      this.checkSkills(this.displayItems);
+    this.finalCheck();
+
+  }
+
+  isExist(items, id) {
+    let isExist = items.filter(item => item.id == id);
+    if (isExist.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+
   }
 }
 //https://www.sliderrevolution.com/resources/bootstrap-profile/
