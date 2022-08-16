@@ -12,6 +12,7 @@
     "experimentalDecorators": true,
     "target": "es5",
     "skipLibCheck": true,
+    "noImplicitAny": false,
     "typeRoots": [
       "node_modules/@types"
     ],
@@ -19,5 +20,8 @@
       "es2017",
       "dom"
     ]
-  }
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }
