@@ -176,6 +176,7 @@ export class ProjectComponent implements OnInit {
 
 
   }
+
   onClickCollect() {
     this.viewsService.collect(
       this.projectId,

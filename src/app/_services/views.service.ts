@@ -37,12 +37,10 @@ export class ViewsService {
         }).toPromise();
     }
 
-    async unCollect(followed_id,
+    async unCollect(collected_id,
         type,
         uid) {
-        let httpParams = new HttpParams().set('followed_id', followed_id);
-        httpParams.set('type', type);
-        httpParams.set('uid', uid);
+        let httpParams = new HttpParams().set('collected_id', collected_id).set('type', type).set('uid', uid);
 
         let options = { params: httpParams };
         return await this.http.delete(`${environment.apiUrl}/collect`, options).toPromise();
@@ -62,9 +60,7 @@ export class ViewsService {
     async unFollow(followed_id,
         type,
         uid) {
-        let httpParams = new HttpParams().set('followed_id', followed_id);
-        httpParams.set('type', type);
-        httpParams.set('uid', uid);
+        let httpParams = new HttpParams().set('followed_id', followed_id).set('type', type).set('uid', uid);
 
         let options = { params: httpParams };
         return await this.http.delete(`${environment.apiUrl}/follow`, options).toPromise();

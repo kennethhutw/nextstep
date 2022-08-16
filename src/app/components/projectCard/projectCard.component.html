@@ -13,10 +13,12 @@
     </div>
     <div class="item-left">
       <div *ngIf="user">
-        <i *ngIf="project.isCollect" (click)="onClickCollect()" style="color:#56BDF4" class="fas fa-bookmark mr-5"></i>
+        <i *ngIf="project.isCollect" (click)="onClickUnCollect()" style="color:#56BDF4"
+          class="fas fa-bookmark mr-5"></i>
         <i *ngIf="!project.isCollect" (click)="onClickCollect()" style="color:#56BDF4" class="far fa-bookmark mr-5"></i>
         <!-- <i class="far fa-comment-alt mr-5"></i> -->
-        <span class="follow" [ngClass]="{ 'Isfollow': project.isFollow === true }">追蹤</span>
+        <span *ngIf="project.isFollow" class="followed" (click)="onClickUnFollow()">追蹤</span>
+        <span *ngIf="!project.isFollow" class="follow" (click)="onClickFollow()">追蹤</span>
       </div>
     </div>
   </div>

@@ -79,28 +79,28 @@
           <i class="far fa-bell icon"></i>
           <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary notification-box"
             aria-labelledby="navbarNotifDropdown">
-            <div class="notification">
+            <a class="notification" routerLink="/dashboard/notifications">
               <i class="fas fa-bell"></i>
               <div class="notifciation-row">
                 <span>[帳號]3333提出加入[專案名稱]申請</span>
                 <span>剛剛</span>
               </div>
-            </div>
-            <div class="notification">
+            </a>
+            <a class="notification" routerLink="/dashboard/notifications">
               <i class="fas fa-bell"></i>
               <div class="notifciation-row">
                 <span>[帳號]提出加入[專案名稱]申請</span>
                 <span>5分鐘前</span>
               </div>
-            </div>
-            <div class="notification">
+            </a>
+            <a class="notification" routerLink="/dashboard/notifications">
               <i class="fas fa-bell"></i>
               <div class="notifciation-row">
                 <span>[帳號]提出加入[專案名稱]申請</span>
                 <span>1小時前</span>
               </div>
-            </div>
-            <a routerLink="/notifications" class="text-center">查看更多</a>
+            </a>
+            <a routerLink="/dashboard/notifications" class="text-center">查看更多</a>
           </div>
         </li>
         <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">

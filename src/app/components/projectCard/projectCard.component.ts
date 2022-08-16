@@ -23,7 +23,10 @@ export class ProjectCardComponent {
   @Input() project;
   @Input() user;
 
-  @Output() onCollect: EventEmitter<{ projectId: any, isCollect: any }> = new EventEmitter<{ projectId: any, isCollect: any }>();
+  @Output() Collect: EventEmitter<{ projectId: any }> = new EventEmitter<{ projectId: any }>();
+  @Output() UnCollect: EventEmitter<{ projectId: any }> = new EventEmitter<{ projectId: any }>();
+  @Output() Follow: EventEmitter<{ projectId: any }> = new EventEmitter<{ projectId: any }>();
+  @Output() UnFollow: EventEmitter<{ projectId: any }> = new EventEmitter<{ projectId: any }>();
   constructor(
     private utility: Utility,
     private router: Router,
@@ -53,6 +56,28 @@ export class ProjectCardComponent {
       }
     });
 
+  }
+
+  onClickCollect() {
+    this.user.isCollect = !this.user.isCollect;
+    this.Collect.emit({ projectId: this.project.id });
+  }
+
+  onClickUnCollect() {
+
+    this.user.isCollect = !this.user.isCollect;
+    this.UnCollect.emit({ projectId: this.project.id });
+  }
+
+  onClickFollow() {
+
+    this.user.isFollow = !this.user.isFollow;
+    this.Follow.emit({ projectId: this.project.id });
+  }
+
+  onClickUnFollow() {
+    this.user.isFollow = !this.user.isFollow;
+    this.UnFollow.emit({ projectId: this.project.id });
   }
 
 

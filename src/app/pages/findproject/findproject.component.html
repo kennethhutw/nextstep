@@ -139,7 +139,9 @@
       <div class="row">
         <ng-container *ngFor="let item of  displayItems; let i = index">
           <div class="col-md-6 text-center">
-            <ui-project-card (onCollect)="onCollect($event)" [project]="item" [user]="currentUser"></ui-project-card>
+            <ui-project-card (Collect)="onClickCollect($event)" (UnCollect)="onClickUnCollect($event)"
+              (Follow)="onClickFollow($event)" (UnFollow)="onClickUnFollow($event)" [project]="item"
+              [user]="currentUser"></ui-project-card>
           </div>
         </ng-container>
       </div>

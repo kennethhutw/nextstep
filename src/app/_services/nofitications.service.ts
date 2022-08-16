@@ -27,14 +27,16 @@ export class NotificationService {
         content,
         type,
         isRead,
-        status) {
+        status,
+        uid) {
         return await this.http.post(`${environment.apiUrl}/notifications`, {
             receiver_id,
             sender_id,
             content,
             type,
             isRead,
-            status
+            status,
+            uid
         }).toPromise();
     }
 

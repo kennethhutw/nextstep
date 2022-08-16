@@ -23,15 +23,10 @@ export class UserCardComponent {
   @Input() type;
   @Input() currentuser;
 
-  @Output() onCollect: EventEmitter<{
-    id: any,
-    isCollect: any,
-    type: string
-  }> = new EventEmitter<{
-    id: any,
-    isCollect: any,
-    type: string
-  }>();
+  @Output() Collect: EventEmitter<{ userId: any }> = new EventEmitter<{ userId: any }>();
+  @Output() UnCollect: EventEmitter<{ userId: any }> = new EventEmitter<{ userId: any }>();
+  @Output() Follow: EventEmitter<{ userId: any }> = new EventEmitter<{ userId: any }>();
+  @Output() UnFollow: EventEmitter<{ userId: any }> = new EventEmitter<{ userId: any }>();
   constructor(
     private utility: Utility,
     private router: Router,
@@ -63,10 +58,28 @@ export class UserCardComponent {
 
   }
 
+
   onClickCollect() {
+    console.log("onClickCollect =============")
+    this.user.isCollect = !this.user.isCollect;
+    this.Collect.emit({ userId: this.user.id });
+  }
+
+  onClickUnCollect() {
 
     this.user.isCollect = !this.user.isCollect;
-    this.onCollect.emit({ id: this.user.id, isCollect: this.user.isCollect, type: this.type });
+    this.UnCollect.emit({ userId: this.user.id });
+  }
+
+  onClickFollow() {
+
+    this.user.isFollow = !this.user.isFollow;
+    this.Follow.emit({ userId: this.user.id });
+  }
+
+  onClickUnFollow() {
+    this.user.isFollow = !this.user.isFollow;
+    this.UnFollow.emit({ userId: this.user.id });
   }
 
   onImgError(event) {

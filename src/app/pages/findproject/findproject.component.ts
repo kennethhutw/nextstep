@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
-
+  ViewsService,
   ProjectService,
-  DataService,
+  ToastService,
   AppSettingsService,
+  NotificationService,
   LikeService
 } from "../../_services";
 import {
@@ -51,10 +52,12 @@ export class FindProjectComponent implements OnInit {
     private projectSrv: ProjectService,
     private translateSrv: TranslateService,
     private utility: Utility,
-    private dataSrv: DataService,
+    private viewsSrv: ViewsService,
     private authStore: AuthStore,
     private likeSrv: LikeService,
-    private SpinnerService: NgxSpinnerService
+    private SpinnerService: NgxSpinnerService,
+    public toastr: ToastService,
+    private notificationSrv: NotificationService,
   ) {
 
   }
@@ -67,7 +70,7 @@ export class FindProjectComponent implements OnInit {
       _id = this.currentUser.id;
     }
     this.projectSrv.getPublicProjects(_id).then(res => {
-
+      console.log("project ====", res);
       if (res['result'] == 'successful') {
         this.items = res['data'];
         this.displayItems = this.items ? this.items : [];
@@ -83,27 +86,8 @@ export class FindProjectComponent implements OnInit {
     //this.SpinnerService.hide();
   }
 
-
-
-  onCollect($event) {
-    if ($event.isCollect) {
-      this.likeSrv.like(this.currentUser.id, $event.projectId, 'project').subscribe(res => {
-        if (res['result'] == 'successful') {
-
-        }
-      })
-    } else {
-      this.likeSrv.removeLike(this.currentUser.id, $event.projectId, 'project').subscribe(res => {
-        if (res['result'] == 'successful') {
-
-        }
-      })
-    }
-  }
-
-
   onProjectStatusChange(event) {
-    console.log("=======");
+
     if (!this.filterCondition.isFindPartner &&
       !this.filterCondition.isFunding &&
       !this.filterCondition.isCofounder) {
@@ -211,8 +195,6 @@ export class FindProjectComponent implements OnInit {
       this.checkType(this.displayItems)
     this.finalCheck();
   }
-
-
 
   isExist(items, id) {
     let isExist = items.filter(item => item.id == id);
@@ -517,5 +499,115 @@ export class FindProjectComponent implements OnInit {
     this.filterCondition.work78 = false;
     this.filterCondition.work9 = false;
     this.displayItems = this.items;
+  }
+
+
+  onClickFollow(event) {
+    console.log("onClickFollow===========", event)
+    this.viewsSrv.follow(
+      event.projectId,
+      "project",
+      this.currentUser.id
+    ).then(res => {
+      if (res['result'] == 'successful') {
+        let _index = this.items.findIndex((obj => obj.id == event.projectId));
+        this.items[_index].isFollow = true;
+        this.notificationSrv.insert(
+          this.items[_index].owner,
+          this.currentUser.id,
+          this.currentUser.name + "開始追蹤" + this.items[_index].name,
+          "project",
+          0,
+          0,
+          this.currentUser.id
+        ).then(res => { });
+        this.toastr.showToast('Success', "追蹤成功 ", this.toastr.iconClasses.success);
+      } else {
+        this.toastr.showToast('Failed', "追蹤失敗", this.toastr.iconClasses.error);
+      }
+    });
+  }
+
+  onClickUnFollow(event) {
+
+    this.viewsSrv.unFollow(
+      event.projectId,
+      "project",
+      this.currentUser.id
+    ).then(res => {
+      if (res['result'] == 'successful') {
+        let _index = this.items.findIndex((obj => obj.id == event.projectId));
+        this.items[_index].isFollow = false;
+        this.notificationSrv.insert(
+          this.items[_index].owner,
+          this.currentUser.id,
+          this.currentUser.name + "停止追蹤" + this.items[_index].name,
+          "project",
+          0,
+          0,
+          this.currentUser.id
+        ).then(res => { });
+        this.toastr.showToast('Success', "停止追蹤成功 ", this.toastr.iconClasses.success);
+      } else {
+        this.toastr.showToast('Failed', "停止追蹤失敗", this.toastr.iconClasses.error);
+      }
+    });
+  }
+
+  onClickCollect(event) {
+
+    this.viewsSrv.collect(
+      event.projectId,
+      "project",
+      this.currentUser.id
+    ).then(res => {
+      if (res['result'] == 'successful') {
+        let _index = this.items.findIndex((obj => obj.id == event.projectId));
+        this.items[_index].isCollect = true;
+        this.notificationSrv.insert(
+          this.items[_index].owner,
+          this.currentUser.id,
+          this.currentUser.name + "收藏了" + this.items[_index].name,
+          "project",
+          0,
+          0,
+          this.currentUser.id
+        ).then(res => { });
+        this.toastr.showToast('Success', "收藏成功 ", this.toastr.iconClasses.success);
+      } else {
+        this.toastr.showToast('Failed', "收藏失敗", this.toastr.iconClasses.error);
+      }
+    });
+
+  }
+
+  onClickUnCollect(event) {
+
+    this.viewsSrv.unCollect(
+      event.projectId,
+      "project",
+      this.currentUser.id
+    ).then(res => {
+      if (res['result'] == 'successful') {
+        let _index = this.items.findIndex((obj => obj.id == event.projectId));
+        this.items[_index].isCollect = false;
+        this.notificationSrv.insert(
+          this.items[_index].owner,
+          this.currentUser.id,
+          this.currentUser.name + "取消收藏" + this.items[_index].name,
+          "project",
+          0,
+          0,
+          this.currentUser.id
+        ).then(res => { });
+        this.toastr.showToast('Success', "取消收藏成功 ", this.toastr.iconClasses.success);
+      } else {
+        this.toastr.showToast('Failed', "取消收藏失敗", this.toastr.iconClasses.error);
+      }
+    }).catch(error => {
+      console.log("取消收藏", error)
+      this.toastr.showToast('Failed', "取消收藏失敗", this.toastr.iconClasses.error);
+    });
+
   }
 }
