@@ -215,7 +215,8 @@ export class newProjectComponent implements OnInit {
           `成功建立${projectName}專案！`,
           "1",
           '0',
-          '0'
+          '0',
+          this.currentUser.id
         ).then(res => {
           if (res['result'] === 'successful') { }
         })
