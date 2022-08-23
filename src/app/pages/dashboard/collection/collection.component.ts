@@ -3,7 +3,7 @@ import { HostListener, HostBinding, Component, OnInit } from '@angular/core';
 import {
   DialogService,
   ProjectService,
-  LikeService
+  ViewsService
 } from './../../../_services';
 import {
   AuthStore
@@ -22,33 +22,46 @@ export class MyCollectionComponent implements OnInit {
   currentTab = "project";
   projects = [];
   partners = [];
+  applications = [];
   mentors = [];
 
   constructor(
     private dialogSrv: DialogService,
     private projectSrv: ProjectService,
     private authStoreSrv: AuthStore,
-    private likeSrv: LikeService) {
+    private viewSrv: ViewsService) {
   }
 
   ngOnInit() {
     this.currentUser = this.authStoreSrv.getUserData();
-    this.likeSrv.getCollection(
+    this.viewSrv.getCollect(
       this.currentUser.id
     ).then(res => {
+      console.log("getCollect========", res)
       if (res['result'] == 'successful') {
-        let data = res['data'];
-        if (data.length > 0) {
-          this.projects = data.filter((collection) => {
-            return collection.likedType == 'project'
+        this.projects = res['projects'];
+        if (this.projects.length > 0) {
+          this.projects.forEach(element => {
+            element.isSelected = false
           });
-          this.partners = data.filter((collection) => {
-            return collection.likedType == 'partner'
+        }
+        this.partners = res['users'];
+        if (this.partners.length > 0) {
+          this.partners.forEach(element => {
+            element.isSelected = false
           });
-          this.mentors = data.filter((collection) => {
-            return collection.likedType == 'mentor'
+        }
+        this.applications = res['applications'];
+        if (this.applications.length > 0) {
+          this.applications.forEach(element => {
+            element.isSelected = false
           });
-
+        }
+        this.mentors = res['mentors'];
+        if (this.mentors.length > 0) {
+          this.mentors.forEach(element => {
+            element.isSelected = false
+          });
         }
       }
     })

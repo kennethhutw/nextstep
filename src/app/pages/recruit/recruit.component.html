@@ -119,7 +119,8 @@
       <div class="row">
         <ng-container *ngFor="let item of  displayItems; let i = index">
           <div class="col-md-6 text-center">
-            <ui-recruit-card (onCollect)="onCollect($event)" [job]="item" [user]="currentUser">
+            <ui-recruit-card (Collect)="onClickCollect($event)" (UnCollect)="onClickUnCollect($event)"
+              (Apply)="onClickApply($event)" [job]="item" [user]="currentUser">
             </ui-recruit-card>
           </div>
         </ng-container>
@@ -131,3 +132,29 @@
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
   <p style="color: white">Please Wait. </p>
 </ngx-spinner>
+<app-modal [modalid]="'modal_apply_job'">
+  <div header>
+
+  </div>
+  <div body *ngIf="this.selectedApplication">
+    <button type="button" class="close" #closebutton data-dismiss="modal" aria-label="Close">
+      <span></span>
+    </button>
+    <div class="text-center mb-4">
+      <h4>我要申請加入 {{this.selectedApplication.position}}</h4>
+    </div>
+    <div>
+      <div class="form-group">
+        <label for="application_message">我要有話要說</label>
+        <textarea class="form-control rounded-0" [(ngModel)]="application_message" id="application_message"
+          rows="3"></textarea>
+      </div>
+    </div>
+    <div class="text-center mb-4">
+      <button (click)="onSubmitApplication(this.selectedApplication)" class="model_btn_normal mb-2 "
+        style="float: right;">
+        送出申請
+      </button>
+    </div>
+  </div>
+</app-modal>

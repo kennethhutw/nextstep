@@ -81,8 +81,8 @@ lab-custom-modal {
 }
 
 .modal-body {
-    padding: 0px;
-    --padding: 10px 24px 10px 35px;
+    // padding: 0px;
+    padding: 10px 24px 10px 35px;
     position: relative;
     height: calc(100% - 42px);
     overflow: hidden;

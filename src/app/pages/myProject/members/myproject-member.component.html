@@ -6,7 +6,8 @@
             <a type="button" style="float: right;" class="btn mr-10" data-toggle="modal"
                 [attr.data-target]="'#invitedMember'"><i class="fas fa-plus"></i> 邀請成員
             </a>
-            <button type="button" style="float: right;" class="btn  mr-10"><i class="fas fa-plus"></i> 招募成員</button>
+            <a type="button" style="float: right;" class="btn mr-10" data-toggle="modal"
+                [attr.data-target]="'#createRcruitModal'"><i class="fas fa-plus"></i> 招募成員</a>
             <select style="float: right;" class="btn mr-10" [disabled]="!canMoveMember" [value]="status"
                 (change)="onStatusChange($event)">
                 <option value="null">移動成員去</option>
@@ -423,7 +424,7 @@
                                 </div>
                             </div>
                             <div class="form-group row" style="justify-content: end;">
-                                <button type="button" style="float: right;" class="btn  mr-10"
+                                <button type="button" style="float: right;" class="btn btn-blue  mr-10"
                                     (click)="inviteByEmail()">邀請</button>
                             </div>
                         </form>
@@ -446,6 +447,72 @@
             </div>
             <div class="modal-body">
 
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="createRcruitModal" tabindex="-1" aria-labelledby="createRcruitModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1>招募成員</h1>
+                <button type="button" id="close_recruit" #close_recruit_button class="close" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="recruitForm">
+                    <div class="form-group">
+                        <label for="inputPosition">職稱</label>
+                        <input type="text" class="form-control rounded-0" formControlName="position" id="inputPosition"
+                            placeholder="職稱">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputContent">職缺內容</label>
+                        <textarea class="form-control" type="text" id="scopes" formControlName="scopes" rows="4"
+                            cols="50"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputSkills">技能</label>
+                        <tag-input id="skills" formControlName="skills" [onlyFromAutocomplete]="true"
+                            [secondaryPlaceholder]="'前端開發, 市場開發, UIUX...'">
+                            <tag-input-dropdown [displayBy]="'text'" [appendToBody]="false"
+                                [autocompleteItems]="skillOptions" [showDropdownIfEmpty]="true" [dynamicUpdate]="false">
+                            </tag-input-dropdown>
+                        </tag-input>
+                    </div>
+                    <div class="form-group">
+
+                        <label for="inputSkills">每周願意投入時長</label>
+                        <div class="form-group">
+                            <div>
+                                <input id="work12" type="checkbox" formControlName="work12" data-key="hour" />
+                                <label class="option" for="work12">1至2小時</label>
+                            </div>
+                            <div>
+                                <input id="work34" type="checkbox" formControlName="work34" data-key="hour" />
+                                <label class="option" for="work34">3至4小時</label>
+                            </div>
+                            <div>
+                                <input id="work56" type="checkbox" formControlName="work56" data-key="hour" />
+                                <label class="option" for="work56">5至6小時</label>
+                            </div>
+                            <div>
+                                <input id="work78" type="checkbox" formControlName="work78" data-key="hour" />
+                                <label class="option" for="work78">7至8小時</label>
+                            </div>
+                            <div>
+                                <input id="work9" type="checkbox" formControlName="work9" data-key="hour" />
+                                <label class="option" for="work9">9小時以上(含)</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row justify-content-end">
+                        <button type="button" style="float: right;" class="btn btn-blue  mr-10"
+                            (click)="onRecruitSubmit()">創建</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

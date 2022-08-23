@@ -27,7 +27,8 @@ import {
     MyProjectLogComponent,
     MyProjectMemberComponent,
     MyProjectProfileComponent,
-    MyProjectSettingsComponent
+    MyProjectSettingsComponent,
+    MyProjectRecruitComponent
 } from './myProject';
 
 import { SupportComponent } from './support/support.component';
@@ -67,6 +68,7 @@ export const containers = [
     MyProjectMemberComponent,
     MyProjectProfileComponent,
     MyProjectSettingsComponent,
+    MyProjectRecruitComponent,
     MyProjectComponent,
     newProjectComponent,
     NotificationsComponent,

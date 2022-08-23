@@ -3,7 +3,8 @@ ui-project-card {
     .header {
         display: grid;
         grid-auto-flow: column;
-        grid-template-columns: 140px 1fr 70px;
+        // grid-template-columns: 140px 1fr 70px;
+        grid-template-columns: 140px 1fr;
     }
 
     .header-nologin {
@@ -20,6 +21,7 @@ ui-project-card {
         /* justify-content: end; */
         width: 100%;
         margin: auto;
+        gap: 8px;
     }
 
     .follow {
@@ -110,11 +112,10 @@ ui-project-card {
         padding: 18px 16px 18px 16px !important;
     }
 
-
-
     .name {
-        font-family: "Noto Serif JP", sans-serif;
+        // font-family: "Noto Serif JP", sans-serif;
         font-weight: 400;
+        color: #333333;
     }
 
     th {
@@ -126,6 +127,8 @@ ui-project-card {
         text-align: left;
         /*  padding: 10px; */
         max-height: 120px;
+        text-align: justify;
+        color: #333333;
     }
 
     .mr-5 {
@@ -147,5 +150,9 @@ ui-project-card {
         white-space: nowrap;
         vertical-align: baseline;
         border-radius: 0.25em;
+    }
+
+    .mt-6 {
+        margin-top: 6px;
     }
 }

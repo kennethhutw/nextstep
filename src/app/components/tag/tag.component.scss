@@ -1,5 +1,5 @@
 ui-tag {
-    padding: 4px 4px 4px 4px;
+    // padding: 4px 4px 4px 4px;
     border-radius: 4px;
 
     .tag-improve {
@@ -38,22 +38,22 @@ ui-tag {
     .tag-hiring {
         color: #fff;
         background-color: #FF3356;
-        padding: 2px 4px 2px 4px;
+        padding: 2px 4px 4px 4px;
         border-radius: 4px;
 
     }
 
     .tag-funding {
         color: #424B61;
-        background-color: #95CF19;
-        padding: 2px 4px 2px 4px;
+        background-color: #95CF19 !important;
+        padding: 2px 4px 4px 4px;
         border-radius: 4px;
     }
 
     .tag-cofounder {
         color: #fff;
         background-color: #BF5FE1;
-        padding: 2px 4px 2px 4px;
+        padding: 2px 4px 4px 4px;
         border-radius: 4px;
     }
 

@@ -104,6 +104,10 @@ const routes: Routes = [
         path: ':projectId/members',
         component: Pages.MyProjectMemberComponent
       },
+      {
+        path: ':projectId/recruit',
+        component: Pages.MyProjectRecruitComponent
+      },
       { path: ":projectId", component: Pages.MyProjectProfileComponent }
     ]
   },

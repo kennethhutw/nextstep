@@ -11,13 +11,14 @@
     </div>
     <div class="item-left">
       <div *ngIf="user">
-
-        <i *ngIf="job.isCollect" (click)="onClickCollect()" style="color:#56BDF4" class="fas fa-bookmark mr-5"></i>
-        <i *ngIf="!job.isCollect" (click)="onClickCollect()" style="color:#56BDF4" class="far fa-bookmark mr-5"></i>
+        <i *ngIf="job.isCollect" (click)="onClickUnCollect()" style="color:#56BDF4"
+          class="fas fa-bookmark fa-lg mr-5"></i>
+        <i *ngIf="!job.isCollect" (click)="onClickCollect()" style="color:#56BDF4"
+          class="far fa-bookmark fa-lg mr-5"></i>
 
         <!-- <i class="far fa-comment-alt mr-5"></i> -->
         <button type="button" data-toggle="modal" data-target="#modal_apply_job" data-dismiss="modal"
-          style="float: right;" class="btn btn_item mr-10" (click)="onApply(item)"><i class="far fa-envelope"></i>
+          class="modal_apply_job" (click)="onClickApply(item)"><i class="far fa-envelope fa-lg modal_apply_job_btn"></i>
         </button>
       </div>
     </div>
@@ -28,16 +29,26 @@
       <span>{{job?.scopes.length>40?job?.scopes.substring(0,120)+"...":job.scopes}}</span>
     </div>
   </div>
-  <footer class="row">
-    <ng-container *ngIf="job.skills">
+  <div class="row mt-10">
+    <div class="col-md-12 discr">
+      <ng-container *ngIf="job.skills">
 
-      <ng-container *ngFor="let tag of  job.skills; let i = index">
+        <ng-container *ngFor="let tag of  job.skills; let i = index">
 
-        <span *ngIf="!this.utility.IsNullOrEmpty(tag)" class="tag  tag-{{tag}}  mb-2 mr-5">{{convertTag(tag)}}</span>
+          <span *ngIf="!this.utility.IsNullOrEmpty(tag)" class="tag  tag-{{tag}}  mb-2 mr-5">{{convertTag(tag)}}</span>
+
+        </ng-container>
 
       </ng-container>
+    </div>
+  </div>
+  <footer class="row">
+    <div class="col-md-12 project">
+      <img class="project-pic" (error)="onImgError($event)" src="{{job.projectImageUrl}}">
+      <div class="d-flex justify-left align-items-center"><span class="text-left">{{job?.projectName}}</span></div>
+      <div class="d-flex justify-right align-items-center"> <a [routerLink]="['/job/',job.id]">查看詳情</a></div>
 
-    </ng-container>
+    </div>
 
   </footer>
 </div>

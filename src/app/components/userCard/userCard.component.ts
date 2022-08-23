@@ -60,7 +60,7 @@ export class UserCardComponent {
 
 
   onClickCollect() {
-    console.log("onClickCollect =============")
+
     this.user.isCollect = !this.user.isCollect;
     this.Collect.emit({ userId: this.user.id });
   }

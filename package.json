@@ -62,6 +62,7 @@
     "karma-coverage-istanbul-reporter": "~2.0.0",
     "karma-jasmine": "~1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "moment": "^2.29.4",
     "ng2-charts": "^2.4.2",
     "ngx-bootstrap": "^3.2.0",
     "ngx-chips": "^2.1.0",

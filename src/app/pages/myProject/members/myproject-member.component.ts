@@ -8,17 +8,18 @@ import {
 } from '@angular/core';
 import {
   DialogService,
-
+  AppSettingsService,
   ProjectService,
   InvitationService,
-  ToastService
+  ToastService,
+  RecruitService
 } from '../../../_services';
 import {
   AuthStore
 } from "../../../_services/auth.store";
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-myproject-member',
@@ -29,6 +30,7 @@ export class MyProjectMemberComponent implements OnInit {
   projectId = "";
   currentProject;
   invitationForm: FormGroup;
+  recruitForm: FormGroup;
   submitted = false;
   currentUser;
   projectMsg = "";
@@ -54,23 +56,34 @@ export class MyProjectMemberComponent implements OnInit {
 
   canMoveMember: boolean = false;
 
-
+  skillOptions: any[] = [];
   @ViewChild('selectCountry') selectCountry: ElementRef;
-
+  @ViewChild('close_recruit_button') close_recruit_button: ElementRef;
 
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private dialogSrv: DialogService,
+    private recruitSrv: RecruitService,
     private toastr: ToastService,
     private projectSrv: ProjectService,
     private confirmDialogService: DialogService,
+    private appSettingsSrv: AppSettingsService,
     private invitationSrv: InvitationService,
     private authStoreSrv: AuthStore) {
-
+    this.skillOptions = this.appSettingsSrv.skillOptions();
     this.invitationForm = this.formBuilder.group({
       name: ["", Validators.required],
       email: ["", Validators.required]
+    });
+    this.recruitForm = this.formBuilder.group({
+      position: ["", Validators.required],
+      scopes: ["", Validators.required],
+      skills: [""],
+      work12: [false],
+      work34: [false],
+      work56: [false],
+      work78: [false],
+      work9: [false],
     });
   }
 
@@ -406,4 +419,65 @@ export class MyProjectMemberComponent implements OnInit {
   onToggleChat(event) {
     this.isChat = !this.isChat;
   }
+
+  onRecruitSubmit() {
+    this.submitted = true;
+    if (this.recruitForm.invalid) {
+      return;
+    }
+    const values = this.recruitForm.value;
+    let _skills = "";
+    let _skills_array = [];
+    if (values.skills) {
+      values.skills.map(skill => {
+        let _skill_text = skill;
+        if (typeof skill == "object") {
+          _skill_text = skill.text;
+        }
+        let _index = this.skillOptions.findIndex((obj => obj.text == _skill_text));
+        if (_index) {
+          _skills += this.skillOptions[_index].value + ",";
+          _skills_array.push(this.skillOptions[_index].value);
+        }
+      })
+
+      if (_skills.length > 0) {
+        _skills = _skills.substring(0, _skills.length - 1);
+      }
+    }
+    let params = {
+      position: values.position,
+      scopes: values.scopes,
+      projectId: this.projectId,
+      status: "0",
+      skills: _skills,
+      work12: values.work12 ? values.work12 : "0",
+      work34: values.work34 ? values.work34 : "0",
+      work56: values.work56 ? values.work56 : "0",
+      work78: values.work78 ? values.work78 : "0",
+      work9: values.work9 ? values.work9 : "0",
+      uid: this.currentUser.id,
+      startDate: moment.utc().valueOf(),
+      endDate: moment.utc().valueOf()
+    }
+
+    // projectId,
+    //   position,
+    //   skills,
+    //   scopes,
+    //   status,
+    //   startDate,
+    //   endDate, uid
+    this.recruitSrv.insert(params).subscribe(res => {
+
+      if (res["result"] === "successful") {
+
+
+        this.recruitForm.reset();
+        this.close_recruit_button.nativeElement.click();
+      }
+    })
+
+  }
+
 }

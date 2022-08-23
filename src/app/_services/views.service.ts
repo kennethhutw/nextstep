@@ -26,6 +26,13 @@ export class ViewsService {
         }).toPromise();
     }
 
+    async getCollect(
+        uid) {
+
+        return await this.http.get(`${environment.apiUrl}/collect/collection/${uid}`, {
+        }).toPromise();
+    }
+
     async collect(collected_id,
         type,
         uid) {

@@ -78,6 +78,7 @@ app-user-card {
         /*   font-family: "Noto Serif JP", sans-serif; */
         text-align: left;
         font-weight: 400;
+        color: #333333;
     }
 
     th {
@@ -88,6 +89,8 @@ app-user-card {
         min-height: 70px;
         text-align: left;
         padding: 10px;
+        text-align: justify;
+        color: #333333;
     }
 
     .mr-5 {

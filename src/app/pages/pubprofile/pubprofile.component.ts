@@ -6,8 +6,9 @@ import {
 } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
+  NotificationService,
   ViewsService,
-  DataService,
+  ToastService,
   AppSettingsService,
   SettingService,
   UserService
@@ -52,7 +53,15 @@ export class PubProfileComponent implements OnInit {
   years: string[] = [];
   submitted = false;
   httpreg = '(https://)([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+
+
+  // chat
+  isChat: boolean = false;
+
   constructor(
+    private viewsSrv: ViewsService,
+    public toastr: ToastService,
+    private notificationSrv: NotificationService,
     private userSrv: UserService,
     private route: ActivatedRoute,
     private authSrv: AuthStore,
@@ -158,8 +167,115 @@ export class PubProfileComponent implements OnInit {
         }
       }
     })
+  }
 
 
+  onClickFollow(event) {
+
+    this.viewsSrv.follow(
+      this.userProfile.id,
+      "user",
+      this.currentUser.id
+    ).then(res => {
+      if (res['result'] == 'successful') {
+        let _index = this.items.findIndex((obj => obj.id == event.userId));
+        this.items[_index].isFollow = true;
+        this.notificationSrv.insert(
+          this.items[_index].id,
+          this.currentUser.id,
+          this.currentUser.name + "開始追蹤你",
+          "user",
+          0,
+          0,
+          this.currentUser.id
+        ).then(res => { });
+        this.toastr.showToast('Success', "追蹤成功 ", this.toastr.iconClasses.success);
+      } else {
+        this.toastr.showToast('Failed', "追蹤失敗", this.toastr.iconClasses.error);
+      }
+    });
+  }
+
+  onClickUnFollow(event) {
+
+    this.viewsSrv.unFollow(
+      event.userId,
+      "user",
+      this.currentUser.id
+    ).then(res => {
+      if (res['result'] == 'successful') {
+        let _index = this.items.findIndex((obj => obj.id == event.userId));
+        this.items[_index].isFollow = false;
+        this.notificationSrv.insert(
+          this.items[_index].id,
+          this.currentUser.id,
+          this.currentUser.name + "停止追蹤你",
+          "user",
+          0,
+          0,
+          this.currentUser.id
+        ).then(res => { });
+        this.toastr.showToast('Success', "停止追蹤成功 ", this.toastr.iconClasses.success);
+      } else {
+        this.toastr.showToast('Failed', "停止追蹤失敗", this.toastr.iconClasses.error);
+      }
+    });
+  }
+
+  onClickCollect(event) {
+
+    this.viewsSrv.collect(
+      event.userId,
+      "user",
+      this.currentUser.id
+    ).then(res => {
+      if (res['result'] == 'successful') {
+        let _index = this.items.findIndex((obj => obj.id == event.userId));
+        this.items[_index].isCollect = true;
+        this.notificationSrv.insert(
+          this.items[_index].id,
+          this.currentUser.id,
+          this.currentUser.name + "收藏了你的檔案",
+          "user",
+          0,
+          0,
+          this.currentUser.id
+        ).then(res => { });
+        this.toastr.showToast('Success', "收藏成功 ", this.toastr.iconClasses.success);
+      } else {
+        this.toastr.showToast('Failed', "收藏失敗", this.toastr.iconClasses.error);
+      }
+    });
+
+  }
+
+  onClickUnCollect(event) {
+
+    this.viewsSrv.unCollect(
+      event.userId,
+      "user",
+      this.currentUser.id
+    ).then(res => {
+      if (res['result'] == 'successful') {
+        let _index = this.items.findIndex((obj => obj.id == event.userId));
+        this.items[_index].isCollect = false;
+        this.notificationSrv.insert(
+          this.items[_index].id,
+          this.currentUser.id,
+          this.currentUser.name + "取消收藏你的檔案",
+          "user",
+          0,
+          0,
+          this.currentUser.id
+        ).then(res => { });
+        this.toastr.showToast('Success', "取消收藏成功 ", this.toastr.iconClasses.success);
+      } else {
+        this.toastr.showToast('Failed', "取消收藏失敗", this.toastr.iconClasses.error);
+      }
+    }).catch(error => {
+      console.log("取消收藏", error)
+      this.toastr.showToast('Failed', "取消收藏失敗", this.toastr.iconClasses.error);
+    });
 
   }
 
@@ -397,6 +513,10 @@ export class PubProfileComponent implements OnInit {
           this.userProfile.experience.splice(objIndex, 1)
         }
       })
+  }
+
+  onToggleChat(event) {
+    this.isChat = !this.isChat;
   }
 }
 //https://www.sliderrevolution.com/resources/bootstrap-profile/

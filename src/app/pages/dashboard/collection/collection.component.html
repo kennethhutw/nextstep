@@ -17,6 +17,10 @@
                         type="button" role="tab" (click)="changeTab('partner')">夥伴</button>
                 </li>
                 <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'application' }"
+                        type="button" role="tab" (click)="changeTab('application')">招募</button>
+                </li>
+                <li class="nav-item" role="presentation">
                     <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'mentor' }"
                         type="button" role="tab" (click)="changeTab('mentor')">導師</button>
                 </li>
@@ -26,7 +30,7 @@
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'project' }" id="home" role="tabpanel"
                     aria-labelledby="home-tab">
                     <div class=" noItem text-center" *ngIf="projects.length ===0">
-                        沒有專案
+                        沒有收藏的專案
                     </div>
                     <ng-container *ngIf="projects">
                         <div class="row" style="padding-left:15px;">
@@ -51,10 +55,59 @@
                         </div>
                     </ng-container>
                 </div>
+                <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'application' }" role="tabpanel"
+                    aria-labelledby="profile-tab">
+                    <div class="noItem text-center" *ngIf="applications.length ===0">
+                        <h3>沒有收藏的招募</h3>
+                    </div>
+                    <ng-container *ngIf="applications">
+
+                        <ng-container *ngFor="let item of  applications; let i = index">
+                            <div class="row bar">
+                                <div class="card mt-3 cursor-pointer w-100">
+                                    <div class="d-flex align-items-center" style="margin-top: 10px;">
+                                        <label class="switch" for="{{'checkbox'+i}}">
+                                            <input type="checkbox" id="{{'checkbox'+i}}"
+                                                (change)="onSelectItem($event, item.id)" [(ngModel)]="item.isSelected"
+                                                value="{{item.id}}" />
+                                            <div class="slider round"></div>
+                                        </label>
+                                    </div>
+                                    <div class="item">
+                                        <i style="font-size: 30px;" class="far fa-user-circle fa-2x"></i>
+                                    </div>
+                                    <div class="item">
+                                        <p class="text-md m-0">{{item.position}}
+                                        </p>
+                                    </div>
+                                    <div class="item">
+                                        <p class="text-md m-0">{{item.startDate| date : 'yyyy-MM-dd'}}
+                                        </p>
+                                    </div>
+                                    <div class="item">
+                                        <p class="text-md m-0">to
+                                        </p>
+                                    </div>
+                                    <div class="item">
+                                        <p class="text-md m-0">{{item.endDate| date : 'yyyy-MM-dd'}}
+                                        </p>
+                                    </div>
+                                    <div class="item" style="  margin-left: auto;padding-right: 20px;">
+                                        <a class="clickable" (click)="onClickDelete(item.id)" style="color: #7F7F7F;">
+                                            <i class="far fa-trash-alt icon"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </ng-container>
+
+                    </ng-container>
+                </div>
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'mentor' }" role="tabpanel"
                     aria-labelledby="profile-tab">
                     <div class="noItem text-center" *ngIf="mentors.length ===0">
-                        沒有追蹤的導師
+                        沒有收藏的導師
                     </div>
                     <ng-container *ngIf="mentors">
                         <div class="row">

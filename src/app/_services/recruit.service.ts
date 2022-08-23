@@ -12,6 +12,9 @@ export class RecruitService {
         return this.http.get(`${environment.apiUrl}/projects`);
     }
 
+    insert(params) {
+        return this.http.post(`${environment.apiUrl}/recruit`, params);
+    }
 
     async getById(id: string) {
 
@@ -21,10 +24,19 @@ export class RecruitService {
             .toPromise();
     }
 
-    async get() {
+    async getByProjectId(id: string) {
 
         return await this.http
+            .get<any>(`${environment.apiUrl}/recruit/project/${id}`, {
+            })
+            .toPromise();
+    }
+
+    async get(userId) {
+        const params = new HttpParams().set('userId', userId);
+        return await this.http
             .get<any>(`${environment.apiUrl}/recruit`, {
+                params
             })
             .toPromise();
     }

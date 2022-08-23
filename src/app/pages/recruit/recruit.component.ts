@@ -1,9 +1,13 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { Component, OnInit, ViewEncapsulation, ViewChild } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
+  ViewsService,
+  NotificationService,
   RecruitService,
   AppSettingsService,
-  SettingService
+  SettingService,
+  MembersService,
+  ToastService
 } from "../../_services";
 import { Utility } from "../../_helpers";
 import { environment } from '../../../environments/environment';
@@ -18,6 +22,9 @@ import {
   styleUrls: ["./recruit.component.scss"]
 })
 export class RecruitComponent implements OnInit {
+
+  @ViewChild('closebutton') closebutton;
+
   items = [];
   displayItems = [];
   currentRecruit;
@@ -43,8 +50,14 @@ export class RecruitComponent implements OnInit {
 
   }
   currentUser;
+
+  selectedApplication: any;
   constructor(
+    private viewsSrv: ViewsService,
+    private notificationSrv: NotificationService,
     private authStore: AuthStore,
+    private membersSrv: MembersService,
+    public toastr: ToastService,
     private settingSrv: SettingService,
     private recruitSrv: RecruitService,
     private utility: Utility,
@@ -58,7 +71,11 @@ export class RecruitComponent implements OnInit {
   ngOnInit() {
     this.SpinnerService.show();
     this.currentUser = this.authStore.getUserData();
-    this.recruitSrv.get().then(res => {
+    let _id = null;
+    if (this.currentUser && this.currentUser.id) {
+      _id = this.currentUser.id;
+    }
+    this.recruitSrv.get(_id).then(res => {
       console.log("result =========", res);
       if (res['result'] == 'successful') {
         this.items = res['data'];
@@ -457,7 +474,98 @@ export class RecruitComponent implements OnInit {
     } else {
       return false;
     }
-
   }
+
+  onClickApply(event) {
+    console.log("Apply ==========", event);
+    this.selectedApplication = event;
+  }
+
+  onClickCollect(event) {
+    console.log("Collect ==========", event);
+    this.viewsSrv.collect(
+      event.jobId,
+      "application",
+      this.currentUser.id
+    ).then(res => {
+      if (res['result'] == 'successful') {
+        let _index = this.items.findIndex((obj => obj.id == event.jobId));
+        this.items[_index].isCollect = true;
+        this.notificationSrv.insert(
+          this.items[_index].createdBy,
+          this.currentUser.id,
+          this.currentUser.name + "收藏了[" + this.items[_index].projectName + "] - [" + this.items[_index].position + "]",
+          "application",
+          0,
+          0,
+          this.currentUser.id
+        ).then(res => { });
+        this.toastr.showToast('Success', "收藏成功 ", this.toastr.iconClasses.success);
+      } else {
+        this.toastr.showToast('Failed', "收藏失敗", this.toastr.iconClasses.error);
+      }
+    });
+  }
+
+
+  onClickUnCollect(event) {
+    console.log("UnCollect ==========", event);
+    this.viewsSrv.unCollect(
+      event.jobId,
+      "application",
+      this.currentUser.id
+    ).then(res => {
+      if (res['result'] == 'successful') {
+        let _index = this.items.findIndex((obj => obj.id == event.jobId));
+        this.items[_index].isCollect = false;
+        this.notificationSrv.insert(
+          this.items[_index].createdBy,
+          this.currentUser.id,
+          this.currentUser.name + "取消收藏[" + this.items[_index].projectName + "] - [" + this.items[_index].position + "]",
+          "application",
+          0,
+          0,
+          this.currentUser.id
+        ).then(res => { });
+        this.toastr.showToast('Success', "取消收藏成功 ", this.toastr.iconClasses.success);
+      } else {
+        this.toastr.showToast('Failed', "取消收藏失敗", this.toastr.iconClasses.error);
+      }
+    }).catch(error => {
+      console.log("取消收藏", error)
+      this.toastr.showToast('Failed', "取消收藏失敗", this.toastr.iconClasses.error);
+    });
+  }
+
+  onSubmitApplication(application) {
+    const params = {
+      projectId: application.projectId,
+      userId: this.currentUser.id,
+      startDate: "",
+      endDate: "",
+      role: "candidate",
+      position: application.position,
+      scopes: application.scopes,
+      isAdmin: "0",
+      isOwner: "0",
+      status: "new",
+      available: "0",
+      recruitId: application.id,
+      uid: this.currentUser.id,
+    }
+    this.membersSrv.insertMember(
+      params
+    ).then(res => {
+      if (res["result"] == "successful") {
+        this.toastr.showToast('Success', "Submitted successfully", this.toastr.iconClasses.success);
+      } else {
+        this.toastr.showToast('Failed', "Submitted failed", this.toastr.iconClasses.error);
+      }
+    }).catch(error => {
+      this.toastr.showToast('Failed', "Submitted failed", this.toastr.iconClasses.error);
+    })
+    this.closebutton.nativeElement.click();
+  }
+
 }
 //https://www.sliderrevolution.com/resources/bootstrap-profile/

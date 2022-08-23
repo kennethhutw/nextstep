@@ -1,9 +1,8 @@
-.button-center {
-  display: flex;
+.button-center{
+      display: flex;
   align-items: center;
   justify-content: center;
 }
-
 .card {
   padding: 12px 24px;
   display: flex;
@@ -13,17 +12,15 @@
   flex-direction: row;
 }
 
-.item {
+.item{
   padding-left: 20px;
 }
-
 .num {
   font-size: 16px;
   padding: 2px 6px;
   border: 1px solid #6c757d;
   border-radius: 50%;
 }
-
 .card:hover {
   border: 2px solid var(--action-pri-active);
 }
@@ -56,12 +53,12 @@
   font-family: var(--font-nunito);
 }
 
-.table-scroll {
+.table-scroll{
   max-height: 550px;
   overflow-y: auto;
 }
 
-.borderlabel {
+.borderlabel{
   border: 1px solid #6c757d !important;
   border-color: #6c757d;
   border-radius: var(--br-circle);
@@ -72,7 +69,7 @@
   padding: 3px 10px;
 }
 
-.fw-700 {
+.fw-700{
   font-weight: 700;
 }
 
@@ -87,19 +84,18 @@
 
 }
 
-.hide {
+.hide{
   display: none;
 }
 
-.icon {
-  padding-left: 5px;
-  padding-right: 5px;
+.icon{
+    padding-left: 5px;
+    padding-right: 5px;
 }
-
-.empty {
-  padding: 30px;
-  font-size: 20px;
-}
+ .empty{
+   padding: 30px;
+    font-size: 20px;
+ }
 
 
 
@@ -110,7 +106,6 @@
   left: 0;
   z-index: 1;
 }
-
 .menu-wrap .toggler {
   position: absolute;
   top: 0;
@@ -121,7 +116,6 @@
   cursor: pointer;
   z-index: 2;
 }
-
 .menu-wrap .hamburger {
   position: absolute;
   top: 0;
@@ -138,7 +132,7 @@
 }
 
 /* Hamburger line */
-.menu-wrap .hamburger>div {
+.menu-wrap .hamburger > div {
   position: relative;
   top: 0;
   left: 0;
@@ -153,8 +147,8 @@
 }
 
 /* Hamburger top & bottom line */
-.menu-wrap .hamburger>div:before,
-.menu-wrap .hamburger>div:after {
+.menu-wrap .hamburger > div:before,
+.menu-wrap .hamburger > div:after {
   content: "";
   position: absolute;
   top: 10px;
@@ -164,38 +158,35 @@
   width: 100%;
   z-index: 1;
 }
-
-.menu-wrap .hamburger>div:after {
+.menu-wrap .hamburger > div:after {
   top: -10px;
 }
 
 /* Toggler Animation */
-.menu-wrap .toggler:checked+.hamburger>div {
+.menu-wrap .toggler:checked + .hamburger > div {
   transform: rotate(135deg);
 }
-
-.menu-wrap .toggler:checked+.hamburger>div:before,
-.menu-wrap .toggler:checked+.hamburger>div:after {
+.menu-wrap .toggler:checked + .hamburger > div:before,
+.menu-wrap .toggler:checked + .hamburger > div:after {
   top: 0;
   transform: rotate(90deg);
 }
 
 /* Rotate on hover when checked */
-.menu-wrap .toggler:checked:hover+.hamburger>div {
+.menu-wrap .toggler:checked:hover + .hamburger > div {
   transform: rotate(225deg);
 }
 
-.menu.active {
+ .menu.active{
   opacity: 1;
-  width: 30vw;
-  transition: all 0.75s ease;
+    width: 30vw;
+    transition: all 0.75s ease;
 }
 
-.menu.list {
-  display: grid;
-  grid-row-gap: 12px;
+.menu.list{
+     display: grid;
+    grid-row-gap: 12px;
 }
-
 .menu {
   position: fixed;
   top: 0;
@@ -212,7 +203,7 @@
 }
 
 
-.menu>div {
+.menu > div {
   position: relative;
   top: 0;
   left: 0;
@@ -223,46 +214,40 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  display: grid;
-  grid-row-gap: 12px;
+    display: grid;
+    grid-row-gap: 12px;
   /* opacity: 0;
   transition: opacity 0.4s ease-in; */
 }
-
 .menu ul {
   list-style: none;
 }
-
 .menu li {
   padding: 1rem 0;
 }
-
-.menu>div a {
+.menu > div a {
   text-decoration: none;
   color: #fafafa;
   font-size: 1.5rem;
   /* opacity: 0;
   transition: opacity 1s ease-in; */
 }
-
 .menu a:hover {
   color: rgb(230, 177, 177);
   transition: color 0.3s ease-in;
 }
 
 /* Show Menu */
-.menu-wrap .toggler:checked~.menu {
+.menu-wrap .toggler:checked ~ .menu {
   opacity: 1;
   width: 30vw;
   transition: all0.75s ease;
 }
-
-.menu-wrap .toggler:checked~.menu>div {
+.menu-wrap .toggler:checked ~ .menu > div {
   opacity: 1;
   transition: opacity 0.4s ease-in;
 }
-
-.menu-wrap .toggler:checked~.menu>div a {
+.menu-wrap .toggler:checked ~ .menu > div a {
   opacity: 1;
   transition: opacity 1s ease-in;
 }
@@ -271,20 +256,7 @@
   header {
     /* background: url("./bg-img.jpg") no-repeat 40% center / cover; */
   }
-
-  .menu-wrap .toggler:checked~.menu {
+  .menu-wrap .toggler:checked ~ .menu {
     width: 65vw;
   }
-}
-
-
-
-.modal-body {
-
-  padding: 10px 24px 10px 35px;
-  position: relative;
-  height: calc(100% - 42px);
-  overflow: hidden;
-  display: grid;
-  grid-template-rows: minmax(0, 1fr);
 }

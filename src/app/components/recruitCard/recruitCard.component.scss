@@ -1,4 +1,9 @@
-ui-project-card {
+ui-recruit-card {
+    .grid-margin {
+        margin-bottom: 2rem;
+        padding: 18px 16px 18px 16px !important;
+    }
+
     .tag {
         padding: 4px 8px 4px 8px;
         font-size: 14px;
@@ -6,6 +11,7 @@ ui-project-card {
         font-weight: 400;
         border-radius: 100px;
         background-color: #C0DAFE;
+        word-break: keep-all;
     }
 
     .tag-bd {
@@ -104,13 +110,40 @@ ui-project-card {
     .tag-eComm {
         background-color: #E5BFF3 !important;
     }
+
+    .project {
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-columns: 50px 1fr 70px;
+    }
+
+    .project-pic {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: 0 0 0 5px #fff;
+    }
+
+    .header {
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-columns: 180px 1fr 70px;
+    }
+
+    .modal_apply_job {
+        float: right;
+        border: 0px;
+        background-color: transparent;
+
+        .modal_apply_job_btn {
+            color: #56BDF4;
+            background-color: transparent;
+        }
+    }
 }
 
-.header {
-    display: grid;
-    grid-auto-flow: column;
-    grid-template-columns: 180px 1fr 70px;
-}
+
 
 .item-left {
     justify-content: end;
@@ -131,52 +164,11 @@ ui-project-card {
     border-radius: 4px;
 }
 
-p {
-    margin-top: 0;
-    margin-bottom: 1rem;
-}
-
-a:hover {
-    cursor: pointer;
-}
-
-.search_input {
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid #210b2c;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    border-radius: 0;
-}
-
-.bio {
-    font-size: 1.5rem;
-    color: #210b2c;
-}
 
 .text-center {
     text-align: center !important;
 }
 
-.mt-4,
-.my-4 {
-    margin-top: 1.5rem !important;
-}
-
-.ml-3,
-.mx-3 {
-    margin-left: 1rem !important;
-}
-
-
-.profile-image {
-    vertical-align: center;
-    -ms-flex-line-pack: center;
-    align-content: center;
-    height: 75px;
-    width: 75px;
-    border-radius: 50%;
-}
 
 .card {
     background-color: white;
@@ -195,16 +187,14 @@ a:hover {
     min-height: 195px;
 }
 
-.grid-margin {
-    margin-bottom: 2rem;
-    padding: 18px 16px 18px 16px !important;
-}
+
 
 
 
 .name {
-    font-family: "Noto Serif JP", sans-serif;
+    // font-family: "Noto Serif JP", sans-serif;
     font-weight: 400;
+    color: #333333;
 }
 
 th {
@@ -216,25 +206,12 @@ th {
     text-align: left;
     /*  padding: 10px; */
     max-height: 120px;
+    text-align: justify;
+    color: #333333;
 }
+
+
 
 .mr-5 {
     margin-right: 5px !important;
-}
-
-.label.label-success {
-    background: #43d39e;
-}
-
-.label {
-    font-weight: 400;
-    padding: 4px 8px;
-    font-size: 11px;
-    display: inline-block;
-    line-height: 1;
-    color: #fff;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: 0.25em;
 }

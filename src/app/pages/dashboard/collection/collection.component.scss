@@ -1,12 +1,31 @@
-.button-center{
-      display: flex;
+.button-center {
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.noItem{
-  height:300px;
-  padding:15px;
+.noItem {
+  height: 300px;
+  padding: 15px;
   margin-top: 28px;
   font-size: 1.75rem;
+  color: black !important;
+}
+
+.card {
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  transition: 200ms;
+  flex-direction: row;
+}
+
+.item {
+  padding-left: 20px;
+}
+
+.bar {
+  padding-left: 15px;
+  color: black !important;
 }

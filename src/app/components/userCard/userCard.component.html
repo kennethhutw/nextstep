@@ -12,8 +12,8 @@
 
     <div class="col-md-5 text-right">
       <div class="actions" *ngIf="currentuser">
-        <i *ngIf="user.isCollect" (click)="onClickUnCollect()" class="fas fa-bookmark"></i>
-        <i *ngIf="!user.isCollect" (click)="onClickCollect()" class="far fa-bookmark"></i>
+        <i *ngIf="user.isCollect" (click)="onClickUnCollect()" class="fas fa-bookmark fa-lg"></i>
+        <i *ngIf="!user.isCollect" (click)="onClickCollect()" class="far fa-bookmark fa-lg"></i>
         <i class="far fa-comment-alt "></i>
         <!-- <span class="follow">追蹤</span> -->
         <span *ngIf="user.isFollow" class="followed" (click)="onClickUnFollow()">追蹤</span>
