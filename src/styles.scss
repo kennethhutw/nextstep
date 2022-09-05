@@ -242,15 +242,7 @@
     font-size: 31px;
   }
 
-  #artist-head-photo {
-    width: 50%;
-    margin: 0 auto;
-    margin-bottom: 20px;
-  }
 
-  #artist-line-right {
-    border-right: 0px dashed #fff;
-  }
 
   .activity_timeline:after,
   .activity_timeline_point:after {
@@ -408,6 +400,14 @@
 
 .text-13 {
   font-size: 13px;
+}
+
+.pl-0 {
+  padding-left: 0px;
+}
+
+.pr-0 {
+  padding-right: 0px;
 }
 
 
@@ -661,9 +661,9 @@ a {
 }
 
 a:hover {
-  background-color: #FF859A !important;
-  border: 1px solid #FF859A !important;
-  color: #fff !important;
+  // background-color: #FF859A !important;
+  // border: 1px solid #FF859A !important;
+  color: #FF859A !important;
   text-decoration: none !important;
 }
 
@@ -772,15 +772,6 @@ input:focus:-ms-input-placeholder {
   font-family: "Noto Serif JP", sans-serif;
 }
 
-.index_buyer_box:hover {
-  transform: translate(0, 10px);
-  transition: all 0.3s ease-in-out;
-}
-
-#index_buyer .box-height {
-  display: flex;
-  align-items: stretch;
-}
 
 /** hover effect code **/
 
@@ -891,64 +882,8 @@ box-shadow:0 0 5px #fff;
   transition-delay: 0.2s;
 }
 
-.index_btn_roll {
-  padding: 3px 10px;
-  vertical-align: center;
-  color: #000;
-  border: 2px solid #17f596;
-  border-radius: 20px;
-  margin: 0 5px;
-  background-color: #fff;
-}
 
-.index_btn_roll:hover {
-  background-color: #17f596;
-  transition: all 0.3s ease-in-out;
-}
 
-.index_btn_explore1 {
-  font-size: 20px;
-  padding: 10px 30px;
-  margin: 5px 10px;
-  border: 2px solid #17f596;
-  border-radius: 3px;
-  background-color: #fff;
-}
-
-.index_btn_explore1:hover {
-  background-color: #17f596;
-  transition: all 0.3s ease-in-out;
-}
-
-.index_btn_explore2 {
-  font-size: 20px;
-  padding: 10px 30px;
-  margin: 0 10px;
-  border: 2px solid #fff;
-  border-radius: 3px;
-  background-color: #17f596;
-  color: #000;
-}
-
-.index_btn_explore2:hover {
-  background-color: rgba(255, 255, 255, 0.7);
-  transition: all 0.3s ease-in-out;
-}
-
-.index_btn_explore3 {
-  font-size: 20px;
-  padding: 10px 30px;
-  margin: 0 10px;
-  border: 2px solid #fff;
-  border-radius: 3px;
-  background-color: rgba(255, 255, 255, 1);
-}
-
-.index_btn_explore3:hover {
-  background-color: rgba(255, 255, 255, 0.7);
-  border: 2px solid #fff;
-  transition: all 0.3s ease-in-out;
-}
 
 .index_title {
   font-size: 60px;
@@ -956,59 +891,11 @@ box-shadow:0 0 5px #fff;
   /* font-weight: bold; */
   line-height: 60px;
   margin-bottom: 30px;
-  font-family: "Noto Serif JP", sans-serif;
   font-weight: 200;
   margin-bottom: 100px;
 }
 
-.index_title span {
-  color: #08ab65;
-}
 
-#index_buyer img {
-  width: 55%;
-  padding-bottom: 15px;
-}
-
-.index_buyer_box {
-  /* border: 6px solid #17f596; */
-  /* border-radius: 15px; */
-  padding: 40px;
-  font-size: 20px;
-  margin-bottom: 20px;
-  background-color: #fff;
-  font-family: "Noto Serif JP", sans-serif;
-
-}
-
-.index_buyer_bg {
-  display: block;
-  overflow: hidden;
-  background-image: repeating-linear-gradient(white,
-      white 30%,
-      #17f596 30%,
-      #17f596 100%);
-}
-
-.index_art_slogen {
-  color: #000;
-  font-size: 60px;
-  line-height: 80px;
-  text-align: center;
-  font-weight: 200;
-  font-family: "Noto Serif JP", sans-serif;
-}
-
-.index_art_slogen span {
-  color: #08ab65;
-}
-
-.index_arts_text {
-  display: block;
-  position: absolute;
-  top: 150px;
-  left: calc(50% - 90px);
-}
 
 #footer_bg {
   background-color: #161616;
@@ -1287,44 +1174,8 @@ box-shadow:0 0 5px #fff;
   color: #fa6400;
 }
 
-.artist_intro_limit {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  height: 75px;
 
-}
 
-.artist_intro_box {
-  border-radius: 10px;
-  margin: 15px 0;
-  padding: 20px 20px 10px 20px;
-  background-color: #fff;
-  border: 1px solid #fff;
-  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.15);
-}
-
-.artist_intro_box:hover {
-  border-radius: 10px;
-  margin: 15px 0;
-  padding: 20px 20px 10px 20px;
-  background-color: #fff;
-  box-sizing: border-box;
-  border: 1px solid #17f596;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.artist_detail_text {
-  width: 100%;
-  display: block;
-  overflow: hidden;
-}
-
-#artist-line-right {
-  border-right: 1px dashed #c1c1c1;
-}
 
 .project_bid {
   width: 100%;
@@ -1439,33 +1290,6 @@ box-shadow:0 0 5px #fff;
   padding: 0 20px;
 }
 
-#member-artist-project img {
-  width: 100%;
-}
-
-#member-artist-project img:hover {
-  box-sizing: border-box;
-  border: 2px solid #11e78b;
-}
-
-#member-artist-project ul {
-  list-style-type: none;
-}
-
-#member-artist-project li {
-  padding: 8px 0;
-  border-bottom: 1px dashed #979797;
-}
-
-#member-artist-project li:first-child {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-#member-artist-project div {
-  margin-bottom: 30px;
-}
 
 .pagenation_center {
   display: flex;
@@ -1473,12 +1297,6 @@ box-shadow:0 0 5px #fff;
 }
 
 
-.member_artist_detail_list li {
-  display: block;
-  border-bottom: 1px dashed #979797;
-  padding: 10px 0;
-  color: #5D5D5D;
-}
 
 .member_modal_hr {
   background-color: #11e78b;
@@ -1508,74 +1326,6 @@ box-shadow:0 0 5px #fff;
 }
 
 
-
-#member-artist-artist img {
-  width: 120px;
-}
-
-.member_artist_delete {
-  position: absolute;
-  display: block;
-  top: 0;
-  left: calc(50% + 32px);
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
-  font-size: 18px;
-  background-color: #00FF90;
-  border-color: #00FF90;
-  color: #FFF;
-  border-radius: 50%;
-}
-
-.member_artist_upload_delete {
-  position: absolute;
-  display: block;
-  top: 0;
-  left: calc(70% + 32px);
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
-  font-size: 18px;
-  background-color: #00FF90;
-  border-color: #00FF90;
-  color: #FFF;
-  border-radius: 50%;
-}
-
-#member-artist-artist a:hover {
-  color: #FFF;
-  background-color: #E20C23;
-}
-
-#member_artist_delete a:nth-child(3):hover {
-  color: #17F596;
-}
-
-#member-artist-artist h5 {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.member_bidding_history {
-  background-color: #08AB65;
-  color: #FFF;
-  padding: 5px 13px;
-  border-radius: 15px;
-}
-
-
-.member_bidding_pay {
-  background-color: #FA6400;
-  color: #FFF;
-  padding: 5px 13px;
-  border-radius: 15px;
-}
-
-.member_bidding_pay:hover {
-  color: #ffd6bb;
-}
 
 
 .footer_title {

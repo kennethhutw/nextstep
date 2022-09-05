@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ChangeDetectorRef,
+  ViewEncapsulation,
+  ViewChild
+} from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
   DataService,
@@ -110,16 +116,24 @@ export class HomeComponent implements OnInit {
     }
     return R;
   }
+  @ViewChild("swiperRef") swiperRef?: SwiperComponent;
 
   swiperConfig: SwiperOptions = {
-    slidesPerView: 'auto',
+    slidesPerView: 1,
     spaceBetween: 10,
-    slidesPerGroup: 4,
+
     loop: true,
     loopFillGroupWithBlank: true,
-    navigation: true,
-    pagination: { clickable: true },
-    scrollbar: { draggable: true },
+    navigation: false,
+    pagination: { clickable: false },
+    scrollbar: { draggable: false },
+
+    breakpoints: {
+      991: {
+        slidesPerView: 3,
+        spaceBetween: 10
+      }
+    }
   };
 
   constructor(
@@ -129,6 +143,7 @@ export class HomeComponent implements OnInit {
     private utility: Utility,
     private dataSrv: DataService,
     private landingSrv: LandingService,
+    private cdf: ChangeDetectorRef,
   ) {
 
     // let _lang = localStorage.getItem("lang");
@@ -175,12 +190,27 @@ export class HomeComponent implements OnInit {
           });
         }
       }
-
+      this.cdf.detectChanges();
     }).catch(error => {
       console.error("error", error);
 
     })
+    this.swiperConfig = {
+      slidesPerView: 1,
+      spaceBetween: 10,
+      slidesPerGroup: 3,
+      loop: true,
+      loopFillGroupWithBlank: true,
+      navigation: true,
 
+
+      breakpoints: {
+        991: {
+          slidesPerView: 3,
+          spaceBetween: 10
+        }
+      }
+    };
   }
 
   setMyStyles() {

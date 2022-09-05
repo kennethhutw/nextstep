@@ -35,6 +35,7 @@ const routes: Routes = [
     path: "",
     component: AppLayouts.MainLayoutComponent,
     children: [
+      { path: "example", component: Pages.ExampleComponent },
       { path: "projects", component: Pages.FindProjectComponent },
       { path: "project/:id", component: Pages.ProjectComponent },
       { path: "job/:id", component: Pages.JobComponent },

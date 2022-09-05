@@ -94,7 +94,7 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   onComment() {
-
+    console.log("comment ------------")
 
     this.chatSrv.insert({
       sender: this.currentUser.id,
@@ -108,11 +108,11 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnChanges {
     }).subscribe(res => {
       if (res['result'] === 'successful') {
         this.message = "";
-
+        this.initChat(this.currentUser, this._receiverUser);
       } else {
 
       }
-
+      this.cdf.detectChanges();
     }, (error) => {
       console.error("saveError", error);
 

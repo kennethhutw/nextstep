@@ -76,6 +76,9 @@ export class ProjectComponent implements OnInit {
 
           if (_owners.length > 0) {
             this.projectOwner = _owners[0];
+            this.projectOwner.name = this.projectOwner.userName;
+            this.projectOwner.projectId = this.projectOwner.id;
+            this.projectOwner.id = this.projectOwner.userId;
           }
         }
       }
@@ -137,6 +140,8 @@ export class ProjectComponent implements OnInit {
     ).then(res => {
       if (res["result"] == "successful") {
         this.toastr.showToast('Success', "Submitted successfully", this.toastr.iconClasses.success);
+        this.application_message = "";
+        this.selectedApplication = null;
       } else {
         this.toastr.showToast('Failed', "Submitted failed", this.toastr.iconClasses.error);
       }
@@ -200,6 +205,10 @@ export class ProjectComponent implements OnInit {
 
   onToggleChat(event) {
     this.isChat = !this.isChat;
+  }
+
+  onSelectItem(item) {
+    this.selectedApplication = item;
   }
 
 }

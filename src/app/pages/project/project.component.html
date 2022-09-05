@@ -23,11 +23,14 @@
 
   <div class="col-md-4 text-right  btn_items">
 
-    <button type="button" class="btn btn_item  " (click)="onChat()"><i class="far fa-comment-alt"></i>
+    <button type="button" class="btn btn_item" *ngIf="currentProject?.owner !== currentUser?.id" (click)="onChat()"><i
+        class="far fa-comment-alt"></i>
       訊息</button>
-    <button type="button" class="btn btn_item " (click)="onClickFollow()"><i class="fas fa-plus"></i>
+    <button type="button" class="btn btn_item" *ngIf="currentProject?.owner !== currentUser?.id"
+      (click)="onClickFollow()"><i class="fas fa-plus"></i>
       追蹤</button>
-    <button type="button" class="btn btn_item " (click)="onClickCollect()"><i class="far fa-bookmark fa-lg"></i>
+    <button type="button" class="btn btn_item" *ngIf="currentProject?.owner !== currentUser?.id"
+      (click)="onClickCollect()"><i class="far fa-bookmark fa-lg"></i>
       收藏</button>
   </div>
 </div>
@@ -65,7 +68,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12 frame">
+      <div class="col-md-12 project_frame">
         <div class="tags">
           <ui-tag *ngIf="currentProject.isFindPartner" [class]="'tag-hiring'" [tag]="'徵成員'"></ui-tag>
           <ui-tag *ngIf="currentProject.isFunding" [class]="'tag-funding'" [tag]="'募資中'"></ui-tag>
@@ -75,9 +78,15 @@
         <div class="frame_bottom">
           <span class="title pb-8">目前進度</span>
           <div class="frame_bottom_items">
-            <span>#已有創業概念</span>
-            <span>#商業計畫初稿</span>
-            <span>#募資中</span>
+            <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('idea') > -1">#已有創業概念</span>
+            <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('businessplan') > -1">#商業計畫初稿</span>
+            <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('fundraising') > -1">#募資中</span>
+            <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('findpartner') > -1">#找創業夥伴</span>
+            <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('buildMVP') > -1">#建構最小可行性產品(MVP)</span>
+            <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('producttested') > -1">#驗證產品中</span>
+            <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('findcustomers') > -1">#找用戶中</span>
+            <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('findpayingcustomers') > -1">#找付費用戶中</span>
+
           </div>
         </div>
       </div>
@@ -152,26 +161,26 @@
     </div>
     <ng-container *ngIf="this.currentProject?.recruit">
       <ng-container *ngFor="let item of  this.currentProject.recruit; let i = index">
-        <div class="row frame mt-10" style="margin-left: 10px;padding: 10px">
-          <a class="clickable" [routerLink]="['/job/',item.id ]" style="color: #7F7F7F;">
-            <div class="col-md-12" style="display: inline-flex;">
-              <div class="col-md-12 ">
-                <p class="position"><b>{{item?.position}}</b></p>
-                <small>{{item.skills}}</small>
-              </div>
+        <div class="row frame" [ngClass]="{'mt-10':i>1}">
 
-              <!-- <div class="col-md-6 text-right">
-
-              </div> -->
+          <div class="col-md-12" style="display: inline-flex;">
+            <div class="col-md-8 pl-0">
+              <p class="position"><b>{{item.position}}</b></p>
+              <small>{{item.skills}}</small>
             </div>
-          </a>
+            <div class="col-md-4 btn_items pr-0">
+              <i *ngIf="item.isCollect" (click)="onClickUnCollect()" style="color:#56BDF4" class="fas fa-bookmark "></i>
+              <i *ngIf="!item.isCollect" (click)="onClickCollect()" style="color:#56BDF4" class="far fa-bookmark "></i>
+              <i class="far fa-envelope" style="color:#56BDF4" data-toggle="modal" data-target="#modal_apply"
+                data-dismiss="modal" (click)="onSelectItem(item)"></i>
+            </div>
+          </div>
+
           <div class="col-md-12">
             {{item.scopes}}
           </div>
-          <div class="col-md-12">
-            <button type="button" data-toggle="modal" data-target="#modal_apply_job" data-dismiss="modal"
-              style="float: right;" class="btn btn_item mr-10" (click)="onApply(item)"><i class="far fa-envelope"></i>
-              申請加入</button>
+          <div class="col-md-12 text-right">
+            <a class=" clickable" [routerLink]="['/job/',item.id ]" style="color: #4395E7;">查看詳情</a>
           </div>
         </div>
       </ng-container>
@@ -184,8 +193,6 @@
   <lab-custom-modal [open]="isChat" (close)="onToggleChat($event)">
     <h3 class="title" title>Chat</h3><span aria-hidden="true">X&times;</span>
     <div>
-
-
     </div>
     <lab-comments [currentUser]="currentUser" [receiverUser]="projectOwner" (close)="onToggleChat($event)" body>
     </lab-comments>
@@ -199,7 +206,7 @@
   <p style="color: white">Please Wait. </p>
 </ngx-spinner>
 <!--Modal login mail-->
-<app-modal [modalid]="'modal_apply_job'">
+<app-modal [modalid]="'modal_apply'">
   <div header>
 
   </div>
