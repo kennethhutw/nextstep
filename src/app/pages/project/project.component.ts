@@ -119,6 +119,7 @@ export class ProjectComponent implements OnInit {
   onApply(application) {
     this.selectedApplication = application;
   }
+
   onSubmit(application) {
     const params = {
       projectId: this.currentProject.id,

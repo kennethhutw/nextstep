@@ -14,12 +14,15 @@
       </div>
       <div class="inbox_chat scroll">
         <ng-container *ngFor="let item of ( items | itemFilter: searchText : 'name' ) let i=index ;">
-          <div class="chat_list" (click)="onClick(item)" [ngClass]="{ 'active_chat': item.name === selectedItem }">
+          <div class="chat_list" (click)="onClick(item)"
+            [ngClass]="{ 'active_chat': item.name === selectedItem?.name }">
             <div class="chat_people">
-              <div class="chat_img"> <img [src]="item.image" alt="sunil"> </div>
+              <div class="chat_img"> <img [src]="settingSrv.defaultAssetUrl+item.image" alt=""> </div>
               <div class="chat_ib">
                 <h5>{{item.name}} <span class="chat_date">{{item.date | date : 'yyyy-MM-dd'}}</span></h5>
-                <p class="chat_short_msg">{{item.message}}<span class="chat_num">10</span></p>
+                <p class="chat_short_msg">{{item.message?item.message:""}}<span *ngIf="item?.readNum>0"
+                    class="chat_num">{{item?.readNum}}</span>
+                </p>
               </div>
             </div>
           </div>
@@ -28,7 +31,30 @@
     </div>
     <div class="mesgs">
       <div class="msg_history">
-        <div class="incoming_msg">
+        <ng-container *ngFor="let item of selectedItem?.chat; let i=index ;">
+          <ng-container *ngIf="item.sender == currentUser.id; else receiver_msg">
+            <div class="outgoing_msg">
+              <div class="sent_msg">
+                <p>{{item.content}}</p>
+                <span class="time_date">{{item.createdAt | date : 'yyyy-MM-dd'}}</span>
+              </div>
+            </div>
+          </ng-container>
+          <ng-template #receiver_msg>
+            <div class="incoming_msg">
+              <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+              </div>
+              <div class="received_msg">
+                <div class="received_withd_msg">
+                  <p>{{item.content}}</p>
+                  <span class="time_date"> {{item.createdAt | date : 'yyyy-MM-dd'}}</span>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ng-container>
+
+        <!-- <div class="incoming_msg">
           <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
           </div>
           <div class="received_msg">
@@ -73,12 +99,14 @@
               <span class="time_date"> 11:01 AM | Today</span>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="type_msg">
         <div class="input_msg_write">
-          <input type="text" class="write_msg" placeholder="Type a message" />
-          <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+          <input type="text" class="write_msg" [(ngModel)]="message" (keyup)="onChange($event)"
+            placeholder="Type a message" />
+          <button class="msg_send_btn" type="button" (click)="onSendMsg()"><i class="fa fa-paper-plane"
+              aria-hidden="true"></i></button>
         </div>
       </div>
     </div>

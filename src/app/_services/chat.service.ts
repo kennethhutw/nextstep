@@ -16,6 +16,12 @@ export class ChatService {
             });
     }
 
+    async getConversations(uid) {
+
+        return await this.http.get<any>(`${environment.apiUrl}/chat/conversations/${uid}`,
+        ).toPromise();
+    }
+
     get(uid, to_uid) {
         return this.http.get<any>(`${environment.apiUrl}/chat`
         );
@@ -23,6 +29,13 @@ export class ChatService {
 
     insert(params) {
         return this.http.post(`${environment.apiUrl}/chat`, params);
+    }
+
+    read(uid, to_uid) {
+        return this.http.put(`${environment.apiUrl}/chat/read`, {
+            uid,
+            to_uid
+        });
     }
 
 
