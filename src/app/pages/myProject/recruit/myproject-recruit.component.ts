@@ -241,4 +241,8 @@ export class MyProjectRecruitComponent implements OnInit {
       work9: item.work9,
     });
   }
+
+  onRecruitSubmit() {
+    // todo
+  }
 }
