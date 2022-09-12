@@ -412,6 +412,14 @@
 
 
 /** buttons **/
+.btn-standard {
+
+  color: #69738C !important;
+  border: 2px solid #CFD2DA !important;
+  border-radius: 4px !important;
+  padding: 6px 12px 6px 12px !important;
+}
+
 .btn-blue {
   background-color: #56BDF4 !important;
   color: white !important;
@@ -665,6 +673,7 @@ a:hover {
   // border: 1px solid #FF859A !important;
   color: #FF859A !important;
   text-decoration: none !important;
+
 }
 
 /** input placeholder消失 **/
@@ -1840,7 +1849,8 @@ box-shadow:0 0 5px #fff;
 
 .sidebar .sidebar-menu ul li a span {
   color: inherit;
-  margin-left: 1rem;
+  padding-top: 6px;
+  // margin-left: 1rem;
 }
 
 @media (min-width: 768px) {

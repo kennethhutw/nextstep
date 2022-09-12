@@ -1,7 +1,7 @@
 <div class=" mb-80">
     <div class="row">
-        <div class="col-md-12 " style="display: inline-block;">
-            <span>成員管理</span>
+        <div class="col-md-12 mb-20" style="display: inline-block;">
+            <span class="title">成員管理</span>
 
             <a type="button" style="float: right;" class="btn mr-10" data-toggle="modal"
                 [attr.data-target]="'#invitedMember'"><i class="fas fa-plus"></i> 邀請成員
@@ -94,7 +94,7 @@
                                         </p>
                                     </div>
                                     <div class="item" style="  margin-left: auto;padding-right: 20px;">
-                                        <a class="text-md m-0" (click)="onChat(member)">前往對話
+                                        <a *ngIf="!member.isOwner" class="text-md m-0" (click)="onChat(member)">前往對話
                                         </a>
                                     </div>
                                 </div>
@@ -374,25 +374,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div #selectCountry class="selector-auto-complete">
-                                <input type="text" class="input" placeholder="Select a country..." autocomplete="off"
-                                    [value]="selectedOpt?.text" (focus)="onDisplayOptions($event)"
-                                    (input)="onCountryChange($event.target.value)">
-                                <ul class="list">
-                                    <ng-container *ngFor="let opt of countriesDisplayOptions">
-                                        <li (click)="onGetArticles(opt)" attr.data-option="{{opt.value}}"
-                                            [class.selected]="opt.value === selectedOpt?.value">
-                                            {{opt.text}}
-                                            <span class="icon" *ngIf="opt.value === selectedOpt?.value">
-                                                <svg-icon src="assets/icons/check.svg"></svg-icon>
-                                            </span>
-                                        </li>
-                                    </ng-container>
-                                </ul>
-                            </div> -->
+
                         </div>
                         <div class="form-group row  mt-10" style="justify-content: end;">
-                            <button type="button" style="float: right;" class="btn  mr-10"
+                            <button type="button" style="float: right;" class="btn btn-blue mr-10"
                                 (click)="inviteByUserId()">邀請</button>
                         </div>
                     </div>

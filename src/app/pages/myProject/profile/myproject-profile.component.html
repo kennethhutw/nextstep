@@ -5,9 +5,9 @@
         </div>
         <div class="col-md-4" style="     text-align: end;">
 
-            <button type="button" class="btn btn-primary mr-10" (click)="onSaveDraft()">存為草稿
+            <button type="button" class="btn btn-standard mr-10" (click)="onSaveDraft()">存為草稿
             </button>
-            <button type="button" class="btn btn-primary mr-10" (click)="onSave()"> 發布</button>
+            <button type="button" class="btn btn-standard mr-10" (click)="onSave()"> 發布</button>
 
         </div>
     </div>
@@ -70,48 +70,65 @@
                 <label class="pr-2" for="projectname">
                     <h5> 產業類型* :</h5>
                 </label>
-                <div class="form-check">
-                    <input type="checkbox" (change)="onTypeChange($event, 'eComm')"
-                        [checked]="isInValue('eComm', f.type.value)" value="eComm"><small>電子商務</small>
-                    <input type="checkbox" (change)="onTypeChange($event, 'ai')"
-                        [checked]="isInValue('ai', f.type.value)" value="ai"><small>人工智慧</small>
-                    <input type="checkbox" (change)="onTypeChange($event, 'edutech')"
-                        [checked]="isInValue('edutech', f.type.value)" value="edutech"><small>教育科技</small>
-                    <input type="checkbox" (change)="onTypeChange($event, 'sharingeconomy')"
-                        [checked]="isInValue('sharingeconomy', f.type.value)" value="sharingeconomy"><small>共享經濟</small>
-                    <input type="checkbox" (change)="onTypeChange($event, 'medical')"
-                        [checked]="isInValue('medical', f.type.value)" value="medical"><small>醫學科技</small>
-                    <input type="checkbox" (change)="onTypeChange($event, 'transport')"
-                        [checked]="isInValue('transport', f.type.value)" value="transport"><small>運輸服務</small>
-                    <input type="checkbox" (change)="onTypeChange($event, 'fintech')"
-                        [checked]="isInValue('fintech', f.type.value)" value="fintech"><small>金融科技</small>
-                    <input type="checkbox" (change)="onTypeChange($event, 'game')"
-                        [checked]="isInValue('game', f.type.value)" value="game"><small>遊戲產業</small>
-                    <input type="checkbox" (change)="onTypeChange($event, 'platform')"
-                        [checked]="isInValue('platform', f.type.value)" value="platform"><small>平台</small>
+                <div class="form-check check-group">
+                    <div> <input type="checkbox" (change)="onTypeChange($event, 'eComm')"
+                            [checked]="isInValue('eComm', f.type.value)" value="eComm"><span>電子商務</span>
+                    </div>
+                    <div><input type="checkbox" (change)="onTypeChange($event, 'ai')"
+                            [checked]="isInValue('ai', f.type.value)" value="ai"><span>人工智慧</span></div>
+                    <div><input type="checkbox" (change)="onTypeChange($event, 'edutech')"
+                            [checked]="isInValue('edutech', f.type.value)" value="edutech"><span>教育科技</span></div>
+                    <div><input type="checkbox" (change)="onTypeChange($event, 'sharingeconomy')"
+                            [checked]="isInValue('sharingeconomy', f.type.value)"
+                            value="sharingeconomy"><span>共享經濟</span></div>
+                    <div><input type="checkbox" (change)="onTypeChange($event, 'medical')"
+                            [checked]="isInValue('medical', f.type.value)" value="medical"><span>醫學科技</span></div>
+
+                </div>
+                <div class="form-check check-group">
+
+                    <div><input type="checkbox" (change)="onTypeChange($event, 'transport')"
+                            [checked]="isInValue('transport', f.type.value)" value="transport"><span>運輸服務</span></div>
+                    <div><input type="checkbox" (change)="onTypeChange($event, 'fintech')"
+                            [checked]="isInValue('fintech', f.type.value)" value="fintech"><span>金融科技</span></div>
+                    <div><input type="checkbox" (change)="onTypeChange($event, 'game')"
+                            [checked]="isInValue('game', f.type.value)" value="game"><span>遊戲產業</span></div>
+                    <div><input type="checkbox" (change)="onTypeChange($event, 'platform')"
+                            [checked]="isInValue('platform', f.type.value)" value="platform"><span>平台</span></div>
                 </div>
             </div>
             <div class="col-md-12 mb-12 form-group ">
                 <label class="pr-2" for="stage">
                     <h5> 目前進度* :</h5>
                 </label>
-                <div class="form-check">
-                    <input type="checkbox" (change)="onStageChange($event, 'idea')"
-                        [checked]="isInValue('idea', f.stages.value)" value="idea"><small>已有創業概念</small>
-                    <input type="checkbox" (change)="onStageChange($event, 'businessplan')"
-                        [checked]="isInValue('businessplan', f.stages.value)" value="businessplan"><small>商業計畫初稿</small>
-                    <input type="checkbox" (change)="onStageChange($event, 'findpartner')"
-                        [checked]="isInValue('findpartner', f.stages.value)" value="findpartner"><small>找創業夥伴</small>
-                    <input type="checkbox" (change)="onStageChange($event, 'buildMVP')"
-                        [checked]="isInValue('buildMVP', f.stages.value)" value="buildMVP"><small>建構最小可行性產品(MVP)</small>
-                    <input type="checkbox" (change)="onStageChange($event, 'producttested')"
-                        [checked]="isInValue('producttested', f.stages.value)"
-                        value="producttested"><small>驗證產品中</small>
-                    <input type="checkbox" (change)="onStageChange($event, 'findcustomers')"
-                        [checked]="isInValue('findcustomers', f.stages.value)" value="findcustomers"><small>找用戶中</small>
-                    <input type="checkbox" (change)="onStageChange($event, 'findpayingcustomers')"
-                        [checked]="isInValue('findpayingcustomers', f.stages.value)"
-                        value="findpayingcustomers"><small>找付費用戶中</small>
+                <div class="form-check  check-group">
+                    <div> <input type="checkbox" (change)="onStageChange($event, 'idea')"
+                            [checked]="isInValue('idea', f.stages.value)" value="idea"><span>已有創業概念</span></div>
+                    <div> <input type="checkbox" (change)="onStageChange($event, 'businessplan')"
+                            [checked]="isInValue('businessplan', f.stages.value)"
+                            value="businessplan"><span>商業計畫初稿</span></div>
+                    <div> <input type="checkbox" (change)="onStageChange($event, 'findpartner')"
+                            [checked]="isInValue('findpartner', f.stages.value)" value="findpartner"><span>找創業夥伴</span>
+                    </div>
+                    <div> <input type="checkbox" (change)="onStageChange($event, 'buildMVP')"
+                            [checked]="isInValue('buildMVP', f.stages.value)"
+                            value="buildMVP"><span>建構最小可行性產品(MVP)</span></div>
+
+                </div>
+                <div class="form-check  check-group">
+
+
+                    <div> <input type="checkbox" (change)="onStageChange($event, 'producttested')"
+                            [checked]="isInValue('producttested', f.stages.value)"
+                            value="producttested"><span>驗證產品中&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                    <div> <input type="checkbox" (change)="onStageChange($event, 'findcustomers')"
+                            [checked]="isInValue('findcustomers', f.stages.value)"
+                            value="findcustomers"><span>找用戶中&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    </div>
+                    <div> <input type="checkbox" (change)="onStageChange($event, 'findpayingcustomers')"
+                            [checked]="isInValue('findpayingcustomers', f.stages.value)"
+                            value="findpayingcustomers"><span>找付費用戶中</span>
+                    </div>
                 </div>
             </div>
             <div class="col-md-12 mb-12 form-group ">
@@ -130,11 +147,11 @@
 
         </div>
         <div class="row">
-            <div class="col-md-12 mb-12 form-group button-center">
+            <!-- <div class="col-md-12 mb-12 form-group button-center">
                 <button type="button" class="btn btn-primary mr-10" (click)="onSaveDraft()">存為草稿
                 </button>
                 <button type="button" class="btn btn-primary mr-10" (click)="onSave()"> 發布</button>
-            </div>
+            </div> -->
             <div class="col-md-12 mb-12 form-group text-center">
                 <div class="error-msg" *ngIf="projectMsg!=''">{{ projectMsg }}</div>
             </div>

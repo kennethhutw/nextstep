@@ -7,45 +7,42 @@
           <span aria-hidden="true">╳</span>
         </button>
       </div>
-      <div class="modal-body">
-        <div *ngIf="message?.type == 'confirm'" class="modal-body" style="    width: 450px;
-    margin-left: -30px;">
-          <div class="row">
-            <div class="col-md-12">
-              <p class="text-center confirm-message" [innerHTML]="msg"></p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <p class="confirm-button">
-                <a (click)="message.noFn()">
-                  <button class="btn btn-yes btn_normal">No</button>
-                </a>
 
-                <a (click)="message.yesFn()">
-                  <button class="btn btn-no "> Yes</button>
-                </a>
-              </p>
-            </div>
+      <div *ngIf="message?.type == 'confirm'" class="modal-body" style="    width: 450px;
+    margin-left: -30px;">
+        <div class="row">
+          <div class="col-md-12">
+            <p class="text-center confirm-message" [innerHTML]="msg"></p>
           </div>
         </div>
-        <div *ngIf="message?.type == 'info'" class="modal-body">
-          <div class="row">
-            <div class="col-md-12">
-              <p class="text-center confirm-message" [innerHTML]="msg"></p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <p class="confirm-button">
-                <button class="model_btn_normal" (click)="message.yesFn()">
-                  OK
-                </button>
-              </p>
-            </div>
+        <div class="row">
+          <div class="col-md-12">
+            <p class="confirm-button">
+
+              <button (click)="message.noFn()" class="btn btn-yes btn_normal">No</button>
+              <button (click)="message.yesFn()" class="btn btn-no "> Yes</button>
+
+            </p>
           </div>
         </div>
       </div>
+      <div *ngIf="message?.type == 'info'" class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <p class="text-center confirm-message" [innerHTML]="msg"></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <p class="confirm-button">
+              <button class="model_btn_normal" (click)="message.yesFn()">
+                OK
+              </button>
+            </p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 

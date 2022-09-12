@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { DataService, UserService, SettingService } from "../../_services";
 import { Utility } from "../../_helpers";
-import { Router } from "@angular/router";
+import { Router, NavigationEnd } from "@angular/router";
 import { environment } from '../../../environments/environment';
 import {
   AuthStore
@@ -19,6 +19,8 @@ export class ProjectLayoutComponent implements OnInit {
   project = {
     id: '1'
   };
+
+  currentMenu = 'profile';
   constructor(
     private settingSrv: SettingService,
     private router: Router,
@@ -38,10 +40,20 @@ export class ProjectLayoutComponent implements OnInit {
         this.translateSrv.use(lang);
       }
     });
+    this.router.events.subscribe((val) => {
+      // see also
+      console.log(val instanceof NavigationEnd)
+      if (val) {
+        let _lastIndex = this.router.url.lastIndexOf("/");
+        this.currentMenu = this.router.url.substring(_lastIndex + 1);
 
+      }
+    })
   }
 
   ngOnInit() {
+    let _lastIndex = this.router.url.lastIndexOf("/");
+    this.currentMenu = this.router.url.substring(_lastIndex + 1);
 
   }
 

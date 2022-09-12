@@ -37,7 +37,7 @@ app-setting {
         }
 
         &:hover {
-          background-color: #03658c;
+          background-color: #FF859A;
           color: #ffffff;
         }
       }
@@ -49,37 +49,33 @@ app-setting {
   }
 
   .active {
-    color: #56BDF4 !important;
-    fill: #56BDF4 !important;
+    color: #347A9F !important;
+    fill: #347A9F !important;
     text-decoration: none;
     /*     background-color: #007bff; */
     border-radius: 3px;
     width: 95% !important;
 
     svg g path {
-      fill: #56BDF4;
+      fill: #347A9F;
     }
 
     svg-icon.icon {
       svg g path {
-        fill: #56BDF4;
+        fill: #347A9F;
       }
 
       svg path {
-        fill: #56BDF4;
+        fill: #347A9F;
       }
     }
 
 
   }
 
-  svg-icon.icon {
-    fill: #56BDF4;
-  }
-
 
   .icon:hover svg g path {
-    fill: #56BDF4;
+    fill: #FF859A;
   }
 
   .dropdown-item {

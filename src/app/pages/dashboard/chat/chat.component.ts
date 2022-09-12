@@ -71,6 +71,9 @@ export class ChatComponent implements OnInit {
       console.log("res =========", res);
       if (res["result"] == "successful") {
         this.items = res["data"];
+        if (this.items.length > 0) {
+          this.selectedItem = this.items[0];
+        }
       }
     }).catch(error => {
       console.log("error ====", error);

@@ -23,3 +23,8 @@ input:checked {
 input[type="checkbox"]:before {
   background-color: red;
 }
+
+.check-group {
+  display: flex;
+  gap: 48px;
+}

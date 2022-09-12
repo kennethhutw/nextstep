@@ -1,12 +1,21 @@
 <div class=" mb-80">
     <div class="row">
-        <div class="col-md-12 " style="display: inline-block;">
-            <span>招募管理</span>
+        <div class="col-md-12  mb-20" style="display: inline-block;">
+            <span class="title">招募管理</span>
 
-            <a type="button" style="float: right;" class="btn mr-10" data-toggle="modal"
+            <!-- <a type="button" style="float: right;" class="btn mr-10" data-toggle="modal"
                 [attr.data-target]="'#invitedMember'"><i class="fas fa-plus"></i> 邀請成員
             </a>
-            <button type="button" style="float: right;" class="btn  mr-10"><i class="fas fa-plus"></i> 招募成員</button>
+            <button type="button" style="float: right;" class="btn  mr-10"><i class="fas fa-plus"></i> 招募成員</button> -->
+
+            <select style="float: right;" class="btn mr-10" [disabled]="!canMove" [value]="status"
+                (change)="onStatusChange($event)">
+                <option value="null">移動成員去</option>
+                <option value="1">發布</option>
+                <option value="0">草稿</option>
+                <option value="2">已關閉</option>
+
+            </select>
         </div>
     </div>
     <div class="row">
@@ -67,10 +76,24 @@
                                         <p class="text-md m-0">{{member.endDate| date : 'yyyy-MM-dd'}}
                                         </p>
                                     </div>
+                                    <div class="item">
+                                        <a class="clickable" (click)="onClickView(member)" data-toggle="modal"
+                                            [attr.data-target]="'#createRcruitModal'" style="color: #7F7F7F;">
+                                            內容
+                                        </a>
+                                    </div>
+
                                     <div class="item" style="  margin-left: auto;padding-right: 20px;">
                                         <a class="clickable" (click)="onClickDelete(member.id)" style="color: #7F7F7F;">
                                             <i class="far fa-trash-alt icon"></i>
                                         </a>
+                                    </div>
+                                    <div class="item">
+                                        <div class="d-flex align-items-center">
+                                            <ui-radio-item [value]="member.available"
+                                                (onChange)="onAvailableChange($event, member)">
+                                            </ui-radio-item>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -113,6 +136,11 @@
                                         <p class="text-md m-0">{{member.endDate| date : 'yyyy-MM-dd'}}
                                         </p>
                                     </div>
+                                    <a class="clickable" (click)="onClickView(member)" data-toggle="modal"
+                                        [attr.data-target]="'#createRcruitModal'" style="color: #7F7F7F;">
+                                        內容
+                                    </a>
+
                                     <div class="item" style="  margin-left: auto;padding-right: 20px;">
                                         <a class="clickable" (click)="onClickDelete(member.id)" style="color: #7F7F7F;">
                                             <i class="far fa-trash-alt icon"></i>
@@ -157,7 +185,10 @@
                                         <p class="text-md m-0">{{member.endDate| date : 'yyyy-MM-dd'}}
                                         </p>
                                     </div>
-
+                                    <a class="clickable" (click)="onClickView(member)" data-toggle="modal"
+                                        [attr.data-target]="'#createRcruitModal'" style="color: #7F7F7F;">
+                                        內容
+                                    </a>
                                     <div class="item" style="  margin-left: auto;padding-right: 20px;">
 
                                         <a class="clickable" (click)="onClickDelete(member.id)" style="color: #7F7F7F;">
@@ -175,127 +206,71 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="invitedMember" tabindex="-1" aria-labelledby="invitedMember" aria-hidden="true">
+<div class="modal fade" id="createRcruitModal" tabindex="-1" aria-labelledby="createRcruitModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h1>邀請成員</h1>
-                <button type="button" id="close_invited" class="close" data-dismiss="modal" aria-label="Close">
+                <h1>招募成員</h1>
+                <button type="button" id="close_recruit" #close_recruit_button class="close" data-dismiss="modal"
+                    aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link " id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
-                            [ngClass]="{ 'active': invitedTab === 'userId' }" type="button" role="tab"
-                            (click)="changeInvitedTab('userId')">使用者ID</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': invitedTab === 'email' }"
-                            type="button" role="tab" (click)="changeInvitedTab('email')">Email</button>
-                    </li>
-                </ul>
-                <div class="tab-content" id="invitedTabContent">
-                    <div class="tab-pane" [ngClass]="{ 'active': invitedTab === 'userId' }" role="tabpanel"
-                        aria-labelledby="userId-tab">
-                        <div class="row mt-10">
-                            <label for="userId" class="col-sm-2 col-form-label text-nowrap">User ID</label>
-                            <div class="col-sm-10">
-                                <input type="text" [(ngModel)]="invitedUserId" class="form-control rounded-0"
-                                    id="userId" aria-describedby="nameHelp" placeholder="ID">
-                                <div *ngIf="submitted && invitedUserId==''">
-                                    <div class="error-msg">
-                                        User ID is required
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- <div #selectCountry class="selector-auto-complete">
-                                <input type="text" class="input" placeholder="Select a country..." autocomplete="off"
-                                    [value]="selectedOpt?.text" (focus)="onDisplayOptions($event)"
-                                    (input)="onCountryChange($event.target.value)">
-                                <ul class="list">
-                                    <ng-container *ngFor="let opt of countriesDisplayOptions">
-                                        <li (click)="onGetArticles(opt)" attr.data-option="{{opt.value}}"
-                                            [class.selected]="opt.value === selectedOpt?.value">
-                                            {{opt.text}}
-                                            <span class="icon" *ngIf="opt.value === selectedOpt?.value">
-                                                <svg-icon src="assets/icons/check.svg"></svg-icon>
-                                            </span>
-                                        </li>
-                                    </ng-container>
-                                </ul>
-                            </div> -->
-                        </div>
-                        <div class="form-group row  mt-10" style="justify-content: end;">
-                            <button type="button" style="float: right;" class="btn  mr-10"
-                                (click)="inviteByUserId()">邀請</button>
-                        </div>
+                <form [formGroup]="recruitForm">
+                    <div class="form-group">
+                        <label for="inputPosition">職稱</label>
+                        <input type="text" class="form-control rounded-0" formControlName="position" id="inputPosition"
+                            placeholder="職稱">
                     </div>
-                    <div class="tab-pane" [ngClass]="{ 'active': invitedTab === 'email' }" role="tabpanel"
-                        aria-labelledby="userId-tab">
-                        <form [formGroup]="invitationForm">
-                            <div class="form-group row mt-10">
-                                <label for="staticName" class="col-sm-2 col-form-label text-nowrap">Name</label>
-                                <div class="col-sm-10">
-                                    <input type="text" formControlName="name" class="form-control rounded-0"
-                                        id="staticName" aria-describedby="nameHelp" placeholder="Enter name">
-                                    <div *ngIf="submitted && f.name.errors">
-                                        <div class="error-msg" *ngIf="f.name.errors.required">
-                                            Name is required
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label text-nowrap">Email</label>
-                                <div class="col-sm-10">
-                                    <input type="email" formControlName="email" class="form-control rounded-0"
-                                        id="staticEmail" aria-describedby="emailHelp" placeholder="Enter email">
-                                    <div *ngIf="submitted && f.email.errors">
-                                        <div class="error-msg" *ngIf="f.email.errors.required">
-                                            Email is required
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row" style="justify-content: end;">
-                                <button type="button" style="float: right;" class="btn  mr-10"
-                                    (click)="inviteByEmail()">邀請</button>
-                            </div>
-                        </form>
+                    <div class="form-group">
+                        <label for="inputContent">職缺內容</label>
+                        <textarea class="form-control" type="text" id="scopes" formControlName="scopes" rows="4"
+                            cols="50"></textarea>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="inputSkills">技能</label>
+                        <tag-input id="skills" formControlName="skills" [onlyFromAutocomplete]="true"
+                            [secondaryPlaceholder]="'前端開發, 市場開發, UIUX...'">
+                            <tag-input-dropdown [displayBy]="'text'" [appendToBody]="false"
+                                [autocompleteItems]="skillOptions" [showDropdownIfEmpty]="true" [dynamicUpdate]="false">
+                            </tag-input-dropdown>
+                        </tag-input>
+                    </div>
+                    <div class="form-group">
 
+                        <label for="inputSkills">每周願意投入時長</label>
+                        <div class="form-group">
+                            <div>
+                                <input id="work12" type="checkbox" formControlName="work12" data-key="hour" />
+                                <label class="option" for="work12">1至2小時</label>
+                            </div>
+                            <div>
+                                <input id="work34" type="checkbox" formControlName="work34" data-key="hour" />
+                                <label class="option" for="work34">3至4小時</label>
+                            </div>
+                            <div>
+                                <input id="work56" type="checkbox" formControlName="work56" data-key="hour" />
+                                <label class="option" for="work56">5至6小時</label>
+                            </div>
+                            <div>
+                                <input id="work78" type="checkbox" formControlName="work78" data-key="hour" />
+                                <label class="option" for="work78">7至8小時</label>
+                            </div>
+                            <div>
+                                <input id="work9" type="checkbox" formControlName="work9" data-key="hour" />
+                                <label class="option" for="work9">9小時以上(含)</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row justify-content-end">
+
+                        <button type="button" style="float: right;" class="btn btn-blue  mr-10"
+                            (click)="onRecruitSubmit()">更新</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</div>
-<app-confirm-dialog></app-confirm-dialog>
-<div class="modal fade" id="changeMemberStatusModal" tabindex="-1" aria-labelledby="invitedMember" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1>成員</h1>
-                <button type="button" id="close_invited" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-
-            </div>
-        </div>
-    </div>
-</div>
-<div [class.show]="isChat" class="full">
-    <lab-custom-modal [open]="isChat" (close)="onToggleChat($event)">
-        <h3 class="title" title>Chat</h3><span aria-hidden="true">X&times;</span>
-        <div>
-        </div>
-        <lab-comments [currentUser]="currentUser" [receiverUser]="reciver" (close)="onToggleChat($event)" body>
-        </lab-comments>
-
-    </lab-custom-modal>
-
 </div>
 <app-dialog></app-dialog>

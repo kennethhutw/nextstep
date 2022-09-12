@@ -1,11 +1,18 @@
-.btn{
+.title {
+  font-size: 40px;
+  font-weight: 400;
+}
+
+.btn {
   min-width: 150px;
 }
-.button-center{
-      display: flex;
+
+.button-center {
+  display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .card {
   padding: 12px 24px;
   display: flex;
@@ -47,12 +54,12 @@
   font-family: var(--font-nunito);
 }
 
-.table-scroll{
+.table-scroll {
   max-height: 550px;
   overflow-y: auto;
 }
 
-.borderlabel{
+.borderlabel {
   border: 1px solid #6c757d !important;
   border-color: #6c757d;
   border-radius: var(--br-circle);
@@ -63,7 +70,7 @@
   padding: 3px 10px;
 }
 
-.fw-700{
+.fw-700 {
   font-weight: 700;
 }
 
@@ -78,14 +85,15 @@
 
 }
 
-.hide{
+.hide {
   display: none;
 }
 
-.icon{
-    padding-left: 5px;
-    padding-right: 5px;
+.icon {
+  padding-left: 5px;
+  padding-right: 5px;
 }
+
 .switch {
   display: inline-block;
   height: 34px;
@@ -94,7 +102,7 @@
 }
 
 .switch input {
-  display:none;
+  display: none;
 }
 
 .slider {
@@ -119,11 +127,11 @@
   width: 26px;
 }
 
-input:checked + .slider {
-  background-color: #66bb6a;
+input:checked+.slider {
+  background-color: #56BDF4;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   transform: translateX(26px);
 }
 

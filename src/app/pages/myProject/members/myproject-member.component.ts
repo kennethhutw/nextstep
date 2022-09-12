@@ -192,6 +192,34 @@ export class MyProjectMemberComponent implements OnInit {
 
   inviteByUserId() {
     this.submitted = true;
+    let domain = window.location.origin;
+    let _projectLink = domain + "/project/" + this.projectId;
+    let _invitationLink = domain + "/joinproject/" + this.projectId;
+    console.log("=============", _invitationLink);
+    this.invitationSrv.inviteByUid({
+      projectId: this.projectId,
+      userid: this.invitedUserId,
+      status: "0",
+      uid: this.currentUser.id,
+      projectName: this.currentProject.name,
+      sender: this.currentUser.name,
+      projectLink: _projectLink,
+      invitationLink: _invitationLink
+    }).then(res => {
+      console.log("=============", res);
+      if (res['result'] === 'successful') {
+        this.submitted = false;
+        this.invitationForm.reset();
+        this.invitedUserId = "";
+        document.getElementById('close_invited').click();
+      } else {
+        this.projectMsg = res['error'].message;
+      }
+
+    }, (error) => {
+      console.error("saveError", error);
+      this.projectMsg = error.message;
+    })
 
   }
   inviteByEmail() {

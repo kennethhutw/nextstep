@@ -18,43 +18,44 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ["./profile.component.scss"]
 })
 export class ProfileComponent implements OnInit {
-  items = [{
-    name: "Kenneth",
-    position: "Software developer",
-    imageUrl: "https://bootdey.com/img/Content/avatar/avatar2.png",
-    isFavortie: false,
-    isFollow: false,
-    description: "添加到收藏夹",
-    tags: [
-      "full-stack",
-      "blockchain"
-    ]
+  // items = [{
+  //   name: "Kenneth",
+  //   position: "Software developer",
+  //   imageUrl: "https://bootdey.com/img/Content/avatar/avatar2.png",
+  //   isFavortie: false,
+  //   isFollow: false,
+  //   description: "添加到收藏夹",
+  //   tags: [
+  //     "full-stack",
+  //     "blockchain"
+  //   ]
 
-  },
-  {
-    name: "Anne",
-    position: "UI/UX designer",
-    imageUrl: "https://bootdey.com/img/Content/avatar/avatar3.png",
-    isFavortie: true,
-    isFollow: false,
-    description: "添加到收藏夹",
-    tags: [
-      "UI/UX",
-      "Front-end"
-    ]
-  },
-  {
-    name: "Ken",
-    position: "DevOps developer",
-    imageUrl: "https://bootdey.com/img/Content/avatar/avatar4.png",
-    isFavortie: false,
-    isFollow: false,
-    description: "添加到收藏夹",
-    tags: [
-      "DevOps ",
-      "IT"
-    ]
-  }];
+  // },
+  // {
+  //   name: "Anne",
+  //   position: "UI/UX designer",
+  //   imageUrl: "https://bootdey.com/img/Content/avatar/avatar3.png",
+  //   isFavortie: true,
+  //   isFollow: false,
+  //   description: "添加到收藏夹",
+  //   tags: [
+  //     "UI/UX",
+  //     "Front-end"
+  //   ]
+  // },
+  // {
+  //   name: "Ken",
+  //   position: "DevOps developer",
+  //   imageUrl: "https://bootdey.com/img/Content/avatar/avatar4.png",
+  //   isFavortie: false,
+  //   isFollow: false,
+  //   description: "添加到收藏夹",
+  //   tags: [
+  //     "DevOps ",
+  //     "IT"
+  //   ]
+  // }];
+  items = [];
   displayItems = [];
   values = "";
   tags = [];

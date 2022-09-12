@@ -40,4 +40,12 @@ export class RecruitService {
             })
             .toPromise();
     }
+
+
+    async updateStatus(params) {
+
+        return await this.http
+            .put<any>(`${environment.apiUrl}/recruit/status`, params)
+            .toPromise();
+    }
 }

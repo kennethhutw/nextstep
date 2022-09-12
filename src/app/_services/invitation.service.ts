@@ -15,6 +15,10 @@ export class InvitationService {
     async insert(params) {
         return await this.http.post(`${environment.apiUrl}/invitations/invite`, params).toPromise();
     }
+    async inviteByUid(params) {
+        return await this.http.post(`${environment.apiUrl}/invitations/inviteByUid`, params).toPromise();
+    }
+
     async resend(params) {
         return await this.http.post(`${environment.apiUrl}/invitations/resend`, params).toPromise();
     }

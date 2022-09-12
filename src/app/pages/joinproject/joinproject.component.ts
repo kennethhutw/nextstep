@@ -20,7 +20,7 @@ export class JoinProjectComponent implements OnInit {
   projectId: string = "";
   currentUser;
 
-  invitation;
+  invitation = null;
   constructor(
     private translateSrv: TranslateService,
     private utility: Utility,
