@@ -1,6 +1,4 @@
 import {
-  HostListener,
-  HostBinding,
   Component,
   OnInit,
   ViewChild,
@@ -20,6 +18,7 @@ import {
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
+import { Utility } from 'src/app/_helpers';
 
 @Component({
   selector: 'app-myproject-member',
@@ -31,6 +30,7 @@ export class MyProjectMemberComponent implements OnInit {
   currentProject;
   invitationForm: FormGroup;
   recruitForm: FormGroup;
+  isViewMode = false;
   submitted = false;
   currentUser;
   projectMsg = "";
@@ -69,6 +69,7 @@ export class MyProjectMemberComponent implements OnInit {
     private confirmDialogService: DialogService,
     private appSettingsSrv: AppSettingsService,
     private invitationSrv: InvitationService,
+    private utilitySrv: Utility,
     private authStoreSrv: AuthStore) {
     this.skillOptions = this.appSettingsSrv.skillOptions();
     this.invitationForm = this.formBuilder.group({
@@ -99,7 +100,7 @@ export class MyProjectMemberComponent implements OnInit {
     this.projectSrv.getMembers(
       this.projectId
     ).then(res => {
-
+      console.log("getMembers ===========", res)
       if (res['result'] == 'successful') {
         let data = res['data'];
 
@@ -507,5 +508,36 @@ export class MyProjectMemberComponent implements OnInit {
     })
 
   }
+
+  onCreateRecruit() {
+    this.isViewMode = false;
+    this.recruitForm.reset();
+  }
+
+  onViewAplication(item) {
+    this.isViewMode = true;
+    let _skills = [];
+    if (!this.utilitySrv.IsNullOrEmpty(item.skills)) {
+      // let _skill_values = this.userProfile.skills.split(",");
+
+      this.skillOptions.map(option => {
+        if (item.skills.includes(option.value)) {
+          _skills.push(option.text);
+        }
+      })
+    }
+    this.recruitForm.setValue({
+      position: item.position,
+      scopes: item.scopes,
+      skills: _skills,
+      work12: item.work12,
+      work34: item.work34,
+      work56: item.work56,
+      work78: item.work78,
+      work9: item.work9,
+    });
+  }
+
+
 
 }

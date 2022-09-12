@@ -7,7 +7,8 @@
                 [attr.data-target]="'#invitedMember'"><i class="fas fa-plus"></i> 邀請成員
             </a>
             <a type="button" style="float: right;" class="btn mr-10" data-toggle="modal"
-                [attr.data-target]="'#createRcruitModal'"><i class="fas fa-plus"></i> 招募成員</a>
+                [attr.data-target]="'#createRcruitModal'" (click)="onCreateRecruit()"><i class="fas fa-plus"></i>
+                招募成員</a>
             <select style="float: right;" class="btn mr-10" [disabled]="!canMoveMember" [value]="status"
                 (change)="onStatusChange($event)">
                 <option value="null">移動成員去</option>
@@ -78,8 +79,8 @@
                                         <i style="font-size: 30px;" class="far fa-user-circle fa-2x"></i>
                                     </div>
                                     <div class="item">
-                                        <p class="text-md m-0">{{member.name}}
-                                        </p>
+                                        <a class="text-md m-0" href="/u/{{member.uid}}" target="_blank">{{member.name}}
+                                        </a>
                                     </div>
                                     <div class="item">
                                         <p class="text-md m-0">{{member.position}}
@@ -123,12 +124,14 @@
                                     <div class="item"> <i style="font-size: 30px;" class="far fa-user-circle fa-2x"></i>
                                     </div>
                                     <div class="item">
-                                        <p class="text-md m-0">{{member.name}}
-                                        </p>
+                                        <a class="text-md m-0" href="/u/{{member.uid}}" target="_blank">{{member.name}}
+                                        </a>
                                     </div>
                                     <div class="item">
-                                        <p class="text-md m-0">{{member.position}}
-                                        </p>
+                                        <a class="clickable" (click)="onViewAplication(member)" data-toggle="modal"
+                                            [attr.data-target]="'#createRcruitModal'" style="color: #7F7F7F;">
+                                            {{member.position}}
+                                        </a>
                                     </div>
                                     <div class="item">
                                         <p class="text-md m-0">{{member.applicationDate| date : 'yyyy-MM-dd'}}
@@ -220,8 +223,8 @@
                                     <div class="item"> <i style="font-size: 30px;" class="far fa-user-circle fa-2x"></i>
                                     </div>
                                     <div class="item">
-                                        <p class="text-md m-0">{{member.name}}
-                                        </p>
+                                        <a class="text-md m-0" href="/u/{{member.uid}}" target="_blank">{{member.name}}
+                                        </a>
                                     </div>
                                     <div class="item">
                                         <p class="text-md m-0">{{member.position}}
@@ -265,8 +268,8 @@
                                     <div class="item"> <i style="font-size: 30px;" class="far fa-user-circle fa-2x"></i>
                                     </div>
                                     <div class="item">
-                                        <p class="text-md m-0">{{member.name}}
-                                        </p>
+                                        <a class="text-md m-0" href="/u/{{member.uid}}" target="_blank">{{member.name}}
+                                        </a>
                                     </div>
                                     <div class="item">
                                         <p class="text-md m-0">{{member.position}}
@@ -494,7 +497,7 @@
                         </div>
                     </div>
                     <div class="form-group row justify-content-end">
-                        <button type="button" style="float: right;" class="btn btn-blue  mr-10"
+                        <button *ngIf="!isViewMode" type="button" style="float: right;" class="btn btn-blue  mr-10"
                             (click)="onRecruitSubmit()">創建</button>
                     </div>
                 </form>
