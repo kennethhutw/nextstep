@@ -57,7 +57,7 @@ export class PubProfileComponent implements OnInit {
 
   // chat
   isChat: boolean = false;
-
+  reciver;
   constructor(
     private viewsSrv: ViewsService,
     public toastr: ToastService,
@@ -518,6 +518,12 @@ export class PubProfileComponent implements OnInit {
 
   onToggleChat(event) {
     this.isChat = !this.isChat;
+  }
+
+  onClickChat(event) {
+
+    this.isChat = !this.isChat;
+    this.reciver = event;
   }
 }
 //https://www.sliderrevolution.com/resources/bootstrap-profile/

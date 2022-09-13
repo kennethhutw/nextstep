@@ -25,6 +25,7 @@ const routes: Routes = [
 
   { path: "forgot", component: Websitepages.ForgotComponent },
   { path: "signup", component: Websitepages.SignupComponent },
+  { path: "invitedSignup", component: Websitepages.InvitedSignupComponent },
   { path: "signin", component: Websitepages.SigninComponent },
   { path: "info", component: Websitepages.SignupInfoComponent },
   {

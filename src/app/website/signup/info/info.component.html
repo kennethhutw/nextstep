@@ -23,47 +23,63 @@
 
                 </div>
                 <div class="col-md-12 mt-2 mb-2 align-items-center" id="select_img">
-                    <form style="width: 80%;">
+                    <form style="width: 80%;" [formGroup]="profileForm">
                         <div class="form-group">
                             <!-- <label for="exampleInputEmail1">姓名</label> -->
-                            <input type="text" class="form-control rounded-0" id="name" aria-describedby="emailHelp"
-                                placeholder="姓名">
+                            <input type="text" class="form-control rounded-0" id="name" formControlName="name"
+                                aria-describedby="emailHelp" placeholder="姓名">
 
                         </div>
                         <div class="form-group">
                             <!-- <label for="exampleInputPassword1">職稱</label> -->
-                            <input type="text" class="form-control rounded-0" id="exampleInputPassword1"
+                            <input type="text" class="form-control rounded-0" formControlName="position" id="position"
                                 placeholder="職稱">
                         </div>
                         <div class="form-group">
                             <!-- <label for="exampleInputPassword1">公司</label> -->
-                            <input type="text" class="form-control rounded-0" id="exampleInputPassword1"
+                            <input type="text" class="form-control rounded-0" formControlName="company" id="company"
                                 placeholder="公司">
                         </div>
                         <div class="form-group">
                             <!-- <label for="exampleInputPassword1">技能</label> -->
-                            <input type="text" class="form-control rounded-0" id="exampleInputPassword1"
-                                placeholder="技能">
+                            <!-- <input type="text" class="form-control rounded-0" id="exampleInputPassword1"
+                                placeholder="技能"> -->
+                            <tag-input id="skills" formControlName="skills" [onlyFromAutocomplete]="true"
+                                [secondaryPlaceholder]="'技能: 前端開發, 市場開發, UIUX...'">
+                                <tag-input-dropdown [displayBy]="'text'" [appendToBody]="false"
+                                    [autocompleteItems]="skillOptions" [showDropdownIfEmpty]="true"
+                                    [dynamicUpdate]="false">
+                                </tag-input-dropdown>
+                            </tag-input>
                         </div>
                         <div class="form-group">
                             <!-- <label for="exampleInputPassword1">Facebook連結</label> -->
-                            <input type="text" class="form-control rounded-0" id="exampleInputPassword1"
+                            <input type="text" class="form-control rounded-0" formControlName="facebook" id="facebook"
                                 placeholder="Facebook連結">
                         </div>
                         <div class="form-group">
                             <!-- <label for="exampleInputPassword1">Twitter連結</label> -->
-                            <input type="text" class="form-control rounded-0" id="exampleInputPassword1"
+                            <input type="text" class="form-control rounded-0" formControlName="twitter" id="twitter"
                                 placeholder="Twitter連結">
                         </div>
                         <div class="form-group">
                             <!-- <label for="exampleInputPassword1">GitHub連結</label> -->
-                            <input type="text" class="form-control rounded-0" id="exampleInputPassword1"
+                            <input type="text" class="form-control rounded-0" formControlName="github" id="github"
                                 placeholder="GitHub連結">
                         </div>
                         <div class="form-group">
                             <!-- <label for="exampleInputPassword1">網站連結</label> -->
-                            <input type="text" class="form-control rounded-0" id="exampleInputPassword1"
+                            <input type="text" class="form-control rounded-0" formControlName="website" id="website"
                                 placeholder="網站連結">
+                        </div>
+                        <div class="form-group">
+                            <!-- <label for="exampleInputPassword1">網站連結</label> -->
+                            <input type="text" class="form-control rounded-0" formControlName="linkedin" id="linkedin"
+                                placeholder="LinkedIn">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" type="text" id="bio" formControlName="bio" rows="4"
+                                cols="50"></textarea>
                         </div>
                         <div class="form-group">
                             <button type="button" (click)="NextStep(1)" class="btn btn-continue ">Continue</button>

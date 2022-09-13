@@ -27,6 +27,7 @@ export class UserCardComponent {
   @Output() UnCollect: EventEmitter<{ userId: any }> = new EventEmitter<{ userId: any }>();
   @Output() Follow: EventEmitter<{ userId: any }> = new EventEmitter<{ userId: any }>();
   @Output() UnFollow: EventEmitter<{ userId: any }> = new EventEmitter<{ userId: any }>();
+  @Output() Chat: EventEmitter<{ user }> = new EventEmitter<{ user }>();
   constructor(
     private utility: Utility,
     private router: Router,
@@ -69,6 +70,10 @@ export class UserCardComponent {
 
     this.user.isCollect = !this.user.isCollect;
     this.UnCollect.emit({ userId: this.user.id });
+  }
+
+  onClickChat() {
+    this.Chat.emit(this.user);
   }
 
   onClickFollow() {

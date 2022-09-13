@@ -33,14 +33,13 @@ export class FindMentorComponent implements OnInit {
     law: false,
     strategy: false,
     programming: false,
-
-
   }
   items = [];
   displayItems = [];
   currentUser;
 
   isChat: boolean = false;
+  reciver;
   constructor(
     private viewsSrv: ViewsService,
     public toastr: ToastService,
@@ -378,6 +377,12 @@ export class FindMentorComponent implements OnInit {
 
   onToggleChat(event) {
     this.isChat = !this.isChat;
+    this.reciver = null;
   }
 
+  onClickChat(event) {
+
+    this.isChat = !this.isChat;
+    this.reciver = event;
+  }
 }

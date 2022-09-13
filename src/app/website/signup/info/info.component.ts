@@ -2,7 +2,8 @@ import { Component, OnInit, HostListener } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
   DataService,
-  UserService
+  UserService,
+  AppSettingsService
 } from "../../../_services";
 import {
   FormBuilder,
@@ -28,13 +29,15 @@ export class SignupInfoComponent implements OnInit {
   currentUser: any = null;
   profileImage = null;
   profileImageFile = null;
-  step = 1;
+  step = 0;
   isProject = false;
   isPartner = false;
   beMentor = false;
   isMentor = false;
 
   profileForm: FormGroup;
+
+  skillOptions: any[] = [];
 
   @HostListener("window:resize", ["$event"])
   getScreenSize(event?) {
@@ -53,11 +56,12 @@ export class SignupInfoComponent implements OnInit {
     private userSrv: UserService,
     private translateSrv: TranslateService,
     private utility: Utility,
+    private appSettingsSrv: AppSettingsService,
     private formBuilder: FormBuilder,
     private dataSrv: DataService
   ) {
 
-
+    this.skillOptions = this.appSettingsSrv.skillOptions();
   }
 
   ngOnInit() {
@@ -65,18 +69,26 @@ export class SignupInfoComponent implements OnInit {
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     this.profileForm = this.formBuilder.group({
       name: [""],
+      position: [""],
+      company: [""],
       bio: [""],
-      location: [""],
+      skills: [""],
       website: [""],
+      github: [""],
       facebook: [""],
       twitter: [""],
-      instagram: [""],
-      tags: [""]
+      linkedin: [""],
+      tags: [""],
+
     });
   }
 
   onSubmitInfo() {
 
+  }
+
+  get f() {
+    return this.profileForm.controls;
   }
 
   onSelectedProject() {
@@ -94,6 +106,30 @@ export class SignupInfoComponent implements OnInit {
 
   onSubmit() {
     try {
+      if (this.profileForm.invalid) {
+        return;
+      }
+      const values = this.profileForm.value;
+      let _skills = "";
+      let _skills_array = [];
+      if (values.skills) {
+        values.skills.map(skill => {
+          let _skill_text = skill;
+          if (typeof skill == "object") {
+            _skill_text = skill.text;
+          }
+          let _index = this.skillOptions.findIndex((obj => obj.text == _skill_text));
+          if (_index) {
+            _skills += this.skillOptions[_index].value + ",";
+            _skills_array.push(this.skillOptions[_index].value);
+          }
+        })
+
+        if (_skills.length > 0) {
+          _skills = _skills.substring(0, _skills.length - 1);
+        }
+      }
+
       let _tags = "";
       if (this.isProject) {
         _tags += "findProject,";
@@ -110,14 +146,23 @@ export class SignupInfoComponent implements OnInit {
 
       let formData = new FormData();
       formData.append("id", this.currentUser.id);
-      formData.append("tags", _tags);
+      formData.append("name", values.name);
+      formData.append("title", values.position);
+      formData.append("company", values.company);
+      formData.append("skills", _skills);
+      formData.append("website", values.website);
+      formData.append("facebook", values.facebook);
+      formData.append("twitter", values.twitter);
+      formData.append("github", values.github);
+      formData.append("linkedin", values.linkedin);
+      formData.append("bio", values.bio);
       if (this.profileImageFile)
         formData.append("profileImage", this.profileImageFile);
 
       this.userSrv.updateUserBasicInfo(formData).subscribe(res => {
         console.log("=========== ", res)
         if (res['result'] == 'successful') {
-          this.router.navigate(["./profile/Christian"], {});
+          this.router.navigate(["./dashboard"], {});
         }
       })
     } catch (error) {

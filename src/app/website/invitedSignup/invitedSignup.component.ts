@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from "@angular/core";
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
   DataService,
@@ -23,7 +23,8 @@ import {
   templateUrl: "./invitedSignup.component.html",
   styleUrls: [
     "./invitedSignup.component.scss",
-  ]
+  ],
+  encapsulation: ViewEncapsulation.None
 })
 export class InvitedSignupComponent implements OnInit {
   projectId = "";
@@ -106,7 +107,7 @@ export class InvitedSignupComponent implements OnInit {
       values.password).subscribe(res => {
         console.log("==============", res);
         if (res['result'] == 'successful') {
-          this.router.navigate(["./project/" + this.projectId], {});
+          this.router.navigate(["./info"], {});
         } else {
 
         }
