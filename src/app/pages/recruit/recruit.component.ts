@@ -509,7 +509,6 @@ export class RecruitComponent implements OnInit {
 
 
   onClickUnCollect(event) {
-    console.log("UnCollect ==========", event);
     this.viewsSrv.unCollect(
       event.jobId,
       "application",
@@ -541,6 +540,7 @@ export class RecruitComponent implements OnInit {
     const params = {
       projectId: application.projectId,
       userId: this.currentUser.id,
+      userName: this.currentUser.name,
       startDate: "",
       endDate: "",
       role: "candidate",
@@ -553,7 +553,7 @@ export class RecruitComponent implements OnInit {
       recruitId: application.id,
       uid: this.currentUser.id,
     }
-    this.membersSrv.insertMember(
+    this.membersSrv.apply(
       params
     ).then(res => {
       if (res["result"] == "successful") {

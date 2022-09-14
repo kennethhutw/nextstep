@@ -10,11 +10,16 @@ import { Router, ActivatedRoute } from "@angular/router";
 import {
   DataService,
   EmailService,
-  UserService
+  UserService,
+  NotificationService,
 } from "../../_services";
 import {
   AuthStore
 } from "../../_services/auth.store";
+
+import { interval } from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
+
 import { environment } from '../../../environments/environment';
 @Component({
   selector: "app-header",
@@ -37,14 +42,17 @@ export class HeaderComponent implements OnInit {
   collectorStep = 0;
   artistStep = 0;
   uid = "";
+
+  notiNum = 0;
+  notis;
   constructor(
     private utility: Utility,
     private fb: FormBuilder,
     private userSrv: UserService,
     private translateSrv: TranslateService,
-
     private dataSrv: DataService,
     private router: Router,
+    private notificationSrv: NotificationService,
     private route: ActivatedRoute,
     private emailSrv: EmailService,
     public authStoreSrv: AuthStore
@@ -85,13 +93,32 @@ export class HeaderComponent implements OnInit {
     this.authStoreSrv.user$.subscribe(user => {
       this.currentUser = user
     });
+    if (this.uid) {
+      this.notificationSrv.getFirstFiveNotifications(this.currentUser.id).then(res => {
+        console.log("getFirstFiveNotifications res ==============", res);
+        if (res['result'] == 'successful') {
+          this.notis = res['data'];
+          this.notiNum = res['unRead'];
+        }
+      }).catch(error => {
+        console.log("getNotifications ", error);
+      })
+    }
   }
 
   close() {
 
   }
 
+  notification() {
 
+    interval(2 * 60 * 1000)
+      .pipe(
+        mergeMap(() => this.notificationSrv.getNotifications(this.currentUser.id))
+      )
+      .subscribe(data => console.log(data))
+
+  }
   onSignIn() {
 
     // this.closeModal.nativeElement.click();

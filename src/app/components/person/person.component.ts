@@ -51,7 +51,7 @@ export class PersonCardComponent implements OnInit {
   }
 
   convertTag(term) {
-    console.log("term =======", term)
+
     let _term = "";
     switch (term.toLowerCase()) {
       case "ecomm":

@@ -74,13 +74,25 @@
           style="padding-top: 13px;">
           <a class="nav-link btn-blue font-16" (click)="RouteToNewProject()">建立專案 </a>
         </li>
+
         <li class="nav-item p-8" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
           id="navbarNotifDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
           <!--           <a class="nav-link" routerLink="/notifications"> <i class="far fa-bell icon"></i></a> -->
-          <i class="far fa-bell icon"></i>
+          <i class="far fa-bell icon noti"> <span *ngIf="notiNum>0" class="num">{{notiNum}}</span></i>
           <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary notification-box"
             aria-labelledby="navbarNotifDropdown">
-            <a class="notification" routerLink="/dashboard/notifications">
+            <ng-container *ngIf="notis">
+              <ng-container *ngFor="let noti of  notis; let i = index">
+                <a *ngIf="i<5" class="notification" routerLink="/dashboard/notifications">
+                  <i class="fas fa-bell"></i>
+                  <div class="notifciation-row">
+                    <span> {{noti?.content.length>15?noti?.content.substring(0,15)+"...":noti?.content}}</span>
+                    <span>{{noti.createdAt | date : "dd/MM/y"}}</span>
+                  </div>
+                </a>
+              </ng-container>
+            </ng-container>
+            <!-- <a class="notification" routerLink="/dashboard/notifications">
               <i class="fas fa-bell"></i>
               <div class="notifciation-row">
                 <span>[帳號]3333提出加入[專案名稱]申請</span>
@@ -100,7 +112,7 @@
                 <span>[帳號]提出加入[專案名稱]申請</span>
                 <span>1小時前</span>
               </div>
-            </a>
+            </a> -->
             <a routerLink="/dashboard/notifications" class="text-center">查看更多</a>
           </div>
         </li>

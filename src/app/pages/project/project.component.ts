@@ -124,6 +124,7 @@ export class ProjectComponent implements OnInit {
     const params = {
       projectId: this.currentProject.id,
       userId: this.currentUser.id,
+      userName: this.currentUser.name,
       startDate: "",
       endDate: "",
       role: "candidate",
@@ -136,7 +137,7 @@ export class ProjectComponent implements OnInit {
       recruitId: application.id,
       uid: this.currentUser.id,
     }
-    this.membersSrv.insertMember(
+    this.membersSrv.apply(
       params
     ).then(res => {
       if (res["result"] == "successful") {

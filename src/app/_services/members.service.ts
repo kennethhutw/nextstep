@@ -16,5 +16,7 @@ export class MembersService {
         return await this.http.post(`${environment.apiUrl}/members`, params).toPromise();
     }
 
-
+    async apply(params) {
+        return await this.http.post(`${environment.apiUrl}/members/application`, params).toPromise();
+    }
 }
