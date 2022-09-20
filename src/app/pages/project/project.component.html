@@ -22,16 +22,16 @@
   </div>
 
   <div class="col-md-4 text-right  btn_items">
-
-    <button type="button" class="btn btn_item" *ngIf="currentProject?.owner !== currentUser?.id" (click)="onChat()"><i
-        class="far fa-comment-alt"></i>
-      訊息</button>
-    <button type="button" class="btn btn_item" *ngIf="currentProject?.owner !== currentUser?.id"
-      (click)="onClickFollow()"><i class="fas fa-plus"></i>
-      追蹤</button>
     <button type="button" class="btn btn_item" *ngIf="currentProject?.owner !== currentUser?.id"
       (click)="onClickCollect()"><i class="far fa-bookmark fa-lg"></i>
       收藏</button>
+
+    <button type="button" class="btn btn_item" *ngIf="currentProject?.owner !== currentUser?.id"
+      (click)="onClickFollow()"><i class="fas fa-plus"></i>
+      追蹤</button>
+    <button type="button" class="btn btn_item" *ngIf="currentProject?.owner !== currentUser?.id" (click)="onChat()"><i
+        class="far fa-comment-dots"></i>
+      訊息</button>
   </div>
 </div>
 <div *ngIf="currentProject" class="row mt-10">
@@ -40,17 +40,17 @@
   </div>
   <div class="col-md-6">
     <a *ngIf="IsNullorEmpty(currentProject.website)" href="{{ currentProject.website }}" target="_blank"> <i
-        class="fas fa-globe icon icon"></i></a>
+        class="fas fa-globe icon color-gray"></i></a>
     <a *ngIf="IsNullorEmpty(currentProject.github)" href="{{ currentProject.github }}" target="_blank"> <i
-        class="fa-fw fab fa-github icon"></i></a>
+        class="fa-fw fab fa-github icon color-gray"></i></a>
     <a *ngIf="IsNullorEmpty(currentProject.twitter)" href="{{ currentProject.twitter }}" target="_blank"><i
-        class="fa-fw fab fa-twitter icon"></i></a>
+        class="fa-fw fab fa-twitter icon color-gray"></i></a>
     <a *ngIf="IsNullorEmpty(currentProject.discord)" href="{{ currentProject.discord }}" target="_blank"><i
-        class="fa-fw fab fa-discord icon"></i></a>
+        class="fa-fw fab fa-discord icon color-gray"></i></a>
     <a *ngIf="IsNullorEmpty(currentProject.facebook)" href="{{ currentProject.facebook }}" target="_blank"><i
-        class="fa-fw fab fa-facebook icon"></i></a>
+        class="fa-fw fab fa-facebook icon color-gray"></i></a>
     <a *ngIf="IsNullorEmpty(currentProject.instagram)" href="{{ currentProject.instagram }}" target="_blank"> <i
-        class="fab fa-instagram-square icon"></i></a>
+        class="fab fa-instagram-square icon color-gray"></i></a>
   </div>
 
   <div class="col-md-3 project-info">
@@ -76,7 +76,7 @@
         </div>
         <span>{{this.currentProject.description?this.currentProject.description:"尚未填寫專案內容"}}</span>
         <div class="frame_bottom">
-          <span class="title pb-8">目前進度</span>
+          <span class=" pb-8">目前進度</span>
           <div class="frame_bottom_items">
             <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('idea') > -1">#已有創業概念</span>
             <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('businessplan') > -1">#商業計畫初稿</span>
@@ -91,54 +91,62 @@
         </div>
       </div>
     </div>
-
-  </div>
-  <div class="col-md-4">
-    <div class="row mb-24">
+    <div class="row">
       <div class="col-md-12">
-        <span class="title mb-24">專案成員</span>
-      </div>
-    </div>
-    <div class="row profile-frame">
-      <div *ngIf="this.currentProject?.members">
-        <ng-container *ngFor="let member of  this.currentProject.members ; let i = index">
-          <ng-container *ngIf="onPage(i,this.currentPageIndex)">
-            <div class="col-md-12 profile">
-              <img class="profile-image rounded-circle" src="{{ member.imageUrl }}" (error)="onImgError($event)"
-                alt="" />
-              <div>
-                <p class="profile-name">{{member.userName}}</p>
-                <p class="position">{{member.position}}</p>
-              </div>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link " id="history-tab" data-bs-toggle="tab" data-bs-target="#history"
+              [ngClass]="{ 'active': currentTab === 'history' }" type="button" role="tab"
+              (click)="changeTab('history')">專案歷程</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="members-tab" [ngClass]="{ 'active': currentTab === 'members' }" type="button"
+              role="tab" (click)="changeTab('members')">成員介紹</button>
+          </li>
+
+
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'history' }" id="history" role="tabpanel"
+            aria-labelledby="home-tab">
+            <div class="empty text-center" *ngIf="currentProject.logs ===0">
+              還沒開始
             </div>
-          </ng-container>
-        </ng-container>
-      </div>
+            <ng-container *ngIf="this.currentProject?.logs">
+              <ng-container *ngFor="let log of currentProject.logs; let i = index">
+                <div class="col-md-12 history">
 
-      <div class="col-md-12 text-center dots">
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-8">
-    <div class="row mb-24">
-      <div class="col-md-12">
-        <span class="title mb-24">近期動態</span>
-      </div>
-    </div>
-    <div class="row ">
-      <ng-container *ngIf="this.currentProject?.logs">
-        <ng-container *ngFor="let log of  this.currentProject.logs; let i = index">
-          <div class="col-md-12 history">
-
-            <span>{{log.createdAt | date:"yyyy-MM-dd"}}</span><span>{{log.content}}</span>
+                  <span style="color:#8F95A8">{{log.createdAt | date:"yyyy-MM-dd"}}</span><span
+                    class="dot"></span><span>{{log.content}}</span>
+                </div>
+              </ng-container>
+            </ng-container>
           </div>
-        </ng-container>
-      </ng-container>
+          <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'members' }" role="tabpanel"
+            aria-labelledby="new-tab">
+            <div class="empty text-center" *ngIf="currentProject.members ===0">
+              There are no candidates
+            </div>
+            <div *ngIf="this.currentProject?.members">
+              <ng-container *ngFor="let member of currentProject.members ; let i = index">
+                <ng-container *ngIf="onPage(i,this.currentPageIndex)">
+                  <div class="col-md-12 profile">
+                    <img class="profile-image rounded-circle" src="{{ member.imageUrl }}" (error)="onImgError($event)"
+                      alt="" />
+                    <div>
+                      <p class="profile-name">{{member.userName}}</p>
+                      <p class="position">{{member.position}}</p>
+                    </div>
+                  </div>
+                </ng-container>
+              </ng-container>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
 
     </div>
   </div>
@@ -158,10 +166,10 @@
               <small>{{item.skills}}</small>
             </div>
             <div class="col-md-4 btn_items pr-0">
-              <i *ngIf="item.isCollect" (click)="onClickUnCollect()" style="color:#56BDF4" class="fas fa-bookmark "></i>
-              <i *ngIf="!item.isCollect" (click)="onClickCollect()" style="color:#56BDF4" class="far fa-bookmark "></i>
-              <i class="far fa-envelope" style="color:#56BDF4" data-toggle="modal" data-target="#modal_apply"
-                data-dismiss="modal" (click)="onSelectItem(item)"></i>
+              <i *ngIf="item.isCollect" (click)="onClickUnCollect()" class="fas fa-bookmark color-gray"></i>
+              <i *ngIf="!item.isCollect" (click)="onClickCollect()" class="far fa-bookmark color-gray"></i>
+              <i class="far fa-envelope color-gray" data-toggle="modal" data-target="#modal_apply" data-dismiss="modal"
+                (click)="onSelectItem(item)"></i>
             </div>
           </div>
 
@@ -177,6 +185,7 @@
 
   </div>
 </div>
+
 
 <div [class.show]="isChat" class="full">
   <lab-custom-modal [open]="isChat" (close)="onToggleChat($event)">

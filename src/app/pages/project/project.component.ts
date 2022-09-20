@@ -38,6 +38,8 @@ export class ProjectComponent implements OnInit {
   isChat: boolean = false;
   projectOwner = null;
 
+
+  currentTab: string = "history";
   constructor(
     private ProjectSrv: ProjectService,
     private pagerSrv: PagerService,
@@ -211,6 +213,11 @@ export class ProjectComponent implements OnInit {
 
   onSelectItem(item) {
     this.selectedApplication = item;
+  }
+
+
+  changeTab(tab) {
+    this.currentTab = tab;
   }
 
 }

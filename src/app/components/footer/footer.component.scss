@@ -3,13 +3,26 @@ a {
 }
 
 a:hover {
-  color: #fff;
+  color: #FF859A;
   cursor: pointer;
 }
 
-@media (max-width: 500px){
-.col-sm-6 {
+.item {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.item:hover {
+  color: #FF859A;
+}
+
+span.color-black:hover {
+  color: #FF859A;
+}
+
+@media (max-width: 500px) {
+  .col-sm-6 {
     flex: 0 0 50%;
     max-width: 60%;
-}
+  }
 }

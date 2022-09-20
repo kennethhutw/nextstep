@@ -10,10 +10,10 @@
       <ui-tag *ngIf="project.isFindPartner" [class]="'tag-hiring'" [tag]="'徵成員'"></ui-tag>
       <ui-tag *ngIf="project.isFunding" [class]="'tag-funding'" [tag]="'募資中'"></ui-tag>
       <ui-tag *ngIf="project.isCofounder" [class]="'tag-cofounder'" [tag]="'找聯合創始人'"></ui-tag>
-      <i *ngIf="project.isCollect && user" (click)="onClickUnCollect()" style="color:#56BDF4"
-        class="fas fa-bookmark fa-lg mt-6"></i>
-      <i *ngIf="!project.isCollect && user" (click)="onClickCollect()" style="color:#56BDF4"
-        class="far fa-bookmark fa-lg mt-6"></i>
+      <i *ngIf="project.isCollect && user " (click)="onClickUnCollect()" style="color:#56BDF4;"
+        class="fas fa-bookmark fa-lg mt-6 "></i>
+      <i *ngIf="!project.isCollect && user" (click)="onClickCollect()"
+        class="far fa-bookmark fa-lg mt-6 color-gray"></i>
       <!-- <i class="far fa-comment-alt mr-5"></i> -->
       <span *ngIf="project.isFollow && user" class="followed" (click)="onClickUnFollow()">追蹤</span>
       <span *ngIf="!project.isFollow && user" class="follow" (click)="onClickFollow()">追蹤</span>

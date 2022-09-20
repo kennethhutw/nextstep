@@ -178,7 +178,7 @@
 .dot {
     height: 15px;
     width: 15px;
-    background-color: #bbb;
+    background-color: #56BDF4;
     border-radius: 50%;
     display: inline-block;
 }
@@ -207,6 +207,8 @@
 }
 
 .tags {
+    display: flex;
+    gap: 12px;
     padding-top: 12px;
     padding-bottom: 12px;
 }
