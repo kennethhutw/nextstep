@@ -76,6 +76,7 @@ a {
 
 .option {
     min-height: 312px;
+    padding-bottom: 94px;
 }
 
 .profile_image {
@@ -112,20 +113,18 @@ input[type=checkbox] {
 }
 
 .active {
-    border-color: #17f596;
-    color: #17f596 !important;
+    border-color: #FF859A;
+    color: #FF859A !important;
 }
 
 .option:hover {
-    color: #17f596 !important;
-    border-color: #17f596 !important;
+    color: #FF859A !important;
+    border-color: #FF859A !important;
     text-decoration: none !important;
 }
 
 .btn-step {
     padding: 6px 169px;
-
     background-color: #2EC2E2;
     color: white;
-
 }

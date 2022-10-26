@@ -32,7 +32,7 @@
   --black: #000;
   --dark: #383838;
   --red: #FC3337;
-  --blue: #1877F2;
+  --blue: #56BDF4;
   --light-blue: #53B6FF;
   --purple: #D077FF;
   --light-orange: #FF9D00;
@@ -438,6 +438,12 @@
   padding: 6px 12px 6px 12px !important;
 }
 
+.btn-blue:hover {
+  background-color: #FF859A !important;
+  color: white !important;
+  border: 2px solid #FF859A !important;
+}
+
 .btn-white {
   background-color: #fff !important;
   color: #56BDF4 !important;
@@ -447,11 +453,15 @@
 }
 
 .btn-transparent {
-
   color: #56BDF4 !important;
   border: 2px solid #56BDF4 !important;
   border-radius: 4px !important;
   padding: 6px 12px 6px 12px !important;
+}
+
+.btn-transparent:hover {
+  color: #8F95A8 !important;
+  border: 2px solid #8F95A8 !important;
 }
 
 .btn-gray {
@@ -718,10 +728,7 @@ input:focus:-ms-input-placeholder {
   width: 100%;
 }
 
-#index_login a:hover {
-  text-decoration: none;
-  color: #484848;
-}
+
 
 .main-slogen {
   /* font-size: 90px; */
@@ -781,14 +788,14 @@ input:focus:-ms-input-placeholder {
   transition: all 0.3s ease-in-out;
 }
 
-
+// landing-page
 .index-title {
   margin-top: 30px;
   border-bottom: 1px solid #000000;
   padding-bottom: 5px;
   font-size: 30px;
   margin-bottom: 20px;
-  font-family: "Noto Serif JP", sans-serif;
+  font-weight: 500;
 }
 
 
@@ -1469,7 +1476,7 @@ box-shadow:0 0 5px #fff;
   font-size: 16px;
 }
 
-
+// user-tour start
 
 .shepherd-button {
   background: #17f596;
@@ -1712,7 +1719,7 @@ box-shadow:0 0 5px #fff;
   top: 20px !important;
 }
 
-
+// user-tour end
 
 .f-22 {
   font-size: 22px;

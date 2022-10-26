@@ -18,7 +18,9 @@
                         <img for="profileImage" class="profile_image" *ngIf="profileImage" [src]="profileImage"
                             alt="" />
                         <img for="profileImage" class="profile_image" *ngIf="!profileImage"
-                            src="https://fakeimg.pl/350x350/?text=Image" alt="" />
+                            src="./../../../assets/images/user-circle.png" alt="" />
+                        <!-- <img for="profileImage" class="profile_image" *ngIf="!profileImage"
+                            src="https://fakeimg.pl/350x350/?text=Image" alt="" /> -->
                     </label>
 
                 </div>
@@ -101,15 +103,16 @@
     <div class="row mt-60" *ngIf="step==1">
         <div class="col-md-12">
 
-            <p style="font-size: 2rem;">Hi XXX,很高興見到您!</p>
-            <p style="font-size: 2rem;">請選擇使用NEXT STEP的主要目的(可複選)</p>
+            <p style="font-size: 2rem;font-weight: 500;">Hi {{name}},很高興見到您!</p>
+            <p style="font-size: 2rem;font-weight: 500;">你最想在NEXT STEP做什麼事呢?(可複選)</p>
         </div>
         <div class="row mt-30">
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 option" [ngClass]="{'active': isProject}"
                 (click)="onSelectedProject()">
 
                 <div class="box-part text-center">
-                    <img for="profileImage" src="https://fakeimg.pl/285x285/?text=Image" alt="" />
+                    <img for="findproject" src="./../../../assets/images/findproject.png" alt="" />
+                    <!-- <img for="profileImage" src="https://fakeimg.pl/285x285/?text=Image" alt="" /> -->
                     <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
 
                     <div class="title">
@@ -117,7 +120,7 @@
                     </div>
 
                     <div class="text">
-                        <span>找有興趣的項目參加</span>
+                        <span>找有興趣的專案參加</span>
                     </div>
 
                 </div>
@@ -126,7 +129,7 @@
                 (click)="onSelectedPartner()">
 
                 <div class="box-part text-center">
-                    <img for="profileImage" src="https://fakeimg.pl/285x285/?text=Image" alt="" />
+                    <img for="findpartner" src="./../../../assets/images/findpartner.png" alt="" />
                     <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
 
                     <div class="title">
@@ -134,7 +137,7 @@
                     </div>
 
                     <div class="text">
-                        <span>尋找夥伴加入你的項目或</span>
+                        <span>為團隊招募優秀的合作夥伴</span>
                     </div>
 
                 </div>
@@ -143,7 +146,7 @@
                 (click)="onSelectedMentor()">
 
                 <div class="box-part text-center">
-                    <img for="profileImage" src="https://fakeimg.pl/285x285/?text=Image" alt="" />
+                    <img for="findmentor" src="./../../../assets/images/findmentor.png" alt="" />
                     <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
 
                     <div class="title">
@@ -151,7 +154,7 @@
                     </div>
 
                     <div class="text">
-                        <span>找有導師引導我跟給相關意見</span>
+                        <span>幫助你解決職涯方面的疑難雜症</span>
                     </div>
 
                 </div>
@@ -160,7 +163,7 @@
                 (click)="onSelectedBeMontor()">
 
                 <div class="box-part text-center">
-                    <img for="profileImage" src="https://fakeimg.pl/285x285/?text=Image" alt="" />
+                    <img for="bementor" src="./../../../assets/images/bementor.png" alt="" />
                     <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
 
                     <div class="title">

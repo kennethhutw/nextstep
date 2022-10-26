@@ -1,5 +1,5 @@
 a {
-  color: #b7b7b7;
+  color: #262E42;
 }
 
 a:hover {
@@ -10,15 +10,27 @@ a:hover {
 .item {
   padding-left: 20px;
   padding-right: 20px;
+  font-weight: 500;
 }
 
-.item:hover {
-  color: #FF859A;
+// .item:hover {
+//   color: #FF859A;
+// }
+
+// span.color-black:hover {
+//   color: #FF859A;
+// }
+.foot_titles {
+  display: grid;
+  gap: 32px;
 }
 
-span.color-black:hover {
-  color: #FF859A;
+.foot_title {
+  font-family: "Roboto", sans-serif;
+  font-size: 48px;
 }
+
+
 
 @media (max-width: 500px) {
   .col-sm-6 {

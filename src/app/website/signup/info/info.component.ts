@@ -38,6 +38,7 @@ export class SignupInfoComponent implements OnInit {
   profileForm: FormGroup;
 
   skillOptions: any[] = [];
+  name: string = "";
 
   @HostListener("window:resize", ["$event"])
   getScreenSize(event?) {
@@ -156,6 +157,7 @@ export class SignupInfoComponent implements OnInit {
       formData.append("github", values.github);
       formData.append("linkedin", values.linkedin);
       formData.append("bio", values.bio);
+      formData.append("tags", _tags);
       if (this.profileImageFile)
         formData.append("profileImage", this.profileImageFile);
 
@@ -175,6 +177,9 @@ export class SignupInfoComponent implements OnInit {
 
   NextStep(value) {
     this.step = value;
+    if (this.step === 0) {
+      this.name = this.profileForm.value.name;
+    }
   }
 
   onDetectImage(event) {

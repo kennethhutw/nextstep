@@ -1,6 +1,5 @@
 app-project-item {
     background: #f2f2f2;
-    font-family: 'Poppins', sans-serif;
 
     .box {
         background: #FFF;
@@ -9,6 +8,12 @@ app-project-item {
         margin: 20px 0px;
         cursor: pointer;
         transition: all 0.5s ease-out;
+
+        .box-title {
+            display: grid;
+            grid-auto-flow: column;
+            grid-template-columns: 1fr 30%;
+        }
     }
 
     .box:hover {
@@ -25,10 +30,9 @@ app-project-item {
 
     .box .box-btn a {
         text-decoration: none;
-        /* color: #4183D7; */
-        /*  color: black; */
         font-size: 16px;
-
+        color: #56BDF4;
+        font-weight: 500;
     }
 
     .align-item-left {
@@ -45,9 +49,3 @@ app-project-item {
         min-height: 24px;
     }
 }
-
-
-
-/* h3 {
-    font-family: 'Poppins', sans-serif;
-} */

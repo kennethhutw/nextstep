@@ -1,8 +1,8 @@
 <!-- footer area start -->
 <div class="container-fluid" id="footer_bg">
   <div class="row">
-    <div class="col-md-3">
-      <h3 class="color-black">Next Step</h3>
+    <div class="col-md-3 foot_titles">
+      <span class="color-black foot_title">Next Step</span>
       <span class="color-black">© 2021 Next. All rights reserved.</span>
       <!-- <a class="navbar-brand" routerLink="/index">
         <img class="footer-logo" src="./../../../assets/images/formosart_footer_logo.svg" />
@@ -11,12 +11,11 @@
 
     <div class=" form-inline col-md-9 color-black" style="    flex-direction: row-reverse;">
 
-      <a [routerLink]="['/feedback']"><span class="item color-black">意見回饋</span></a>
-      <a [routerLink]="['/qa']"><span class="item color-black">常見問題</span></a>
+      <a [routerLink]="['/feedback']"><span class="item ">意見回饋</span></a>
+      <a [routerLink]="['/qa']"><span class="item">常見問題</span></a>
 
-      <a [routerLink]="['/support']"> <span class="item color-black">支持我們</span></a>
-      <a [routerLink]="['/about']"><span class="color-black"
-          style="padding-left:20px;padding-right: 20px;">關於我們</span></a>
+      <a [routerLink]="['/about']" fragment="support"> <span class="item ">支持我們</span></a>
+      <a [routerLink]="['/about']"><span class="item ">關於我們</span></a>
       <!-- <span class="color-black" style="padding-left:20px;padding-right: 20px;">服務條款</span> -->
     </div>
 
