@@ -39,6 +39,10 @@ app-setting {
         &:hover {
           background-color: #FF859A;
           color: #ffffff;
+
+          svg-icon svg path {
+            fill: #FF859A !important;
+          }
         }
       }
     }
@@ -50,15 +54,12 @@ app-setting {
 
   .active {
     color: #347A9F !important;
-    fill: #347A9F !important;
     text-decoration: none;
     /*     background-color: #007bff; */
     border-radius: 3px;
     width: 95% !important;
 
-    svg g path {
-      fill: #347A9F;
-    }
+
 
     svg-icon.icon {
       svg g path {
@@ -74,28 +75,9 @@ app-setting {
   }
 
 
-  .icon:hover svg g path {
-    fill: #FF859A;
-  }
 
-  .dropdown-item {
-    width: 100% !important;
-  }
-
-  .dropdown-item:hover {
-    color: #fff !important;
-    text-decoration: none;
-    background-color: #56BDF4;
-    border-radius: 3px;
-    width: 95%;
-  }
-
-  .dropdown-item.active {
-    color: #fff !important;
-    text-decoration: none;
-    background-color: #56BDF4;
-    border-radius: 3px;
-    width: 95%;
+  svg-icon:hover svg path {
+    fill: #FF859A !important;
   }
 
   .menu-icon {
@@ -112,13 +94,14 @@ app-setting {
   }
 
   a:hover {
+
     svg-icon.icon {
       svg g path {
-        fill: #56BDF4;
+        fill: #FF859A;
       }
 
       svg path {
-        fill: #56BDF4;
+        fill: #FF859A;
       }
 
     }

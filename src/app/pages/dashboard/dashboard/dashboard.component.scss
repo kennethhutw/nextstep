@@ -6,7 +6,22 @@ li {
     list-style: none;
 }
 
+.option {
+    color: #69738C;
+}
+
 ::ng-deep input[type="checkbox"].chk:disabled {
     background-color: red;
     background: #00bf00;
+}
+
+.sub_title {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.empty_row {
+    height: 300px;
+    flex-flow: column;
+    text-align: center;
 }

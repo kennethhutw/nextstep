@@ -89,19 +89,17 @@ export class DashboardComponent implements OnInit {
     }
 
     this.userSrv.verifiedStatus(_id).then(res => {
-      console.log("res =========", res);
+
       if (res['result'] == 'successful') {
-        console.log("res =========", res)
+
         this.idverify = {
           email: res['email'],
           info: res['isCompleted'],
           interactive: res['isFollowEachOther']
         }
-
-        console.log("idverify =========", this.idverify)
       }
     })
-    this.projectSrv.getPublicProjects(_id).then(res => {
+    this.projectSrv.getMayInterestedProjects(_id).then(res => {
 
       if (res['result'] == 'successful') {
         this.items = res['data'];
@@ -112,7 +110,7 @@ export class DashboardComponent implements OnInit {
       this.spinnerSrv.hide();
     })
 
-    this.userSrv.getPublicMentors(_id).then(res => {
+    this.userSrv.getMayInterestedPublicMentors(_id).then(res => {
       if (res['result'] == 'successful') {
         this.mentors = res['data'];
         if (this.mentors && this.mentors.length > 0) {

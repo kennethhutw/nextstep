@@ -44,6 +44,15 @@ export class ProjectService {
             .toPromise();
     }
 
+    async getMayInterestedProjects(userId) {
+        const params = new HttpParams().set('userId', userId);
+        return await this.http
+            .get<any>(`${environment.apiUrl}/projects/mayinterestedprojects`, {
+                params: params
+            })
+            .toPromise();
+    }
+
     async getLandingProjects(userId) {
         const params = new HttpParams().set('userId', userId);
         return await this.http

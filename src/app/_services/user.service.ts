@@ -155,6 +155,15 @@ export class UserService {
       .toPromise();
   }
 
+  async getMayInterestedPublicMentors(userId: string) {
+    const params = new HttpParams().set("userId", userId);
+    return await this.http
+      .get<any>(`${environment.apiUrl}/users/mayInterestedPublicMentors`, {
+        params: params,
+      })
+      .toPromise();
+  }
+
   public updateUserBasicInfo(data) {
     return this.http
       .put<resResult>(`${environment.apiUrl}/users/info`,
