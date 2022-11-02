@@ -29,6 +29,10 @@ const routes: Routes = [
   { path: "signin", component: Websitepages.SigninComponent },
   { path: "info", component: Websitepages.SignupInfoComponent },
   {
+    path: "resetPassword",
+    component: Websitepages.ResetPasswordComponent
+  },
+  {
     path: "index",
     component: Pages.HomeComponent,
   },
@@ -51,10 +55,7 @@ const routes: Routes = [
         path: "verifyEmail",
         component: Pages.VerificationComponent
       },
-      {
-        path: "setPassword",
-        component: Pages.SetPasswordComponent
-      },
+
       {
         path: "settings",
         component: Pages.SettingsComponent

@@ -251,7 +251,7 @@ export class HeaderComponent implements OnInit {
     this.pswMsgFailed = true;
     this.pswActionMsg = "";
     let domain = window.location.origin;
-    let url = '/setPassword';
+    let url = '/resetPassword';
     let link = domain + url;
     this.pswloading = true
     this.emailSrv.sendResetPasswordEmail(

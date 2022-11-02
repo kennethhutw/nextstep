@@ -184,7 +184,7 @@ export class UserInfoComponent implements OnInit, OnDestroy {
   sendRejectEmail() {
     try {
       let domain = window.location.origin;
-      let url = '/setPassword';
+      let url = '/resetPassword';
       let link = domain + url;
       this.emailSrv.sendrejectedEmail(
         'FormosArt Artist application result',

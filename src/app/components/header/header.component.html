@@ -188,7 +188,7 @@
         (focus)="this.placeholder = ''" (blur)="setBlur('emailsignin', 'EMAILSIGNIN')" />
       <input class="modal_input w-100 mb-2" type="password" id="headeremailpassword"
         placeholder="{{ 'PASSWORD' | translate }}" (focus)="this.placeholder = ''"
-        (blur)="setBlur('headeremailpassword', 'PASSWORD')" />
+        (blur)="setBlur('headeremailpassword', 'PASSWORD')" autocomplete="on" />
       <button (click)="onSignIn()" class="model_btn_normal mb-2 w-100">
         {{ "SIGNIN" | translate }}
       </button>

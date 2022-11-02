@@ -22,12 +22,12 @@
   </div>
 
   <div class="col-md-4 text-right  btn_items">
-    <button type="button" class="btn btn_item" *ngIf="currentProject?.owner !== currentUser?.id"
-      (click)="onClickCollect()"><i class="far fa-bookmark fa-lg"></i>
+    <button type="button" class="btn btn_item" [ngClass]="{'btn_item_selected': currentProject?.isCollected === true}"
+      *ngIf="currentProject?.owner !== currentUser?.id" (click)="onClickCollect()"><i class="far fa-bookmark fa-lg"></i>
       收藏</button>
 
-    <button type="button" class="btn btn_item" *ngIf="currentProject?.owner !== currentUser?.id"
-      (click)="onClickFollow()"><i class="fas fa-plus"></i>
+    <button type="button" class="btn btn_item" [ngClass]="{'btn_item_selected': currentProject?.isFollowing === true}"
+      *ngIf="currentProject?.owner !== currentUser?.id" (click)="onClickFollow()"><i class="fas fa-plus"></i>
       追蹤</button>
     <button type="button" class="btn btn_item" *ngIf="currentProject?.owner !== currentUser?.id" (click)="onChat()"><i
         class="far fa-comment-dots"></i>
@@ -76,7 +76,7 @@
         </div>
         <span>{{this.currentProject.description?this.currentProject.description:"尚未填寫專案內容"}}</span>
         <div class="frame_bottom">
-          <span class=" pb-8">目前進度</span>
+          <span class="pb-8 fw-500">目前進度</span>
           <div class="frame_bottom_items">
             <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('idea') > -1">#已有創業概念</span>
             <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('businessplan') > -1">#商業計畫初稿</span>
@@ -93,7 +93,7 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <ul class="nav nav-tabs" id="projectTab" role="tablist">
           <li class="nav-item" role="presentation">
             <button class="nav-link " id="history-tab" data-bs-toggle="tab" data-bs-target="#history"
               [ngClass]="{ 'active': currentTab === 'history' }" type="button" role="tab"
@@ -109,7 +109,7 @@
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'history' }" id="history" role="tabpanel"
             aria-labelledby="home-tab">
-            <div class="empty text-center" *ngIf="currentProject.logs ===0">
+            <div class="empty text-center mt-20" *ngIf="currentProject.logs.length ===0">
               還沒開始
             </div>
             <ng-container *ngIf="this.currentProject?.logs">
@@ -124,8 +124,8 @@
           </div>
           <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'members' }" role="tabpanel"
             aria-labelledby="new-tab">
-            <div class="empty text-center" *ngIf="currentProject.members ===0">
-              There are no candidates
+            <div class="empty text-center  mt-20" *ngIf="currentProject.members ===0">
+              沒有其他成員
             </div>
             <div *ngIf="this.currentProject?.members">
               <ng-container *ngFor="let member of currentProject.members ; let i = index">

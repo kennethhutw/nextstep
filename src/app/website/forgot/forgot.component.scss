@@ -1,57 +1,43 @@
-.container{
+.forgot-container {
     min-height: 95vh;
-}
-h4 {
-   width: 100%;
-   text-align: center;
-   border-bottom: 1px solid #000;
-   line-height: 0.1em;
-   margin: 10px 0 20px;
-}
-
-h4 span {
-    background:#fff;
-    padding:0 10px;
+    position: relative;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: calc(50%) minmax(0, 100%);
+    max-width: 1680px;
+    margin: 0 auto;
+    transition: 0.15s linear;
+    height: 100%;
+    background-color: white;
 }
 
 
-.separator {
-    display: flex;
-    align-items: center;
-    text-align: center;
+
+
+// .next-font {
+//     font-family: 'Roboto';
+//     font-weight: 600;
+//     line-height: 56px;
+// }
+
+a {
+    color: black;
 }
 
-.separator::before, .separator::after {
-    content: '';
-    flex: 1;
-    border-bottom: 1px solid var(--grey-12);
-}
 
-.separator:not(:empty)::before {
-    margin-right: .5em;
-}
-
-.separator:not(:empty)::after {
-    margin-left: .5em;
-}
-.next-font{
-    font-family: 'Roboto';
-    font-weight: 600;
-    line-height: 56px;
-}
-
-a{
-    color:black;
-}
-
-.btn-social{
-      border: 2px solid #ced4da;
-  border-radius: 3px;
-  height: 50px;
-}
-.frame{
+.frame {
     padding: 15px;
     background-color: white;
-    padding-left: 10%;
-    padding-right: 10%;
+
+    padding-right: 40%;
+    margin-top: 300px;
+}
+
+.forgot-left-bg {
+
+    background-image: url("./../../../assets/images/forgotPSW.png");
+    background-position: left;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    height: 100%;
 }

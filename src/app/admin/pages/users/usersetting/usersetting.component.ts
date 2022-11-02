@@ -84,7 +84,7 @@ export class UserSettingComponent implements OnInit {
 
   sendResetEmail() {
     let domain = window.location.origin;
-    let url = '/setPassword';
+    let url = '/resetPassword';
     let link = domain + url;
     this.emailSrv.sendResetPasswordEmail(
       'Reset your password for FormosArt',

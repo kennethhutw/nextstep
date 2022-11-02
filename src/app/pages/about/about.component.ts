@@ -47,7 +47,7 @@ export class AboutComponent implements OnInit {
   ngAfterViewInit(): void {
     try {
       document.querySelector('#' + this.fragment).scrollIntoView();
-      scroll(this.fragment.toString())
+      scroll(this.fragment)
     } catch (e) { }
   }
 

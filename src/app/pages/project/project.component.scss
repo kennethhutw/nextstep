@@ -44,6 +44,7 @@
     font-weight: bold;
 }
 
+
 #m-btns {
     position: absolute;
     right: 56px;
@@ -130,7 +131,11 @@
 
 .btn_item:hover {
     background-color: #FF859A;
-    ;
+    border: 2px solid #FF859A;
+}
+
+.btn_item_selected {
+    background-color: #FF859A;
     border: 2px solid #FF859A;
 }
 
@@ -211,4 +216,8 @@
     gap: 12px;
     padding-top: 12px;
     padding-bottom: 12px;
+}
+
+.tab-pane {
+    min-height: 300px;
 }

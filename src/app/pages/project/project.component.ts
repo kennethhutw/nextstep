@@ -170,35 +170,69 @@ export class ProjectComponent implements OnInit {
   }
 
   onClickFollow() {
-    this.viewsService.follow(
-      this.projectId,
-      "project",
-      this.currentUser.id
-    ).then(res => {
-      if (res['result'] == 'successful') {
-        this.currentProject.followCount += 1;
-        this.toastr.showToast('Success', "追蹤成功 ", this.toastr.iconClasses.success);
-      } else {
-        this.toastr.showToast('Failed', "追蹤失敗", this.toastr.iconClasses.error);
-      }
-    });
-
+    if (this.currentProject.isFollowing) {
+      this.viewsService.follow(
+        this.projectId,
+        "project",
+        this.currentUser.id
+      ).then(res => {
+        if (res['result'] == 'successful') {
+          this.currentProject.followCount -= 1;
+          this.currentProject.isFollowing = false;
+          this.toastr.showToast('Success', "取消追蹤成功 ", this.toastr.iconClasses.success);
+        } else {
+          this.toastr.showToast('Failed', "取消追蹤失敗", this.toastr.iconClasses.error);
+        }
+      });
+    }
+    else {
+      this.viewsService.follow(
+        this.projectId,
+        "project",
+        this.currentUser.id
+      ).then(res => {
+        if (res['result'] == 'successful') {
+          this.currentProject.followCount += 1;
+          this.currentProject.isFollowing = true;
+          this.toastr.showToast('Success', "追蹤成功 ", this.toastr.iconClasses.success);
+        } else {
+          this.toastr.showToast('Failed', "追蹤失敗", this.toastr.iconClasses.error);
+        }
+      });
+    }
 
   }
 
   onClickCollect() {
-    this.viewsService.collect(
-      this.projectId,
-      "project",
-      this.currentUser.id
-    ).then(res => {
-      if (res['result'] == 'successful') {
-        this.currentProject.collectCount += 1;
-        this.toastr.showToast('Success', "收藏成功 ", this.toastr.iconClasses.success);
-      } else {
-        this.toastr.showToast('Failed', "收藏失敗", this.toastr.iconClasses.error);
-      }
-    });
+    if (this.currentProject.isCollected) {
+      this.viewsService.unCollect(
+        this.projectId,
+        "project",
+        this.currentUser.id
+      ).then(res => {
+        if (res['result'] == 'successful') {
+          this.currentProject.collectCount -= 1;
+          this.currentProject.isCollected = false;
+          this.toastr.showToast('Success', "取消收藏成功 ", this.toastr.iconClasses.success);
+        } else {
+          this.toastr.showToast('Failed', "取消收藏失敗", this.toastr.iconClasses.error);
+        }
+      });
+    } else {
+      this.viewsService.collect(
+        this.projectId,
+        "project",
+        this.currentUser.id
+      ).then(res => {
+        if (res['result'] == 'successful') {
+          this.currentProject.collectCount += 1;
+          this.currentProject.isCollected = true;
+          this.toastr.showToast('Success', "收藏成功 ", this.toastr.iconClasses.success);
+        } else {
+          this.toastr.showToast('Failed', "收藏失敗", this.toastr.iconClasses.error);
+        }
+      });
+    }
 
   }
 
