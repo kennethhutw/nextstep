@@ -10,7 +10,7 @@ import { TranslateService } from "@ngx-translate/core";
   styleUrls: ['./setPassword.component.scss']
 })
 export class SetPasswordComponent implements OnInit {
-  Form: FormGroup;
+  ResetForm: FormGroup;
   message = '';
   submitted = false;
   uid: string;
@@ -53,7 +53,7 @@ export class SetPasswordComponent implements OnInit {
 
   ngOnInit() {
 
-    this.Form = this.formBuilder.group({
+    this.ResetForm = this.formBuilder.group({
       newPassword: ['', [Validators.required, Validators.pattern('(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}')]],
       newPassword2: ['', [Validators.required]]
     });
@@ -108,7 +108,7 @@ export class SetPasswordComponent implements OnInit {
   }
 
   get f() {
-    return this.Form.controls;
+    return this.ResetForm.controls;
   }
 
   onSubmit() {
@@ -117,13 +117,13 @@ export class SetPasswordComponent implements OnInit {
       this.submittedPSW = true;
       this.pswActionMsg = null;
       this.pswMsgFailed = false;
-      if (this.Form.value.newPassword !== this.Form.value.newPassword2) {
+      if (this.ResetForm.value.newPassword !== this.ResetForm.value.newPassword2) {
         this.pswActionMsg = "Password are not match";
         this.pswMsgFailed = true;
         return;
       }
 
-      let _password = this.Form.value.newPassword;
+      let _password = this.ResetForm.value.newPassword;
 
       this.userSrv.setPassword(_password,
         this.uid).subscribe(res => {
@@ -132,7 +132,7 @@ export class SetPasswordComponent implements OnInit {
             this.submittedPSW = false;
             this.translateSrv.get("UPDATEDSUCC").subscribe((text: string) => {
               this.pswActionMsg = text;
-              this.Form.reset();
+              this.ResetForm.reset();
             });
           } else {
             this.translateSrv.get("UPDATEDFAILED").subscribe((text: string) => {
