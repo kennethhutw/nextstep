@@ -20,9 +20,10 @@
         <input type="text" class="form-control search" aria-label="" aria-describedby="button-addon2" />
 
         <span></span>
-        <a type="button" style="margin: auto;" class="btn btn-blue" data-toggle="modal"
-            [attr.data-target]="'#proposal'"><i class="fas fa-plus"></i> 我有話要說
-        </a>
+        <div><a type="button" style="margin: auto;" class="btn btn-blue" data-toggle="modal"
+                [attr.data-target]="'#proposal'"><i class="fas fa-plus"></i> 我有話要說
+            </a></div>
+
     </div>
     <ul class="nav mb-20" id="fbTab" role="tablist">
         <li class="nav-item" role="presentation">
@@ -75,50 +76,62 @@
 
                         <div class="col-md-12 footer">
                             <div class="cell">
+                                <img src="assets/icons/arrow_up.png" alt="arrow_up">
                                 <span>{{item.like_count}}</span>
-                                <i class="fas fa-arrow-up"></i>
+                                <!-- <i class="fas fa-arrow-up"></i> -->
                             </div>
                             <div class="cell">
+                                <img src="assets/icons/arrow_down.png" alt="arrow_down">
                                 <span>{{item.dislike_count}}</span>
-                                <i class="fas fa-arrow-down"></i>
+                                <!-- <i class="fas fa-arrow-down"></i> -->
                             </div>
-                            <div class="cell" data-toggle="modal" [attr.data-target]="'#new_comment'"
-                                (click)="new_comment(item)">
+                            <div *ngIf="item.comment_count ==0" class="cell" data-toggle="modal"
+                                [attr.data-target]="'#new_comment'" (click)="new_comment(item)">
+                                <img src="assets/icons/comment.png" class="mt-5" alt="comment">
                                 <span>{{item.comment_count}}</span>
-                                <i class="far fa-comment"></i>
+                                <!-- <i class="far fa-comment"></i> -->
+                            </div>
+
+                            <div *ngIf="item.comment_count >0" class="cell" (click)="show_comment(this.hideall,item)">
+                                <img src="assets/icons/comment.png" class="mt-5" alt="comment">
+                                <span>{{item.comment_count}}</span>
+                                <!-- <i class="far fa-comment"></i> -->
                             </div>
                             <div class="cell"></div>
 
                         </div>
 
                     </div>
-                    <ng-container *ngFor="let comment of  item.comments; let j = index">
-                        <div class="row comment">
-                            <div class="col-md-12 profile">
-                                <img class="profile-image-small rounded-circle" src="{{ item.imageUrl }}"
-                                    (error)="onImgError($event)" alt="" />
-                                <div class="profile-detail">
-                                    <div>
-                                        <span>{{comment.userName}}</span>
-                                        <span class="createdTime">{{(comment?.createdAt !==null) ?
-                                            this.utilitySrv.timeSince(comment.createdAt ) : ''
-                                            }}</span>
-                                    </div>
-                                    <div class="content">
-                                        {{comment.content}}
+
+                    <div [hidden]="!hideall[item.id]">
+                        <ng-container *ngFor="let comment of  item.comments; let j = index">
+                            <div class="row comment">
+                                <div class="col-md-12 profile">
+                                    <img class="profile-image-small rounded-circle" src="{{ item.imageUrl }}"
+                                        (error)="onImgError($event)" alt="" />
+                                    <div class="profile-detail">
+                                        <div>
+                                            <span>{{comment.userName}}</span>
+                                            <span class="createdTime">{{(comment?.createdAt !==null) ?
+                                                this.utilitySrv.timeSince(comment.createdAt ) : ''
+                                                }}</span>
+                                        </div>
+                                        <div class="content">
+                                            {{comment.content}}
+                                        </div>
                                     </div>
                                 </div>
+                                <!-- <div class="col-md-12 content">
+                                    {{comment.content}}
+                                </div> -->
                             </div>
-                            <!-- <div class="col-md-12 content">
-                                {{comment.content}}
-                            </div> -->
-                        </div>
 
-                        <div *ngIf="j == item.comments.length -1" class="row new_comment">
-                            <input type="text" #yourInput (keyup.enter)="onComment($event, item)" class="form-control"
-                                placeholder="輸入留言" aria-describedby="">
-                        </div>
-                    </ng-container>
+                            <div *ngIf="j == item.comments.length -1" class="row new_comment">
+                                <input type="text" #yourInput (keyup.enter)="onComment($event, item)"
+                                    class="form-control" placeholder="輸入留言" aria-describedby="">
+                            </div>
+                        </ng-container>
+                    </div>
                 </ng-container>
             </ng-container>
         </div>
@@ -296,7 +309,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <p class="proposal-title">分享您在XXX的體驗，讓我們能更清楚進步的方向</p>
+                <p class="proposal-title">分享您的體驗，讓我們能更清楚進步的方向</p>
                 <button type="button" id="close_new_proposl" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -315,7 +328,7 @@
                     </select>
                 </div>
                 <div class="row item-center">
-                    <textarea class="form-control" type="text" [(ngModel)]="propsoalContent" id="" rows="4"
+                    <textarea class="form-control w-96" type="text" [(ngModel)]="propsoalContent" id="" rows="4"
                         cols="50"></textarea>
                 </div>
                 <div class="row item-end">

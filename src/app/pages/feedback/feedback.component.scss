@@ -76,7 +76,7 @@ app-feedback {
         padding: 6px 16px 6px 14px;
         background-color: #fff;
         margin-top: 20px;
-
+        gap: 10px;
     }
 
     .comment {
@@ -127,12 +127,14 @@ app-feedback {
         display: grid;
         grid-auto-flow: column;
         grid-template-rows: 1fr;
-        grid-template-columns: 70px auto;
+        grid-template-columns: 40px auto;
         gap: 20px;
     }
 
     .category {
         display: flex;
+        flex-direction: row-reverse;
+        margin-top: 20px;
         gap: 8px;
     }
 
@@ -148,13 +150,13 @@ app-feedback {
         display: grid;
         grid-auto-flow: column;
         grid-template-rows: 1fr;
-        grid-template-columns: 100px 100px 100px auto;
+        grid-template-columns: 70px 70px 70px auto;
         gap: 10px;
 
         .cell {
             display: grid;
             grid-auto-flow: column;
-            gap: 15px;
+            gap: 5px;
             margin: auto;
         }
     }
@@ -195,5 +197,13 @@ app-feedback {
 
     .ctl-center {
         margin-bottom: 16px;
+    }
+
+    .mt-5 {
+        margin-top: 5px !important;
+    }
+
+    .w-96 {
+        width: 96%;
     }
 }

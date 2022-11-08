@@ -2,7 +2,9 @@ import {
   HostListener,
   ViewEncapsulation,
   Component,
-  OnInit
+  OnInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
 } from '@angular/core';
 import {
   ProposalService,
@@ -32,7 +34,9 @@ export class FeedbackComponent implements OnInit {
   commentContent: string = "";
 
   replyComment: string = "";
-
+  hideall = {};
+  hideprocessed = {};
+  hidemyproposals = {}
   constructor(
     private utilitySrv: Utility,
     private authStoreSrv: AuthStore,
@@ -44,7 +48,6 @@ export class FeedbackComponent implements OnInit {
   ngOnInit() {
     this.currentUser = this.authStoreSrv.getUserData();
     this.proposalSrv.getall().subscribe(res => {
-      console.log(" proposalSrv ===============", res)
       if (res["result"] == "successful") {
         this.allitems = res["data"];
         // process_status
@@ -54,7 +57,15 @@ export class FeedbackComponent implements OnInit {
         this.myproposals = this.allitems.filter(item => {
           return item.createdBy == this.currentUser.id
         })
-
+        this.processed.forEach(e => {
+          this.hideprocessed[e.id] = false;
+        });
+        this.myproposals.forEach(e => {
+          this.hidemyproposals[e.id] = false;
+        });
+        this.allitems.forEach(e => {
+          this.hideall[e.id] = false;
+        });
       }
     })
     // if (this.currentUser) {
@@ -100,6 +111,13 @@ export class FeedbackComponent implements OnInit {
 
   new_comment(item) {
     this.editedItem = item;
+  }
+
+  show_comment(items, item) {
+    console.log("show item")
+
+
+    items[item.id] = !items[item.id];
   }
   onCommentSubmit() {
     if (!this.utilitySrv.IsNullOrEmpty(this.commentContent)
