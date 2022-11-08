@@ -4,8 +4,11 @@ ui-tag {
 
     .tag-improve {
         color: #fff;
-        background-color: #2E83FB;
-        padding: 2px;
+        background-color: #2569C9;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
         border-radius: 4px;
         justify-content: center;
         align-items: center;
@@ -14,9 +17,13 @@ ui-tag {
     }
 
     .tag-help {
-        color: #4C3509;
-        background-color: #FCB11F;
-        padding: 2px;
+        color: #fff;
+        width: 60px;
+        background-color: #976A13;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
         border-radius: 4px;
         justify-content: center;
         align-items: center;
@@ -27,7 +34,10 @@ ui-tag {
     .tag-bug {
         color: #fff;
         background-color: #CC0023;
-        padding: 2px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
         border-radius: 4px;
         justify-content: center;
         align-items: center;

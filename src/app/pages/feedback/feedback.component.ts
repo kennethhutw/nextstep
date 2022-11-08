@@ -49,10 +49,10 @@ export class FeedbackComponent implements OnInit {
         this.allitems = res["data"];
         // process_status
         this.processed = this.allitems.filter(item => {
-          return item.process_status = "processed"
+          return item.process_status == "processed"
         })
         this.myproposals = this.allitems.filter(item => {
-          return item.createdBy = this.currentUser.id
+          return item.createdBy == this.currentUser.id
         })
 
       }

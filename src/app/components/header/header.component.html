@@ -78,7 +78,7 @@
         <li class="nav-item p-8" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
           id="navbarNotifDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
           <!--           <a class="nav-link" routerLink="/notifications"> <i class="far fa-bell icon"></i></a> -->
-          <i class="far fa-bell icon noti"> <span *ngIf="notiNum>0" class="num">{{notiNum}}</span></i>
+          <i class="far fa-bell icon noti"> <span *ngIf="notiNum>0" class="notification-dot"></span></i>
           <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary notification-box"
             aria-labelledby="navbarNotifDropdown">
             <ng-container *ngIf="notis">
@@ -120,7 +120,7 @@
           <a class="nav-link" routerLink="/messages"> <i class="far fa-comment-dots icon"></i></a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          <a class="nav-link dropdown-toggle gray" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-user-circle par-5 icon"></i>
           </a>

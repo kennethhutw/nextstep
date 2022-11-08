@@ -24,9 +24,9 @@
             [attr.data-target]="'#proposal'"><i class="fas fa-plus"></i> 我有話要說
         </a>
     </div>
-    <ul class="nav mb-20" id="myTab" role="tablist">
+    <ul class="nav mb-20" id="fbTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <a class="nav-link " [ngClass]="{ 'active': currentTab === 'all' }" role="tab"
+            <a class="nav-link" [ngClass]="{ 'active': currentTab === 'all' }" role="tab"
                 (click)="changeTab('all')">全部</a>
         </li>
         <li class="nav-item" role="presentation">
@@ -44,7 +44,10 @@
         <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'all' }" id="all" role="tabpanel"
             aria-labelledby="all-tab">
             <div class="empty text-center" *ngIf="allitems.length ===0">
-                There are no proposal.
+                <div class="col-md-12 empty-text-center qa-container">
+                    <img src="assets/images/empty_logo.png" alt="no-comment">
+                    <span>沒有任何提案</span>
+                </div>
             </div>
             <ng-container *ngIf="allitems.length >0">
                 <ng-container *ngFor="let item of  allitems; let i = index">
@@ -58,7 +61,7 @@
                                     this.utilitySrv.timeSince(item.createdAt ) : ''
                                     }}</span>
                             </div>
-                            <div [ngSwitch]="item.category">
+                            <div class="category" [ngSwitch]="item.category">
                                 <ui-tag *ngSwitchCase="'improvement'" [class]="'tag-improve'" [tag]="'改善'"></ui-tag>
                                 <ui-tag *ngSwitchCase="'help'" [class]="'tag-help'" [tag]="'需要協助'"></ui-tag>
                                 <ui-tag *ngSwitchCase="'bug'" [class]="'tag-bug'" [tag]="'有錯誤'"></ui-tag>
@@ -122,7 +125,10 @@
         <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'processed' }" role="tabpanel"
             aria-labelledby="processed-tab">
             <div class="empty text-center" *ngIf="processed.length ===0">
-                There are no proposal
+                <div class="col-md-12 empty-text-center qa-container">
+                    <img src="assets/images/empty_logo.png" alt="no-comment">
+                    <span>沒有已處理</span>
+                </div>
             </div>
             <ng-container *ngIf="processed">
                 <ng-container *ngFor="let item of processed; let i = index">
@@ -136,7 +142,7 @@
                                     this.utilitySrv.timeSince(item.createdAt ) : ''
                                     }}</span>
                             </div>
-                            <div [ngSwitch]="item.category">
+                            <div class="category" [ngSwitch]="item.category">
                                 <ui-tag *ngSwitchCase="'improvement'" [class]="'tag-improve'" [tag]="'改善'"></ui-tag>
                                 <ui-tag *ngSwitchCase="'help'" [class]="'tag-help'" [tag]="'需要協助'"></ui-tag>
                                 <ui-tag *ngSwitchCase="'bug'" [class]="'tag-bug'" [tag]="'有錯誤'"></ui-tag>
@@ -198,7 +204,11 @@
         <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'myproposal' }" role="tabpanel"
             aria-labelledby="myproposals-tab">
             <div class="empty text-center" *ngIf="myproposals.length ===0">
-                你沒有任何提案
+
+                <div class="col-md-12 empty-text-center qa-container">
+                    <img src="assets/images/empty_logo.png" alt="no-comment">
+                    <span>你沒有任何提案</span>
+                </div>
             </div>
             <ng-container *ngIf="myproposals">
                 <ng-container *ngFor="let item of myproposals; let i = index">
@@ -212,7 +222,7 @@
                                     this.utilitySrv.timeSince(item.createdAt ) : ''
                                     }}</span>
                             </div>
-                            <div [ngSwitch]="item.category">
+                            <div class="category" [ngSwitch]="item.category">
                                 <ui-tag *ngSwitchCase="'improvement'" [class]="'tag-improve'" [tag]="'改善'"></ui-tag>
                                 <ui-tag *ngSwitchCase="'help'" [class]="'tag-help'" [tag]="'需要協助'"></ui-tag>
                                 <ui-tag *ngSwitchCase="'bug'" [class]="'tag-bug'" [tag]="'有錯誤'"></ui-tag>

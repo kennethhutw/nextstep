@@ -1,10 +1,15 @@
 app-feedback {
     a {
-        color: #262E42;
+        color: #69738C;
     }
 
     .container {
         margin-top: 50px;
+    }
+
+    .qa-container {
+        height: 60vh;
+        gap: 38px;
     }
 
     .filter {
@@ -126,11 +131,16 @@ app-feedback {
         gap: 20px;
     }
 
+    .category {
+        display: flex;
+        gap: 8px;
+    }
+
     .proposal {
         display: grid;
         grid-auto-flow: column;
         grid-template-rows: 1fr;
-        grid-template-columns: 70px auto 50px;
+        grid-template-columns: 70px auto 100px;
         gap: 20px;
     }
 

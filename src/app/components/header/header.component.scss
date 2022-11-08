@@ -105,6 +105,11 @@ a.nav-link.active {
   padding-top: 12px;
   font-size: 25px;
   margin-left: 5px;
+  color: #8F95A8;
+}
+
+.gray {
+  color: #8F95A8 !important;
 }
 
 .notification-box {
@@ -124,6 +129,18 @@ a.nav-link.active {
 .notifciation-row {
   display: grid;
   grid-auto-flow: row;
+}
+
+.notification-dot {
+  height: 12px;
+  width: 12px;
+  background-color: rgb(255, 51, 86);
+  border-radius: 50%;
+  border: 1px solid white;
+  display: inline-block;
+  position: relative;
+  top: -12px;
+  left: -8px;
 }
 
 .font-16 {
@@ -151,6 +168,7 @@ i.noti {
 
   background-size: contain;
   text-decoration: none;
+  color: #8F95A8;
 }
 
 .num {
