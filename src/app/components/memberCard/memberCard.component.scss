@@ -1,0 +1,108 @@
+app-member-card {
+    .box {
+        width: 100%;
+        background: #FFF;
+        text-align: center;
+    }
+
+    .box-title {
+        color: #428bca;
+    }
+
+    img {
+        width: 142px;
+        height: 194px;
+        margin-bottom: 15px;
+    }
+
+    .box {
+        background: #FFF;
+        border-radius: 10px;
+        padding: 20px 10px;
+        margin: 20px 0px;
+        cursor: pointer;
+        transition: all 0.5s ease-out;
+    }
+
+
+    .box .box-text {
+        margin-top: 10px;
+        font-size: 15px;
+        line-height: 30px;
+        min-height: 30px;
+    }
+
+    .fab {
+        padding: 15px;
+        font-size: 30px;
+        color: gray;
+    }
+
+    .icons {
+        display: flex;
+        gap: 5px;
+        justify-content: center;
+    }
+
+    .tag {
+        padding: 4px 8px 4px 8px;
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 400;
+        border-radius: 100px;
+        white-space: nowrap;
+        background-color: #C0DAFE;
+    }
+
+    .tag-bd {
+        background-color: #D5ECA3 !important;
+    }
+
+    .tag-pm {
+        background-color: #E5BFF3 !important;
+    }
+
+    .tag-design {
+        background-color: #E5BFF3 !important;
+    }
+
+    .tag-op {
+        background-color: #FEE0A5 !important;
+    }
+
+    .tag-software {
+        background-color: #C0DAFE !important;
+    }
+
+    .tag-marketing {
+        background-color: #FFCCD5 !important;
+    }
+
+    .tag-game {
+        background-color: #E5BFF3 !important;
+    }
+
+    .tag-sharingeconomy {
+        background-color: #D5ECA3 !important;
+    }
+
+    .tag-fintech {
+        background-color: #C0DAFE !important;
+    }
+
+    .tag-edutech {
+        background-color: #E5BFF3 !important;
+    }
+
+    .tag-ai {
+        background-color: #E3E5EC !important;
+    }
+
+    .tag-medical {
+        background-color: #E5BFF3 !important;
+    }
+
+    .tag-eComm {
+        background-color: #E5BFF3 !important;
+    }
+}

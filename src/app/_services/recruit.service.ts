@@ -16,10 +16,11 @@ export class RecruitService {
         return this.http.post(`${environment.apiUrl}/recruit`, params);
     }
 
-    async getById(id: string) {
-
+    async getById(id: string, userId: string) {
+        const params = new HttpParams().set('userId', userId);
         return await this.http
             .get<any>(`${environment.apiUrl}/recruit/${id}`, {
+                params
             })
             .toPromise();
     }

@@ -171,7 +171,7 @@ export class ProjectComponent implements OnInit {
 
   onClickFollow() {
     if (this.currentProject.isFollowing) {
-      this.viewsService.follow(
+      this.viewsService.unFollow(
         this.projectId,
         "project",
         this.currentUser.id

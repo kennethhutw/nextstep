@@ -45,6 +45,9 @@ export class newProjectComponent implements OnInit {
       name: ["", Validators.required],
       description: [""],
       isFindPartner: [0, Validators.required],
+      isFunding: [0, Validators.required],
+      isCofounder: [0, Validators.required],
+      product: ["", Validators.required],
       type: ["", Validators.required],
       stages: ["", Validators.required],
       members: this.fb.array([this.createMember()]),
@@ -98,7 +101,6 @@ export class newProjectComponent implements OnInit {
 
   addMember() {
     this.members.push(this.createMember());
-
   }
 
   addJob() {
@@ -116,24 +118,28 @@ export class newProjectComponent implements OnInit {
     return this.projectForm.invalid;
   }
 
-  onTypeChange($event, value) {
-    var _values = this.projectForm.get('type').value;
+  onStatusChange($event, property) {
+    this.projectForm.get(property).setValue($event.target.checked);
+  }
+  onProductChange($event, value) {
+    var _values = this.projectForm.get('product').value;
 
     if ($event.target.checked) {
       _values += "," + value;
     } else {
-      _values = value.replace("," + value, "");
+      _values = _values.replace("," + value, "");
     }
-    this.projectForm.get('type').setValue(_values);
+    this.projectForm.get('product').setValue(_values);
   }
 
   onIndustryTypeChange($event, value) {
+
     var _values = this.projectForm.get('type').value;
 
     if ($event.target.checked) {
       _values += "," + value;
     } else {
-      _values = value.replace("," + value, "");
+      _values = _values.replace("," + value, "");
     }
     this.projectForm.get('type').setValue(_values);
   }
@@ -157,11 +163,12 @@ export class newProjectComponent implements OnInit {
         _values += value;
       }
     } else {
-      _values = value.replace("," + value, "");
-      _values = value.replace(value, "");
+      _values = _values.replace("," + value, "");
+      _values = _values.replace(value, "");
     }
     this.projectForm.get('stages').setValue(_values);
   }
+
   onSave() {
 
     this.submitted = true;
@@ -195,10 +202,13 @@ export class newProjectComponent implements OnInit {
       name: value.name,
       description: value.description,
       status: status,
+      product: value.product,
       type: value.type,
       stages: value.stages,
       isPublic,
       isFindPartner: value.isFindPartner,
+      isFunding: value.isFunding,
+      isCofounder: value.isCofounder,
       uid: this.currentUser.id
     }).subscribe(res => {
       if (res['result'] === 'successful') {

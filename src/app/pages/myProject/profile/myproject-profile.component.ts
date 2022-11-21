@@ -9,6 +9,9 @@ import {
 } from "../../../_services/auth.store";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import {
+  Utility
+} from '../../../_helpers';
 
 @Component({
   selector: 'app-myproject-profile.',
@@ -25,6 +28,7 @@ export class MyProjectProfileComponent implements OnInit {
   currentProject = null;
 
   constructor(
+    private utilitySrv: Utility,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private dialogSrv: DialogService,
@@ -38,6 +42,9 @@ export class MyProjectProfileComponent implements OnInit {
       name: ["", Validators.required],
       description: ["", Validators.required],
       isFindPartner: [0, Validators.required],
+      isFunding: [0, Validators.required],
+      isCofounder: [0, Validators.required],
+      product: ["", Validators.required],
       type: ["", Validators.required],
       stages: ["", Validators.required],
     });
@@ -46,17 +53,23 @@ export class MyProjectProfileComponent implements OnInit {
     this.projectSrv.getProject(projectId,
       this.currentUser.id).then(res => {
         if (res['result'] === 'successful') {
-          console.log("currentProject ========", res);
           this.currentProject = res['data'];
           this.projectForm.setValue({
             name: this.currentProject.name,
             description: this.currentProject.description,
             isFindPartner: this.currentProject.isFindPartner,
+            isFunding: this.currentProject.isFunding,
+            isCofounder: this.currentProject.isCofounder,
+            product: this.currentProject.product,
             type: this.currentProject.type,
             stages: this.currentProject.stage
           });
         }
       })
+  }
+
+  onStatusChange($event, property) {
+    this.projectForm.get(property).setValue($event.target.checked);
   }
 
   onStageChange($event, value) {
@@ -69,13 +82,26 @@ export class MyProjectProfileComponent implements OnInit {
         _values += value;
       }
     } else {
-      _values = value.replace("," + value, "");
-      _values = value.replace(value, "");
+      _values = _values.replace("," + value, "");
+      _values = _values.replace(value, "");
     }
     this.projectForm.get('stages').setValue(_values);
   }
 
-  onTypeChange($event, value) {
+  onProductChange($event, value) {
+
+    var _values = this.projectForm.get('product').value;
+
+    if ($event.target.checked) {
+      _values += "," + value;
+    } else {
+      _values = _values.replace("," + value, "");
+    }
+    this.projectForm.get('product').setValue(_values);
+  }
+
+  onIndustryTypeChange($event, value) {
+
     var _values = this.projectForm.get('type').value;
 
     if ($event.target.checked) {
@@ -88,7 +114,7 @@ export class MyProjectProfileComponent implements OnInit {
 
   isInValue(value, types) {
 
-    if (types == "") {
+    if (this.utilitySrv.IsNullOrEmpty(types)) {
       return false;
     } else {
       return types.indexOf(value) > -1;
@@ -112,8 +138,12 @@ export class MyProjectProfileComponent implements OnInit {
       name: value.name,
       description: value.description,
       status: 'published',
+      product: value.product,
       type: value.type,
       stage: value.stages,
+      isFindPartner: value.isFindPartner,
+      isFunding: value.isFunding,
+      isCofounder: value.isCofounder,
       uid: this.currentUser.id
     }).subscribe(res => {
       console.log("==============", res);

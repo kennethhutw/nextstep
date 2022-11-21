@@ -24,11 +24,11 @@
   <div class="col-md-4 text-right  btn_items">
     <button type="button" class="btn btn_item" [ngClass]="{'btn_item_selected': currentProject?.isCollected === true}"
       *ngIf="currentProject?.owner !== currentUser?.id" (click)="onClickCollect()"><i class="far fa-bookmark fa-lg"></i>
-      收藏</button>
+      {{currentProject?.isCollected === true ? "已收藏" : "收藏"}} </button>
 
     <button type="button" class="btn btn_item" [ngClass]="{'btn_item_selected': currentProject?.isFollowing === true}"
       *ngIf="currentProject?.owner !== currentUser?.id" (click)="onClickFollow()"><i class="fas fa-plus"></i>
-      追蹤</button>
+      {{currentProject?.isFollowing === true ? "已追蹤" : "追蹤"}} </button>
     <button type="button" class="btn btn_item" *ngIf="currentProject?.owner !== currentUser?.id" (click)="onChat()"><i
         class="far fa-comment-dots"></i>
       訊息</button>
@@ -130,14 +130,18 @@
             <div *ngIf="this.currentProject?.members">
               <ng-container *ngFor="let member of currentProject.members ; let i = index">
                 <ng-container *ngIf="onPage(i,this.currentPageIndex)">
-                  <div class="col-md-12 profile">
+                  <div class="col-md-4 profile">
+                    <app-member-card [user]="member" [name]="member.userName" [position]="member.position"
+                      [imageUrl]="member.imageUrl" class="w-100"></app-member-card>
+                  </div>
+                  <!-- <div class="col-md-12 profile">
                     <img class="profile-image rounded-circle" src="{{ member.imageUrl }}" (error)="onImgError($event)"
                       alt="" />
                     <div>
                       <p class="profile-name">{{member.userName}}</p>
                       <p class="position">{{member.position}}</p>
                     </div>
-                  </div>
+                  </div> -->
                 </ng-container>
               </ng-container>
             </div>

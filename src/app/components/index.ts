@@ -2,6 +2,7 @@ import { ButtonComponent } from './button/button.component';
 import { CustomModalComponent } from './custom-modal/custom-modal.component';
 import { CommentComponent } from './comment/comment.component';
 import { CommentsComponent } from './comments/comments.component';
+import { MemberCardComponent } from './memberCard/memberCard.component';
 import { ProjectItemComponent } from "./projectItem/project-item.component";
 import { PersonCardComponent } from "./person/person.component";
 import { UserCardComponent } from "./userCard/userCard.component";
@@ -19,6 +20,7 @@ export const components = [
     RadioItemComponent,
     RecruitCardComponent,
     LogBarComponent,
+    MemberCardComponent,
     ProjectBarComponent,
     ProjectCardComponent,
     ProjectItemComponent,
@@ -62,4 +64,5 @@ export { EditableOnEnterDirective } from './editableInput/editable-on-enter.dire
 
 export { LoadingComponent } from './loading/loading.component';
 export { LogBarComponent } from './log-bar/log-bar.component';
+export { MemberCardComponent } from './memberCard/memberCard.component';
 export { RadioItemComponent } from './radioItem/radio-item.component';

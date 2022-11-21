@@ -114,9 +114,6 @@ export class FeedbackComponent implements OnInit {
   }
 
   show_comment(items, item) {
-    console.log("show item")
-
-
     items[item.id] = !items[item.id];
   }
   onCommentSubmit() {

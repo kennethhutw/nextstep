@@ -1,18 +1,24 @@
 <div *ngIf="currentRecruit" class="row mt-100">
-  <div class="col-md-8 text-center d-flex flex-row gap-10">
+  <div class="col-md-6 text-center d-flex flex-row gap-10">
     <h1>{{this.currentRecruit.position? this.currentRecruit.position :'職缺名稱'}}</h1>
     <span class="update_date">{{this.currentRecruit.createdAt | date:"MM/dd"}}更新</span>
   </div>
 
-  <div class="col-md-4 text-right btn_items">
+  <div class="col-md-6 text-right btn_items">
+    <button type="button" class="btn btn_item" data-toggle="modal" data-target="#modal_apply" data-dismiss="modal"
+      (click)="onSelectItem(currentRecruit)"><i class="far fa-envelope"></i>
+      申請</button><button type="button" class="btn btn_item"
+      [ngClass]="{'btn_item_selected': currentRecruit?.isCollected === true}"
+      *ngIf="currentRecruit?.owner !== currentUser?.id" (click)="onClickCollect()"><i class="far fa-bookmark fa-lg"></i>
+      {{currentRecruit?.isCollected === true ? "已收藏" : "收藏"}} </button>
 
-    <button type="button" class="btn btn_item " (click)="onSave()"><i class="far fa-comment-alt"></i>
+    <button type="button" class="btn btn_item" [ngClass]="{'btn_item_selected': currentRecruit?.isFollowing === true}"
+      *ngIf="currentRecruit?.owner !== currentUser?.id" (click)="onClickFollow()"><i class="fas fa-plus"></i>
+      {{currentRecruit?.isFollowing === true ? "已追蹤" : "追蹤"}} </button>
+    <button type="button" class="btn btn_item " (click)="onChat()"><i class="far fa-comment-alt"></i>
       訊息</button>
-    <button type="button" class="btn btn_item " (click)="onSave()"><i class="fas fa-plus"></i>
-      追蹤</button>
-    <button type="button" class="btn btn_item " (click)="onSave()"><i class="far fa-bookmark fa-lg"></i>
-      收藏</button> <button type="button" class="btn btn_item" (click)="onSave()"><i class="far fa-envelope"></i>
-      申請</button>
+
+
   </div>
 </div>
 <div *ngIf="currentRecruit" class="row mt-10 mb-33">
@@ -22,8 +28,8 @@
     <span class="update_date">{{ currentRecruit.projectName }}</span>
   </div>
   <div class="col-md-4 text-right">
-
-    <span class="update_date">xx人收藏/xx人追蹤</span>
+    <span>{{currentRecruit.collectCount?currentRecruit.collectCount:0}}人收藏/{{currentRecruit.followCount?currentRecruit.followCount:0}}人追蹤</span>
+    <!-- <span class="update_date">xx人收藏/xx人追蹤</span> -->
   </div>
 </div>
 
@@ -45,21 +51,21 @@
       </div>
       <ng-container *ngIf="this.currentRecruit?.others">
         <ng-container *ngFor="let item of  this.currentRecruit.projectOthers; let i = index">
-          <div class=" frame" [ngClass]="{'mt-10':i>1}">
-            <a class="clickable" [routerLink]="['/job/',item.id ]" style="color: #7F7F7F;">
+          <div class="frame" [ngClass]="{'mt-10':i>1}">
+            <a class="clickable" [routerLink]="['/job/',item.id ]">
               <div class="col-md-12" style="display: inline-flex;">
                 <div class="col-md-8">
                   <p class="position"><b>{{item.position}}</b></p>
                   <small>{{item.skills}}</small>
                 </div>
                 <div class="col-md-4 btn_items">
-                  <a href="#"> <i class="far fa-bookmark fa-lg"></i></a>
+                  <a href="#"> <i class="far fa-bookmar"></i></a>
                   <a href="#" data-toggle="modal" data-target="#modal_apply" data-dismiss="modal"
                     (click)="onSelectItem(item)"> <i class="far fa-envelope"></i></a>
                 </div>
               </div>
             </a>
-            <div class="col-md-12">
+            <div class="col-md-12 scopes">
               {{item.scopes}}
             </div>
             <div class="col-md-12 text-right">
@@ -74,20 +80,20 @@
   <div class="col-md-4">
     <div class="row">
       <div class="col-md-12 mb-24">
-        <span class="title">其他相似職缺</span>
+        <span class="title">其他職缺</span>
       </div>
     </div>
-    <ng-container *ngIf="this.currentRecruit?.projectOthers">
-      <ng-container *ngFor="let item of  this.currentRecruit.projectOthers; let i = index">
+    <ng-container *ngIf="this.currentRecruit?.others">
+      <ng-container *ngFor="let item of  this.currentRecruit.others; let i = index">
         <div class="row frame" [ngClass]="{'mt-10':i>1}">
-          <a class="clickable" [routerLink]="['/job/',item.id ]" style="color: #7F7F7F;">
+          <a class="clickable" [routerLink]="['/job/',item.id ]">
             <div class="col-md-12" style="display: inline-flex;">
               <div class="col-md-8">
                 <p class="position"><b>{{item.position}}</b></p>
                 <small>{{item.skills}}</small>
               </div>
               <div class="col-md-4 btn_items">
-                <a href="#"> <i class="far fa-bookmark fa-lg"></i></a>
+                <a href="#"> <i class="far fa-bookmark"></i></a>
                 <a href="#" data-toggle="modal" data-target="#modal_apply" data-dismiss="modal"
                   (click)="onSelectItem(item)"> <i class="far fa-envelope"></i></a>
               </div>
@@ -104,6 +110,20 @@
     </ng-container>
   </div>
 </div>
+
+<div [class.show]="isChat" class="full">
+  <lab-custom-modal [open]="isChat" (close)="onToggleChat($event)">
+    <h3 class="title" title>Chat</h3><span aria-hidden="true">X&times;</span>
+    <div>
+    </div>
+    <lab-comments [currentUser]="currentUser" [receiverUser]="projectOwner" (close)="onToggleChat($event)" body>
+    </lab-comments>
+
+  </lab-custom-modal>
+
+</div>
+
+
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
   <p style="color: white">Please Wait. </p>
 </ngx-spinner>

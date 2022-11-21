@@ -73,8 +73,13 @@
     background-color: #fff;
     display: grid;
     grid-auto-flow: row;
-    gap: 24px;
+    // gap: 24px;
     padding: 12px 10px 12px 10px;
+    width: 100%;
+
+    .clickable {
+        color: #7F7F7F;
+    }
 }
 
 .title {
@@ -102,14 +107,19 @@
     background-color: #56BDF4;
     border: 1px solid #56BDF4;
     border-radius: 4px;
-    width: 84px;
+    // width: 84px;
     height: 36px;
 }
 
 
 .btn_item:hover {
-    background-color: #11e78b;
-    border: 2px solid #11e78b;
+    background-color: #FF859A;
+    border: 2px solid #FF859A;
+}
+
+.btn_item_selected {
+    background-color: #FF859A;
+    border: 2px solid #FF859A;
 }
 
 .name {
@@ -128,6 +138,10 @@
     margin-bottom: 0px;
     margin-top: 5px;
     word-wrap: break-word;
+}
+
+.scopes {
+    padding-left: 30px;
 }
 
 .dot {
