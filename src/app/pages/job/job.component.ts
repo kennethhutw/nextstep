@@ -63,6 +63,7 @@ export class JobComponent implements OnInit {
   currentRecruit;
   selectedItem;
   isChat: boolean = false;
+  projectOwner;
   constructor(
     private settingSrv: SettingService,
     private recruitSrv: RecruitService,
