@@ -126,17 +126,18 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
-              [routerLink]="['/u/',currentUser?.uid]">個人資料</a>
+              [routerLink]="['/u/',currentUser?.uid]">我的檔案</a>
+            <a class="dropdown-item" [routerLink]="['/dashboard/collection']">我的收藏</a>
             <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
               [routerLink]="['/dashboard/settings']">個人設定</a>
 
             <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
               [routerLink]="['/dashboard/myproject']">我的專案</a>
-            <a class="dropdown-item" [routerLink]="['/dashboard/collection']">我的收藏</a>
-            <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+
+            <!-- <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
               [routerLink]="['/dashboard/messages']">我的訊息</a>
             <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
-              [routerLink]="['/dashboard/notifications']">我的通知</a>
+              [routerLink]="['/dashboard/notifications']">我的通知</a> -->
 
             <a class="dropdown-item" [routerLink]="['/dashboard/application']">成為導師</a>
             <!-- <a class="dropdown-item" [routerLink]="['/u/',currentUser?.uid]">{{

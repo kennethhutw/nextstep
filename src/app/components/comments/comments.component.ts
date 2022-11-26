@@ -120,6 +120,17 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnChanges {
 
   }
 
+  IsSender(sender) {
+
+    if (sender === this.currentUser.id) {
+      return false;
+    }
+    else {
+      return true;
+    }
+
+  }
+
   initChat(sender, receiver) {
     try {
       this.loading = true;

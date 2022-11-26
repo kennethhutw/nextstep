@@ -2,7 +2,8 @@
   // define font-family
   --quicksand: 'Quicksand', Helvetica, Arial, sans-serif;
   // deinfe font-size
-  --size: 1.6rem;
+  // --size: 1.6rem;
+  --size: 16px;
   --size12: calc(var(--size) - 0.4rem);
   --size13: calc(var(--size) - 0.3rem);
   --size14: calc(var(--size) - 0.2rem);
@@ -1086,9 +1087,6 @@ box-shadow:0 0 5px #fff;
   color: #606060;
 }
 
-#select_img img {
-  border: 1px solid #17f596;
-}
 
 .inline_text {
   color: #08ab65;

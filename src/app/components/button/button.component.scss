@@ -72,7 +72,7 @@ ui-button {
     }
 
     &.round {
-        --border-radius: 8px;
+        --border-radius: 4px;
         border-radius: var(--border-radius);
     }
 
@@ -242,10 +242,11 @@ button:disabled {
     }
 
     &.blue {
-        --bg-color: var(--blue);
+        --bg-color: #56BDF4;
 
         &:hover {
-            --bg-color: #026df9;
+            --bg-color: #FF859A;
+            color: var(--white);
         }
     }
 

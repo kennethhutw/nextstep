@@ -191,11 +191,13 @@
 </div>
 
 
-<div [class.show]="isChat" class="full">
+<div class="chat-dialog" [class.show]="isChat" class="full">
   <lab-custom-modal [open]="isChat" (close)="onToggleChat($event)">
-    <h3 class="title" title>Chat</h3><span aria-hidden="true">X&times;</span>
-    <div>
-    </div>
+    <h3 *ngIf="projectOwner" class="chat-header" title><img class="chat-user-img" [src]="projectOwner.imageUrl!= null ?  settingSrv.defaultAssetUrl+projectOwner.imageUrl
+                      : 'assets/icons/defaultUserIcon.png'" alt=""><span class="chat-user-name">{{projectOwner.name?
+        projectOwner.name:"No
+        name"}}</span></h3>
+
     <lab-comments [currentUser]="currentUser" [receiverUser]="projectOwner" (close)="onToggleChat($event)" body>
     </lab-comments>
 

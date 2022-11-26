@@ -221,3 +221,24 @@
 .tab-pane {
     min-height: 300px;
 }
+
+.chat-user-img {
+    width: 40px;
+}
+
+.chat-header {
+    display: flex;
+    gap: 16px;
+    padding-left: 12px;
+
+    .chat-user-img {
+        width: 40px;
+    }
+
+    .chat-user-name {
+        font-size: 18px;
+        font-weight: 500;
+        margin-top: 10px;
+
+    }
+}

@@ -12,6 +12,7 @@ export class CommentComponent implements OnInit {
   @Input() private: boolean;
   @Input() text: string;
   @Input() avatar?: string;
+  @Input() receiver?: boolean = false;
 
   @ViewChild('comment') commentRef: ElementRef;
 

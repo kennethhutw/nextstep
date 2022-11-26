@@ -8,7 +8,8 @@
     <ui-button *ngIf="allowadd" class="btn-icon white expand" icon="assets/icons/plus.svg" (click)="onAddModal($event)">
     </ui-button>
     <ng-content select="[title]"></ng-content>
-    <ui-button class="btn-icon white collapse" icon="assets/icons/cross.svg" (click)="onCloseModal($event)"></ui-button>
+    <!-- <ui-button class="btn-icon" icon="assets/icons/cross.svg" (click)="onCloseModal($event)"></ui-button> -->
+    <img src="assets/icons/X.png" (click)="onCloseModal($event)" alt="no-comment">
   </div>
   <!-- modal-header end -->
 

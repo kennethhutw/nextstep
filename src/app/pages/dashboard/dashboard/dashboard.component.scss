@@ -10,10 +10,7 @@ li {
     color: #69738C;
 }
 
-::ng-deep input[type="checkbox"].chk:disabled {
-    background-color: red;
-    background: #00bf00;
-}
+
 
 .sub_title {
     font-size: 18px;
@@ -24,4 +21,6 @@ li {
     height: 300px;
     flex-flow: column;
     text-align: center;
+    align-items: center;
+    gap: 18px;
 }

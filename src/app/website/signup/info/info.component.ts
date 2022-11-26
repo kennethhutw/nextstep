@@ -29,7 +29,7 @@ export class SignupInfoComponent implements OnInit {
   currentUser: any = null;
   profileImage = null;
   profileImageFile = null;
-  step = 1;
+  step = 0;
   isProject = false;
   isPartner = false;
   beMentor = false;

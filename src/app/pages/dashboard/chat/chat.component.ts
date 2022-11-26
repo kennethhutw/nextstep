@@ -88,7 +88,7 @@ export class ChatComponent implements OnInit {
       this.selectedItem = this.items[index];
     }
     this.updateRead(this.currentUser.id, item.userId);
-    console.log("======", this.selectedItem);
+    console.log("click selectedItem ========", this.selectedItem);
   }
 
   updateRead(uid, to_uid) {

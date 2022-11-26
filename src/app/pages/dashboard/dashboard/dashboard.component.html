@@ -22,6 +22,7 @@
 <div>
   <span class="sub_title">也許您會感興趣</span>
   <div class="row  mt-24 empty_row" *ngIf="items.length ===0">
+    <img src="assets/icons/noRecommend.png" alt="noRecommend">
     無推薦專案
   </div>
   <!--person-->
@@ -40,6 +41,8 @@
 <div>
   <span class="sub_title  mt-24 ">推薦給您</span>
   <div class="row  mt-24 empty_row" *ngIf="mentors.length ===0">
+    <img src="assets/icons/noRecommend.png" style="width: 84px;" alt="noRecommend">
+
     無推薦導師
   </div>
   <!--person-->

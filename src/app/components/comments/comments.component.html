@@ -6,19 +6,24 @@
 
       <ng-container *ngIf="chatData.length>0; else noComments">
         <div *ngFor="let message of chatData;  let i = index">
-
-          <ng-container *ngIf="message.sender== currentUser.id">
+          <ng-container *ngIf="IsSender(message.sender) ; else Receiver">
             <ui-comment name="{{message.nameSender}}" [avatar]="getImg(message)" timestamp="{{
               (message?.createdAt !==null) ? this.utilitySrv.timeSince(message.createdAt ) : '' }}"
-              text={{message.content}} [private]="false">
+              text={{message.content}} [private]="false" [receiver]="false">
             </ui-comment>
           </ng-container>
-          <ng-container *ngIf="message.sender !== currentUser.id">
+          <ng-template #Receiver>
+
+            <ui-comment style="background-color: blue;" name="{{message.nameSender}}" [avatar]="getImg(message)"
+              timestamp="{{(message?.createdAt !==null) ? this.utilitySrv.timeSince(message.createdAt ) : '' }}"
+              text={{message.content}} [private]="false" [receiver]="true"></ui-comment>
+          </ng-template>
+          <!-- <ng-container *ngIf="IsSender(message.sender)">
             <ui-comment name="{{message.nameReceiver}}" [avatar]="getImg(message)" timestamp="{{
                           (message?.createdAt !==null) ? this.utilitySrv.timeSince(message.createdAt ) : '' }}"
               text={{message.content}} [private]="false">
             </ui-comment>
-          </ng-container>
+          </ng-container> -->
         </div>
 
 
@@ -27,7 +32,7 @@
       <ng-template #noComments>
         <figure class="no-comment">
 
-          <img src="assets/images/noMsg.png" alt="no-comment">
+          <img src="assets/icons/noMsg.png" alt="no-comment">
           <span class="text mt-10">尚無對話內容</span>
         </figure>
       </ng-template>
@@ -37,16 +42,18 @@
 
   <footer #comments class="comments-footer">
 
-    <div #textarea class="textarea" contenteditable="true" data-placeholder="Leave your thoughts here"
-      (keyup)="onChange($event)">
-    </div>
+    <!-- <div #textarea class="textarea" contenteditable="true" data-placeholder="輸入訊息" (keyup)="onChange($event)">
+    </div> -->
+
+    <input type="text" class="textarea" [(ngModel)]="message" placeholder="輸入訊息" />
 
     <div class="actions">
-      <div *ngIf="isSupportPrivate" class="control-form check" (click)="onToggleChecked()">
+      <!-- <div *ngIf="isSupportPrivate" class="control-form check" (click)="onToggleChecked()">
         <input type="checkbox" [checked]="isChecked"> Private
-      </div>
-      <ui-button class="btn-outline round cancel" (click)="onClose()">Cancel</ui-button>
-      <ui-button class="btn-solid round send" (click)="onComment()">Send</ui-button>
+      </div> -->
+      <!-- <ui-button class="btn-outline round cancel" (click)="onClose()">Cancel</ui-button> -->
+      <ui-button class="btn-solid blue round send" (click)="onComment()"><img src="assets/icons/Cursor.png"
+          (click)="onCloseModal($event)" alt="no-comment">傳送</ui-button>
     </div>
 
   </footer>

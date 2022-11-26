@@ -10,15 +10,16 @@ app-member-card {
     }
 
     img {
-        width: 142px;
-        height: 194px;
+        width: 100%;
+        // width: 142px;
+        // height: 194px;
         margin-bottom: 15px;
     }
 
     .box {
         background: #FFF;
-        border-radius: 10px;
-        padding: 20px 10px;
+        border-radius: 4px;
+        // padding: 20px 10px;
         margin: 20px 0px;
         cursor: pointer;
         transition: all 0.5s ease-out;
@@ -30,6 +31,7 @@ app-member-card {
         font-size: 15px;
         line-height: 30px;
         min-height: 30px;
+        padding-bottom: 12px;
     }
 
     .fab {
