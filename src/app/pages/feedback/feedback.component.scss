@@ -82,7 +82,7 @@ app-feedback {
     .comment {
         padding: 6px 16px 6px 14px;
         background-color: #fff;
-        border-top: 2px solid #DEE2E6 !important;
+
     }
 
     .new_comment {
@@ -129,6 +129,8 @@ app-feedback {
         grid-template-rows: 1fr;
         grid-template-columns: 40px auto;
         gap: 20px;
+        padding-top: 10px;
+        border-top: 2px solid #DEE2E6 !important;
     }
 
     .category {

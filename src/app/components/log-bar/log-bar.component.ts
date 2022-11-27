@@ -12,7 +12,6 @@ import { DataService } from "../../_services";
 export class LogBarComponent implements OnInit {
   _project = null;
   @Input() set project(value) {
-    console.log("value ============", value);
     this._project = value;
   };
 

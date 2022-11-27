@@ -174,7 +174,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.socialAuthService.signIn(socialPlatformProvider).then((userData) => {
-      console.log("===============", userData);
+
       this.authStoreSrv
         .googleLogin(
           userData.id,

@@ -88,7 +88,6 @@ export class JobComponent implements OnInit {
     }
     let id = this.route.snapshot.paramMap.get("id");
     this.recruitSrv.getById(id, _userId).then(res => {
-      console.log("currentRecruit ==================", res);
       if (res['result'] == 'successful') {
         this.currentRecruit = res['data'];
 

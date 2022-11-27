@@ -58,12 +58,12 @@ export class InvitedSignupComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(" this.invitationId ========== ");
+
     this.projectId = this.route.snapshot.queryParams.projectId;
     this.email = this.route.snapshot.queryParams.email;
     this.name = this.route.snapshot.queryParams.name;
     this.invitationId = this.route.snapshot.queryParams.id;
-    console.log(" this.invitationId ========== ", this.invitationId);
+
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     this.signupForm = this.fb.group({
       name: [this.name, Validators.required],

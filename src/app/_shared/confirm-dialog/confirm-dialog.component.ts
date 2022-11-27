@@ -23,7 +23,7 @@ export class ConfirmDialogComponent implements OnInit {
      *   triggered when we call this from any other component
      */
     this.confirmDialogService.getMessage().subscribe(message => {
-      console.log("===========", message)
+
       if (!!message) {
         this.msg = message.text.replace(/(\r\n|\n|\r)/gm, '<br>');
       }

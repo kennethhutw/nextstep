@@ -50,6 +50,7 @@ export class FeedbackComponent implements OnInit {
     this.proposalSrv.getall().subscribe(res => {
       if (res["result"] == "successful") {
         this.allitems = res["data"];
+        console.log("allitems=============", this.allitems);
         // process_status
         this.processed = this.allitems.filter(item => {
           return item.process_status == "processed"

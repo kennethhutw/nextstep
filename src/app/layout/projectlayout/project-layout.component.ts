@@ -42,7 +42,6 @@ export class ProjectLayoutComponent implements OnInit {
     });
     this.router.events.subscribe((val) => {
       // see also
-      console.log(val instanceof NavigationEnd)
       if (val) {
         let _lastIndex = this.router.url.lastIndexOf("/");
         this.currentMenu = this.router.url.substring(_lastIndex + 1);

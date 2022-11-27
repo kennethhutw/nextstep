@@ -162,7 +162,6 @@ export class SignupInfoComponent implements OnInit {
         formData.append("profileImage", this.profileImageFile);
 
       this.userSrv.updateUserBasicInfo(formData).subscribe(res => {
-        console.log("=========== ", res)
         if (res['result'] == 'successful') {
           this.router.navigate(["./dashboard"], {});
         }

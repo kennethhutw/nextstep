@@ -477,12 +477,12 @@ export class RecruitComponent implements OnInit {
   }
 
   onClickApply(event) {
-    console.log("Apply ==========", event);
+
     this.selectedApplication = event;
   }
 
   onClickCollect(event) {
-    console.log("Collect ==========", event);
+
     this.viewsSrv.collect(
       event.jobId,
       "application",

@@ -63,9 +63,18 @@
                                     }}</span>
                             </div>
                             <div class="category" [ngSwitch]="item.category">
+                                <div class="dropdown" *ngIf="item.createdBy === currentUser.id"><i
+                                        class="fas fa-ellipsis-h" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="true"></i>
+                                    <div class="dropdown-menu"> <a class="dropdown-item"><i
+                                                class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</a> <a
+                                            class="dropdown-item"><i class="fas fa-trash"></i>&nbsp;&nbsp;刪除</a></div>
+
+                                </div>
                                 <ui-tag *ngSwitchCase="'improvement'" [class]="'tag-improve'" [tag]="'改善'"></ui-tag>
                                 <ui-tag *ngSwitchCase="'help'" [class]="'tag-help'" [tag]="'需要協助'"></ui-tag>
                                 <ui-tag *ngSwitchCase="'bug'" [class]="'tag-bug'" [tag]="'有錯誤'"></ui-tag>
+
                             </div>
 
 
@@ -236,10 +245,19 @@
                                     }}</span>
                             </div>
                             <div class="category" [ngSwitch]="item.category">
+                                <div class="dropdown" *ngIf="item.createdBy === currentUser.id"><i
+                                        class="fas fa-ellipsis-h" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="true"></i>
+                                    <div class="dropdown-menu"> <a class="dropdown-item"><i
+                                                class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</a> <a
+                                            class="dropdown-item"><i class="fas fa-trash"></i>&nbsp;&nbsp;刪除</a></div>
+
+                                </div>
                                 <ui-tag *ngSwitchCase="'improvement'" [class]="'tag-improve'" [tag]="'改善'"></ui-tag>
                                 <ui-tag *ngSwitchCase="'help'" [class]="'tag-help'" [tag]="'需要協助'"></ui-tag>
                                 <ui-tag *ngSwitchCase="'bug'" [class]="'tag-bug'" [tag]="'有錯誤'"></ui-tag>
                             </div>
+
                         </div>
                         <div class="col-md-12 content">
                             {{item.detail}}

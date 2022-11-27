@@ -196,7 +196,6 @@ export class MyProjectMemberComponent implements OnInit {
     let domain = window.location.origin;
     let _projectLink = domain + "/project/" + this.projectId;
     let _invitationLink = domain + "/joinproject/" + this.projectId;
-    console.log("=============", _invitationLink);
     this.invitationSrv.inviteByUid({
       projectId: this.projectId,
       userid: this.invitedUserId,

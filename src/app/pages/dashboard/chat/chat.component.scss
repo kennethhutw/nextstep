@@ -3,6 +3,11 @@
 	max-width: 900px;
 }
 
+.message_title {
+	font-size: 32px;
+	font-weight: 500;
+}
+
 .inbox_people {
 	background: #fff;
 	float: left;
@@ -15,6 +20,7 @@
 	border: 1px solid #ddd;
 	clear: both;
 	overflow: hidden;
+	display: flex;
 }
 
 .top_spac {
@@ -131,7 +137,7 @@
 }
 
 .inbox_chat {
-	height: 750px;
+	height: 100%;
 	overflow-y: scroll;
 }
 
@@ -223,17 +229,22 @@
 
 .input_msg_write input {
 	background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-	border: medium none;
 	color: #4c4c4c;
-	font-size: 15px;
-	min-height: 48px;
-	width: 100%;
+	font-size: 16px;
+	width: 70%;
 	outline: none;
+	border-radius: 4px;
+	border: 1px solid #CFD2DA;
+	padding: 8px 10px;
+	margin-right: 24px;
 }
 
 .type_msg {
-	border-top: 1px solid #c4c4c4;
+
 	position: relative;
+	// padding: 12px 14px;
+	padding-left: 32px;
+	padding-bottom: 59px;
 }
 
 .msg_send_btn {
@@ -242,7 +253,7 @@
 	border-radius: 50%;
 	color: #fff;
 	cursor: pointer;
-	font-size: 15px;
+	font-size: 16px;
 	height: 33px;
 	position: absolute;
 	right: 0;
@@ -251,7 +262,7 @@
 }
 
 .messaging {
-	padding: 0 0 50px 0;
+	padding: 44px 0 50px 0;
 }
 
 .msg_history {

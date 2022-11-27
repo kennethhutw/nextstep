@@ -97,10 +97,9 @@ export class ProfileComponent implements OnInit {
 
 
     this.route.queryParams.subscribe((params) => {
-      console.log(" ==================", params);
+
       if (params['userId']) {
         this.UserSrv.getUserInfo(params['userId']).then(res => {
-          console.log(" ==================", res);
           if (res['result'] == 'successful') {
 
           }
