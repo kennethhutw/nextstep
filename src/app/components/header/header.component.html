@@ -53,21 +53,8 @@
       </ul>
       <ul class="navbar-nav">
 
-        <!-- <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-          <i class="far fa-user-circle par-5 icon"></i>
-        </li> -->
       </ul>
-      <!--
-      <li class="nav-item dropdown">
-        <a class="nav-link" [routerLink]="['/Notification']">
-          <i class="far fa-bell" style="font-size: 24px;"></i>
-          <span
-            [style.display]="this.userInvites + this.numOfToDo + postNotifications.length + programNotifications.length  > 0 ? 'block' : 'none'"
-            class="badge fa-inverse">
-            1
-          </span>
-        </a>
-      </li> -->
+
 
       <ul *ngIf="authStoreSrv.isLoggedIn$ | async" class="navbar-nav ml-auto nav-flex-icons">
         <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
@@ -76,52 +63,37 @@
         </li>
 
         <li class="nav-item p-8" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
-          id="navbarNotifDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          id="navbarNotifDropdown" style="position:relative;" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="true">
           <!--           <a class="nav-link" routerLink="/notifications"> <i class="far fa-bell icon"></i></a> -->
           <i class="far fa-bell icon noti"> <span *ngIf="notiNum>0" class="notification-dot"></span></i>
-          <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary notification-box"
-            aria-labelledby="navbarNotifDropdown">
-            <ng-container *ngIf="notis">
-              <ng-container *ngFor="let noti of  notis; let i = index">
-                <a *ngIf="i<5" class="notification" routerLink="/dashboard/notifications">
-                  <i class="fas fa-bell"></i>
-                  <div class="notifciation-row">
-                    <span> {{noti?.content.length>15?noti?.content.substring(0,15)+"...":noti?.content}}</span>
-                    <span>{{noti.createdAt | date : "dd/MM/y"}}</span>
-                  </div>
-                </a>
+          <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary " aria-labelledby="navbarNotifDropdown">
+            <div class="notification-box">
+              <ng-container *ngIf="notis">
+                <ng-container *ngFor="let noti of  notis; let i = index">
+                  <a *ngIf="i<5" class="notification" routerLink="/dashboard/notifications">
+                    <i class="fas fa-bell m--auto"></i>
+                    <div class="notifciation-row">
+                      <span> {{noti?.content.length>15?noti?.content.substring(0,15)+"...":noti?.content}}</span>
+                      <span class="notifciation-date"> {{(noti?.createdAt !==null) ?
+                        this.utility.timeSince(noti.createdAt ) : ''
+                        }}</span>
+                    </div>
+                  </a>
+                </ng-container>
               </ng-container>
-            </ng-container>
-            <!-- <a class="notification" routerLink="/dashboard/notifications">
-              <i class="fas fa-bell"></i>
-              <div class="notifciation-row">
-                <span>[帳號]3333提出加入[專案名稱]申請</span>
-                <span>剛剛</span>
-              </div>
-            </a>
-            <a class="notification" routerLink="/dashboard/notifications">
-              <i class="fas fa-bell"></i>
-              <div class="notifciation-row">
-                <span>[帳號]提出加入[專案名稱]申請</span>
-                <span>5分鐘前</span>
-              </div>
-            </a>
-            <a class="notification" routerLink="/dashboard/notifications">
-              <i class="fas fa-bell"></i>
-              <div class="notifciation-row">
-                <span>[帳號]提出加入[專案名稱]申請</span>
-                <span>1小時前</span>
-              </div>
-            </a> -->
-            <a routerLink="/dashboard/notifications" class="text-center">查看更多</a>
+
+              <a routerLink="/dashboard/notifications" class="text-center">查看更多</a>
+            </div>
           </div>
         </li>
         <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link" routerLink="/messages"> <i class="far fa-comment-dots icon"></i></a>
+          <a class="nav-link" routerLink="/messages"> <i class="far fa-comment-dots icon"><span *ngIf="notiNum>0"
+                class="notification-dot"></span></i></a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle gray" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle color-gray" href="#" id="navbarDropdown" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-user-circle par-5 icon"></i>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">

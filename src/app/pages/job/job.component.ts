@@ -22,48 +22,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ["./job.component.scss"]
 })
 export class JobComponent implements OnInit {
-  items = [{
-    name: "Kenneth",
-    position: "Software developer",
-    imageUrl: "https://bootdey.com/img/Content/avatar/avatar2.png",
-    isFavortie: false,
-    isFollow: false,
-    description: "添加到收藏夹",
-    tags: [
-      "full-stack",
-      "blockchain"
-    ]
-
-  },
-  {
-    name: "Anne",
-    position: "UI/UX designer",
-    imageUrl: "https://bootdey.com/img/Content/avatar/avatar3.png",
-    isFavortie: true,
-    isFollow: false,
-    description: "添加到收藏夹",
-    tags: [
-      "UI/UX",
-      "Front-end"
-    ]
-  },
-  {
-    name: "Ken",
-    position: "DevOps developer",
-    imageUrl: "https://bootdey.com/img/Content/avatar/avatar4.png",
-    isFavortie: false,
-    isFollow: false,
-    description: "添加到收藏夹",
-    tags: [
-      "DevOps ",
-      "IT"
-    ]
-  }];
+  items = [];
   currentUser = null;
   currentRecruit;
   selectedItem;
   isChat: boolean = false;
   projectOwner;
+  skillOptions: any[] = [];
   constructor(
     private settingSrv: SettingService,
     private recruitSrv: RecruitService,
@@ -75,7 +40,7 @@ export class JobComponent implements OnInit {
     private SpinnerService: NgxSpinnerService,
     public toastr: ToastService
   ) {
-
+    this.skillOptions = this.appSettingsSrv.skillOptions();
   }
 
   ngOnInit() {
@@ -90,6 +55,10 @@ export class JobComponent implements OnInit {
     this.recruitSrv.getById(id, _userId).then(res => {
       if (res['result'] == 'successful') {
         this.currentRecruit = res['data'];
+        if (!this.utility.IsNullOrEmpty(this.currentRecruit.skills)) {
+          this.currentRecruit.skills = this.currentRecruit.skills.split(',');
+        }
+        console.log("currentRecruit ====", this.currentRecruit)
 
       }
       this.SpinnerService.hide();
@@ -99,7 +68,6 @@ export class JobComponent implements OnInit {
     })
   }
 
-  onSave() { }
 
   onSelectItem(item) {
     this.selectedItem = item;
@@ -189,6 +157,47 @@ export class JobComponent implements OnInit {
 
   onToggleChat(event) {
     this.isChat = !this.isChat;
+  }
+  onClickJobCollect(recruitId, isCollected) {
+    if (isCollected) {
+      this.viewsService.unCollect(
+        recruitId,
+        "job",
+        this.currentUser.id
+      ).then(res => {
+        if (res['result'] == 'successful') {
+          let _index = this.currentRecruit.others.findIndex((obj => obj.id == recruitId));
+          this.currentRecruit.others[_index].isCollected = false;
+
+          this.toastr.showToast('Success', "取消收藏成功 ", this.toastr.iconClasses.success);
+        } else {
+          this.toastr.showToast('Failed', "取消收藏失敗", this.toastr.iconClasses.error);
+        }
+      });
+    } else {
+      this.viewsService.collect(
+        recruitId,
+        "job",
+        this.currentUser.id
+      ).then(res => {
+        if (res['result'] == 'successful') {
+
+          let _index = this.currentRecruit.others.findIndex((obj => obj.id == recruitId));
+          this.currentRecruit.others[_index].isCollected = true;
+          this.toastr.showToast('Success', "收藏成功 ", this.toastr.iconClasses.success);
+        } else {
+          this.toastr.showToast('Failed', "收藏失敗", this.toastr.iconClasses.error);
+        }
+      });
+    }
+
+  }
+
+  convertTag(term) {
+    let _term = this.skillOptions.find(option => option.value == term.toLowerCase());
+    if (_term) {
+      return _term.text;
+    }
   }
 }
 //https://www.sliderrevolution.com/resources/bootstrap-profile/

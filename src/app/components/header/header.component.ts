@@ -44,6 +44,7 @@ export class HeaderComponent implements OnInit {
   uid = "";
 
   notiNum = 0;
+  msgNum = 0;
   notis;
   constructor(
     private utility: Utility,

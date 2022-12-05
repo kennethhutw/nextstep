@@ -93,6 +93,7 @@ a.nav-link.active {
   color: #347A9F !important;
 }
 
+
 .signout {
   color: #210b2c;
   font-size: 18px;
@@ -108,11 +109,10 @@ a.nav-link.active {
   color: #8F95A8;
 }
 
-.gray {
-  color: #8F95A8 !important;
-}
+
 
 .notification-box {
+  display: grid;
   padding: 16px 16px;
   min-width: max-content;
   gap: 16px;
@@ -124,12 +124,21 @@ a.nav-link.active {
 .notification {
   display: flex;
   gap: 10px;
+  color: #424B61 !important;
+
+  .notifciation-row {
+    display: grid;
+    grid-auto-flow: row;
+    padding-right: 20px;
+
+    .notifciation-date {
+      color: #8F95A8 !important;
+      font-size: 12px;
+    }
+  }
 }
 
-.notifciation-row {
-  display: grid;
-  grid-auto-flow: row;
-}
+
 
 .notification-dot {
   height: 12px;
@@ -154,9 +163,9 @@ a.nav-link.active {
 }
 
 .dropdown-item.active {
-  color: #fff !important;
+  color: #459CCA !important;
   text-decoration: none;
-  background-color: #56BDF4;
+  background-color: transparent;
 }
 
 

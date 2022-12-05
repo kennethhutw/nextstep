@@ -37,11 +37,20 @@
 <div *ngIf="currentRecruit" class="row">
   <div class="col-md-8">
     <div class="row">
-      <div class="col-md-12 mb-24">
+      <div class="col-md-12 frame-title">
         <span class="title">職缺簡介</span>
+
       </div>
       <div class="col-md-12 frame-news">
-        <span>{{this.currentRecruit.skills? this.currentRecruit.skills :'skills'}}</span>
+        <p>
+          <small class="mt-10 inline-flex">
+            <ng-container *ngIf="currentRecruit.skills">
+              <ng-container *ngFor=" let tag of currentRecruit.skills; let i=index">
+                <span *ngIf="!this.utility.IsNullOrEmpty(tag)" class="tag tag-{{tag}} mr--5">{{convertTag(tag)}}</span>
+              </ng-container>
+            </ng-container>
+          </small>
+        </p>
         <span>{{this.currentRecruit.scopes? this.currentRecruit.scopes :'職缺名稱'}}</span>
       </div>
     </div>
@@ -49,7 +58,10 @@
       <div class="col-md-12 mb-24">
         <span class="title">此專案其他職缺</span>
       </div>
-      <ng-container *ngIf="this.currentRecruit?.others">
+      <div class="row frame empty text-center" *ngIf="!this.currentRecruit.projectOthers">
+        此專案目前沒有招募成員.
+      </div>
+      <ng-container *ngIf="this.currentRecruit?.projectOthers">
         <ng-container *ngFor="let item of  this.currentRecruit.projectOthers; let i = index">
           <div class="frame" [ngClass]="{'mt-10':i>1}">
             <a class="clickable" [routerLink]="['/job/',item.id ]">
@@ -83,19 +95,28 @@
         <span class="title">其他職缺</span>
       </div>
     </div>
+    <div class="row frame empty text-center" *ngIf="!this.currentRecruit.others">
+      沒有職缺
+    </div>
     <ng-container *ngIf="this.currentRecruit?.others">
       <ng-container *ngFor="let item of  this.currentRecruit.others; let i = index">
         <div class="row frame" [ngClass]="{'mt-10':i>1}">
           <a class="clickable" [routerLink]="['/job/',item.id ]">
             <div class="col-md-12" style="display: inline-flex;">
-              <div class="col-md-8">
+              <div class="col-md-8  pl-0">
                 <p class="position"><b>{{item.position}}</b></p>
-                <small>{{item.skills}}</small>
+                <!-- <small>{{item.skills}}</small> -->
               </div>
               <div class="col-md-4 btn_items">
-                <a href="#"> <i class="far fa-bookmark"></i></a>
-                <a href="#" data-toggle="modal" data-target="#modal_apply" data-dismiss="modal"
-                  (click)="onSelectItem(item)"> <i class="far fa-envelope"></i></a>
+                <!-- <a href="#"> <i class="far fa-bookmark"></i></a> -->
+                <i *ngIf="item.isCollected" (click)="onClickJobCollect(item.id, item.isCollected)"
+                  class="fas fa-bookmark collected"></i>
+                <i *ngIf="!item.isCollected" (click)="onClickJobCollect(item.id, item.isCollected)"
+                  class="far fa-bookmark color-gray"></i>
+                <i class="far fa-envelope color-gray" data-toggle="modal" data-target="#modal_apply"
+                  data-dismiss="modal" (click)="onSelectItem(item)"></i>
+                <!-- <a href="#" data-toggle="modal" data-target="#modal_apply" data-dismiss="modal"
+                  (click)="onSelectItem(item)"> <i class="far fa-envelope"></i></a> -->
               </div>
             </div>
           </a>

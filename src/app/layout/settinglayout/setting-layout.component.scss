@@ -78,13 +78,7 @@ app-setting {
     fill: #FF859A !important;
   }
 
-  .menu-icon {
-    margin-right: 5px;
-  }
 
-  .menu-icon svg {
-    fill: #56BDF4;
-  }
 
   .menu-item {
     font-size: 16px !important;
@@ -92,6 +86,9 @@ app-setting {
   }
 
   a:hover {
+
+    color: #FF859A !important;
+    text-decoration: none !important;
 
     svg-icon.icon {
       svg g path {

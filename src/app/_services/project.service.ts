@@ -94,4 +94,13 @@ export class ProjectService {
             .toPromise();
     }
 
+    updateImage(id, params) {
+        return this.http.put(`${environment.apiUrl}/projects/profileImage/${id}`, params);
+    }
+
+    updateCover(id, params) {
+        return this.http.put(`${environment.apiUrl}/projects/profileCover/${id}`, params);
+    }
+
+
 }

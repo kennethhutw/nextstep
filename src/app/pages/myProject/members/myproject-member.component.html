@@ -61,7 +61,7 @@
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'current' }" id="home" role="tabpanel"
                     aria-labelledby="home-tab">
                     <div class="empty text-center" *ngIf="current.length ===0">
-                        There are no member.
+                        此專案目前沒有成員.
                     </div>
                     <ng-container *ngIf="current.length >0">
                         <ng-container *ngFor="let member of  current; let i = index">

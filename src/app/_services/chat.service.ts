@@ -27,6 +27,11 @@ export class ChatService {
         );
     }
 
+    getUnreadNum(uid) {
+        return this.http.get<any>(`${environment.apiUrl}/chat/unreadnum/:uid`
+        );
+    }
+
     insert(params) {
         return this.http.post(`${environment.apiUrl}/chat`, params);
     }

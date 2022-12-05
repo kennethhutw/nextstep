@@ -3,12 +3,12 @@ import {
   ViewEncapsulation,
   Component,
   OnInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef
+
 } from '@angular/core';
 import {
   ProposalService,
-  CommentsService
+  CommentsService,
+  DialogService,
 } from 'src/app/_services';
 import {
   AuthStore
@@ -31,6 +31,7 @@ export class FeedbackComponent implements OnInit {
   processed: any[] = [];
   myproposals: any[] = [];
   editedItem = null;
+  editedProposal = null;
   commentContent: string = "";
 
   replyComment: string = "";
@@ -41,7 +42,8 @@ export class FeedbackComponent implements OnInit {
     private utilitySrv: Utility,
     private authStoreSrv: AuthStore,
     private proposalSrv: ProposalService,
-    private CommentsSrv: CommentsService
+    private CommentsSrv: CommentsService,
+    private dialogSrv: DialogService,
   ) {
   }
 
@@ -50,7 +52,6 @@ export class FeedbackComponent implements OnInit {
     this.proposalSrv.getall().subscribe(res => {
       if (res["result"] == "successful") {
         this.allitems = res["data"];
-        console.log("allitems=============", this.allitems);
         // process_status
         this.processed = this.allitems.filter(item => {
           return item.process_status == "processed"
@@ -69,16 +70,6 @@ export class FeedbackComponent implements OnInit {
         });
       }
     })
-    // if (this.currentUser) {
-
-    // } else {
-    //   this.proposalSrv.getall().subscribe(res => {
-    //     console.log("init proposal =======", res);
-    //     if (res["result"] == "successful") {
-    //       this.allitems = res["data"];
-    //     }
-    //   })
-    // }
 
   }
 
@@ -89,7 +80,6 @@ export class FeedbackComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("onSubmit")
     if (!this.utilitySrv.IsNullOrEmpty(this.propsoalContent)
       && !this.utilitySrv.IsNullOrEmpty(this.proposaltype)
       && this.currentUser) {
@@ -101,6 +91,60 @@ export class FeedbackComponent implements OnInit {
         console.log("error", error);
       })
     }
+  }
+
+  onDeleteSubmit(item) {
+
+    const _item = item;
+    this.dialogSrv.confirmThis("確認要刪除此筆資料", () => {
+      this.proposalSrv.delete(_item.id, this.currentUser.id).then(res => {
+        if (res['result'] == "successful") {
+
+          this.myproposals = this.myproposals.filter(obj => {
+            return obj.id !== _item.id
+          })
+          this.allitems = this.allitems.filter(obj => {
+            return obj.id !== _item.id
+          })
+        }
+      }, (error) => {
+        console.log("error", error);
+      })
+    }, () => {
+
+    })
+
+  }
+
+  onModified(item) {
+    this.editedProposal = item;
+    this.proposaltype = item.category;
+    this.propsoalContent = item.detail;
+  }
+
+  onModifiedSubmit() {
+    console.log("onModifiedSubmit")
+    this.proposalSrv.update(this.editedProposal.id,
+      this.proposaltype,
+      this.propsoalContent,
+      this.proposaltype, this.currentUser.id).subscribe(res => {
+        if (res['result'] == "successful") {
+          let objIndex = this.allitems.findIndex((obj => obj.id == this.editedProposal.id));
+          this.allitems[objIndex].detail = this.propsoalContent;
+          this.allitems[objIndex].category = this.proposaltype;
+          this.propsoalContent = "";
+          this.proposaltype = "";
+          document.getElementById("close_modify_proposl").click();
+          this.editedProposal = null;
+          if (this.currentTab === 'myproposal') {
+            this.myproposals = this.allitems.filter(item => {
+              return item.createdBy == this.currentUser.id
+            })
+          }
+        }
+      }, (error) => {
+        console.log("error", error);
+      })
   }
 
   changeTab(tab) {
@@ -117,6 +161,15 @@ export class FeedbackComponent implements OnInit {
   show_comment(items, item) {
     items[item.id] = !items[item.id];
   }
+
+  delete_comment(items, item) {
+
+  }
+
+  modify_comment(items, item) {
+
+  }
+
   onCommentSubmit() {
     if (!this.utilitySrv.IsNullOrEmpty(this.commentContent)
 
@@ -128,6 +181,7 @@ export class FeedbackComponent implements OnInit {
             this.allitems[objIndex].comments.push(res['data']);
             this.editedItem = "";
             document.getElementById("close_new_comment").click();
+
           }
         }, (error) => {
           console.log("error", error);

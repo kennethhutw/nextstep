@@ -337,6 +337,14 @@
   padding-bottom: 30px;
 }
 
+.m--auto {
+  margin: auto;
+}
+
+.mt--5 {
+  margin-top: 5px;
+}
+
 .mt-10 {
   margin-top: 10px;
 }
@@ -680,21 +688,17 @@ nav {
 }
 
 a {
-  color: #08ab65;
+  color: #4395E7;
   /* color:#000000 !important; */
 }
 
 .active {
   color: #56BDF4 !important;
-
 }
 
 a:hover {
-  // background-color: #FF859A !important;
-  // border: 1px solid #FF859A !important;
   color: #FF859A !important;
   text-decoration: none !important;
-
 }
 
 /** input placeholder消失 **/
@@ -1909,12 +1913,12 @@ box-shadow:0 0 5px #fff;
   color: #dc3545;
 }
 
-.mr-10 {
-  margin-right: 10px;
+.mr--5 {
+  margin-right: 5px;
 }
 
-.mt-10 {
-  margin-top: 10px;
+.mr-10 {
+  margin-right: 10px;
 }
 
 .mt-12 {
@@ -2013,6 +2017,7 @@ input[type=radio] {
   font-weight: 400;
   border-radius: 100px;
   background-color: #C0DAFE;
+  word-break: keep-all;
 }
 
 .tag-bd {
@@ -2170,4 +2175,12 @@ input[type=radio] {
 
 .color-black {
   color: #424B61;
+}
+
+.collected {
+  color: #56BDF4;
+}
+
+.dropdown-item:hover {
+  background-color: transparent !important;
 }

@@ -18,6 +18,22 @@ export class ProposalService {
       });
   }
 
+  async delete(id, uid) {
+    return await this.http.delete(`${environment.apiUrl}/proposal/${id}/${uid}`,
+      {
+      }).toPromise();;
+  }
+
+  update(id, title, detail, category, uid) {
+    return this.http.put(`${environment.apiUrl}/proposal/${id}`,
+      {
+        title,
+        detail,
+        category,
+        uid
+      });
+  }
+
   getall() {
     return this.http.get(`${environment.apiUrl}/proposal/getall`);
   }

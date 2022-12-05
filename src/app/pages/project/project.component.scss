@@ -15,6 +15,28 @@
     height: 200px;
     overflow: hidden;
     z-index: 1;
+
+    .icon {
+        width: 21px !important;
+    }
+
+    .btn-cover {
+        position: absolute;
+        top: 80%;
+        left: 85%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        background-color: white;
+
+        cursor: pointer;
+        border-radius: 5px;
+        color: #56BDF4 !important;
+        border: 1px solid #56BDF4 !important;
+        border-radius: 4px !important;
+        padding: 3px 6px 3px 6px !important;
+        font-size: 16px;
+        z-index: 10;
+    }
 }
 
 #profile-banner-image img {

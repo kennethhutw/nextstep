@@ -1,17 +1,28 @@
 <div *ngIf="currentProject" id="profile-upper">
   <div id="profile-banner-image">
-    <img src="https://imagizer.imageshack.com/img921/9628/VIaL8H.jpg" alt="Banner image">
+    <img (error)="onCoverImgError($event)" src="{{this.currentProject.coverUrl}}" alt="cover image">
+    <a *ngIf="currentProject?.owner == currentUser?.id" type="button" class="btn-cover" for="profileCover"
+      (click)="profileCover.click()">
+      <svg-icon src="./assets/icons/edit.svg"></svg-icon> 編輯封面相片
+    </a>
+    <input id="profileCover" #profileCover type="file" accept="image/gif, image/jpg, image/jpeg, image/png, image/gif"
+      (change)="onUploadProfileCover($event)" />
   </div>
   <div id="profile-d">
     <div id="profile-pic">
-      <img src="https://imagizer.imageshack.com/img921/3072/rqkhIb.jpg">
+      <!-- <img src="https://imagizer.imageshack.com/img921/3072/rqkhIb.jpg"> -->
+      <img (error)="onImgError($event)" src="{{currentProject.imageUrl}}">
     </div>
     <!--  <div id="u-name">Himalaya Singh</div> -->
 
-    <div *ngIf="currentProject?.owner == currentUser?.id" id="edit-profile"><i class="material-icons">camera_alt</i>
+    <div *ngIf="currentProject?.owner == currentUser?.id" id="edit-profileImage" for="profileImage"
+      (click)="profileImage.click()"><i class="material-icons">camera_alt</i>
     </div>
+    <input id="profileImage" #profileImage type="file" accept="image/gif, image/jpg, image/jpeg, image/png, image/gif"
+      (change)="onUploadProfileImage($event)" style="display: none; padding: 0px" />
   </div>
   <div id="black-grd"></div>
+
 </div>
 <div *ngIf="currentProject" class="row mt-24">
   <div class="col-md-3 text-right">
@@ -21,7 +32,7 @@
     <h1>{{this.currentProject?.name}}</h1>
   </div>
 
-  <div class="col-md-4 text-right  btn_items">
+  <div class="col-md-4 text-right  btn_items" *ngIf="currentUser">
     <button type="button" class="btn btn_item" [ngClass]="{'btn_item_selected': currentProject?.isCollected === true}"
       *ngIf="currentProject?.owner !== currentUser?.id" (click)="onClickCollect()"><i class="far fa-bookmark fa-lg"></i>
       {{currentProject?.isCollected === true ? "已收藏" : "收藏"}} </button>
@@ -116,7 +127,7 @@
               <ng-container *ngFor="let log of currentProject.logs; let i = index">
                 <div class="col-md-12 history">
 
-                  <span style="color:#8F95A8">{{log.createdAt | date:"yyyy-MM-dd"}}</span><span
+                  <span class="color-gray">{{log.createdAt | date:"yyyy-MM-dd"}}</span><span
                     class="dot"></span><span>{{log.content}}</span>
                 </div>
               </ng-container>
@@ -160,18 +171,31 @@
         <span class="title mb-24">專案成員募集中</span>
       </div>
     </div>
+    <div class="row frame empty text-center" *ngIf="!this.currentProject.recruit">
+      此專案目前沒有招募成員.
+    </div>
     <ng-container *ngIf="this.currentProject?.recruit">
+
       <ng-container *ngFor="let item of  this.currentProject.recruit; let i = index">
         <div class="row frame" [ngClass]="{'mt-10':i>1}">
 
           <div class="col-md-12" style="display: inline-flex;">
             <div class="col-md-8 pl-0">
               <p class="position"><b>{{item.position}}</b></p>
-              <small>{{item.skills}}</small>
+              <!-- <small>
+                <ng-container *ngIf="item.skills ">
+                  <ng-container *ngFor=" let tag of item.skills; let i=index">
+                    <span *ngIf="!this.utility.IsNullOrEmpty(tag)"
+                      class="tag tag-{{tag}} mr--5">{{convertTag(tag)}}</span>
+                  </ng-container>
+                </ng-container>
+              </small> -->
             </div>
-            <div class="col-md-4 btn_items pr-0">
-              <i *ngIf="item.isCollect" (click)="onClickUnCollect()" class="fas fa-bookmark color-gray"></i>
-              <i *ngIf="!item.isCollect" (click)="onClickCollect()" class="far fa-bookmark color-gray"></i>
+            <div *ngIf="currentUser" class="col-md-4 btn_items pr-0">
+              <i *ngIf="item.isCollected" (click)="onClickJobCollect(item.id, item.isCollected)"
+                class="fas fa-bookmark collected"></i>
+              <i *ngIf="!item.isCollected" (click)="onClickJobCollect(item.id, item.isCollected)"
+                class="far fa-bookmark color-gray"></i>
               <i class="far fa-envelope color-gray" data-toggle="modal" data-target="#modal_apply" data-dismiss="modal"
                 (click)="onSelectItem(item)"></i>
             </div>

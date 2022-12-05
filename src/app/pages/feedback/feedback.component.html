@@ -66,9 +66,11 @@
                                 <div class="dropdown" *ngIf="item.createdBy === currentUser.id"><i
                                         class="fas fa-ellipsis-h" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="true"></i>
-                                    <div class="dropdown-menu"> <a class="dropdown-item"><i
+                                    <div class="dropdown-menu"> <a class="dropdown-item" data-toggle="modal"
+                                            [attr.data-target]="'#modifiedproposal'" (click)="onModified(item)"><i
                                                 class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</a> <a
-                                            class="dropdown-item"><i class="fas fa-trash"></i>&nbsp;&nbsp;刪除</a></div>
+                                            class="dropdown-item" (click)="onDeleteSubmit(item)"><i
+                                                class="fas fa-trash"></i>&nbsp;&nbsp;刪除</a></div>
 
                                 </div>
                                 <ui-tag *ngSwitchCase="'improvement'" [class]="'tag-improve'" [tag]="'改善'"></ui-tag>
@@ -250,7 +252,8 @@
                                         aria-expanded="true"></i>
                                     <div class="dropdown-menu"> <a class="dropdown-item"><i
                                                 class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</a> <a
-                                            class="dropdown-item"><i class="fas fa-trash"></i>&nbsp;&nbsp;刪除</a></div>
+                                            class="dropdown-item" (click)="onDeleteSubmit(item)"><i
+                                                class="fas fa-trash"></i>&nbsp;&nbsp;刪除</a></div>
 
                                 </div>
                                 <ui-tag *ngSwitchCase="'improvement'" [class]="'tag-improve'" [tag]="'改善'"></ui-tag>
@@ -362,6 +365,45 @@
     </div>
 </div>
 
+<div class="modal fade" id="modifiedproposal" tabindex="-1" aria-labelledby="modifiedproposal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="proposal-title">分享您的體驗，讓我們能更清楚進步的方向</p>
+                <button type="button" id="close_modify_proposl" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body content">
+                <!-- <div class="row item-center">
+
+                </div> -->
+                <div class="ctl-center ">
+                    <select class="form-control" style="width: 150px;" [value]="proposaltype"
+                        (change)="onTypeChange($event)">
+                        <option value="">請選擇</option>
+                        <option value="improvement">建議改善</option>
+                        <option value="bug">有錯誤</option>
+                        <option value="help">需要協助</option>
+                    </select>
+                </div>
+                <div class="row item-center">
+                    <textarea class="form-control w-96" type="text" [(ngModel)]="propsoalContent" id="" rows="4"
+                        cols="50"></textarea>
+                </div>
+                <div class="row item-end">
+                    <button type="button" class="btn btn-white  mr-10" data-dismiss="modal" aria-label="Close">取消
+                    </button>
+                    <button type="button" class="btn btn-blue  mr-10" (click)="onModifiedSubmit()">
+                        更新</button>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="new_comment" tabindex="-1" aria-labelledby="new_comment" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -392,3 +434,4 @@
         </div>
     </div>
 </div>
+<app-dialog></app-dialog>

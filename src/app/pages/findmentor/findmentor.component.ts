@@ -266,7 +266,7 @@ export class FindMentorComponent implements OnInit {
   }
 
   onClickFollow(event) {
-    console.log("=============", event);
+
     this.viewsSrv.follow(
       event.userId,
       "user",

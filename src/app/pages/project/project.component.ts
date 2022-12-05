@@ -38,10 +38,10 @@ export class ProjectComponent implements OnInit {
   isChat: boolean = false;
   projectOwner = null;
 
-
+  skillOptions: any[] = [];
   currentTab: string = "history";
   constructor(
-    private ProjectSrv: ProjectService,
+    private projectSrv: ProjectService,
     private pagerSrv: PagerService,
     private authStore: AuthStore,
     private likeSrv: LikeService,
@@ -55,7 +55,7 @@ export class ProjectComponent implements OnInit {
     public toastr: ToastService
   ) {
     this.defaultProfileLogo = this.settingSrv.defaultProfileLogo;
-
+    this.skillOptions = this.appSettingsSrv.skillOptions();
   }
 
   ngOnInit() {
@@ -67,7 +67,7 @@ export class ProjectComponent implements OnInit {
     if (this.currentUser && this.currentUser.id) {
       _id = this.currentUser.id;
     }
-    this.ProjectSrv.getProject(this.projectId, _id).then(res => {
+    this.projectSrv.getProject(this.projectId, _id).then(res => {
       console.log("getProject ======", res);
       if (res['result'] == 'successful') {
         this.currentProject = res['data'];
@@ -82,6 +82,23 @@ export class ProjectComponent implements OnInit {
             this.projectOwner.projectId = this.projectOwner.id;
             this.projectOwner.id = this.projectOwner.userId;
           }
+
+          if (this.currentProject.recruit) {
+            this.currentProject.recruit.forEach(element => {
+              if (!this.utility.IsNullOrEmpty(element.skills)) {
+                element.skills = element.skills.split(',');
+              }
+            });
+          }
+        }
+        if (this.utility.IsNullOrEmpty(this.currentProject.imageUrl)) {
+          this.currentProject.imageUrl = this.defaultProfileLogo;
+        } else {
+          this.currentProject.imageUrl = environment.assetUrl + this.currentProject.imageUrl;
+        }
+        if (!this.utility.IsNullOrEmpty(this.currentProject.coverUrl)) {
+
+          this.currentProject.coverUrl = environment.assetUrl + this.currentProject.coverUrl;
         }
       }
       let _id = null;
@@ -114,9 +131,6 @@ export class ProjectComponent implements OnInit {
       this.SpinnerService.hide();
     })
   }
-
-
-
 
   onApply(application) {
     this.selectedApplication = application;
@@ -155,7 +169,6 @@ export class ProjectComponent implements OnInit {
     this.closebutton.nativeElement.click();
   }
 
-  onSave() { }
   IsNullorEmpty(value) {
     return !this.utility.IsNullOrEmpty(value)
   }
@@ -253,6 +266,102 @@ export class ProjectComponent implements OnInit {
   changeTab(tab) {
     this.currentTab = tab;
   }
+
+  convertTag(term) {
+    let _term = this.skillOptions.find(option => option.value == term.toLowerCase());
+    if (_term) {
+      return _term.text;
+    }
+  }
+
+
+  onClickJobCollect(recruitId, isCollected) {
+    if (isCollected) {
+      this.viewsService.unCollect(
+        recruitId,
+        "job",
+        this.currentUser.id
+      ).then(res => {
+        if (res['result'] == 'successful') {
+          let _index = this.currentProject.recruit.findIndex((obj => obj.id == recruitId));
+          this.currentProject.recruit[_index].isCollected = false;
+
+          this.toastr.showToast('Success', "取消收藏成功 ", this.toastr.iconClasses.success);
+        } else {
+          this.toastr.showToast('Failed', "取消收藏失敗", this.toastr.iconClasses.error);
+        }
+      });
+    } else {
+      this.viewsService.collect(
+        recruitId,
+        "job",
+        this.currentUser.id
+      ).then(res => {
+        if (res['result'] == 'successful') {
+
+          let _index = this.currentProject.recruit.findIndex((obj => obj.id == recruitId));
+          this.currentProject.recruit[_index].isCollected = true;
+          this.toastr.showToast('Success', "收藏成功 ", this.toastr.iconClasses.success);
+        } else {
+          this.toastr.showToast('Failed', "收藏失敗", this.toastr.iconClasses.error);
+        }
+      });
+    }
+
+  }
+
+  onUploadProfileImage(event) {
+
+    if (event.target.files.length === 0)
+      return;
+
+    var mimeType = event.target.files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      return;
+    }
+
+    let formData = new FormData();
+    formData.append("id", this.currentProject.id);
+    formData.append("uid", this.currentUser.id);
+    formData.append("file", event.target.files[0]);
+
+    this.projectSrv.updateImage(this.currentProject.id, formData).subscribe(res => {
+      if (res['result'] == 'successful') {
+        this.currentProject.imageUrl = environment.assetUrl + res["data"];
+      } else {
+        this.currentProject.imageUrl = this.defaultProfileLogo;
+      }
+    })
+  }
+
+  onUploadProfileCover(event) {
+
+    if (event.target.files.length === 0)
+      return;
+
+    var mimeType = event.target.files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      return;
+    }
+
+    let formData = new FormData();
+    formData.append("id", this.currentProject.id);
+    formData.append("uid", this.currentUser.id);
+    formData.append("file", event.target.files[0]);
+    this.projectSrv.updateCover(this.currentProject.id, formData).subscribe(res => {
+      if (res['result'] == 'successful') {
+        this.currentProject.coverUrl = environment.assetUrl + res["data"];
+      } else {
+        this.currentProject.coverUrl = "https://imagizer.imageshack.com/img921/9628/VIaL8H.jpg";
+      }
+    })
+  }
+
+  onCoverImgError(event) {
+    event.target.src = "https://imagizer.imageshack.com/img921/9628/VIaL8H.jpg";
+  }
+
+
 
 }
 //https://www.sliderrevolution.com/resources/bootstrap-profile/
