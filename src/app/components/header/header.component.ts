@@ -180,21 +180,6 @@ export class HeaderComponent implements OnInit {
     return this.signinEmailForm.invalid;
   }
 
-  walletSignup() {
-    // if (this.web3Srv.ethEnabled()) {
-    //   this.web3Srv.getAccountDetail().then(
-    //     (data) => {
-    //       console.log("User", data);
-    //       this.userSrv.walletSignin(data.address).subscribe((result) => {});
-    //     },
-    //     (error) => {
-    //       console.log("getAccountDetail error", error);
-    //     }
-    //   );
-    // } else {
-    //   console.warn("Metamask not found Install or enable Metamask");
-    // }
-  }
 
 
 
@@ -276,9 +261,6 @@ export class HeaderComponent implements OnInit {
       });
   }
 
-
-
-
   onNext() {
     this.artistStep += 1;
   }
@@ -287,17 +269,6 @@ export class HeaderComponent implements OnInit {
     this.collectorStep += 1;
   }
 
-  GotoArtist() {
-    this.collectorStep = 0;
-    this.artistStep = 0;
-    this.router.navigate(['/artist/account', { first: 'true' }], {});
-  }
-
-  GotoCollector() {
-    this.collectorStep = 0;
-    this.artistStep = 0;
-    this.router.navigate(['/collector/account', { first: 'true' }], {});
-  }
 
   ToggleNavBar() {
 

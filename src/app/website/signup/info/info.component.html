@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-12">
 
-                    <span style="font-size: 2rem;">個人資料</span>
+                    <span class="title">個人資料</span>
                 </div>
                 <div class="col-md-12 mt-2 mb-2 align-items-center" id="select_img">
                     <input id="profileImage" type="file" accept="image/gif, image/jpg, image/jpeg, image/png, image/gif"
@@ -89,11 +89,7 @@
                     </form>
 
                 </div>
-                <!--  <div class="col-md-12 mt-2 mb-2">
-                     <button type="button" class="btn ">
-                                    < Back</button>
-                    <button type="button" (click)="NextStep(1)" class="btn btn-continue float-right">Continue</button>
-                </div>-->
+
             </div>
         </div>
         <div class="col-sm-3">
@@ -103,16 +99,15 @@
     <div class="row mt-60" *ngIf="step==1">
         <div class="col-md-12">
 
-            <p style="font-size: 2rem;font-weight: 500;">Hi {{name}},很高興見到您!</p>
-            <p style="font-size: 2rem;font-weight: 500;">你最想在NEXT STEP做什麼事呢?(可複選)</p>
+            <p class="title">Hi {{name}},很高興見到您!</p>
+            <p class="title">你最想在NEXT STEP做什麼事呢?(可複選)</p>
         </div>
         <div class="row mt-30">
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 option" [ngClass]="{'active': isProject}"
-                (click)="onSelectedProject()">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 ">
 
-                <div class="box-part text-center">
+                <div class="box-part text-center option" [ngClass]="{'active': isProject}"
+                    (click)="onSelectedProject()">
                     <img class="box-img" for="findproject" src="./../../../assets/images/find_project.png" alt="" />
-                    <!-- <img for="profileImage" src="https://fakeimg.pl/285x285/?text=Image" alt="" /> -->
                     <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
 
                     <div class="title">
@@ -125,10 +120,10 @@
 
                 </div>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12  option" [ngClass]="{'active': isPartner}"
-                (click)="onSelectedPartner()">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 ">
 
-                <div class="box-part text-center">
+                <div class="box-part text-center option" [ngClass]="{'active': isPartner}"
+                    (click)="onSelectedPartner()">
                     <img class="box-img" for="findpartner" src="./../../../assets/images/find_partner.png" alt="" />
                     <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
 
@@ -142,10 +137,9 @@
 
                 </div>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12  option" [ngClass]="{'active': isMentor}"
-                (click)="onSelectedMentor()">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 ">
 
-                <div class="box-part text-center">
+                <div class="box-part text-center  option" [ngClass]="{'active': isMentor}" (click)="onSelectedMentor()">
                     <img class="box-img" for="findmentor" src="./../../../assets/images/find_mentor.png" alt="" />
                     <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
 
@@ -159,10 +153,10 @@
 
                 </div>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12  option" [ngClass]="{'active': beMentor}"
-                (click)="onSelectedBeMontor()">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 ">
 
-                <div class="box-part text-center">
+                <div class="box-part text-center  option" [ngClass]="{'active': beMentor}"
+                    (click)="onSelectedBeMontor()">
                     <img class="box-img" for="bementor" src="./../../../assets/images/be_mentor.png" alt="" />
                     <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
 
@@ -171,7 +165,7 @@
                     </div>
 
                     <div class="text">
-                        <span>我有能力給人意見引導團隊給予資源</span>
+                        <span>我給人意見引導團隊給予資源</span>
                     </div>
 
                 </div>
@@ -179,12 +173,9 @@
         </div>
         <div class="col-md-12 mt-50 text-center">
 
-            <button type="button" (click)="NextStep(0)" class="btn btn-step" style="margin-right: 5px;">
+            <button type="button" (click)="NextStep(0)" class="btn btn-step mr-2">
                 上一步</button>
-            <button type="button" (click)="onSubmit()" class="btn btn-step" style="margin-left: 5px;">下一步</button>
-            <!-- <button type="button" (click)="NextStep(0)" class="btn">
-                    < Back</button>
-                        <button type="button" (click)="onSubmit()" class="btn btn-continue float-right">Save</button> -->
+            <button type="button" (click)="onSubmit()" class="btn btn-step ml-2">下一步</button>
 
         </div>
     </div>
@@ -192,7 +183,7 @@
     <div class="row">
         <div *ngIf="step==110" class="col-md-6 frame">
             <div class="w-100 ">
-                <span style="font-size: 2rem;">Add your profile photo</span>
+                <span class="title">Add your profile photo</span>
                 <p>A nice smiley photo of you - where you can clearly see the face</p>
             </div>
             <div class="col-md-12 mt-2 mb-2" id="select_img">
@@ -210,51 +201,11 @@
 
             </div>
             <div class="col-md-12 mt-2 mb-2">
-                <!-- <button type="button" class="btn ">
-                    < Back</button> -->
+
                 <button type="button" (click)="NextStep(1)" class="btn btn-continue float-right">Continue</button>
             </div>
         </div>
-        <div *ngIf="step==100" class="col-md-6 frame">
-            <div class="w-100 ">
-                <span style="font-size: 2rem;">Sweet! Why do u want to join us</span>
-            </div>
-            <div class="col-md-12 mt-2 mb-2 option">
 
-                <div class="form-check mt-2">
-                    <label class="form-check-label">
-                        <input type="checkbox" [(ngModel)]="isProject" class="form-check-input mr-5" value="isProject">
-                        <span style="margin-left: 20px;">找專案</span>
-                    </label>
-                </div>
-                <div class="form-check mt-2">
-                    <label class="form-check-label">
-                        <input type="checkbox" [(ngModel)]="isPartner" class="form-check-input mr-5" value="isPartner">
-                        <span style="margin-left: 20px;">找夥伴</span>
-                    </label>
-                </div>
-                <div class="form-check mt-2">
-                    <label class="form-check-label">
-                        <input type="checkbox" [(ngModel)]="beMentor" class="form-check-input mr-5" value="beMentor">
-                        <span style="margin-left: 20px;">
-                            當任導師</span>
-                    </label>
-                </div>
-                <div class="form-check mt-2">
-                    <label class="form-check-label">
-                        <input type="checkbox" [(ngModel)]="isMentor" class="form-check-input mr-5"
-                            value="isMentor"><span style="margin-left: 20px;">找導師</span>
-                    </label>
-                </div>
-
-
-            </div>
-            <div class="col-md-12 mt-2 mb-2">
-                <button type="button" (click)="NextStep(0)" class="btn">
-                    < Back</button>
-                        <button type="button" (click)="onSubmit()" class="btn btn-continue float-right">Save</button>
-            </div>
-        </div>
 
 
 

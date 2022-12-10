@@ -123,7 +123,7 @@ export class FeedbackComponent implements OnInit {
   }
 
   onModifiedSubmit() {
-    console.log("onModifiedSubmit")
+
     this.proposalSrv.update(this.editedProposal.id,
       this.proposaltype,
       this.propsoalContent,

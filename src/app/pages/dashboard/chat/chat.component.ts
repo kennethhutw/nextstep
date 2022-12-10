@@ -15,24 +15,7 @@ import * as moment from 'moment';
   styleUrls: ["./chat.component.scss"]
 })
 export class ChatComponent implements OnInit {
-  // items = [{
-  //   image: "https://ptetutorials.com/images/user-profile.png",
-  //   name: "Sunil Rajput ",
-  //   date: "1637490920390",
-  //   message: "Test, which is a new approach to have all solutions astrology under one roof."
-  // },
-  // {
-  //   image: "https://ptetutorials.com/images/user-profile.png",
-  //   name: "Kenneth",
-  //   date: "1637490920390",
-  //   message: "AAAA."
-  // },
-  // {
-  //   image: "https://ptetutorials.com/images/user-profile.png",
-  //   name: "Ben",
-  //   date: "1637490900390",
-  //   message: "BBB."
-  // }];
+
   items = [];
   selectedItem = null;
   searchText = '';
