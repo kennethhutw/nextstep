@@ -1,7 +1,6 @@
-import { Component, OnInit, HostListener } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
-  DataService,
   UserService,
   AppSettingsService
 } from "../../../_services";
@@ -29,7 +28,7 @@ export class SignupInfoComponent implements OnInit {
   currentUser: any = null;
   profileImage = null;
   profileImageFile = null;
-  step = 1;
+  step = 0;
   isProject = false;
   isPartner = false;
   beMentor = false;
@@ -40,26 +39,15 @@ export class SignupInfoComponent implements OnInit {
   skillOptions: any[] = [];
   name: string = "";
 
-  @HostListener("window:resize", ["$event"])
-  getScreenSize(event?) {
-    let screenHeight = window.innerHeight;
-    let screenWidth = window.innerWidth;
-    if (screenWidth > 991) {
-      this.width = true;
-    } else {
-      this.width = false;
-    }
-  }
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private authSrv: AuthStore,
     private userSrv: UserService,
     private translateSrv: TranslateService,
-    private utility: Utility,
     private appSettingsSrv: AppSettingsService,
-    private formBuilder: FormBuilder,
-    private dataSrv: DataService
+    private formBuilder: FormBuilder
   ) {
 
     this.skillOptions = this.appSettingsSrv.skillOptions();
@@ -84,9 +72,6 @@ export class SignupInfoComponent implements OnInit {
     });
   }
 
-  onSubmitInfo() {
-
-  }
 
   get f() {
     return this.profileForm.controls;
@@ -197,6 +182,7 @@ export class SignupInfoComponent implements OnInit {
       this.profileImage = reader.result;
     }
   }
+
   onRemoveImg(event) {
     this.profileImage = null;
     this.profileImageFile = null;

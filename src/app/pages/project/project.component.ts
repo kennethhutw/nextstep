@@ -17,6 +17,11 @@ import { Utility } from "../../_helpers";
 import { environment } from '../../../environments/environment';
 import { NgxSpinnerService } from "ngx-spinner";
 import { ActivatedRoute } from '@angular/router';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators
+} from '@angular/forms';
 @Component({
   selector: "app-project",
   templateUrl: "./project.component.html",
@@ -25,6 +30,9 @@ import { ActivatedRoute } from '@angular/router';
 export class ProjectComponent implements OnInit {
 
   @ViewChild('closebutton') closebutton;
+
+  projectForm: FormGroup;
+  projectMsg: string = "";
 
   defaultProfileLogo = null;
 
@@ -44,7 +52,7 @@ export class ProjectComponent implements OnInit {
     private projectSrv: ProjectService,
     private pagerSrv: PagerService,
     private authStore: AuthStore,
-    private likeSrv: LikeService,
+    private formBuilder: FormBuilder,
     private settingSrv: SettingService,
     private membersSrv: MembersService,
     private utility: Utility,
@@ -56,6 +64,16 @@ export class ProjectComponent implements OnInit {
   ) {
     this.defaultProfileLogo = this.settingSrv.defaultProfileLogo;
     this.skillOptions = this.appSettingsSrv.skillOptions();
+    this.projectForm = this.formBuilder.group({
+      name: ["", Validators.required],
+      description: ["", Validators.required],
+      isFindPartner: [0, Validators.required],
+      isFunding: [0, Validators.required],
+      isCofounder: [0, Validators.required],
+      product: ["", Validators.required],
+      type: ["", Validators.required],
+      stages: ["", Validators.required],
+    });
   }
 
   ngOnInit() {
@@ -90,6 +108,17 @@ export class ProjectComponent implements OnInit {
               }
             });
           }
+
+          this.projectForm.setValue({
+            name: this.currentProject.name,
+            description: this.currentProject.description,
+            isFindPartner: this.currentProject.isFindPartner,
+            isFunding: this.currentProject.isFunding,
+            isCofounder: this.currentProject.isCofounder,
+            product: this.currentProject.product,
+            type: this.currentProject.type,
+            stages: this.currentProject.stage
+          });
         }
         if (this.utility.IsNullOrEmpty(this.currentProject.imageUrl)) {
           this.currentProject.imageUrl = this.defaultProfileLogo;
@@ -361,7 +390,92 @@ export class ProjectComponent implements OnInit {
     event.target.src = "https://imagizer.imageshack.com/img921/9628/VIaL8H.jpg";
   }
 
+  get f() {
+    return this.projectForm.controls;
+  }
+  inValid() {
+    return this.projectForm.invalid;
+  }
 
+  onStatusChange($event, property) {
+    this.projectForm.get(property).setValue($event.target.checked);
+  }
+
+  onStageChange($event, value) {
+    var _values = this.projectForm.get('stages').value;
+
+    if ($event.target.checked) {
+      if (_values.indexOf(',') > 0) {
+        _values += "," + value;
+      } else {
+        _values += value;
+      }
+    } else {
+      _values = _values.replace("," + value, "");
+      _values = _values.replace(value, "");
+    }
+    this.projectForm.get('stages').setValue(_values);
+  }
+
+  onProductChange($event, value) {
+
+    var _values = this.projectForm.get('product').value;
+
+    if ($event.target.checked) {
+      _values += "," + value;
+    } else {
+      _values = _values.replace("," + value, "");
+    }
+    this.projectForm.get('product').setValue(_values);
+  }
+
+  onIndustryTypeChange($event, value) {
+
+    var _values = this.projectForm.get('type').value;
+
+    if ($event.target.checked) {
+      _values += "," + value;
+    } else {
+      _values = value.replace("," + value, "");
+    }
+    this.projectForm.get('type').setValue(_values);
+  }
+
+  onModifySubmit() {
+
+    this.projectMsg = "";
+    if (this.projectForm.invalid) {
+      return;
+    }
+    const value = this.projectForm.value;
+    this.projectSrv.update(this.currentProject.id, {
+      name: value.name,
+      description: value.description,
+      product: value.product,
+      type: value.type,
+      stage: value.stages,
+      isFindPartner: value.isFindPartner,
+      isFunding: value.isFunding,
+      isCofounder: value.isCofounder,
+      uid: this.currentUser.id
+    }).subscribe(res => {
+      if (res['result'] === 'successful') {
+        this.projectMsg = "Update successfully.";
+        this.currentProject.name = value.name;
+        this.currentProject.description = value.description;
+        this.currentProject.product = value.product;
+        this.currentProject.type = value.type;
+        this.currentProject.stage = value.stages;
+        this.currentProject.isFindPartner = value.isFindPartner;
+        this.currentProject.isFunding = value.isFunding;
+        this.currentProject.isCofounder = value.isCofounder;
+        document.getElementById("close_modify_project").click();
+      }
+    }, error => {
+      this.projectMsg = "Update failed.";
+      console.error("updated error", error);
+    })
+  }
 
 }
 //https://www.sliderrevolution.com/resources/bootstrap-profile/

@@ -232,5 +232,13 @@ export class Utility {
     return Math.floor(seconds) + ' seconds ago';
   }
 
+  isInValue(value, types) {
+
+    if (this.IsNullOrEmpty(types)) {
+      return false;
+    } else {
+      return types.indexOf(value) > -1;
+    }
+  }
 
 }

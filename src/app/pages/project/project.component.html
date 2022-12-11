@@ -71,11 +71,14 @@
   </div>
 </div>
 
-<div *ngIf="currentProject" class="row mt-50">
+<div *ngIf="currentProject" class="row project-content">
   <div class="col-md-8">
     <div class="row mb-24">
-      <div class="col-md-12">
+      <div class="col-md-12 d-inline">
         <span class="title mb-24">專案簡介</span>
+        <span *ngIf="currentProject?.owner == currentUser?.id" class="btn-standard ml-24" data-toggle="modal"
+          [attr.data-target]="'#modifiedproject'">
+          <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</span>
       </div>
     </div>
     <div class="row">
@@ -145,14 +148,6 @@
                     <app-member-card [user]="member" [name]="member.userName" [position]="member.position"
                       [imageUrl]="member.imageUrl" class="w-100"></app-member-card>
                   </div>
-                  <!-- <div class="col-md-12 profile">
-                    <img class="profile-image rounded-circle" src="{{ member.imageUrl }}" (error)="onImgError($event)"
-                      alt="" />
-                    <div>
-                      <p class="profile-name">{{member.userName}}</p>
-                      <p class="position">{{member.position}}</p>
-                    </div>
-                  </div> -->
                 </ng-container>
               </ng-container>
             </div>
@@ -259,3 +254,163 @@
     </div>
   </div>
 </app-modal>
+<div class="modal fade" id="modifiedproject" tabindex="-1" aria-labelledby="modifiedproject" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p class="title">編輯專案簡介</p>
+        <button type="button" id="close_modify_project" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body content">
+        <form [formGroup]="projectForm">
+          <div class="row">
+            <div class="col-md-12 mb-12 ">
+              <label class=" pr-2" for="projectname">
+                <h5> 專案名稱* :</h5>
+              </label>
+              <input type="text" formControlName="name" id="projectname" class="form-control mr-10">
+              <div *ngIf="submitted && f.name.errors">
+                <div class="error-msg" *ngIf="f.name.errors.required">
+                  專案名稱必須的
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-10">
+            <div class="col-md-12 mb-12 form-group ">
+              <label class="pr-2" for="projectname">
+                <h5> 專案狀態*</h5>
+              </label>
+              <div class="form-group">
+                <input type="checkbox" (change)="onStatusChange($event, 'isFindPartner')"
+                  [checked]="projectForm.value.isFindPartner" value="projectForm.value.isFindPartner"><span>徵成員</span>
+                <input type="checkbox" (change)="onStatusChange($event, 'isFunding')"
+                  [checked]="projectForm.value.isFunding" value="projectForm.value.isFunding"><span>募資中
+                </span>
+                <input type="checkbox" (change)="onStatusChange($event, 'isCofounder')"
+                  [checked]="projectForm.value.isCofounder" value="projectForm.value.isCofounder"><span>找共同創辦人</span>
+              </div>
+            </div>
+            <div class="col-md-12 mb-12 form-group ">
+              <label class="pr-2" for="product">
+                <h5> 專案產品 :</h5>
+              </label>
+              <div class="form-check">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
+                    (change)="onProductChange($event, 'website')"
+                    [checked]="utility.isInValue('website', f.product.value)" value="website">
+                  <label class="form-check-label" for="inlineCheckbox1">網站</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
+                    (change)="onProductChange($event, 'app')" [checked]="utility.isInValue('app', f.product.value)"
+                    value="app">
+                  <label class="form-check-label" for="inlineCheckbox2">App</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
+                    (change)="onProductChange($event, 'hardware')"
+                    [checked]="utility.isInValue('hardware', f.product.value)" value="hardware">
+                  <label class="form-check-label" for="inlineCheckbox2">硬體</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 mb-12 form-group ">
+              <label class="pr-2" for="projectname">
+                <h5> 產業類型* :</h5>
+              </label>
+              <div class="form-check check-group">
+                <div> <input type="checkbox" (change)="onIndustryTypeChange($event, 'eComm')"
+                    [checked]="utility.isInValue('eComm', f.type.value)" value="eComm"><span>電子商務</span>
+                </div>
+                <div><input type="checkbox" (change)="onIndustryTypeChange($event, 'ai')"
+                    [checked]="utility.isInValue('ai', f.type.value)" value="ai"><span>人工智慧</span></div>
+                <div><input type="checkbox" (change)="onIndustryTypeChange($event, 'edutech')"
+                    [checked]="utility.isInValue('edutech', f.type.value)" value="edutech"><span>教育科技</span></div>
+                <div><input type="checkbox" (change)="onIndustryTypeChange($event, 'sharingeconomy')"
+                    [checked]="utility.isInValue('sharingeconomy', f.type.value)"
+                    value="sharingeconomy"><span>共享經濟</span></div>
+                <div><input type="checkbox" (change)="onIndustryTypeChange($event, 'medical')"
+                    [checked]="utility.isInValue('medical', f.type.value)" value="medical"><span>醫學科技</span></div>
+
+              </div>
+              <div class="form-check check-group">
+
+                <div><input type="checkbox" (change)="onIndustryTypeChange($event, 'transport')"
+                    [checked]="utility.isInValue('transport', f.type.value)" value="transport"><span>運輸服務</span></div>
+                <div><input type="checkbox" (change)="onIndustryTypeChange($event, 'fintech')"
+                    [checked]="utility.isInValue('fintech', f.type.value)" value="fintech"><span>金融科技</span></div>
+                <div><input type="checkbox" (change)="onIndustryTypeChange($event, 'game')"
+                    [checked]="utility.isInValue('game', f.type.value)" value="game"><span>遊戲產業</span></div>
+                <div><input type="checkbox" (change)="onIndustryTypeChange($event, 'platform')"
+                    [checked]="utility.isInValue('platform', f.type.value)" value="platform"><span>平台</span></div>
+              </div>
+            </div>
+            <div class="col-md-12 mb-12 form-group ">
+              <label class="pr-2" for="stage">
+                <h5> 目前進度* :</h5>
+              </label>
+              <div class="form-check  check-group">
+                <div> <input type="checkbox" (change)="onStageChange($event, 'idea')"
+                    [checked]="utility.isInValue('idea', f.stages.value)" value="idea"><span>已有創業概念</span></div>
+                <div> <input type="checkbox" (change)="onStageChange($event, 'businessplan')"
+                    [checked]="utility.isInValue('businessplan', f.stages.value)"
+                    value="businessplan"><span>商業計畫初稿</span></div>
+                <div> <input type="checkbox" (change)="onStageChange($event, 'findpartner')"
+                    [checked]="utility.isInValue('findpartner', f.stages.value)" value="findpartner"><span>找創業夥伴</span>
+                </div>
+                <div> <input type="checkbox" (change)="onStageChange($event, 'buildMVP')"
+                    [checked]="utility.isInValue('buildMVP', f.stages.value)"
+                    value="buildMVP"><span>建構最小可行性產品(MVP)</span></div>
+
+              </div>
+              <div class="form-check  check-group">
+                <div> <input type="checkbox" (change)="onStageChange($event, 'producttested')"
+                    [checked]="utility.isInValue('producttested', f.stages.value)"
+                    value="producttested"><span>驗證產品中&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                <div> <input type="checkbox" (change)="onStageChange($event, 'findcustomers')"
+                    [checked]="utility.isInValue('findcustomers', f.stages.value)"
+                    value="findcustomers"><span>找用戶中&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                </div>
+                <div> <input type="checkbox" (change)="onStageChange($event, 'findpayingcustomers')"
+                    [checked]="utility.isInValue('findpayingcustomers', f.stages.value)"
+                    value="findpayingcustomers"><span>找付費用戶中</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 mb-12 form-group ">
+              <label class="pr-2" for="projectname">
+                <h5> 簡介 :</h5>
+              </label>
+              <textarea formControlName="description" type="text" class="form-control" id="" rows="4"
+                cols="50"></textarea>
+              <div *ngIf="submitted && f.description.errors">
+                <div class="error-msg" *ngIf="f.description.errors.required">
+                  專案簡介是必要的
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <div class="row item-center">
+
+            <button type="button" class="btn btn-blue  mr-10" (click)="onModifySubmit()">
+              更新</button>
+
+
+          </div>
+          <div class="row">
+            <div class="col-md-12 mb-12 form-group text-center">
+              <div class="error-msg" *ngIf="projectMsg!=''">{{ projectMsg }}</div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
