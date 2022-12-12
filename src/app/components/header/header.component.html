@@ -72,7 +72,7 @@
               <ng-container *ngIf="notis">
                 <ng-container *ngFor="let noti of  notis; let i = index">
                   <a *ngIf="i<5" class="notification" routerLink="/dashboard/notifications">
-                    <i class="fas fa-bell m--auto"></i>
+                    <i class="fas fa-bell mt--5"></i>
                     <div class="notifciation-row">
                       <span> {{noti?.content.length>15?noti?.content.substring(0,15)+"...":noti?.content}}</span>
                       <span class="notifciation-date"> {{(noti?.createdAt !==null) ?
@@ -83,7 +83,7 @@
                 </ng-container>
               </ng-container>
 
-              <a routerLink="/dashboard/notifications" class="text-center">查看更多</a>
+              <a routerLink="/dashboard/notifications" class="notification-more text-center">查看更多</a>
             </div>
           </div>
         </li>

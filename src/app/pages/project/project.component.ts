@@ -22,6 +22,7 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms';
+
 @Component({
   selector: "app-project",
   templateUrl: "./project.component.html",
@@ -160,6 +161,8 @@ export class ProjectComponent implements OnInit {
       this.SpinnerService.hide();
     })
   }
+
+
 
   onApply(application) {
     this.selectedApplication = application;

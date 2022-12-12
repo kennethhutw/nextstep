@@ -3,7 +3,7 @@ import { Component, Type } from '@angular/core';
 import * as Pages from './pages';
 import * as AppLayouts from "./layout";
 import * as Websitepages from './website/index';
-import { AuthGuard } from './_guards';
+import { AuthGuard, PendingChangesGuard } from './_guards';
 
 export function getHomeComponent(): Type<Component> {
 
@@ -83,7 +83,11 @@ const routes: Routes = [
       { path: "error", component: Pages.ErrorComponent, pathMatch: "full" },
       { path: "login", component: Pages.LoginComponent },
       { path: "recruit", component: Pages.RecruitComponent },
-      { path: "newProject", component: Pages.newProjectComponent, pathMatch: "full" },
+      {
+        path: "newProject",
+        component: Pages.CreateProjectComponent,
+        canDeactivate: [PendingChangesGuard]
+      },
       { path: "", redirectTo: "index", pathMatch: "full" }
     ],
   },

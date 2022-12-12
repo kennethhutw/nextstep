@@ -64,13 +64,7 @@ a {
 
 }
 
-.f20 {
-  font-size: 20px;
-}
 
-.f16 {
-  font-size: 16px;
-}
 
 .navbar-light .navbar-nav .nav-link {
   color: #000000;
@@ -109,8 +103,6 @@ a.nav-link.active {
   color: #8F95A8;
 }
 
-
-
 .notification-box {
   display: grid;
   padding: 16px 16px;
@@ -119,6 +111,10 @@ a.nav-link.active {
 
   /*  box-shadow: -2px -2px 4px rgb(0 0 0 / 8%), 2px 2px 4px rgb(0 0 0 / 8%); */
   border-radius: 4px;
+
+  .notification-more {
+    color: #56BDF4;
+  }
 }
 
 .notification {
@@ -136,9 +132,9 @@ a.nav-link.active {
       font-size: 12px;
     }
   }
+
+
 }
-
-
 
 .notification-dot {
   height: 12px;

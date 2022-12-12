@@ -102,5 +102,11 @@ export class ProjectService {
         return this.http.put(`${environment.apiUrl}/projects/profileCover/${id}`, params);
     }
 
+    async delete(id, uid) {
+        return await this.http.delete(`${environment.apiUrl}/projects/${id}/${uid}`,
+            {
+            }).toPromise();;
+    }
+
 
 }

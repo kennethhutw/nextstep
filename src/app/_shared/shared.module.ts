@@ -15,7 +15,7 @@ import { GlobalErrorHandler } from "./../_core/errors/global-error-handler";
 import { NgxSpinnerModule } from "ngx-spinner";
 
 import * as AppServices from "./../_services";
-import { AuthGuard } from './../_guards';
+import { AuthGuard, PendingChangesGuard } from './../_guards';
 
 import {
   UploadFileComponent,
@@ -82,6 +82,7 @@ import * as sharedComponents from "./../_shared"
   ],
   providers: [
     AuthGuard,
+    PendingChangesGuard,
     Utility,
     TimeUtility,
     SocialMediaUtility,

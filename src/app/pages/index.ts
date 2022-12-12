@@ -2,6 +2,7 @@
 import { HomeComponent } from "./home/home.component";
 import { AboutComponent } from "./about/about.component";
 import { ActivityComponent } from "./activity/activity.component";
+import { CreateProjectComponent } from "./createproject/createProject.component";
 import { FeedbackComponent } from "./feedback/feedback.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { QAComponent } from "./qa/qa.component";
@@ -51,6 +52,7 @@ export const containers = [
     ActivityComponent,
     AboutComponent,
     ChatComponent,
+    CreateProjectComponent,
     DashboardComponent,
     ErrorComponent,
     ExampleComponent,
@@ -88,6 +90,7 @@ export const containers = [
 
 export { ActivityComponent } from "./activity/activity.component";
 export { AboutComponent } from "./about/about.component";
+export { CreateProjectComponent } from "./createproject/createProject.component";
 export { ErrorComponent } from "./error/error.component";
 export { FindMentorComponent } from './findmentor/findmentor.component';
 export { FindProjectComponent } from './findproject/findproject.component';
