@@ -6,13 +6,16 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <ng-container *ngIf="logs">
+            <ng-container *ngIf="this.currentProject?.logs">
                 <div class="row" style="padding-left:15px;">
-                    <ng-container *ngFor="let log of  logs; let i = index">
+                    <ng-container *ngFor="let log of  this.currentProject?.logs; let i = index">
                         <app-project-log-bar style="width: 90%;" [project]="log"></app-project-log-bar>
                     </ng-container>
                 </div>
             </ng-container>
+            <div class="noItem text-center" *ngIf="currentProject?.logs.length ===0">
+                <h3>尚未開始</h3>
+            </div>
         </div>
     </div>
 </div>

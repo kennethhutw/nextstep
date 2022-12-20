@@ -2,11 +2,11 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { DataService, UserService, SettingService } from "../../_services";
 import { Utility } from "../../_helpers";
-import { Router, NavigationEnd } from "@angular/router";
-import { environment } from '../../../environments/environment';
+import { Router, ActivatedRoute } from "@angular/router";
 import {
   AuthStore
 } from "../../_services/auth.store";
+
 @Component({
   selector: "app-project-layout",
   templateUrl: "./project-layout.component.html",
@@ -16,14 +16,13 @@ import {
 })
 export class ProjectLayoutComponent implements OnInit {
 
-  project = {
-    id: '1'
-  };
+  projectId: string = "";
 
   currentMenu = 'profile';
   constructor(
     private settingSrv: SettingService,
     private router: Router,
+    private route: ActivatedRoute,
     private translateSrv: TranslateService,
     private utility: Utility,
     private dataSrv: DataService,
@@ -54,6 +53,12 @@ export class ProjectLayoutComponent implements OnInit {
     let _lastIndex = this.router.url.lastIndexOf("/");
     this.currentMenu = this.router.url.substring(_lastIndex + 1);
 
+
+    if (this.route.children[0]) {
+      this.route.children[0].url.subscribe(url => {
+        this.projectId = url[0].path;
+      });
+    }
   }
 
 

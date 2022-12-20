@@ -15,30 +15,30 @@
                             <li>
                                 <a class="menu-item" [routerLinkActive]="['active']"
                                     [routerLinkActiveOptions]="{ exact: true }"
-                                    [routerLink]="['/myproject/'+project.id+'/profile']"
+                                    [routerLink]="['/myproject/'+projectId+'/profile']"
                                     [ngClass]="{ 'active': currentMenu ==='profile' }">內容管理
                                 </a>
                             </li>
                             <li>
                                 <a class="menu-item" [routerLinkActive]="['active']"
                                     [routerLinkActiveOptions]="{ exact: true }"
-                                    [routerLink]="['/myproject/'+project.id+'/members']"
+                                    [routerLink]="['/myproject/'+projectId+'/members']"
                                     [ngClass]="{ 'active': currentMenu ==='members' }">成員管理</a>
                             </li>
                             <li>
                                 <a class="menu-item" [routerLinkActive]="['active']"
                                     [routerLinkActiveOptions]="{ exact: true }"
-                                    [routerLink]="['/myproject/'+project.id+'/recruit']"
+                                    [routerLink]="['/myproject/'+projectId+'/recruit']"
                                     [ngClass]="{ 'active': currentMenu ==='recruit' }">招募管理</a>
                             </li>
                             <li>
-                                <a class="menu-item" [routerLink]="['/myproject/'+project.id+'/settings']"
+                                <a class="menu-item" [routerLink]="['/myproject/'+projectId+'/settings']"
                                     [ngClass]="{ 'active': currentMenu ==='settings' }">專案設定</a>
                             </li>
                             <li>
                                 <a class="menu-item" [routerLinkActive]="['active']"
                                     [routerLinkActiveOptions]="{ exact: true }"
-                                    [routerLink]="['/myproject/'+project.id+'/logs']"
+                                    [routerLink]="['/myproject/'+projectId+'/logs']"
                                     [ngClass]="{ 'active': currentMenu ==='logs' }">專案紀錄</a>
                             </li>
 
