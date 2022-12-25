@@ -81,7 +81,7 @@ const routes: Routes = [
       { path: "about", component: Pages.AboutComponent, pathMatch: "full" },
       { path: "support", component: Pages.SupportComponent, pathMatch: "full" },
       { path: "error", component: Pages.ErrorComponent, pathMatch: "full" },
-      { path: "login", component: Pages.LoginComponent },
+
       { path: "recruit", component: Pages.RecruitComponent },
       {
         path: "newProject",

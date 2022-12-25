@@ -11,8 +11,7 @@ import { PolicyComponent } from "./policy/policy.component";
 import { ErrorComponent } from "./error/error.component";
 import { ExampleComponent } from "./example/example.component";
 import { VerificationComponent } from './verification/verification.component';
-import { SetPasswordComponent } from './setPassword/setPassword.component';
-import { LoginComponent } from './login/login.component';
+
 import { FindMentorComponent } from './findmentor/findmentor.component';
 import { FindProjectComponent } from './findproject/findproject.component';
 import { FindMemberComponent } from './findmember/findmember.component';
@@ -63,7 +62,6 @@ export const containers = [
     HomeComponent,
     JobComponent,
     JoinProjectComponent,
-    LoginComponent,
     MyApplicationComponent,
     MyCollectionComponent,
     MyProjectLogComponent,
@@ -82,7 +80,6 @@ export const containers = [
     ProjectComponent,
     QAComponent,
     RecruitComponent,
-    SetPasswordComponent,
     SettingsComponent,
     SupportComponent,
     VerificationComponent,
@@ -97,7 +94,7 @@ export { FindProjectComponent } from './findproject/findproject.component';
 export { FindMemberComponent } from './findmember/findmember.component';
 export { FeedbackComponent } from "./feedback/feedback.component";
 export { HomeComponent } from "./home/home.component";
-export { LoginComponent } from './login/login.component';
+
 export { newProjectComponent } from './newProject/newProject.component';
 
 export * from './myProject';
@@ -113,7 +110,6 @@ export { ProfileComponent } from './profile/profile.component';
 export { PubProfileComponent } from './pubprofile/pubprofile.component';
 export { QAComponent } from "./qa/qa.component";
 export { RecruitComponent } from './recruit/recruit.component';
-export { SetPasswordComponent } from './setPassword/setPassword.component';
 export { SupportComponent } from './support/support.component';
 export { VerificationComponent } from './verification/verification.component';
 

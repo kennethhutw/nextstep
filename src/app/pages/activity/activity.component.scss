@@ -1,3 +1,33 @@
 .activity_welcome {
       font-weight: 700;
 }
+
+.activity_timeline:after,
+.activity_timeline_point:after {
+      display: none;
+}
+
+#activity_text_center {
+      text-align: center;
+      margin: 0 auto;
+}
+
+#activity_text_center p {
+      width: 100%;
+      text-align: center;
+}
+
+#content-mt .activity_intro {
+      width: 100%;
+      margin: 0 auto;
+      text-align: justify;
+}
+
+#activity_img_center {
+      text-align: center;
+}
+
+.activity_timeline_point {
+      padding-bottom: 25px;
+      border-bottom: 1px solid #17F596;
+}

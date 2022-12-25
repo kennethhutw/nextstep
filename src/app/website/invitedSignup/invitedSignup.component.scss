@@ -13,15 +13,26 @@ app-invitedSignup {
     }
 
     .facebook {
-        background-color: #4267b2;
+        background-color: #1877F2;
         border-radius: 4px;
         color: #fff;
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    .google {
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    .btn-signin {
+        font-weight: 500;
     }
 
     .btn-signup {
         height: 45px;
         margin-top: 30px;
-        background-color: #2EC2E2;
+        background-color: #56BDF4;
         color: white;
     }
 
@@ -32,14 +43,17 @@ app-invitedSignup {
     h4 {
         width: 100%;
         text-align: center;
-        border-bottom: 1px solid #000;
+        border-bottom: 1px solid #B5BAC7;
         line-height: 0.1em;
         margin: 10px 0 20px;
     }
 
     h4 span {
         background: #fff;
+        color: #69738C;
         padding: 0 10px;
+        font-size: 16px;
+        font-weight: 400;
     }
 
 

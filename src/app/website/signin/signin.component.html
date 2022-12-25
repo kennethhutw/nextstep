@@ -6,12 +6,12 @@
             <div class="w-100 ">
                 <span class="next-font" style="font-size: 2rem;"> 登入</span>
                 <div class="next-font signup">
-                    沒有帳號?前往<a routerLink="/signup">註冊</a>
+                    沒有帳號?&nbsp;前往<a routerLink="/signup">註冊</a>
                 </div>
             </div>
         </div>
         <div class="mt-2 mb-2">
-            <button class="btn btn-social facebook w-100 " (click)="socialSignIn('facebook')">
+            <button class="btn facebook w-100 " (click)="socialSignIn('facebook')">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="30px" height="30px"
                     style="border-radius: 50% !important;">
                     <linearGradient id=" Ld6sqrtcxMyckEl6xeDdMa" x1="9.993" x2="40.615" y1="9.993" y2="40.615"
@@ -23,8 +23,7 @@
                     <path fill="#4267b2"
                         d="M26.707,29.301h5.176l0.813-5.258h-5.989v-2.874c0-2.184,0.714-4.121,2.757-4.121h3.283V12.46 c-0.577-0.078-1.797-0.248-4.102-0.248c-4.814,0-7.636,2.542-7.636,8.334v3.498H16.06v5.258h4.948v14.452 C21.988,43.9,22.981,44,24,44c0.921,0,1.82-0.084,2.707-0.204V29.301z" />
                 </svg>
-
-                Log in with Facebook
+                透過 Facebook 登入
             </button>
 
         </div>
@@ -52,35 +51,31 @@
                         </clipPath>
                     </defs>
                 </svg>
-
-                Log in with Google
+                透過 Google 登入
             </button>
         </div>
-        <h4 style="margin-bottom: 30px !important; margin-top: 30px !important;"><span>OR</span></h4>
+        <h4 style="margin-bottom: 30px !important; margin-top: 30px !important;"><span>或</span></h4>
         <form [formGroup]="loginForm">
             <div class="form-group" style="font-family: var(--font-nunito);">
 
                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                     formControlName="email"
                     [ngClass]="{ 'is-invalid': (loginForm.get('email').touched || loginForm.get('email').dirty) && loginForm.get('email').invalid || submitted && loginForm.get('email').invalid }"
-                    placeholder="hi@next.com">
-                <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i> Invalid email
-                    address.</span>
+                    placeholder="電子信箱">
+                <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i> 信箱格式不符.</span>
             </div>
             <div class="form-group" style="font-family: var(--font-nunito);">
                 <!-- <label for="password" style="width: 100%;">Password <span (click)="changeInput(pw)"
                                     class="fa fa-fw fa-eye toggle-password"></span></label> -->
                 <input #pw type="password" class="form-control" id="password" formControlName="password"
                     [ngClass]="{ 'is-invalid': (loginForm.get('password').touched || loginForm.get('password').dirty) && loginForm.get('password').invalid || submitted && loginForm.get('password').invalid }"
-                    placeholder="Enter password">
-                <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i> Password is required.
+                    placeholder="密碼(英數至少4字)">
+                <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i> 密碼是必要的.
                 </span>
 
                 <div *ngIf="unverifiedUser">
                     <p class="invalid">
-                        <i class="fas fa-exclamation-triangle"></i> Please check your inbox to verify your
-                        e-mail
-                        address.
+                        <i class="fas fa-exclamation-triangle"></i> 請檢查您的收件箱以驗證您的電子郵件地址
                     </p>
                 </div>
             </div>
@@ -96,7 +91,7 @@
 
             <div *ngIf="invalidUser">
                 <p class="invalid">
-                    <i class="fas fa-exclamation-triangle"></i> Incorrect email or password.
+                    <i class="fas fa-exclamation-triangle"></i> Email或密碼不正確.
                 </p>
             </div>
         </form>
