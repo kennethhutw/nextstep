@@ -85,6 +85,10 @@ export class RecruitComponent implements OnInit {
             if (!this.utility.IsNullOrEmpty(element.skills)) {
               element.skills = element.skills.split(',');
             }
+
+            if (!this.utility.IsNullOrEmpty(element.projectImageUrl)) {
+              element.projectImageUrl = environment.assetUrl + element.projectImageUrl;
+            }
           });
         }
         this.displayItems = this.items;

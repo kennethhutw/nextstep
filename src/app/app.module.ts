@@ -12,6 +12,8 @@ import { routing } from "./app-routing.module";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { AngularSvgIconModule } from 'angular-svg-icon';
 
+import { TooltipModule, TooltipConfig } from 'ngx-bootstrap/tooltip';
+
 import {
   FooterComponent,
   HeaderComponent,
@@ -116,7 +118,8 @@ export function appConfigFactory(provider: AppSettingsService) {
     }),
     SocialLoginModule,
     TagInputModule,
-    SwiperModule
+    SwiperModule,
+    TooltipModule.forRoot()
   ],
   providers: [GoogleAnalyticsService,
     {
@@ -128,7 +131,11 @@ export function appConfigFactory(provider: AppSettingsService) {
       useFactory: appConfigFactory,
       deps: [AppSettingsService],
       multi: true
-    }],
+    },
+    {
+      provide: TooltipConfig,
+      useFactory: () => Object.assign(new TooltipConfig(), { container: 'body', placement: 'bottom' }),
+    },],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

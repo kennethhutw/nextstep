@@ -12,6 +12,11 @@ app-invitedSignup {
         background-color: white;
     }
 
+    a {
+        color: #56BDF4;
+        text-decoration: none !important;
+    }
+
     .facebook {
         background-color: #1877F2;
         border-radius: 4px;
@@ -79,12 +84,8 @@ app-invitedSignup {
     }
 
     .next-font {
-        font-weight: 600;
+        font-weight: 500;
         line-height: 56px;
-    }
-
-    a {
-        color: black;
     }
 
     .btn-social {

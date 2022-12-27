@@ -50,23 +50,7 @@ export class HomeComponent implements OnInit {
   // popularProjects = [];
   popularUsers = [];
   popularMentors = [];
-  popularProjects = [{
-    name: "Next",
-    description: "找尋side project, 找尋team member, 建立side project, 找尋side project意見",
-    type: "Startup"
-  }, {
-    name: "Karma",
-    description: "WFH sorted: praise, rewards, surveys and watercooler chats",
-    type: "Startup"
-  }, {
-    name: "Early Bird",
-    description: "If Appsumo and Product Hunt had a baby.",
-    type: "Startup"
-  }, {
-    name: "Ragg",
-    description: "Cleaning platform app",
-    type: "Startup"
-  }];
+  popularProjects = [];
   // recentProjects = [];
   // popularUsers = [{
   //   name: "John Doe",
@@ -172,6 +156,9 @@ export class HomeComponent implements OnInit {
             if (!this.utility.IsNullOrEmpty(element.interested)) {
               element.interested = element.interested.split(',');
             }
+            if (!this.utility.IsNullOrEmpty(element.imageUrl)) {
+              element.imageUrl = environment.assetUrl + element.imageUrl;
+            }
           });
         }
         this.popularMentors = res['mentors'];
@@ -186,7 +173,9 @@ export class HomeComponent implements OnInit {
             if (!this.utility.IsNullOrEmpty(element.expertise)) {
               element.expertise = element.expertise.split(',');
             }
-
+            if (!this.utility.IsNullOrEmpty(element.imageUrl)) {
+              element.imageUrl = environment.assetUrl + element.imageUrl;
+            }
           });
         }
       }

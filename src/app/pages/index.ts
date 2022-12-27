@@ -22,6 +22,7 @@ import { PubProfileComponent } from './pubprofile/pubprofile.component';
 
 import { ProjectDetailComponent } from './project-detail/projectDetail.component';
 import { ProjectComponent } from './project/project.component';
+import { RankingComponent } from "./ranking/ranking.component";
 import { RecruitComponent } from './recruit/recruit.component';
 import {
     MyProjectLogComponent,
@@ -46,6 +47,7 @@ import {
 
 import { JobComponent } from './job/job.component';
 import { JoinProjectComponent } from './joinproject/joinproject.component';
+import { TemplatesComponent } from "./templates/templates.component";
 
 export const containers = [
     ActivityComponent,
@@ -79,9 +81,11 @@ export const containers = [
     ProjectDetailComponent,
     ProjectComponent,
     QAComponent,
+    RankingComponent,
     RecruitComponent,
     SettingsComponent,
     SupportComponent,
+    TemplatesComponent,
     VerificationComponent,
 ];
 
@@ -109,8 +113,10 @@ export { PolicyComponent } from "./policy/policy.component";
 export { ProfileComponent } from './profile/profile.component';
 export { PubProfileComponent } from './pubprofile/pubprofile.component';
 export { QAComponent } from "./qa/qa.component";
+export { RankingComponent } from "./ranking/ranking.component";
 export { RecruitComponent } from './recruit/recruit.component';
 export { SupportComponent } from './support/support.component';
+export { TemplatesComponent } from "./templates/templates.component";
 export { VerificationComponent } from './verification/verification.component';
 
 export * from "./example/example.component";

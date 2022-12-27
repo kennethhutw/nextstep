@@ -3,7 +3,6 @@ import { TranslateService } from "@ngx-translate/core";
 import {
   MembersService,
   ProjectService,
-  LikeService,
   PagerService,
   AppSettingsService,
   SettingService,
@@ -16,7 +15,10 @@ import {
 import { Utility } from "../../_helpers";
 import { environment } from '../../../environments/environment';
 import { NgxSpinnerService } from "ngx-spinner";
-import { ActivatedRoute } from '@angular/router';
+import {
+  ActivatedRoute,
+  Router
+} from '@angular/router';
 import {
   FormBuilder,
   FormGroup,
@@ -50,6 +52,7 @@ export class ProjectComponent implements OnInit {
   skillOptions: any[] = [];
   currentTab: string = "history";
   constructor(
+    private router: Router,
     private projectSrv: ProjectService,
     private pagerSrv: PagerService,
     private authStore: AuthStore,
@@ -478,6 +481,10 @@ export class ProjectComponent implements OnInit {
       this.projectMsg = "Update failed.";
       console.error("updated error", error);
     })
+  }
+
+  onEditMembers() {
+    this.router.navigate(['/myproject/' + this.currentProject.id + '/recruit', {}], {});
   }
 
 }

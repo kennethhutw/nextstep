@@ -41,6 +41,8 @@ const routes: Routes = [
     component: AppLayouts.MainLayoutComponent,
     children: [
       { path: "example", component: Pages.ExampleComponent },
+      { path: "ranking", component: Pages.RankingComponent },
+      { path: "templates", component: Pages.TemplatesComponent },
       { path: "projects", component: Pages.FindProjectComponent },
       { path: "project/:id", component: Pages.ProjectComponent },
       { path: "job/:id", component: Pages.JobComponent },

@@ -29,6 +29,11 @@ app-signin {
         font-weight: 500;
     }
 
+    a {
+        color: #56BDF4;
+        text-decoration: none !important;
+    }
+
     .signup {
         float: right;
         vertical-align: middle;
@@ -86,7 +91,7 @@ app-signin {
     }
 
     .next-font {
-        font-weight: 400;
+        font-weight: 500;
         line-height: 56px;
     }
 

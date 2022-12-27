@@ -643,7 +643,7 @@ nav {
 }
 
 a {
-  color: #56BDF4 !important;
+  color: #56BDF4;
   text-decoration: none !important;
 }
 
@@ -1808,4 +1808,26 @@ input[type=radio] {
 
 .dropdown-item:hover {
   background-color: transparent !important;
+}
+
+//tooltip
+.tooltip.bottom .tooltip-arrow {
+  border: 1px solid #e0e0e0;
+  border-bottom: none;
+  border-right: none;
+  width: 10px;
+  height: 10px;
+  transform: rotate(45deg);
+  background: white;
+}
+
+.tooltip.bottom .tooltip-arrow::before {
+
+  border-bottom-color: white !important;
+}
+
+.tooltip.bottom .tooltip-inner {
+  border: 1px solid #ddd;
+  background-color: #fff;
+  color: #000000;
 }

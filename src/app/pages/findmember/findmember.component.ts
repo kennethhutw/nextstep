@@ -80,7 +80,7 @@ export class FindMemberComponent implements OnInit {
     }
 
     this.userSrv.getPublicPartners(_id).then(res => {
-
+      console.log("members ==========", res);
       if (res['result'] == 'successful') {
         this.items = res['data'];
         if (this.items && this.items.length > 0) {
@@ -93,6 +93,9 @@ export class FindMemberComponent implements OnInit {
             }
             if (!this.utility.IsNullOrEmpty(element.skills)) {
               element.skills = element.skills.split(',');
+            }
+            if (!this.utility.IsNullOrEmpty(element.imageUrl)) {
+              element.imageUrl = environment.assetUrl + element.imageUrl;
             }
           });
         }

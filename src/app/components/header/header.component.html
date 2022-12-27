@@ -34,6 +34,14 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+            routerLink="/ranking" (click)="ToggleNavBar()">排行版</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+            routerLink="/templates" (click)="ToggleNavBar()">範本</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
             routerLink="/feedback" (click)="ToggleNavBar()">意見回饋</a>
         </li>
         <!--  <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
@@ -59,7 +67,7 @@
       <ul *ngIf="authStoreSrv.isLoggedIn$ | async" class="navbar-nav ml-auto nav-flex-icons">
         <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
           style="padding-top: 13px;">
-          <a class="nav-link btn-blue font-16" (click)="RouteToNewProject()">建立專案 </a>
+          <a class=" btn-blue font-16" (click)="RouteToNewProject()">建立專案 </a>
         </li>
 
         <li class="nav-item p-8" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"

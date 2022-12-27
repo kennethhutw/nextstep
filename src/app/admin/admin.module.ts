@@ -20,7 +20,7 @@ import * as Containers from './index';
     FormsModule,
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
-    TooltipModule,
+    TooltipModule.forRoot(),
     SharedModule,
     BsDatepickerModule.forRoot(),
 
