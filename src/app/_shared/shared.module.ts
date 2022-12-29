@@ -31,7 +31,7 @@ import {
 
 import {
   FocusableDirective,
-
+  NgbdSortableHeader
 } from "../_directive";
 
 import
@@ -50,7 +50,7 @@ import * as sharedComponents from "./../_shared"
     EditModeDirective,
     EditableOnEnterDirective,
     FocusableDirective,
-
+    NgbdSortableHeader,
     DialogComponent,
     ModalComponent,
     EditableInputComponent,
@@ -73,6 +73,7 @@ import * as sharedComponents from "./../_shared"
     EditModeDirective,
     EditableOnEnterDirective,
     FocusableDirective,
+    NgbdSortableHeader,
     DialogComponent,
     ModalComponent,
     EditableInputComponent,

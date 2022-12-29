@@ -33,6 +33,7 @@ export class MentorProfileComponent implements OnInit {
 
   @ViewChild('closeExpbutton') closeExpbutton;
   @ViewChild('closeInfobutton') closeInfobutton;
+  @ViewChild('closefbbutton') closefbbutton;
 
   items = [];
   displayItems = [];
@@ -50,6 +51,7 @@ export class MentorProfileComponent implements OnInit {
 
   profileForm: FormGroup;
   experienceForm: FormGroup;
+  feedbackForm: FormGroup;
   expModel: string = "new";
   years: string[] = [];
   submitted = false;
@@ -106,6 +108,11 @@ export class MentorProfileComponent implements OnInit {
       endYear: [""],
       endMonth: [""],
       content: [""]
+    });
+
+    this.feedbackForm = this.formBuilder.group({
+      rating: ["", Validators.required],
+      comment: ["", Validators.required],
     });
     var max = new Date().getFullYear(),
       min = max - 57,
@@ -503,13 +510,6 @@ export class MentorProfileComponent implements OnInit {
   }
 
   onDeleteExp(exp) {
-
-    // this.dialogSrv.confirmThis("Are you sure you want to delete ",
-    //   () => {
-    //     console.log("yed ===");
-    //   }, () => {
-    //     console.log("No ----");
-    //   });
     this.userSrv.deleteExperience
       (exp.id).then(res => {
         if (res["result"] === "successful") {
@@ -531,6 +531,19 @@ export class MentorProfileComponent implements OnInit {
 
   changeTab(tab) {
     this.currentTab = tab;
+  }
+
+  //feedback
+  onSubmitFeedback(event) {
+
+  }
+
+  onEditFeedback(event) {
+
+  }
+
+  onCancelFeedback(event) {
+
   }
 }
 //https://www.sliderrevolution.com/resources/bootstrap-profile/
