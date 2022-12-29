@@ -15,6 +15,7 @@ import {
 import { Utility } from "../../_helpers";
 import { environment } from '../../../environments/environment';
 import { NgxSpinnerService } from "ngx-spinner";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-find-mentor",
@@ -47,7 +48,7 @@ export class FindMentorComponent implements OnInit {
     private settingSrv: SettingService,
     private translateSrv: TranslateService,
     private utility: Utility,
-    private dataSrv: DataService,
+    private router: Router,
     private authStore: AuthStore,
     private userSrv: UserService,
     private likeSrv: LikeService,
@@ -77,6 +78,9 @@ export class FindMentorComponent implements OnInit {
             }
             if (!this.utility.IsNullOrEmpty(element.interested)) {
               element.interested = element.interested.split(',');
+            }
+            if (!this.utility.IsNullOrEmpty(element.imageUrl)) {
+              element.imageUrl = environment.assetUrl + element.imageUrl;
             }
           });
         }
@@ -292,7 +296,7 @@ export class FindMentorComponent implements OnInit {
   }
 
   onClickUnFollow(event) {
-    console.log("onClickUnFollow=============", event);
+
     this.viewsSrv.unFollow(
       event.userId,
       "user",
@@ -318,7 +322,7 @@ export class FindMentorComponent implements OnInit {
   }
 
   onClickCollect(event) {
-    console.log("=============111111", event);
+
     this.viewsSrv.collect(
       event.userId,
       "user",
@@ -384,5 +388,10 @@ export class FindMentorComponent implements OnInit {
 
     this.isChat = !this.isChat;
     this.reciver = event;
+  }
+
+  OnClickProfile(event) {
+    console.log("OnClickProfile ========", event)
+    this.router.navigate(["./mentor/" + event.userId], {});
   }
 }

@@ -382,11 +382,16 @@
 
 /** buttons **/
 .btn-standard {
-
+  cursor: pointer;
   color: #69738C !important;
   border: 2px solid #CFD2DA !important;
   border-radius: 4px !important;
   padding: 6px 12px 6px 12px !important;
+}
+
+.btn-standard:hover {
+  color: #424B61 !important;
+  border: 2px solid #8F95A8 !important;
 }
 
 .btn-blue {

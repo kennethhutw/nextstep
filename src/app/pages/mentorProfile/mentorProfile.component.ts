@@ -24,12 +24,12 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { E } from "@angular/core/src/render3";
 
 @Component({
-  selector: "app-pub-profile",
-  templateUrl: "./pubprofile.component.html",
-  styleUrls: ["./pubprofile.component.scss"],
+  selector: "app-mentor-profile",
+  templateUrl: "./mentorProfile.component.html",
+  styleUrls: ["./mentorProfile.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
-export class PubProfileComponent implements OnInit {
+export class MentorProfileComponent implements OnInit {
 
   @ViewChild('closeExpbutton') closeExpbutton;
   @ViewChild('closeInfobutton') closeInfobutton;

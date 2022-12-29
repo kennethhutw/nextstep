@@ -50,7 +50,7 @@
     <div class="row  mt-24 ">
       <ng-container *ngFor="let item of mentors | slice:0:2; let i = index">
         <div class="col-md-6 text-center">
-          <app-user-card (onCollect)="onCollect($event)" [user]="item" [type]="'mentor'" [currentuser]="currentUser">
+          <app-user-card (Collect)="onCollect($event)" [user]="item" [type]="'mentor'" [currentuser]="currentUser">
           </app-user-card>
         </div>
       </ng-container>

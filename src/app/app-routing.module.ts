@@ -52,7 +52,7 @@ const routes: Routes = [
       { path: "messages", component: Pages.ChatComponent },
       { path: "profile/:userId", component: Pages.PubProfileComponent },
       { path: "u/:userId", component: Pages.PubProfileComponent },
-
+      { path: "mentor/:userId", component: Pages.MentorProfileComponent },
       {
         path: "verifyEmail",
         component: Pages.VerificationComponent

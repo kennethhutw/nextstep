@@ -16,6 +16,7 @@ import { FindMentorComponent } from './findmentor/findmentor.component';
 import { FindProjectComponent } from './findproject/findproject.component';
 import { FindMemberComponent } from './findmember/findmember.component';
 import { ProfileComponent } from './profile/profile.component';
+import { MentorProfileComponent } from './mentorProfile/mentorProfile.component';
 import { newProjectComponent } from './newProject/newProject.component';
 import { PubProfileComponent } from './pubprofile/pubprofile.component';
 
@@ -72,6 +73,7 @@ export const containers = [
     MyProjectSettingsComponent,
     MyProjectRecruitComponent,
     MyProjectComponent,
+    MentorProfileComponent,
     newProjectComponent,
     NotificationsComponent,
     PageNotFoundComponent,
@@ -98,7 +100,7 @@ export { FindProjectComponent } from './findproject/findproject.component';
 export { FindMemberComponent } from './findmember/findmember.component';
 export { FeedbackComponent } from "./feedback/feedback.component";
 export { HomeComponent } from "./home/home.component";
-
+export { MentorProfileComponent } from './mentorProfile/mentorProfile.component';
 export { newProjectComponent } from './newProject/newProject.component';
 
 export * from './myProject';

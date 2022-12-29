@@ -15,6 +15,7 @@ import {
 import { Utility } from "../../_helpers";
 import { environment } from '../../../environments/environment';
 import { NgxSpinnerService } from "ngx-spinner";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-findmember",
@@ -61,7 +62,7 @@ export class FindMemberComponent implements OnInit {
     private settingSrv: SettingService,
     private translateSrv: TranslateService,
     private utility: Utility,
-    private dataSrv: DataService,
+    private router: Router,
     private authStore: AuthStore,
     private userSrv: UserService,
     private likeSrv: LikeService,
@@ -629,5 +630,9 @@ export class FindMemberComponent implements OnInit {
       this.toastr.showToast('Failed', "取消收藏失敗", this.toastr.iconClasses.error);
     });
 
+  }
+
+  OnClickProfile(event) {
+    this.router.navigate(["./u/" + event.userId], {});
   }
 }
