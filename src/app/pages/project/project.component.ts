@@ -90,7 +90,6 @@ export class ProjectComponent implements OnInit {
       _id = this.currentUser.id;
     }
     this.projectSrv.getProject(this.projectId, _id).then(res => {
-      console.log("getProject ======", res);
       if (res['result'] == 'successful') {
         this.currentProject = res['data'];
         if (this.currentProject) {
@@ -137,26 +136,18 @@ export class ProjectComponent implements OnInit {
       let _id = null;
       if (this.currentUser && this.currentUser.id) {
         _id = this.currentUser.id;
-        if (this.currentUser.owner != this.currentUser.id) {
-          this.viewsService.insert(
-            this.projectId,
-            "project",
-            _id,
-            "",
-            _id
-          );
-        }
-
-      } else {
-        this.viewsService.insert(
-          this.projectId,
-          "project",
-          _id,
-          "",
-          _id
-        );
-
       }
+      this.viewsService.insert(
+        this.projectId,
+        "project",
+        _id,
+        "",
+        _id
+      ).then(res => {
+
+      }).catch(error => {
+        console.error("Add view record failed", error)
+      });;
 
       this.SpinnerService.hide();
     }).catch(error => {

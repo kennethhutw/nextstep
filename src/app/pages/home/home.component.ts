@@ -144,7 +144,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.translateSrv.use("zh-tw");
     this.landingSrv.getall().then(res => {
-      console.log("==========", res);
+
       if (res['result'] == 'successful') {
         this.popularProjects = res['projects'];
         this.popularUsers = res['partners'];

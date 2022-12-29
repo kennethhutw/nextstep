@@ -503,7 +503,6 @@ export class FindProjectComponent implements OnInit {
 
 
   onClickFollow(event) {
-    console.log("onClickFollow===========", event)
     this.viewsSrv.follow(
       event.projectId,
       "project",

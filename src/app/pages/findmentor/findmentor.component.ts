@@ -391,7 +391,6 @@ export class FindMentorComponent implements OnInit {
   }
 
   OnClickProfile(event) {
-    console.log("OnClickProfile ========", event)
     this.router.navigate(["./mentor/" + event.userId], {});
   }
 }

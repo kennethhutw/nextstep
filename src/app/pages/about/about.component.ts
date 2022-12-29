@@ -35,7 +35,6 @@ export class AboutComponent implements OnInit {
 
   ngOnInit() {
     this.route.fragment.subscribe(fragment => {
-      console.log("fragment =========", fragment)
       this.fragment = fragment;
     });
   }

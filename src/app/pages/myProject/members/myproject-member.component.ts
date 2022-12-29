@@ -100,14 +100,12 @@ export class MyProjectMemberComponent implements OnInit {
     this.projectSrv.getMembers(
       this.projectId
     ).then(res => {
-      console.log("getMembers ===========", res)
       if (res['result'] == 'successful') {
         let data = res['data'];
 
         data.forEach((item) => {
           item['isSelected'] = false;
         });
-        console.log("init data =======", data)
         //  isSelected
 
         if (data.length > 0) {
@@ -206,7 +204,6 @@ export class MyProjectMemberComponent implements OnInit {
       projectLink: _projectLink,
       invitationLink: _invitationLink
     }).then(res => {
-      console.log("=============", res);
       if (res['result'] === 'successful') {
         this.submitted = false;
         this.invitationForm.reset();

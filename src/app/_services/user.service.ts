@@ -43,6 +43,12 @@ export class UserService {
       .toPromise();
   }
 
+  async getMentorInfo(uid: string) {
+    return await this.http
+      .get<any>(`${environment.apiUrl}/users/mentor/info/${uid}`)
+      .toPromise();
+  }
+
   async getPassWordByEmail(email: string) {
     const params = new HttpParams().set("email", email);
     return await this.http

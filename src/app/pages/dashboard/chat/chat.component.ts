@@ -51,7 +51,7 @@ export class ChatComponent implements OnInit {
 
   initChat(uid) {
     this.chatSrv.getConversations(uid).then(res => {
-      console.log("res =========", res);
+
       if (res["result"] == "successful") {
         this.items = res["data"];
         if (this.items.length > 0) {
@@ -71,7 +71,6 @@ export class ChatComponent implements OnInit {
       this.selectedItem = this.items[index];
     }
     this.updateRead(this.currentUser.id, item.userId);
-    console.log("click selectedItem ========", this.selectedItem);
   }
 
   updateRead(uid, to_uid) {

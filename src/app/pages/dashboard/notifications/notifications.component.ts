@@ -38,7 +38,6 @@ export class NotificationsComponent implements OnInit {
 
     this.currentUser = this.authStore.getUserData();
     this.notificationSrv.getNotifications(this.currentUser.id).then(res => {
-      console.log("=========", res);
       if (res['result'] == 'successful') {
         this.notifications = res['data'];
       } else {

@@ -129,8 +129,8 @@ export class MentorProfileComponent implements OnInit {
     }
     let userId = this.route.snapshot.paramMap.get('userId');
 
-    this.userSrv.getUserInfo(userId).then(res => {
-      console.log("userProfile=============", res);
+    this.userSrv.getMentorInfo(userId).then(res => {
+
       if (res['result'] == 'successful') {
         this.userProfile = res['data'];
         if (!this.utility.IsNullOrEmpty(this.userProfile.skills)) {
@@ -154,26 +154,21 @@ export class MentorProfileComponent implements OnInit {
         let _id = null;
         if (this.currentUser && this.currentUser.id) {
           _id = this.currentUser.id;
-          if (this.userProfile.id != this.currentUser.id) {
-            this.viewsService.insert(
-              this.currentUser.id,
-              "user",
-              _id,
-              "",
-              _id
-            );
-          }
-
-        } else {
-          this.viewsService.insert(
-            this.userProfile.id,
-            "user",
-            _id,
-            "",
-            _id
-          );
-
         }
+        this.viewsService.insert(
+          this.userProfile.id,
+          "mentor",
+          _id,
+          "",
+          _id
+        ).then(res => {
+
+        }).catch(error => {
+          console.error("Add view record failed", error)
+        });
+
+
+
       }
     })
   }

@@ -195,7 +195,6 @@ export class SettingsComponent implements OnInit {
       notiSystem: this.currentSetting.notiSystem,
       uid: this.currentUser.id
     }
-    console.log("privacyMsg=========", this.privacyMsg);
     this.userSettingSrv.update(params).subscribe(res => {
       if (res['result'] == 'successful') {
         this.notifMsg = "Updated successfully";

@@ -208,9 +208,8 @@ export class MyProjectRecruitComponent implements OnInit {
     }
 
     let _available = event.value;
-    console.log("params ==========", params);
     this.recruitSrv.updateStatus(params).then(res => {
-      console.log("res ==========", res);
+
       if (res['result'] == 'successful') {
         let _index = this.current.findIndex((obj => obj.id == item.id));
         this.current[_index].available = _available;

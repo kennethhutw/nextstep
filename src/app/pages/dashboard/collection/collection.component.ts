@@ -37,7 +37,7 @@ export class MyCollectionComponent implements OnInit {
     this.viewSrv.getCollect(
       this.currentUser.id
     ).then(res => {
-      console.log("getCollect========", res)
+
       if (res['result'] == 'successful') {
         this.projects = res['projects'];
         if (this.projects.length > 0) {

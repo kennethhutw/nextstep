@@ -53,8 +53,6 @@ export class UserCardComponent {
 
 
   routeToUserProfile() {
-    // this.router.navigate(["./u/" + this.user.uid], {});
-    console.log("routeToUserProfile=============")
     this.Click.emit({ userId: this.user.uid });
   }
 

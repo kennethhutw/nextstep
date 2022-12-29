@@ -134,7 +134,7 @@ export class PubProfileComponent implements OnInit {
       if (res['result'] == 'successful') {
         this.userProfile = res['data'];
         if (!this.utility.IsNullOrEmpty(this.userProfile.skills)) {
-          console.log("skills=============", this.userProfile.skills);
+
           this.userProfile.skills = this.userProfile.skills.split(",");
         } else {
           this.userProfile.skills = null;
@@ -151,29 +151,23 @@ export class PubProfileComponent implements OnInit {
         this.isOwner = (this.currentUser.id === this.userProfile.id);
 
         //init view
-        let _id = null;
+        let _id = 'not login';
         if (this.currentUser && this.currentUser.id) {
+          // when user login
           _id = this.currentUser.id;
-          if (this.userProfile.id != this.currentUser.id) {
-            this.viewsService.insert(
-              this.currentUser.id,
-              "user",
-              _id,
-              "",
-              _id
-            );
-          }
-
-        } else {
-          this.viewsService.insert(
-            this.userProfile.id,
-            "user",
-            _id,
-            "",
-            _id
-          );
-
         }
+        this.viewsService.insert(
+          this.userProfile.id,
+          "user",
+          _id,
+          "",
+          _id
+        ).then(res => {
+
+        }).catch(error => {
+          console.error("Add view record failed", error)
+        });
+
       }
     })
   }

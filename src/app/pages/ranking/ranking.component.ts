@@ -10,7 +10,7 @@ import { TranslateService } from "@ngx-translate/core";
 import {
 
 } from "../../_services";
-import { NgbdSortableHeader, SortEvent } from '../../_directive';
+
 import { Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
@@ -38,7 +38,7 @@ export class RankingComponent implements OnInit {
   members$: Observable<any[]>;
   mentors$: Observable<any[]>;
 
-  @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
+
 
   constructor(
 

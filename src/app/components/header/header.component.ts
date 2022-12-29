@@ -96,7 +96,6 @@ export class HeaderComponent implements OnInit {
     });
     if (this.uid) {
       this.notificationSrv.getFirstFiveNotifications(this.currentUser.id).then(res => {
-        console.log("getFirstFiveNotifications res ==============", res);
         if (res['result'] == 'successful') {
           this.notis = res['data'];
           this.notiNum = res['unRead'];
