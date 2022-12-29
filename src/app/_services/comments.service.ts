@@ -15,7 +15,7 @@ export class CommentsService {
   }
 
   insertComment(userId, proposalId, content) {
-    return this.http.post(`${environment.apiUrl}/proposal/insertComment`,
+    return this.http.post(`${environment.apiUrl}/mentors/insertComment`,
       {
         uid: userId,
         proposalId,
@@ -44,5 +44,8 @@ export class CommentsService {
       uid
     });
   }
+
+  // for mentor
+
 
 }

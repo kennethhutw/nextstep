@@ -8,10 +8,12 @@ import { DataService } from "./data.service";
 import { DialogService } from "./dialog.service";
 import { DelegateEmailService } from './delegateEmail.service';
 import { EmailService } from "./email.service";
+
 import { InvitationService } from './invitation.service';
 import { LandingService } from './landing.service';
 import { LikeService } from "./like.service";
 import { MembersService } from "./members.service";
+import { MentorService } from "./mentor.service";
 import { NotificationService } from "./nofitications.service";
 import { PagerService } from './pager.service';
 import { ProjectService } from './project.service';
@@ -39,6 +41,7 @@ export const services = [
     DialogService,
     DelegateEmailService,
     EmailService,
+
     InvitationService,
     LandingService,
     PagerService,
@@ -47,6 +50,7 @@ export const services = [
     RecruitService,
     LikeService,
     MembersService,
+    MentorService,
     NotificationService,
     TableService,
     ToastService,
@@ -74,6 +78,7 @@ export * from "./setting.service";
 export * from './landing.service';
 export * from "./like.service";
 export * from "./members.service";
+export * from "./mentor.service";
 export * from "./nofitications.service";
 export * from './toastr.service';
 export * from "./table.service";

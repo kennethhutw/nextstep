@@ -11,7 +11,8 @@ import {
   ToastService,
   AppSettingsService,
   SettingService,
-  UserService
+  UserService,
+  MentorService
 } from "../../_services";
 import {
   AuthStore
@@ -57,7 +58,7 @@ export class MentorProfileComponent implements OnInit {
   submitted = false;
   httpreg = '(https://)([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
 
-
+  commentModel: string = "new";
   // chat
   isChat: boolean = false;
   reciver;
@@ -75,7 +76,8 @@ export class MentorProfileComponent implements OnInit {
     private settingSrv: SettingService,
     private translateSrv: TranslateService,
     private viewsService: ViewsService,
-    private utility: Utility,
+    private mentorSrv: MentorService,
+    public utilitySrv: Utility,
     private formBuilder: FormBuilder,
     private appSettingsSrv: AppSettingsService,
     private SpinnerService: NgxSpinnerService
@@ -111,7 +113,7 @@ export class MentorProfileComponent implements OnInit {
     });
 
     this.feedbackForm = this.formBuilder.group({
-      rating: ["", Validators.required],
+      rating: ["5", Validators.required],
       comment: ["", Validators.required],
     });
     var max = new Date().getFullYear(),
@@ -128,7 +130,7 @@ export class MentorProfileComponent implements OnInit {
     this.currentUser = this.authSrv.getUserData();
 
     if (this.currentUser) {
-      if (this.utility.IsNullOrEmpty(this.currentUser.imageUrl)) {
+      if (this.utilitySrv.IsNullOrEmpty(this.currentUser.imageUrl)) {
         this.currentUser.imageUrl = this.defaultProfileLogo;
       } else {
         this.currentUser.imageUrl = environment.assetUrl + this.currentUser.imageUrl;
@@ -137,21 +139,20 @@ export class MentorProfileComponent implements OnInit {
     let userId = this.route.snapshot.paramMap.get('userId');
 
     this.userSrv.getMentorInfo(userId).then(res => {
-
       if (res['result'] == 'successful') {
         this.userProfile = res['data'];
-        if (!this.utility.IsNullOrEmpty(this.userProfile.skills)) {
-          console.log("skills=============", this.userProfile.skills);
+        if (!this.utilitySrv.IsNullOrEmpty(this.userProfile.skills)) {
+
           this.userProfile.skills = this.userProfile.skills.split(",");
         } else {
           this.userProfile.skills = null;
         }
-        if (this.utility.IsNullOrEmpty(this.userProfile.imageUrl)) {
+        if (this.utilitySrv.IsNullOrEmpty(this.userProfile.imageUrl)) {
           this.userProfile.imageUrl = this.defaultProfileLogo;
         } else {
           this.userProfile.imageUrl = environment.assetUrl + this.userProfile.imageUrl;
         }
-        if (!this.utility.IsNullOrEmpty(this.userProfile.cover)) {
+        if (!this.utilitySrv.IsNullOrEmpty(this.userProfile.cover)) {
 
           this.userProfile.cover = environment.assetUrl + this.userProfile.cover;
         }
@@ -299,7 +300,7 @@ export class MentorProfileComponent implements OnInit {
   }
 
   IsNullorEmpty(value) {
-    return !this.utility.IsNullOrEmpty(value)
+    return !this.utilitySrv.IsNullOrEmpty(value)
   }
 
   convertTag(term) {
@@ -357,7 +358,7 @@ export class MentorProfileComponent implements OnInit {
   initProfileForm() {
 
     let _skills = [];
-    if (!this.utility.IsNullOrEmpty(this.userProfile.skills)) {
+    if (!this.utilitySrv.IsNullOrEmpty(this.userProfile.skills)) {
       // let _skill_values = this.userProfile.skills.split(",");
 
       this.skillOptions.map(option => {
@@ -535,6 +536,31 @@ export class MentorProfileComponent implements OnInit {
 
   //feedback
   onSubmitFeedback(event) {
+    this.submitted = true;
+    if (this.feedbackForm.invalid) {
+      return;
+    }
+    const values = this.feedbackForm.value;
+    let params = {
+      "userId": this.currentUser.id,
+      "rating": 5,
+      "content": values.content
+    }
+    this.mentorSrv.insertComment(this.userProfile.id,
+      values.comment,
+      5,
+      this.currentUser.id).subscribe(res => {
+        console.log("insertComment ===========", res)
+        if (res["result"] === "successful") {
+
+          this.userProfile.comments.push(params);
+          this.feedbackForm.reset();
+          this.commentModel = "new";
+          this.closefbbutton.nativeElement.click();
+        }
+      }, (error => {
+        console.log("error =======", error)
+      }))
 
   }
 
@@ -544,6 +570,16 @@ export class MentorProfileComponent implements OnInit {
 
   onCancelFeedback(event) {
 
+  }
+
+  imagePath(path) {
+    console.log("path ============", path)
+    if (this.utilitySrv.IsNullOrEmpty(path)) {
+      path = this.defaultProfileLogo;
+    } else {
+      path = environment.assetUrl + path;
+    }
+    return path
   }
 }
 //https://www.sliderrevolution.com/resources/bootstrap-profile/

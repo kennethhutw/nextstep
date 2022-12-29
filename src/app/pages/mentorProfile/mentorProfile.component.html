@@ -116,10 +116,10 @@
             </li>
             <li class="nav-item" role="presentation">
               <button class="nav-link tab" id="feedback-tab" [ngClass]="{ 'active': currentTab === 'feedback' }"
-                type="button" role="tab" (click)="changeTab('feedback')">回饋</button>
+                type="button" role="tab" (click)="changeTab('feedback')">評語</button>
             </li>
             <li class="nav-item" role="presentation">
-              <button type="button" class="btn btn_item ">
+              <button type="button" class="btn btn_item" data-toggle="modal" [attr.data-target]="'#feedbackModal'">
                 撰寫評語</button>
             </li>
 
@@ -196,27 +196,28 @@
             <!-- 回饋 start -->
             <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'feedback' }" role="tabpanel"
               aria-labelledby="feedback-tab">
-              <div *ngIf="!userProfile.feedback" class="col-md-12 frame mb-20">
+              <div *ngIf="!userProfile.comments" class="col-md-12 frame mb-20">
                 <div class="col-md-12 empty-text-center">
-                  <span>尚未任何回饋</span>
+                  <span>尚未任何評語</span>
                 </div>
               </div>
 
-              <ng-container *ngFor="let feedback of userProfile.feedback; let i = index">
+              <ng-container *ngFor="let comment of userProfile.comments; let i = index">
                 <div class="col-md-12 frame mb-20">
                   <div class="col-md-12" style=" display:inline-block;">
-                    <div class="d-flex flex-column ">
-                      <span style="font-size: 25px;padding-right: 20px;">{{feedback.position}}</span>
-
-                    </div>
-                    <div class="d-flex flex-row gap-10">
-                      <span>{{feedback.name}}</span>
-                      <span style="margin-left: 10px;">{{feedback.createdAt | date : 'yyyy-MM-dd'}}</span>
+                    <div class="col-md-12 comment-header">
+                      <img class="profile-image rounded-circle" src="{{imagePath( comment.imageUrl)}}"
+                        (error)="onImgError($event)" alt="" />
+                      <div class="profile-detail">
+                        <span>{{comment.userName}}</span>
+                        <span class="createdTime">{{(comment?.createdAt !==null) ?
+                          this.utilitySrv.timeSince(comment.createdAt ) : ''
+                          }}</span>
+                      </div>
                     </div>
                   </div>
-
                   <div class="col-md-12 content">
-                    {{feedback.content}}
+                    {{comment.content}}
                   </div>
                 </div>
               </ng-container>
@@ -496,6 +497,39 @@
           </button>
           <button type="button" class="btn btn-blue mr-10" (click)="onExperienceSubmit()">
             儲存</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- edit feedback start -->
+<div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span>分享您和這位導師的諮詢體驗</span>
+        <button type="button" #closefbbutton class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body content">
+        <form [formGroup]="feedbackForm">
+
+
+
+          <div class="form-group">
+            <label for="inputPosition">簡介</label>
+            <textarea class="form-control" type="text" id="content" formControlName="comment" rows="4"
+              cols="50"></textarea>
+          </div>
+
+          <button type="button" class="btn btn-blue mr-10" (click)="onSubmitFeedback()">
+            儲存</button>
+          <button type="button" class="btn btn-white mr-10" data-dismiss="modal" aria-label="Close"
+            (click)="onCancelFeedback()">取消
+          </button>
         </form>
 
       </div>

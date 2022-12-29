@@ -231,4 +231,38 @@ app-mentor-profile {
     .tab-pane {
         padding-top: 24px;
     }
+
+    .nav-tabs {
+        position: relative;
+    }
+
+    .nav-tabs>li:last-child {
+        right: 0;
+        position: absolute
+    }
+
+    #feedbackModal {
+        .content {
+            button {
+                float: right;
+            }
+        }
+
+
+    }
+
+    //comment
+    .comment-header {
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-rows: 1fr;
+        grid-template-columns: 70px auto 100px;
+        gap: 20px;
+    }
+
+    .profile-detail {
+        display: grid;
+    }
+
+
 }
