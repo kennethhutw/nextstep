@@ -516,11 +516,13 @@
       </div>
       <div class="modal-body content">
         <form [formGroup]="feedbackForm">
-
+          <div class="form-group">
+            <ngb-rating [max]="5" [(rate)]="starRating" [readonly]="false"></ngb-rating>
+          </div>
 
 
           <div class="form-group">
-            <label for="inputPosition">簡介</label>
+            <label for="inputPosition">評語</label>
             <textarea class="form-control" type="text" id="content" formControlName="comment" rows="4"
               cols="50"></textarea>
           </div>

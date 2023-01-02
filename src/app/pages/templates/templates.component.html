@@ -1,1 +1,11 @@
 <h1>Templates</h1>
+<div class="container row">
+    <div class="row">
+        <ng-container *ngFor="let item of  templates; let i = index">
+            <div class="col-md-6">
+                <ui-email-template-card [template]="item">
+                </ui-email-template-card>
+            </div>
+        </ng-container>
+    </div>
+</div>

@@ -69,7 +69,11 @@ import {
 } from "./_services";
 import { SwiperModule } from 'swiper/angular';
 import { TagInputModule } from 'ngx-chips';
-import { NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbPaginationModule,
+  NgbTypeaheadModule,
+  NgbRatingModule
+} from '@ng-bootstrap/ng-bootstrap';
 
 export function createLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -121,7 +125,8 @@ export function appConfigFactory(provider: AppSettingsService) {
     SwiperModule,
     TooltipModule.forRoot(),
     NgbPaginationModule,
-    NgbTypeaheadModule
+    NgbTypeaheadModule,
+    NgbRatingModule
   ],
   providers: [GoogleAnalyticsService,
     {

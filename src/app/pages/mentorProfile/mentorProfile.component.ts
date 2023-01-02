@@ -59,6 +59,7 @@ export class MentorProfileComponent implements OnInit {
   httpreg = '(https://)([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
 
   commentModel: string = "new";
+  starRating = 0;
   // chat
   isChat: boolean = false;
   reciver;
@@ -537,23 +538,24 @@ export class MentorProfileComponent implements OnInit {
   //feedback
   onSubmitFeedback(event) {
     this.submitted = true;
+    console.log("onSubmitFeedback =======", this.starRating)
     if (this.feedbackForm.invalid) {
       return;
     }
     const values = this.feedbackForm.value;
     let params = {
       "userId": this.currentUser.id,
-      "rating": 5,
+      "rating": this.starRating,
       "content": values.content
     }
     this.mentorSrv.insertComment(this.userProfile.id,
       values.comment,
-      5,
+      this.starRating,
       this.currentUser.id).subscribe(res => {
         console.log("insertComment ===========", res)
         if (res["result"] === "successful") {
-
-          this.userProfile.comments.push(params);
+          this.starRating = 0;
+          // this.userProfile.comments.push(params);
           this.feedbackForm.reset();
           this.commentModel = "new";
           this.closefbbutton.nativeElement.click();

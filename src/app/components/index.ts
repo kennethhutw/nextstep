@@ -2,6 +2,7 @@ import { ButtonComponent } from './button/button.component';
 import { CustomModalComponent } from './custom-modal/custom-modal.component';
 import { CommentComponent } from './comment/comment.component';
 import { CommentsComponent } from './comments/comments.component';
+import { EmailTemplateCardComponent } from './emailTemplateCard/emailTemplateCard.component';
 import { MemberCardComponent } from './memberCard/memberCard.component';
 import { ProjectItemComponent } from "./projectItem/project-item.component";
 import { PersonCardComponent } from "./person/person.component";
@@ -17,6 +18,7 @@ export const components = [
     CustomModalComponent,
     CommentComponent,
     CommentsComponent,
+    EmailTemplateCardComponent,
     RadioItemComponent,
     RecruitCardComponent,
     LogBarComponent,
@@ -33,6 +35,7 @@ export { ButtonComponent } from './button/button.component';
 export { CustomModalComponent } from './custom-modal/custom-modal.component';
 export { CommentComponent } from './comment/comment.component';
 export { CommentsComponent } from './comments/comments.component';
+export { EmailTemplateCardComponent } from './emailTemplateCard/emailTemplateCard.component';
 export { UserCardComponent } from "./userCard/userCard.component";
 export { ProjectCardComponent } from './projectCard/projectCard.component';
 export { ProjectItemComponent } from "./projectItem/project-item.component";
