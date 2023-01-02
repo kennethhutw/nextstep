@@ -140,6 +140,7 @@ export class MentorProfileComponent implements OnInit {
     let userId = this.route.snapshot.paramMap.get('userId');
 
     this.userSrv.getMentorInfo(userId).then(res => {
+      console.log("getMentorInfo ======", res)
       if (res['result'] == 'successful') {
         this.userProfile = res['data'];
         if (!this.utilitySrv.IsNullOrEmpty(this.userProfile.skills)) {
@@ -156,6 +157,14 @@ export class MentorProfileComponent implements OnInit {
         if (!this.utilitySrv.IsNullOrEmpty(this.userProfile.cover)) {
 
           this.userProfile.cover = environment.assetUrl + this.userProfile.cover;
+        }
+
+        if (!this.utilitySrv.IsNullOrEmpty(this.userProfile.comments)) {
+          this.userProfile.comments.forEach(element => {
+            if (!this.utilitySrv.IsNullOrEmpty(element.imageUrl)) {
+              element.imageUrl = environment.assetUrl + element.imageUrl;
+            }
+          })
         }
         this.isOwner = (this.currentUser.id === this.userProfile.id);
 
@@ -175,9 +184,6 @@ export class MentorProfileComponent implements OnInit {
         }).catch(error => {
           console.error("Add view record failed", error)
         });
-
-
-
       }
     })
   }
@@ -536,32 +542,39 @@ export class MentorProfileComponent implements OnInit {
   }
 
   //feedback
-  onSubmitFeedback(event) {
+  onSubmitFeedback() {
     this.submitted = true;
-    console.log("onSubmitFeedback =======", this.starRating)
     if (this.feedbackForm.invalid) {
       return;
     }
     const values = this.feedbackForm.value;
-    let params = {
-      "userId": this.currentUser.id,
-      "rating": this.starRating,
-      "content": values.content
-    }
+
     this.mentorSrv.insertComment(this.userProfile.id,
       values.comment,
       this.starRating,
       this.currentUser.id).subscribe(res => {
-        console.log("insertComment ===========", res)
         if (res["result"] === "successful") {
           this.starRating = 0;
-          // this.userProfile.comments.push(params);
+          this.userProfile.comments.push({
+            content: values.content,
+            createdAt: Date.now(),
+            createdBy: this.currentUser.id,
+            deleted: false,
+            imageUrl: this.currentUser.imageUrl,
+            rating: this.starRating,
+            updatedAt: Date.now(),
+            updatedBy: this.currentUser.id,
+            userId: this.currentUser.id,
+            userName: this.currentUser.name,
+          });
           this.feedbackForm.reset();
           this.commentModel = "new";
           this.closefbbutton.nativeElement.click();
+          this.toastr.showToast('Success', "新增評語成功", this.toastr.iconClasses.success);
         }
       }, (error => {
         console.log("error =======", error)
+        this.toastr.showToast('Failed', "新增評語失敗", this.toastr.iconClasses.error);
       }))
 
   }

@@ -206,8 +206,8 @@
                 <div class="col-md-12 frame mb-20">
                   <div class="col-md-12" style=" display:inline-block;">
                     <div class="col-md-12 comment-header">
-                      <img class="profile-image rounded-circle" src="{{imagePath( comment.imageUrl)}}"
-                        (error)="onImgError($event)" alt="" />
+                      <img class="profile-image rounded-circle" src="{{comment.imageUrl}}" (error)="onImgError($event)"
+                        alt="" />
                       <div class="profile-detail">
                         <span>{{comment.userName}}</span>
                         <span class="createdTime">{{(comment?.createdAt !==null) ?

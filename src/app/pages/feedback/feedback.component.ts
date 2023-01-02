@@ -56,9 +56,11 @@ export class FeedbackComponent implements OnInit {
         this.processed = this.allitems.filter(item => {
           return item.process_status == "processed"
         })
-        this.myproposals = this.allitems.filter(item => {
-          return item.createdBy == this.currentUser.id
-        })
+        if (this.currentUser) {
+          this.myproposals = this.allitems.filter(item => {
+            return item.createdBy == this.currentUser.id
+          })
+        }
         this.processed.forEach(e => {
           this.hideprocessed[e.id] = false;
         });

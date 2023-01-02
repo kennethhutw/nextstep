@@ -51,6 +51,7 @@ export class ProjectComponent implements OnInit {
 
   skillOptions: any[] = [];
   currentTab: string = "history";
+  submitted = false;
   constructor(
     private router: Router,
     private projectSrv: ProjectService,
@@ -59,7 +60,7 @@ export class ProjectComponent implements OnInit {
     private formBuilder: FormBuilder,
     private settingSrv: SettingService,
     private membersSrv: MembersService,
-    private utility: Utility,
+    public utility: Utility,
     private route: ActivatedRoute,
     private viewsService: ViewsService,
     private appSettingsSrv: AppSettingsService,
@@ -440,6 +441,7 @@ export class ProjectComponent implements OnInit {
 
   onModifySubmit() {
 
+    this.submitted = true;
     this.projectMsg = "";
     if (this.projectForm.invalid) {
       return;
@@ -466,6 +468,7 @@ export class ProjectComponent implements OnInit {
         this.currentProject.isFindPartner = value.isFindPartner;
         this.currentProject.isFunding = value.isFunding;
         this.currentProject.isCofounder = value.isCofounder;
+        this.submitted = false;
         document.getElementById("close_modify_project").click();
       }
     }, error => {

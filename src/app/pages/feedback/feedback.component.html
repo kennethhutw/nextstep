@@ -63,7 +63,7 @@
                                     }}</span>
                             </div>
                             <div class="category" [ngSwitch]="item.category">
-                                <div class="dropdown" *ngIf="item.createdBy === currentUser.id"><i
+                                <div class="dropdown" *ngIf="item.createdBy === currentUser?.id"><i
                                         class="fas fa-ellipsis-h" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="true"></i>
                                     <div class="dropdown-menu"> <a class="dropdown-item" data-toggle="modal"
@@ -247,7 +247,7 @@
                                     }}</span>
                             </div>
                             <div class="category" [ngSwitch]="item.category">
-                                <div class="dropdown" *ngIf="item.createdBy === currentUser.id"><i
+                                <div class="dropdown" *ngIf="item.createdBy === currentUser?.id"><i
                                         class="fas fa-ellipsis-h" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="true"></i>
                                     <div class="dropdown-menu"> <a class="dropdown-item"><i
