@@ -256,8 +256,15 @@ app-mentor-profile {
         display: grid;
         grid-auto-flow: column;
         grid-template-rows: 1fr;
-        grid-template-columns: 70px auto 100px;
+        grid-template-columns: 70px auto;
         gap: 20px;
+    }
+
+    .comment-user-detail {
+        display: grid;
+        align-items: center;
+        grid-auto-flow: column;
+        justify-content: space-between;
     }
 
     .profile-detail {

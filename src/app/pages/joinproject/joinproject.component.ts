@@ -18,6 +18,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class JoinProjectComponent implements OnInit {
 
   projectId: string = "";
+  invitiationId: string = "";
   currentUser;
 
   invitation = null;
@@ -45,17 +46,17 @@ export class JoinProjectComponent implements OnInit {
 
   ngOnInit() {
     this.spinnerSrv.show();
-    this.projectId = this.route.snapshot.paramMap.get('id');
+    this.invitiationId = this.route.snapshot.paramMap.get('id');
     this.currentUser = this.authSrv.getUserData();
     if (!this.currentUser) {
       this.spinnerSrv.hide();
       this.router.navigate(['/login']);
     }
 
-    this.invitationSrv.getInvitation(this.projectId, this.currentUser.id).then(res => {
-      console.log("res ============", res);
+    this.invitationSrv.getInvitation(this.invitiationId, this.currentUser.id).then(res => {
       if (res["result"] == 'successful') {
         this.invitation = res["data"];
+        this.projectId = this.invitation.projectId;
       }
     }).then(() => {
       this.spinnerSrv.hide();
@@ -67,7 +68,6 @@ export class JoinProjectComponent implements OnInit {
     this.invitationSrv.updateInvitation(this.invitation.id, {
       status: "2"
     }).subscribe(res => {
-      console.log("onReject res =========", res);
       if (res['result'] == 'successful') {
 
       }
@@ -75,12 +75,16 @@ export class JoinProjectComponent implements OnInit {
   }
 
   onAccept() {
+    console.log("accept =======")
     this.invitationSrv.updateInvitation(this.invitation.id, {
-      status: "1"
+      status: "1",
+      userId: this.currentUser.id,
+      projectId: this.invitation.projectId,
+      username: this.currentUser.name
     }).subscribe(res => {
-      console.log("onAccept res =========", res);
+      console.log("accept ===========", res)
       if (res['result'] == 'successful') {
-
+        this.router.navigate(['/dashboard/myproject']);
       }
     })
   }

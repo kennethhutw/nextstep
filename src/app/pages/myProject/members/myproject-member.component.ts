@@ -132,9 +132,13 @@ export class MyProjectMemberComponent implements OnInit {
     this.invitationSrv.getInvitingList(this.projectId).then(res => {
       if (res['result'] == 'successful') {
         let _invitingList = res['data'];
-        this.invitingList = _invitingList.filter((member) => {
-          return member.status == '0'
-        });
+        if (_invitingList && _invitingList.length > 0) {
+          this.invitingList = _invitingList.filter((member) => {
+            return member.status == '0'
+          });
+        } else {
+          this.invitingList = [];
+        }
       }
     })
 
@@ -193,7 +197,7 @@ export class MyProjectMemberComponent implements OnInit {
     this.submitted = true;
     let domain = window.location.origin;
     let _projectLink = domain + "/project/" + this.projectId;
-    let _invitationLink = domain + "/joinproject/" + this.projectId;
+    let _invitationLink = domain + "/joinproject/";
     this.invitationSrv.inviteByUid({
       projectId: this.projectId,
       userid: this.invitedUserId,
@@ -226,16 +230,12 @@ export class MyProjectMemberComponent implements OnInit {
     if (this.invitationForm.invalid) {
       return;
     }
-    // projectId,
-    //   userid,
-    //   email,
-    //   name,
-    //   status,
-    //   uid
+
     let domain = window.location.origin;
     let _projectLink = domain + "/project/" + this.projectId;
-    let _invitationLink = domain + "/invitedSignup?projectId=" + this.projectId +
+    let _invitedSignup = domain + "/invitedSignup?projectId=" + this.projectId +
       "&email=" + value.email + "&name=" + value.name;
+    let _invitationLink = domain + "/joinproject/";
 
 
     this.invitationSrv.insert({
@@ -248,7 +248,8 @@ export class MyProjectMemberComponent implements OnInit {
       projectName: this.currentProject.name,
       sender: this.currentUser.name,
       projectLink: _projectLink,
-      invitationLink: _invitationLink
+      invitationLink: _invitationLink,
+      invitedSignup: _invitedSignup
     }).then(res => {
 
       if (res['result'] === 'successful') {

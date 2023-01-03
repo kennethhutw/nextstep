@@ -123,16 +123,18 @@ export class ProjectComponent implements OnInit {
             type: this.currentProject.type,
             stages: this.currentProject.stage
           });
-        }
-        if (this.utility.IsNullOrEmpty(this.currentProject.imageUrl)) {
-          this.currentProject.imageUrl = this.defaultProfileLogo;
-        } else {
-          this.currentProject.imageUrl = environment.assetUrl + this.currentProject.imageUrl;
-        }
-        if (!this.utility.IsNullOrEmpty(this.currentProject.coverUrl)) {
 
-          this.currentProject.coverUrl = environment.assetUrl + this.currentProject.coverUrl;
+          if (this.utility.IsNullOrEmpty(this.currentProject.imageUrl)) {
+            this.currentProject.imageUrl = this.defaultProfileLogo;
+          } else {
+            this.currentProject.imageUrl = environment.assetUrl + this.currentProject.imageUrl;
+          }
+          if (!this.utility.IsNullOrEmpty(this.currentProject.coverUrl)) {
+
+            this.currentProject.coverUrl = environment.assetUrl + this.currentProject.coverUrl;
+          }
         }
+
       }
       let _id = null;
       if (this.currentUser && this.currentUser.id) {

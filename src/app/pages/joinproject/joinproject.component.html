@@ -1,5 +1,5 @@
 <div class="container text-center">
-    <div *ngIf="invitation else noInvitation">
+    <div class="content" *ngIf="invitation else noInvitation">
         <span class="title text-center mb-20">是否接受加入[{{invitation? invitation.name:"專案名稱"}}]的邀請？</span>
         <div class="btns">
             <button type="button" class="btn btn-white mr-10" data-dismiss="modal" aria-label="Close"

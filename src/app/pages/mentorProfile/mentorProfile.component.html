@@ -208,13 +208,17 @@
                     <div class="col-md-12 comment-header">
                       <img class="profile-image rounded-circle" src="{{comment.imageUrl}}" (error)="onImgError($event)"
                         alt="" />
-                      <div class="profile-detail">
+                      <div class="comment-user-detail">
                         <span>{{comment.userName}}</span>
                         <span class="createdTime">{{(comment?.createdAt !==null) ?
                           this.utilitySrv.timeSince(comment.createdAt ) : ''
                           }}</span>
                       </div>
                     </div>
+                  </div>
+                  <div class="col-md-12">
+                    <ngb-rating [max]="5" [(rate)]="comment.rating" [readonly]="true">
+                    </ngb-rating>
                   </div>
                   <div class="col-md-12 content">
                     {{comment.content}}

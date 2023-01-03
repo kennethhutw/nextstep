@@ -9,6 +9,14 @@ app-joinproject {
         padding-top: 150px;
         gap: 24px;
 
+        .content {
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            display: flex;
+            gap: 24px;
+        }
+
         .title {
             font-size: 20px;
             font-weight: 500;
