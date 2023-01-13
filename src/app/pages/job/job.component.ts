@@ -35,7 +35,7 @@ export class JobComponent implements OnInit {
     private utility: Utility,
     private authStore: AuthStore,
     private route: ActivatedRoute,
-    private viewsService: ViewsService,
+    private viewsSrv: ViewsService,
     private appSettingsSrv: AppSettingsService,
     private SpinnerService: NgxSpinnerService,
     public toastr: ToastService
@@ -51,8 +51,8 @@ export class JobComponent implements OnInit {
     if (this.currentUser && this.currentUser.id) {
       _userId = this.currentUser.id;
     }
-    let id = this.route.snapshot.paramMap.get("id");
-    this.recruitSrv.getById(id, _userId).then(res => {
+    let _recruitId = this.route.snapshot.paramMap.get("id");
+    this.recruitSrv.getById(_recruitId, _userId).then(res => {
       if (res['result'] == 'successful') {
         this.currentRecruit = res['data'];
         if (!this.utility.IsNullOrEmpty(this.currentRecruit.skills)) {
@@ -66,6 +66,24 @@ export class JobComponent implements OnInit {
       console.error("error", error);
       this.SpinnerService.hide();
     })
+
+
+    //init view
+    let _id = 'not login';
+    if (this.currentUser && this.currentUser.id) {
+      _id = this.currentUser.id;
+    }
+    this.viewsSrv.insert(
+      _recruitId,
+      "recruit",
+      _id,
+      "",
+      _id
+    ).then(res => {
+
+    }).catch(error => {
+      console.error("Add view record failed", error)
+    });
   }
 
 
@@ -85,7 +103,7 @@ export class JobComponent implements OnInit {
   onClickFollow() {
 
     if (this.currentRecruit.isFollowing) {
-      this.viewsService.unFollow(
+      this.viewsSrv.unFollow(
         this.currentRecruit.id,
         "job",
         this.currentUser.id
@@ -100,7 +118,7 @@ export class JobComponent implements OnInit {
       });
     }
     else {
-      this.viewsService.follow(
+      this.viewsSrv.follow(
         this.currentRecruit.id,
         "job",
         this.currentUser.id
@@ -119,7 +137,7 @@ export class JobComponent implements OnInit {
 
   onClickCollect() {
     if (this.currentRecruit.isCollected) {
-      this.viewsService.unCollect(
+      this.viewsSrv.unCollect(
         this.currentRecruit.id,
         "job",
         this.currentUser.id
@@ -133,7 +151,7 @@ export class JobComponent implements OnInit {
         }
       });
     } else {
-      this.viewsService.collect(
+      this.viewsSrv.collect(
         this.currentRecruit.id,
         "job",
         this.currentUser.id
@@ -160,7 +178,7 @@ export class JobComponent implements OnInit {
   }
   onClickJobCollect(recruitId, isCollected) {
     if (isCollected) {
-      this.viewsService.unCollect(
+      this.viewsSrv.unCollect(
         recruitId,
         "job",
         this.currentUser.id
@@ -175,7 +193,7 @@ export class JobComponent implements OnInit {
         }
       });
     } else {
-      this.viewsService.collect(
+      this.viewsSrv.collect(
         recruitId,
         "job",
         this.currentUser.id

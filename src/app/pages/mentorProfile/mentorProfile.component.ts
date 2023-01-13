@@ -76,7 +76,6 @@ export class MentorProfileComponent implements OnInit {
     private authSrv: AuthStore,
     private settingSrv: SettingService,
     private translateSrv: TranslateService,
-    private viewsService: ViewsService,
     private mentorSrv: MentorService,
     public utilitySrv: Utility,
     private formBuilder: FormBuilder,
@@ -166,14 +165,15 @@ export class MentorProfileComponent implements OnInit {
             }
           })
         }
-        this.isOwner = (this.currentUser.id === this.userProfile.id);
-
+        if (this.currentUser && this.currentUser.id) {
+          this.isOwner = (this.currentUser.id === this.userProfile.id);
+        }
         //init view
         let _id = null;
         if (this.currentUser && this.currentUser.id) {
           _id = this.currentUser.id;
         }
-        this.viewsService.insert(
+        this.viewsSrv.insert(
           this.userProfile.id,
           "mentor",
           _id,

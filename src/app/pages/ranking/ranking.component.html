@@ -28,99 +28,27 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Actions</th>
+                                    <th scope="col">名稱</th>
+                                    <th scope="col">24h</th>
+                                    <th scope="col">7天</th>
+                                    <th scope="col">14天</th>
+                                    <th scope="col">30天</th>
+                                    <th scope="col">總數</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>
-                                        <span class="badge badge-primary rounded-0 p-1">Fixed</span>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-sm btn-outline-lightning rounded-0 mr-2 ">
-                                            <i class="far fa-edit"></i>
-                                        </a>
-                                        <a class="btn btn-sm btn-outline-lightning rounded-0">
-                                            <i class="far fa-trash-alt"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    <td>
-                                        <span class="badge badge-warning rounded-0 p-1">In progress</span>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-sm btn-outline-lightning rounded-0 mr-2">
-                                            <i class="far fa-edit"></i>
-                                        </a>
-                                        <a class="btn btn-sm btn-outline-lightning rounded-0 ">
-                                            <i class="far fa-trash-alt"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                    <td>
-                                        <span class="badge badge-success rounded-0 p-1">Completed</span>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-sm btn-outline-lightning rounded-0 mr-2">
-                                            <i class="far fa-edit"></i>
-                                        </a>
-                                        <a class="btn btn-sm btn-outline-lightning rounded-0">
-                                            <i class="far fa-trash-alt"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td>Jhon</td>
-                                    <td>Smith</td>
-                                    <td>@Instagram</td>
-                                    <td>
-                                        <span class="badge badge-danger rounded-0 p-1">Pending</span>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-sm btn-outline-lightning rounded-0 mr-2">
-                                            <i class="far fa-edit"></i>
-                                        </a>
-                                        <a class="btn btn-sm btn-outline-lightning rounded-0">
-                                            <i class="far fa-trash-alt"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">5</th>
-                                    <td>David</td>
-                                    <td>the Mad</td>
-                                    <td>@Facebook</td>
-                                    <td>
-                                        <span class="badge badge-dark rounded-0 p-1">Created</span>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-sm btn-outline-lightning rounded-0 mr-2">
-                                            <i class="far fa-edit"></i>
-                                        </a>
-                                        <a class="btn btn-sm btn-outline-lightning rounded-0">
-                                            <i class="far fa-trash-alt"></i>
-                                        </a>
-                                    </td>
-                                </tr>
+                                <ng-container *ngFor="let item of projects; let i = index">
+                                    <tr>
+                                        <th scope="row">{{i+1}}</th>
+                                        <td>{{item.name?item.name:""}}</td>
+                                        <td>{{item.h24?item.h24:0}}</td>
+                                        <td>{{item.amount_7days?item.amount_7days:0}}</td>
+                                        <td>{{item.amount_14days?item.amount_14days:0}}</td>
+                                        <td>{{item.amount_30days?item.amount_30days:0}}</td>
+                                        <td>{{item.amount?item.amount:0}}</td>
+
+                                    </tr>
+                                </ng-container>
                             </tbody>
                         </table>
                     </div>
@@ -130,15 +58,110 @@
             </div>
             <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'recruit' }" role="tabpanel"
                 aria-labelledby="new-tab">
-                <h1>{{currentTab}}</h1>
+                <div class="card-body">
+                    <div class="table-responsive-md">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">項目</th>
+                                    <th scope="col">名稱</th>
+                                    <th scope="col">24h</th>
+                                    <th scope="col">7天</th>
+                                    <th scope="col">14天</th>
+                                    <th scope="col">30天</th>
+                                    <th scope="col">總數</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let item of recruit; let i = index">
+                                    <tr>
+                                        <th scope="row">{{i+1}}</th>
+                                        <td>{{item.projectName?item.projectName:""}}</td>
+                                        <td>{{item.name?item.name:""}}</td>
+                                        <td>{{item.h24?item.h24:0}}</td>
+                                        <td>{{item.amount_7days?item.amount_7days:0}}</td>
+                                        <td>{{item.amount_14days?item.amount_14days:0}}</td>
+                                        <td>{{item.amount_30days?item.amount_30days:0}}</td>
+                                        <td>{{item.amount?item.amount:0}}</td>
+
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
             </div>
             <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'members' }" role="tabpanel"
                 aria-labelledby="new-tab">
-                <h1>{{currentTab}}</h1>
+                <div class="card-body">
+                    <div class="table-responsive-md">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">姓名</th>
+                                    <th scope="col">24h</th>
+                                    <th scope="col">7天</th>
+                                    <th scope="col">14天</th>
+                                    <th scope="col">30天</th>
+                                    <th scope="col">總數</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let item of members; let i = index">
+                                    <tr>
+                                        <th scope="row">{{i+1}}</th>
+                                        <td>{{item.name?item.name:""}}</td>
+                                        <td>{{item.h24?item.h24:0}}</td>
+                                        <td>{{item.amount_7days?item.amount_7days:0}}</td>
+                                        <td>{{item.amount_14days?item.amount_14days:0}}</td>
+                                        <td>{{item.amount_30days?item.amount_30days:0}}</td>
+                                        <td>{{item.amount?item.amount:0}}</td>
+
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
             </div>
             <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'mentors' }" role="tabpanel"
                 aria-labelledby="new-tab">
-                <h1>{{currentTab}}</h1>
+                <div class="card-body">
+                    <div class="table-responsive-md">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">姓名</th>
+                                    <th scope="col">24h</th>
+                                    <th scope="col">7天</th>
+                                    <th scope="col">14天</th>
+                                    <th scope="col">30天</th>
+                                    <th scope="col">總數</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let item of mentors; let i = index">
+                                    <tr>
+                                        <th scope="row">{{i+1}}</th>
+                                        <td>{{item.name?item.name:""}}</td>
+                                        <td>{{item.h24?item.h24:0}}</td>
+                                        <td>{{item.amount_7days?item.amount_7days:0}}</td>
+                                        <td>{{item.amount_14days?item.amount_14days:0}}</td>
+                                        <td>{{item.amount_30days?item.amount_30days:0}}</td>
+                                        <td>{{item.amount?item.amount:0}}</td>
+
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
             </div>
 
         </div>

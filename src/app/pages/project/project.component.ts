@@ -62,7 +62,7 @@ export class ProjectComponent implements OnInit {
     private membersSrv: MembersService,
     public utility: Utility,
     private route: ActivatedRoute,
-    private viewsService: ViewsService,
+    private viewsSrv: ViewsService,
     private appSettingsSrv: AppSettingsService,
     private SpinnerService: NgxSpinnerService,
     public toastr: ToastService
@@ -140,7 +140,7 @@ export class ProjectComponent implements OnInit {
       if (this.currentUser && this.currentUser.id) {
         _id = this.currentUser.id;
       }
-      this.viewsService.insert(
+      this.viewsSrv.insert(
         this.projectId,
         "project",
         _id,
@@ -213,7 +213,7 @@ export class ProjectComponent implements OnInit {
 
   onClickFollow() {
     if (this.currentProject.isFollowing) {
-      this.viewsService.unFollow(
+      this.viewsSrv.unFollow(
         this.projectId,
         "project",
         this.currentUser.id
@@ -228,7 +228,7 @@ export class ProjectComponent implements OnInit {
       });
     }
     else {
-      this.viewsService.follow(
+      this.viewsSrv.follow(
         this.projectId,
         "project",
         this.currentUser.id
@@ -247,7 +247,7 @@ export class ProjectComponent implements OnInit {
 
   onClickCollect() {
     if (this.currentProject.isCollected) {
-      this.viewsService.unCollect(
+      this.viewsSrv.unCollect(
         this.projectId,
         "project",
         this.currentUser.id
@@ -261,7 +261,7 @@ export class ProjectComponent implements OnInit {
         }
       });
     } else {
-      this.viewsService.collect(
+      this.viewsSrv.collect(
         this.projectId,
         "project",
         this.currentUser.id
@@ -306,7 +306,7 @@ export class ProjectComponent implements OnInit {
 
   onClickJobCollect(recruitId, isCollected) {
     if (isCollected) {
-      this.viewsService.unCollect(
+      this.viewsSrv.unCollect(
         recruitId,
         "job",
         this.currentUser.id
@@ -321,7 +321,7 @@ export class ProjectComponent implements OnInit {
         }
       });
     } else {
-      this.viewsService.collect(
+      this.viewsSrv.collect(
         recruitId,
         "job",
         this.currentUser.id
