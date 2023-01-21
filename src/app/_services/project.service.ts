@@ -108,5 +108,19 @@ export class ProjectService {
             }).toPromise();;
     }
 
+    async updatePublic(id, isPublic, userId) {
+        return await this.http.put(`${environment.apiUrl}/projects/public/${id}`, {
+            public: isPublic,
+            userId
+        }).toPromise();
+    }
+
+    async updatePublicMember(id, isPublic, userId) {
+        return await this.http.put(`${environment.apiUrl}/projects/publicmember/${id}`, {
+            public: isPublic,
+            userId
+        }).toPromise();
+    }
+
 
 }

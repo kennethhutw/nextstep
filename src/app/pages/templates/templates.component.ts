@@ -1,15 +1,14 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
-import {
 
-} from "../../_services";
-import { Utility } from "../../_helpers";
 import { environment } from '../../../environments/environment';
 import { NgxSpinnerService } from "ngx-spinner";
 import { ActivatedRoute } from '@angular/router';
 import {
-  AuthStore
-} from "../../_services/auth.store";
+
+  ToastService,
+
+} from "../../_services";
 @Component({
   selector: "app-templates",
   templateUrl: "./templates.component.html",
@@ -71,7 +70,7 @@ Please let us know ASAP.
   currentUser;
 
   constructor(
-
+    private toastr: ToastService
   ) {
 
   }
@@ -79,6 +78,31 @@ Please let us know ASAP.
   ngOnInit() {
 
   }
+
+  onCopy(event, content) {
+    try {
+      let selBox = document.createElement('textarea');
+      selBox.style.position = 'fixed';
+      selBox.style.left = '0';
+      selBox.style.top = '0';
+      selBox.style.opacity = '0';
+      selBox.value = content;
+      document.body.appendChild(selBox);
+      selBox.focus();
+      selBox.select();
+      document.execCommand('copy');
+      document.body.removeChild(selBox);
+      this.toastr.showToast('Share', 'copied', 'success');
+    } catch (error) {
+      this.toastr.showToast('Share', 'Failed to generate the shared link', 'error');
+    }
+  }
+  /*
+         this.toastr.showToast('Success', "新增評語成功", this.toastr.iconClasses.success);
+          }
+        }, (error => {
+    this.toastr.showToast('Failed', "新增評語失敗", this.toastr.iconClasses.error);
+  })) */
 
 
 }

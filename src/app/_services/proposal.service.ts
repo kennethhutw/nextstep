@@ -49,6 +49,21 @@ export class ProposalService {
       { params: params }).toPromise();
   }
 
+  async vote(action, user_id, proposal_id) {
+    return await this.http.post(`${environment.apiUrl}/proposal/vote/${action}/${user_id}/${proposal_id}`,
+      {
+
+      }).toPromise();
+  }
+
+
+  async unVote(action, user_id, proposal_id) {
+    return await this.http.post(`${environment.apiUrl}/proposal/unvote/${action}/${user_id}/${proposal_id}`,
+      {
+
+      });
+  }
+
 
 
 }

@@ -1,171 +1,172 @@
-<h1>Ranking</h1>
-<div class="row">
-    <div class="col-md-12">
-        <ul class="nav nav-tabs" id="projectTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link " id="project-tab" [ngClass]="{ 'active': currentTab === 'projects' }"
-                    type="button" role="tab" (click)="changeTab('projects')">專案</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="recruit-tab" [ngClass]="{ 'active': currentTab === 'recruit' }"
-                    type="button" role="tab" (click)="changeTab('recruit')">招募</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="members-tab" [ngClass]="{ 'active': currentTab === 'members' }"
-                    type="button" role="tab" (click)="changeTab('members')">成員</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="mentors-tab" [ngClass]="{ 'active': currentTab === 'mentors' }"
-                    type="button" role="tab" (click)="changeTab('mentors')">導師</button>
-            </li>
-        </ul>
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'projects' }" id="projects" role="tabpanel"
-                aria-labelledby="home-tab">
-                <div class="card-body">
-                    <div class="table-responsive-md">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">名稱</th>
-                                    <th scope="col">24h</th>
-                                    <th scope="col">7天</th>
-                                    <th scope="col">14天</th>
-                                    <th scope="col">30天</th>
-                                    <th scope="col">總數</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <ng-container *ngFor="let item of projects; let i = index">
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs" id="projectTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link " id="project-tab" [ngClass]="{ 'active': currentTab === 'projects' }"
+                        type="button" role="tab" (click)="changeTab('projects')">專案</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="recruit-tab" [ngClass]="{ 'active': currentTab === 'recruit' }"
+                        type="button" role="tab" (click)="changeTab('recruit')">招募</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="members-tab" [ngClass]="{ 'active': currentTab === 'members' }"
+                        type="button" role="tab" (click)="changeTab('members')">成員</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="mentors-tab" [ngClass]="{ 'active': currentTab === 'mentors' }"
+                        type="button" role="tab" (click)="changeTab('mentors')">導師</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'projects' }" id="projects" role="tabpanel"
+                    aria-labelledby="home-tab">
+                    <div class="card-body">
+                        <div class="table-responsive-md">
+                            <table class="table table-hover">
+                                <thead>
                                     <tr>
-                                        <th scope="row">{{i+1}}</th>
-                                        <td>{{item.name?item.name:""}}</td>
-                                        <td>{{item.h24?item.h24:0}}</td>
-                                        <td>{{item.amount_7days?item.amount_7days:0}}</td>
-                                        <td>{{item.amount_14days?item.amount_14days:0}}</td>
-                                        <td>{{item.amount_30days?item.amount_30days:0}}</td>
-                                        <td>{{item.amount?item.amount:0}}</td>
-
+                                        <th scope="col">#</th>
+                                        <th scope="col">名稱</th>
+                                        <th scope="col">24h</th>
+                                        <th scope="col">7天</th>
+                                        <th scope="col">14天</th>
+                                        <th scope="col">30天</th>
+                                        <th scope="col">總數</th>
                                     </tr>
-                                </ng-container>
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngFor="let item of projects; let i = index">
+                                        <tr>
+                                            <th scope="row">{{i+1}}</th>
+                                            <td>{{item.name?item.name:""}}</td>
+                                            <td>{{item.h24?item.h24:0}}</td>
+                                            <td>{{item.amount_7days?item.amount_7days:0}}</td>
+                                            <td>{{item.amount_14days?item.amount_14days:0}}</td>
+                                            <td>{{item.amount_30days?item.amount_30days:0}}</td>
+                                            <td>{{item.amount?item.amount:0}}</td>
+
+                                        </tr>
+                                    </ng-container>
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
 
                 </div>
-
-            </div>
-            <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'recruit' }" role="tabpanel"
-                aria-labelledby="new-tab">
-                <div class="card-body">
-                    <div class="table-responsive-md">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">項目</th>
-                                    <th scope="col">名稱</th>
-                                    <th scope="col">24h</th>
-                                    <th scope="col">7天</th>
-                                    <th scope="col">14天</th>
-                                    <th scope="col">30天</th>
-                                    <th scope="col">總數</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <ng-container *ngFor="let item of recruit; let i = index">
+                <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'recruit' }" role="tabpanel"
+                    aria-labelledby="new-tab">
+                    <div class="card-body">
+                        <div class="table-responsive-md">
+                            <table class="table table-hover">
+                                <thead>
                                     <tr>
-                                        <th scope="row">{{i+1}}</th>
-                                        <td>{{item.projectName?item.projectName:""}}</td>
-                                        <td>{{item.name?item.name:""}}</td>
-                                        <td>{{item.h24?item.h24:0}}</td>
-                                        <td>{{item.amount_7days?item.amount_7days:0}}</td>
-                                        <td>{{item.amount_14days?item.amount_14days:0}}</td>
-                                        <td>{{item.amount_30days?item.amount_30days:0}}</td>
-                                        <td>{{item.amount?item.amount:0}}</td>
-
+                                        <th scope="col">#</th>
+                                        <th scope="col">項目</th>
+                                        <th scope="col">名稱</th>
+                                        <th scope="col">24h</th>
+                                        <th scope="col">7天</th>
+                                        <th scope="col">14天</th>
+                                        <th scope="col">30天</th>
+                                        <th scope="col">總數</th>
                                     </tr>
-                                </ng-container>
-                            </tbody>
-                        </table>
-                    </div>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngFor="let item of recruit; let i = index">
+                                        <tr>
+                                            <th scope="row">{{i+1}}</th>
+                                            <td>{{item.projectName?item.projectName:""}}</td>
+                                            <td>{{item.name?item.name:""}}</td>
+                                            <td>{{item.h24?item.h24:0}}</td>
+                                            <td>{{item.amount_7days?item.amount_7days:0}}</td>
+                                            <td>{{item.amount_14days?item.amount_14days:0}}</td>
+                                            <td>{{item.amount_30days?item.amount_30days:0}}</td>
+                                            <td>{{item.amount?item.amount:0}}</td>
 
+                                        </tr>
+                                    </ng-container>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
-            <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'members' }" role="tabpanel"
-                aria-labelledby="new-tab">
-                <div class="card-body">
-                    <div class="table-responsive-md">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">姓名</th>
-                                    <th scope="col">24h</th>
-                                    <th scope="col">7天</th>
-                                    <th scope="col">14天</th>
-                                    <th scope="col">30天</th>
-                                    <th scope="col">總數</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <ng-container *ngFor="let item of members; let i = index">
+                <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'members' }" role="tabpanel"
+                    aria-labelledby="new-tab">
+                    <div class="card-body">
+                        <div class="table-responsive-md">
+                            <table class="table table-hover">
+                                <thead>
                                     <tr>
-                                        <th scope="row">{{i+1}}</th>
-                                        <td>{{item.name?item.name:""}}</td>
-                                        <td>{{item.h24?item.h24:0}}</td>
-                                        <td>{{item.amount_7days?item.amount_7days:0}}</td>
-                                        <td>{{item.amount_14days?item.amount_14days:0}}</td>
-                                        <td>{{item.amount_30days?item.amount_30days:0}}</td>
-                                        <td>{{item.amount?item.amount:0}}</td>
-
+                                        <th scope="col">#</th>
+                                        <th scope="col">姓名</th>
+                                        <th scope="col">24h</th>
+                                        <th scope="col">7天</th>
+                                        <th scope="col">14天</th>
+                                        <th scope="col">30天</th>
+                                        <th scope="col">總數</th>
                                     </tr>
-                                </ng-container>
-                            </tbody>
-                        </table>
-                    </div>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngFor="let item of members; let i = index">
+                                        <tr>
+                                            <th scope="row">{{i+1}}</th>
+                                            <td>{{item.name?item.name:""}}</td>
+                                            <td>{{item.h24?item.h24:0}}</td>
+                                            <td>{{item.amount_7days?item.amount_7days:0}}</td>
+                                            <td>{{item.amount_14days?item.amount_14days:0}}</td>
+                                            <td>{{item.amount_30days?item.amount_30days:0}}</td>
+                                            <td>{{item.amount?item.amount:0}}</td>
 
+                                        </tr>
+                                    </ng-container>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
-            <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'mentors' }" role="tabpanel"
-                aria-labelledby="new-tab">
-                <div class="card-body">
-                    <div class="table-responsive-md">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">姓名</th>
-                                    <th scope="col">24h</th>
-                                    <th scope="col">7天</th>
-                                    <th scope="col">14天</th>
-                                    <th scope="col">30天</th>
-                                    <th scope="col">總數</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <ng-container *ngFor="let item of mentors; let i = index">
+                <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'mentors' }" role="tabpanel"
+                    aria-labelledby="new-tab">
+                    <div class="card-body">
+                        <div class="table-responsive-md">
+                            <table class="table table-hover">
+                                <thead>
                                     <tr>
-                                        <th scope="row">{{i+1}}</th>
-                                        <td>{{item.name?item.name:""}}</td>
-                                        <td>{{item.h24?item.h24:0}}</td>
-                                        <td>{{item.amount_7days?item.amount_7days:0}}</td>
-                                        <td>{{item.amount_14days?item.amount_14days:0}}</td>
-                                        <td>{{item.amount_30days?item.amount_30days:0}}</td>
-                                        <td>{{item.amount?item.amount:0}}</td>
-
+                                        <th scope="col">#</th>
+                                        <th scope="col">姓名</th>
+                                        <th scope="col">24h</th>
+                                        <th scope="col">7天</th>
+                                        <th scope="col">14天</th>
+                                        <th scope="col">30天</th>
+                                        <th scope="col">總數</th>
                                     </tr>
-                                </ng-container>
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngFor="let item of mentors; let i = index">
+                                        <tr>
+                                            <th scope="row">{{i+1}}</th>
+                                            <td>{{item.name?item.name:""}}</td>
+                                            <td>{{item.h24?item.h24:0}}</td>
+                                            <td>{{item.amount_7days?item.amount_7days:0}}</td>
+                                            <td>{{item.amount_14days?item.amount_14days:0}}</td>
+                                            <td>{{item.amount_30days?item.amount_30days:0}}</td>
+                                            <td>{{item.amount?item.amount:0}}</td>
+
+                                        </tr>
+                                    </ng-container>
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
-
                 </div>
-            </div>
 
+            </div>
         </div>
+
+
     </div>
-
-
 </div>

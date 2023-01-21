@@ -27,12 +27,15 @@ export class FeedbackComponent implements OnInit {
   currentUser: any;
 
   currentTab: string = "all";
+  displayItems: any[] = [];
   allitems: any[] = [];
   processed: any[] = [];
   myproposals: any[] = [];
   editedItem = null;
   editedProposal = null;
   commentContent: string = "";
+
+  searchText: string = "";
 
   replyComment: string = "";
   hideall = {};
@@ -52,6 +55,7 @@ export class FeedbackComponent implements OnInit {
     this.proposalSrv.getall().subscribe(res => {
       if (res["result"] == "successful") {
         this.allitems = res["data"];
+        this.displayItems = this.allitems;
         // process_status
         this.processed = this.allitems.filter(item => {
           return item.process_status == "processed"
@@ -75,10 +79,45 @@ export class FeedbackComponent implements OnInit {
 
   }
 
-  onSortChange(event) { }
+  onSortChange(event) {
+    if (this.currentTab === "processed") {
+      this.displayItems = this.processed;
+    } else if (this.currentTab === "myproposal") {
+      this.displayItems = this.myproposals;
+    } else {
+      this.displayItems = this.allitems;
+    }
 
+    if (event.target.value === "") {
+      this.displayItems.sort((a, b) => a.createdAt - b.createdAt);
+    } else if (event.target.value === "old") {
+      this.displayItems.sort((a, b) => b.createdAt - a.createdAt);
+    } else if (event.target.value === "height") {
+      this.displayItems.sort((a, b) => a.like_count - b.like_count);
+
+    }
+
+
+  }
+
+  onSortTypeChange(event) {
+    if (this.currentTab === "processed") {
+      this.displayItems = this.processed;
+    } else if (this.currentTab === "myproposal") {
+      this.displayItems = this.myproposals;
+    } else {
+      this.displayItems = this.allitems;
+    }
+
+
+    if (!this.utilitySrv.IsNullOrEmpty(event.target.value)) {
+      this.displayItems = this.displayItems.filter((item) => {
+        return item.category == event.target.value
+      });
+    }
+  }
   onTypeChange(event) {
-    this.proposaltype = event.target.value;
+
   }
 
   onSubmit() {
@@ -151,6 +190,13 @@ export class FeedbackComponent implements OnInit {
 
   changeTab(tab) {
     this.currentTab = tab;
+    if (tab === "processed") {
+      this.displayItems = this.processed;
+    } else if (tab === "myproposal") {
+      this.displayItems = this.myproposals;
+    } else {
+      this.displayItems = this.allitems;
+    }
   }
   onImgError(event) {
     event.target.src = "assets/images/defaultlogo.png";
@@ -202,5 +248,52 @@ export class FeedbackComponent implements OnInit {
       }, (error) => {
         console.log("error", error);
       })
+  }
+
+  refreshDisplayItems() {
+    if (this.currentTab === "processed") {
+      this.displayItems = this.processed;
+    } else if (this.currentTab === "myproposal") {
+      this.displayItems = this.myproposals;
+    } else {
+      this.displayItems = this.allitems;
+    }
+  }
+
+  onVote(event, action, proposialId) {
+    try {
+      this.proposalSrv.vote(action,
+        this.currentUser.id,
+        proposialId).then(res => {
+          let _index = this.allitems.findIndex((obj => obj.id == proposialId));
+          if (_index > -1) {
+            if (action === "likes") {
+              this.allitems[_index].like_count = this.allitems[_index].like_count + 1
+              this.displayItems = this.allitems;
+            } else {
+              this.allitems[_index].dislike_count = this.allitems[_index].dislike_count + 1
+              this.displayItems = this.allitems;
+            }
+
+            this.processed = this.allitems.filter(item => {
+              return item.process_status == "processed"
+            })
+            if (this.currentUser) {
+              this.myproposals = this.allitems.filter(item => {
+                return item.createdBy == this.currentUser.id
+              })
+            }
+            this.refreshDisplayItems()
+
+          }
+        }).catch(error => {
+          console.error("error", error)
+        })
+
+
+    } catch (error) {
+      console.error(error.message)
+    }
+
   }
 }

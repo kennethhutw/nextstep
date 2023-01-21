@@ -146,7 +146,7 @@ export class MyProjectProfileComponent implements OnInit {
       isCofounder: value.isCofounder,
       uid: this.currentUser.id
     }).subscribe(res => {
-      console.log("==============", res);
+
       if (res['result'] === 'successful') {
         this.projectMsg = "Update successfully.";
       }

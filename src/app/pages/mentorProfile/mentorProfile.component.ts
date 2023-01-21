@@ -573,7 +573,6 @@ export class MentorProfileComponent implements OnInit {
           this.toastr.showToast('Success', "新增評語成功", this.toastr.iconClasses.success);
         }
       }, (error => {
-        console.log("error =======", error)
         this.toastr.showToast('Failed', "新增評語失敗", this.toastr.iconClasses.error);
       }))
 
@@ -588,7 +587,7 @@ export class MentorProfileComponent implements OnInit {
   }
 
   imagePath(path) {
-    console.log("path ============", path)
+
     if (this.utilitySrv.IsNullOrEmpty(path)) {
       path = this.defaultProfileLogo;
     } else {
