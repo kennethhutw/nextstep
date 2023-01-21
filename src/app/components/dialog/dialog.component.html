@@ -43,6 +43,24 @@
         </div>
       </div>
 
+      <div *ngIf="message?.type == 'delete'" class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <p class="text-left" [innerHTML]="msg"></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <p class="float-right">
+              <button (click)="message.noFn()" class="btn-delete-cancel">取消</button>
+              <button class="btn-delete " (click)="message.yesFn()">
+                刪除
+              </button>
+            </p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 

@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import {
   DialogService,
   ProjectService,
-  ToastService
+  ToastService,
+  ConfirmDialogService
 } from '../../../_services';
 import {
   AuthStore
@@ -29,6 +30,7 @@ export class MyProjectSettingsComponent implements OnInit {
     private dialogSrv: DialogService,
     private projectSrv: ProjectService,
     private toastSrv: ToastService,
+    private confirmDialogSrv: ConfirmDialogService,
     private authStoreSrv: AuthStore) {
   }
 
@@ -107,17 +109,20 @@ export class MyProjectSettingsComponent implements OnInit {
   }
 
   onDeleteProject() {
-    this.projectSrv.delete(this.currentProject.id,
-      this.currentUser.id).then(res => {
-        if (res['result'] === 'successful') {
-          this.msg = "Update successfully.";
-        } else {
+    console.log("onDeleteProject ==========")
+    this.dialogSrv.deleteThis('確定刪除此專案', '此動作將無法復原', () => {
+      this.projectSrv.delete(this.currentProject.id,
+        this.currentUser.id).then(res => {
+          if (res['result'] === 'successful') {
+            this.msg = "Update successfully.";
+          } else {
+            this.msg = "Update failed.";
+          }
+        }).catch(error => {
           this.msg = "Update failed.";
-        }
-      }).catch(error => {
-        this.msg = "Update failed.";
-        console.error("updated error", error.message);
-      })
+          console.error("updated error", error.message);
+        })
+    }, () => { })
   }
 
 }
