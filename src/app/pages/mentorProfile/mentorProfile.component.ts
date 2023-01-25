@@ -578,11 +578,11 @@ export class MentorProfileComponent implements OnInit {
 
   }
 
-  onEditFeedback(event) {
+  onEditFeedback() {
 
   }
 
-  onCancelFeedback(event) {
+  onCancelFeedback() {
 
   }
 
