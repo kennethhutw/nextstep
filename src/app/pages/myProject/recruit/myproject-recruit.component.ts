@@ -30,6 +30,7 @@ export class MyProjectRecruitComponent implements OnInit {
   projectId = "";
   currentProject;
   invitationForm: FormGroup;
+  isViewMode = false;
   submitted = false;
   currentUser;
   projectMsg = "";
@@ -193,11 +194,11 @@ export class MyProjectRecruitComponent implements OnInit {
       }
 
       this.recruitSrv.updateStatus(params).then(res => {
-        console.log("res ==========", res);
+        this.refreshRecruitList();
       })
     })
 
-    this.refreshRecruitList();
+
   }
 
   onAvailableChange(event, item) {
@@ -352,5 +353,9 @@ export class MyProjectRecruitComponent implements OnInit {
 
   }
 
+  onCreateRecruit() {
+    this.isViewMode = false;
+    this.recruitForm.reset();
+  }
 
 }
