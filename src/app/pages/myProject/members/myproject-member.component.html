@@ -60,9 +60,9 @@
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'current' }" id="home" role="tabpanel"
                     aria-labelledby="home-tab">
-                    <div class="row" style="padding-left:15px;">
+                    <div class="row  pl-15">
                         <div class="bar mt-3 cursor-pointer w-100">
-                            <div class="d-flex align-items-center" style="margin-top: 10px;">
+                            <div class="d-flex align-items-center mt-10">
                                 <label class="switch" for="allitem">
                                     <input type="checkbox" id="allitem" />
                                     <div class="slider round"></div>
@@ -93,9 +93,9 @@
                     <ng-container *ngIf="current.length >0">
 
                         <ng-container *ngFor="let member of  current; let i = index">
-                            <div class="row" style="padding-left:15px;">
+                            <div class="row  pl-15">
                                 <div class="bar mt-3 cursor-pointer w-100">
-                                    <div class="d-flex align-items-center" style="margin-top: 10px;">
+                                    <div class="d-flex align-items-center mt-10">
                                         <label class="switch" for="{{'checkbox'+i}}">
                                             <input type="checkbox" id="{{'checkbox'+i}}"
                                                 (change)="onSelectItem($event, member.id)" [disabled]="member.isOwner"
@@ -141,9 +141,9 @@
                 </div>
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'new' }" role="tabpanel"
                     aria-labelledby="new-tab">
-                    <div class="row" style="padding-left:15px;">
+                    <div class="row  pl-15">
                         <div class="bar mt-3 cursor-pointer w-100">
-                            <div class="d-flex align-items-center" style="margin-top: 10px;">
+                            <div class="d-flex align-items-center mt-10">
                                 <label class="switch" for="allitem">
                                     <input type="checkbox" id="allitem" />
                                     <div class="slider round"></div>
@@ -173,9 +173,9 @@
                     </div>
                     <ng-container *ngIf="candidates">
                         <ng-container *ngFor="let member of candidates; let i = index">
-                            <div class="row" style="padding-left:15px;">
+                            <div class="row  pl-15">
                                 <div class="bar mt-3 cursor-pointer w-100">
-                                    <div class="d-flex align-items-center" style="margin-top: 10px;">
+                                    <div class="d-flex align-items-center mt-10">
                                         <label class="switch" for="{{'checkbox'+i}}">
                                             <input type="checkbox" id="{{'checkbox'+i}}"
                                                 (change)="onSelectItem($event, member.id)"
@@ -215,9 +215,9 @@
                 </div>
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'inviting' }" role="tabpanel"
                     aria-labelledby="new-tab">
-                    <div class="row" style="padding-left:15px;">
+                    <div class="row  pl-15">
                         <div class="bar-6 mt-3 cursor-pointer w-100">
-                            <div class="d-flex align-items-center" style="margin-top: 10px;">
+                            <div class="d-flex align-items-center mt-10">
                                 <label class="switch" for="allitem">
                                     <input type="checkbox" id="allitem" />
                                     <div class="slider round"></div>
@@ -250,9 +250,9 @@
                     </div>
                     <ng-container *ngIf="invitingList">
                         <ng-container *ngFor="let member of invitingList; let i = index">
-                            <div class="row" style="padding-left:15px;">
+                            <div class="row  pl-15">
                                 <div class="bar-6 mt-3 cursor-pointer w-100">
-                                    <div class="d-flex align-items-center" style="margin-top: 10px;">
+                                    <div class="d-flex align-items-center mt-10">
                                         <label class="switch" for="{{'checkbox'+i}}">
                                             <input type="checkbox" id="{{'checkbox'+i}}" [disabled]="'true'" />
                                             <div class="slider round"></div>
@@ -297,7 +297,7 @@
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'interview' }" role="tabpanel"
                     aria-labelledby="interview-tab">
                     <div class="bar mt-3 cursor-pointer w-100">
-                        <div class="d-flex align-items-center" style="margin-top: 10px;">
+                        <div class="d-flex align-items-center mt-10">
                             <label class="switch" for="allitem">
                                 <input type="checkbox" id="allitem" />
                                 <div class="slider round"></div>
@@ -325,9 +325,9 @@
                     </div>
                     <ng-container *ngIf="interviews">
                         <ng-container *ngFor="let member of interviews; let i = index">
-                            <div class="row" style="padding-left:15px;">
+                            <div class="row  pl-15">
                                 <div class="bar mt-3 cursor-pointer w-100">
-                                    <div class="d-flex align-items-center" style="margin-top: 10px;">
+                                    <div class="d-flex align-items-center mt-10">
                                         <label class="switch" for="{{'checkbox'+i}}">
                                             <input type="checkbox" id="{{'checkbox'+i}}"
                                                 (change)="onSelectItem($event, member.id)"
@@ -366,7 +366,7 @@
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'rejected' }" role="tabpanel"
                     aria-labelledby="rejected-tab">
                     <div class="bar mt-3 cursor-pointer w-100">
-                        <div class="d-flex align-items-center" style="margin-top: 10px;">
+                        <div class="d-flex align-items-center mt-10">
                             <label class="switch" for="allitem">
                                 <input type="checkbox" id="allitem" />
                                 <div class="slider round"></div>
@@ -394,9 +394,9 @@
                     </div>
                     <ng-container *ngIf="rejected">
                         <ng-container *ngFor="let member of rejected; let i = index">
-                            <div class="row" style="padding-left:15px;">
+                            <div class="row  pl-15">
                                 <div class="bar mt-3 cursor-pointer w-100">
-                                    <div class="d-flex align-items-center" style="margin-top: 10px;">
+                                    <div class="d-flex align-items-center mt-10">
                                         <label class="switch" for="{{'checkbox'+i}}">
                                             <input type="checkbox" id="{{'checkbox'+i}}"
                                                 (change)="onSelectItem($event, member.id)"
@@ -434,9 +434,9 @@
                 </div>
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'history' }" role="tabpanel"
                     aria-labelledby="history-tab">
-                    <div class="row" style="padding-left:15px;">
+                    <div class="row  pl-15">
                         <div class="bar mt-3 cursor-pointer w-100">
-                            <div class="d-flex align-items-center" style="margin-top: 10px;">
+                            <div class="d-flex align-items-center mt-10">
                                 <label class="switch" for="allitem">
                                     <input type="checkbox" id="allitem" />
                                     <div class="slider round"></div>
@@ -466,9 +466,9 @@
                     </div>
                     <ng-container *ngIf="past">
                         <ng-container *ngFor="let member of past; let i = index">
-                            <div class="row" style="padding-left:15px;">
+                            <div class="row  pl-15">
                                 <div class="card mt-3 cursor-pointer w-100">
-                                    <div class="d-flex align-items-center" style="margin-top: 10px;">
+                                    <div class="d-flex align-items-center mt-10">
                                         <label class="switch" for="{{'checkbox'+i}}">
                                             <input type="checkbox" id="{{'checkbox'+i}}"
                                                 (change)="onSelectItem($event, member.id)"

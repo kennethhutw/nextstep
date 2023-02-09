@@ -109,7 +109,7 @@ export class MyProjectSettingsComponent implements OnInit {
   }
 
   onDeleteProject() {
-    console.log("onDeleteProject ==========")
+
     this.dialogSrv.deleteThis('確定刪除此專案', '此動作將無法復原', () => {
       this.projectSrv.delete(this.currentProject.id,
         this.currentUser.id).then(res => {

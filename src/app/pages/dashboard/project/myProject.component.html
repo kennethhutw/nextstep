@@ -25,7 +25,7 @@
                         <span>沒有專案</span>
                     </div>
                     <ng-container *ngIf="publishedprojects">
-                        <div class="row" style="padding-left:15px;">
+                        <div class="row  pl-15">
                             <ng-container *ngFor="let item of  publishedprojects; let i = index">
 
                                 <app-project-bar style="width: 100%;" (onDelete)="onClickDelete($event, item)"
@@ -55,3 +55,6 @@
     </div>
 </div>
 <app-dialog></app-dialog>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

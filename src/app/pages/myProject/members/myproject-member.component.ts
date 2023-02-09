@@ -498,8 +498,6 @@ export class MyProjectMemberComponent implements OnInit {
     this.recruitSrv.insert(params).subscribe(res => {
 
       if (res["result"] === "successful") {
-
-
         this.recruitForm.reset();
         this.close_recruit_button.nativeElement.click();
       }
