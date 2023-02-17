@@ -148,9 +148,23 @@ export class PubProfileComponent implements OnInit {
           this.userProfile.cover = environment.assetUrl + this.userProfile.cover;
         }
 
+        if (!this.utility.IsNullOrEmpty(this.userProfile.projects)) {
+          this.userProfile.projects.forEach(element => {
+            element.imageUrl = environment.assetUrl + element.imageUrl;
+          });
+        }
+
+        if (!this.utility.IsNullOrEmpty(this.userProfile.pastProjects)) {
+          this.userProfile.pastProjects.forEach(element => {
+            element.imageUrl = environment.assetUrl + element.imageUrl;
+          });
+        }
+
         if (this.currentUser && this.currentUser.id) {
           this.isOwner = (this.currentUser.id === this.userProfile.id);
         }
+
+
 
         //init view
         let _id = 'not login';
@@ -532,6 +546,10 @@ export class PubProfileComponent implements OnInit {
 
   changeTab(tab) {
     this.currentTab = tab;
+  }
+
+  onProjectImgError(event) {
+    event.target.src = "assets/images/defaultlogo.png";
   }
 }
 //https://www.sliderrevolution.com/resources/bootstrap-profile/

@@ -1853,3 +1853,11 @@ input[type=radio] {
   background-color: #fff;
   color: #000000;
 }
+
+.project-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 0 5px #fff;
+}

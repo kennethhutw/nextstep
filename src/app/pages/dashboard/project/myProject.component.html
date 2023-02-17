@@ -27,10 +27,54 @@
                     <ng-container *ngIf="publishedprojects">
                         <div class="row  pl-15">
                             <ng-container *ngFor="let item of  publishedprojects; let i = index">
-
+                                <!--
                                 <app-project-bar style="width: 100%;" (onDelete)="onClickDelete($event, item)"
                                     [isShowEdit]="'false'" [isShowUser]="'false'" isShowRemove="'false'"
-                                    [isShowSetting]="'false'" [project]="item"></app-project-bar>
+                                    [isShowSetting]="'false'" [project]="item"></app-project-bar> -->
+
+                                <div class="card mt-3 cursor-pointer">
+                                    <div class="d-flex">
+                                        <p class="text-md m-0">{{item.name}}
+                                        </p>
+
+                                    </div>
+
+                                    <div class="d-flex justify-right">
+                                        <a type="button" class="btn btn-blue mr-10"
+                                            [routerLink]="['/project/',item?.id]">
+                                            前往查看</a>
+                                    </div>
+                                    <div class="d-flex justify-right">
+
+                                        <p class="text-xs grey-50 mb-0 color-gray">
+                                            {{ item.viewCount?item.viewCount:"0"}}&nbsp;瀏覽/
+                                            {{item.followCount? item.followCount:
+                                            0}}&nbsp;追蹤
+                                        </p>
+
+
+                                    </div>
+
+                                    <div class="d-flex align-items-center justify-right">
+                                        <div class="dropdown"><i class="fas fa-ellipsis-h" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="true"></i>
+                                            <div class="dropdown-menu"> <a class="dropdown-item"
+                                                    [routerLink]="['/myproject/'+this.item?.id+'/members']"><svg-icon
+                                                        src="assets/icons/invite.svg"></svg-icon>&nbsp;&nbsp;邀請</a><a
+                                                    class="dropdown-item"
+                                                    [routerLink]="['/myproject/'+this.item?.id+'/settings']"><svg-icon
+                                                        src="assets/icons/cog.svg"></svg-icon>&nbsp;&nbsp;設定</a><a
+                                                    class="dropdown-item"
+                                                    [routerLink]="['/myproject/'+this.item?.id+'/profile']"><svg-icon
+                                                        src="assets/icons/pencil.svg"></svg-icon>&nbsp;&nbsp;編輯</a> <a
+                                                    class="dropdown-item" (click)="onClickDelete(event, item)"><svg-icon
+                                                        src="assets/icons/trash.svg"></svg-icon>&nbsp;&nbsp;刪除</a></div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
                             </ng-container>
                         </div>
                     </ng-container>

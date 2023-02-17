@@ -113,8 +113,6 @@ export class MyProjectRecruitComponent implements OnInit {
       });
     }
 
-
-
   }
 
   changeInvitedTab(tab) {
@@ -184,16 +182,26 @@ export class MyProjectRecruitComponent implements OnInit {
 
   onStatusChange(event) {
     let _status = event.target.value
-    this.selectedItem.forEach((element, index) => {
 
+    this.selectedItem.forEach((element, index) => {
+      let status = "0";
+      switch (_status) {
+        case "drafts":
+          status = "0";
+          break;
+        case "closed":
+          status = "2";
+          break;
+      }
       let params = {
         id: element,
         available: null,
         uid: this.currentUser.id,
-        status: _status
+        status: status
       }
 
       this.recruitSrv.updateStatus(params).then(res => {
+        this.status = null;
         this.refreshRecruitList();
       })
     })

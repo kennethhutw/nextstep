@@ -5,9 +5,7 @@ import { environment } from '../../../environments/environment';
 import { NgxSpinnerService } from "ngx-spinner";
 import { ActivatedRoute } from '@angular/router';
 import {
-
   ToastService,
-
 } from "../../_services";
 @Component({
   selector: "app-templates",

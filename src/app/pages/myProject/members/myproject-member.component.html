@@ -94,7 +94,7 @@
 
                         <ng-container *ngFor="let member of  current; let i = index">
                             <div class="row  pl-15">
-                                <div class="bar mt-3 cursor-pointer w-100">
+                                <div class="bar  cursor-pointer w-100">
                                     <div class="d-flex align-items-center mt-10">
                                         <label class="switch" for="{{'checkbox'+i}}">
                                             <input type="checkbox" id="{{'checkbox'+i}}"
@@ -114,13 +114,15 @@
                                         </span>
                                     </div>
                                     <div class="d-flex align-items-center">
-                                        <select class="form-control w-80" [value]="member.role"
-                                            (change)="onRoleChange($event, member)">
-                                            <option value="">請選擇</option>
-                                            <option value="owner">創建人</option>
-                                            <option value="manager">管理員</option>
-                                            <option value="member">成員</option>
-                                        </select>
+                                        <ng-container *ngIf="member?.role ==='owner'; else roles">創建人</ng-container>
+                                        <ng-template #roles>
+                                            <select class="form-control w-80" [value]="member.role"
+                                                (change)="onRoleChange($event, member)">
+                                                <option value="">請選擇</option>
+                                                <!--   <option value="owner">創建人</option> -->
+                                                <option value="manager">管理員</option>
+                                                <option value="member">成員</option>
+                                            </select></ng-template>
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <span> {{member.applicationDate| date : 'yyyy-MM-dd'}}
@@ -174,7 +176,7 @@
                     <ng-container *ngIf="candidates">
                         <ng-container *ngFor="let member of candidates; let i = index">
                             <div class="row  pl-15">
-                                <div class="bar mt-3 cursor-pointer w-100">
+                                <div class="bar cursor-pointer w-100">
                                     <div class="d-flex align-items-center mt-10">
                                         <label class="switch" for="{{'checkbox'+i}}">
                                             <input type="checkbox" id="{{'checkbox'+i}}"
@@ -246,12 +248,12 @@
                     </div>
 
                     <div class="empty text-center" *ngIf="invitingList.length ===0">
-                        Empty
+                        目前沒有紀錄
                     </div>
                     <ng-container *ngIf="invitingList">
                         <ng-container *ngFor="let member of invitingList; let i = index">
                             <div class="row  pl-15">
-                                <div class="bar-6 mt-3 cursor-pointer w-100">
+                                <div class="bar-6  cursor-pointer w-100">
                                     <div class="d-flex align-items-center mt-10">
                                         <label class="switch" for="{{'checkbox'+i}}">
                                             <input type="checkbox" id="{{'checkbox'+i}}" [disabled]="'true'" />
@@ -326,7 +328,7 @@
                     <ng-container *ngIf="interviews">
                         <ng-container *ngFor="let member of interviews; let i = index">
                             <div class="row  pl-15">
-                                <div class="bar mt-3 cursor-pointer w-100">
+                                <div class="bar  cursor-pointer w-100">
                                     <div class="d-flex align-items-center mt-10">
                                         <label class="switch" for="{{'checkbox'+i}}">
                                             <input type="checkbox" id="{{'checkbox'+i}}"
@@ -395,7 +397,7 @@
                     <ng-container *ngIf="rejected">
                         <ng-container *ngFor="let member of rejected; let i = index">
                             <div class="row  pl-15">
-                                <div class="bar mt-3 cursor-pointer w-100">
+                                <div class="bar  cursor-pointer w-100">
                                     <div class="d-flex align-items-center mt-10">
                                         <label class="switch" for="{{'checkbox'+i}}">
                                             <input type="checkbox" id="{{'checkbox'+i}}"
@@ -467,7 +469,7 @@
                     <ng-container *ngIf="past">
                         <ng-container *ngFor="let member of past; let i = index">
                             <div class="row  pl-15">
-                                <div class="card mt-3 cursor-pointer w-100">
+                                <div class="bar  cursor-pointer w-100">
                                     <div class="d-flex align-items-center mt-10">
                                         <label class="switch" for="{{'checkbox'+i}}">
                                             <input type="checkbox" id="{{'checkbox'+i}}"

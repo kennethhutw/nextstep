@@ -6,6 +6,87 @@ app-my-project {
   .nav-link.active {
     border-bottom-color: #56BDF4 !important;
   }
+
+
+  .card {
+    padding: 12px 24px;
+    display: grid;
+    align-items: center;
+    grid-auto-flow: column;
+    // justify-content: space-between;
+    grid-template-columns: 30% 1fr 20% 5%;
+    transition: 200ms;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .justify-right {
+    justify-content: right;
+  }
+
+
+
+  .card:hover {
+    border: 2px solid var(--action-pri-active);
+  }
+
+  .card:hover .dropdown {
+    display: block;
+  }
+
+  .icon-button {
+    padding: 6px 9.5px;
+    font-size: 18px;
+    border-radius: var(--br-circle);
+    background-color: transparent;
+    color: var(--grey-50);
+    transition: 200ms;
+    cursor: pointer;
+  }
+
+  .icon-button:hover {
+    background-color: var(--grey-7);
+    color: var(--grey-85);
+  }
+
+  .cursor-pointer {
+    cursor: pointer;
+  }
+
+  .danger {
+    color: var(--danger);
+    font-family: var(--font-nunito);
+  }
+
+  .table-scroll {
+    max-height: 550px;
+    overflow-y: auto;
+  }
+
+
+  .badge {
+    font-size: 12px;
+    color: #ffffff;
+    background-color: var(--danger);
+    border-radius: var(--br-circle);
+    position: relative;
+    /* margin-top: -80px; */
+    top: -10px;
+
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .icon {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .color-gray {
+    color: #8F95A8;
+  }
 }
 
 .button-center {
