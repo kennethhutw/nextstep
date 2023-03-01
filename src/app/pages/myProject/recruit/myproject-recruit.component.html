@@ -2,20 +2,19 @@
     <div class="row">
         <div class="col-md-12  mb-20" style="display: inline-block;">
             <span class="title">招募管理</span>
-
-            <!-- <a type="button" style="float: right;" class="btn mr-10" data-toggle="modal"
-                [attr.data-target]="'#invitedMember'"><i class="fas fa-plus"></i> 邀請成員
-            </a>
-            <button type="button" style="float: right;" class="btn  mr-10"><i class="fas fa-plus"></i> 招募成員</button> -->
-
+            <a type="button" style="float: right;" class="btn mr-10" data-toggle="modal"
+                [attr.data-target]="'#createRcruitModal'" (click)="onCreateRecruit()"><i class="fas fa-plus"></i>
+                招募成員</a>
             <select style="float: right;" class="btn mr-10" [disabled]="!canMove" [value]="status"
                 (change)="onStatusChange($event)">
-                <option value="null">移動成員去</option>
-                <option value="1">發布</option>
-                <option value="0">草稿</option>
-                <option value="2">已關閉</option>
+                <option value="null">移動去</option>
+                <option value="current">目前</option>
+                <option value="drafts">草稿</option>
+                <option value="closed">已關閉</option>
 
+                <!-- </ng-template> -->
             </select>
+
         </div>
     </div>
     <div class="row">
@@ -42,57 +41,87 @@
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'current' }" id="home" role="tabpanel"
                     aria-labelledby="home-tab">
+                    <div class="row  pl-15">
+                        <div class="bar mt-3 cursor-pointer w-100">
+                            <div class="d-flex align-items-center mt-10">
+                                <label class="switch" for="allitem">
+                                    <input type="checkbox" id="allitem" />
+                                    <div class="slider round"></div>
+                                </label>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="fw-500">職缺名稱</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="fw-500">技能需求</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="fw-500">職務內容</span>
+                            </div>
+
+                            <div class="d-flex align-items-center">
+                                <span class="fw-500">發布日期</span>
+                            </div>
+
+                        </div>
+
+                    </div>
                     <div class="empty text-center" *ngIf="current.length ===0">
                         此專案目前沒有招募成員.
                     </div>
                     <ng-container *ngIf="current.length >0">
-                        <ng-container *ngFor="let member of  current; let i = index">
-                            <div class="row" style="padding-left:15px;">
-                                <div class="card mt-3 cursor-pointer w-100">
-                                    <div class="d-flex align-items-center" style="margin-top: 10px;">
+                        <ng-container *ngFor="let item of  current; let i = index">
+                            <div class="row pl-15">
+                                <div class="bar cursor-pointer w-100">
+                                    <div class="d-flex align-items-center mt-10">
                                         <label class="switch" for="{{'checkbox'+i}}">
                                             <input type="checkbox" id="{{'checkbox'+i}}"
-                                                (change)="onSelectItem($event, member.id)" [disabled]="member.isOwner"
-                                                [(ngModel)]="member.isSelected" value="{{member.id}}" />
+                                                (change)="onSelectItem($event, item.id)" [(ngModel)]="item.isSelected"
+                                                value="{{item.id}}" />
                                             <div class="slider round"></div>
                                         </label>
                                     </div>
-                                    <div class="item">
-                                        <i style="font-size: 30px;" class="far fa-user-circle fa-2x"></i>
-                                    </div>
-                                    <div class="item">
-                                        <p class="text-md m-0">{{member.position}}
+
+                                    <div class="d-flex align-items-center">
+                                        <p class="text-md m-0">{{item.position}}
                                         </p>
                                     </div>
-                                    <div class="item">
-                                        <p class="text-md m-0">{{member.startDate| date : 'yyyy-MM-dd'}}
-                                        </p>
-                                    </div>
-                                    <div class="item">
-                                        <p class="text-md m-0">to
-                                        </p>
-                                    </div>
-                                    <div class="item">
-                                        <p class="text-md m-0">{{member.endDate| date : 'yyyy-MM-dd'}}
-                                        </p>
-                                    </div>
-                                    <div class="item">
-                                        <a class="clickable" (click)="onClickView(member)" data-toggle="modal"
-                                            [attr.data-target]="'#createRcruitModal'" style="color: #7F7F7F;">
-                                            內容
-                                        </a>
+                                    <div class="d-flex align-items-center">
+                                        <ng-container *ngIf="item.skills">
+
+                                            <ng-container *ngFor="let tag of  item.skills; let i = index">
+
+                                                <span *ngIf="!this.utilitySrv.IsNullOrEmpty(tag)"
+                                                    class="tag tag-{{tag}} mr-1">{{convertTag(tag)}}</span>
+
+                                            </ng-container>
+
+                                        </ng-container>
                                     </div>
 
-                                    <div class="item" style="  margin-left: auto;padding-right: 20px;">
-                                        <a class="clickable" (click)="onClickDelete(member.id)" style="color: #7F7F7F;">
-                                            <i class="far fa-trash-alt icon"></i>
-                                        </a>
+                                    <div class="d-flex align-items-center">
+                                        <p class="text-md m-0">
+                                            {{item.scopes.length>15?item.scopes.substring(0,15)+"...":item.scopes}}
+                                        </p>
                                     </div>
-                                    <div class="item">
-                                        <div class="d-flex align-items-center">
-                                            <ui-radio-item [value]="member.available"
-                                                (onChange)="onAvailableChange($event, member)">
-                                            </ui-radio-item>
+
+                                    <div class="d-flex align-items-center">
+                                        <span> {{item.startDate| date : 'yyyy-MM-dd'}}
+                                        </span>
+                                        <!--  <p class="text-md m-0"><i class="far fa-comment-alt"></i>
+                                                                            </p> -->
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <div class="dropdown mt--10" *ngIf="item.createdBy === currentUser?.id"><i
+                                                class="fas fa-ellipsis-h color-gray text-18" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="true"></i>
+                                            <div class="dropdown-menu"> <a class="dropdown-item color-gray"
+                                                    (click)="onClickView(item)" data-toggle="modal"
+                                                    [attr.data-target]="'#createRcruitModal'"><i
+                                                        class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</a> <a
+                                                    class="dropdown-item color-gray" (click)="onDeleteJobItem(item)"><i
+                                                        class="fas fa-trash"></i>&nbsp;&nbsp;刪除</a></div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -103,48 +132,88 @@
                 </div>
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'drafts' }" role="tabpanel"
                     aria-labelledby="new-tab">
+                    <div class="row  pl-15">
+                        <div class="bar mt-3 cursor-pointer w-100">
+                            <div class="d-flex align-items-center mt-10">
+                                <label class="switch" for="allitem">
+                                    <input type="checkbox" id="allitem" />
+                                    <div class="slider round"></div>
+                                </label>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="fw-500">職缺名稱</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="fw-500">技能需求</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="fw-500">職務內容</span>
+                            </div>
+
+                            <div class="d-flex align-items-center">
+                                <span class="fw-500">發布日期</span>
+                            </div>
+
+                        </div>
+
+                    </div>
                     <div class="empty text-center" *ngIf="drafts.length ===0">
-                        There are no draft.
+                        目前沒有草稿
                     </div>
                     <ng-container *ngIf="drafts">
-                        <ng-container *ngFor="let member of drafts; let i = index">
-                            <div class="row" style="padding-left:15px;">
-                                <div class="card mt-3 cursor-pointer w-100">
-                                    <div class="d-flex align-items-center" style="margin-top: 10px;">
+                        <ng-container *ngFor="let item of drafts; let i = index">
+                            <div class="row pl-15">
+                                <div class="bar cursor-pointer w-100">
+                                    <div class="d-flex align-items-center mt-10">
                                         <label class="switch" for="{{'checkbox'+i}}">
                                             <input type="checkbox" id="{{'checkbox'+i}}"
-                                                (change)="onSelectItem($event, member.id)"
-                                                [(ngModel)]="member.isSelected" value="{{member.id}}" />
+                                                (change)="onSelectItem($event, item.id)" [(ngModel)]="item.isSelected"
+                                                value="{{item.id}}" />
                                             <div class="slider round"></div>
                                         </label>
                                     </div>
-                                    <div class="item"> <i style="font-size: 30px;" class="far fa-user-circle fa-2x"></i>
-                                    </div>
-                                    <div class="item">
-                                        <p class="text-md m-0">{{member.position}}
-                                        </p>
-                                    </div>
-                                    <div class="item">
-                                        <p class="text-md m-0">{{member.startDate| date : 'yyyy-MM-dd'}}
-                                        </p>
-                                    </div>
-                                    <div class="item">
-                                        <p class="text-md m-0">to
-                                        </p>
-                                    </div>
-                                    <div class="item">
-                                        <p class="text-md m-0">{{member.endDate| date : 'yyyy-MM-dd'}}
-                                        </p>
-                                    </div>
-                                    <a class="clickable" (click)="onClickView(member)" data-toggle="modal"
-                                        [attr.data-target]="'#createRcruitModal'" style="color: #7F7F7F;">
-                                        內容
-                                    </a>
 
-                                    <div class="item" style="  margin-left: auto;padding-right: 20px;">
-                                        <a class="clickable" (click)="onClickDelete(member.id)" style="color: #7F7F7F;">
-                                            <i class="far fa-trash-alt icon"></i>
-                                        </a>
+                                    <div class="d-flex align-items-center">
+                                        <p class="text-md m-0">{{item.position}}
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <ng-container *ngIf="item.skills">
+
+                                            <ng-container *ngFor="let tag of  item.skills; let i = index">
+
+                                                <span *ngIf="!this.utilitySrv.IsNullOrEmpty(tag)"
+                                                    class="tag tag-{{tag}} mr-1">{{convertTag(tag)}}</span>
+
+                                            </ng-container>
+
+                                        </ng-container>
+                                    </div>
+
+                                    <div class="d-flex align-items-center">
+                                        <p class="text-md m-0">
+                                            {{item.scopes.length>15?item.scopes.substring(0,15)+"...":item.scopes}}
+                                        </p>
+                                    </div>
+
+                                    <div class="d-flex align-items-center">
+                                        <span> {{item.startDate| date : 'yyyy-MM-dd'}}
+                                        </span>
+                                        <!--  <p class="text-md m-0"><i class="far fa-comment-alt"></i>
+                                                                                                </p> -->
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <div class="dropdown mt--10" *ngIf="item.createdBy === currentUser?.id"><i
+                                                class="fas fa-ellipsis-h color-gray text-18" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="true"></i>
+                                            <div class="dropdown-menu"> <a class="dropdown-item color-gray"
+                                                    (click)="onClickView(item)" data-toggle="modal"
+                                                    [attr.data-target]="'#createRcruitModal'"><i
+                                                        class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</a> <a
+                                                    class="dropdown-item color-gray" (click)="onDeleteJobItem(item)"><i
+                                                        class="fas fa-trash"></i>&nbsp;&nbsp;刪除</a></div>
+
+                                        </div>
                                     </div>
                                 </div>
 
@@ -154,46 +223,88 @@
                 </div>
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'closed' }" role="tabpanel"
                     aria-labelledby="new-tab">
+                    <div class="row  pl-15">
+                        <div class="bar mt-3 cursor-pointer w-100">
+                            <div class="d-flex align-items-center mt-10">
+                                <label class="switch" for="allitem">
+                                    <input type="checkbox" id="allitem" />
+                                    <div class="slider round"></div>
+                                </label>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="fw-500">職缺名稱</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="fw-500">技能需求</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="fw-500">職務內容</span>
+                            </div>
+
+                            <div class="d-flex align-items-center">
+                                <span class="fw-500">發布日期</span>
+                            </div>
+
+                        </div>
+
+                    </div>
                     <div class="empty text-center" *ngIf="closed.length ===0">
-                        Empty
+                        目前沒有紀錄
                     </div>
                     <ng-container *ngIf="closed">
-                        <ng-container *ngFor="let member of closed; let i = index">
-                            <div class="row" style="padding-left:15px;">
-                                <div class="card mt-3 cursor-pointer w-100">
-                                    <div class="d-flex align-items-center" style="margin-top: 10px;">
+                        <ng-container *ngFor="let item of closed; let i = index">
+                            <div class="row pl-15">
+                                <div class="bar cursor-pointer w-100">
+                                    <div class="d-flex align-items-center mt-10">
                                         <label class="switch" for="{{'checkbox'+i}}">
-                                            <input type="checkbox" id="{{'checkbox'+i}}" [disabled]="'true'" />
+                                            <input type="checkbox" id="{{'checkbox'+i}}"
+                                                (change)="onSelectItem($event, item.id)" [(ngModel)]="item.isSelected"
+                                                value="{{item.id}}" />
                                             <div class="slider round"></div>
                                         </label>
                                     </div>
-                                    <div class="item"> <i style="font-size: 30px;" class="far fa-user-circle fa-2x"></i>
-                                    </div>
-                                    <div class="item">
-                                        <p class="text-md m-0">{{member.position}}
-                                        </p>
-                                    </div>
-                                    <div class="item">
-                                        <p class="text-md m-0">{{member.startDate| date : 'yyyy-MM-dd'}}
-                                        </p>
-                                    </div>
-                                    <div class="item">
-                                        <p class="text-md m-0">to
-                                        </p>
-                                    </div>
-                                    <div class="item">
-                                        <p class="text-md m-0">{{member.endDate| date : 'yyyy-MM-dd'}}
-                                        </p>
-                                    </div>
-                                    <a class="clickable" (click)="onClickView(member)" data-toggle="modal"
-                                        [attr.data-target]="'#createRcruitModal'" style="color: #7F7F7F;">
-                                        內容
-                                    </a>
-                                    <div class="item" style="  margin-left: auto;padding-right: 20px;">
 
-                                        <a class="clickable" (click)="onClickDelete(member.id)" style="color: #7F7F7F;">
-                                            <i class="far fa-trash-alt icon"></i>
-                                        </a>
+                                    <div class="d-flex align-items-center">
+                                        <p class="text-md m-0">{{item.position}}
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <ng-container *ngIf="item.skills">
+
+                                            <ng-container *ngFor="let tag of  item.skills; let i = index">
+
+                                                <span *ngIf="!this.utilitySrv.IsNullOrEmpty(tag)"
+                                                    class="tag tag-{{tag}} mr-1">{{convertTag(tag)}}</span>
+
+                                            </ng-container>
+
+                                        </ng-container>
+                                    </div>
+
+                                    <div class="d-flex align-items-center">
+                                        <p class="text-md m-0">
+                                            {{item.scopes.length>15?item.scopes.substring(0,15)+"...":item.scopes}}
+                                        </p>
+                                    </div>
+
+                                    <div class="d-flex align-items-center">
+                                        <span> {{item.startDate| date : 'yyyy-MM-dd'}}
+                                        </span>
+                                        <!--  <p class="text-md m-0"><i class="far fa-comment-alt"></i>
+                                                                                                                            </p> -->
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <div class="dropdown mt--10" *ngIf="item.createdBy === currentUser?.id"><i
+                                                class="fas fa-ellipsis-h color-gray text-18" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="true"></i>
+                                            <div class="dropdown-menu"> <a class="dropdown-item color-gray"
+                                                    (click)="onClickView(item)" data-toggle="modal"
+                                                    [attr.data-target]="'#createRcruitModal'"><i
+                                                        class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</a> <a
+                                                    class="dropdown-item color-gray" (click)="onDeleteJobItem(item)"><i
+                                                        class="fas fa-trash"></i>&nbsp;&nbsp;刪除</a></div>
+
+                                        </div>
                                     </div>
                                 </div>
 
@@ -266,7 +377,7 @@
                     <div class="form-group row justify-content-end">
 
                         <button type="button" style="float: right;" class="btn btn-blue  mr-10"
-                            (click)="onRecruitSubmit()">更新</button>
+                            (click)="onUpdateRecruitSubmit()">更新</button>
                     </div>
                 </form>
             </div>

@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-12">
             <ng-container *ngIf="this.currentProject?.logs">
-                <div class="row" style="padding-left:15px;">
+                <div class="row  pl-15">
                     <ng-container *ngFor="let log of  this.currentProject?.logs; let i = index">
                         <app-project-log-bar style="width: 90%;" [project]="log"></app-project-log-bar>
                     </ng-container>

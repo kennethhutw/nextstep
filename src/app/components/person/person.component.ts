@@ -93,9 +93,14 @@ export class PersonCardComponent implements OnInit {
       case "op":
         _term = "營運";
         break;
+      case "hr":
+        _term = "人力資源";
+        break;
+      case "uiux":
       case "design":
         _term = "產品/設計";
         break;
+      case "product":
       case "pm":
         _term = "產品/設計";
         break;

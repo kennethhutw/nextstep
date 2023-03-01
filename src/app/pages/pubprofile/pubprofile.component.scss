@@ -190,6 +190,18 @@ app-pub-profile {
         padding: 12px 10px 12px 10px;
     }
 
+
+    .exp-bar-2 {
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-rows: 42px;
+        grid-template-columns: 1fr 200px;
+        position: relative;
+        min-width: 0;
+        word-wrap: break-word;
+
+    }
+
     .exp-empty-frame {
         border: 2px solid #fff;
         min-height: 300px;
@@ -200,6 +212,16 @@ app-pub-profile {
         grid-auto-flow: row;
         gap: 24px;
         padding: 12px 10px 12px 10px;
+    }
+
+    .exp-position {
+        font-size: 16px;
+        padding-right: 20px;
+    }
+
+    .exp-duration {
+        color: #8F95A8;
+        text-align: end;
     }
 
 

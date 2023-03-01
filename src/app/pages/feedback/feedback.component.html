@@ -1,23 +1,21 @@
-<div class="container mb-30">
-    <div class="row filter mt-80 ">
+<div class=" mb-30">
+    <div class="row filter ">
         <select class="form-control" [value]="status" (change)="onSortChange($event)">
             <option value="">從新到舊</option>
-            <option value="current">從舊到新</option>
-            <option value="candidate">最高票選</option>
-            <option value="inviting">邀請中</option>
-            <option value="interview">面談中</option>
-            <option value="rejected">已拒絕</option>
-            <option value="past">歷程成員</option>
+            <option value="old">從舊到新</option>
+            <option value="height">最高票選</option>
             <!-- </ng-template> -->
         </select>
-        <select class="form-control" [value]="status" (change)="onSortChange($event)">
-            <option value="">從新到舊</option>
-            <option value="current">從舊到新</option>
-            <option value="candidate">最高票選</option>
+        <select class="form-control" [value]="status" (change)="onSortTypeChange($event)">
+            <option value="">請選擇</option>
+            <option value="improvement">建議改善</option>
+            <option value="bug">有錯誤</option>
+            <option value="help">需要協助</option>
 
             <!-- </ng-template> -->
         </select>
-        <input type="text" class="form-control search" aria-label="" aria-describedby="button-addon2" />
+        <input type="text" class="form-control search" [(ngModel)]="searchText" aria-label=""
+            aria-describedby="button-addon2" />
 
         <span></span>
         <div><a type="button" style="margin: auto;" class="btn btn-blue" data-toggle="modal"
@@ -42,16 +40,15 @@
 
     </ul>
     <div class="tab-content" id="myTabContent">
-        <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'all' }" id="all" role="tabpanel"
-            aria-labelledby="all-tab">
-            <div class="empty text-center" *ngIf="allitems.length ===0">
+        <div class="tab-pane  active" id="all" role="tabpanel" aria-labelledby="all-tab">
+            <div class="empty text-center" *ngIf="displayItems.length ===0">
                 <div class="col-md-12 empty-text-center qa-container">
                     <img src="assets/images/empty_logo.png" alt="no-comment">
                     <span>沒有任何提案</span>
                 </div>
             </div>
-            <ng-container *ngIf="allitems.length >0">
-                <ng-container *ngFor="let item of  allitems; let i = index">
+            <ng-container *ngIf="displayItems.length >0">
+                <ng-container *ngFor="let item of  ( displayItems | itemFilter: searchText : 'detail' ); let i = index">
                     <div class="row bar">
                         <div class="col-md-12 proposal">
                             <img class="profile-image rounded-circle" src="{{ item.imageUrl }}"
@@ -86,12 +83,12 @@
                         </div>
 
                         <div class="col-md-12 footer">
-                            <div class="cell">
+                            <div class="cell" (click)="onVote(event,'likes',item.id)">
                                 <img src="assets/icons/arrow_up.png" alt="arrow_up">
                                 <span>{{item.like_count}}</span>
                                 <!-- <i class="fas fa-arrow-up"></i> -->
                             </div>
-                            <div class="cell">
+                            <div class="cell" (click)="onVote(event,'dislikes',item.id)">
                                 <img src="assets/icons/arrow_down.png" alt="arrow_down">
                                 <span>{{item.dislike_count}}</span>
                                 <!-- <i class="fas fa-arrow-down"></i> -->
@@ -146,7 +143,7 @@
                 </ng-container>
             </ng-container>
         </div>
-        <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'processed' }" role="tabpanel"
+        <!--     <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'processed' }" role="tabpanel"
             aria-labelledby="processed-tab">
             <div class="empty text-center" *ngIf="processed.length ===0">
                 <div class="col-md-12 empty-text-center qa-container">
@@ -302,9 +299,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="col-md-12 content">
-                                                        {{comment.content}}
-                                                    </div> -->
                         </div>
 
                         <div *ngIf="j == item.comments.length -1" class="row new_comment">
@@ -312,15 +306,10 @@
                                 placeholder="輸入留言" aria-describedby="">
                         </div>
                     </ng-container>
-                    <!-- <div class="row">
-                        <div class="col-md-12">
-                            <img class="profile-image rounded-circle" src="{{ item.imageUrl }}"
-                                (error)="onImgError($event)" alt="" />
-                        </div>
-                    </div> -->
+
                 </ng-container>
             </ng-container>
-        </div>
+        </div> -->
 
     </div>
 

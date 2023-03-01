@@ -98,6 +98,8 @@ export class RecruitComponent implements OnInit {
       console.error("error", error);
       this.SpinnerService.hide();
     })
+
+  
   }
 
   onSave() { }

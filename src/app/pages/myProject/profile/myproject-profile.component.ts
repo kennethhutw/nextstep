@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 
 import {
   DialogService,
@@ -12,13 +12,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 import {
   Utility
 } from '../../../_helpers';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-myproject-profile.',
   templateUrl: './myproject-profile.component.html',
   styleUrls: ['./myproject-profile.component.scss']
 })
-export class MyProjectProfileComponent implements OnInit {
+export class MyProjectProfileComponent implements OnInit, AfterViewInit {
 
   projectForm: FormGroup;
   isFindPartnerPanel: boolean = false;
@@ -33,11 +34,13 @@ export class MyProjectProfileComponent implements OnInit {
     private formBuilder: FormBuilder,
     private dialogSrv: DialogService,
     private projectSrv: ProjectService,
-    private authStoreSrv: AuthStore) {
+    private authStoreSrv: AuthStore,
+    private spinnerSrv: NgxSpinnerService) {
     this.currentUser = this.authStoreSrv.getUserData();
   }
 
   ngOnInit() {
+    this.spinnerSrv.show();
     this.projectForm = this.formBuilder.group({
       name: ["", Validators.required],
       description: ["", Validators.required],
@@ -53,6 +56,7 @@ export class MyProjectProfileComponent implements OnInit {
     this.projectSrv.getProject(projectId,
       this.currentUser.id).then(res => {
         if (res['result'] === 'successful') {
+          console.log("date ======", res)
           this.currentProject = res['data'];
           this.projectForm.setValue({
             name: this.currentProject.name,
@@ -65,9 +69,15 @@ export class MyProjectProfileComponent implements OnInit {
             stages: this.currentProject.stage
           });
         }
+        this.spinnerSrv.hide();
+      }).then(res => {
+        // this.spinnerSrv.hide();
       })
   }
 
+  ngAfterViewInit(): void {
+    // this.spinnerSrv.hide();
+  }
   onStatusChange($event, property) {
     this.projectForm.get(property).setValue($event.target.checked);
   }
@@ -146,7 +156,7 @@ export class MyProjectProfileComponent implements OnInit {
       isCofounder: value.isCofounder,
       uid: this.currentUser.id
     }).subscribe(res => {
-      console.log("==============", res);
+
       if (res['result'] === 'successful') {
         this.projectMsg = "Update successfully.";
       }

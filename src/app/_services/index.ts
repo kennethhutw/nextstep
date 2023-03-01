@@ -18,6 +18,7 @@ import { NotificationService } from "./nofitications.service";
 import { PagerService } from './pager.service';
 import { ProjectService } from './project.service';
 import { ProposalService } from './proposal.service';
+import { RankingService } from './ranking.service';
 import { RecruitService } from './recruit.service';
 import { SeoService } from './seo.service';
 import { ScrollService } from './scroll.service';
@@ -47,6 +48,7 @@ export const services = [
     PagerService,
     ProjectService,
     ProposalService,
+    RankingService,
     RecruitService,
     LikeService,
     MembersService,
@@ -90,6 +92,7 @@ export * from './scroll.service';
 export * from './pager.service';
 export * from './project.service';
 export * from './proposal.service';
+export { RankingService } from './ranking.service';
 export * from './recruit.service';
 export * from './invitation.service';
 export { ViewsService } from "./views.service";

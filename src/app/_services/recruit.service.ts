@@ -49,4 +49,19 @@ export class RecruitService {
             .put<any>(`${environment.apiUrl}/recruit/status`, params)
             .toPromise();
     }
+
+    async update(id, params) {
+
+        return await this.http
+            .put<any>(`${environment.apiUrl}/recruit/${id}`, params)
+            .toPromise();
+    }
+
+
+    async delete(id, user_id){
+        return await this.http
+            .delete(`${environment.apiUrl}/recruit/${id}/${user_id}` )
+            .toPromise();
+
+    }
 }

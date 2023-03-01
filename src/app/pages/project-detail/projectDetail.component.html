@@ -25,7 +25,7 @@
                         沒有專案
                     </div>
                     <ng-container *ngIf="publishedprojects">
-                        <div class="row" style="padding-left:15px;">
+                        <div class="row  pl-15">
                             <ng-container *ngFor="let item of  publishedprojects; let i = index">
                                 <app-project-bar style="width: 90%;" [project]="item"></app-project-bar>
                             </ng-container>

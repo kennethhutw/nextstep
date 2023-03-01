@@ -101,6 +101,7 @@ export class MyProjectMemberComponent implements OnInit {
       this.projectId
     ).then(res => {
       if (res['result'] == 'successful') {
+        console.log("getMembers ========", res)
         let data = res['data'];
 
         data.forEach((item) => {
@@ -497,8 +498,6 @@ export class MyProjectMemberComponent implements OnInit {
     this.recruitSrv.insert(params).subscribe(res => {
 
       if (res["result"] === "successful") {
-
-
         this.recruitForm.reset();
         this.close_recruit_button.nativeElement.click();
       }
@@ -533,6 +532,10 @@ export class MyProjectMemberComponent implements OnInit {
       work78: item.work78,
       work9: item.work9,
     });
+  }
+
+  onRoleChange(event, member) {
+
   }
 
 

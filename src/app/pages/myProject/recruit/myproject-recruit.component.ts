@@ -1,6 +1,4 @@
 import {
-  HostListener,
-  HostBinding,
   Component,
   OnInit,
   ViewChild,
@@ -9,7 +7,6 @@ import {
 import {
   DialogService,
   RecruitService,
-  ProjectService,
   AppSettingsService,
   ToastService,
 
@@ -20,9 +17,9 @@ import {
 import {
   AuthStore
 } from "../../../_services/auth.store";
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-myproject-recruit',
@@ -33,6 +30,7 @@ export class MyProjectRecruitComponent implements OnInit {
   projectId = "";
   currentProject;
   invitationForm: FormGroup;
+  isViewMode = false;
   submitted = false;
   currentUser;
   projectMsg = "";
@@ -55,6 +53,7 @@ export class MyProjectRecruitComponent implements OnInit {
 
 
   @ViewChild('selectCountry') selectCountry: ElementRef;
+  @ViewChild('close_recruit_button') close_recruit_button: ElementRef;
 
 
   constructor(
@@ -62,9 +61,8 @@ export class MyProjectRecruitComponent implements OnInit {
     private route: ActivatedRoute,
     private recruitSrv: RecruitService,
     private dialogSrv: DialogService,
-    private toastr: ToastService,
-    private utilitySrv: Utility,
-    private confirmDialogService: DialogService,
+    private toastSrv: ToastService,
+    public utilitySrv: Utility,
     private appSettingsSrv: AppSettingsService,
     private authStoreSrv: AuthStore) {
     this.skillOptions = this.appSettingsSrv.skillOptions();
@@ -76,11 +74,13 @@ export class MyProjectRecruitComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = this.authStoreSrv.getUserData();
+
     this.projectId = this.route.snapshot.paramMap.get("projectId");
 
     this.refreshRecruitList();
 
     this.recruitForm = this.formBuilder.group({
+      id: [""],
       position: ["", Validators.required],
       scopes: ["", Validators.required],
       skills: [""],
@@ -112,8 +112,6 @@ export class MyProjectRecruitComponent implements OnInit {
         element.isSelected = false
       });
     }
-
-
 
   }
 
@@ -154,10 +152,14 @@ export class MyProjectRecruitComponent implements OnInit {
 
   refreshRecruitList() {
     this.recruitSrv.getByProjectId(this.projectId).then(res => {
+      console.log("recruitSrv =======", res)
       if (res['result'] === 'successful') {
         let data = res['data'];
         data.forEach((item) => {
           item['isSelected'] = false;
+          if (!this.utilitySrv.IsNullOrEmpty(item['skills'].toString())) {
+            item['skills'] = item['skills'].toString().split(',');
+          }
         });
         this.items = data;
         if (data.length > 0) {
@@ -176,27 +178,35 @@ export class MyProjectRecruitComponent implements OnInit {
       }
     })
   }
-  onToggleChat(event) {
-    this.isChat = !this.isChat;
-  }
+
 
   onStatusChange(event) {
     let _status = event.target.value
-    this.selectedItem.forEach((element, index) => {
 
+    this.selectedItem.forEach((element, index) => {
+      let status = "0";
+      switch (_status) {
+        case "drafts":
+          status = "0";
+          break;
+        case "closed":
+          status = "2";
+          break;
+      }
       let params = {
         id: element,
         available: null,
         uid: this.currentUser.id,
-        status: _status
+        status: status
       }
 
       this.recruitSrv.updateStatus(params).then(res => {
-        console.log("res ==========", res);
+        this.status = null;
+        this.refreshRecruitList();
       })
     })
 
-    this.refreshRecruitList();
+
   }
 
   onAvailableChange(event, item) {
@@ -230,6 +240,7 @@ export class MyProjectRecruitComponent implements OnInit {
       })
     }
     this.recruitForm.setValue({
+      id: item.id,
       position: item.position,
       scopes: item.scopes,
       skills: _skills,
@@ -244,4 +255,115 @@ export class MyProjectRecruitComponent implements OnInit {
   onRecruitSubmit() {
     // todo
   }
+
+  onUpdateRecruitSubmit() {
+    this.submitted = true;
+    if (this.recruitForm.invalid) {
+      return;
+    }
+    const values = this.recruitForm.value;
+    let _skills = "";
+    let _skills_array = [];
+    if (values.skills) {
+      values.skills.map(skill => {
+        let _skill_text = skill;
+        if (typeof skill == "object") {
+          _skill_text = skill.text;
+        }
+        let _index = this.skillOptions.findIndex((obj => obj.text == _skill_text));
+        if (_index) {
+          _skills += this.skillOptions[_index].value + ",";
+          _skills_array.push(this.skillOptions[_index].value);
+        }
+      })
+
+      if (_skills.length > 0) {
+        _skills = _skills.substring(0, _skills.length - 1);
+      }
+    }
+    let params = {
+      position: values.position,
+      scopes: values.scopes,
+      projectId: this.projectId,
+      status: "0",
+      skills: _skills,
+      work12: values.work12 ? values.work12 : "0",
+      work34: values.work34 ? values.work34 : "0",
+      work56: values.work56 ? values.work56 : "0",
+      work78: values.work78 ? values.work78 : "0",
+      work9: values.work9 ? values.work9 : "0",
+      uid: this.currentUser.id,
+      startDate: moment.utc().valueOf(),
+      endDate: moment.utc().valueOf()
+    }
+
+    this.recruitSrv.update(values.id, params).then(res => {
+
+      if (res["result"] === "successful") {
+        this.recruitForm.reset();
+        this.close_recruit_button.nativeElement.click();
+        this.toastSrv.showToast('Success',
+          " " + values.position + "已更新.",
+          this.toastSrv.iconClasses.success);
+        this.refreshRecruitList();
+      }
+    }).catch(error => {
+      this.toastSrv.showToast('Failed',
+        error.message,
+        this.toastSrv.iconClasses.error);
+    })
+  }
+
+  onDeleteJobItem(item) {
+    this.dialogSrv.deleteThis('確定刪除此' + item.position, `確定刪除此${item.position}?,此動作將無法復原`, () => {
+      this.recruitSrv.delete(item.id, this.currentUser.id).then(res => {
+        if (res['result'] == "successful") {
+
+          this.items = this.items.filter(obj => {
+            return obj.id !== item.id
+          })
+
+          this.current = this.items.filter((application) => {
+            return application.status == '1'
+          });
+          this.drafts = this.items.filter((application) => {
+            return application.status == '0'
+          });
+          this.closed = this.items.filter((application) => {
+            return application.status == '2'
+          });
+
+
+          this.toastSrv.showToast('Success',
+            " " + item.position + "已刪除.",
+            this.toastSrv.iconClasses.success);
+        } else {
+          this.toastSrv.showToast('Failed',
+            res['message'],
+            this.toastSrv.iconClasses.error);
+        }
+      }).catch(error => {
+        console.error("Delete failed! " + error.message);
+        this.toastSrv.showToast('Failed',
+          error.message,
+          this.toastSrv.iconClasses.error);
+      })
+    }, () => { })
+
+  }
+
+  convertTag(term) {
+
+    let _index = this.skillOptions.findIndex((obj => obj.value == term.toLowerCase()));
+    if (_index > 0) {
+      return this.skillOptions[_index].text;
+    }
+
+  }
+
+  onCreateRecruit() {
+    this.isViewMode = false;
+    this.recruitForm.reset();
+  }
+
 }

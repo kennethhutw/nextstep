@@ -76,7 +76,6 @@ export class MentorProfileComponent implements OnInit {
     private authSrv: AuthStore,
     private settingSrv: SettingService,
     private translateSrv: TranslateService,
-    private viewsService: ViewsService,
     private mentorSrv: MentorService,
     public utilitySrv: Utility,
     private formBuilder: FormBuilder,
@@ -166,14 +165,15 @@ export class MentorProfileComponent implements OnInit {
             }
           })
         }
-        this.isOwner = (this.currentUser.id === this.userProfile.id);
-
+        if (this.currentUser && this.currentUser.id) {
+          this.isOwner = (this.currentUser.id === this.userProfile.id);
+        }
         //init view
         let _id = null;
         if (this.currentUser && this.currentUser.id) {
           _id = this.currentUser.id;
         }
-        this.viewsService.insert(
+        this.viewsSrv.insert(
           this.userProfile.id,
           "mentor",
           _id,
@@ -573,22 +573,21 @@ export class MentorProfileComponent implements OnInit {
           this.toastr.showToast('Success', "新增評語成功", this.toastr.iconClasses.success);
         }
       }, (error => {
-        console.log("error =======", error)
         this.toastr.showToast('Failed', "新增評語失敗", this.toastr.iconClasses.error);
       }))
 
   }
 
-  onEditFeedback(event) {
+  onEditFeedback() {
 
   }
 
-  onCancelFeedback(event) {
+  onCancelFeedback() {
 
   }
 
   imagePath(path) {
-    console.log("path ============", path)
+
     if (this.utilitySrv.IsNullOrEmpty(path)) {
       path = this.defaultProfileLogo;
     } else {

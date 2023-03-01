@@ -33,7 +33,7 @@
                         沒有收藏的專案
                     </div>
                     <ng-container *ngIf="projects">
-                        <div class="row" style="padding-left:15px;">
+                        <div class="row  pl-15">
                             <ng-container *ngFor="let item of  projects; let i = index">
                                 <app-project-bar style="width: 100%;" (onDelete)="onClickDelete($event)"
                                     [project]="item"></app-project-bar>
@@ -65,7 +65,7 @@
                         <ng-container *ngFor="let item of  applications; let i = index">
                             <div class="row bar">
                                 <div class="card mt-3 cursor-pointer w-100">
-                                    <div class="d-flex align-items-center" style="margin-top: 10px;">
+                                    <div class="d-flex align-items-center mt-10">
                                         <label class="switch" for="{{'checkbox'+i}}">
                                             <input type="checkbox" id="{{'checkbox'+i}}"
                                                 (change)="onSelectItem($event, item.id)" [(ngModel)]="item.isSelected"

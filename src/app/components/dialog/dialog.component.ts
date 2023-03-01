@@ -11,6 +11,7 @@ import { DialogService } from './../../_services/dialog.service';
 
 export class DialogComponent implements OnInit {
   message: any;
+  title:string;
   msg: string;
 
   constructor(
@@ -27,6 +28,13 @@ export class DialogComponent implements OnInit {
         this.msg = message.text.replace(/(\r\n|\n|\r)/gm, '<br>');
       }
       this.message = message;
+    });
+
+    this.dialogSrv.getTitle().subscribe(title => {
+      if (!!title) {
+        this.msg = title.text.replace(/(\r\n|\n|\r)/gm, '<br>');
+      }
+      this.message = title;
     });
   }
 

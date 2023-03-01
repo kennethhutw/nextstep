@@ -72,7 +72,6 @@ export class PubProfileComponent implements OnInit {
     private authSrv: AuthStore,
     private settingSrv: SettingService,
     private translateSrv: TranslateService,
-    private viewsService: ViewsService,
     private utility: Utility,
     private formBuilder: FormBuilder,
     private appSettingsSrv: AppSettingsService,
@@ -148,7 +147,24 @@ export class PubProfileComponent implements OnInit {
 
           this.userProfile.cover = environment.assetUrl + this.userProfile.cover;
         }
-        this.isOwner = (this.currentUser.id === this.userProfile.id);
+
+        if (!this.utility.IsNullOrEmpty(this.userProfile.projects)) {
+          this.userProfile.projects.forEach(element => {
+            element.imageUrl = environment.assetUrl + element.imageUrl;
+          });
+        }
+
+        if (!this.utility.IsNullOrEmpty(this.userProfile.pastProjects)) {
+          this.userProfile.pastProjects.forEach(element => {
+            element.imageUrl = environment.assetUrl + element.imageUrl;
+          });
+        }
+
+        if (this.currentUser && this.currentUser.id) {
+          this.isOwner = (this.currentUser.id === this.userProfile.id);
+        }
+
+
 
         //init view
         let _id = 'not login';
@@ -156,7 +172,7 @@ export class PubProfileComponent implements OnInit {
           // when user login
           _id = this.currentUser.id;
         }
-        this.viewsService.insert(
+        this.viewsSrv.insert(
           this.userProfile.id,
           "user",
           _id,
@@ -530,6 +546,10 @@ export class PubProfileComponent implements OnInit {
 
   changeTab(tab) {
     this.currentTab = tab;
+  }
+
+  onProjectImgError(event) {
+    event.target.src = "assets/images/defaultlogo.png";
   }
 }
 //https://www.sliderrevolution.com/resources/bootstrap-profile/

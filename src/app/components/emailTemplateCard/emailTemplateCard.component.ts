@@ -8,6 +8,7 @@ import {
 import { Utility } from "../../_helpers";
 import {
   DataService,
+  ToastService
 } from "../../_services";
 
 import { TranslateService } from "@ngx-translate/core";
@@ -27,6 +28,7 @@ export class EmailTemplateCardComponent {
   constructor(
     private utility: Utility,
     private dataSrv: DataService,
+    private toastr: ToastService,
     private translateSrv: TranslateService
   ) {
     let _lang = localStorage.getItem("lang");
@@ -55,18 +57,23 @@ export class EmailTemplateCardComponent {
 
 
   onClickCopyText(content) {
-    let selBox = document.createElement('textarea');
-    selBox.style.position = 'fixed';
-    selBox.style.left = '0';
-    selBox.style.top = '0';
-    selBox.style.opacity = '0';
+    try {
+      let selBox = document.createElement('textarea');
+      selBox.style.position = 'fixed';
+      selBox.style.left = '0';
+      selBox.style.top = '0';
+      selBox.style.opacity = '0';
 
-    selBox.value = content;
-    document.body.appendChild(selBox);
-    selBox.focus();
-    selBox.select();
-    document.execCommand('copy');
-    document.body.removeChild(selBox);
+      selBox.value = content;
+      document.body.appendChild(selBox);
+      selBox.focus();
+      selBox.select();
+      document.execCommand('copy');
+      document.body.removeChild(selBox);
+      this.toastr.showToast('Share', 'copied', 'success');
+    } catch (error) {
+      this.toastr.showToast('Share', 'Failed to generate the shared link', 'error');
+    }
   }
 
 
