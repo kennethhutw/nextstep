@@ -17,6 +17,7 @@ export class PersonCardComponent implements OnInit {
   @Input() tags;
   @Input() uid: string;
   @Input() user;
+  @Input() type;
 
   constructor(
     private utility: Utility,
@@ -43,7 +44,12 @@ export class PersonCardComponent implements OnInit {
   }
 
   routeToUserProfile() {
-    this.router.navigate(["./u/" + this.uid], {});
+    if (this.type && this.type == "mentor") {
+      this.router.navigate(["./mentor/" + this.uid], {});
+    } else {
+      this.router.navigate(["./u/" + this.uid], {});
+    }
+
   }
 
   onImgError(event) {

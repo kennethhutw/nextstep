@@ -18,9 +18,9 @@
             aria-describedby="button-addon2" />
 
         <span></span>
-        <div><a type="button" style="margin: auto;" class="btn btn-blue" data-toggle="modal"
-                [attr.data-target]="'#proposal'"><i class="fas fa-plus"></i> 我有話要說
-            </a></div>
+        <div><button type="button" style="margin: auto;" [attr.disabled]="!currentUser" class="btn btn-blue"
+                data-toggle="modal" [attr.data-target]="'#proposal'"><i class="fas fa-plus"></i> 我有話要說
+            </button></div>
 
     </div>
     <ul class="nav mb-20" id="fbTab" role="tablist">
@@ -32,7 +32,7 @@
             <a class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'processed' }" role="tab"
                 (click)="changeTab('processed')">已處理</a>
         </li>
-        <li class="nav-item" role="presentation">
+        <li *ngIf="currentUser" class="nav-item" role="presentation">
             <a class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'myproposal' }" role="tab"
                 (click)="changeTab('myproposal')">我發布的意見</a>
         </li>

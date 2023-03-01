@@ -139,8 +139,8 @@
         <swiper [config]="swiperConfig" class="mySwiper">
           <ng-template *ngFor="let user of popularMentors;let i= index" swiperSlide>
             <div class="single-swiper">
-              <app-person [user]="user" [name]="user.name" [position]="user.title" [tags]="user.expertise"
-                [uid]="user.uid" [imageUrl]="user.imageUrl">
+              <app-person [user]="user" [type]="'mentor'" [name]="user.name" [position]="user.title"
+                [tags]="user.expertise" [uid]="user.uid" [imageUrl]="user.imageUrl">
               </app-person>
             </div>
           </ng-template>

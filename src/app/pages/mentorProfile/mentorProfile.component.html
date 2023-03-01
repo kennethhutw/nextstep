@@ -30,7 +30,7 @@
   <div class="row mt-50">
     <div class="col-md-12 text-right">
 
-      <div *ngIf="!isOwner" class=" text-right btn_items">
+      <div *ngIf="!isOwner && currentUser" class=" text-right btn_items">
 
         <button type="button" class="btn btn_item " (click)="onToggleChat($event)"><i class="far fa-comment-alt"></i>
           訊息</button>
@@ -119,7 +119,8 @@
                 type="button" role="tab" (click)="changeTab('feedback')">評語</button>
             </li>
             <li class="nav-item" role="presentation">
-              <button type="button" class="btn btn_item" data-toggle="modal" [attr.data-target]="'#feedbackModal'">
+              <button type="button" [attr.disabled]="!currentUser" class="btn btn_item" data-toggle="modal"
+                [attr.data-target]="'#feedbackModal'">
                 撰寫評語</button>
             </li>
 

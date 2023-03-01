@@ -30,7 +30,7 @@
   <div class="row mt-50">
     <div class="col-md-12 text-right">
 
-      <div *ngIf="!isOwner" class=" text-right btn_items">
+      <div *ngIf="!isOwner && currentUser" class=" text-right btn_items">
 
         <button type="button" class="btn btn_item " (click)="onToggleChat($event)"><i class="far fa-comment-alt"></i>
           訊息</button>
@@ -126,7 +126,7 @@
                 <div class="col-md-12 frame mb-20">
                   <div class="col-md-12" style=" display:inline-block;">
                     <div class="exp-bar-2">
-                      <span class="exp-position">{{project.position}}</span>
+                      <span class="exp-position">{{project.position? project.position:"未填寫職稱"}}</span>
                       <div class="exp-duration">
                         <span>{{project.firstDate | date : 'yyyy-MM-dd'}}</span><span
                           *ngIf="IsNullorEmpty(project.lastDate)">~ {{project.lastDate |
@@ -168,7 +168,7 @@
                 <div class="col-md-12 frame mb-20">
                   <div class="col-md-12" style=" display:inline-block;">
                     <div class="exp-bar-2">
-                      <span class="exp-position">{{project.position}}</span>
+                      <span class="exp-position">{{project.position? project.position:"未填寫職稱"}}</span>
                       <!--  <a data-toggle="modal" [attr.data-target]="'#modal_project'"><i class="fas fa-pencil-alt"></i></a> -->
                       <div class="exp-duration">
                         <span>{{project.firstDate | date : 'yyyy-MM-dd'}}</span><span

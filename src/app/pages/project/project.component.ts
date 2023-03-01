@@ -105,17 +105,26 @@ export class ProjectComponent implements OnInit {
 
     this.projectSrv.getProject(this.projectId, _id).then(res => {
       if (res['result'] == 'successful') {
+        console.log("project ============", res);
         this.currentProject = res['data'];
         if (this.currentProject) {
-          let _owners = this.currentProject.members.filter(member => {
-            return member.userId === this.currentProject.owner
-          })
+          if (this.currentProject.members) {
+            this.currentProject.members.forEach(element => {
+              if (!this.utilitySrv.IsNullOrEmpty(element.imageUrl)) {
+                element.imageUrl = environment.assetUrl + element.imageUrl;
+              }
+            });
+            let _owners = this.currentProject.members.filter(member => {
+              return member.userId === this.currentProject.owner
+            })
 
-          if (_owners.length > 0) {
-            this.projectOwner = _owners[0];
-            this.projectOwner.name = this.projectOwner.userName;
-            this.projectOwner.projectId = this.projectOwner.id;
-            this.projectOwner.id = this.projectOwner.userId;
+
+            if (_owners.length > 0) {
+              this.projectOwner = _owners[0];
+              this.projectOwner.name = this.projectOwner.userName;
+              this.projectOwner.projectId = this.projectOwner.id;
+              this.projectOwner.id = this.projectOwner.userId;
+            }
           }
 
           if (this.currentProject.recruit) {

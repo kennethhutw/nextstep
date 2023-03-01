@@ -4,7 +4,7 @@
     <span class="update_date">{{this.currentRecruit.createdAt | date:"MM/dd"}}更新</span>
   </div>
 
-  <div class="col-md-6 text-right btn_items">
+  <div *ngIf="currentUser" class="col-md-6 text-right btn_items">
     <button type="button" class="btn btn_item" data-toggle="modal" data-target="#modal_apply" data-dismiss="modal"
       (click)="onSelectItem(currentRecruit)"><i class="far fa-envelope" tooltip="申請"></i>
       申請</button><button type="button" class="btn btn_item"
@@ -72,7 +72,7 @@
                   <p class="position"><b>{{item.position}}</b></p>
                   <small>{{item.skills}}</small>
                 </div>
-                <div class="col-md-4 btn_items">
+                <div *ngIf="currentUser" class="col-md-4 btn_items">
                   <a href="#"> <i class="far fa-bookmar"></i></a>
                   <a href="#" data-toggle="modal" data-target="#modal_apply" data-dismiss="modal"
                     (click)="onSelectItem(item)"> <i class="far fa-envelope"></i></a>
@@ -109,7 +109,7 @@
                 <p class="position"><b>{{item.position}}</b></p>
                 <!-- <small>{{item.skills}}</small> -->
               </div>
-              <div class="col-md-4 btn_items">
+              <div *ngIf="currentUser" class="col-md-4 btn_items">
                 <!-- <a href="#"> <i class="far fa-bookmark"></i></a> -->
                 <i *ngIf="item.isCollected" (click)="onClickJobCollect(item.id, item.isCollected)"
                   class="fas fa-bookmark collected"></i>

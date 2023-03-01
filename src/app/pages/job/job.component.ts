@@ -51,39 +51,47 @@ export class JobComponent implements OnInit {
     if (this.currentUser && this.currentUser.id) {
       _userId = this.currentUser.id;
     }
-    let _recruitId = this.route.snapshot.paramMap.get("id");
-    this.recruitSrv.getById(_recruitId, _userId).then(res => {
-      if (res['result'] == 'successful') {
-        this.currentRecruit = res['data'];
-        if (!this.utility.IsNullOrEmpty(this.currentRecruit.skills)) {
-          this.currentRecruit.skills = this.currentRecruit.skills.split(',');
+    this.route.params.subscribe(params => {
+
+      let _recruitId = params['id'];
+      this.recruitSrv.getById(_recruitId, _userId).then(res => {
+        if (res['result'] == 'successful') {
+          this.currentRecruit = res['data'];
+          if (!this.utility.IsNullOrEmpty(this.currentRecruit.skills)) {
+            this.currentRecruit.skills = this.currentRecruit.skills.split(',');
+          }
+          if (!this.utility.IsNullOrEmpty(this.currentRecruit.projectImageUrl)) {
+            this.currentRecruit.projectImageUrl = environment.assetUrl + this.currentRecruit.projectImageUrl;
+          }
+          console.log("currentRecruit ====", this.currentRecruit)
+
         }
-        console.log("currentRecruit ====", this.currentRecruit)
-
+        this.SpinnerService.hide();
+      }).catch(error => {
+        console.error("error", error);
+        this.SpinnerService.hide();
+      })
+      //init view
+      let _id = 'not login';
+      if (this.currentUser && this.currentUser.id) {
+        _id = this.currentUser.id;
       }
-      this.SpinnerService.hide();
-    }).catch(error => {
-      console.error("error", error);
-      this.SpinnerService.hide();
+      this.viewsSrv.insert(
+        _recruitId,
+        "recruit",
+        _id,
+        "",
+        _id
+      ).then(res => {
+
+      }).catch(error => {
+        console.error("Add view record failed", error)
+      });
     })
+    //  let _recruitId = this.route.snapshot.paramMap.get("id");
 
 
-    //init view
-    let _id = 'not login';
-    if (this.currentUser && this.currentUser.id) {
-      _id = this.currentUser.id;
-    }
-    this.viewsSrv.insert(
-      _recruitId,
-      "recruit",
-      _id,
-      "",
-      _id
-    ).then(res => {
 
-    }).catch(error => {
-      console.error("Add view record failed", error)
-    });
   }
 
 

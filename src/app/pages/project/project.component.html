@@ -142,8 +142,8 @@
               <ng-container *ngFor="let member of currentProject.members ; let i = index">
                 <ng-container *ngIf="onPage(i,this.currentPageIndex)">
                   <div class="col-md-4 profile">
-                    <app-member-card [user]="member" [name]="member.userName" [position]="member.position"
-                      [imageUrl]="member.imageUrl" class="w-100"></app-member-card>
+                    <app-member-card [user]="member" [uid]="member.uid" [name]="member.userName"
+                      [position]="member.position" [imageUrl]="member.imageUrl" class="w-100"></app-member-card>
                   </div>
                 </ng-container>
               </ng-container>
@@ -397,15 +397,10 @@
                 </div>
               </div>
             </div>
-
-
           </div>
           <div class="row item-center">
-
             <button type="button" class="btn btn-blue  mr-10" (click)="onModifySubmit()">
               更新</button>
-
-
           </div>
           <div class="row">
             <div class="col-md-12 mb-12 form-group text-center">
