@@ -59,8 +59,10 @@ export class AuthStore {
       })
       .pipe(
         tap((resResult) => {
+          console.log("emailSignUp ==========", resResult);
           const _user = resResult.data as UserInterface;
           this.subject.next(_user);
+          localStorage.setItem("access_token", resResult["token"]);
           localStorage.setItem(AUTH_DATA, JSON.stringify(_user));
         }),
         shareReplay()

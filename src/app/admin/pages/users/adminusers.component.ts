@@ -1,8 +1,7 @@
 import {
   Component, OnInit,
   ViewChild,
-  HostListener,
-  AfterViewInit, OnDestroy
+  HostListener
 } from '@angular/core';
 import { UserService, ToastService } from '../../../_services';
 import { Subject } from 'rxjs';

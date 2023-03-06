@@ -50,7 +50,7 @@ export class JoinProjectComponent implements OnInit {
     this.currentUser = this.authSrv.getUserData();
     if (!this.currentUser) {
       this.spinnerSrv.hide();
-      this.router.navigate(['/login']);
+      this.router.navigate(['/signin']);
     }
 
     this.invitationSrv.getInvitation(this.invitiationId, this.currentUser.id).then(res => {

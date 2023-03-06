@@ -8,11 +8,12 @@ import {
   FormGroup,
   Validators
 } from "@angular/forms";
-import { environment } from "../../../environments/environment";
 import {
   Router,
   ActivatedRoute
 } from "@angular/router";
+import { Subscription, timer, } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 @Component({
   selector: "app-reset-password",
   templateUrl: "./resetPassword.component.html",
@@ -48,6 +49,9 @@ export class ResetPasswordComponent implements OnInit {
 
   IsCanResetPassword = true;
 
+  public timerSub: Subscription;
+  countDownValue: number = 0;
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -68,6 +72,7 @@ export class ResetPasswordComponent implements OnInit {
     });
 
     this.route.queryParams.subscribe(params => {
+      console.log("==================", params)
       this.uid = params['uid'];
       this.time = params['time'];
       this.timeDiff = this.current.getTime() - this.time;
@@ -75,10 +80,34 @@ export class ResetPasswordComponent implements OnInit {
         this.IsCanResetPassword = false;
         this.pswActionMsg = "This is expired! Please resend reset e-mail.";
         this.pswMsgFailed = true;
+        this.startTimer();
       }
 
     });
 
+  }
+
+  startTimer() {
+    // For demonstration purposes
+    const startValue = 1 * 10;
+
+    this.timerSub = timer(0, 1000).pipe(
+      take(startValue + 1),
+      map(value => startValue - value)
+    ).subscribe(
+      value => this.countDownValue = value,
+      null,
+      () => {
+        this.timerSub = null;
+        this.GoHomePage()
+      }
+    );
+  }
+
+  GoHomePage() {
+    this.router.navigate(['./'], {
+
+    });
   }
 
   NextPage() {
@@ -138,8 +167,9 @@ export class ResetPasswordComponent implements OnInit {
 
       this.userSrv.setPassword(_password,
         this.uid).subscribe(res => {
-
+          console.log(" setPassword===========", res)
           if (res["result"] === "successful") {
+            this.router.navigate(['/signin']);
             this.submittedPSW = false;
             this.translateSrv.get("UPDATEDSUCC").subscribe((text: string) => {
               this.pswActionMsg = text;

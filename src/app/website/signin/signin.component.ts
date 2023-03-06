@@ -80,9 +80,9 @@ export class SigninComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    const value = this.loginForm.value;
+    const values = this.loginForm.value;
 
-    this.authSrv.login(value.email, value.password).subscribe(
+    this.authSrv.login(values.email, values.password).subscribe(
       (res) => {
         if (res["result"] === "successful") {
           this.router.navigate(["./dashboard"], {});

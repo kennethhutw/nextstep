@@ -1,5 +1,7 @@
-.container {
+.up_container {
     padding-top: 10px;
+    padding: 10px 5px;
+    background-color: #ffffff;
 }
 
 li {
@@ -23,4 +25,8 @@ li {
     text-align: center;
     align-items: center;
     gap: 18px;
+}
+
+.mt-56 {
+    margin-top: 56px;
 }

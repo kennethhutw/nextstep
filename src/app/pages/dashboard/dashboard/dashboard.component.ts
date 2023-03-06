@@ -111,7 +111,9 @@ export class DashboardComponent implements OnInit {
     })
 
     this.userSrv.getMayInterestedPublicMentors(_id).then(res => {
+      console.log("===============", res);
       if (res['result'] == 'successful') {
+
         this.mentors = res['data'];
         if (this.mentors && this.mentors.length > 0) {
           this.mentors.forEach(element => {

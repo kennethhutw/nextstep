@@ -87,7 +87,7 @@ export class UserSettingComponent implements OnInit {
     let url = '/resetPassword';
     let link = domain + url;
     this.emailSrv.sendResetPasswordEmail(
-      'Reset your password for FormosArt',
+      'Reset your password for NextStep',
       this.editedUser.email,
       link).subscribe(sendRes => {
         if (sendRes['result'] == 'successful') {
