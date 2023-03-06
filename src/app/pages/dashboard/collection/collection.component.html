@@ -35,8 +35,12 @@
                     <ng-container *ngIf="projects">
                         <div class="row  pl-15">
                             <ng-container *ngFor="let item of  projects; let i = index">
-                                <app-project-bar style="width: 100%;" (onDelete)="onClickDelete($event)"
-                                    [project]="item"></app-project-bar>
+                                <div class="col-md-6 text-center">
+                                    <ui-project-card (Collect)="onClickCollect($event)"
+                                        (UnCollect)="onClickUnCollect($event)" (Follow)="onClickFollow($event)"
+                                        (UnFollow)="onClickUnFollow($event)" [project]="item" [user]="currentUser">
+                                    </ui-project-card>
+                                </div>
 
                             </ng-container>
                         </div>
@@ -50,7 +54,13 @@
                     <ng-container *ngIf="partners">
                         <div class="row">
                             <ng-container *ngFor="let item of  partners; let i = index">
-                                <h1>{{item.name}}</h1>
+                                <div class="col-md-6 text-center">
+                                    <app-user-card (Click)="OnClickProfile($event)" (Collect)="onClickCollect($event)"
+                                        (UnCollect)="onClickUnCollect($event)" (Follow)="onClickFollow($event)"
+                                        (UnFollow)="onClickUnFollow($event)" [user]="item" [type]="'partner'"
+                                        [currentuser]="currentUser">
+                                    </app-user-card>
+                                </div>
                             </ng-container>
                         </div>
                     </ng-container>
@@ -64,39 +74,11 @@
 
                         <ng-container *ngFor="let item of  applications; let i = index">
                             <div class="row bar">
-                                <div class="card mt-3 cursor-pointer w-100">
-                                    <div class="d-flex align-items-center mt-10">
-                                        <label class="switch" for="{{'checkbox'+i}}">
-                                            <input type="checkbox" id="{{'checkbox'+i}}"
-                                                (change)="onSelectItem($event, item.id)" [(ngModel)]="item.isSelected"
-                                                value="{{item.id}}" />
-                                            <div class="slider round"></div>
-                                        </label>
-                                    </div>
-                                    <div class="item">
-                                        <i style="font-size: 30px;" class="far fa-user-circle fa-2x"></i>
-                                    </div>
-                                    <div class="item">
-                                        <p class="text-md m-0">{{item.position}}
-                                        </p>
-                                    </div>
-                                    <div class="item">
-                                        <p class="text-md m-0">{{item.startDate| date : 'yyyy-MM-dd'}}
-                                        </p>
-                                    </div>
-                                    <div class="item">
-                                        <p class="text-md m-0">to
-                                        </p>
-                                    </div>
-                                    <div class="item">
-                                        <p class="text-md m-0">{{item.endDate| date : 'yyyy-MM-dd'}}
-                                        </p>
-                                    </div>
-                                    <div class="item" style="  margin-left: auto;padding-right: 20px;">
-                                        <a class="clickable" (click)="onClickDelete(item.id)" style="color: #7F7F7F;">
-                                            <i class="far fa-trash-alt icon"></i>
-                                        </a>
-                                    </div>
+                                <div class="col-md-6 text-center">
+                                    <ui-recruit-card (Collect)="onClickCollect($event)"
+                                        (UnCollect)="onClickUnCollect($event)" (Apply)="onClickApply($event)"
+                                        [job]="item" [user]="currentUser">
+                                    </ui-recruit-card>
                                 </div>
 
                             </div>
@@ -112,7 +94,13 @@
                     <ng-container *ngIf="mentors">
                         <div class="row">
                             <ng-container *ngFor="let item of  mentors; let i = index">
-                                <h1>{{item.name}}</h1>
+                                <div class="col-md-6 text-center">
+                                    <app-user-card (Click)="OnClickProfile($event)" (Collect)="onClickCollect($event)"
+                                        (UnCollect)="onClickUnCollect($event)" (Follow)="onClickFollow($event)"
+                                        (Chat)="onClickChat($event)" (UnFollow)="onClickUnFollow($event)" [user]="item"
+                                        [type]="'mentor'" [currentuser]="currentUser">
+                                    </app-user-card>
+                                </div>
                             </ng-container>
                         </div>
                     </ng-container>

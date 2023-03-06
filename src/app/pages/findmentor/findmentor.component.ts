@@ -273,7 +273,7 @@ export class FindMentorComponent implements OnInit {
 
     this.viewsSrv.follow(
       event.userId,
-      "user",
+      "mentor",
       this.currentUser.id
     ).then(res => {
       if (res['result'] == 'successful') {
@@ -283,7 +283,7 @@ export class FindMentorComponent implements OnInit {
           this.items[_index].id,
           this.currentUser.id,
           this.currentUser.name + "開始追蹤你",
-          "user",
+          "mentor",
           0,
           0,
           this.currentUser.id
@@ -299,7 +299,7 @@ export class FindMentorComponent implements OnInit {
 
     this.viewsSrv.unFollow(
       event.userId,
-      "user",
+      "mentor",
       this.currentUser.id
     ).then(res => {
       if (res['result'] == 'successful') {
@@ -309,7 +309,7 @@ export class FindMentorComponent implements OnInit {
           this.items[_index].id,
           this.currentUser.id,
           this.currentUser.name + "停止追蹤你",
-          "user",
+          "mentor",
           0,
           0,
           this.currentUser.id
@@ -325,7 +325,7 @@ export class FindMentorComponent implements OnInit {
 
     this.viewsSrv.collect(
       event.userId,
-      "user",
+      "mentor",
       this.currentUser.id
     ).then(res => {
       if (res['result'] == 'successful') {
@@ -335,7 +335,7 @@ export class FindMentorComponent implements OnInit {
           this.items[_index].id,
           this.currentUser.id,
           this.currentUser.name + "收藏了你的檔案",
-          "user",
+          "mentor",
           0,
           0,
           this.currentUser.id
@@ -352,7 +352,7 @@ export class FindMentorComponent implements OnInit {
 
     this.viewsSrv.unCollect(
       event.userId,
-      "user",
+      "mentor",
       this.currentUser.id
     ).then(res => {
       if (res['result'] == 'successful') {
@@ -362,7 +362,7 @@ export class FindMentorComponent implements OnInit {
           this.items[_index].id,
           this.currentUser.id,
           this.currentUser.name + "取消收藏你的檔案",
-          "user",
+          "mentor",
           0,
           0,
           this.currentUser.id
