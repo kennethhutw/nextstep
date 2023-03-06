@@ -38,15 +38,17 @@ export class MyProjectComponent implements OnInit {
       this.currentUser.id
     ).then(res => {
       if (res['result'] == 'successful') {
-        let data = res['data'];
-        if (data.length > 0) {
-          this.publishedprojects = data.filter((project) => {
-            return project.status == 'published'
-          });
-          this.draftedprojects = data.filter((project) => {
-            return project.status == 'draft'
-          });
+        if (res['data']) {
+          let data = res['data'];
+          if (data.length > 0) {
+            this.publishedprojects = data.filter((project) => {
+              return project.status == 'published'
+            });
+            this.draftedprojects = data.filter((project) => {
+              return project.status == 'draft'
+            });
 
+          }
         }
       }
     })

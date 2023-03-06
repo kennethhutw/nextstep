@@ -28,7 +28,7 @@
     </div>
   </div>
   <div class="row" style="min-height:27px">
-    <ng-container *ngIf="user.skills ">
+    <ng-container *ngIf="user.skills">
       <ng-container *ngFor=" let tag of user.skills; let i=index">
         <span *ngIf="!this.utility.IsNullOrEmpty(tag)" class="tag  tag-{{tag}}  mb-2 mr-5">{{convertTag(tag)}}</span>
       </ng-container>
