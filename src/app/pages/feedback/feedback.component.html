@@ -18,7 +18,7 @@
             aria-describedby="button-addon2" />
 
         <span></span>
-        <div><button type="button" style="margin: auto;" [attr.disabled]="!currentUser" class="btn btn-blue"
+        <div><button type="button" style="margin: auto;" [disabled]="!this.currentUser" class="btn btn-blue"
                 data-toggle="modal" [attr.data-target]="'#proposal'"><i class="fas fa-plus"></i> 我有話要說
             </button></div>
 
@@ -63,11 +63,13 @@
                                 <div class="dropdown" *ngIf="item.createdBy === currentUser?.id"><i
                                         class="fas fa-ellipsis-h" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="true"></i>
-                                    <div class="dropdown-menu"> <a class="dropdown-item" data-toggle="modal"
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item color-gray" data-toggle="modal"
                                             [attr.data-target]="'#modifiedproposal'" (click)="onModified(item)"><i
                                                 class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</a> <a
-                                            class="dropdown-item" (click)="onDeleteSubmit(item)"><i
-                                                class="fas fa-trash"></i>&nbsp;&nbsp;刪除</a></div>
+                                            class="dropdown-item color-gray" (click)="onDeleteSubmit(item)"><i
+                                                class="fas fa-trash"></i>&nbsp;&nbsp;刪除</a>
+                                    </div>
 
                                 </div>
                                 <ui-tag *ngSwitchCase="'improvement'" [class]="'tag-improve'" [tag]="'改善'"></ui-tag>

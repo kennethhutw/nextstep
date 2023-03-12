@@ -1,7 +1,6 @@
 <div id="findcontent" class="container row">
-  <div class="col-md-2 col-lg-2">
+  <div class="col-md-2">
     <div class="texe-center cursor-pointer" (click)="onCleanClick()"><span class="btn-clean">清除全部</span></div>
-
 
     <aside class="sidebar ">
       <nav class="sidebar-menu pt-3 pb-3">
@@ -131,8 +130,13 @@
 
   </div>
   <div class="col-md-10  col-lg-10">
-    <div class="row" *ngIf="displayItems.length ===0" style="height:300px">
-      No project
+    <div class="row" *ngIf="foundItemNum !== items.length">
+      <p> {{foundItemNum}} 筆篩選結果</p>
+
+    </div>
+    <div class="col-md-12 empty-text-center h-100" *ngIf="foundItemNum !== items.length">
+      <svg-icon class="icon" src="assets/icons/magnifier.svg"></svg-icon>
+      <span>查無結果</span>
     </div>
     <!--person-->
     <ng-container *ngIf="displayItems">

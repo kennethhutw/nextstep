@@ -23,6 +23,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 export class FindProjectComponent implements OnInit {
   items: any[] = [];
   displayItems = [];
+  foundItemNum: number = -1;
   currentUser;
   filterCondition = {
     isFindPartner: false,
@@ -74,6 +75,7 @@ export class FindProjectComponent implements OnInit {
       if (res['result'] == 'successful') {
         this.items = res['data'];
         this.displayItems = this.items ? this.items : [];
+        this.foundItemNum = this.items.length;
       }
       this.SpinnerService.hide();
     }).catch(error => {
@@ -116,9 +118,6 @@ export class FindProjectComponent implements OnInit {
       })
 
     }
-    /*  if (this.displayItems.length > 0)
-       this.checkType(this.displayItems)
-     this.finalCheck(); */
   }
 
   onProjectChange(event) {
@@ -330,6 +329,8 @@ export class FindProjectComponent implements OnInit {
       !this.filterCondition.work9) {
       this.displayItems = this.items;
     }
+
+    this.foundItemNum = this.displayItems.length;
   }
 
   onClearFilter() {
@@ -477,6 +478,7 @@ export class FindProjectComponent implements OnInit {
       }
     })
     this.displayItems = currentItem;
+
   }
 
   onCleanClick() {
@@ -499,6 +501,7 @@ export class FindProjectComponent implements OnInit {
     this.filterCondition.work78 = false;
     this.filterCondition.work9 = false;
     this.displayItems = this.items;
+    this.foundItemNum = -1;
   }
 
 

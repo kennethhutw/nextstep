@@ -3,7 +3,6 @@ import {
   ViewEncapsulation,
   Component,
   OnInit,
-
 } from '@angular/core';
 import {
   ProposalService,
@@ -13,7 +12,11 @@ import {
 import {
   AuthStore
 } from "src/app/_services/auth.store";
-import { Utility } from 'src/app/_helpers';
+import {
+  Utility,
+  TimeUtility
+} from 'src/app/_helpers';
+import { environment } from "../../../environments/environment";
 @Component({
   selector: 'app-feedback',
   templateUrl: './feedback.component.html',
@@ -47,6 +50,7 @@ export class FeedbackComponent implements OnInit {
     private proposalSrv: ProposalService,
     private CommentsSrv: CommentsService,
     private dialogSrv: DialogService,
+    private timeUtilitySrv: TimeUtility
   ) {
   }
 
@@ -54,7 +58,14 @@ export class FeedbackComponent implements OnInit {
     this.currentUser = this.authStoreSrv.getUserData();
     this.proposalSrv.getall().subscribe(res => {
       if (res["result"] == "successful") {
+
         this.allitems = res["data"];
+        this.allitems.forEach(element => {
+
+          if (!this.utilitySrv.IsNullOrEmpty(element.imageUrl)) {
+            element.imageUrl = environment.assetUrl + element.imageUrl;
+          }
+        });
         this.displayItems = this.allitems;
         // process_status
         this.processed = this.allitems.filter(item => {
@@ -97,7 +108,6 @@ export class FeedbackComponent implements OnInit {
 
     }
 
-
   }
 
   onSortTypeChange(event) {
@@ -117,15 +127,36 @@ export class FeedbackComponent implements OnInit {
     }
   }
   onTypeChange(event) {
-
+    this.proposaltype = event.target.value;
   }
 
   onSubmit() {
+
     if (!this.utilitySrv.IsNullOrEmpty(this.propsoalContent)
       && !this.utilitySrv.IsNullOrEmpty(this.proposaltype)
       && this.currentUser) {
       this.proposalSrv.insert(this.proposaltype, this.propsoalContent, this.proposaltype, this.currentUser.id).subscribe(res => {
         if (res['result'] == "successful") {
+          let _new_item = {
+            available: "1",
+            category: this.proposaltype,
+            comment_count: "0",
+            comments: [],
+            createdAt: this.timeUtilitySrv.getCurrentUnixTimeString(),
+            createdBy: this.currentUser.id,
+            dislike_count: "0",
+            email: this.currentUser.email,
+            id: res["data"],
+            imageUrl: environment.assetUrl + this.currentUser.imageUrl,
+            name: this.currentUser.name,
+            title: this.proposaltype,
+            detail: this.propsoalContent,
+          }
+
+          this.allitems.push(_new_item);
+          this.myproposals.push(_new_item);
+          this.propsoalContent = "";
+          this.proposaltype = "";
           document.getElementById("close_new_proposl").click();
         }
       }, (error) => {
@@ -139,14 +170,17 @@ export class FeedbackComponent implements OnInit {
     const _item = item;
     this.dialogSrv.confirmThis("確認要刪除此筆資料", () => {
       this.proposalSrv.delete(_item.id, this.currentUser.id).then(res => {
-        if (res['result'] == "successful") {
 
+        if (res['result'] == "successful") {
           this.myproposals = this.myproposals.filter(obj => {
             return obj.id !== _item.id
           })
+
           this.allitems = this.allitems.filter(obj => {
             return obj.id !== _item.id
           })
+
+          this.displayItems = this.allitems;
         }
       }, (error) => {
         console.log("error", error);
@@ -177,11 +211,11 @@ export class FeedbackComponent implements OnInit {
           this.proposaltype = "";
           document.getElementById("close_modify_proposl").click();
           this.editedProposal = null;
-          if (this.currentTab === 'myproposal') {
-            this.myproposals = this.allitems.filter(item => {
-              return item.createdBy == this.currentUser.id
-            })
-          }
+
+          this.myproposals = this.allitems.filter(item => {
+            return item.createdBy == this.currentUser.id
+          })
+
         }
       }, (error) => {
         console.log("error", error);
@@ -226,7 +260,24 @@ export class FeedbackComponent implements OnInit {
         this.editedItem.id, this.commentContent).subscribe(res => {
           if (res['result'] == "successful") {
             let objIndex = this.allitems.findIndex((obj => obj.id == this.editedItem.id));
-            this.allitems[objIndex].comments.push(res['data']);
+
+            let _new_comment = {
+              content: this.commentContent,
+              createdAt: this.timeUtilitySrv.getCurrentUnixTimeString(),
+              createdBy: this.currentUser.id,
+              id: res['data'],
+              imageUrl: environment.assetUrl + this.currentUser.imageUrl,
+              userName: this.currentUser.name,
+              userId: this.currentUser.id,
+              userEmail: this.currentUser.email,
+              proposalId: this.editedItem.id,
+              updatedAt: this.timeUtilitySrv.getCurrentUnixTimeString(),
+              updatedBy: this.currentUser.id,
+              rating: "0"
+            }
+
+            this.allitems[objIndex].comments.push(_new_comment);
+            this.allitems[objIndex].comment_count = this.allitems[objIndex].comments.length;
             this.editedItem = "";
             document.getElementById("close_new_comment").click();
 
