@@ -538,6 +538,8 @@ export class MyProjectMemberComponent implements OnInit {
 
   }
 
-
+  onImgError(event) {
+    event.target.src = "assets/images/Avatar.png";
+  }
 
 }

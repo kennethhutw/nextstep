@@ -182,9 +182,9 @@ export class MyProjectRecruitComponent implements OnInit {
 
   onStatusChange(event) {
     let _status = event.target.value
-
+    debugger;
     this.selectedItem.forEach((element, index) => {
-      let status = "0";
+      let status = "1";
       switch (_status) {
         case "drafts":
           status = "0";

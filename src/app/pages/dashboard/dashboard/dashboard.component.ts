@@ -100,9 +100,11 @@ export class DashboardComponent implements OnInit {
       }
     })
     this.projectSrv.getMayInterestedProjects(_id).then(res => {
-
+      console.log("===========", res);
       if (res['result'] == 'successful') {
-        this.items = res['data'];
+        if (res['data'] != null) {
+          this.items = res['data'];
+        }
       }
       this.spinnerSrv.hide();
     }).catch(error => {
@@ -111,7 +113,7 @@ export class DashboardComponent implements OnInit {
     })
 
     this.userSrv.getMayInterestedPublicMentors(_id).then(res => {
-      console.log("===============", res);
+
       if (res['result'] == 'successful') {
 
         this.mentors = res['data'];

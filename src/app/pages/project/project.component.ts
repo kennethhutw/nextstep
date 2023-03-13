@@ -211,7 +211,7 @@ export class ProjectComponent implements OnInit {
       scopes: application.scopes,
       isAdmin: "0",
       isOwner: "0",
-      status: "new",
+      status: "candidate",
       available: "0",
       recruitId: application.id,
       uid: this.currentUser.id,

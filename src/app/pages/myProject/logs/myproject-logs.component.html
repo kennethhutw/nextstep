@@ -1,15 +1,47 @@
 <div class=" mb-80">
     <div class="row">
-        <div class="col-md-12">
-            <span class="title">專案紀錄</span>
+        <div class="col-md-6">
+            <span class="title">專案頁管理紀錄</span>
         </div>
+        <div class="col-md-3">
+            <select class="form-control" [value]="selectedUser" (change)="onUserChange($event)">
+                <option value="">所有人</option>
+                <option *ngFor="let opt of members" [value]="opt.id">{{opt.name}}
+                </option>
+                <!-- </ng-template> -->
+            </select>
+
+        </div>
+        <div class="col-md-3">
+
+            <select class="form-control" [value]="selectedOrder" (change)="onSortChange($event)">
+                <option value="">從新到舊</option>
+                <option value="old">從舊到新</option>
+                <!-- </ng-template> -->
+            </select>
+        </div>
+    </div>
+    <div class="row  pl-15">
+        <div class="bar mt-3 cursor-pointer w-100">
+
+            <div class="d-flex align-items-center">
+                <span class="fw-500">操作</span>
+            </div>
+            <div class="d-flex align-items-center">
+                <span class="fw-500">成員</span>
+            </div>
+            <div class="d-flex align-items-center">
+                <span class="fw-500">時間</span>
+            </div>
+        </div>
+
     </div>
     <div class="row">
         <div class="col-md-12">
-            <ng-container *ngIf="this.currentProject?.logs">
+            <ng-container *ngIf="this.displayItems">
                 <div class="row  pl-15">
-                    <ng-container *ngFor="let log of  this.currentProject?.logs; let i = index">
-                        <app-project-log-bar style="width: 90%;" [project]="log"></app-project-log-bar>
+                    <ng-container *ngFor="let log of  this.displayItems; let i = index">
+                        <app-project-log-bar class="w-100" [project]="log"></app-project-log-bar>
                     </ng-container>
                 </div>
             </ng-container>

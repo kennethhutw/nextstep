@@ -1,16 +1,13 @@
-<div class="card mt-3 cursor-pointer">
+<div class="card">
   <div class="d-flex">
-    <p class="text-md m-0">{{_project.content}}
+    <p class="text-md m-0">{{_project.action}}
     </p>
-
   </div>
-
-
   <div class="d-flex align-items-center">
-    <i style="font-size: 30px;" class="far fa-user-circle fa-2x"></i>
-    <span class="item">{{_project.name}}</span>
-    <span class="item">{{_project.createdAt | date : 'yyyy-MM-dd
-      HH:mm:ss'}}</span>
-
+    <img class="profile-image-small rounded-circle" src="{{ _project.imageUrl }}" (error)="onImgError($event)" alt="" />
+    <span class="item">{{_project.userName}}</span>
+  </div>
+  <div class="d-flex align-items-center">
+    <span class="item">{{_project.createdAt | date : 'yyyy-MM-dd'}}</span>
   </div>
 </div>
