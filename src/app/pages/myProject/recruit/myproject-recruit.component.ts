@@ -353,12 +353,10 @@ export class MyProjectRecruitComponent implements OnInit {
   }
 
   convertTag(term) {
-
     let _index = this.skillOptions.findIndex((obj => obj.value == term.toLowerCase()));
     if (_index > 0) {
       return this.skillOptions[_index].text;
     }
-
   }
 
   onCreateRecruit() {

@@ -19,4 +19,14 @@ export class MembersService {
     async apply(params) {
         return await this.http.post(`${environment.apiUrl}/members/application`, params).toPromise();
     }
+
+    async update(id, params) {
+        return await this.http.put(`${environment.apiUrl}/members/${id}`, params).toPromise();
+    }
+
+    async delete(id, userId) {
+        return await this.http.delete(`${environment.apiUrl}/members/${id}/${userId}`,
+            {
+            }).toPromise();;
+    }
 }

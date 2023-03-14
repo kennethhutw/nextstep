@@ -30,7 +30,7 @@ export class CreateProjectComponent implements OnInit, ComponentCanDeactivate {
 
   constructor(
     private router: Router,
-    private sanitizer: DomSanitizer,
+
     private formBuilder: FormBuilder,
     private dialogSrv: DialogService,
     private projectSrv: ProjectService,

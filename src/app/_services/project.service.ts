@@ -94,6 +94,19 @@ export class ProjectService {
             .toPromise();
     }
 
+    async updateMemberRole(projectId: string, userId: string, role: string, uid: string) {
+
+        return await this.http
+            .put<any>(`${environment.apiUrl}/members/role`, {
+                projectId,
+                userId,
+                status,
+                uid
+            })
+            .toPromise();
+    }
+
+
     updateImage(id, params) {
         return this.http.put(`${environment.apiUrl}/projects/profileImage/${id}`, params);
     }

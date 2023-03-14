@@ -13,7 +13,8 @@ import {
   ToastService,
   ViewsService,
   DialogService,
-  RecruitService
+  RecruitService,
+  NotificationService
 } from "../../_services";
 import {
   AuthStore
@@ -77,7 +78,8 @@ export class ProjectComponent implements OnInit {
     private appSettingsSrv: AppSettingsService,
     private SpinnerService: NgxSpinnerService,
     public toastSrv: ToastService,
-    private dialogSrv: DialogService
+    private dialogSrv: DialogService,
+    private notificationSrv: NotificationService
   ) {
     this.defaultProfileLogo = this.settingSrv.defaultProfileLogo;
     this.skillOptions = this.appSettingsSrv.skillOptions();
@@ -223,6 +225,19 @@ export class ProjectComponent implements OnInit {
         this.toastSrv.showToast('Success', "Submitted successfully", this.toastSrv.iconClasses.success);
         this.application_message = "";
         this.selectedApplication = null;
+
+        this.notificationSrv.infoProjectMembers(this.currentProject.id,
+          this.currentUser.id,
+          `${this.currentUser.name}  想要應徵 ${this.currentProject.name} - ${application.position} ！`,
+          "1",
+          '0',
+          '0',
+          this.currentUser.id
+        ).then(res => {
+          if (res['result'] === 'successful') {
+
+          }
+        })
       } else {
         this.toastSrv.showToast('Failed', "Submitted failed", this.toastSrv.iconClasses.error);
       }

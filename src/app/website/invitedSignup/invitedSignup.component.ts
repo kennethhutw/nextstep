@@ -2,7 +2,9 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
   DataService,
-
+  ProjectService,
+  ActivityService,
+  NotificationService
 } from "../../_services";
 import { AuthStore }
   from "../../_services/auth.store";
@@ -41,8 +43,10 @@ export class InvitedSignupComponent implements OnInit {
   nameExistant = false;
   emailExistant = false;
 
+  project;
   checkData = null;
-  errMessage = ""
+  errMessage = "";
+
 
 
   constructor(
@@ -51,7 +55,10 @@ export class InvitedSignupComponent implements OnInit {
     private fb: FormBuilder,
     private authSrv: AuthStore,
     private utility: Utility,
-    private dataSrv: DataService
+    private dataSrv: DataService,
+    private projectSrv: ProjectService,
+    private activitySrv: ActivityService,
+    private notificationSrv: NotificationService
   ) {
 
 
@@ -71,7 +78,20 @@ export class InvitedSignupComponent implements OnInit {
       password: ["", Validators.required],
     });
 
+    this.projectSrv.getProject(this.projectId, null).then(res => {
+      if (res['result'] == 'successful') {
+        console.log("project ============", res);
+        if (res["result"] == 'successful') {
+          this.project = res["data"];
+
+        }
+      }
+    }).then(() => {
+
+    })
+
     this.authSrv.getCheckData().then(res => {
+      console.log("")
       if (res['result'] == 'successful') {
         this.checkData = res['data'];
       }
@@ -105,8 +125,30 @@ export class InvitedSignupComponent implements OnInit {
       values.name,
       values.email,
       values.password).subscribe(res => {
-        console.log("==============", res);
+        console.log("invitedSignup ===========", res);
+
         if (res['result'] == 'successful') {
+
+          this.activitySrv.insert(res['data']["id"],
+            this.projectId,
+            "join",
+            `${values.name} 加入${this.project.name}專案！`
+          ).subscribe(res => {
+            if (res['result'] === 'successful') { }
+          });
+
+          this.notificationSrv.infoProjectMembers(this.projectId,
+            res['data']["id"],
+            `${values.name} 加入${this.project.name}專案！`,
+            "1",
+            '0',
+            '0',
+            res['data']["id"]
+          ).then(res => {
+            if (res['result'] === 'successful') {
+
+            }
+          })
           this.router.navigate(["./info"], {});
         } else {
 

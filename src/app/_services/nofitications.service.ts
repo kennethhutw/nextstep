@@ -88,5 +88,20 @@ export class NotificationService {
         }).toPromise();
     }
 
-
+    async infoProjectMembers(projectId,
+        sender_id,
+        content,
+        type,
+        isRead,
+        status,
+        uid) {
+        return await this.http.post(`${environment.apiUrl}/notifications/project/${projectId}`, {
+            sender_id,
+            content,
+            type,
+            isRead,
+            status,
+            uid
+        }).toPromise();
+    }
 }

@@ -10,15 +10,19 @@ import {
   ProjectService,
   InvitationService,
   ToastService,
-  RecruitService
+  RecruitService,
+  MembersService,
+  ActivityService,
+  NotificationService
 } from '../../../_services';
 import {
   AuthStore
 } from "../../../_services/auth.store";
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import { Utility } from 'src/app/_helpers';
+import { environment } from "../../../../environments/environment";
 
 @Component({
   selector: 'app-myproject-member',
@@ -28,40 +32,53 @@ import { Utility } from 'src/app/_helpers';
 export class MyProjectMemberComponent implements OnInit {
   projectId = "";
   currentProject;
+  currentUser;
+  currentUserInProject;
+  allMembers: any[] = [];
   invitationForm: FormGroup;
   recruitForm: FormGroup;
+  memberInfoForm: FormGroup;
   isViewMode = false;
   submitted = false;
-  currentUser;
   projectMsg = "";
-  currentTab = "current";
-  invitedTab = "userId";
+
 
   isChat: boolean = false;
+  selectedItem: any[] = [];
+  selectedEditeMember = null;
+  // tabs
+  currentTab: string = "current";
+  invitedTab: string = "userId";
   current = [];
   candidates = [];
   interviews = [];
   rejected = [];
   invitingList = [];
   past = [];
+
+
+  // invitation
   invitedEmail = "";
   invitedUserId = "";
   usersDisplayList;
   usersList;
   reciver = null;
 
+  // 移動成員去
   status: string = "null";
 
-  selectedItem: any[] = [];
+
 
   canMoveMember: boolean = false;
 
   skillOptions: any[] = [];
   @ViewChild('selectCountry') selectCountry: ElementRef;
   @ViewChild('close_recruit_button') close_recruit_button: ElementRef;
+  @ViewChild('closeInfobutton') close_Info_button: ElementRef;
 
   constructor(
     private formBuilder: FormBuilder,
+    private membersSrv: MembersService,
     private route: ActivatedRoute,
     private recruitSrv: RecruitService,
     private toastr: ToastService,
@@ -70,7 +87,9 @@ export class MyProjectMemberComponent implements OnInit {
     private appSettingsSrv: AppSettingsService,
     private invitationSrv: InvitationService,
     private utilitySrv: Utility,
-    private authStoreSrv: AuthStore) {
+    private authStoreSrv: AuthStore,
+    private activitySrv: ActivityService,
+    private notificationSrv: NotificationService) {
     this.skillOptions = this.appSettingsSrv.skillOptions();
     this.invitationForm = this.formBuilder.group({
       name: ["", Validators.required],
@@ -86,6 +105,13 @@ export class MyProjectMemberComponent implements OnInit {
       work78: [false],
       work9: [false],
     });
+
+    this.memberInfoForm = this.formBuilder.group({
+      position: ["", Validators.required],
+      scopes: ["", Validators.required],
+      isAdmin: [false],
+      isOwner: [false]
+    });
   }
 
   ngOnInit() {
@@ -97,38 +123,7 @@ export class MyProjectMemberComponent implements OnInit {
 
       }
     })
-    this.projectSrv.getMembers(
-      this.projectId
-    ).then(res => {
-      if (res['result'] == 'successful') {
-        console.log("getMembers ========", res)
-        let data = res['data'];
-
-        data.forEach((item) => {
-          item['isSelected'] = false;
-        });
-        //  isSelected
-
-        if (data.length > 0) {
-          this.current = data.filter((member) => {
-            return member.status == 'current'
-          });
-          this.candidates = data.filter((member) => {
-            return member.status == 'candidate'
-          });
-          this.interviews = data.filter((member) => {
-            return member.status == 'interview'
-          });
-          this.rejected = data.filter((member) => {
-            return member.status == 'rejected'
-          });
-          this.past = data.filter((member) => {
-            return member.status == 'past'
-          });
-
-        }
-      }
-    })
+    this.refreshMemberList();
 
     this.invitationSrv.getInvitingList(this.projectId).then(res => {
       if (res['result'] == 'successful') {
@@ -143,6 +138,18 @@ export class MyProjectMemberComponent implements OnInit {
       }
     })
 
+  }
+
+  isAllowEdit() {
+    if (this.currentUserInProject) {
+      if (this.currentUserInProject.role == "member") {
+        return false;
+      } else {
+        return true;
+      }
+    } else {
+      return false;
+    }
   }
 
   changeTab(tab) {
@@ -214,11 +221,16 @@ export class MyProjectMemberComponent implements OnInit {
         this.invitationForm.reset();
         this.invitedUserId = "";
         document.getElementById('close_invited').click();
+        this.toastr.showToast('成員', '邀請' + this.invitedUserId + 'Email已寄出', 'success');
       } else {
-        this.projectMsg = res['error'].message;
+        this.projectMsg = res['message'];
+        this.toastr.showToast('成員', '邀請' + this.invitedUserId + 'Email寄失敗! '
+          + this.projectMsg, 'error');
       }
 
     }, (error) => {
+      this.toastr.showToast('成員', '邀請' + this.invitedUserId + 'Email寄失敗! '
+        + this.projectMsg, 'error');
       console.error("saveError", error);
       this.projectMsg = error.message;
     })
@@ -226,7 +238,7 @@ export class MyProjectMemberComponent implements OnInit {
   }
   inviteByEmail() {
     this.submitted = true;
-    const value = this.invitationForm.value;
+    const values = this.invitationForm.value;
     // stop here if form is invalid
     if (this.invitationForm.invalid) {
       return;
@@ -235,15 +247,15 @@ export class MyProjectMemberComponent implements OnInit {
     let domain = window.location.origin;
     let _projectLink = domain + "/project/" + this.projectId;
     let _invitedSignup = domain + "/invitedSignup?projectId=" + this.projectId +
-      "&email=" + value.email + "&name=" + value.name;
+      "&email=" + values.email + "&name=" + values.name;
     let _invitationLink = domain + "/joinproject/";
 
 
     this.invitationSrv.insert({
       projectId: this.projectId,
       userid: "",
-      name: value.name,
-      email: value.email,
+      name: values.name,
+      email: values.email,
       status: "0",
       uid: this.currentUser.id,
       projectName: this.currentProject.name,
@@ -258,11 +270,15 @@ export class MyProjectMemberComponent implements OnInit {
         this.invitationForm.reset();
         this.invitedUserId = "";
         document.getElementById('close_invited').click();
+        this.toastr.showToast('成員', '邀請' + values.name + 'Email已寄出', 'success');
+
       } else {
         this.projectMsg = res['error'].message;
+        this.toastr.showToast('成員', '邀請' + values.name + 'Email寄失敗', 'error');
       }
 
     }, (error) => {
+      this.toastr.showToast('成員', '邀請' + values.name + 'Email寄失敗', 'error');
       console.error("saveError", error);
       this.projectMsg = error.message;
     })
@@ -352,40 +368,91 @@ export class MyProjectMemberComponent implements OnInit {
   onStatusChange(event) {
     let displayStatus = "目前成員";
     let _changeto = event.target.value;
-    switch (event.target.value) {
-      case "inviting":
-        displayStatus = "邀請中";
-        break;
-      case "interview":
-        displayStatus = "面談中";
-        break;
-      case "rejected":
-        displayStatus = "已拒絕";
-        break;
-      case "history":
-        displayStatus = "歷程成員";
-        break;
+    if (event.target.value != "null") {
+      switch (event.target.value) {
+        case "inviting":
+          displayStatus = "邀請中";
+          break;
+        case "interview":
+          displayStatus = "面談中";
+          break;
+        case "rejected":
+          displayStatus = "已拒絕";
+          break;
+        case "history":
+          displayStatus = "歷程成員";
+          break;
+      }
+      this.confirmDialogService.confirmThis('確定要移動至' + displayStatus, () => {
+        // Yes clicked
+
+        this.projectSrv.updateMemberstatus(this.currentProject.id,
+          this.selectedItem.toString(),
+          _changeto,
+          this.currentUser.id).then(res => {
+            if (res["result"] == 'successful') {
+
+              this.toastr.showToast('成員', '移動至' + displayStatus + '成功', 'success');
+
+              if (_changeto == "current") {
+                let _new_join_members = "";
+                this.selectedItem.forEach((userId, index) => {
+                  this.allMembers.forEach((member, index) => {
+                    if (member.userId == userId) {
+                      _new_join_members = member.name + ", ";
+                      this.notificationSrv.insert(userId,
+                        this.currentUser.id,
+                        `恭喜你申請加入${this.currentProject.name}專案被接受！`,
+                        "1",
+                        '0',
+                        '0',
+                        this.currentUser.id
+                      ).then(res => {
+                        if (res['result'] === 'successful') {
+
+                        }
+                      })
+                    }
+
+                  })
+
+                  this.activitySrv.insert(this.currentUser.id,
+                    this.currentProject.id,
+                    "join",
+                    `${_new_join_members} 加入${this.currentProject.name}專案！`
+                  ).subscribe(res => {
+                    if (res['result'] === 'successful') { }
+                  });
+                });
+
+                this.notificationSrv.infoProjectMembers(this.currentProject.id,
+                  this.currentUser.id,
+                  `${_new_join_members} 加入${this.currentProject.name}專案！`,
+                  "1",
+                  '0',
+                  '0',
+                  this.currentUser.id
+                ).then(res => {
+                  if (res['result'] === 'successful') {
+
+                  }
+                })
+              }
+
+              this.refreshMemberList();
+            } else {
+              this.toastr.showToast('成員', '移動至' + displayStatus + '失敗', 'error');
+            }
+          }).catch(error => {
+            console.log("update failed", error);
+            this.toastr.showToast('成員', '移動至' + displayStatus + '失敗', 'error');
+          })
+
+      }, () => {
+        // No clicked
+        this.status = null;
+      });
     }
-    this.confirmDialogService.confirmThis('確定要移動至' + displayStatus, () => {
-      // Yes clicked
-
-      this.projectSrv.updateMemberstatus(this.currentProject.id, this.selectedItem.toString(), _changeto, this.currentUser.id).then(res => {
-        console.log("updateMemberstatus", res);
-        if (res["result"] == 'successful') {
-          this.refreshMemberList();
-          this.toastr.showToast('成員', '移動至' + displayStatus + '成功', 'success');
-        } else {
-          this.toastr.showToast('成員', '移動至' + displayStatus + '失敗', 'error');
-        }
-      }).catch(error => {
-        console.log("update failed", error);
-        this.toastr.showToast('成員', '移動至' + displayStatus + '失敗', 'error');
-      })
-
-    }, () => {
-      // No clicked
-      this.status = null;
-    });
   }
 
   onSelectItem(event, id) {
@@ -416,13 +483,21 @@ export class MyProjectMemberComponent implements OnInit {
       if (res['result'] == 'successful') {
         let data = res['data'];
 
-        data.forEach((item) => {
-          item['isSelected'] = false;
-        });
-
-        //  isSelected
-
         if (data.length > 0) {
+          data.forEach((item) => {
+            item['isSelected'] = false;
+            if (!this.utilitySrv.IsNullOrEmpty(item.imageUrl)) {
+              item.imageUrl = environment.assetUrl + item.imageUrl;
+            }
+          });
+
+          this.allMembers = data;
+          let _index = data.findIndex((member) => {
+            return member.userId == this.currentUser.id
+          });
+          this.currentUserInProject = data[_index];
+
+
           this.current = data.filter((member) => {
             return member.status == 'current'
           });
@@ -535,11 +610,114 @@ export class MyProjectMemberComponent implements OnInit {
   }
 
   onRoleChange(event, member) {
+    this.projectSrv.updateMemberstatus(this.currentProject.id,
+      member.userId,
+      event.target.value,
+      this.currentUser.id).then(res => {
+        if (res["result"] == 'successful') {
+          this.refreshMemberList();
+          this.toastr.showToast('成員', '切換角色為' + event.target.value + '成功', 'success');
 
+        } else {
+          this.toastr.showToast('成員', '切換角色為' + event.target.value + '失敗', 'error');
+        }
+      }).catch(error => {
+        console.log("update failed", error);
+        this.toastr.showToast('成員', '移動至' + event.target.value + '失敗', 'error');
+      })
   }
 
   onImgError(event) {
     event.target.src = "assets/images/Avatar.png";
+  }
+
+  onEditMemberInfo(event, member) {
+
+    this.selectedEditeMember = member;
+    this.memberInfoForm.setValue({
+      position: member.position,
+      scopes: member.scopes,
+      isAdmin: member.isAdmin,
+      isOwner: member.isOwner
+
+    });
+
+  }
+  onCancelInfo() {
+    this.selectedEditeMember = null;
+  }
+
+  onMemberInfoSubmit() {
+    const values = this.memberInfoForm.value;
+    // stop here if form is invalid
+    if (this.memberInfoForm.invalid) {
+      return;
+    }
+
+    let _params = {
+      position: values.position,
+      uid: this.currentUser.id,
+      scopes: values.scopes,
+    }
+
+    this.membersSrv.update(this.selectedEditeMember.id, _params).then(res => {
+      if (res["result"] == 'successful') {
+        this.memberInfoForm.reset();
+        this.selectedEditeMember = null;
+        this.close_Info_button.nativeElement.click();
+        this.refreshMemberList();
+        this.toastr.showToast('成員', '更新成功', 'success');
+      } else {
+        this.toastr.showToast('成員', '更新失敗', 'error');
+      }
+    }).catch(error => {
+      console.log("update failed", error);
+      this.toastr.showToast('成員', '更新失敗', 'error');
+    })
+  }
+
+  onDeleteMemberSubmit(event, member) {
+    this.selectedEditeMember = member;
+    this.confirmDialogService.confirmThis("確認要刪除此成員", () => {
+      this.membersSrv.delete(member.id, this.currentUser.id).then(res => {
+
+        if (res['result'] == "successful") {
+          this.selectedEditeMember = null;
+          this.refreshMemberList();
+          this.toastr.showToast('成員', `${member.name} 已經被刪除`, 'success');
+
+
+          this.activitySrv.insert(this.currentUser.id,
+            this.currentProject.id,
+            "leave",
+            `${member.name} 離開 ${this.currentProject.name}專案！`
+          ).subscribe(res => {
+            if (res['result'] === 'successful') { }
+          });
+
+          this.notificationSrv.infoProjectMembers(this.currentProject.id,
+            this.currentUser.id,
+            `${member.name}  離開  ${this.currentProject.name}專案！`,
+            "1",
+            '0',
+            '0',
+            this.currentUser.id
+          ).then(res => {
+            if (res['result'] === 'successful') {
+
+            }
+          })
+
+        } else {
+          this.toastr.showToast('成員', `${member.name} 刪除失敗`, 'error');
+        }
+      }, (error) => {
+        this.toastr.showToast('成員', `${member.name} 刪除失敗`, 'error');
+        console.log("error", error);
+      })
+    }, () => {
+
+    })
   }
 
 }

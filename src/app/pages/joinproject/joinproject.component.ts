@@ -1,6 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
-import { DataService, InvitationService } from "./../../_services";
+import {
+  DataService,
+  InvitationService,
+  ActivityService,
+  NotificationService
+} from "./../../_services";
 import {
   AuthStore
 } from "../../_services/auth.store";
@@ -21,6 +26,7 @@ export class JoinProjectComponent implements OnInit {
   invitiationId: string = "";
   currentUser;
 
+
   invitation = null;
   constructor(
     private translateSrv: TranslateService,
@@ -30,7 +36,9 @@ export class JoinProjectComponent implements OnInit {
     private invitationSrv: InvitationService,
     private router: Router,
     private dataSrv: DataService,
-    private spinnerSrv: NgxSpinnerService
+    private spinnerSrv: NgxSpinnerService,
+    private activitySrv: ActivityService,
+    private notificationSrv: NotificationService
   ) {
     let _lang = localStorage.getItem("lang");
     if (!this.utility.IsNullOrEmpty(_lang)) {
@@ -53,20 +61,22 @@ export class JoinProjectComponent implements OnInit {
       this.router.navigate(['/signin']);
     }
 
-    this.invitationSrv.getInvitation(this.invitiationId, this.currentUser.id).then(res => {
-      if (res["result"] == 'successful') {
-        this.invitation = res["data"];
-        this.projectId = this.invitation.projectId;
-      }
-    }).then(() => {
-      this.spinnerSrv.hide();
-    })
+    this.invitationSrv.getInvitation(this.invitiationId,
+      this.currentUser.id).then(res => {
+
+        if (res["result"] == 'successful') {
+          this.invitation = res["data"];
+          this.projectId = this.invitation.projectId;
+        }
+      }).then(() => {
+        this.spinnerSrv.hide();
+      })
 
   }
 
   onReject() {
     this.invitationSrv.updateInvitation(this.invitation.id, {
-      status: "2"
+      status: "rejected"
     }).subscribe(res => {
       if (res['result'] == 'successful') {
 
@@ -75,15 +85,35 @@ export class JoinProjectComponent implements OnInit {
   }
 
   onAccept() {
-    console.log("accept =======")
     this.invitationSrv.updateInvitation(this.invitation.id, {
-      status: "1",
+      status: "current",
       userId: this.currentUser.id,
       projectId: this.invitation.projectId,
       username: this.currentUser.name
     }).subscribe(res => {
-      console.log("accept ===========", res)
+
       if (res['result'] == 'successful') {
+        this.activitySrv.insert(this.currentUser.id,
+          this.projectId,
+          "join",
+          `${this.currentUser.name} 加入${this.invitation.name}專案！`
+        ).subscribe(res => {
+          if (res['result'] === 'successful') { }
+        });
+
+        this.notificationSrv.infoProjectMembers(this.projectId,
+          this.currentUser.id,
+          `${this.currentUser.name} 加入${this.invitation.name}專案！`,
+          "1",
+          '0',
+          '0',
+          this.currentUser.id
+        ).then(res => {
+          if (res['result'] === 'successful') {
+
+          }
+        })
+
         this.router.navigate(['/dashboard/myproject']);
       }
     })
