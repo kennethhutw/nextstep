@@ -89,7 +89,7 @@ export class HomeComponent implements OnInit {
 
   default_main_bg = "./assets/images/home1.jpg";
 
-  main_bg = "./assets/images/home1.jpg";
+  main_bg = "./assets/images/home.svg";
 
 
   popularDisplayEditions: any = [[]];

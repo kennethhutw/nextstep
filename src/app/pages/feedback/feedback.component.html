@@ -32,7 +32,7 @@
             <a class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'processed' }" role="tab"
                 (click)="changeTab('processed')">已處理</a>
         </li>
-        <li *ngIf="currentUser" class="nav-item" role="presentation">
+        <li class="nav-item" role="presentation">
             <a class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'myproposal' }" role="tab"
                 (click)="changeTab('myproposal')">我發布的意見</a>
         </li>
@@ -43,8 +43,8 @@
         <div class="tab-pane  active" id="all" role="tabpanel" aria-labelledby="all-tab">
             <div class="empty text-center" *ngIf="displayItems.length ===0">
                 <div class="col-md-12 empty-text-center qa-container">
-                    <img src="assets/images/empty_logo.png" alt="no-comment">
-                    <span>沒有任何提案</span>
+                    <img src="assets/icons/noFeedback.svg" alt="no-comment">
+                    <span>尚無意見回饋</span>
                 </div>
             </div>
             <ng-container *ngIf="displayItems.length >0">

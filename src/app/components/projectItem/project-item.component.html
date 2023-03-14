@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="box-text">
-    <span>{{ description }}</span>
+    <span>{{project.description.length>100 ? project.description.substring(0,120)+"...":project.description}}</span>
   </div>
   <div class="box-btn align-item-left">
     <a (click)="routeToUserProfile()">查看詳情</a>
