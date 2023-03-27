@@ -34,10 +34,14 @@
 
         <button type="button" class="btn btn_item " (click)="onToggleChat($event)"><i class="far fa-comment-alt"></i>
           訊息</button>
-        <button type="button" class="btn btn_item " (click)="onClickFollow()"><i class="fas fa-plus"></i>
-          追蹤</button>
-        <button type="button" class="btn btn_item " (click)="onSave()"><i class="far fa-bookmark fa-lg"></i>
-          收藏</button>
+        <button type="button" class="btn btn_item" [ngClass]="{'btn_item_selected': userProfile?.isFollowing === true}"
+          *ngIf="userProfile?.owner !== currentUser?.id" (click)="onClickFollow()"><i class="fas fa-plus"></i>
+          {{userProfile?.isFollowing === true ? "已追蹤" : "追蹤"}} </button>
+
+        <button type="button" class="btn btn_item" [ngClass]="{'btn_item_selected': userProfile?.isCollected === true}"
+          *ngIf="userProfile?.owner !== currentUser?.id" (click)="onClickCollect()"><i
+            class="far fa-bookmark fa-lg"></i>
+          {{userProfile?.isCollected === true ? "已收藏" : "收藏"}} </button>
       </div>
     </div>
   </div>

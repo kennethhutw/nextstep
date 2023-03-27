@@ -19,9 +19,9 @@ import {
 import { Utility } from "../../_helpers";
 import { environment } from '../../../environments/environment';
 import { NgxSpinnerService } from "ngx-spinner";
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { E } from "@angular/core/src/render3";
+import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: "app-pub-profile",
@@ -58,14 +58,14 @@ export class PubProfileComponent implements OnInit {
 
   // chat
   isChat: boolean = false;
-  reciver;
+
 
   // tab
   currentTab: string = "current";
 
   constructor(
     private viewsSrv: ViewsService,
-    public toastr: ToastService,
+    public toastSrv: ToastService,
     private notificationSrv: NotificationService,
     private userSrv: UserService,
     private route: ActivatedRoute,
@@ -127,8 +127,12 @@ export class PubProfileComponent implements OnInit {
       }
     }
     let userId = this.route.snapshot.paramMap.get('userId');
-
-    this.userSrv.getUserInfo(userId).then(res => {
+    //init view
+    let _id = null;
+    if (this.currentUser && this.currentUser.id) {
+      _id = this.currentUser.id;
+    }
+    this.userSrv.getUserInfo(userId, _id).then(res => {
       console.log("userProfile=============", res);
       if (res['result'] == 'successful') {
         this.userProfile = res['data'];
@@ -164,14 +168,8 @@ export class PubProfileComponent implements OnInit {
           this.isOwner = (this.currentUser.id === this.userProfile.id);
         }
 
-        console.log("===============================", this.userProfile);
-
         //init view
-        let _id = 'not login';
-        if (this.currentUser && this.currentUser.id) {
-          // when user login
-          _id = this.currentUser.id;
-        }
+
         this.viewsSrv.insert(
           this.userProfile.id,
           "user",
@@ -190,111 +188,109 @@ export class PubProfileComponent implements OnInit {
 
 
   onClickFollow(event) {
+    if (this.userProfile.isFollowing) {
+      this.viewsSrv.unFollow(
+        this.userProfile.id,
+        "user",
+        this.currentUser.id
+      ).then(res => {
 
-    this.viewsSrv.follow(
-      this.userProfile.id,
-      "user",
-      this.currentUser.id
-    ).then(res => {
-      if (res['result'] == 'successful') {
-        let _index = this.items.findIndex((obj => obj.id == event.userId));
-        this.items[_index].isFollow = true;
-        this.notificationSrv.insert(
-          this.items[_index].id,
-          this.currentUser.id,
-          this.currentUser.name + "開始追蹤你",
-          "user",
-          0,
-          0,
-          this.currentUser.id
-        ).then(res => { });
-        this.toastr.showToast('Success', "追蹤成功 ", this.toastr.iconClasses.success);
-      } else {
-        this.toastr.showToast('Failed', "追蹤失敗", this.toastr.iconClasses.error);
-      }
-    });
-  }
+        if (res['result'] == 'successful') {
+          this.userProfile.followCount -= 1;
+          this.userProfile.isFollowing = false;
+          this.notificationSrv.insert(
+            this.userProfile.id,
+            this.currentUser.id,
+            this.currentUser.name + "停止追蹤你",
+            "user",
+            0,
+            0,
+            this.currentUser.id
+          ).then(res => { });
+          this.toastSrv.showToast('Success', "取消追蹤成功 ", this.toastSrv.iconClasses.success);
+        } else {
+          this.toastSrv.showToast('Failed', "取消追蹤失敗", this.toastSrv.iconClasses.error);
+        }
 
-  onClickUnFollow(event) {
-
-    this.viewsSrv.unFollow(
-      event.userId,
-      "user",
-      this.currentUser.id
-    ).then(res => {
-      if (res['result'] == 'successful') {
-        let _index = this.items.findIndex((obj => obj.id == event.userId));
-        this.items[_index].isFollow = false;
-        this.notificationSrv.insert(
-          this.items[_index].id,
-          this.currentUser.id,
-          this.currentUser.name + "停止追蹤你",
-          "user",
-          0,
-          0,
-          this.currentUser.id
-        ).then(res => { });
-        this.toastr.showToast('Success', "停止追蹤成功 ", this.toastr.iconClasses.success);
-      } else {
-        this.toastr.showToast('Failed', "停止追蹤失敗", this.toastr.iconClasses.error);
-      }
-    });
+      });
+    } else {
+      this.viewsSrv.follow(
+        this.userProfile.id,
+        "user",
+        this.currentUser.id
+      ).then(res => {
+        if (res['result'] == 'successful') {
+          this.userProfile.followCount += 1;
+          this.userProfile.isFollowing = true;
+          this.notificationSrv.insert(
+            this.userProfile.id,
+            this.currentUser.id,
+            this.currentUser.name + "開始追蹤你",
+            "user",
+            0,
+            0,
+            this.currentUser.id
+          ).then(res => { });
+          this.toastSrv.showToast('Success', "追蹤成功 ", this.toastSrv.iconClasses.success);
+        } else {
+          this.toastSrv.showToast('Failed', "追蹤失敗", this.toastSrv.iconClasses.error);
+        }
+      });
+    }
   }
 
   onClickCollect(event) {
-
-    this.viewsSrv.collect(
-      event.userId,
-      "user",
-      this.currentUser.id
-    ).then(res => {
-      if (res['result'] == 'successful') {
-        let _index = this.items.findIndex((obj => obj.id == event.userId));
-        this.items[_index].isCollect = true;
-        this.notificationSrv.insert(
-          this.items[_index].id,
-          this.currentUser.id,
-          this.currentUser.name + "收藏了你的檔案",
-          "user",
-          0,
-          0,
-          this.currentUser.id
-        ).then(res => { });
-        this.toastr.showToast('Success', "收藏成功 ", this.toastr.iconClasses.success);
-      } else {
-        this.toastr.showToast('Failed', "收藏失敗", this.toastr.iconClasses.error);
-      }
-    });
-
-  }
-
-  onClickUnCollect(event) {
-
-    this.viewsSrv.unCollect(
-      event.userId,
-      "user",
-      this.currentUser.id
-    ).then(res => {
-      if (res['result'] == 'successful') {
-        let _index = this.items.findIndex((obj => obj.id == event.userId));
-        this.items[_index].isCollect = false;
-        this.notificationSrv.insert(
-          this.items[_index].id,
-          this.currentUser.id,
-          this.currentUser.name + "取消收藏你的檔案",
-          "user",
-          0,
-          0,
-          this.currentUser.id
-        ).then(res => { });
-        this.toastr.showToast('Success', "取消收藏成功 ", this.toastr.iconClasses.success);
-      } else {
-        this.toastr.showToast('Failed', "取消收藏失敗", this.toastr.iconClasses.error);
-      }
-    }).catch(error => {
-      console.log("取消收藏", error)
-      this.toastr.showToast('Failed', "取消收藏失敗", this.toastr.iconClasses.error);
-    });
+    if (this.userProfile.isCollected) {
+      this.viewsSrv.unCollect(
+        this.userProfile.id,
+        "user",
+        this.currentUser.id
+      ).then(res => {
+        if (res['result'] == 'successful') {
+          this.userProfile.collectCount -= 1;
+          this.userProfile.isCollected = false;
+          this.notificationSrv.insert(
+            this.userProfile.id,
+            this.currentUser.id,
+            this.currentUser.name + "取消收藏你的檔案",
+            "user",
+            0,
+            0,
+            this.currentUser.id
+          ).then(res => { });
+          this.toastSrv.showToast('Success', "取消收藏成功 ", this.toastSrv.iconClasses.success);
+        } else {
+          this.toastSrv.showToast('Failed', "取消收藏失敗", this.toastSrv.iconClasses.error);
+        }
+      }).catch(error => {
+        console.log("取消收藏", error)
+        this.toastSrv.showToast('Failed', "取消收藏失敗", this.toastSrv.iconClasses.error);
+      });
+    }
+    else {
+      this.viewsSrv.collect(
+        this.userProfile.id,
+        "user",
+        this.currentUser.id
+      ).then(res => {
+        if (res['result'] == 'successful') {
+          this.userProfile.collectCount += 1;
+          this.userProfile.isCollected = true;
+          this.notificationSrv.insert(
+            this.userProfile.id,
+            this.currentUser.id,
+            this.currentUser.name + "收藏了你的檔案",
+            "user",
+            0,
+            0,
+            this.currentUser.id
+          ).then(res => { });
+          this.toastSrv.showToast('Success', "收藏成功 ", this.toastSrv.iconClasses.success);
+        } else {
+          this.toastSrv.showToast('Failed', "收藏失敗", this.toastSrv.iconClasses.error);
+        }
+      });
+    }
 
   }
 
@@ -538,11 +534,6 @@ export class PubProfileComponent implements OnInit {
     this.isChat = !this.isChat;
   }
 
-  onClickChat(event) {
-
-    this.isChat = !this.isChat;
-    this.reciver = event;
-  }
 
   changeTab(tab) {
     this.currentTab = tab;

@@ -129,8 +129,6 @@ app-pub-profile {
         font-size: 16px;
     }
 
-
-
     .content {
         min-height: 100px;
     }
@@ -157,6 +155,11 @@ app-pub-profile {
         width: 84px;
         height: 36px;
         white-space: nowrap;
+    }
+
+    .btn_item_selected {
+        background-color: #FF859A;
+        border: 2px solid #FF859A;
     }
 
     .frame {

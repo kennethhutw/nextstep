@@ -37,15 +37,21 @@ export class UserService {
       .toPromise();
   }
 
-  async getUserInfo(uid: string) {
+  async getUserInfo(uid: string, currentUserId: string) {
+    const params = new HttpParams().set('viewUserId', currentUserId);
     return await this.http
-      .get<any>(`${environment.apiUrl}/users/info/${uid}`)
+      .get<any>(`${environment.apiUrl}/users/info/${uid}`, {
+        params
+      })
       .toPromise();
   }
 
-  async getMentorInfo(uid: string) {
+  async getMentorInfo(uid: string, currentUserId: string) {
+    const params = new HttpParams().set('viewUserId', currentUserId);
     return await this.http
-      .get<any>(`${environment.apiUrl}/users/mentor/info/${uid}`)
+      .get<any>(`${environment.apiUrl}/users/mentor/info/${uid}`, {
+        params
+      })
       .toPromise();
   }
 

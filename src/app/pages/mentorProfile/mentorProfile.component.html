@@ -34,10 +34,16 @@
 
         <button type="button" class="btn btn_item " (click)="onToggleChat($event)"><i class="far fa-comment-alt"></i>
           訊息</button>
-        <button type="button" class="btn btn_item " (click)="onClickFollow()"><i class="fas fa-plus"></i>
-          追蹤</button>
-        <button type="button" class="btn btn_item " (click)="onSave()"><i class="far fa-bookmark fa-lg"></i>
-          收藏</button>
+
+        <button type="button" class="btn btn_item" [ngClass]="{'btn_item_selected': userProfile?.isFollowing === true}"
+          *ngIf="userProfile?.owner !== currentUser?.id" (click)="onClickFollow()"><i class="fas fa-plus"></i>
+          {{userProfile?.isFollowing === true ? "已追蹤" : "追蹤"}} </button>
+
+        <button type="button" class="btn btn_item" [ngClass]="{'btn_item_selected': userProfile?.isCollected === true}"
+          *ngIf="userProfile?.owner !== currentUser?.id" (click)="onClickCollect()"><i
+            class="far fa-bookmark fa-lg"></i>
+          {{userProfile?.isCollected === true ? "已收藏" : "收藏"}} </button>
+
       </div>
     </div>
   </div>
@@ -47,7 +53,8 @@
     </div>
     <div class="col-md-6 text-right">
       <span>累積{{ userProfile.viewCount?userProfile.viewCount:"0"}}次瀏覽&nbsp;&nbsp;</span>
-      {{userProfile?.liked ? userProfile.liked:'0'}}人關注/關注{{userProfile?.like? userProfile.like:'0'}}人
+      {{userProfile?.collectCount ? userProfile.collectCount:'0'}}人關注/關注{{userProfile?.followCount?
+      userProfile.followCount:'0'}}人
     </div>
   </div>
 
@@ -528,7 +535,7 @@
 
           <div class="form-group">
             <label for="inputPosition">評語</label>
-            <textarea class="form-control" type="text" id="content" formControlName="comment" rows="4"
+            <textarea class="form-control" type="text" id="comment" formControlName="comment" rows="4"
               cols="50"></textarea>
           </div>
 

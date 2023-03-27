@@ -159,6 +159,11 @@ app-mentor-profile {
         white-space: nowrap;
     }
 
+    .btn_item_selected {
+        background-color: #FF859A;
+        border: 2px solid #FF859A;
+    }
+
     .frame {
         border: 2px solid #fff;
         min-height: 100px;
