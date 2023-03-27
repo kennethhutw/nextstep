@@ -99,11 +99,11 @@ export class ProfileComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
 
       if (params['userId']) {
-        this.UserSrv.getUserInfo(params['userId']).then(res => {
-          if (res['result'] == 'successful') {
+        // this.UserSrv.getUserInfo(params['userId']).then(res => {
+        //   if (res['result'] == 'successful') {
 
-          }
-        })
+        //   }
+        // })
       }
     });
     this.SpinnerService.hide();
