@@ -104,4 +104,11 @@ export class NotificationService {
             uid
         }).toPromise();
     }
+
+
+
+    allread(uid: string) {
+        return this.http.put(`${environment.apiUrl}/notifications/allread/${uid}`, {
+        });
+    }
 }

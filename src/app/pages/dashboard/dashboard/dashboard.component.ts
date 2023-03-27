@@ -11,6 +11,7 @@ import {
 import { Utility } from "../../../_helpers";
 import { NgxSpinnerService } from "ngx-spinner";
 import { Router } from '@angular/router';
+import { environment } from '../../../../environments/environment';
 @Component({
   selector: "app-dashboard",
   templateUrl: "./dashboard.component.html",
@@ -66,7 +67,6 @@ export class DashboardComponent implements OnInit {
     //     let _setting = res['data'];
     //     if (_setting.email) {
     //       this.idverify.email = true;
-    //     }
     //     if (_setting.info) {
     //       this.idverify.info = true;
     //     }
@@ -113,7 +113,7 @@ export class DashboardComponent implements OnInit {
     })
 
     this.userSrv.getMayInterestedPublicMentors(_id).then(res => {
-
+      console.log("===========", res);
       if (res['result'] == 'successful') {
 
         this.mentors = res['data'];
@@ -124,6 +124,9 @@ export class DashboardComponent implements OnInit {
             }
             if (!this.utility.IsNullOrEmpty(element.skills)) {
               element.skills = element.skills.split(',');
+            }
+            if (!this.utility.IsNullOrEmpty(element.imageUrl)) {
+              element.imageUrl = environment.assetUrl + element.imageUrl;
             }
           });
         }
