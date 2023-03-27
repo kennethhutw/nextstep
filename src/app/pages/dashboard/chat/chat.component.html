@@ -51,7 +51,8 @@
           </ng-container>
           <ng-template #receiver_msg>
             <div class="incoming_msg">
-              <div class="incoming_msg_img"> <img src="assets/icons/defaultUserIcon.png" alt="sunil">
+              <div class="incoming_msg_img"><img src="{{settingSrv.defaultAssetUrl+item.senderImageUrl}}"
+                  (error)="onImgError($event)" alt="sunil">
               </div>
               <div class="received_msg">
                 <div class="received_withd_msg">

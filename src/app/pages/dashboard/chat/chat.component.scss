@@ -158,7 +158,9 @@
 }
 
 .incoming_msg_img img {
-	width: 100%;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
 }
 
 .outgoing_msg_img {
@@ -169,7 +171,9 @@
 }
 
 .outgoing_msg_img img {
-	width: 100%;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
 }
 
 .received_msg {
@@ -219,7 +223,7 @@
 		}
 
 		.msg_header_name {
-			padding-top: 10px;
+			padding-top: 5px;
 		}
 
 		.msg_header_name span {
