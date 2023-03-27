@@ -164,7 +164,7 @@ export class PubProfileComponent implements OnInit {
           this.isOwner = (this.currentUser.id === this.userProfile.id);
         }
 
-
+        console.log("===============================", this.userProfile);
 
         //init view
         let _id = 'not login';

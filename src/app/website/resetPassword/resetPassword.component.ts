@@ -72,7 +72,7 @@ export class ResetPasswordComponent implements OnInit {
     });
 
     this.route.queryParams.subscribe(params => {
-      console.log("==================", params)
+
       this.uid = params['uid'];
       this.time = params['time'];
       this.timeDiff = this.current.getTime() - this.time;
@@ -167,7 +167,7 @@ export class ResetPasswordComponent implements OnInit {
 
       this.userSrv.setPassword(_password,
         this.uid).subscribe(res => {
-          console.log(" setPassword===========", res)
+
           if (res["result"] === "successful") {
             this.router.navigate(['/signin']);
             this.submittedPSW = false;

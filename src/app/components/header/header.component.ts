@@ -99,6 +99,7 @@ export class HeaderComponent implements OnInit {
         if (res['result'] == 'successful') {
           this.notis = res['data'];
           this.notiNum = res['unRead'];
+          this.msgNum = res['msgUnReadNum'];
         }
       }).catch(error => {
         console.log("getNotifications ", error);

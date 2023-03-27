@@ -152,7 +152,7 @@ export class MyProjectRecruitComponent implements OnInit {
 
   refreshRecruitList() {
     this.recruitSrv.getByProjectId(this.projectId).then(res => {
-      console.log("recruitSrv =======", res)
+
       if (res['result'] === 'successful') {
         let data = res['data'];
         data.forEach((item) => {

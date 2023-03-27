@@ -80,7 +80,7 @@ export class InvitedSignupComponent implements OnInit {
 
     this.projectSrv.getProject(this.projectId, null).then(res => {
       if (res['result'] == 'successful') {
-        console.log("project ============", res);
+
         if (res["result"] == 'successful') {
           this.project = res["data"];
 

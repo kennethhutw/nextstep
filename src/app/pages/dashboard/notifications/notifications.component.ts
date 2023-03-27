@@ -48,7 +48,7 @@ export class NotificationsComponent implements OnInit {
     })
 
     this.notificationSrv.allread(this.currentUser.id).subscribe(res => {
-      console.log("allread ===============", res);
+
       if (res['result'] == 'successful') {
 
       } else {

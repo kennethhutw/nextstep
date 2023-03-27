@@ -112,6 +112,7 @@ export class SettingsComponent implements OnInit {
     switch (event.id) {
       case "displayOnline":
         this.currentSetting.displayOnline = event.value;
+
         break;
       case "isPublic":
         this.currentSetting.isPublic = event.value;
@@ -126,6 +127,7 @@ export class SettingsComponent implements OnInit {
         this.currentSetting.notiSystem = event.value;
         break;
     }
+    this.onSavePrivacy();
   }
 
   get f() {
