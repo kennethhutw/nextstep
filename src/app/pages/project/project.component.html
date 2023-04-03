@@ -32,7 +32,8 @@
 
   <div class="col-md-4 text-right  btn_items" *ngIf="currentUser">
     <button type="button" class="btn btn_item" [ngClass]="{'btn_item_selected': currentProject?.isCollected === true}"
-      *ngIf="currentProject?.owner !== currentUser?.id" (click)="onClickCollect()"><i class="far fa-bookmark fa-lg"></i>
+      *ngIf="currentProject?.owner !== currentUser?.id" (click)="onClickCollect()"><i
+        class="far fa-bookmark fa-lg "></i>
       {{currentProject?.isCollected === true ? "已收藏" : "收藏"}} </button>
 
     <button type="button" class="btn btn_item" [ngClass]="{'btn_item_selected': currentProject?.isFollowing === true}"
@@ -180,11 +181,11 @@
             </div>
             <div *ngIf="currentUser" class="col-md-4 btn_items pr-0">
               <i *ngIf="item.isCollected" (click)="onClickJobCollect(item.id, item.isCollected)"
-                class="fas fa-bookmark collected"></i>
+                class="fas fa-bookmark collected icon-frame"></i>
               <i *ngIf="!item.isCollected" (click)="onClickJobCollect(item.id, item.isCollected)"
-                class="far fa-bookmark color-gray"></i>
-              <i class="far fa-envelope color-gray" data-toggle="modal" data-target="#modal_apply" data-dismiss="modal"
-                (click)="onSelectItem(item)" tooltip="申請"></i>
+                class="far fa-bookmark color-gray icon-frame"></i>
+              <i class="far fa-envelope color-gray icon-frame" data-toggle="modal" data-target="#modal_apply"
+                data-dismiss="modal" (click)="onSelectItem(item)" tooltip="申請"></i>
               <div class="dropdown mt--10" *ngIf="currentProject?.owner == currentUser?.id"><i
                   class="fas fa-ellipsis-h color-gray text-18" data-toggle="dropdown" aria-haspopup="true"
                   aria-expanded="true"></i>
@@ -235,28 +236,30 @@
 
   </div>
   <div body *ngIf="this.selectedApplication">
-    <button type="button" class="close" #closebutton data-dismiss="modal" aria-label="Close">
-      <span></span>
-    </button>
-    <div class="text-center mb-4">
-      <h4>我要申請加入 {{this.selectedApplication.position}}</h4>
+    <div>
+      <button type="button" class="close" #closebutton data-dismiss="modal" aria-label="Close">
+        <span>X</span>
+      </button>
+      <div class="text-center mb-4">
+        <span class="modal_title">我要申請加入 {{this.selectedApplication.position}}</span>
+      </div>
     </div>
     <div>
       <div class="form-group">
-        <label for="application_message">我要有話要說</label>
-        <textarea class="form-control rounded-0" [(ngModel)]="application_message" id="application_message"
-          rows="3"></textarea>
+
+        <textarea class="form-control rounded-0" placeholder="自我介紹" [(ngModel)]="application_message"
+          id="application_message" rows="3"></textarea>
       </div>
     </div>
-    <div class="text-center mb-4">
-      <button (click)="onSubmit(this.selectedApplication)" class="model_btn_normal mb-2 w-100">
-        申請
+    <div class="text-right ">
+      <button (click)="onSubmit(this.selectedApplication)" class="model_btn_normal mb-2 ">
+        送出申請
       </button>
     </div>
   </div>
 </app-modal>
 <div class="modal fade" id="modifiedproject" tabindex="-1" aria-labelledby="modifiedproject" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <p class="title">編輯專案簡介</p>
@@ -325,65 +328,76 @@
                 <h5> 產業類型* :</h5>
               </label>
               <div class="form-check check-group">
-                <div> <input type="checkbox" (change)="onIndustryTypeChange($event, 'eComm')"
+                <div class="form-check form-check-inline"> <input type="checkbox"
+                    (change)="onIndustryTypeChange($event, 'eComm')"
                     [checked]="utilitySrv.isInValue('eComm', f.type.value)" value="eComm"><span>電子商務</span>
                 </div>
-                <div><input type="checkbox" (change)="onIndustryTypeChange($event, 'ai')"
-                    [checked]="utilitySrv.isInValue('ai', f.type.value)" value="ai"><span>人工智慧</span></div>
-                <div><input type="checkbox" (change)="onIndustryTypeChange($event, 'edutech')"
+                <div class="form-check form-check-inline"><input type="checkbox"
+                    (change)="onIndustryTypeChange($event, 'ai')" [checked]="utilitySrv.isInValue('ai', f.type.value)"
+                    value="ai"><span>人工智慧</span></div>
+                <div class="form-check form-check-inline"><input type="checkbox"
+                    (change)="onIndustryTypeChange($event, 'edutech')"
                     [checked]="utilitySrv.isInValue('edutech', f.type.value)" value="edutech"><span>教育科技</span></div>
-                <div><input type="checkbox" (change)="onIndustryTypeChange($event, 'sharingeconomy')"
+                <div class="form-check form-check-inline"><input type="checkbox"
+                    (change)="onIndustryTypeChange($event, 'sharingeconomy')"
                     [checked]="utilitySrv.isInValue('sharingeconomy', f.type.value)"
                     value="sharingeconomy"><span>共享經濟</span></div>
-                <div><input type="checkbox" (change)="onIndustryTypeChange($event, 'medical')"
+                <div class="form-check form-check-inline"><input type="checkbox"
+                    (change)="onIndustryTypeChange($event, 'medical')"
                     [checked]="utilitySrv.isInValue('medical', f.type.value)" value="medical"><span>醫學科技</span></div>
-
-              </div>
-              <div class="form-check check-group">
-
-                <div><input type="checkbox" (change)="onIndustryTypeChange($event, 'transport')"
+                <div class="form-check form-check-inline"><input type="checkbox"
+                    (change)="onIndustryTypeChange($event, 'transport')"
                     [checked]="utilitySrv.isInValue('transport', f.type.value)" value="transport"><span>運輸服務</span>
                 </div>
-                <div><input type="checkbox" (change)="onIndustryTypeChange($event, 'fintech')"
+                <div class="form-check form-check-inline"><input type="checkbox"
+                    (change)="onIndustryTypeChange($event, 'fintech')"
                     [checked]="utilitySrv.isInValue('fintech', f.type.value)" value="fintech"><span>金融科技</span></div>
-                <div><input type="checkbox" (change)="onIndustryTypeChange($event, 'game')"
+                <div class="form-check form-check-inline"><input type="checkbox"
+                    (change)="onIndustryTypeChange($event, 'game')"
                     [checked]="utilitySrv.isInValue('game', f.type.value)" value="game"><span>遊戲產業</span></div>
-                <div><input type="checkbox" (change)="onIndustryTypeChange($event, 'platform')"
+                <div class="form-check form-check-inline"><input type="checkbox"
+                    (change)="onIndustryTypeChange($event, 'platform')"
                     [checked]="utilitySrv.isInValue('platform', f.type.value)" value="platform"><span>平台</span></div>
               </div>
+
             </div>
             <div class="col-md-12 mb-12 form-group ">
               <label class="pr-2" for="stage">
                 <h5> 目前進度* :</h5>
               </label>
               <div class="form-check  check-group">
-                <div> <input type="checkbox" (change)="onStageChange($event, 'idea')"
-                    [checked]="utilitySrv.isInValue('idea', f.stages.value)" value="idea"><span>已有創業概念</span></div>
-                <div> <input type="checkbox" (change)="onStageChange($event, 'businessplan')"
+                <div class="form-check form-check-inline"> <input type="checkbox"
+                    (change)="onStageChange($event, 'idea')" [checked]="utilitySrv.isInValue('idea', f.stages.value)"
+                    value="idea"><span>已有創業概念</span></div>
+                <div class="form-check form-check-inline"> <input type="checkbox"
+                    (change)="onStageChange($event, 'businessplan')"
                     [checked]="utilitySrv.isInValue('businessplan', f.stages.value)"
                     value="businessplan"><span>商業計畫初稿</span></div>
-                <div> <input type="checkbox" (change)="onStageChange($event, 'findpartner')"
+                <div class="form-check form-check-inline"> <input type="checkbox"
+                    (change)="onStageChange($event, 'findpartner')"
                     [checked]="utilitySrv.isInValue('findpartner', f.stages.value)"
                     value="findpartner"><span>找創業夥伴</span>
                 </div>
-                <div> <input type="checkbox" (change)="onStageChange($event, 'buildMVP')"
+                <div class="form-check form-check-inline"> <input type="checkbox"
+                    (change)="onStageChange($event, 'buildMVP')"
                     [checked]="utilitySrv.isInValue('buildMVP', f.stages.value)"
                     value="buildMVP"><span>建構最小可行性產品(MVP)</span></div>
-
-              </div>
-              <div class="form-check  check-group">
-                <div> <input type="checkbox" (change)="onStageChange($event, 'producttested')"
+                <div class="form-check form-check-inline"> <input type="checkbox"
+                    (change)="onStageChange($event, 'producttested')"
                     [checked]="utilitySrv.isInValue('producttested', f.stages.value)"
                     value="producttested"><span>驗證產品中&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
-                <div> <input type="checkbox" (change)="onStageChange($event, 'findcustomers')"
+                <div class="form-check form-check-inline"> <input type="checkbox"
+                    (change)="onStageChange($event, 'findcustomers')"
                     [checked]="utilitySrv.isInValue('findcustomers', f.stages.value)"
                     value="findcustomers"><span>找用戶中&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 </div>
-                <div> <input type="checkbox" (change)="onStageChange($event, 'findpayingcustomers')"
+                <div class="form-check form-check-inline"> <input type="checkbox"
+                    (change)="onStageChange($event, 'findpayingcustomers')"
                     [checked]="utilitySrv.isInValue('findpayingcustomers', f.stages.value)"
                     value="findpayingcustomers"><span>找付費用戶中</span>
                 </div>
               </div>
+
             </div>
             <div class="col-md-12 mb-12 form-group ">
               <label class="pr-2" for="projectname">
@@ -398,7 +412,9 @@
               </div>
             </div>
           </div>
-          <div class="row item-center">
+          <div class="row item-right">
+            <button type="button" class="btn btn-transparent  mr-10" data-dismiss="modal" aria-label="Close">取消
+            </button>
             <button type="button" class="btn btn-blue  mr-10" (click)="onModifySubmit()">
               更新</button>
           </div>

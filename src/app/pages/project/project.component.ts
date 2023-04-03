@@ -251,7 +251,7 @@ export class ProjectComponent implements OnInit {
     return !this.utilitySrv.IsNullOrEmpty(value)
   }
   onImgError(event) {
-    event.target.src = "assets/images/defaultlogo.png";
+    event.target.src = "assets/images/defaultProjectIcon.png";
   }
 
   // Pagination
@@ -482,6 +482,7 @@ export class ProjectComponent implements OnInit {
         this.currentProject.coverUrl = environment.assetUrl + res["data"];
       } else {
         this.currentProject.coverUrl = "https://imagizer.imageshack.com/img921/9628/VIaL8H.jpg";
+        //this.currentProject.coverUrl = "assets/images/defaultCover.png";
       }
     })
   }

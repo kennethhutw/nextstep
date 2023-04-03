@@ -47,7 +47,7 @@ export class MemberCardComponent implements OnInit {
   }
 
   onImgError(event) {
-    event.target.src = "assets/images/Avatar.png";
+    event.target.src = "assets/images/defaultlogo.png";
   }
 
   convertTag(term) {

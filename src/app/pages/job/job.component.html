@@ -1,4 +1,4 @@
-<div *ngIf="currentRecruit" class="row mt-100">
+<div *ngIf="currentRecruit" class="row ">
   <div class="col-md-6 text-center d-flex flex-row gap-10">
     <h1>{{this.currentRecruit.position? this.currentRecruit.position :'職缺名稱'}}</h1>
     <span class="update_date">{{this.currentRecruit.createdAt | date:"MM/dd"}}更新</span>
@@ -21,7 +21,7 @@
 
   </div>
 </div>
-<div *ngIf="currentRecruit" class="row mt-10 mb-33">
+<div *ngIf="currentRecruit" class="row mt-10 pb-33 bottom-gray-line">
   <div class="col-md-8  d-flex flex-row gap-10">
     <img class="profile-image rounded-circle" src="{{ currentRecruit.projectImageUrl }}" (error)="onImgError($event)"
       alt="" />
@@ -34,7 +34,7 @@
 </div>
 
 
-<div *ngIf="currentRecruit" class="row">
+<div *ngIf="currentRecruit" class="row mt-20">
   <div class="col-md-8">
     <div class="row">
       <div class="col-md-12">

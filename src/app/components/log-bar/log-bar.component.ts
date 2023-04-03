@@ -36,6 +36,6 @@ export class LogBarComponent implements OnInit {
   }
 
   onImgError(event) {
-    event.target.src = "assets/images/Avatar.png";
+    event.target.src = "assets/images/defaultProjectIcon.png";
   }
 }

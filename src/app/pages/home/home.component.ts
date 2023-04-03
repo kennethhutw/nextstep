@@ -47,45 +47,11 @@ SwiperCore.use([
   encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent implements OnInit {
-  // popularProjects = [];
+
   popularUsers = [];
   popularMentors = [];
   popularProjects = [];
-  // recentProjects = [];
-  // popularUsers = [{
-  //   name: "John Doe",
-  //   position: "Front End Developer",
-  //   type: "Startup"
-  // }, {
-  //   name: "Kitty",
-  //   description: "UI/UX Designer",
-  //   type: "Startup"
-  // }, {
-  //   name: "Eduardo Braga",
-  //   description: "Product manager",
-  //   type: "Startup"
-  // }, {
-  //   name: "Chhail Khalsa",
-  //   description: "UI Designer",
-  //   type: "Startup"
-  // }];
-  // popularMentors = [{
-  //   name: "John Doe",
-  //   position: "Front End Developer",
-  //   type: "Startup"
-  // }, {
-  //   name: "Kitty",
-  //   description: "UI/UX Designer",
-  //   type: "Startup"
-  // }, {
-  //   name: "Eduardo Braga",
-  //   description: "Product manager",
-  //   type: "Startup"
-  // }, {
-  //   name: "Chhail Khalsa",
-  //   description: "UI Designer",
-  //   type: "Startup"
-  // }];
+
 
   default_main_bg = "./assets/images/home1.jpg";
 
@@ -104,7 +70,7 @@ export class HomeComponent implements OnInit {
 
   swiperConfig: SwiperOptions = {
     slidesPerView: 1,
-    spaceBetween: 10,
+    spaceBetween: 8,
 
     loop: true,
     loopFillGroupWithBlank: true,
@@ -114,7 +80,25 @@ export class HomeComponent implements OnInit {
 
     breakpoints: {
       991: {
-        slidesPerView: 3,
+        slidesPerView: 4,
+        spaceBetween: 10
+      }
+    }
+  };
+
+  swiperConfig1: SwiperOptions = {
+    slidesPerView: 1,
+    spaceBetween: 8,
+
+    loop: true,
+    loopFillGroupWithBlank: true,
+    navigation: false,
+    pagination: { clickable: false },
+    scrollbar: { draggable: false },
+
+    breakpoints: {
+      991: {
+        slidesPerView: 4,
         spaceBetween: 10
       }
     }
@@ -185,6 +169,22 @@ export class HomeComponent implements OnInit {
 
     })
     this.swiperConfig = {
+      slidesPerView: 1,
+      spaceBetween: 10,
+      slidesPerGroup: 3,
+      loop: true,
+      loopFillGroupWithBlank: true,
+      navigation: true,
+
+
+      breakpoints: {
+        991: {
+          slidesPerView: 4,
+          spaceBetween: 10
+        }
+      }
+    };
+    this.swiperConfig1 = {
       slidesPerView: 1,
       spaceBetween: 10,
       slidesPerGroup: 3,

@@ -190,7 +190,8 @@
 .nav-link {
   background-color: transparent !important;
   white-space: nowrap;
-  color: #56BDF4;
+  color: #69738C;
+  font-size: 18px;
 }
 
 .nav-link:hover {
@@ -292,6 +293,11 @@
 .pb-30 {
   padding-bottom: 30px;
 }
+
+.pb-33 {
+  padding-bottom: 33px;
+}
+
 
 .m--auto {
   margin: auto;
@@ -435,15 +441,15 @@
 }
 
 .btn-transparent {
-  color: #56BDF4 !important;
-  border: 2px solid #56BDF4 !important;
+  color: #8F95A8 !important;
+  border: 2px solid #8F95A8 !important;
   border-radius: 4px !important;
   padding: 6px 12px 6px 12px !important;
 }
 
 .btn-transparent:hover {
-  color: #8F95A8 !important;
-  border: 2px solid #8F95A8 !important;
+  color: #69738C !important;
+  border: 2px solid #69738C !important;
 }
 
 .btn-gray {
@@ -769,9 +775,9 @@ input:focus:-ms-input-placeholder {
 // landing-page
 .index-title {
   margin-top: 30px;
-  border-bottom: 1px solid #000000;
+  // border-bottom: 1px solid #000000;
   padding-bottom: 5px;
-  font-size: 30px;
+  font-size: 32px;
   margin-bottom: 20px;
   font-weight: 500;
 }
@@ -846,6 +852,13 @@ input:focus:-ms-input-placeholder {
   }
 }
 
+.modal_title {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 500;
+  color: #262E42;
+}
+
 .model_padding {
   padding: 30px 50px 20px 50px;
 }
@@ -855,7 +868,7 @@ input:focus:-ms-input-placeholder {
   padding: 6px 12px;
   background-color: #56BDF4;
   border: 2px solid #56BDF4;
-  border-radius: 3px;
+  border-radius: 4px;
   color: #fff;
 }
 
@@ -1896,4 +1909,16 @@ input[type=radio] {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.fa-bookmark {
+  border: 1px solid #CFD2DA !important;
+  padding: 7.75px 9.75px;
+  border-radius: 9px;
+}
+
+.fa-envelope {
+  border: 1px solid #CFD2DA !important;
+  padding: 8.75px 6px;
+  border-radius: 9px;
 }

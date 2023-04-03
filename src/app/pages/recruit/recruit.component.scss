@@ -1,5 +1,8 @@
 #findcontent {
     padding-bottom: 30px;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 200px 1fr;
 }
 
 .title {

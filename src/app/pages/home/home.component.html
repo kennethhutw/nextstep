@@ -3,7 +3,7 @@
 <div class="container-fluid">
   <div class="row">
     <div id="main-bg" [ngStyle]="setMyStyles()">
-      <!-- <div class="container">
+      <div class="container">
         <div class="main-slogen">
           <span class="title"> 開始你的實作旅程</span><br />
           <span class="sub_title">為自己開啟無限可能</span>
@@ -15,189 +15,192 @@
         <button class="main-btn-explore" style="margin-left: 15px;" routerLink="/members">
           <img src="assets/icons/members.png" /> 找夥伴
         </button>
-      </div> -->
+      </div>
     </div>
   </div>
 </div>
 
-<div class="container">
+<div class="container-bg">
+  <div class="container">
 
-  <div class="row">
+    <div class="row">
 
-    <div class="index-title w-100">
-      別人都做什麼呢?
+      <div class="index-title w-100">
+        別人都做什麼呢?
+        <div style="float: right;">
+          <a routerLink="/projects" class="btn btn-transparent  mr-10">
+            查看更多</a>
+          <!-- <a class="pr-2 pl-2" href="#carouselProjectControls" role="button" data-slide="prev">
+
+            <img src="assets/icons/arrow_left.png" />
+          </a>
+          <a class="pr-2 pl-2" href="#carouselProjectControls" role="button" data-slide="next">
+
+            <img src="assets/icons/arrow_right.png" />
+          </a> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Just Landed -->
+    <section id="trend">
+      <div class="container">
+        <div class="swiper-block">
+          <swiper [config]="swiperConfig1" class="mySwiper">
+            <ng-template *ngFor="let project of popularProjects;let i= index" swiperSlide>
+              <div class="single-swiper">
+                <app-project-item [project]="project" title="{{project.name}}" description="{{project.description}}">
+                </app-project-item>
+              </div>
+            </ng-template>
+          </swiper>
+        </div>
+      </div>
+    </section>
+
+    <!-- <div id="popularProjects">
+      <div id="carouselProjectControls" class="carousel slide" data-interval="false" data-bs-wrap="true">
+        <div class="carousel-inner" role="listbox">
+          <ng-container *ngFor="let project of popularProjects ; let i = index">
+
+            <div class="carousel-item" [ngClass]="{ 'active': i ===0 }">
+
+              <app-project-item [project]="project" title="{{project.name}}" description="{{project.description}}">
+              </app-project-item>
+
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div> -->
+
+
+    <div class="index-title w-100 mt-80">
+      這裡有許多人在尋找專案...
       <div style="float: right;">
-        <a routerLink="/projects" class="btn btn-transparent  mr-10">
+        <a routerLink="/members" class="btn btn-transparent  mr-10">
           查看更多</a>
-        <!-- <a class="pr-2 pl-2" href="#carouselProjectControls" role="button" data-slide="prev">
-
+        <!-- <a class=" pr-2 pl-2" href="#carouselMemberControls" role="button" data-slide="prev">
           <img src="assets/icons/arrow_left.png" />
         </a>
-        <a class="pr-2 pl-2" href="#carouselProjectControls" role="button" data-slide="next">
-
+        <a class=" pr-2 pl-2" href="#carouselMemberControls" role="button" data-slide="next">
           <img src="assets/icons/arrow_right.png" />
         </a> -->
       </div>
     </div>
-  </div>
 
-  <!-- Just Landed -->
-  <section id="trend">
-    <div class="container">
-      <div class="swiper-block">
-        <swiper [config]="swiperConfig" class="mySwiper">
-          <ng-template *ngFor="let project of popularProjects;let i= index" swiperSlide>
-            <div class="single-swiper">
-              <app-project-item [project]="project" title="{{project.name}}" description="{{project.description}}">
-              </app-project-item>
+    <!-- <div id="popularUsers" class="row ">
+      <div id="carouselMemberControls" class="carousel slide w-100" data-ride="carousel" data-bs-wrap="true">
+        <div class="carousel-inner" role="listbox">
+          <ng-container *ngFor="let user of popularUsers; let i = index">
+            <div class="carousel-item" [ngClass]="{ 'active': i === 0 }">
+              <div class="col-md-4 mb-30">
+
+                <app-person [user]="user" [name]="user.name" [position]="user.title" [tags]="user.interested"
+                  [uid]="user.uid" [imageUrl]="user.imageUrl">
+                </app-person>
+              </div>
             </div>
-          </ng-template>
-        </swiper>
+          </ng-container>
+        </div>
+      </div>
+    </div> -->
+    <section id="trend">
+      <div class="container">
+        <div class="swiper-block">
+          <swiper [config]="swiperConfig" class="mySwiper">
+            <ng-template *ngFor="let user of popularUsers;let i= index" swiperSlide>
+              <div class="single-swiper">
+                <app-person [user]="user" [name]="user.name" [position]="user.title" [tags]="user.interested"
+                  [uid]="user.uid" [imageUrl]="user.imageUrl">
+                </app-person>
+              </div>
+            </ng-template>
+          </swiper>
+        </div>
+      </div>
+    </section>
+
+    <div class="index-title w-100 mt-80">
+      想尋求前輩的協助?
+      <div style="float: right;">
+        <a routerLink="/mentors" class="btn btn-transparent  mr-10">
+          查看更多</a>
+        <!-- <a class=" pr-2 pl-2" style="color:black" href="#carouselMemtorControls" role="button" data-slide="prev">
+          <img src="assets/icons/arrow_left.png" />
+        </a>
+        <a class=" pr-2 pl-2" style="color:black" href="#carouselMemtorControls" role="button" data-slide="next">
+          <img src="assets/icons/arrow_right.png" />
+        </a> -->
       </div>
     </div>
-  </section>
+    <section id="trend">
+      <div class="container">
+        <div class="swiper-block">
+          <swiper [config]="swiperConfig" class="mySwiper">
+            <ng-template *ngFor="let user of popularMentors;let i= index" swiperSlide>
+              <div class="single-swiper">
+                <app-person [user]="user" [type]="'mentor'" [name]="user.name" [position]="user.title"
+                  [tags]="user.expertise" [uid]="user.uid" [imageUrl]="user.imageUrl">
+                </app-person>
+              </div>
+            </ng-template>
+          </swiper>
+        </div>
+      </div>
+    </section>
 
-  <!-- <div id="popularProjects">
-    <div id="carouselProjectControls" class="carousel slide" data-interval="false" data-bs-wrap="true">
-      <div class="carousel-inner" role="listbox">
-        <ng-container *ngFor="let project of popularProjects ; let i = index">
+    <!-- <div id="popularMentors" class="row ">
+      <div id="carouselMemtorControls" class="carousel slide w-100" data-ride="carousel" data-bs-wrap="true">
+        <div class="carousel-inner" role="listbox">
+          <ng-container *ngFor="let mentor of popularMentors; let i = index">
+            <div class="carousel-item" [ngClass]="{ 'active': i === 0 }">
+              <div class="col-md-4 mb-30">
+                <app-person [user]="mentor" [name]="mentor.name" [position]="mentor.title" [tags]="mentor.expertise"
+                  [uid]="mentor.uid" [imageUrl]="mentor.imageUrl">
+                </app-person>
+              </div>
+            </div>
+          </ng-container>
+        </div>
 
-          <div class="carousel-item" [ngClass]="{ 'active': i ===0 }">
+      </div>
 
-            <app-project-item [project]="project" title="{{project.name}}" description="{{project.description}}">
-            </app-project-item>
+    </div> -->
 
-          </div>
-        </ng-container>
+    <!--row end-->
+    <div class="row">
+      <div class="index-title w-100">
+
       </div>
     </div>
-  </div> -->
-
-
-  <div class="index-title w-100 mt-80">
-    這裡有許多人在尋找專案...
-    <div style="float: right;">
-      <a routerLink="/members" class="btn btn-transparent  mr-10">
-        查看更多</a>
-      <!-- <a class=" pr-2 pl-2" href="#carouselMemberControls" role="button" data-slide="prev">
-        <img src="assets/icons/arrow_left.png" />
+    <div id="index_title" class="index_title text-center">
+      <p class="title">我們想聽見你的聲音</p>
+      <p class="sub_title">讓我們一起將 Next Step 打造更棒的地方</p>
+      <a class="btn btn-blue" routerLink="/feedback">
+        <img src="assets/icons/chat_white.png" /> 我有話想說
       </a>
-      <a class=" pr-2 pl-2" href="#carouselMemberControls" role="button" data-slide="next">
-        <img src="assets/icons/arrow_right.png" />
-      </a> -->
     </div>
-  </div>
+    <div class="row">
+      <div class="index-title w-100">
 
-  <!-- <div id="popularUsers" class="row ">
-    <div id="carouselMemberControls" class="carousel slide w-100" data-ride="carousel" data-bs-wrap="true">
-      <div class="carousel-inner" role="listbox">
-        <ng-container *ngFor="let user of popularUsers; let i = index">
-          <div class="carousel-item" [ngClass]="{ 'active': i === 0 }">
-            <div class="col-md-4 mb-30">
-
-              <app-person [user]="user" [name]="user.name" [position]="user.title" [tags]="user.interested"
-                [uid]="user.uid" [imageUrl]="user.imageUrl">
-              </app-person>
-            </div>
-          </div>
-        </ng-container>
       </div>
     </div>
-  </div> -->
-  <section id="trend">
-    <div class="container">
-      <div class="swiper-block">
-        <swiper [config]="swiperConfig" class="mySwiper">
-          <ng-template *ngFor="let user of popularUsers;let i= index" swiperSlide>
-            <div class="single-swiper">
-              <app-person [user]="user" [name]="user.name" [position]="user.title" [tags]="user.interested"
-                [uid]="user.uid" [imageUrl]="user.imageUrl">
-              </app-person>
-            </div>
-          </ng-template>
-        </swiper>
+    <div id="index_title" class="index_title text-center">
+      <p class="title">加入社群與成員們交流互動</p>
+
+      <div>
+        <button class="btn btn-blue">
+          Telegram
+        </button>
+        <!-- <button class="btn btn-blue" style="margin-left: 20px;">
+          Discord
+        </button> -->
       </div>
-    </div>
-  </section>
-
-  <div class="index-title w-100 mt-80">
-    想尋求前輩的協助?
-    <div style="float: right;">
-      <a routerLink="/mentors" class="btn btn-transparent  mr-10">
-        查看更多</a>
-      <!-- <a class=" pr-2 pl-2" style="color:black" href="#carouselMemtorControls" role="button" data-slide="prev">
-        <img src="assets/icons/arrow_left.png" />
-      </a>
-      <a class=" pr-2 pl-2" style="color:black" href="#carouselMemtorControls" role="button" data-slide="next">
-        <img src="assets/icons/arrow_right.png" />
-      </a> -->
-    </div>
-  </div>
-  <section id="trend">
-    <div class="container">
-      <div class="swiper-block">
-        <swiper [config]="swiperConfig" class="mySwiper">
-          <ng-template *ngFor="let user of popularMentors;let i= index" swiperSlide>
-            <div class="single-swiper">
-              <app-person [user]="user" [type]="'mentor'" [name]="user.name" [position]="user.title"
-                [tags]="user.expertise" [uid]="user.uid" [imageUrl]="user.imageUrl">
-              </app-person>
-            </div>
-          </ng-template>
-        </swiper>
-      </div>
-    </div>
-  </section>
-
-  <!-- <div id="popularMentors" class="row ">
-    <div id="carouselMemtorControls" class="carousel slide w-100" data-ride="carousel" data-bs-wrap="true">
-      <div class="carousel-inner" role="listbox">
-        <ng-container *ngFor="let mentor of popularMentors; let i = index">
-          <div class="carousel-item" [ngClass]="{ 'active': i === 0 }">
-            <div class="col-md-4 mb-30">
-              <app-person [user]="mentor" [name]="mentor.name" [position]="mentor.title" [tags]="mentor.expertise"
-                [uid]="mentor.uid" [imageUrl]="mentor.imageUrl">
-              </app-person>
-            </div>
-          </div>
-        </ng-container>
-      </div>
-
-    </div>
-
-  </div> -->
-
-  <!--row end-->
-  <div class="row">
-    <div class="index-title w-100">
-
-    </div>
-  </div>
-  <div id="index_title" class="index_title text-center">
-    <p class="title">我們想聽見你的聲音</p>
-    <p class="sub_title">讓我們一起將 Next Step 打造更棒的地方</p>
-    <a class="btn btn-blue" routerLink="/feedback">
-      <img src="assets/icons/chat_white.png" /> 我有話想說
-    </a>
-  </div>
-  <div class="row">
-    <div class="index-title w-100">
-
-    </div>
-  </div>
-  <div id="index_title" class="index_title text-center">
-    <p class="title">加入社群與成員們交流互動</p>
-
-    <div style="justify-content:space-between">
-      <button class="btn btn-blue">
-        Telegram
-      </button>
-      <!-- <button class="btn btn-blue" style="margin-left: 20px;">
-        Discord
-      </button> -->
     </div>
   </div>
 </div>
+
 
 
 

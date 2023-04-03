@@ -151,7 +151,6 @@
 
 .position {
     font-size: 16px;
-    font-weight: 400;
     margin-bottom: 0px;
     font-weight: 500;
     word-wrap: break-word;
@@ -172,6 +171,16 @@
 .project-info {
     display: flex;
     gap: 24px;
+    color: #69738C;
+}
+
+.dot {
+    height: 15px;
+    width: 15px;
+    background-color: #56BDF4;
+    border-radius: 50%;
+    display: inline-block;
+    margin-top: 5px;
 }
 
 .title {
@@ -216,6 +225,11 @@
 #modifiedproject {
     .item-center {
         justify-content: center;
+        padding: 5px 0px 5px 0px;
+    }
+
+    .item-right {
+        justify-content: end;
         padding: 5px 0px 5px 0px;
     }
 }

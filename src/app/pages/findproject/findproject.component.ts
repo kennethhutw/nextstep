@@ -282,10 +282,10 @@ export class FindProjectComponent implements OnInit {
 
     }
 
-    if (this.displayItems.length > 0)
-      this.checkProject(this.displayItems)
-    if (this.displayItems.length > 0)
-      this.checkWorkTime(this.displayItems)
+    // if (this.displayItems.length > 0)
+    //   this.checkProject(this.displayItems)
+    // if (this.displayItems.length > 0)
+    //   this.checkWorkTime(this.displayItems)
     this.finalCheck();
   }
 

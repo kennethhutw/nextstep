@@ -2,18 +2,10 @@
 @import '../../../../node_modules/swiper/components/pagination/pagination.scss';
 
 
-/* #recentEditions img{
-  height:241px;
-} */
 
-/* #popularDisplayEditions  img{
-  height:241px;
-} */
-
-.desc {
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  font-size: 22px;
+.container-bg {
+  background-color: #F9FAFB;
+  padding-bottom: 50px;
 }
 
 .title {
@@ -85,11 +77,13 @@
   .swiper-block {
     width: 100%;
 
-    .single-swiper {
-      background: white;
-      padding: 8px;
-      display: block;
-    }
+    // .single-swiper {
+    //   background: white;
+    //   padding: 8px;
+    //   display: block;
+    //   border-radius: 9px;
+    //   box-shadow: 0 0 9px rgba(0, 0, 0, 0.4);
+    // }
 
     .swiper-scrollbar {
       display: none;
@@ -151,12 +145,12 @@
 
     .swiper-button-prev {
       background: white;
-      width: 70px;
-      height: 70px;
+      width: 35px;
+      height: 35px;
       border-radius: 50%;
       padding: 5px;
       box-sizing: border-box;
-      margin-left: -35px;
+      margin-left: -5px;
       box-shadow: 3px 1px 3px 0px rgba(109, 109, 109, 0.25);
 
       &:after {
@@ -167,12 +161,12 @@
 
     .swiper-button-next {
       background: white;
-      width: 70px;
-      height: 70px;
+      width: 35px;
+      height: 35px;
       border-radius: 50%;
       padding: 5px;
       box-sizing: border-box;
-      margin-right: -35px;
+      margin-right: -5px;
       box-shadow: -3px 1px 3px 0px rgba(109, 109, 109, 0.25);
 
       &:after {
