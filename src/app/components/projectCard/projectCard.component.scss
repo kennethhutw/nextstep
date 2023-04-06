@@ -32,17 +32,21 @@ ui-project-card {
         padding: 4px 8px 4px 8px;
         border-radius: 4px;
         cursor: pointer;
+        display: flex;
+        margin: auto;
     }
 
     .followed {
-        color: #fff;
-        border: 1px solid #56BDF4;
-        background-color: #56BDF4;
+        color: #8F95A8;
+        border: 1px solid #CFD2DA;
+        background-color: #F1F2F5;
         font-size: 12px;
         font-weight: 400;
-        padding: 4px 8px 4px 8px;
+        padding: 4px 7px 4px 7px;
         border-radius: 4px;
         cursor: pointer;
+        display: flex;
+        margin: auto;
     }
 
     p {

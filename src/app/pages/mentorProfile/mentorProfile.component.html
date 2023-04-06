@@ -20,29 +20,32 @@
       <input id="profileImage" #profileImage type="file" accept="image/gif, image/jpg, image/jpeg, image/png, image/gif"
         (change)="onUploadProfileImage($event)" style="display: none; padding: 0px" />
       <div id="u-name">
-        <span>{{userProfile.name}}</span>
-        <span class="bio">{{userProfile.title?userProfile.title:"我還沒有填寫職稱"}}</span>
+        <div class="d-inline-flex ">
+          <span>{{userProfile.name}} </span>
+          <span class="bio">&nbsp; /&nbsp; {{userProfile.title?userProfile.title:"我還沒有填寫職稱"}}</span>
+        </div>
+        <span class="uid color-gray"> @{{userProfile.uid}}</span>
       </div>
 
     </div>
-    <div id="black-grd"></div>
+
   </div>
   <div class="row mt-50">
     <div class="col-md-12 text-right">
 
       <div *ngIf="!isOwner && currentUser" class=" text-right btn_items">
 
-        <button type="button" class="btn btn_item " (click)="onToggleChat($event)"><i class="far fa-comment-alt"></i>
-          訊息</button>
-
-        <button type="button" class="btn btn_item" [ngClass]="{'btn_item_selected': userProfile?.isFollowing === true}"
-          *ngIf="userProfile?.owner !== currentUser?.id" (click)="onClickFollow()"><i class="fas fa-plus"></i>
-          {{userProfile?.isFollowing === true ? "已追蹤" : "追蹤"}} </button>
-
         <button type="button" class="btn btn_item" [ngClass]="{'btn_item_selected': userProfile?.isCollected === true}"
           *ngIf="userProfile?.owner !== currentUser?.id" (click)="onClickCollect()"><i
             class="far fa-bookmark fa-lg"></i>
           {{userProfile?.isCollected === true ? "已收藏" : "收藏"}} </button>
+
+        <button type="button" class="btn btn_item" [ngClass]="{'btn_item_selected': userProfile?.isFollowing === true}"
+          *ngIf="userProfile?.owner !== currentUser?.id" (click)="onClickFollow()"><i class="fas fa-plus"></i>
+          {{userProfile?.isFollowing === true ? "已追蹤" : "追蹤"}} </button>
+        <button type="button" class="btn btn_item " (click)="onToggleChat($event)"><i class="far fa-comment-dots"></i>
+          訊息</button>
+
 
       </div>
     </div>
@@ -139,21 +142,28 @@
               <ng-container *ngFor="let project of userProfile.projects; let i = index">
 
                 <div class="col-md-12 frame mb-20">
-                  <div class="col-md-12" style=" display:inline-block;">
-                    <div class="d-flex flex-column">
-                      <span style="font-size: 25px;padding-right: 20px;">{{project.position}}</span>
+                  <div class="col-md-12">
+
+                    <div class="exp-bar-2">
+                      <div class="exp-position">
+                        <span>{{project.position?project.position:"沒有填寫職稱"}}</span>
+                      </div>
+                      <div class="exp-duration">
+
+                        <span style="margin-left: 10px;">{{project.firstDate | date : 'yyyy-MM-dd'}}</span><span
+                          *ngIf="IsNullorEmpty(project.lastDate)">~ {{project.lastDate |
+                          date : 'yyyy-MM-dd'}}</span>
+                        <span *ngIf="!IsNullorEmpty(project.lastDate)">~ Current</span>
+                      </div>
                     </div>
                     <div class="d-flex flex-row gap-10">
-                      <span>{{project.name}}</span>
-                      <span style="margin-left: 10px;">{{project.firstDate | date : 'yyyy-MM-dd'}}</span><span
-                        *ngIf="IsNullorEmpty(project.lastDate)">~ {{project.lastDate |
-                        date : 'yyyy-MM-dd'}}</span>
-                      <span *ngIf="!IsNullorEmpty(project.lastDate)">~ Current</span>
+                      <img class="project-pic" (error)="onProjectImgError($event)" src="{{project.imageUrl}}">
+                      <span class="project-name">{{project.name}} </span>
                     </div>
                   </div>
 
                   <div class="col-md-12 content">
-                    {{project.scopes}}
+                    {{project.scopes ?project.scopes:"沒有填寫工作內容"}}
                   </div>
                 </div>
               </ng-container>
@@ -179,22 +189,27 @@
 
               <ng-container *ngFor="let project of userProfile.pastprojects; let i = index">
                 <div class="col-md-12 frame mb-20">
-                  <div class="col-md-12" style=" display:inline-block;">
-                    <div class="d-flex flex-column ">
-                      <span style="font-size: 25px;padding-right: 20px;">{{project.position}}</span>
-                      <!--  <a data-toggle="modal" [attr.data-target]="'#modal_project'"><i class="fas fa-pencil-alt"></i></a> -->
+                  <div class="col-md-12">
+                    <div class="exp-bar-2">
+                      <div class="exp-position">
+                        <span>{{project.position?project.position:"沒有填寫職稱"}}</span>
+                      </div>
+                      <div class="exp-duration">
+
+                        <span style="margin-left: 10px;">{{project.firstDate | date : 'yyyy-MM-dd'}}</span><span
+                          *ngIf="IsNullorEmpty(project.lastDate)">~ {{project.lastDate |
+                          date : 'yyyy-MM-dd'}}</span>
+                        <span *ngIf="!IsNullorEmpty(project.lastDate)">~ Current</span>
+                      </div>
                     </div>
                     <div class="d-flex flex-row gap-10">
-                      <span>{{project.name}}</span>
-                      <span style="margin-left: 10px;">{{project.firstDate | date : 'yyyy-MM-dd'}}</span><span
-                        *ngIf="IsNullorEmpty(project.lastDate)">~ {{project.lastDate |
-                        date : 'yyyy-MM-dd'}}</span>
-                      <span *ngIf="!IsNullorEmpty(project.lastDate)">~ Current</span>
+                      <img class="project-pic" (error)="onProjectImgError($event)" src="{{project.imageUrl}}">
+                      <span class="project-name">{{project.name}} </span>
                     </div>
                   </div>
 
                   <div class="col-md-12 content">
-                    {{project.scopes}}
+                    {{project.scopes ?project.scopes:"沒有填寫工作內容"}}
                   </div>
                 </div>
               </ng-container>
@@ -212,18 +227,20 @@
 
               <ng-container *ngFor="let comment of userProfile.comments; let i = index">
                 <div class="col-md-12 frame mb-20">
-                  <div class="col-md-12" style=" display:inline-block;">
-                    <div class="col-md-12 comment-header">
-                      <img class="profile-image rounded-circle" src="{{comment.imageUrl}}" (error)="onImgError($event)"
-                        alt="" />
-                      <div class="comment-user-detail">
-                        <span>{{comment.userName}}</span>
-                        <span class="createdTime">{{(comment?.createdAt !==null) ?
-                          this.utilitySrv.timeSince(comment.createdAt ) : ''
-                          }}</span>
-                      </div>
+
+                  <div class="col-md-12 comment-header">
+                    <div class="d-flex">
+                      <img class="project-pic rounded-circle" src="{{comment.imageUrl}}" (error)="onImgError($event)"
+                        alt="" /> <span class="project-name">{{comment.userName}}</span>
+                    </div>
+                    <div class="comment-user-detail">
+
+                      <span class="createdTime">{{(comment?.createdAt !==null) ?
+                        (comment.createdAt| date : 'yyyy.MM.dd') : ''
+                        }}</span>
                     </div>
                   </div>
+
                   <div class="col-md-12">
                     <ngb-rating [max]="5" [(rate)]="comment.rating" [readonly]="true">
                     </ngb-rating>

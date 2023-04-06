@@ -157,6 +157,11 @@ export class MentorProfileComponent implements OnInit {
 
           this.userProfile.cover = environment.assetUrl + this.userProfile.cover;
         }
+        if (!this.utilitySrv.IsNullOrEmpty(this.userProfile.projects)) {
+          this.userProfile.projects.forEach(element => {
+            element.imageUrl = environment.assetUrl + element.imageUrl;
+          });
+        }
 
         if (!this.utilitySrv.IsNullOrEmpty(this.userProfile.comments)) {
           this.userProfile.comments.forEach(element => {
@@ -594,6 +599,10 @@ export class MentorProfileComponent implements OnInit {
       path = environment.assetUrl + path;
     }
     return path
+  }
+
+  onProjectImgError(event) {
+    event.target.src = "assets/images/defaultlogo.png";
   }
 }
 //https://www.sliderrevolution.com/resources/bootstrap-profile/

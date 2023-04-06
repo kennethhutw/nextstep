@@ -36,9 +36,8 @@ app-pub-profile {
         background-color: white;
 
         cursor: pointer;
-        border-radius: 5px;
-        color: #56BDF4 !important;
-        border: 1px solid #56BDF4 !important;
+        color: #8F95A8 !important;
+        border: 1px solid #CFD2DA !important;
         border-radius: 4px !important;
         padding: 3px 6px 3px 6px !important;
         font-size: 16px;
@@ -70,6 +69,11 @@ app-pub-profile {
     }
 
     .bio {
+        font-size: 20px;
+        margin: auto;
+    }
+
+    .uid {
         font-size: 16px;
     }
 
@@ -77,6 +81,17 @@ app-pub-profile {
         border: 2px solid #C4C4C4;
         min-height: 300px;
         margin-bottom: 30px;
+    }
+
+    .profile-header {
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-columns: 50% 50%;
+    }
+
+    .tags {
+        margin-top: auto;
+        margin-bottom: auto;
     }
 
 
@@ -103,6 +118,7 @@ app-pub-profile {
         padding-right: 10px;
         gap: 12px;
         display: grid;
+        border-radius: 9px;
 
         .sub-title {
             font-weight: 500;
@@ -191,6 +207,7 @@ app-pub-profile {
         grid-auto-flow: row;
         gap: 24px;
         padding: 12px 10px 12px 10px;
+        border-radius: 9px;
     }
 
 
@@ -220,11 +237,18 @@ app-pub-profile {
     .exp-position {
         font-size: 16px;
         padding-right: 20px;
+        font-weight: 500;
     }
 
     .exp-duration {
-        color: #8F95A8;
+        color: #424B61;
         text-align: end;
+        font-weight: 400;
+    }
+
+    .project-name {
+        font-weight: 400;
+        line-height: 24px;
     }
 
 

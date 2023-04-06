@@ -407,7 +407,7 @@
 /** buttons **/
 .btn-standard {
   cursor: pointer;
-  color: #69738C !important;
+  color: #8F95A8 !important;
   border: 1px solid #CFD2DA !important;
   border-radius: 4px !important;
   padding: 6px 12px 6px 12px !important;
@@ -1914,11 +1914,19 @@ input[type=radio] {
 .fa-bookmark {
   border: 1px solid #CFD2DA !important;
   padding: 7.75px 9.75px;
-  border-radius: 9px;
+  border-radius: 4px;
+  display: flex;
+  margin: auto;
+  font-size: 14px;
+}
+
+.fa-bookmark-selected {
+  background-color: #F1F2F5;
+  color: #8F95A8;
 }
 
 .fa-envelope {
   border: 1px solid #CFD2DA !important;
   padding: 8.75px 6px;
-  border-radius: 9px;
+  border-radius: 4px;
 }

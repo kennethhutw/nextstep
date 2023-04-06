@@ -20,12 +20,15 @@
       <input id="profileImage" #profileImage type="file" accept="image/gif, image/jpg, image/jpeg, image/png, image/gif"
         (change)="onUploadProfileImage($event)" style="display: none; padding: 0px" />
       <div id="u-name">
-        <span>{{userProfile.name}}</span>
-        <span class="bio">{{userProfile.title?userProfile.title:"我還沒有填寫職稱"}}</span>
+        <div class="d-inline-flex ">
+          <span>{{userProfile.name}} </span>
+          <span class="bio">&nbsp; /&nbsp; {{userProfile.title?userProfile.title:"我還沒有填寫職稱"}}</span>
+        </div>
+        <span class="uid color-gray"> @{{userProfile.uid}}</span>
       </div>
 
     </div>
-    <div id="black-grd"></div>
+
   </div>
   <div class="row mt-50">
     <div class="col-md-12 text-right">
@@ -70,39 +73,48 @@
             <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</span>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-12 frame">
-          <div class="col-md-12 text-right  d-flex flex-row gap-10 end">
-            <a *ngIf="IsNullorEmpty(userProfile.website)" href="{{ userProfile.website }}" target="_blank"> <i
-                class="fas fa-globe icon"></i></a>
-            <a *ngIf="IsNullorEmpty(userProfile.github)" href="{{ userProfile.github }}" target="_blank"> <i
-                class="fa-fw fab fa-github icon"></i></a>
-            <a *ngIf="IsNullorEmpty(userProfile.twitter)" href="{{ userProfile.twitter }}" target="_blank"><i
-                class="fa-fw fab fa-twitter icon"></i></a>
-            <a *ngIf="IsNullorEmpty(userProfile.discord)" href="{{ userProfile.discord }}" target="_blank"><i
-                class="fa-fw fab fa-discord icon"></i></a>
-            <a *ngIf="IsNullorEmpty(userProfile.facebook)" href="{{ userProfile.facebook }}" target="_blank"><i
-                class="fa-fw fab fa-facebook icon"></i></a>
-            <a *ngIf="IsNullorEmpty(userProfile.instagram)" href="{{ userProfile.instagram }}" target="_blank"> <i
-                *ngIf="userProfile.instagram!=''" class="fab fa-instagram-square icon"></i></a>
+      <div class="row frame">
+        <div class="col-md-12 ">
+          <div class="profile-header">
+            <div class=" tags">
+              <ng-container *ngIf="
+                                        userProfile?.skills;
+                                        else noskill
+                                      "><span class="sub-title">技能:&nbsp;&nbsp;</span>
+                <span *ngFor="let skill of userProfile.skills; let i = index"
+                  class="tag  tag-{{skill}}  mb-2 mr-3">{{convertTag(skill)}}</span>
+              </ng-container>
+              <ng-template #noskill>
+                <span class="sub-title">技能:&nbsp;&nbsp;</span> <span class="tags">我還沒填寫我的專長</span>
 
-          </div>
-          <div class="tags">
-            <ng-container *ngIf="
-                            userProfile?.skills;
-                            else noskill
-                          "><span class="sub-title">技能:&nbsp;&nbsp;</span>
-              <span *ngFor="let skill of userProfile.skills; let i = index"
-                class="tag  tag-{{skill}}  mb-2 mr-3">{{convertTag(skill)}}</span>
-            </ng-container>
-            <ng-template #noskill>
-              <span class="sub-title">技能:&nbsp;&nbsp;</span> <span class="tags">我還沒填寫我的專長</span>
+              </ng-template>
+            </div>
 
-            </ng-template>
+            <div class="text-right  d-flex flex-row gap-10 end">
+              <a *ngIf="IsNullorEmpty(userProfile.website)" href="{{ userProfile.website }}" target="_blank"> <i
+                  class="fas fa-globe icon"></i></a>
+              <a *ngIf="IsNullorEmpty(userProfile.github)" href="{{ userProfile.github }}" target="_blank"> <i
+                  class="fa-fw fab fa-github icon"></i></a>
+              <a *ngIf="IsNullorEmpty(userProfile.twitter)" href="{{ userProfile.twitter }}" target="_blank"><i
+                  class="fa-fw fab fa-twitter icon"></i></a>
+              <a *ngIf="IsNullorEmpty(userProfile.discord)" href="{{ userProfile.discord }}" target="_blank"><i
+                  class="fa-fw fab fa-discord icon"></i></a>
+              <a *ngIf="IsNullorEmpty(userProfile.facebook)" href="{{ userProfile.facebook }}" target="_blank"><i
+                  class="fa-fw fab fa-facebook icon"></i></a>
+              <a *ngIf="IsNullorEmpty(userProfile.instagram)" href="{{ userProfile.instagram }}" target="_blank"> <i
+                  *ngIf="userProfile.instagram!=''" class="fab fa-instagram-square icon"></i></a>
+
+            </div>
           </div>
+
+
+
+        </div>
+        <div class="col-md-12 ">
           <span class="sub-title">想說的話:</span>
+        </div>
+        <div class="col-md-12 ">
           <p>{{this.userProfile.bio?this.userProfile.bio:"尚未有話要說"}}</p>
-
         </div>
       </div>
       <!-- 個人簡介 end -->
@@ -140,7 +152,7 @@
                     </div>
                     <div class="d-flex flex-row gap-10">
                       <img class="project-pic" (error)="onProjectImgError($event)" src="{{project.imageUrl}}">
-                      <span class="mt-1">{{project.name}} </span>
+                      <span class="mt-1 project-name">{{project.name}} </span>
                     </div>
                   </div>
 
@@ -224,7 +236,7 @@
           <div class="exp_row">
             <svg-icon src="./assets/icons/experience.svg"></svg-icon>
             <div>
-              <span><b>{{exp.company}}</b>&nbsp;{{exp.position}}</span><br />
+              <span>在<b>{{exp.company}}</b>&nbsp;{{exp.position}}</span><br />
               <span *ngIf="exp.isCurrent; else hasExp">
                 Since {{exp.startYear}}.{{exp.startMonth}}
               </span>
