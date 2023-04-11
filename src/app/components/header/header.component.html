@@ -64,23 +64,21 @@
       </ul>
 
 
-      <ul *ngIf="authStoreSrv.isLoggedIn$ | async" class="navbar-nav ml-auto nav-flex-icons">
-        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
-          style="padding-top: 13px;">
+      <ul *ngIf="authStoreSrv.isLoggedIn$ | async" class="navbar-nav ml-auto nav-flex-icons gap-15">
+        <li class="nav-item m-auto" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
           <a class=" btn-blue font-16" (click)="RouteToNewProject()">建立專案 </a>
         </li>
 
-        <li class="nav-item p-8" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
-          id="navbarNotifDropdown" style="position:relative;" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="true">
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+          id="navbarNotifDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
           <!--           <a class="nav-link" routerLink="/notifications"> <i class="far fa-bell icon"></i></a> -->
-          <i class="far fa-bell icon noti"> <span *ngIf="notiNum>0" class="notification-dot"></span></i>
+          <i class="far fa-bell noti"> <span *ngIf="notiNum>0" class="notification-dot"></span></i>
           <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary " aria-labelledby="navbarNotifDropdown">
             <div class="notification-box">
               <ng-container *ngIf="notis">
                 <ng-container *ngFor="let noti of  notis; let i = index">
                   <a *ngIf="i<5" class="notification" routerLink="/dashboard/notifications">
-                    <i class="fas fa-bell mt--5"></i>
+                    <i class="far fa-bell mt-15"></i>
                     <div class="notifciation-row">
                       <span> {{noti?.content.length>15?noti?.content.substring(0,15)+"...":noti?.content}}</span>
                       <span class="notifciation-date"> {{(noti?.createdAt !==null) ?
@@ -96,13 +94,13 @@
           </div>
         </li>
         <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link" routerLink="/messages"> <i class="far fa-comment-dots icon"><span *ngIf="msgNum>0"
+          <a routerLink="/messages"> <i class="far fa-comment-dots message "><span *ngIf="msgNum>0"
                 class="notification-dot"></span></i></a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle color-gray" href="#" id="navbarDropdown" role="button"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-user-circle par-5 icon"></i>
+          <a class=" dropdown-toggle color-gray" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="far fa-user-circle font-25"></i>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"

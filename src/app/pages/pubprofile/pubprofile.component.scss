@@ -78,9 +78,22 @@ app-pub-profile {
     }
 
     .frame {
-        border: 2px solid #C4C4C4;
+        border: 0px;
         min-height: 300px;
-        margin-bottom: 30px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        box-shadow: 1px 2px 9px rgba(0, 0, 0, 0.04) !important;
+        padding-left: 10px;
+        padding-right: 10px;
+
+        .sub-title {
+            font-weight: 500;
+
+        }
+    }
+
+    .mt-26 {
+        margin-top: 26px;
     }
 
     .profile-header {
@@ -109,21 +122,21 @@ app-pub-profile {
         }
     }
 
-    .frame {
-        border: 1px solid rgba(0, 0, 0, 0.6);
+    // .frame {
+    //     border: 1px solid rgba(0, 0, 0, 0.6);
 
-        padding-top: 15px;
-        padding-bottom: 15px;
-        padding-left: 10px;
-        padding-right: 10px;
-        gap: 12px;
-        display: grid;
-        border-radius: 9px;
+    //     padding-top: 15px;
+    //     padding-bottom: 15px;
+    //     padding-left: 10px;
+    //     padding-right: 10px;
+    //     gap: 12px;
+    //     display: grid;
+    //     border-radius: 9px;
 
-        .sub-title {
-            font-weight: 500;
-        }
-    }
+    //     .sub-title {
+    //         font-weight: 500;
+    //     }
+    // }
 
     .icon {
         padding: 8px;
@@ -178,12 +191,6 @@ app-pub-profile {
         border: 2px solid #FF859A;
     }
 
-    .frame {
-        border: 2px solid #fff;
-        min-height: 100px;
-        margin-bottom: 30px;
-        background-color: #fff;
-    }
 
     .title_section {
         gap: 12px;

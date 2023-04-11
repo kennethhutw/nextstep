@@ -73,12 +73,15 @@
  .confirm-button {
      text-align: center;
      margin: 15px 0px 15px 0px;
+     display: flex;
+     justify-content: center;
+     gap: 10px;
  }
 
  .btn-no {
      background-color: #00FF90;
      color: black;
-     margin-left: 10px;
+     margin-right: 10px;
      width: 179px;
      height: 60px;
  }
@@ -86,7 +89,7 @@
  .btn-yes {
      background-color: #000000;
      color: white;
-     margin-right: 10px;
+     margin-left: 10px;
      width: 179px;
      height: 60px;
  }

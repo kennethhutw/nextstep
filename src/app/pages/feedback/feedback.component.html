@@ -1,5 +1,5 @@
 <div class=" mb-30">
-    <div class="row filter ">
+    <div class=" filter ">
         <select class="form-control" [value]="status" (change)="onSortChange($event)">
             <option value="">從新到舊</option>
             <option value="old">從舊到新</option>
@@ -15,12 +15,12 @@
             <!-- </ng-template> -->
         </select>
         <input type="text" class="form-control search" [(ngModel)]="searchText" aria-label=""
-            aria-describedby="button-addon2" />
+            aria-describedby="button-addon2" placeholder="輸入關鍵字" />
 
         <span></span>
-        <div><button type="button" style="margin: auto;" [disabled]="!this.currentUser" class="btn btn-blue"
-                data-toggle="modal" [attr.data-target]="'#proposal'"><i class="fas fa-plus"></i> 我有話要說
-            </button></div>
+        <button type="button" style="margin: auto;" [disabled]="!this.currentUser" class="btn btn-blue"
+            data-toggle="modal" [attr.data-target]="'#proposal'"><i class="fas fa-plus"></i> 我有話要說
+        </button>
 
     </div>
     <ul class="nav mb-20" id="fbTab" role="tablist">
@@ -62,7 +62,7 @@
                             <div class="category" [ngSwitch]="item.category">
                                 <div class="dropdown" *ngIf="item.createdBy === currentUser?.id"><i
                                         class="fas fa-ellipsis-h" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="true"></i>
+                                        aria-expanded="true" tooltip="更多"></i>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item color-gray" data-toggle="modal"
                                             [attr.data-target]="'#modifiedproposal'" (click)="onModified(item)"><i
@@ -85,26 +85,27 @@
                         </div>
 
                         <div class="col-md-12 footer">
-                            <div class="cell" (click)="onVote(event,'likes',item.id)">
+                            <div class="cell color-gray" (click)="onVote(event,'likes',item.id)">
                                 <img src="assets/icons/arrow_up.png" alt="arrow_up">
                                 <span>{{item.like_count}}</span>
                                 <!-- <i class="fas fa-arrow-up"></i> -->
                             </div>
-                            <div class="cell" (click)="onVote(event,'dislikes',item.id)">
+                            <div class="cell color-gray" (click)="onVote(event,'dislikes',item.id)">
                                 <img src="assets/icons/arrow_down.png" alt="arrow_down">
                                 <span>{{item.dislike_count}}</span>
                                 <!-- <i class="fas fa-arrow-down"></i> -->
                             </div>
-                            <div *ngIf="item.comment_count ==0" class="cell" data-toggle="modal"
+                            <div *ngIf="item.comment_count ==0" class="cell color-gray" data-toggle="modal"
                                 [attr.data-target]="'#new_comment'" (click)="new_comment(item)">
-                                <img src="assets/icons/comment.png" class="mt-5" alt="comment">
+                                <img src="assets/icons/comment.png" class="mt-5 color-gray" alt="comment">
                                 <span>{{item.comment_count}}</span>
                                 <!-- <i class="far fa-comment"></i> -->
                             </div>
 
-                            <div *ngIf="item.comment_count >0" class="cell" (click)="show_comment(this.hideall,item)">
-                                <img src="assets/icons/comment.png" class="mt-5" alt="comment">
-                                <span>{{item.comment_count}}</span>
+                            <div *ngIf="item.comment_count >0" class="cell color-gray"
+                                (click)="show_comment(this.hideall,item)">
+                                <img src="assets/icons/comment.png" class="mt-5 color-gray" alt="comment">
+                                <span class="color-gray">{{item.comment_count}}</span>
                                 <!-- <i class="far fa-comment"></i> -->
                             </div>
                             <div class="cell"></div>
@@ -344,7 +345,7 @@
                         cols="50"></textarea>
                 </div>
                 <div class="row item-end">
-                    <button type="button" class="btn btn-white  mr-10" data-dismiss="modal" aria-label="Close">取消
+                    <button type="button" class="btn btn-transparent  mr-10" data-dismiss="modal" aria-label="Close">取消
                     </button>
                     <button type="button" class="btn btn-blue  mr-10" (click)="onSubmit()">
                         分享</button>
@@ -383,7 +384,7 @@
                         cols="50"></textarea>
                 </div>
                 <div class="row item-end">
-                    <button type="button" class="btn btn-white  mr-10" data-dismiss="modal" aria-label="Close">取消
+                    <button type="button" class="btn btn-transparent mr-10" data-dismiss="modal" aria-label="Close">取消
                     </button>
                     <button type="button" class="btn btn-blue  mr-10" (click)="onModifiedSubmit()">
                         更新</button>
@@ -414,7 +415,7 @@
                         cols="50"></textarea>
                 </div>
                 <div class="row item-center">
-                    <button type="button" class="btn btn-white  mr-10" data-dismiss="modal" aria-label="Close">取消
+                    <button type="button" class="btn btn-transparent mr-10" data-dismiss="modal" aria-label="Close">取消
                     </button>
                     <button type="button" class="btn btn-blue  mr-10" (click)="onCommentSubmit()">
                         送出</button>

@@ -125,13 +125,15 @@
               還沒開始
             </div>
             <ng-container *ngIf="this.currentProject?.logs">
-              <ng-container *ngFor="let log of currentProject.logs; let i = index">
-                <div class="col-md-12 history">
+              <div class="frame mt-10">
+                <ng-container *ngFor="let log of currentProject.logs; let i = index">
+                  <div class="col-md-12 history">
 
-                  <span class="color-gray">{{log.createdAt | date:"yyyy-MM-dd"}}</span><span
-                    class="dot"></span><span>{{log.action}}</span>
-                </div>
-              </ng-container>
+                    <span class="color-gray">{{log.createdAt | date:"yyyy-MM-dd"}}</span><span
+                      class="dot"></span><span>{{log.action}}</span>
+                  </div>
+                </ng-container>
+              </div>
             </ng-container>
           </div>
           <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'members' }" role="tabpanel"

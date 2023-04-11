@@ -9,18 +9,17 @@
     <div class="item-left">
 
     </div>
-    <div class="item-left">
-      <div *ngIf="user">
-        <i *ngIf="job.isCollect" (click)="onClickUnCollect()" style="color:#56BDF4"
-          class="fas fa-bookmark fa-lg mr-5"></i>
-        <i *ngIf="!job.isCollect" (click)="onClickCollect()" style="color:#56BDF4"
-          class="far fa-bookmark fa-lg mr-5"></i>
+    <div class="item-left" *ngIf="user">
 
-        <!-- <i class="far fa-comment-alt mr-5"></i> -->
-        <button type="button" data-toggle="modal" data-target="#modal_apply_job" data-dismiss="modal"
-          class="modal_apply_job" (click)="onClickApply(item)"><i class="far fa-envelope fa-lg modal_apply_job_btn"></i>
-        </button>
-      </div>
+      <i *ngIf="job.isCollect" (click)="onClickUnCollect()"
+        class="fas fa-bookmark fa-lg mr-5  fa-bookmark-selected"></i>
+      <i *ngIf="!job.isCollect" (click)="onClickCollect()" class="far fa-bookmark fa-lg mr-5  color-gray"></i>
+
+      <!-- <i class="far fa-comment-alt mr-5"></i> -->
+      <button type="button" data-toggle="modal" data-target="#modal_apply_job" data-dismiss="modal"
+        class="modal_apply_job" (click)="onClickApply(item)"><i class="far fa-envelope fa-lg color-gray"></i>
+      </button>
+
     </div>
   </div>
 

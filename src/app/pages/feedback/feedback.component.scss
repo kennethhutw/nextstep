@@ -18,7 +18,7 @@ app-feedback {
         -ms-grid-row-align: center;
         align-self: center;
         width: 100%;
-        padding: 0px 25px 10px 10px;
+        padding-bottom: 32px;
         display: grid;
         grid-auto-flow: column;
         grid-template-rows: 1fr;
@@ -77,6 +77,8 @@ app-feedback {
         background-color: #fff;
         margin-top: 20px;
         gap: 10px;
+        border-radius: 12px;
+        box-shadow: 1px 2px 9px rgba(0, 0, 0, 0.04) !important;
     }
 
     .comment {
@@ -150,12 +152,17 @@ app-feedback {
         gap: 20px;
     }
 
+    .fa-ellipsis-h {
+        color: #262E42;
+    }
+
     .footer {
         display: grid;
         grid-auto-flow: column;
         grid-template-rows: 1fr;
         grid-template-columns: 70px 70px 70px auto;
         gap: 10px;
+        padding-left: 0px;
 
         .cell {
             display: grid;

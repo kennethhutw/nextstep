@@ -311,6 +311,10 @@
   margin-top: 10px;
 }
 
+.mt-15 {
+  margin-top: 15px;
+}
+
 .mt-20 {
   margin-top: 20px !important;
 }
@@ -421,7 +425,7 @@
 .btn-blue {
   background-color: #56BDF4 !important;
   color: white !important;
-  border: 2px solid #56BDF4 !important;
+  // border: 2px solid #56BDF4 !important;
   border-radius: 4px !important;
   padding: 6px 12px 6px 12px !important;
 }
@@ -1688,7 +1692,9 @@ input[type=radio] {
   gap: 10px;
 }
 
-
+.gap-15 {
+  gap: 15px;
+}
 
 .empty-text-center {
   justify-content: center;
@@ -1866,7 +1872,7 @@ input[type=radio] {
 }
 
 .collected {
-  color: #56BDF4;
+  color: #8F95A8;
 }
 
 .dropdown-item:hover {
@@ -1929,4 +1935,5 @@ input[type=radio] {
   border: 1px solid #CFD2DA !important;
   padding: 8.75px 6px;
   border-radius: 4px;
+  font-size: 14px;
 }

@@ -41,6 +41,17 @@ a {
   line-height: 24px;
 }
 
+.fa-bell {
+  color: #8F95A8;
+}
+
+.font-20 {
+  font-size: 20px;
+}
+
+.font-25 {
+  font-size: 25px;
+}
 
 
 .navbar-light .navbar-nav .nav-link {
@@ -50,18 +61,6 @@ a {
   line-height: 24px;
 }
 
-// .active {
-//   color: #56BDF4 !important;
-
-// }
-
-// a {
-//   color: #000000;
-//   font-size: 18px;
-//   font-family: 'Roboto', sans-serif;
-//   font-weight: 400;
-//   padding-left: 8px;
-// }
 
 a.nav-link.active {
   color: #347A9F !important;
@@ -75,13 +74,6 @@ a.nav-link.active {
   font-weight: 300;
 }
 
-.icon {
-  padding: 8px;
-  padding-top: 12px;
-  font-size: 25px;
-  margin-left: 5px;
-  color: #8F95A8;
-}
 
 .notification-box {
   display: grid;
@@ -130,7 +122,7 @@ a.nav-link.active {
 
 .font-16 {
   font-size: 16px !important;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 24px;
 }
 
@@ -148,12 +140,25 @@ a.nav-link.active {
 i.noti {
   position: relative;
   display: block;
-  height: 50px;
-  width: 50px;
+  font-size: 24px;
 
   background-size: contain;
   text-decoration: none;
   color: #8F95A8;
+}
+
+i.noti:hover {
+  color: #56BDF4;
+}
+
+
+i.message {
+  color: #8F95A8;
+  font-size: 24px;
+}
+
+i.message:hover {
+  color: #56BDF4;
 }
 
 .num {
