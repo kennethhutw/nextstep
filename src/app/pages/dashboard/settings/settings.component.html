@@ -57,31 +57,45 @@
         <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'password' }" role="tabpanel"
           aria-labelledby="profile-tab">
           <div class="row" id="reset_form" [formGroup]="PasswordForm">
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="form-group">
 
-                <input type="password" class="form-control" placeholder="目前密碼" formControlName="currentPassword"
-                  style="margin-bottom: 15px;" />
+                <input [type]="showPassword ? 'text' : 'password'" class="form-control" placeholder="目前密碼"
+                  formControlName="currentPassword" style="margin-bottom: 15px;" />
+                <div class="input-group-addon" (click)="toggleShow()">
+                  <i class="fa color-gray" [ngClass]="{'fa-eye-slash':!showPassword, 'fa-eye':showPassword}"
+                    aria-hidden="true"></i>
+                </div>
+
                 <div *ngIf="submitted && f.currentPassword.errors">
                   <div class="error-msg" *ngIf="f.currentPassword.errors.required">請輸入目前密碼</div>
                 </div>
               </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="form-group">
-                <input type="password" class="form-control" placeholder="新密碼" formControlName="newPassword"
-                  autocomplete="off" style="margin-bottom: 15px;" />
+                <input [type]="showNewPassword ? 'text' : 'password'" class="form-control" placeholder="新密碼"
+                  formControlName="newPassword" autocomplete="off" style="margin-bottom: 15px;" />
+                <div class="input-group-addon" (click)="toggleNewShow()">
+                  <i class="fa color-gray" [ngClass]="{'fa-eye-slash':!showNewPassword, 'fa-eye':showNewPassword}"
+                    aria-hidden="true"></i>
+                </div>
                 <div *ngIf="submitted && f.newPassword.errors">
                   <div class="error-msg" *ngIf="f.newPassword.errors.required">請輸入新密碼</div>
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="form-group">
 
-                <input type="password" class="form-control" placeholder="再次輸入新密碼" [autocomplete]="'off'"
-                  formControlName="confirmPassword" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }">
+                <input [type]="showReNewPassword ? 'text' : 'password'" class="form-control" placeholder="再次輸入新密碼"
+                  [autocomplete]="'off'" formControlName="confirmPassword"
+                  [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }">
+                <div class="input-group-addon" (click)="toggleReNewShow()">
+                  <i class="fa color-gray" [ngClass]="{'fa-eye-slash':!showReNewPassword, 'fa-eye':showReNewPassword}"
+                    aria-hidden="true"></i>
+                </div>
                 <div class="error-msg" *ngIf="checkPasswords()"> 與新密碼不符合‘</div>
                 <div *ngIf="submitted && f.confirmPassword.errors">
                   <div class="error-msg" *ngIf="f.confirmPassword.errors.required">請輸入新密碼</div>

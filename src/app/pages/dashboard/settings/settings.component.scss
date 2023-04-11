@@ -21,3 +21,11 @@ input[type="text"] {
   margin-top: 20px;
   flex-direction: column;
 }
+
+
+.input-group-addon {
+  position: absolute;
+  left: auto;
+  right: 25px;
+  top: 5px;
+}

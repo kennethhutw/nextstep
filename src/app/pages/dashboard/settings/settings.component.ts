@@ -32,6 +32,10 @@ export class SettingsComponent implements OnInit {
   privacyMsg = "";
   notifMsg = "";
   passwordMsg = "";
+
+  showPassword = false;
+  showNewPassword = false;
+  showReNewPassword = false;
   constructor(
     private translateSrv: TranslateService,
     private utility: Utility,
@@ -208,5 +212,15 @@ export class SettingsComponent implements OnInit {
       console.error("cannot get setting.", error);
       this.notifMsg = "Update failed";
     }))
+  }
+
+  toggleShow() {
+    this.showPassword = !this.showPassword;
+  }
+  toggleNewShow() {
+    this.showNewPassword = !this.showNewPassword;
+  }
+  toggleReNewShow() {
+    this.showReNewPassword = !this.showReNewPassword;
   }
 }
