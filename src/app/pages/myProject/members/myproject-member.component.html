@@ -136,11 +136,7 @@
                                         </p> -->
                                     </div>
                                     <div class="item" style="  margin-left: auto;padding-right: 20px;">
-                                        <!--   <a *ngIf="!member.isOwner" class="text-md m-0" (click)="onChat(member)">前往對話
-                                        </a> -->
-                                        <!-- <i *ngIf="this.isAllowEdit()" class="fas fa-pencil-alt icon color-gray"
-                                            data-toggle="modal" [attr.data-target]="'#memberInfoModal'"
-                                            (click)="onEditMemberInfo($event, member)"></i> -->
+
                                         <div class="dropdown" *ngIf="this.isAllowEdit()">
                                             <i class="fas fa-ellipsis-h" data-toggle="dropdown" aria-haspopup="true"
                                                 aria-expanded="true"></i>

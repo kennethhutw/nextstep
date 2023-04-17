@@ -3,47 +3,13 @@ app-create-project {
     width: 50%;
   }
 
-  .button-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
 
-  .nav-item {
-    position: relative;
-    width: 50px;
-    text-align: center;
-    display: inline-block;
 
-    padding: 2px 5px 2px 5px;
-  }
-
-  .pos-rel .step {
-    color: #fff;
-    background-color: #ECECEC;
-    border-radius: 50%;
-    width: 25px;
-    padding: 2px 10px;
-    margin-right: 5px;
-  }
 
   .selected {
     background-color: #2EC2E2 !important;
   }
 
-  .pos-rel .nav-item:not(:last-child) {
-    margin-right: 25px;
-  }
-
-  .pos-rel .nav-item:not(:last-child):after {
-    position: absolute;
-    content: '';
-    right: -30%;
-    top: 0%;
-    width: 50%;
-    height: 50%;
-    border-bottom: 2px solid black;
-  }
 
   .btn-cancel,
   .btn-back {

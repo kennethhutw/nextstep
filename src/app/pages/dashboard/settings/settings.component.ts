@@ -137,6 +137,7 @@ export class SettingsComponent implements OnInit {
   get f() {
     return this.PasswordForm.controls;
   }
+
   checkPasswords() {
 
     let pass = this.PasswordForm.get('newPassword').value;
@@ -162,10 +163,14 @@ export class SettingsComponent implements OnInit {
           this.PasswordForm.reset();
         } else {
           this.passwordMsg = res['message'];
+          if ("Password is not correct" === this.passwordMsg) {
+            this.passwordMsg = "密碼不符";
+          }
         }
+
       }, error => {
         console.log("reset password failed", error);
-        this.passwordMsg = "Updated failed";
+        this.passwordMsg = "更新失敗";
       })
   }
 
@@ -223,4 +228,12 @@ export class SettingsComponent implements OnInit {
   toggleReNewShow() {
     this.showReNewPassword = !this.showReNewPassword;
   }
+
+  inValid() {
+
+    const values = this.PasswordForm.value;
+    let _isEmpty = this.utility.IsNullOrEmpty(values.currentPassword) && this.utility.IsNullOrEmpty(values.newPassword) && this.utility.IsNullOrEmpty(values.confirmPassword);
+    return !this.f.invalid && !_isEmpty;
+  }
+
 }

@@ -63,7 +63,7 @@
                 <input [type]="showPassword ? 'text' : 'password'" class="form-control" placeholder="目前密碼"
                   formControlName="currentPassword" style="margin-bottom: 15px;" />
                 <div class="input-group-addon" (click)="toggleShow()">
-                  <i class="fa color-gray" [ngClass]="{'fa-eye-slash':!showPassword, 'fa-eye':showPassword}"
+                  <i class="fa color-ligh-gray" [ngClass]="{'fa-eye-slash':!showPassword, 'fa-eye':showPassword}"
                     aria-hidden="true"></i>
                 </div>
 
@@ -78,7 +78,7 @@
                 <input [type]="showNewPassword ? 'text' : 'password'" class="form-control" placeholder="新密碼"
                   formControlName="newPassword" autocomplete="off" style="margin-bottom: 15px;" />
                 <div class="input-group-addon" (click)="toggleNewShow()">
-                  <i class="fa color-gray" [ngClass]="{'fa-eye-slash':!showNewPassword, 'fa-eye':showNewPassword}"
+                  <i class="fa color-ligh-gray" [ngClass]="{'fa-eye-slash':!showNewPassword, 'fa-eye':showNewPassword}"
                     aria-hidden="true"></i>
                 </div>
                 <div *ngIf="submitted && f.newPassword.errors">
@@ -93,8 +93,8 @@
                   [autocomplete]="'off'" formControlName="confirmPassword"
                   [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }">
                 <div class="input-group-addon" (click)="toggleReNewShow()">
-                  <i class="fa color-gray" [ngClass]="{'fa-eye-slash':!showReNewPassword, 'fa-eye':showReNewPassword}"
-                    aria-hidden="true"></i>
+                  <i class="fa color-ligh-gray"
+                    [ngClass]="{'fa-eye-slash':!showReNewPassword, 'fa-eye':showReNewPassword}" aria-hidden="true"></i>
                 </div>
                 <div class="error-msg" *ngIf="checkPasswords()"> 與新密碼不符合‘</div>
                 <div *ngIf="submitted && f.confirmPassword.errors">
@@ -105,15 +105,15 @@
 
             </div>
 
-            <div class="col-md-4 mb-12 ">
+            <div class="col-md-6 mb-12 ">
               <div class="form-group">
-                <button type="button" [attr.disabled]="f.invalid" class="btn btn-blue mr-10 w-100"
-                  (click)="onResetPassword()">重設
+                <button type="button" [ngClass]="{ 'btn-disabled': inValid() == false  }" [disabled]="!inValid()"
+                  class="btn btn-blue mr-10 w-100 btn-disabled" (click)="onResetPassword()">重設
                 </button>
               </div>
             </div>
             <div class="col-md-4 mb-12 form-group ">
-              <span>{{passwordMsg}}</span>
+              <span class="error-msg">{{passwordMsg}}</span>
             </div>
           </div>
         </div>

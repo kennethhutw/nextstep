@@ -186,6 +186,10 @@ export class PubProfileComponent implements OnInit {
     })
   }
 
+  get g() {
+    return this.experienceForm.controls;
+  }
+
 
   onClickFollow(event) {
     if (this.userProfile.isFollowing) {

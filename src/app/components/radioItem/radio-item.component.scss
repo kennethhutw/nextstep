@@ -1,9 +1,5 @@
 ui-radio-item {
-  .button-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+
 
   .bar {
     padding: 12px 24px;
@@ -33,77 +29,10 @@ ui-radio-item {
   .item-description {
     font-size: 16px;
     line-height: 24px;
-    color: rgba(33, 37, 41, 0.7)
+    color: rgba(33, 37, 41, 0.7);
+    padding-top: 8px;
   }
 
-  /*
-.card:hover {
-  border: 2px solid var(--action-pri-active);
-}
-
-.card:hover .dropdown {
-  display: block;
-} */
-
-  .icon-button {
-    padding: 6px 9.5px;
-    font-size: 18px;
-    border-radius: var(--br-circle);
-    background-color: transparent;
-    color: var(--grey-50);
-    transition: 200ms;
-    cursor: pointer;
-  }
-
-  .icon-button:hover {
-    background-color: var(--grey-7);
-    color: var(--grey-85);
-  }
-
-  .cursor-pointer {
-    cursor: pointer;
-  }
-
-  .danger {
-    color: var(--danger);
-    font-family: var(--font-nunito);
-  }
-
-  .table-scroll {
-    max-height: 550px;
-    overflow-y: auto;
-  }
-
-  .borderlabel {
-    border: 1px solid #6c757d !important;
-    border-color: #6c757d;
-    border-radius: var(--br-circle);
-    font-family: var(--font-nunito);
-    font-weight: 600;
-    font-size: var(--fs-xs);
-    color: #6c757d;
-    padding: 3px 10px;
-  }
-
-  .badge {
-    font-size: 12px;
-    color: #ffffff;
-    background-color: var(--danger);
-    border-radius: var(--br-circle);
-    position: relative;
-    /* margin-top: -80px; */
-    top: -10px;
-
-  }
-
-  .hide {
-    display: none;
-  }
-
-  .icon {
-    padding-left: 5px;
-    padding-right: 5px;
-  }
 
   .switch {
     display: inline-block;
@@ -116,41 +45,5 @@ ui-radio-item {
     display: none;
   }
 
-  .slider {
-    background-color: #ccc;
-    bottom: 0;
-    cursor: pointer;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    transition: .4s;
-  }
 
-  .slider:before {
-    background-color: #fff;
-    bottom: 4px;
-    content: "";
-    height: 26px;
-    left: 4px;
-    position: absolute;
-    transition: .4s;
-    width: 26px;
-  }
-
-  input:checked+.slider {
-    background-color: #56BDF4;
-  }
-
-  input:checked+.slider:before {
-    transform: translateX(26px);
-  }
-
-  .slider.round {
-    border-radius: 34px;
-  }
-
-  .slider.round:before {
-    border-radius: 50%;
-  }
 }

@@ -23,6 +23,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { E } from "@angular/core/src/render3";
+import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 
 @Component({
   selector: "app-mentor-profile",
@@ -502,6 +503,9 @@ export class MentorProfileComponent implements OnInit {
 
   }
 
+  onAddExp() {
+    this.experienceForm.reset();
+  }
   onEditExp(exp) {
     this.experienceForm.setValue({
       id: exp.id,
@@ -603,6 +607,10 @@ export class MentorProfileComponent implements OnInit {
 
   onProjectImgError(event) {
     event.target.src = "assets/images/defaultlogo.png";
+  }
+
+  get g() {
+    return this.experienceForm.controls;
   }
 }
 //https://www.sliderrevolution.com/resources/bootstrap-profile/

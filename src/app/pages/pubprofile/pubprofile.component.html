@@ -65,9 +65,7 @@
       <div class="row">
         <div class="col-md-12 mb-24 title_section">
           <span class="title">個人簡介</span>
-          <!-- <a type="button" *ngIf="currentUser?.id == userProfile.id" class="btn-standard" (click)="initProfileForm()"><img src="./assets/icons/edit.png"
-              alt="edit" width="21px"> 編輯
-          </a> -->
+
           <span *ngIf="currentUser?.id == userProfile.id" class="btn-standard" data-toggle="modal"
             [attr.data-target]="'#editprofile'" (click)="initProfileForm()">
             <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</span>
@@ -259,9 +257,8 @@
               <!--Menu-->
               <div class="dropdown-menu dropdown-primary" aria-labelledby="dropdownMenu2">
                 <a class="dropdown-item" (click)="onEditExp(exp)" data-toggle="modal"
-                  [attr.data-target]="'#experienceModal'"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Edit</a>
-                <a class="dropdown-item" (click)="onDeleteExp(exp)"><i class="fas fa-trash"></i>&nbsp;&nbsp;Delete</a>
-                <!-- <a class="dropdown-item" href="#"><i class="far fa-envelope"></i>&nbsp;&nbsp;Check mail</a> -->
+                  [attr.data-target]="'#experienceModal'"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</a>
+                <a class="dropdown-item" (click)="onDeleteExp(exp)"><i class="fas fa-trash"></i>&nbsp;&nbsp;刪除</a>
               </div>
             </div>
           </div>
@@ -298,7 +295,7 @@
       <div class="modal-body content">
         <form [formGroup]="profileForm">
           <div class="form-group">
-            <label for="inputName">姓名</label>
+            <label for="inputName">姓名<span class="color-red">*</span></label>
             <input type="text" class="form-control rounded-0" formControlName="name" id="inputName"
               aria-describedby="emailHelp" placeholder="Enter name">
             <div *ngIf="submitted && f.name.errors">
@@ -390,10 +387,13 @@
             <label for="inputContent">自我介紹</label>
             <textarea class="form-control" type="text" id="bio" formControlName="bio" rows="4" cols="50"></textarea>
           </div>
-          <button type="button" class="btn btn-white  mr-10" data-dismiss="modal" aria-label="Close">取消
-          </button>
-          <button type="button" class="btn btn-blue  mr-10" (click)="onProfileSubmit()">
-            儲存</button>
+          <div class="row item-end">
+            <button type="button" class="btn btn-transparent  mr-10" data-dismiss="modal" aria-label="Close">取消
+            </button>
+            <button type="button" class="btn btn-blue  mr-10" (click)="onProfileSubmit()">
+              儲存</button>
+          </div>
+
         </form>
 
       </div>
@@ -416,29 +416,29 @@
         <form [formGroup]="experienceForm">
 
           <div class="form-group">
-            <label for="inputExpCompany">公司</label>
+            <label for="inputExpCompany">公司<span class="color-red">*</span></label>
             <input type="text" class="form-control rounded-0" formControlName="company" id="inputExpCompany"
               placeholder="公司名稱">
           </div>
           <div class="form-group">
-            <label for="inputExpPosition">職稱</label>
+            <label for="inputExpPosition">職稱<span class="color-red">*</span></label>
             <input type="text" class="form-control rounded-0" formControlName="position" id="inputExpPosition"
               placeholder="職稱">
           </div>
 
           <div class="form-group">
-            <label for="inputSkills">期間</label>
+            <label for="inputSkills">期間<span class="color-red">*</span></label>
             <div class=" rounded-0">
               <input id="isCurrent" type="checkbox" formControlName="isCurrent" data-key="isCurrent" />
               <label for="isCurrent">現任工作</label>
             </div>
             <div class="during rounded-0">
               <select id="startYear" formControlName="startYear">
-                <option>年</option>
+                <option value="">年</option>
                 <option *ngFor="let year of  years" value="{{year}}">{{year}}</option>
               </select>
               <select id="startMonth" formControlName="startMonth">
-                <option>月</option>
+                <option value="">月</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -452,13 +452,14 @@
                 <option value="11">11</option>
                 <option value="12">12</option>
               </select>
-              <span>至</span>
-              <select id="endYear" formControlName="endYear">
-                <option>年</option>
+
+              <span *ngIf="!g.isCurrent.value" class="pt-6 pl-12 pr-12">至</span>
+              <select id="endYear" formControlName="endYear" *ngIf="!g.isCurrent.value">
+                <option value="">年</option>
                 <option *ngFor="let year of  years" value="{{year}}">{{year}}</option>
               </select>
-              <select id="endMonth" formControlName="endMonth">
-                <option>月</option>
+              <select id="endMonth" formControlName="endMonth" *ngIf="!g.isCurrent.value">
+                <option value="">月</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -477,14 +478,16 @@
 
           <div class="form-group">
             <label for="inputPosition">簡介</label>
-            <textarea class="form-control" type="text" id="content" formControlName="content" rows="4"
-              cols="50"></textarea>
+            <textarea class="form-control" placeholder="描述工作內容" type="text" id="content" formControlName="content"
+              rows="4" cols="50"></textarea>
           </div>
-          <button type="button" class="btn btn-white mr-10" data-dismiss="modal" aria-label="Close"
-            (click)="onCancelEditExp()">取消
-          </button>
-          <button type="button" class="btn btn-blue mr-10" (click)="onExperienceSubmit()">
-            儲存</button>
+          <div class="row item-end">
+            <button type="button" class="btn btn-transparent  mr-10" data-dismiss="modal" aria-label="Close"
+              (click)="onCancelEditExp()">取消
+            </button>
+            <button type="button" class="btn btn-blue mr-10" (click)="onExperienceSubmit()">
+              儲存</button>
+          </div>
         </form>
 
       </div>

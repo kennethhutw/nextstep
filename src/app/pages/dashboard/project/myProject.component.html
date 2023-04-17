@@ -56,19 +56,20 @@
                                     </div>
 
                                     <div class="d-flex align-items-center justify-right">
-                                        <div class="dropdown"><i class="fas fa-ellipsis-h" data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="true"></i>
+                                        <div class="dropdown "><i class="fas fa-ellipsis-h color-gray"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></i>
                                             <div class="dropdown-menu"> <a class="dropdown-item"
-                                                    [routerLink]="['/myproject/'+this.item?.id+'/members']"><svg-icon
-                                                        src="assets/icons/invite.svg"></svg-icon>&nbsp;&nbsp;邀請</a><a
-                                                    class="dropdown-item"
-                                                    [routerLink]="['/myproject/'+this.item?.id+'/settings']"><svg-icon
-                                                        src="assets/icons/cog.svg"></svg-icon>&nbsp;&nbsp;設定</a><a
-                                                    class="dropdown-item"
-                                                    [routerLink]="['/myproject/'+this.item?.id+'/profile']"><svg-icon
-                                                        src="assets/icons/pencil.svg"></svg-icon>&nbsp;&nbsp;編輯</a> <a
-                                                    class="dropdown-item" (click)="onClickDelete(event, item)"><svg-icon
-                                                        src="assets/icons/trash.svg"></svg-icon>&nbsp;&nbsp;刪除</a></div>
+                                                    [routerLink]="['/myproject/'+this.item?.id+'/members']">
+                                                    <svg-icon src="assets/icons/invite.svg"></svg-icon>&nbsp;&nbsp;邀請
+                                                </a><a class="dropdown-item"
+                                                    [routerLink]="['/myproject/'+this.item?.id+'/settings']">
+                                                    <svg-icon src="assets/icons/cog.svg"></svg-icon>&nbsp;&nbsp;設定
+                                                </a><a class="dropdown-item"
+                                                    [routerLink]="['/myproject/'+this.item?.id+'/profile']">
+                                                    <svg-icon src="assets/icons/pencil.svg"></svg-icon>&nbsp;&nbsp;編輯
+                                                </a> <a class="dropdown-item" (click)="onClickDelete(event, item)">
+                                                    <svg-icon src="assets/icons/trash.svg"></svg-icon>&nbsp;&nbsp;刪除
+                                                </a></div>
 
                                         </div>
 
