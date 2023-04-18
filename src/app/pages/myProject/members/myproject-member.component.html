@@ -1,15 +1,15 @@
 <div class=" mb-80">
     <div class="row">
         <div class="col-md-12 mb-20" style="display: inline-block;">
-            <span class="title">成員管理</span>
+            <h1>成員管理</h1>
 
-            <a type="button" class="btn mr-10 float-right" data-toggle="modal" [attr.data-target]="'#invitedMember'"><i
-                    class="fas fa-plus"></i> 邀請成員
+            <a type="button" class="btn btn-transparent mr-10 float-right" data-toggle="modal"
+                [attr.data-target]="'#invitedMember'"><i class="fa fa-plus"></i> 邀請成員
             </a>
-            <a type="button" class="btn mr-10 float-right" data-toggle="modal" [attr.data-target]="'#createRcruitModal'"
-                (click)="onCreateRecruit()"><i class="fas fa-plus"></i>
+            <a type="button" class="btn btn-transparent mr-10 float-right" data-toggle="modal"
+                [attr.data-target]="'#createRcruitModal'" (click)="onCreateRecruit()"><i class="fas fa-plus"></i>
                 招募成員</a>
-            <select *ngIf="this.isAllowEdit()" class="btn mr-10 float-right" [disabled]="!canMoveMember"
+            <select *ngIf="this.isAllowEdit()" class="btn btn-transparent mr-10 float-right" [disabled]="!canMoveMember"
                 [value]="status" (change)="onStatusChange($event)">
                 <option value="null">移動成員去</option>
                 <option value="current">現在成員</option>
@@ -28,32 +28,33 @@
                 <li class="nav-item" role="presentation">
                     <button class="nav-link " id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
                         [ngClass]="{ 'active': currentTab === 'current' }" type="button" role="tab"
-                        (click)="changeTab('current')"><span class="num">{{current.length}}</span>目前成員</button>
+                        (click)="changeTab('current')"><span class="num"
+                            [ngClass]="{ 'active': currentTab === 'current' }">{{current.length}}</span>目前成員</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'candidate' }"
-                        type="button" role="tab" (click)="changeTab('candidate')"><span
-                            class="num">{{candidates.length}}</span>申請加入</button>
+                        type="button" role="tab" (click)="changeTab('candidate')"><span class="num"
+                            [ngClass]="{ 'active': currentTab === 'candidate' }">{{candidates.length}}</span>申請加入</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'inviting' }"
-                        type="button" role="tab" (click)="changeTab('inviting')"><span
-                            class="num">{{invitingList.length}}</span>邀請中</button>
+                        type="button" role="tab" (click)="changeTab('inviting')"><span class="num"
+                            [ngClass]="{ 'active': currentTab === 'inviting' }">{{invitingList.length}}</span>邀請中</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'interview' }"
-                        type="button" role="tab" (click)="changeTab('interview')"><span
-                            class="num">{{interviews.length}}</span>面談中</button>
+                        type="button" role="tab" (click)="changeTab('interview')"><span class="num"
+                            [ngClass]="{ 'active': currentTab === 'interview' }">{{interviews.length}}</span>面談中</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'rejected' }"
-                        type="button" role="tab" (click)="changeTab('rejected')"><span
-                            class="num">{{rejected.length}}</span>已拒絕</button>
+                        type="button" role="tab" (click)="changeTab('rejected')"><span class="num"
+                            [ngClass]="{ 'active': currentTab === 'rejected' }">{{rejected.length}}</span>已拒絕</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'history' }"
-                        type="button" role="tab" (click)="changeTab('history')"><span
-                            class="num">{{past.length}}</span>歷程成員</button>
+                        type="button" role="tab" (click)="changeTab('history')"><span class="num"
+                            [ngClass]="{ 'active': currentTab === 'history' }">{{past.length}}</span>歷程成員</button>
                 </li>
 
             </ul>
@@ -533,10 +534,11 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h1>邀請成員</h1>
+                <span class="modal-title">邀請成員</span>
                 <button type="button" id="close_invited" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
+
             </div>
             <div class="modal-body">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -554,7 +556,7 @@
                     <div class="tab-pane" [ngClass]="{ 'active': invitedTab === 'userId' }" role="tabpanel"
                         aria-labelledby="userId-tab">
                         <div class="row mt-10">
-                            <label for="userId" class="col-sm-2 col-form-label text-nowrap">User ID</label>
+                            <label for="userId" class="col-sm-2 col-form-label text-nowrap">使用者ID</label>
                             <div class="col-sm-10">
                                 <input type="text" [(ngModel)]="invitedUserId" class="form-control rounded-0"
                                     id="userId" aria-describedby="nameHelp" placeholder="ID">
@@ -575,13 +577,13 @@
                         aria-labelledby="userId-tab">
                         <form [formGroup]="invitationForm">
                             <div class="form-group row mt-10">
-                                <label for="staticName" class="col-sm-2 col-form-label text-nowrap">Name</label>
+                                <label for="staticName" class="col-sm-2 col-form-label text-nowrap">姓名</label>
                                 <div class="col-sm-10">
                                     <input type="text" formControlName="name" class="form-control rounded-0"
-                                        id="staticName" aria-describedby="nameHelp" placeholder="Enter name">
+                                        id="staticName" aria-describedby="nameHelp" placeholder="請輸入姓名">
                                     <div *ngIf="submitted && f.name.errors">
                                         <div class="error-msg" *ngIf="f.name.errors.required">
-                                            Name is required
+                                            姓名是必須的
                                         </div>
                                     </div>
                                 </div>
@@ -593,7 +595,7 @@
                                         id="staticEmail" aria-describedby="emailHelp" placeholder="Enter email">
                                     <div *ngIf="submitted && f.email.errors">
                                         <div class="error-msg" *ngIf="f.email.errors.required">
-                                            Email is required
+                                            Email是必須的
                                         </div>
                                     </div>
                                 </div>
@@ -615,7 +617,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h1>成員</h1>
+                <span class="modal-title">成員</span>
                 <button type="button" id="close_invited" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -630,7 +632,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h1>招募成員</h1>
+                <span class="modal-title">招募成員</span>
                 <button type="button" id="close_recruit" #close_recruit_button class="close" data-dismiss="modal"
                     aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -694,7 +696,8 @@
 </div>
 <div [class.show]="isChat" class="full">
     <lab-custom-modal [open]="isChat" (close)="onToggleChat($event)">
-        <h3 class="title" title>Chat</h3><span aria-hidden="true">X&times;</span>
+        <h3 class="title" title><img class="profile-image-small rounded-circle mr-10" src="{{ reciver?.imageUrl }}"
+                (error)="onImgError($event)" alt="" />{{reciver?.name}}</h3><span aria-hidden="true">X&times;</span>
         <div>
         </div>
         <lab-comments [currentUser]="currentUser" [receiverUser]="reciver" (close)="onToggleChat($event)" body>
@@ -709,7 +712,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <span>編輯個人資料</span>
+                <span class="modal-title">編輯個人資料</span>
                 <button type="button" #closeInfobutton class="close" data-dismiss="modal" aria-label="Close"
                     (click)="onCancelInfo()">
                     <span aria-hidden="true">&times;</span>
