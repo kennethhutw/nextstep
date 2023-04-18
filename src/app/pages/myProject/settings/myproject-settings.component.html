@@ -1,7 +1,7 @@
 <div class=" mb-80">
     <div class="row">
         <div class="col-md-12">
-            <span class="title">專案設定</span>
+            <h1>專案設定</h1>
         </div>
     </div>
     <div class="row" *ngIf="this.currentProject">
@@ -16,29 +16,56 @@
                 (onChange)="onMemberChange($event)"></ui-radio-item>
         </div>
         <div class="col-md-12">
-            <div class="row  pl-15">
-                <div class="card mt-3 cursor-pointer w-100">
+            <div class="row pl-15">
+                <div class="bar mt-3 w-100">
                     <div class="item-text">
                         <p class="text-md m-0">刪除專案
                         </p>
-                        <!--  <p class="text-md m-0 item-delete">此動作不可復原
-                        </p> -->
+                        <p class="text-md m-0 item-delete">此動作不可復原
+                        </p>
                     </div>
-                    <div class="d-flex align-items-center">
-                        <button type="button" class="btn btn-blue mr-10" (click)="onDeleteProject()">刪除專案
-                        </button>
-                    </div>
+                    <button type="button" class=" btn-transparent  mr-10" data-toggle="modal"
+                        [attr.data-target]="'#deleteProjectModal'">刪除專案
+                    </button>
+
                 </div>
 
             </div>
         </div>
-        <!--     <div class="col-md-12 mt-10 mb-12 form-group button-center">
-            <button type="button" class="btn btn-blue mr-10" (click)="onSave()">儲存
-            </button>
-        </div>
-        <div class="col-md-12 mt-10 mb-12 form-group button-center">
-            <span>{{msg}}</span>
-        </div> -->
+
     </div>
 </div>
 <app-dialog></app-dialog>
+
+<!-- edit experience start -->
+<div class="modal fade" id="deleteProjectModal" tabindex="-1" aria-labelledby="deleteProjectModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">確定刪除此專案?</span>
+                <button type="button" #closeExpbutton class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body content">
+                <p class="text-md m-0 item-delete">此動作不可復原
+                </p>
+                <p class="text-md m-0">
+                    若確定要刪除此專案，請在下列欄位中輸入專案名稱:<strong>{{this.currentProject?.name}}</strong>。
+                </p>
+                <input type="text" id="projectname" [(ngModel)]="projectName" class="form-control mr-10 mt-32">
+                <div class="row item-end">
+                    <button type="button" class="btn btn-transparent  mr-10" data-dismiss="modal" aria-label="Close">取消
+                    </button>
+                    <button type="button" class="btn   mr-10 "
+                        [ngClass]="{'btn-disabled':projectName.length ==0,'btn-delete':projectName.length >0}"
+                        (click)="onDeleteProject()">
+                        確認</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

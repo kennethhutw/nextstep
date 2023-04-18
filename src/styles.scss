@@ -494,6 +494,15 @@ a.nav-link:hover {
   pointer-events: none;
 }
 
+.btn-delete {
+  background-color: #FF3356 !important;
+  color: white !important;
+  border: 1px solid #FF3356 !important;
+  border-radius: 4px !important;
+  padding: 6px 12px 6px 12px !important;
+
+}
+
 
 .btn_small:focus,
 .btn_normal:focus,
@@ -1865,6 +1874,7 @@ input[type=radio] {
 
 .dropdown-item:hover {
   background-color: transparent !important;
+  color: #56BDF4 !important;
 
   svg-icon svg path {
     fill: #56BDF4 !important;

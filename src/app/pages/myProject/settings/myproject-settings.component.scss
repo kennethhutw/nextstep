@@ -1,100 +1,28 @@
-.title {
-  font-size: 40px;
-  font-weight: 400;
-}
-
-.btn {
-  min-width: 150px;
+.item-text {
+  display: flex;
+  flex-direction: column;
 }
 
 
-.card {
+
+
+.item-delete {
+  font-size: 16px;
+  line-height: 24px;
+  color: #FF3356;
+}
+
+
+.bar {
   padding: 12px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   transition: 200ms;
   flex-direction: row;
+  border: 0px;
 }
 
-.card:hover {
-  border: 2px solid var(--action-pri-active);
-}
-
-.card:hover .dropdown {
-  display: block;
-}
-
-
-
-.switch {
-  display: inline-block;
-  height: 34px;
-  position: relative;
-  width: 60px;
-}
-
-.switch input {
-  display: none;
-}
-
-.slider {
-  background-color: #ccc;
-  bottom: 0;
-  cursor: pointer;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  transition: .4s;
-}
-
-.slider:before {
-  background-color: #fff;
-  bottom: 4px;
-  content: "";
-  height: 26px;
-  left: 4px;
-  position: absolute;
-  transition: .4s;
-  width: 26px;
-}
-
-input:checked+.slider {
-  background-color: #56BDF4;
-}
-
-input:checked+.slider:before {
-  transform: translateX(26px);
-}
-
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-
-.item-text {
-  display: flex;
-  flex-direction: column;
-}
-
-.item-title {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 24px;
-}
-
-.item-description {
-  font-size: 16px;
-  line-height: 24px;
-  color: rgba(33, 37, 41, 0.7)
-}
-
-.item-delete {
-  font-size: 16px;
-  line-height: 24px;
-  color: #FF3356;
+.mt-32 {
+  margin-top: 32px;
 }

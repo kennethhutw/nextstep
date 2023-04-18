@@ -2,13 +2,14 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 
 import {
   DialogService,
-  ProjectService
+  ProjectService,
+  ToastService,
 } from '../../../_services';
 import {
   AuthStore
 } from "../../../_services/auth.store";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import {
   Utility
 } from '../../../_helpers';
@@ -27,12 +28,12 @@ export class MyProjectProfileComponent implements OnInit, AfterViewInit {
   currentUser;
   projectMsg = "";
   currentProject = null;
-
+  mode = "view";
   constructor(
     private utilitySrv: Utility,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private dialogSrv: DialogService,
+    private toastSrv: ToastService,
     private projectSrv: ProjectService,
     private authStoreSrv: AuthStore,
     private spinnerSrv: NgxSpinnerService) {
@@ -43,11 +44,11 @@ export class MyProjectProfileComponent implements OnInit, AfterViewInit {
     this.spinnerSrv.show();
     this.projectForm = this.formBuilder.group({
       name: ["", Validators.required],
-      description: ["", Validators.required],
-      isFindPartner: [0, Validators.required],
-      isFunding: [0, Validators.required],
-      isCofounder: [0, Validators.required],
-      product: ["", Validators.required],
+      description: [""],
+      isFindPartner: [0],
+      isFunding: [0],
+      isCofounder: [0],
+      product: [""],
       type: ["", Validators.required],
       stages: ["", Validators.required],
     });
@@ -82,18 +83,103 @@ export class MyProjectProfileComponent implements OnInit, AfterViewInit {
     this.projectForm.get(property).setValue($event.target.checked);
   }
 
+  getStatus() {
+    let content = "";
+
+    if (this.projectForm.value.isFindPartner) {
+      content += " 徵成員中,"
+    }
+
+    if (this.projectForm.value.isFunding) {
+      content += " 募資中,"
+    }
+
+    if (this.projectForm.value.isCofounder) {
+      content += " 找共同創辦人,"
+    }
+    if (content.length > 0) {
+      content = content.substring(0, content.length - 1);
+    }
+    return content;
+  }
+
+  getIndustryType() {
+    let content = "";
+
+    if (this.projectForm.value.type.indexOf('eComm') > 0) {
+      content += " 電子商務,"
+    }
+
+    if (this.projectForm.value.type.indexOf('ai') > 0) {
+      content += " 人工智慧,"
+    }
+    if (this.projectForm.value.type.indexOf('edutech') > 0) {
+      content += " 教育科技,"
+    }
+    if (this.projectForm.value.type.indexOf('sharingeconomy') > 0) {
+      content += " 共享經濟,"
+    }
+    if (this.projectForm.value.type.indexOf('medical') > 0) {
+      content += " 醫學科技,"
+    }
+    if (this.projectForm.value.type.indexOf('transport') > 0) {
+      content += " 運輸服務,"
+    }
+    if (this.projectForm.value.type.indexOf('fintech') > 0) {
+      content += " 金融科技,"
+    }
+    if (this.projectForm.value.type.indexOf('game') > 0) {
+      content += " 遊戲產業,"
+    }
+    if (this.projectForm.value.type.indexOf('platform') > 0) {
+      content += " 平台,"
+    }
+    if (content.length > 0) {
+      content = content.substring(0, content.length - 1);
+    }
+    return content;
+  }
+
+  getStage() {
+    let content = "";
+
+    if (this.projectForm.value.stages.indexOf('idea') > 0) {
+      content += " 已有創業概念,"
+    }
+
+    if (this.projectForm.value.stages.indexOf('businessplan') > 0) {
+      content += " 商業計畫初稿,"
+    }
+
+    if (this.projectForm.value.stages.indexOf('findpartner') > 0) {
+      content += " 找創業夥伴,"
+    }
+    if (this.projectForm.value.stages.indexOf('buildMVP') > 0) {
+      content += " 建構最小可行性產品(MVP),"
+    }
+    if (this.projectForm.value.stages.indexOf('producttested') > 0) {
+      content += " 驗證產品中,"
+    }
+    if (this.projectForm.value.stages.indexOf('findcustomers') > 0) {
+      content += " 找用戶中,"
+    }
+    if (this.projectForm.value.stages.indexOf('findpayingcustomers') > 0) {
+      content += " 找付費用戶中,"
+    }
+
+    if (content.length > 0) {
+      content = content.substring(0, content.length - 1);
+    }
+    return content;
+  }
+
   onStageChange($event, value) {
     var _values = this.projectForm.get('stages').value;
 
     if ($event.target.checked) {
-      if (_values.indexOf(',') > 0) {
-        _values += "," + value;
-      } else {
-        _values += value;
-      }
+      _values += "," + value;
     } else {
       _values = _values.replace("," + value, "");
-      _values = _values.replace(value, "");
     }
     this.projectForm.get('stages').setValue(_values);
   }
@@ -158,15 +244,54 @@ export class MyProjectProfileComponent implements OnInit, AfterViewInit {
     }).subscribe(res => {
 
       if (res['result'] === 'successful') {
-        this.projectMsg = "Update successfully.";
+        this.projectMsg = "更新成功";
+        this.mode = "view";
+        this.toastSrv.showToast('Success', "更新成功 ", this.toastSrv.iconClasses.success);
       }
     }, error => {
-      this.projectMsg = "Update failed.";
+      this.projectMsg = "更新失敗";
       console.error("updated error", error);
+      this.toastSrv.showToast('Failed', "更新失敗", this.toastSrv.iconClasses.error);
     })
   }
 
   onSaveDraft() {
+    this.submitted = true;
+    this.projectMsg = "";
+    if (this.projectForm.invalid) {
+      return;
+    }
+    const value = this.projectForm.value;
+    this.projectSrv.insertProject({
+      name: value.name,
+      description: value.description,
+      status: 'draft',
+      product: value.product,
+      type: value.type,
+      stage: value.stages,
+      isFindPartner: value.isFindPartner,
+      isFunding: value.isFunding,
+      isCofounder: value.isCofounder,
+      uid: this.currentUser.id
+    }).subscribe(res => {
 
+      if (res['result'] === 'successful') {
+        this.projectMsg = "存草稿成功";
+        this.mode = "view";
+        this.toastSrv.showToast('Success', "存草稿成功 ", this.toastSrv.iconClasses.success);
+      }
+    }, error => {
+      this.projectMsg = "存草稿失敗";
+      console.error("updated error", error);
+      this.toastSrv.showToast('Failed', "存草稿失敗", this.toastSrv.iconClasses.error);
+    })
+  }
+
+  onEditMode() {
+    if (this.mode === 'view') {
+      this.mode = 'edit';
+    } else {
+      this.mode = 'view';
+    }
   }
 }

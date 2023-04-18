@@ -1,13 +1,18 @@
 <div class=" mb-80">
     <div class="row">
         <div class="col-md-8">
-            <h1>專案編輯</h1>
+            <h1>專案內容</h1>
         </div>
-        <div class="col-md-4" style="     text-align: end;">
-            <button type="button" *ngIf="currentProject.status !=='published'" class="btn btn-standard mr-10"
+        <div *ngIf="mode=='view'" class="col-md-4" style="text-align: end;">
+
+            <button type="button" class="btn btn-standard mr-10" (click)="onEditMode()">編輯</button>
+        </div>
+        <div *ngIf="mode!=='view'" class="col-md-4" style="text-align: end;">
+            <button type="button" class="btn btn-standard mr-10" (click)="onEditMode()">取消</button>
+            <button type="button" *ngIf="currentProject?.status !=='published'" class="btn btn-standard mr-10"
                 (click)="onSaveDraft()">存為草稿
             </button>
-            <button type="button" class="btn btn-standard mr-10" (click)="onSave()">{{currentProject.status
+            <button type="button" class="btn btn-standard mr-10" (click)="onSave()">{{currentProject?.status
                 =='published'? "更新專案":"發布專案"}} </button>
         </div>
     </div>
@@ -19,10 +24,13 @@
     <form [formGroup]="projectForm">
         <div class="row">
             <div class="col-md-12 mb-12 ">
-                <label class=" pr-2" for="projectname">
-                    <h5> 專案名稱* :</h5>
+                <label class=" pr-2">
+                    <span class="project-item-title"> 專案名稱<span *ngIf="mode!=='view'" class="color-red">*</span>
+                        :</span>
                 </label>
-                <input type="text" formControlName="name" id="projectname" class="form-control mr-10">
+                <p class="w-100" *ngIf="mode=='view'">{{f.name.value}}</p>
+                <input *ngIf="mode!=='view'" type="text" formControlName="name" id="projectname"
+                    class="form-control mr-10">
                 <div *ngIf="submitted && f.name.errors">
                     <div class="error-msg" *ngIf="f.name.errors.required">
                         專案名稱必須的
@@ -33,10 +41,12 @@
 
         <div class="row mt-10">
             <div class="col-md-12 mb-12 form-group ">
-                <label class="pr-2" for="projectname">
-                    <h5> 專案狀態*</h5>
+                <label class="pr-2">
+                    <span class="project-item-title"> 專案狀態<span *ngIf="mode!=='view'" class="color-red">*</span>
+                        :</span>
                 </label>
-                <div class="form-group">
+                <p class="w-100" *ngIf="mode=='view'">{{getStatus()}}</p>
+                <div *ngIf="mode!=='view'" class="form-check">
                     <input type="checkbox" (change)="onStatusChange($event, 'isFindPartner')"
                         [checked]="projectForm.value.isFindPartner"
                         value="projectForm.value.isFindPartner"><span>徵成員</span>
@@ -48,9 +58,10 @@
                         value="projectForm.value.isCofounder"><span>找共同創辦人</span>
                 </div>
             </div>
-            <div class="col-md-12 mb-12 form-group ">
+            <!-- <div class="col-md-12 mb-12 form-group ">
                 <label class="pr-2" for="product">
-                    <h5> 專案產品 :</h5>
+                    <span class="project-item-title"> 專案產品<span *ngIf="mode!=='view'" class="color-red">*</span>
+                        :</span>
                 </label>
                 <div class="form-check">
                     <div class="form-check form-check-inline">
@@ -72,12 +83,14 @@
                         <label class="form-check-label" for="inlineCheckbox3">硬體</label>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="col-md-12 mb-12 form-group ">
-                <label class="pr-2" for="projectname">
-                    <h5> 產業類型* :</h5>
+                <label class="pr-2">
+                    <span class="project-item-title"> 產業類型<span *ngIf="mode!=='view'" class="color-red">*</span>
+                        :</span>
                 </label>
-                <div class="form-check check-group">
+                <p class="w-100" *ngIf="mode=='view'">{{getIndustryType()}}</p>
+                <div *ngIf="mode!=='view'" class="form-check check-group">
                     <div> <input type="checkbox" (change)="onIndustryTypeChange($event, 'eComm')"
                             [checked]="isInValue('eComm', f.type.value)" value="eComm"><span>電子商務</span>
                     </div>
@@ -92,8 +105,7 @@
                             [checked]="isInValue('medical', f.type.value)" value="medical"><span>醫學科技</span></div>
 
                 </div>
-                <div class="form-check check-group">
-
+                <div *ngIf="mode!=='view'" class="form-check check-group">
                     <div><input type="checkbox" (change)="onIndustryTypeChange($event, 'transport')"
                             [checked]="isInValue('transport', f.type.value)" value="transport"><span>運輸服務</span></div>
                     <div><input type="checkbox" (change)="onIndustryTypeChange($event, 'fintech')"
@@ -106,9 +118,11 @@
             </div>
             <div class="col-md-12 mb-12 form-group ">
                 <label class="pr-2" for="stage">
-                    <h5> 目前進度* :</h5>
+                    <span class="project-item-title"> 目前進度<span *ngIf="mode!=='view'" class="color-red">*</span>
+                        :</span>
                 </label>
-                <div class="form-check  check-group">
+                <p class="w-100" *ngIf="mode=='view'">{{getStage()}}</p>
+                <div *ngIf="mode !== 'view'" class="form-check  check-group">
                     <div> <input type="checkbox" (change)="onStageChange($event, 'idea')"
                             [checked]="isInValue('idea', f.stages.value)" value="idea"><span>已有創業概念</span></div>
                     <div> <input type="checkbox" (change)="onStageChange($event, 'businessplan')"
@@ -122,7 +136,7 @@
                             value="buildMVP"><span>建構最小可行性產品(MVP)</span></div>
 
                 </div>
-                <div class="form-check  check-group">
+                <div *ngIf="mode !== 'view'" class="form-check  check-group">
                     <div> <input type="checkbox" (change)="onStageChange($event, 'producttested')"
                             [checked]="isInValue('producttested', f.stages.value)"
                             value="producttested"><span>驗證產品中&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
@@ -137,11 +151,12 @@
                 </div>
             </div>
             <div class="col-md-12 mb-12 form-group ">
-                <label class="pr-2" for="projectname">
-                    <h5> 簡介 :</h5>
+                <label class="pr-2">
+                    <span class="project-item-title"> 簡介:</span>
                 </label>
-                <textarea formControlName="description" type="text" class="form-control" id="" rows="4"
-                    cols="50"></textarea>
+                <p *ngIf="mode=='view'">{{f.description.value}}</p>
+                <textarea *ngIf="mode!=='view'" formControlName="description" type="text" class="form-control" id=""
+                    rows="4" cols="50"></textarea>
                 <div *ngIf="submitted && f.description.errors">
                     <div class="error-msg" *ngIf="f.description.errors.required">
                         專案簡介是必要的

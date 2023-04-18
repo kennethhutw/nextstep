@@ -10,6 +10,10 @@ import {
   AuthStore
 } from "../../../_services/auth.store";
 import { ActivatedRoute } from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
+import {
+  Router,
+} from "@angular/router";
 
 @Component({
   selector: 'app-myproject-settings',
@@ -25,16 +29,19 @@ export class MyProjectSettingsComponent implements OnInit {
   projectMsg = "";
   msg = "";
   currentProject = null;
+  projectName = "";
   constructor(
     private route: ActivatedRoute,
-    private dialogSrv: DialogService,
+    private router: Router,
     private projectSrv: ProjectService,
     private toastSrv: ToastService,
     private confirmDialogSrv: ConfirmDialogService,
-    private authStoreSrv: AuthStore) {
+    private authStoreSrv: AuthStore,
+    private spinnerSrv: NgxSpinnerService) {
   }
 
   ngOnInit() {
+    this.spinnerSrv.show();
     this.currentUser = this.authStoreSrv.getUserData();
     let projectId = this.route.snapshot.paramMap.get("projectId");
     this.projectSrv.getProject(projectId, this.currentUser.id).then(res => {
@@ -43,8 +50,10 @@ export class MyProjectSettingsComponent implements OnInit {
         this.isPublic = this.currentProject.isPublic;
         this.isShowMember = this.currentProject.isShowMember;
       }
+      this.spinnerSrv.hide();
     }).catch(error => {
       console.error("error", error);
+      this.spinnerSrv.hide();
     })
 
   }
@@ -110,11 +119,11 @@ export class MyProjectSettingsComponent implements OnInit {
 
   onDeleteProject() {
 
-    this.dialogSrv.deleteThis('確定刪除此專案', '此動作將無法復原', () => {
+    if (this.projectName.trim() == this.currentProject.name.trim()) {
       this.projectSrv.delete(this.currentProject.id,
         this.currentUser.id).then(res => {
           if (res['result'] === 'successful') {
-            this.msg = "Update successfully.";
+            this.router.navigate([`./dashboard/myproject`], {});
           } else {
             this.msg = "Update failed.";
           }
@@ -122,7 +131,8 @@ export class MyProjectSettingsComponent implements OnInit {
           this.msg = "Update failed.";
           console.error("updated error", error.message);
         })
-    }, () => { })
+    }
+
   }
 
 }

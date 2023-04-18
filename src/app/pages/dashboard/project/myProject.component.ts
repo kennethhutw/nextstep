@@ -24,6 +24,7 @@ export class MyProjectComponent implements OnInit {
   currentTab = "published";
   publishedprojects = [];
   draftedprojects = [];
+
   constructor(
     private toastSrv: ToastService,
     private dialogSrv: DialogService,
