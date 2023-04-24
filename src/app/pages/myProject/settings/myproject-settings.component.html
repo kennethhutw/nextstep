@@ -24,7 +24,7 @@
                         <p class="text-md m-0 item-delete">此動作不可復原
                         </p>
                     </div>
-                    <button type="button" class=" btn-transparent  mr-10" data-toggle="modal"
+                    <button type="button" class="btn-white mr-10" data-toggle="modal"
                         [attr.data-target]="'#deleteProjectModal'">刪除專案
                     </button>
 
@@ -55,9 +55,9 @@
                 </p>
                 <input type="text" id="projectname" [(ngModel)]="projectName" class="form-control mr-10 mt-32">
                 <div class="row item-end">
-                    <button type="button" class="btn btn-transparent  mr-10" data-dismiss="modal" aria-label="Close">取消
+                    <button type="button" class="btn btn-white  mr-10" data-dismiss="modal" aria-label="Close">取消
                     </button>
-                    <button type="button" class="btn   mr-10 "
+                    <button type="button" class="btn mr-10"
                         [ngClass]="{'btn-disabled':projectName.length ==0,'btn-delete':projectName.length >0}"
                         (click)="onDeleteProject()">
                         確認</button>

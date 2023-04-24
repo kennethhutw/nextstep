@@ -3,14 +3,7 @@ ui-email-template-card {
     .header {
         display: grid;
         grid-auto-flow: column;
-        // grid-template-columns: 140px 1fr 70px;
         grid-template-columns: 1fr 120px;
-    }
-
-    .header-nologin {
-        display: grid;
-        grid-auto-flow: column;
-        grid-template-columns: 140px 1fr;
     }
 
     .item-left {
@@ -23,49 +16,6 @@ ui-email-template-card {
         margin: auto;
         gap: 8px;
     }
-
-    .follow {
-        color: #69738C;
-        border: 1px solid #69738C;
-        font-size: 12px;
-        font-weight: 400;
-        padding: 4px 8px 4px 8px;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-    .followed {
-        color: #fff;
-        border: 1px solid #56BDF4;
-        background-color: #56BDF4;
-        font-size: 12px;
-        font-weight: 400;
-        padding: 4px 8px 4px 8px;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-    p {
-        margin-top: 0;
-        margin-bottom: 1rem;
-    }
-
-    a:hover {
-        cursor: pointer;
-    }
-
-
-    .mt-4,
-    .my-4 {
-        margin-top: 1.5rem !important;
-    }
-
-    .ml-3,
-    .mx-3 {
-        margin-left: 1rem !important;
-    }
-
-
 
     .card {
         background-color: white;
@@ -90,45 +40,11 @@ ui-email-template-card {
     }
 
     .name {
-        font-weight: 400;
+        font-weight: 500;
         color: #333333;
     }
 
-    th {
-        font-weight: 300;
-    }
-
-    .discr {
-        min-height: 70px;
-        text-align: left;
-        /*  padding: 10px; */
-        max-height: 120px;
-        text-align: justify;
-        color: #333333;
-    }
-
-    .mr-5 {
-        margin-right: 5px !important;
-    }
-
-    .label.label-success {
-        background: #43d39e;
-    }
-
-    .label {
-        font-weight: 400;
-        padding: 4px 8px;
-        font-size: 11px;
-        display: inline-block;
-        line-height: 1;
-        color: #fff;
-        text-align: center;
-        white-space: nowrap;
-        vertical-align: baseline;
-        border-radius: 0.25em;
-    }
-
-    .mt-6 {
-        margin-top: 6px;
+    .content {
+        white-space: pre-line;
     }
 }

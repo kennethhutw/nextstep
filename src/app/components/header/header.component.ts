@@ -218,10 +218,6 @@ export class HeaderComponent implements OnInit {
 
 
 
-  GoToNextPage(pageName) {
-    this.router.navigate(["/register-artist"]);
-  }
-
   setBlur(id, key) {
     this.translateSrv.get(key).subscribe((text: string) => {
       this.setPlaceholder("#" + id, text);

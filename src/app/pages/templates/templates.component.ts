@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import {
   ToastService,
 } from "../../_services";
+import { DomSanitizer } from "@angular/platform-browser";
 @Component({
   selector: "app-templates",
   templateUrl: "./templates.component.html",
@@ -63,7 +64,8 @@ Please let us know ASAP.
 
 [Email Signature]`
     }, {
-      "title": "要求加入團隊",
+      "type": "application",
+      "title": "應徵開發者",
       "content": `親愛的[專案負責人 / 團隊]，
 
       我是 [你的名字]，很高興看到你們正在開發一個非常有趣的 side project，並且正在尋找一名前端工程師。我認為我有能力和動機加入你們的團隊並貢獻我的技能和熱情。
@@ -74,19 +76,50 @@ Please let us know ASAP.
 
       誠摯地，
       [你的名字]`
+    }, {
+      "type": "bio",
+      "title": "Bio範本",
+      "content": `我是 [您的名字]，一位自學的 [相關技術] 新手。我已經在 [學習平台] 上完成了幾門課程，並在過去幾個月中一直在學習和實踐 [相關技術] 技術。雖然我還沒有實際開發專案的經驗，但我對 [相關技術] 有一定的理解和經驗，並且致力於不斷學習和成長。
+
+我對 [興趣領域1] 和 [興趣領域2] 非常感興趣，特別是在 [興趣領域1] 和 [興趣領域2] 領域的應用程序開發方面。
+
+除了我的技術能力和興趣，我也是一個具有團隊合作精神的人，我相信通過團隊的努力和協作，可以創造出更好的產品和解決方案。如果您正在尋找一位有熱情、有技能的 [相關技術] 開發者，我相信我可以為您的團隊做出貢獻。
+
+感謝您撥出時間閱讀我的自我介紹，如果您需要更多信息或者想進一步了解我的技能和經驗，請隨時與我聯繫。`
+    }, {
+      "type": "bio",
+      "title": "Bio範本",
+      "content": `Greetings, everyone! I'm pivoting to a new career in UX/UI design after a decade as an urban planner. Originally from the [country], I'm now a resident of the [city]. I would love to join a project, not only to grow my budding portfolio at this early stage, but also to meet and learn from others in the industry. Can't wait to get started!`
+    }, {
+      "type": "bio",
+      "title": "Bio範本",
+      "content": `Hello everyone I am Punam working in a fintech as a sr QA. In past I have worked in aviation, insurance, e-commerce and media domains. If anyone is looking for someone who can help in testing their app/ side project, please let me know. I am really looking forward work with people on a similar journey of product management. I am passionate about quality and making every product better.`
     }
   ]
 
   currentUser;
+  type: string = "";
+  displayItems = [];
 
   constructor(
+    private sanitizer: DomSanitizer,
     private toastr: ToastService
   ) {
 
   }
 
   ngOnInit() {
+    this.displayItems = this.templates;
+  }
 
+  onFilterChange(event) {
+    if (event.target.value == "") {
+      this.displayItems = this.templates;
+    } else {
+      this.displayItems = this.templates.filter((item) => {
+        return item.type == event.target.value
+      });
+    }
   }
 
   onCopy(event, content) {

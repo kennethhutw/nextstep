@@ -6,14 +6,14 @@
 
     </div>
     <div class="item-left">
-      <span (click)="onClickCopyText(template.content)" class="followed">複製</span>
+      <button class="btn btn-white" (click)="onClickCopyText(template.content)">複製</button>
 
     </div>
 
   </div>
 
-  <div class="row">
-    <div class="col-md-12 ">
+  <div class="row mt-20">
+    <div class="col-md-12 content">
       {{template.content}}
     </div>
   </div>
