@@ -18,7 +18,7 @@
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'application' }"
-                        type="button" role="tab" (click)="changeTab('application')">招募</button>
+                        type="button" role="tab" (click)="changeTab('application')">職缺</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'mentor' }"
@@ -37,8 +37,9 @@
                             <ng-container *ngFor="let item of  projects; let i = index">
                                 <div class="col-md-6 text-center">
                                     <ui-project-card (Collect)="onClickCollect($event)"
-                                        (UnCollect)="onClickUnCollect($event)" (Follow)="onClickFollow($event)"
-                                        (UnFollow)="onClickUnFollow($event)" [project]="item" [user]="currentUser">
+                                        (UnCollect)="onClickUnCollect($event,'projects', item.id )"
+                                        (Follow)="onClickFollow($event)" (UnFollow)="onClickUnFollow($event)"
+                                        [project]="item" [user]="currentUser">
                                     </ui-project-card>
                                 </div>
 
@@ -56,9 +57,9 @@
                             <ng-container *ngFor="let item of  partners; let i = index">
                                 <div class="col-md-6 text-center">
                                     <app-user-card (Click)="OnClickProfile($event)" (Collect)="onClickCollect($event)"
-                                        (UnCollect)="onClickUnCollect($event)" (Follow)="onClickFollow($event)"
-                                        (UnFollow)="onClickUnFollow($event)" [user]="item" [type]="'partner'"
-                                        [currentuser]="currentUser">
+                                        (UnCollect)="onClickUnCollect($event,'partners', item.id )"
+                                        (Follow)="onClickFollow($event)" (UnFollow)="onClickUnFollow($event)"
+                                        [user]="item" [type]="'partner'" [currentuser]="currentUser">
                                     </app-user-card>
                                 </div>
                             </ng-container>
@@ -68,22 +69,22 @@
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'application' }" role="tabpanel"
                     aria-labelledby="profile-tab">
                     <div class="noItem text-center" *ngIf="applications.length ===0">
-                        <h3>沒有收藏的招募</h3>
+                        <h3>沒有收藏的職缺</h3>
                     </div>
                     <ng-container *ngIf="applications">
+                        <div class="row bar">
+                            <ng-container *ngFor="let item of  applications; let i = index">
 
-                        <ng-container *ngFor="let item of  applications; let i = index">
-                            <div class="row bar">
                                 <div class="col-md-6 text-center">
                                     <ui-recruit-card (Collect)="onClickCollect($event)"
-                                        (UnCollect)="onClickUnCollect($event)" (Apply)="onClickApply($event)"
-                                        [job]="item" [user]="currentUser">
+                                        (UnCollect)="onClickUnCollect($event,'applications', item.id)"
+                                        (Apply)="onClickApply($event)" [job]="item" [user]="currentUser">
                                     </ui-recruit-card>
                                 </div>
 
-                            </div>
-                        </ng-container>
 
+                            </ng-container>
+                        </div>
                     </ng-container>
                 </div>
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'mentor' }" role="tabpanel"
@@ -96,9 +97,10 @@
                             <ng-container *ngFor="let item of  mentors; let i = index">
                                 <div class="col-md-6 text-center">
                                     <app-user-card (Click)="OnClickProfile($event)" (Collect)="onClickCollect($event)"
-                                        (UnCollect)="onClickUnCollect($event)" (Follow)="onClickFollow($event)"
-                                        (Chat)="onClickChat($event)" (UnFollow)="onClickUnFollow($event)" [user]="item"
-                                        [type]="'mentor'" [currentuser]="currentUser">
+                                        (UnCollect)="onClickUnCollect($event,'mentors', item.id)"
+                                        (Follow)="onClickFollow($event)" (Chat)="onClickChat($event)"
+                                        (UnFollow)="onClickUnFollow($event)" [user]="item" [type]="'mentor'"
+                                        [currentuser]="currentUser">
                                     </app-user-card>
                                 </div>
                             </ng-container>

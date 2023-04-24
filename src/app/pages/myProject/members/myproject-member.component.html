@@ -8,7 +8,7 @@
             </a>
             <a type="button" class="btn btn-transparent mr-10 float-right" data-toggle="modal"
                 [attr.data-target]="'#createRcruitModal'" (click)="onCreateRecruit()"><i class="fas fa-plus"></i>
-                招募成員</a>
+                新增職缺</a>
             <select *ngIf="this.isAllowEdit()" class="btn btn-transparent mr-10 float-right" [disabled]="!canMoveMember"
                 [value]="status" (change)="onStatusChange($event)">
                 <option value="null">移動成員去</option>
@@ -632,7 +632,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <span class="modal-title">招募成員</span>
+                <span class="modal-title">新增職缺</span>
                 <button type="button" id="close_recruit" #close_recruit_button class="close" data-dismiss="modal"
                     aria-label="Close">
                     <span aria-hidden="true">&times;</span>

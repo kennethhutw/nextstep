@@ -53,8 +53,6 @@ export class HomeComponent implements OnInit {
   popularProjects = [];
 
 
-  default_main_bg = "./assets/images/home1.jpg";
-
   main_bg = "./assets/images/home.svg";
 
 

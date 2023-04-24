@@ -61,7 +61,7 @@
         <span class="title">此專案其他職缺</span>
       </div>
       <div class="row frame empty text-center" *ngIf="!this.currentRecruit.projectOthers">
-        此專案目前沒有招募成員.
+        此專案目前沒有職缺.
       </div>
       <ng-container *ngIf="this.currentRecruit?.projectOthers">
         <ng-container *ngFor="let item of  this.currentRecruit.projectOthers; let i = index">

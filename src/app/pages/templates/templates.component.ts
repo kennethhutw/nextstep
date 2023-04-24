@@ -62,6 +62,18 @@ If interested, please write a post about your experience and spread the word on 
 Please let us know ASAP.
 
 [Email Signature]`
+    }, {
+      "title": "要求加入團隊",
+      "content": `親愛的[專案負責人 / 團隊]，
+
+      我是 [你的名字]，很高興看到你們正在開發一個非常有趣的 side project，並且正在尋找一名前端工程師。我認為我有能力和動機加入你們的團隊並貢獻我的技能和熱情。
+
+      雖然我是一個自學的 ReactJS 新手，但我已經在 Udemy 上完成了幾堂課程，並且在過去的幾個月中一直在學習和實踐 ReactJS 相關技術。我認為我對 ReactJS 有一定的理解和經驗，並且能夠適應不同的需求和挑戰。我也會使用 Git 進行版本控制和團隊協作，以確保項目的高效開發和管理。
+
+      我對你們的項目充滿熱情，並且非常想為之做出貢獻。我相信我可以和你們的團隊一起協作，並且學習和成長。如果你們覺得我是你們需要的人選，請不要猶豫聯繫我。謝謝你們的時間和考慮！
+
+      誠摯地，
+      [你的名字]`
     }
   ]
 

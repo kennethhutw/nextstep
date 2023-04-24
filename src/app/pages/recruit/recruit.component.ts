@@ -34,6 +34,7 @@ export class RecruitComponent implements OnInit {
     offline: false,
     design: false,
     finance: false,
+    market: false,
     marketing: false,
     product: false,
     public: false,
@@ -99,7 +100,7 @@ export class RecruitComponent implements OnInit {
       this.SpinnerService.hide();
     })
 
-  
+
   }
 
   onSave() { }
@@ -119,6 +120,7 @@ export class RecruitComponent implements OnInit {
 
     if (this.filterCondition.design &&
       this.filterCondition.finance &&
+      this.filterCondition.market &&
       this.filterCondition.marketing &&
       this.filterCondition.product &&
       this.filterCondition.public &&
@@ -130,14 +132,15 @@ export class RecruitComponent implements OnInit {
       this.displayItems = this.items;
     } else if (!this.filterCondition.design &&
       !this.filterCondition.finance &&
+      !this.filterCondition.market &&
       !this.filterCondition.marketing &&
       !this.filterCondition.product &&
       !this.filterCondition.public &&
-      this.filterCondition.sale &&
-      this.filterCondition.funding &&
-      this.filterCondition.law &&
-      this.filterCondition.strategy &&
-      this.filterCondition.programming) {
+      !this.filterCondition.sale &&
+      !this.filterCondition.funding &&
+      !this.filterCondition.law &&
+      !this.filterCondition.strategy &&
+      !this.filterCondition.programming) {
       this.displayItems = [];
     } else {
       let currentItem = []
@@ -146,18 +149,47 @@ export class RecruitComponent implements OnInit {
           item.skills.indexOf('design') > -1) {
           currentItem.push(item);
         }
+        if (this.filterCondition.design &&
+          item.skills.some(r => ["3d", "uiux",
+            "graphic"].indexOf(r) >= 0)) {
+          currentItem.push(item);
+        }
         if (this.filterCondition.finance &&
           item.skills.indexOf('finance') > -1) {
-
           currentItem.push(item);
 
+        }
+        if (this.filterCondition.finance &&
+          item.skills.some(r => ["accounting", "sale"].indexOf(r) >= 0)) {
+          currentItem.push(item);
+        }
+
+        if (this.filterCondition.market &&
+          item.skills.indexOf('market') > -1) {
+          currentItem.push(item);
+        }
+
+        if (this.filterCondition.market &&
+          item.skills.some(r => ["analysis", "sale",
+            "entity", "channel", "bd"].indexOf(r) >= 0)) {
+          currentItem.push(item);
         }
         if (this.filterCondition.marketing &&
           item.skills.indexOf('marketing') > -1) {
           currentItem.push(item);
         }
+
+        if (this.filterCondition.marketing &&
+          item.skills.some(r => ["video", "hacker",
+            "advertising", "editor", "community", "it"].indexOf(r) >= 0)) {
+          currentItem.push(item);
+        }
         if (this.filterCondition.product &&
           item.skills.indexOf('product') > -1) {
+          currentItem.push(item);
+        }
+        if (this.filterCondition.product &&
+          item.skills.some(r => ["product", "project"].indexOf(r) >= 0)) {
           currentItem.push(item);
         }
         if (this.filterCondition.public &&
@@ -176,12 +208,24 @@ export class RecruitComponent implements OnInit {
           item.skills.indexOf('law') > -1) {
           currentItem.push(item);
         }
+        if (this.filterCondition.law &&
+          item.skills.some(r => ["law"].indexOf(r) >= 0)) {
+          currentItem.push(item);
+        }
         if (this.filterCondition.strategy &&
           item.skills.indexOf('strategy') > -1) {
           currentItem.push(item);
         }
+
         if (this.filterCondition.programming &&
           item.skills.indexOf('programming') > -1) {
+          currentItem.push(item);
+        }
+
+        if (this.filterCondition.programming &&
+          item.skills.some(r => ["frontend", "backend",
+            "fullstack", "mobile",
+            "qa", "devops", "it", "datamining"].indexOf(r) >= 0)) {
           currentItem.push(item);
         }
         this.displayItems = currentItem;
@@ -240,7 +284,7 @@ export class RecruitComponent implements OnInit {
 
         this.displayItems = currentItem;
       })
-
+      console.log("this.displayItems=========", this.displayItems);
     }
 
     if (this.displayItems.length > 0)
@@ -267,9 +311,9 @@ export class RecruitComponent implements OnInit {
   }
 
   checkSkills(items) {
-
     if (this.filterCondition.design &&
       this.filterCondition.finance &&
+      this.filterCondition.market &&
       this.filterCondition.marketing &&
       this.filterCondition.product &&
       this.filterCondition.public &&
@@ -281,14 +325,15 @@ export class RecruitComponent implements OnInit {
       this.displayItems = items;
     } else if (!this.filterCondition.design &&
       !this.filterCondition.finance &&
+      !this.filterCondition.market &&
       !this.filterCondition.marketing &&
       !this.filterCondition.product &&
       !this.filterCondition.public &&
-      this.filterCondition.sale &&
-      this.filterCondition.funding &&
-      this.filterCondition.law &&
-      this.filterCondition.strategy &&
-      this.filterCondition.programming) {
+      !this.filterCondition.sale &&
+      !this.filterCondition.funding &&
+      !this.filterCondition.law &&
+      !this.filterCondition.strategy &&
+      !this.filterCondition.programming) {
       this.displayItems = items;
     } else {
       let currentItem = []
@@ -302,6 +347,10 @@ export class RecruitComponent implements OnInit {
 
           currentItem.push(item);
 
+        }
+        if (this.filterCondition.market &&
+          item.skills.indexOf('market') > -1) {
+          currentItem.push(item);
         }
         if (this.filterCondition.marketing &&
           item.skills.indexOf('marketing') > -1) {
@@ -395,6 +444,7 @@ export class RecruitComponent implements OnInit {
     if (
       this.filterCondition.design &&
       this.filterCondition.finance &&
+      this.filterCondition.market &&
       this.filterCondition.marketing &&
       this.filterCondition.product &&
       this.filterCondition.public &&
@@ -412,6 +462,7 @@ export class RecruitComponent implements OnInit {
     } else if (
       !this.filterCondition.design &&
       !this.filterCondition.finance &&
+      !this.filterCondition.market &&
       !this.filterCondition.marketing &&
       !this.filterCondition.product &&
       !this.filterCondition.public &&
@@ -435,6 +486,7 @@ export class RecruitComponent implements OnInit {
     this.filterCondition.design = false;
     this.filterCondition.finance = false;
     this.filterCondition.marketing = false;
+    this.filterCondition.market = false;
     this.filterCondition.product = false;
     this.filterCondition.public = false;
     this.filterCondition.sale = false;

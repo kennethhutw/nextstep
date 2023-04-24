@@ -135,6 +135,16 @@
         "text": "專案管理"
     },
     {
+        "value": "graphic/UI",
+        "group": "design",
+        "text": "平面設計"
+    },
+    {
+        "value": "UX",
+        "group": "design",
+        "text": "使用者體驗設計師"
+    },
+    {
         "value": "uiux",
         "group": "design",
         "text": "UIUX/視覺設計"

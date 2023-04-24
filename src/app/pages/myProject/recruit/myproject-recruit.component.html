@@ -2,10 +2,10 @@
     <div class="row">
         <div class="col-md-12  mb-20" style="display: inline-block;">
             <span class="title">招募管理</span>
-            <a type="button" class="btn mr-10 float-right" data-toggle="modal" [attr.data-target]="'#createRcruitModal'"
-                (click)="onCreateRecruit()"><i class="fas fa-plus"></i>
-                招募成員</a>
-            <select class="btn mr-10 float-right" [disabled]="!canMove" [value]="status"
+            <a type="button" class="btn btn-transparent mr-10 float-right" data-toggle="modal"
+                [attr.data-target]="'#createRcruitModal'" (click)="onCreateRecruit()"><i class="fas fa-plus"></i>
+                新增職缺</a>
+            <select class="btn btn-transparent mr-10 float-right" [disabled]="!canMove" [value]="status"
                 (change)="onStatusChange($event)">
                 <option value="null">移動去</option>
                 <option value="current">目前</option>
@@ -23,17 +23,18 @@
                 <li class="nav-item" role="presentation">
                     <button class="nav-link " id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
                         [ngClass]="{ 'active': currentTab === 'current' }" type="button" role="tab"
-                        (click)="changeTab('current')"><span class="num">{{current.length}}</span>&nbsp;目前</button>
+                        (click)="changeTab('current')"><span class="num"
+                            [ngClass]="{ 'active': currentTab === 'current' }">{{current.length}}</span>&nbsp;目前</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'drafts' }"
-                        type="button" role="tab" (click)="changeTab('drafts')"><span
-                            class="num">{{drafts.length}}</span>&nbsp;草稿</button>
+                        type="button" role="tab" (click)="changeTab('drafts')"><span class="num"
+                            [ngClass]="{ 'active': currentTab === 'drafts' }">{{drafts.length}}</span>&nbsp;草稿</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'closed' }"
-                        type="button" role="tab" (click)="changeTab('closed')"><span
-                            class="num">{{closed.length}}</span>已關閉</button>
+                        type="button" role="tab" (click)="changeTab('closed')"><span class="num"
+                            [ngClass]="{ 'active': currentTab === 'closed' }">{{closed.length}}</span>已關閉</button>
                 </li>
 
 
@@ -67,7 +68,7 @@
 
                     </div>
                     <div class="empty text-center" *ngIf="current.length ===0">
-                        此專案目前沒有招募成員.
+                        此專案目前沒有職缺.
                     </div>
                     <ng-container *ngIf="current.length >0">
                         <ng-container *ngFor="let item of  current; let i = index">
@@ -321,7 +322,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h1>招募成員</h1>
+                <span class="modal-title">新增職缺</span>
                 <button type="button" id="close_recruit" #close_recruit_button class="close" data-dismiss="modal"
                     aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -330,17 +331,12 @@
             <div class="modal-body">
                 <form [formGroup]="recruitForm">
                     <div class="form-group">
-                        <label for="inputPosition">職稱</label>
+                        <label for="inputPosition">職缺名稱</label>
                         <input type="text" class="form-control rounded-0" formControlName="position" id="inputPosition"
                             placeholder="職稱">
                     </div>
                     <div class="form-group">
-                        <label for="inputContent">職缺內容</label>
-                        <textarea class="form-control" type="text" id="scopes" formControlName="scopes" rows="4"
-                            cols="50"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputSkills">技能</label>
+                        <label for="inputSkills">技能需求</label>
                         <tag-input id="skills" formControlName="skills" [onlyFromAutocomplete]="true"
                             [secondaryPlaceholder]="'前端開發, 市場開發, UIUX...'">
                             <tag-input-dropdown [displayBy]="'text'" [appendToBody]="false"
@@ -348,6 +344,12 @@
                             </tag-input-dropdown>
                         </tag-input>
                     </div>
+                    <div class="form-group">
+                        <label for="inputContent">職缺內容</label>
+                        <textarea class="form-control" type="text" id="scopes" formControlName="scopes" rows="4"
+                            cols="50"></textarea>
+                    </div>
+
                     <div class="form-group">
 
                         <label for="inputSkills">每周願意投入時長</label>

@@ -83,7 +83,7 @@ export class RecruitCardComponent {
   }
 
   onImgError(event) {
-    event.target.src = "assets/images/defaultlogo.png";
+    event.target.src = "assets/images/defaultProjectIcon.png";
   }
 
 }

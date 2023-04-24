@@ -28,9 +28,9 @@
       <span>{{job?.scopes.length>40?job?.scopes.substring(0,120)+"...":job.scopes}}</span>
     </div>
   </div>
-  <div class="row mt-10">
+  <!--  <div class="row mt-10">
     <div class="col-md-12 discr">
-      <ng-container *ngIf="job.skills">
+    <ng-container *ngIf="job.skills">
 
         <ng-container *ngFor="let tag of  job.skills; let i = index">
 
@@ -40,8 +40,8 @@
 
       </ng-container>
     </div>
-  </div>
-  <footer class="row">
+  </div>-->
+  <footer class="row mt-10">
     <div class="col-md-12 project">
       <img class="project-pic" (error)="onImgError($event)" src="{{job.projectImageUrl}}">
       <div class="d-flex justify-left align-items-center"><span class="text-left">{{job?.projectName}}</span></div>

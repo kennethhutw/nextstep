@@ -32,12 +32,12 @@ export class MyCollectionComponent implements OnInit {
     private dialogSrv: DialogService,
     private utilitySrv: Utility,
     private authStoreSrv: AuthStore,
-    private viewSrv: ViewsService) {
+    private viewsSrv: ViewsService) {
   }
 
   ngOnInit() {
     this.currentUser = this.authStoreSrv.getUserData();
-    this.viewSrv.getCollect(
+    this.viewsSrv.getCollect(
       this.currentUser.id
     ).then(res => {
       console.log("================", res);
@@ -45,7 +45,7 @@ export class MyCollectionComponent implements OnInit {
         this.projects = res['projects'];
         if (this.projects.length > 0) {
           this.projects.forEach(element => {
-            element.isSelected = true;
+            element.id = element.projectId;
             if (!this.utilitySrv.IsNullOrEmpty(element.skills)) {
               element.skills = element.skills.split(',');
             }
@@ -95,6 +95,64 @@ export class MyCollectionComponent implements OnInit {
     this.currentTab = tab;
   }
 
-  onClickDelete(event) { }
+  onClickUnCollect(event, type, id) {
+
+    if (type === 'projects') {
+      this.viewsSrv.unCollect(
+        id,
+        "project",
+        this.currentUser.id
+      ).then(res => {
+        if (res['result'] == 'successful') {
+          this.projects = this.projects.filter(element => {
+            return element.id !== id
+          });
+        }
+      })
+    }
+
+    if (type === 'partners') {
+      this.viewsSrv.unCollect(
+        event.userId,
+        "user",
+        this.currentUser.id
+      ).then(res => {
+        if (res['result'] == 'successful') {
+          this.partners = this.partners.filter(element => {
+            return element.id !== id
+          });
+        }
+      })
+    }
+    if (type === 'applications') {
+
+      this.viewsSrv.unCollect(
+        event.jobId,
+        "application",
+        this.currentUser.id
+      ).then(res => {
+        if (res['result'] == 'successful') {
+          this.applications = this.applications.filter(element => {
+            return element.id !== id
+          });
+        }
+      })
+    }
+
+    if (type === 'mentors') {
+      this.viewsSrv.unCollect(
+        event.userId,
+        "mentor",
+        this.currentUser.id
+      ).then(res => {
+        if (res['result'] == 'successful') {
+          this.mentors = this.mentors.filter(element => {
+            return element.id !== id
+          });
+        }
+      })
+    }
+
+  }
 
 }

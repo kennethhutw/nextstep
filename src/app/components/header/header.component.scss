@@ -1,5 +1,6 @@
 .fixed-top {
   z-index: 100;
+  border-bottom: 1px solid #dee2e6;
 }
 
 .logo {
@@ -14,9 +15,7 @@
   padding-right: 5px;
 }
 
-a {
-  cursor: pointer;
-}
+
 
 .invalid {
   width: 100%;
@@ -39,15 +38,26 @@ a {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
+  padding-bottom: 12px;
+
+  a {
+    color: #56BDF4 !important;
+  }
+
+  a:hover {
+    color: #FF859A !important;
+  }
+}
+
+.dropdown-item:hover {
+  color: #FF859A !important;
 }
 
 .fa-bell {
   color: #8F95A8;
 }
 
-.font-20 {
-  font-size: 20px;
-}
+
 
 .font-25 {
   font-size: 25px;

@@ -503,6 +503,15 @@ a.nav-link:hover {
 
 }
 
+.btn-clean {
+  color: #8F95A8;
+  border: 1px solid #8F95A8;
+  background-color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 6px 12px 6px 12px;
+  border-radius: 4px;
+}
 
 .btn_small:focus,
 .btn_normal:focus,
@@ -852,6 +861,10 @@ input:focus:-ms-input-placeholder {
   .modal-title {
     width: 100%;
     text-align: center;
+    color: #262E42;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 24px;
   }
 }
 
@@ -1962,4 +1975,30 @@ select {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.num {
+  font-size: 16px;
+  padding: 2px 10px;
+  border: 1px solid #69738C;
+  background-color: #69738C;
+  color: #fff;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.num.active {
+
+  border: 1px solid #56BDF4 !important;
+  background-color: #56BDF4 !important;
+
+}
+
+.dropdown-menu {
+  border-radius: 12px !important;
+}
+
+a {
+  cursor: pointer;
+  font-weight: 500;
 }

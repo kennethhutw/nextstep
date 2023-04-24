@@ -31,7 +31,11 @@
               data-key="finance" />
             <label class="ml-10" for="finance">金融相關</label>
           </li>
-
+          <li>
+            <input id="market" type="checkbox" [(ngModel)]="filterCondition.market" (change)="onSkills($event)"
+              data-key="market" />
+            <label class="ml-10" for="market">市場開發</label>
+          </li>
           <li>
             <input id="marketing" type="checkbox" [(ngModel)]="filterCondition.marketing" (change)="onSkills($event)"
               data-key="marketing" />
