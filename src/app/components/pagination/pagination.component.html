@@ -1,0 +1,18 @@
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link">
+                <svg-icon class="icon" src="assets/icons/p_pre_arrow.svg"></svg-icon>
+            </a></li>
+        <ng-container *ngFor="let j of current5page">
+            <li class="page-item disabled" *ngIf="currentPage==j+1">
+                <a class="page-link" (click)="onChangePage(j+1)" tabindex="-1">{{j+1}}</a>
+            </li>
+            <li class="page-item" *ngIf="currentPage!=j+1">
+                <a class="page-link" (click)="onChangePage(j+1)">{{j+1}}</a>
+            </li>
+        </ng-container>
+        <li class="page-item"><a class="page-link">
+                <svg-icon class="icon" src="assets/icons/p_next_arrow.svg"></svg-icon>
+            </a></li>
+    </ul>
+</nav>

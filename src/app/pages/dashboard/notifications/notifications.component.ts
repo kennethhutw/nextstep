@@ -1,5 +1,9 @@
 import { HostListener, ViewEncapsulation, Component, OnInit } from '@angular/core';
-import { DialogService, NotificationService, } from './../../../_services';
+import {
+  PagerService,
+  DialogService,
+  NotificationService,
+} from './../../../_services';
 import { AuthStore } from './../../../_services/auth.store';
 @Component({
   selector: 'app-my-notifications',
@@ -26,9 +30,11 @@ export class NotificationsComponent implements OnInit {
   // }]
   // }]
   notifications: any[] = [];
+  currentPageIndex: number = 1;
 
   currentUser: any;
   constructor(
+    private pagerSrv: PagerService,
     private notificationSrv: NotificationService,
     private dialogSrv: DialogService,
     private authStore: AuthStore) {
@@ -69,4 +75,14 @@ export class NotificationsComponent implements OnInit {
       });
   }
 
+  onPageChange(event) {
+    console.log("onPageChange ===", event.page)
+    this.currentPageIndex = event.page;
+  }
+  // Pagination
+  onPage(i) {
+
+    let _num = this.pagerSrv.Page(i, this.currentPageIndex, 10);
+    return _num;
+  }
 }

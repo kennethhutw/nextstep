@@ -6,13 +6,14 @@ import { EmailTemplateCardComponent } from './emailTemplateCard/emailTemplateCar
 import { MemberCardComponent } from './memberCard/memberCard.component';
 import { ProjectItemComponent } from "./projectItem/project-item.component";
 import { PersonCardComponent } from "./person/person.component";
-import { UserCardComponent } from "./userCard/userCard.component";
+import { PaginationComponent } from './pagination/pagination.component';
 import { ProjectCardComponent } from './projectCard/projectCard.component';
 import { ProjectBarComponent } from './projectBar/project-bar.component';
 import { RecruitCardComponent } from './recruitCard/recruitCard.component';
 import { TagComponent } from './tag/tag.component';
 import { LogBarComponent } from './log-bar/log-bar.component';
 import { RadioItemComponent } from './radioItem/radio-item.component';
+import { UserCardComponent } from "./userCard/userCard.component";
 export const components = [
     ButtonComponent,
     CustomModalComponent,
@@ -23,6 +24,7 @@ export const components = [
     RecruitCardComponent,
     LogBarComponent,
     MemberCardComponent,
+    PaginationComponent,
     ProjectBarComponent,
     ProjectCardComponent,
     ProjectItemComponent,
@@ -69,3 +71,4 @@ export { LoadingComponent } from './loading/loading.component';
 export { LogBarComponent } from './log-bar/log-bar.component';
 export { MemberCardComponent } from './memberCard/memberCard.component';
 export { RadioItemComponent } from './radioItem/radio-item.component';
+export { PaginationComponent } from './pagination/pagination.component';

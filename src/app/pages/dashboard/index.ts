@@ -1,3 +1,4 @@
+export { BeAmentorComponent } from './become-a-mentor/become-a-mentor.component';
 export { ChatComponent } from './chat/chat.component';
 export { DashboardComponent } from './dashboard/dashboard.component';
 export { MyApplicationComponent } from './application/application.component';

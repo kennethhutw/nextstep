@@ -43,7 +43,7 @@ import {
     MyProjectComponent,
     NotificationsComponent,
     SettingsComponent,
-
+    BeAmentorComponent
 } from './dashboard';
 
 import { JobComponent } from './job/job.component';
@@ -53,6 +53,7 @@ import { TemplatesComponent } from "./templates/templates.component";
 export const containers = [
     ActivityComponent,
     AboutComponent,
+    BeAmentorComponent,
     ChatComponent,
     CreateProjectComponent,
     DashboardComponent,

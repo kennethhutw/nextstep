@@ -1,10 +1,7 @@
 import {
   Component,
-  QueryList,
   OnInit,
-  ViewEncapsulation,
   ViewChild,
-  ViewChildren
 } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {

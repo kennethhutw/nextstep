@@ -5,20 +5,22 @@
 </div>
 <ng-container *ngIf="notifications.length>0;else noItem ">
     <ng-container *ngFor="let item of  notifications; let i = index">
-        <div class="row">
+        <ng-container *ngIf="onPage(i)">
+            <div class="row">
 
-            <div class="col-md-12 form-inline msg-bar">
-                <span>
-                    <svg-icon src="assets/icons/msg-bell.svg"></svg-icon><!-- <i class="far fa-bell icon"></i> -->
-                </span>
-                <p class="msg-content">
-                    <b>{{item.content}}
-                    </b>
+                <div class="col-md-12 form-inline msg-bar">
+                    <span>
+                        <svg-icon src="assets/icons/msg-bell.svg"></svg-icon><!-- <i class="far fa-bell icon"></i> -->
+                    </span>
+                    <p class="msg-content">
+                        <b>{{item.content}}
+                        </b>
 
-                </p> <span class="msg-time">{{item.createdAt| date : 'yyyy-MM-dd'}}</span>
+                    </p> <span class="msg-time">{{item.createdAt| date : 'yyyy-MM-dd'}}</span>
+                </div>
+
             </div>
-
-        </div>
+        </ng-container>
     </ng-container>
 </ng-container>
 <ng-template #noItem>
@@ -26,3 +28,7 @@
         <div class="col-md-12 text-center text-18">目前沒有訊息</div>
     </div>
 </ng-template>
+<div class="mt-30">
+    <app-pagination [currentPage]="currentPageIndex" totalPages="10" (onPageChange)="onPageChange($event)">
+    </app-pagination>
+</div>
