@@ -28,15 +28,15 @@
           <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
             routerLink="/members" (click)="ToggleNavBar()">夥伴</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
             routerLink="/mentors" (click)="ToggleNavBar()">導師</a>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
             routerLink="/ranking" (click)="ToggleNavBar()">排行版</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
             routerLink="/resources" (click)="ToggleNavBar()">資源</a>
         </li>
@@ -48,7 +48,7 @@
         <li class="nav-item">
           <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
             routerLink="/templates" (click)="ToggleNavBar()">範本</a>
-        </li>
+        </li>-->
         <li class="nav-item">
           <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
             routerLink="/feedback" (click)="ToggleNavBar()">意見回饋</a>
@@ -109,7 +109,9 @@
         <li class="nav-item dropdown">
           <a class=" dropdown-toggle color-gray" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            <i class="far fa-user-circle font-25"></i>
+            <i *ngIf="!currentUser.imageUrl" class="far fa-user-circle font-25"></i>
+            <img class="profile-image rounded-circle" src="{{ currentUser.imageUrl }}" (error)="onImgError($event)"
+              alt="" />
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"

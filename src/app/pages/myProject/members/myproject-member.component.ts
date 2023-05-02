@@ -128,7 +128,7 @@ export class MyProjectMemberComponent implements OnInit {
     this.invitationSrv.getInvitingList(this.projectId).then(res => {
       if (res['result'] == 'successful') {
         let _invitingList = res['data'];
-        console.log("===============", res)
+
         if (_invitingList && _invitingList.length > 0) {
           _invitingList.forEach((item) => {
             item['isSelected'] = false;

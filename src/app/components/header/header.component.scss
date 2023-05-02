@@ -15,7 +15,10 @@
   padding-right: 5px;
 }
 
-
+.profile-image {
+  height: 30px;
+  width: 30px;
+}
 
 .invalid {
   width: 100%;
@@ -63,16 +66,12 @@
   font-size: 25px;
 }
 
-
 .navbar-light .navbar-nav .nav-link {
   color: #69738C;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
 }
-
-
-
 
 
 .signout {
@@ -132,10 +131,6 @@
   font-size: 16px !important;
   font-weight: 400;
   line-height: 24px;
-}
-
-.p-8 {
-  padding: 8px;
 }
 
 

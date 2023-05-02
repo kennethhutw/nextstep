@@ -177,6 +177,10 @@ app-pub-profile {
         width: 84px;
         height: 36px;
         white-space: nowrap;
+
+        .fa-bookmark {
+            border: none !important;
+        }
     }
 
     .btn_item_selected {

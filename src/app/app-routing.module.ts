@@ -57,7 +57,6 @@ const routes: Routes = [
         path: "verifyEmail",
         component: Pages.VerificationComponent
       },
-
       {
         path: "settings",
         component: Pages.SettingsComponent
@@ -83,7 +82,8 @@ const routes: Routes = [
       { path: "about", component: Pages.AboutComponent, pathMatch: "full" },
       { path: "support", component: Pages.SupportComponent, pathMatch: "full" },
       { path: "error", component: Pages.ErrorComponent, pathMatch: "full" },
-
+      { path: "resources", component: Pages.ResourcesComponent },
+      { path: "ideas", component: Pages.IdeasComponent },
       { path: "recruit", component: Pages.RecruitComponent },
       {
         path: "newProject",

@@ -91,9 +91,13 @@ export class HeaderComponent implements OnInit {
     if (!!this.currentUser) {
       this.uid = this.currentUser.uid;
     }
-    this.authStoreSrv.user$.subscribe(user => {
-      this.currentUser = user
-    });
+
+    if (!this.utility.IsNullOrEmpty(this.currentUser.imageUrl)) {
+      this.currentUser.imageUrl = environment.assetUrl + this.currentUser.imageUrl;
+    }
+    // this.authStoreSrv.user$.subscribe(user => {
+    //   this.currentUser = user
+    // });
     if (this.uid) {
       this.notificationSrv.getFirstFiveNotifications(this.currentUser.id).then(res => {
         if (res['result'] == 'successful') {
@@ -216,8 +220,6 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['./index'], {});
   }
 
-
-
   setBlur(id, key) {
     this.translateSrv.get(key).subscribe((text: string) => {
       this.setPlaceholder("#" + id, text);
@@ -286,5 +288,7 @@ export class HeaderComponent implements OnInit {
       }
     }
   }
-
+  onImgError(event) {
+    event.target.src = "assets/images/defaultProjectIcon.png";
+  }
 }

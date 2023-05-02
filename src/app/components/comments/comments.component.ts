@@ -171,7 +171,6 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   getImg(imageUrl) {
-    console.log("imageUrl======", imageUrl)
     if (imageUrl != null) {
       return environment.assetUrl + imageUrl;
     } else {

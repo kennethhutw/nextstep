@@ -87,7 +87,15 @@
     }
 }
 
+.empty {
+    position: relative;
 
+    .empty-text {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+    }
+}
 
 .frame {
     border: 2px solid #fff;
@@ -204,26 +212,8 @@
     min-height: 300px;
 }
 
-.chat-user-img {
-    width: 40px;
-}
 
-.chat-header {
-    display: flex;
-    gap: 16px;
-    padding-left: 12px;
 
-    .chat-user-img {
-        width: 40px;
-    }
-
-    .chat-user-name {
-        font-size: 18px;
-        font-weight: 500;
-        margin-top: 10px;
-
-    }
-}
 
 #modifiedproject {
     .item-center {

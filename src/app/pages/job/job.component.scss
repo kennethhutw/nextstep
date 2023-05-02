@@ -6,11 +6,9 @@
     background-color: #fff;
     display: grid;
     grid-auto-flow: row;
-    // gap: 24px;
     padding: 12px 10px 12px 10px;
     width: 100%;
     border-radius: 9px;
-    ;
 
     .clickable {
         color: #7F7F7F;
@@ -34,7 +32,7 @@
     margin-top: auto;
     margin-bottom: auto;
     color: #262E42;
-    font-size: 24px;
+
 }
 
 .btn_item {
@@ -48,6 +46,14 @@
     border-radius: 4px;
     // width: 84px;
     height: 36px;
+
+    .fa-envelope {
+        border: none !important;
+    }
+
+    .fa-bookmark {
+        border: none !important;
+    }
 }
 
 

@@ -1943,7 +1943,7 @@ input[type=radio] {
   padding: 7.75px 9.75px;
   border-radius: 4px;
   display: flex;
-  margin: auto;
+
   font-size: 14px;
 }
 
@@ -1951,8 +1951,6 @@ input[type=radio] {
   background-color: #F1F2F5;
   color: #8F95A8;
 }
-
-
 
 .fa-envelope {
   border: 1px solid #CFD2DA !important;
@@ -2011,4 +2009,22 @@ a {
 
 .h-40 {
   height: 40px;
+}
+
+.chat-header {
+  display: flex;
+  gap: 16px;
+  padding-left: 12px;
+
+  .chat-user-img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .chat-user-name {
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 10px;
+
+  }
 }

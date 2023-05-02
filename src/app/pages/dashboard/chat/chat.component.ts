@@ -51,7 +51,7 @@ export class ChatComponent implements OnInit {
 
   initChat(uid) {
     this.chatSrv.getConversations(uid).then(res => {
-      console.log("chat =================", res);
+
       if (res["result"] == "successful") {
         if (res["data"]) {
           this.items = res["data"];

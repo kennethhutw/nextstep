@@ -1,5 +1,6 @@
 
 import { HomeComponent } from "./home/home.component";
+import { IdeasComponent } from "./ideas/ideas.component";
 import { AboutComponent } from "./about/about.component";
 import { ActivityComponent } from "./activity/activity.component";
 import { CreateProjectComponent } from "./createproject/createProject.component";
@@ -25,6 +26,7 @@ import { ProjectDetailComponent } from './project-detail/projectDetail.component
 import { ProjectComponent } from './project/project.component';
 import { RankingComponent } from "./ranking/ranking.component";
 import { RecruitComponent } from './recruit/recruit.component';
+import { ResourcesComponent } from "./resources/resources.component";
 import {
     MyProjectLogComponent,
     MyProjectMemberComponent,
@@ -64,6 +66,7 @@ export const containers = [
     FindProjectComponent,
     FindMemberComponent,
     HomeComponent,
+    IdeasComponent,
     JobComponent,
     JoinProjectComponent,
     MyApplicationComponent,
@@ -86,6 +89,7 @@ export const containers = [
     QAComponent,
     RankingComponent,
     RecruitComponent,
+    ResourcesComponent,
     SettingsComponent,
     SupportComponent,
     TemplatesComponent,
@@ -101,6 +105,7 @@ export { FindProjectComponent } from './findproject/findproject.component';
 export { FindMemberComponent } from './findmember/findmember.component';
 export { FeedbackComponent } from "./feedback/feedback.component";
 export { HomeComponent } from "./home/home.component";
+export { IdeasComponent } from "./ideas/ideas.component";
 export { MentorProfileComponent } from './mentorProfile/mentorProfile.component';
 export { newProjectComponent } from './newProject/newProject.component';
 
@@ -118,6 +123,7 @@ export { PubProfileComponent } from './pubprofile/pubprofile.component';
 export { QAComponent } from "./qa/qa.component";
 export { RankingComponent } from "./ranking/ranking.component";
 export { RecruitComponent } from './recruit/recruit.component';
+export { ResourcesComponent } from "./resources/resources.component";
 export { SupportComponent } from './support/support.component';
 export { TemplatesComponent } from "./templates/templates.component";
 export { VerificationComponent } from './verification/verification.component';

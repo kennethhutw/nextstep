@@ -67,7 +67,7 @@ export class JoinProjectComponent implements OnInit {
 
     this.invitationSrv.getInvitation(this.invitiationId,
       this.currentUser.id).then(res => {
-        console.log("==========", res);
+
         if (res["result"] == 'successful') {
           this.invitation = res["data"];
           this.projectId = this.invitation.projectId;
@@ -99,7 +99,7 @@ export class JoinProjectComponent implements OnInit {
       projectId: this.invitation.projectId,
       username: this.currentUser.name
     }).subscribe(res => {
-      console.log("onAccept ==========", res);
+
       if (res['result'] == 'successful') {
         this.switch_expression = 3;
         this.startTimer();
@@ -107,7 +107,7 @@ export class JoinProjectComponent implements OnInit {
         this.switch_expression = 1;
       }
     }, error => {
-      console.log("onAccept error==========", error);
+      console.log(error);
     })
   }
 

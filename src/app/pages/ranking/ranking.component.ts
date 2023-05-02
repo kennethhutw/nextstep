@@ -50,7 +50,6 @@ export class RankingComponent implements OnInit {
 
   ngOnInit() {
     this.rankingSrv.getRanking().subscribe(res => {
-      console.log("project ========", res)
       if (res['result'] == 'successful') {
         this.projects = res['projects'];
         this.members = res['users'];

@@ -51,7 +51,11 @@ export class ProjectComponent implements OnInit {
   currentUser;
   currentProject = null;
   projectId;
-  application_message: string = "";
+  application_message: string = `很高興看到你們正在開發一個非常有趣的 side project，並且正在尋找一名前端工程師。我認為我有能力和動機加入你們的團隊並貢獻我的技能和熱情。
+
+      我對你們的項目充滿熱情，並且非常想為之做出貢獻。我相信我可以和你們的團隊一起協作，並且學習和成長。如果你們覺得我是你們需要的人選，請不要猶豫聯繫我。謝謝你們的時間和考慮！
+
+      [你的名字]`;
   selectedApplication: any;
   currentPageIndex = 1;
 
@@ -222,27 +226,31 @@ export class ProjectComponent implements OnInit {
       params
     ).then(res => {
       if (res["result"] == "successful") {
-        this.toastSrv.showToast('Success', "Submitted successfully", this.toastSrv.iconClasses.success);
-        this.application_message = "";
+        this.toastSrv.showToast('Success', "申請成功送出", this.toastSrv.iconClasses.success);
+
         this.selectedApplication = null;
 
         this.notificationSrv.infoProjectMembers(this.currentProject.id,
           this.currentUser.id,
-          `${this.currentUser.name}  想要應徵 ${this.currentProject.name} - ${application.position} ！`,
+          `${this.currentUser.name}  想要應徵 ${this.currentProject.name} - ${application.position} ！` + this.application_message,
           "1",
           '0',
           '0',
           this.currentUser.id
         ).then(res => {
           if (res['result'] === 'successful') {
+            this.application_message = `很高興看到你們正在開發一個非常有趣的 side project，並且正在尋找一名前端工程師。我認為我有能力和動機加入你們的團隊並貢獻我的技能和熱情。
 
+      我對你們的項目充滿熱情，並且非常想為之做出貢獻。我相信我可以和你們的團隊一起協作，並且學習和成長。如果你們覺得我是你們需要的人選，請不要猶豫聯繫我。謝謝你們的時間和考慮！
+
+[你的名字]`;
           }
         })
       } else {
-        this.toastSrv.showToast('Failed', "Submitted failed", this.toastSrv.iconClasses.error);
+        this.toastSrv.showToast('Failed', "申請送出失敗", this.toastSrv.iconClasses.error);
       }
     }).catch(error => {
-      this.toastSrv.showToast('Failed', "Submitted failed", this.toastSrv.iconClasses.error);
+      this.toastSrv.showToast('Failed', "申請送出失敗", this.toastSrv.iconClasses.error);
     })
     this.closebutton.nativeElement.click();
   }

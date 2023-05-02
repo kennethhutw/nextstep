@@ -103,6 +103,20 @@
         </div>
       </div>
     </div>
+
+    <div class="row mb-24">
+      <div class="col-md-12 d-inline">
+        <span class="title mb-24">作品區</span>
+        <span *ngIf="currentProject?.owner == currentUser?.id" class="btn-standard ml-24" data-toggle="modal"
+          [attr.data-target]="'#modifiedproject'">
+          <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 project_frame">
+
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-12">
         <ul class="nav nav-tabs" id="projectTab" role="tablist">
@@ -121,10 +135,10 @@
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'history' }" id="history" role="tabpanel"
             aria-labelledby="home-tab">
-            <div class="empty text-center mt-20" *ngIf="currentProject.logs.length ===0">
-              還沒開始
+            <div class="empty frame text-center mt-20" *ngIf="currentProject.logs.length ===0">
+              <span class="empty-text">還沒開始</span>
             </div>
-            <ng-container *ngIf="this.currentProject?.logs">
+            <ng-container *ngIf="this.currentProject?.logs?.length >0">
               <div class="frame mt-10">
                 <ng-container *ngFor="let log of currentProject.logs; let i = index">
                   <div class="col-md-12 history">
@@ -250,7 +264,7 @@
       <div class="form-group">
 
         <textarea class="form-control rounded-0" placeholder="自我介紹" [(ngModel)]="application_message"
-          id="application_message" rows="3"></textarea>
+          id="application_message" rows="15"></textarea>
       </div>
     </div>
     <div class="text-right ">

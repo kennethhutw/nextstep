@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
   RecruitService,
-  DataService,
+  NotificationService,
   AppSettingsService,
+  MembersService,
   SettingService,
   ToastService,
   ViewsService
@@ -25,10 +26,17 @@ export class JobComponent implements OnInit {
   items = [];
   currentUser = null;
   currentRecruit;
-  selectedItem;
+
   isChat: boolean = false;
   projectOwner;
   skillOptions: any[] = [];
+  @ViewChild('closebutton') closebutton;
+  selectedApplication: any;
+  application_message: string = `很高興看到你們正在開發一個非常有趣的 side project，並且正在尋找一名前端工程師。我認為我有能力和動機加入你們的團隊並貢獻我的技能和熱情。
+
+      我對你們的項目充滿熱情，並且非常想為之做出貢獻。我相信我可以和你們的團隊一起協作，並且學習和成長。如果你們覺得我是你們需要的人選，請不要猶豫聯繫我。謝謝你們的時間和考慮！
+
+[你的名字]`;
   constructor(
     private settingSrv: SettingService,
     private recruitSrv: RecruitService,
@@ -38,6 +46,8 @@ export class JobComponent implements OnInit {
     private viewsSrv: ViewsService,
     private appSettingsSrv: AppSettingsService,
     private SpinnerService: NgxSpinnerService,
+    private notificationSrv: NotificationService,
+    private membersSrv: MembersService,
     public toastr: ToastService
   ) {
     this.skillOptions = this.appSettingsSrv.skillOptions();
@@ -88,19 +98,61 @@ export class JobComponent implements OnInit {
         console.error("Add view record failed", error)
       });
     })
-    //  let _recruitId = this.route.snapshot.paramMap.get("id");
-
-
 
   }
 
 
   onSelectItem(item) {
-    this.selectedItem = item;
+    this.selectedApplication = item;
   }
 
-  onSubmit() {
+  onSubmitApplication(application) {
+    const params = {
+      projectId: application.projectId,
+      userId: this.currentUser.id,
+      userName: this.currentUser.name,
+      startDate: "",
+      endDate: "",
+      role: "candidate",
+      position: application.position,
+      scopes: application.scopes,
+      isAdmin: "0",
+      isOwner: "0",
+      status: "new",
+      available: "0",
+      recruitId: application.id,
+      uid: this.currentUser.id,
+    }
+    this.membersSrv.apply(
+      params
+    ).then(res => {
+      if (res["result"] == "successful") {
+        this.toastr.showToast('Success', "申請成功送出", this.toastr.iconClasses.success);
+        this.selectedApplication = null;
 
+        this.notificationSrv.infoProjectMembers(application.projectId,
+          this.currentUser.id,
+          `${this.currentUser.name}  想要應徵 ${application.projectName} - ${application.position} ！` + this.application_message,
+          "1",
+          '0',
+          '0',
+          this.currentUser.id
+        ).then(res => {
+          if (res['result'] === 'successful') {
+            this.application_message = `很高興看到你們正在開發一個非常有趣的 side project，並且正在尋找一名前端工程師。我認為我有能力和動機加入你們的團隊並貢獻我的技能和熱情。
+
+      我對你們的項目充滿熱情，並且非常想為之做出貢獻。我相信我可以和你們的團隊一起協作，並且學習和成長。如果你們覺得我是你們需要的人選，請不要猶豫聯繫我。謝謝你們的時間和考慮！
+
+[你的名字]`;
+          }
+        })
+      } else {
+        this.toastr.showToast('Failed', "申請送出失敗", this.toastr.iconClasses.error);
+      }
+    }).catch(error => {
+      this.toastr.showToast('Failed', "申請送出失敗", this.toastr.iconClasses.error);
+    })
+    this.closebutton.nativeElement.click();
   }
 
   onImgError(event) {
@@ -174,11 +226,6 @@ export class JobComponent implements OnInit {
       });
     }
 
-  }
-
-  onChat() {
-
-    this.isChat = !this.isChat;
   }
 
   onToggleChat(event) {
