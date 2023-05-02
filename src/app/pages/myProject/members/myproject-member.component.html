@@ -711,7 +711,8 @@
                 (error)="onImgError($event)" alt="" />{{reciver?.name}}</h3><span aria-hidden="true">X&times;</span>
         <div>
         </div>
-        <lab-comments [currentUser]="currentUser" [receiverUser]="reciver" (close)="onToggleChat($event)" body>
+        <lab-comments [currentUser]="currentUser" [receiverUser]="reciver" [receiverId]="reciver?.userId"
+            (close)="onToggleChat($event)" body>
         </lab-comments>
 
     </lab-custom-modal>

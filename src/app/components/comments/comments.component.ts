@@ -19,7 +19,7 @@ import {
 import {
   Utility
 } from './../../_helpers';
-
+import { environment } from './../../../environments/environment';
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'lab-comments',
@@ -34,9 +34,11 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnChanges {
   // only mentors and programmer can do private comment.
   @Input() isSupportPrivate: boolean = false;
   @Input() currentUser: any;
+  @Input() receiverId: any;
   // @Input() receiverUser: any;
   _receiverUser;
   @Input() set receiverUser(object) {
+
     this._receiverUser = object;
     if (this._receiverUser) {
       this.initChat(this.currentUser, this._receiverUser);
@@ -95,11 +97,15 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnChanges {
 
   onComment() {
     console.log("comment ------------")
-
+    let _receiver = this._receiverUser.id;
+    if (this.receiverId) {
+      // project member
+      _receiver = this.receiverId;
+    }
     this.chatSrv.insert({
       sender: this.currentUser.id,
       sender_name: this.currentUser.name,
-      receiver: this._receiverUser.id,
+      receiver: _receiver,
       receiver_name: this._receiverUser.name,
       content: this.message,
       type: "0",
@@ -136,10 +142,16 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnChanges {
       this.loading = true;
       this.chatData = [];
 
-      if (!this.utilitySrv.IsNullOrEmpty(sender) && !this.utilitySrv.IsNullOrEmpty(receiver))
-        if (!this.utilitySrv.IsNullOrEmpty(sender.id) && !this.utilitySrv.IsNullOrEmpty(receiver.id)) {
-          this.chatSrv.getUserChatRecord(sender.id, receiver.id).subscribe
+      if (!this.utilitySrv.IsNullOrEmpty(sender) && !this.utilitySrv.IsNullOrEmpty(receiver)) {
+        let _receiverId = this._receiverUser.id;
+        if (receiver.userId) {
+          // project member
+          _receiverId = receiver.userId;
+        }
+        if (!this.utilitySrv.IsNullOrEmpty(sender.id) && !this.utilitySrv.IsNullOrEmpty(_receiverId)) {
+          this.chatSrv.getUserChatRecord(sender.id, _receiverId).subscribe
             (res => {
+              console.log("initChat======", res)
               if (res['result'] == 'successful') {
                 this.chatData = res['data'];
               }
@@ -150,6 +162,7 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnChanges {
               this.cdf.detectChanges();
             })
         }
+      }
 
     } catch (error) {
       console.log("init chat ", error);
@@ -157,12 +170,12 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnChanges {
     }
   }
 
-  getImg(comment) {
-    return '/assets/images/user.png';
-    /*  if (comment['imageUrl'] != null) {
-       return environment.assetUrl + comment['imageUrl'];
-     } else {
-       return '/assets/images/workspace/event-hoster1.jpg';
-     } */
+  getImg(imageUrl) {
+    console.log("imageUrl======", imageUrl)
+    if (imageUrl != null) {
+      return environment.assetUrl + imageUrl;
+    } else {
+      return '/assets/images/user.png';
+    }
   }
 }

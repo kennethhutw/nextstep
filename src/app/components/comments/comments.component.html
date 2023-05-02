@@ -7,14 +7,15 @@
       <ng-container *ngIf="chatData.length>0; else noComments">
         <div *ngFor="let message of chatData;  let i = index">
           <ng-container *ngIf="IsSender(message.sender) ; else Receiver">
-            <ui-comment name="{{message.nameSender}}" [avatar]="getImg(message)" timestamp="{{
+            <ui-comment name="{{message.senderName}}" [avatar]="getImg(message?.senderImageUrl)" timestamp="{{
               (message?.createdAt !==null) ? this.utilitySrv.timeSince(message.createdAt ) : '' }}"
               text={{message.content}} [private]="false" [receiver]="false">
             </ui-comment>
           </ng-container>
           <ng-template #Receiver>
 
-            <ui-comment style="background-color: blue;" name="{{message.nameSender}}" [avatar]="getImg(message)"
+            <ui-comment style="background-color: blue;" name="{{message.senderName}}"
+              [avatar]="getImg(message?.receiverImageUrl)"
               timestamp="{{(message?.createdAt !==null) ? this.utilitySrv.timeSince(message.createdAt ) : '' }}"
               text={{message.content}} [private]="false" [receiver]="true"></ui-comment>
           </ng-template>

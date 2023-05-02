@@ -51,6 +51,8 @@ lab-custom-modal {
     align-items: center;
     color: #000;
     border-bottom: 1px solid #c4c4c4;
+    padding-left: 20px;
+    padding-bottom: 20px;
 
     &.col-3 {
         grid-template-columns: 42px 1fr 42px;
