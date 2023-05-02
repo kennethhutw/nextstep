@@ -128,10 +128,18 @@ export class MyProjectMemberComponent implements OnInit {
     this.invitationSrv.getInvitingList(this.projectId).then(res => {
       if (res['result'] == 'successful') {
         let _invitingList = res['data'];
+        console.log("===============", res)
         if (_invitingList && _invitingList.length > 0) {
-          this.invitingList = _invitingList.filter((member) => {
-            return member.status == '0'
+          _invitingList.forEach((item) => {
+            item['isSelected'] = false;
+            if (!this.utilitySrv.IsNullOrEmpty(item.imageUrl)) {
+              item.imageUrl = environment.assetUrl + item.imageUrl;
+            }
           });
+          this.invitingList = _invitingList;
+          // this.invitingList = _invitingList.filter((member) => {
+          //   return member.status == '0'
+          // });
         } else {
           this.invitingList = [];
         }
@@ -214,7 +222,8 @@ export class MyProjectMemberComponent implements OnInit {
       projectName: this.currentProject.name,
       sender: this.currentUser.name,
       projectLink: _projectLink,
-      invitationLink: _invitationLink
+      invitationLink: _invitationLink,
+      domain
     }).then(res => {
       if (res['result'] === 'successful') {
         this.submitted = false;
@@ -262,7 +271,8 @@ export class MyProjectMemberComponent implements OnInit {
       sender: this.currentUser.name,
       projectLink: _projectLink,
       invitationLink: _invitationLink,
-      invitedSignup: _invitedSignup
+      invitedSignup: _invitedSignup,
+      domain
     }).then(res => {
 
       if (res['result'] === 'successful') {
@@ -310,7 +320,8 @@ export class MyProjectMemberComponent implements OnInit {
         projectName: this.currentProject.name,
         sender: this.currentUser.name,
         projectLink: _projectLink,
-        invitationLink: _invitationLink
+        invitationLink: _invitationLink,
+        domain
       }).then(res => {
         if (res['result'] === 'successful') {
           this.toastr.showToast('email', 'successfully', 'success');

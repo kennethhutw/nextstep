@@ -9,7 +9,7 @@
             <a type="button" class="btn btn-white mr-10 float-right" data-toggle="modal"
                 [attr.data-target]="'#createRcruitModal'" (click)="onCreateRecruit()"><i class="fas fa-plus"></i>
                 新增職缺</a>
-            <select *ngIf="this.isAllowEdit()" class="btn btn-white mr-10 float-right h-40" [disabled]="!canMoveMember"
+            <select *ngIf="this.isAllowEdit()" class="btn  mr-10 float-right h-40" [disabled]="!canMoveMember"
                 [value]="status" (change)="onStatusChange($event)">
                 <option value="null">移動成員去</option>
                 <option value="current">現在成員</option>
@@ -136,7 +136,7 @@
                                         <!--  <p class="text-md m-0"><i class="far fa-comment-alt"></i>
                                         </p> -->
                                     </div>
-                                    <div class="item" style="  margin-left: auto;padding-right: 20px;">
+                                    <div class="action-item">
 
                                         <div class="dropdown" *ngIf="this.isAllowEdit()">
                                             <i class="fas fa-ellipsis-h" data-toggle="dropdown" aria-haspopup="true"
@@ -145,10 +145,11 @@
                                                 <a class="dropdown-item color-gray" data-toggle="modal"
                                                     [attr.data-target]="'#memberInfoModal'"
                                                     (click)="onEditMemberInfo($event, member)"><i
-                                                        class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</a> <a
+                                                        class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</a>
+                                                <!-- <a
                                                     class="dropdown-item color-gray"
                                                     (click)="onDeleteMemberSubmit($event, member)"><i
-                                                        class="fas fa-trash"></i>&nbsp;&nbsp;刪除</a>
+                                                        class="fas fa-trash"></i>&nbsp;&nbsp;刪除</a> -->
                                             </div>
 
                                         </div>
@@ -205,7 +206,9 @@
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <a class="d-flex align-items-center gap-10 color-black" href="/u/{{member.uid}}"
-                                            target="_blank"><i class="far fa-user-circle fa-2x"></i>{{member.name}}
+                                            target="_blank"><img class="profile-image-small rounded-circle"
+                                                src="{{ member.imageUrl }}" (error)="onImgError($event)"
+                                                alt="" />{{member.name}}
                                         </a>
                                     </div>
                                     <div class="d-flex align-items-center">
@@ -222,7 +225,7 @@
                                         <p class="text-md m-0">
                                         </p>
                                     </div>
-                                    <div class="item" style="  margin-left: auto;padding-right: 20px;">
+                                    <div class="action-item">
                                         <a class="text-md m-0" (click)="onChat(member)"><i
                                                 class="far fa-comment-alt"></i>
                                         </a>
@@ -279,8 +282,10 @@
                                         </label>
                                     </div>
                                     <div class="d-flex align-items-center">
-                                        <a class="d-flex align-items-center gap-10 color-black" href="/u/{{member.uid}}"
-                                            target="_blank"><i class="far fa-user-circle fa-2x"></i>{{member.name}}
+                                        <a class="d-flex align-items-center gap-10 color-black text-md"
+                                            href="/u/{{member.uid}}" target="_blank"><img
+                                                class="profile-image-small rounded-circle" src="{{ member.imageUrl }}"
+                                                (error)="onImgError($event)" alt="" />{{member.name}}
                                         </a>
                                     </div>
                                     <div class="d-flex align-items-center">
@@ -292,7 +297,8 @@
                                         </p>
                                     </div>
                                     <div class="d-flex align-items-center">
-                                        <p class="text-md m-0">{{member.status=="0"?"邀請中":"已接受"}}
+                                        <p class="text-md m-0">{{member.status=="0"?"邀請中": member.status=="1"
+                                            ?"已接受":"拒絕"}}
                                         </p>
                                     </div>
                                     <div class="d-flex align-items-center">
@@ -301,10 +307,11 @@
                                     </div>
 
                                     <div class="d-flex align-items-center">
-                                        <a class="clickable" (click)="onClickResend(member)" style="color: #7F7F7F;">
+                                        <a class="clickable color-gray" *ngIf="member.status=='0'"
+                                            (click)="onClickResend(member)">
                                             <i class="fa fa-envelope icon"></i>
                                         </a>
-                                        <a class="clickable" (click)="onClickDelete(member.id)" style="color: #7F7F7F;">
+                                        <a class="clickable color-gray" (click)="onClickDelete(member.id)">
                                             <i class="far fa-trash-alt icon"></i>
                                         </a>
                                     </div>
@@ -357,7 +364,9 @@
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <a class="d-flex align-items-center gap-10 color-black" href="/u/{{member.uid}}"
-                                            target="_blank"><i class="far fa-user-circle fa-2x"></i>{{member.name}}
+                                            target="_blank"><img class="profile-image-small rounded-circle"
+                                                src="{{ member.imageUrl }}" (error)="onImgError($event)"
+                                                alt="" />{{member.name}}
                                         </a>
                                     </div>
                                     <div class="d-flex align-items-center">
@@ -427,8 +436,8 @@
                                     <div class="d-flex align-items-center">
                                         <a class="d-flex align-items-center gap-10 color-black" href="/u/{{member.uid}}"
                                             target="_blank"><img class="profile-image-small rounded-circle"
-                                                src="{{ member.imageUrl }}" (error)="onImgError($event)" alt="" />
-                                            <i class="far fa-user-circle fa-2x"></i>{{member.name}}
+                                                src="{{ member.imageUrl }}" (error)="onImgError($event)"
+                                                alt="" />{{member.name}}
                                         </a>
                                     </div>
                                     <div class="d-flex align-items-center">
@@ -500,7 +509,9 @@
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <a class="d-flex align-items-center gap-10 color-black" href="/u/{{member.uid}}"
-                                            target="_blank"><i class="far fa-user-circle fa-2x"></i>{{member.name}}
+                                            target="_blank"><img class="profile-image-small rounded-circle"
+                                                src="{{ member.imageUrl }}" (error)="onImgError($event)"
+                                                alt="" />{{member.name}}
                                         </a>
                                     </div>
                                     <div class="d-flex align-items-center">
@@ -562,7 +573,7 @@
                                     id="userId" aria-describedby="nameHelp" placeholder="ID">
                                 <div *ngIf="submitted && invitedUserId==''">
                                     <div class="error-msg">
-                                        User ID is required
+                                        使用者ID是必須的
                                     </div>
                                 </div>
                             </div>
@@ -696,7 +707,7 @@
 </div>
 <div [class.show]="isChat" class="full">
     <lab-custom-modal [open]="isChat" (close)="onToggleChat($event)">
-        <h3 class="title" title><img class="profile-image-small rounded-circle mr-10" src="{{ reciver?.imageUrl }}"
+        <h3 class="chat-title" title><img class="profile-image-small rounded-circle mr-10" src="{{ reciver?.imageUrl }}"
                 (error)="onImgError($event)" alt="" />{{reciver?.name}}</h3><span aria-hidden="true">X&times;</span>
         <div>
         </div>

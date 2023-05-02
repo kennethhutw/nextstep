@@ -40,4 +40,9 @@ export class InvitationService {
         return this.http.put(`${environment.apiUrl}/invitations/${id}`, params);
     }
 
+
+    acceptJoinInvitation(id, params) {
+        return this.http.put(`${environment.apiUrl}/invitations/join/${id}`, params);
+    }
+
 }

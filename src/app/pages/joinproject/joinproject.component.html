@@ -1,24 +1,52 @@
 <div class="container text-center">
-    <div class="content" *ngIf="invitation else noInvitation">
-        <span class="title text-center mb-20">是否接受加入[{{invitation? invitation.name:"專案名稱"}}]的邀請？</span>
-        <div class="btns">
-            <button type="button" class="btn btn-white mr-10" data-dismiss="modal" aria-label="Close"
-                (click)="onReject()">婉拒
+    <ng-container [ngSwitch]="switch_expression">
+        <div class="content" *ngSwitchCase="2">
+            <span class="title text-center mb-20">是否接受加入[{{invitation? invitation.name:"專案名稱"}}]的邀請？</span>
+            <div class="btns">
+                <button type="button" class="btn btn-white mr-10" data-dismiss="modal" aria-label="Close"
+                    (click)="onReject()">婉拒
+                </button>
+                <button type="button" class="btn btn-blue mr-10" (click)="onAccept()">
+                    接受</button>
+            </div>
+            <div class="text-center">
+                <a class="later text-center" [routerLink]="['/project/',projectId]">晚點再說</a>
+                <!-- <a>晚點再說</a> -->
+            </div>
+        </div>
+        <div *ngSwitchCase="1">
+            <span class="title text-center mb-20">抱歉! 找不到您的邀請函 :(</span>
+            <div class="text-center mb-20">
+                <p class="reason">找不到邀請函的原因，可能為下列幾種情形：</p>
+                <p class="reason">1.邀請人收回此邀請</p>
+                <p class="reason">2.該邀請期限已截止</p>
+            </div>
+        </div>
+        <div *ngSwitchCase="3" class="overtime_container  align-items-center justify-content-center mt-30">
+            <div class="w-100  d-flex   align-items-center justify-content-center"><img src="assets/icons/okay.svg"
+                    alt="overtime"></div>
+
+            <span class="overtime_countdown">加入[{{invitation? invitation.name:"專案名稱"}}]成功，將於 <span
+                    class="overtime_value">{{countDownValue}}</span>
+                秒後跳轉至專案畫面</span>
+            <button type="submit" class="btn btn-blue w-100 d-flex align-items-center justify-content-center"
+                style="height: 45px; margin-top: 30px;" (click)="GoProjectPage()">
+                立即跳轉
+
             </button>
-            <button type="button" class="btn btn-blue mr-10" (click)="onAccept()">
-                接受</button>
         </div>
-        <div class="text-center">
-            <a class="later text-center" [routerLink]="['/project/',projectId]">晚點再說</a>
-            <!-- <a>晚點再說</a> -->
+        <div *ngSwitchCase="4" class="overtime_container  align-items-center justify-content-center mt-30">
+            <div class="w-100  d-flex   align-items-center justify-content-center"><img src="assets/icons/okay.svg"
+                    alt="overtime"></div>
+
+            <span class="overtime_countdown">拒絕加入[{{invitation? invitation.name:"專案名稱"}}]成功，將於 <span
+                    class="overtime_value">{{countDownValue}}</span>
+                秒後跳轉至首頁</span>
+            <button type="submit" class="btn btn-blue w-100 d-flex align-items-center justify-content-center"
+                style="height: 45px; margin-top: 30px;" (click)="GoHomePage()">
+                立即跳轉
+
+            </button>
         </div>
-    </div>
-    <ng-template #noInvitation>
-        <span class="title text-center mb-20">抱歉! 找不到您的邀請函 :(</span>
-        <div class="text-center mb-20">
-            <p class="reason">找不到邀請函的原因，可能為下列幾種情形：</p>
-            <p class="reason">1.邀請人收回此邀請</p>
-            <p class="reason">2.該邀請期限已截止</p>
-        </div>
-    </ng-template>
+    </ng-container>
 </div>

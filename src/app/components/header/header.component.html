@@ -38,6 +38,15 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+            routerLink="/resources" (click)="ToggleNavBar()">資源</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+            routerLink="/ideas" (click)="ToggleNavBar()">許願池
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
             routerLink="/templates" (click)="ToggleNavBar()">範本</a>
         </li>
         <li class="nav-item">

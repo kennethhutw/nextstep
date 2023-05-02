@@ -51,6 +51,7 @@ export class ResetPasswordComponent implements OnInit {
 
   public timerSub: Subscription;
   countDownValue: number = 0;
+  switch_expression: number = -1;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -81,8 +82,9 @@ export class ResetPasswordComponent implements OnInit {
         this.pswActionMsg = "This is expired! Please resend reset e-mail.";
         this.pswMsgFailed = true;
         this.startTimer();
+        this.switch_expression = 1;
       }
-
+      this.switch_expression = 2;
     });
 
   }
@@ -105,7 +107,7 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   GoHomePage() {
-    this.router.navigate(['./'], {
+    this.router.navigate(['./signin'], {
 
     });
   }
@@ -169,7 +171,8 @@ export class ResetPasswordComponent implements OnInit {
         this.uid).subscribe(res => {
 
           if (res["result"] === "successful") {
-            this.router.navigate(['/signin']);
+            //   this.router.navigate(['/signin']);
+            this.startTimer();
             this.submittedPSW = false;
             this.translateSrv.get("UPDATEDSUCC").subscribe((text: string) => {
               this.pswActionMsg = text;

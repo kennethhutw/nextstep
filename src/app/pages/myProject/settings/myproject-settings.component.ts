@@ -35,7 +35,6 @@ export class MyProjectSettingsComponent implements OnInit {
     private router: Router,
     private projectSrv: ProjectService,
     private toastSrv: ToastService,
-    private confirmDialogSrv: ConfirmDialogService,
     private authStoreSrv: AuthStore,
     private spinnerSrv: NgxSpinnerService) {
   }

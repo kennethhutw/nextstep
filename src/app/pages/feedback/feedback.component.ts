@@ -3,11 +3,13 @@ import {
   ViewEncapsulation,
   Component,
   OnInit,
+  ViewChild
 } from '@angular/core';
 import {
   ProposalService,
   CommentsService,
   DialogService,
+  ToastService
 } from 'src/app/_services';
 import {
   AuthStore
@@ -44,7 +46,12 @@ export class FeedbackComponent implements OnInit {
   hideall = {};
   hideprocessed = {};
   hidemyproposals = {}
+
+  @ViewChild('closeExpbutton') closeExpbutton;
+
+
   constructor(
+    private toastSrv: ToastService,
     private utilitySrv: Utility,
     private authStoreSrv: AuthStore,
     private proposalSrv: ProposalService,
@@ -165,28 +172,41 @@ export class FeedbackComponent implements OnInit {
     }
   }
 
-  onDeleteSubmit(item) {
 
-    const _item = item;
-    this.dialogSrv.confirmThis("確認要刪除此筆資料", () => {
-      this.proposalSrv.delete(_item.id, this.currentUser.id).then(res => {
+  onClickDelete(item) {
+    this.editedItem = item;
+  }
 
-        if (res['result'] == "successful") {
-          this.myproposals = this.myproposals.filter(obj => {
-            return obj.id !== _item.id
-          })
+  onDeleteSubmit() {
 
-          this.allitems = this.allitems.filter(obj => {
-            return obj.id !== _item.id
-          })
+    this.proposalSrv.delete(this.editedItem.id, this.currentUser.id).then(res => {
 
-          this.displayItems = this.allitems;
-        }
-      }, (error) => {
-        console.log("error", error);
-      })
-    }, () => {
+      if (res['result'] == "successful") {
+        this.myproposals = this.myproposals.filter(obj => {
+          return obj.id !== this.editedItem.id
+        })
 
+        this.allitems = this.allitems.filter(obj => {
+          return obj.id !== this.editedItem.id
+        })
+
+        this.displayItems = this.allitems;
+        this.editedItem = null;
+        this.toastSrv.showToast('意見回饋',
+          "刪除成功 ",
+          this.toastSrv.iconClasses.success);
+      } else {
+        this.toastSrv.showToast('意見回饋',
+          "刪除失敗 ",
+          this.toastSrv.iconClasses.error);
+      }
+      this.closeExpbutton.nativeElement.click();
+    }, (error) => {
+      console.log("error", error);
+      this.toastSrv.showToast('意見回饋',
+        "刪除失敗 ",
+        this.toastSrv.iconClasses.error);
+      this.closeExpbutton.nativeElement.click();
     })
 
   }

@@ -40,6 +40,7 @@ export class SigninComponent implements OnInit {
   invalidUser = false;
   unverifiedUser = false;
   GooglePlusNotExist = false;
+  redirectURL: string = "";
 
   @HostListener("window:resize", ["$event"])
   getScreenSize(event?) {
@@ -59,8 +60,7 @@ export class SigninComponent implements OnInit {
     private socialAuthService: AuthService,
     private changeDetectorRef: ChangeDetectorRef,
     private translateSrv: TranslateService,
-    private utility: Utility,
-    private dataSrv: DataService
+    private utility: Utility
   ) {
 
 
@@ -72,6 +72,10 @@ export class SigninComponent implements OnInit {
       email: ["", [Validators.required, Validators.pattern(emailRegex)]],
       password: ["", Validators.required],
     });
+    let params = this.route.snapshot.queryParams;
+    if (params['redirectURL']) {
+      this.redirectURL = params['redirectURL'];
+    }
   }
 
   inValid() {
@@ -85,8 +89,12 @@ export class SigninComponent implements OnInit {
     this.authSrv.login(values.email, values.password).subscribe(
       (res) => {
         if (res["result"] === "successful") {
-          this.router.navigate(["./dashboard"], {});
-
+          if (this.redirectURL) {
+            this.router.navigateByUrl(this.redirectURL,)
+              .catch(() => this.router.navigate(["./dashboard"]))
+          } else {
+            this.router.navigate(["./dashboard"], {});
+          }
         } else {
           this.invalidUser = true;
         }
