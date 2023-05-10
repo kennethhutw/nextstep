@@ -71,7 +71,7 @@ export class FindProjectComponent implements OnInit {
       _id = this.currentUser.id;
     }
     this.projectSrv.getPublicProjects(_id).then(res => {
-      console.log("project ====", res);
+
       if (res['result'] == 'successful') {
         this.items = res['data'];
         this.displayItems = this.items ? this.items : [];

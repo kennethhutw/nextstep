@@ -29,7 +29,7 @@ import { UserService } from "./user.service";
 import { UserTourService } from './user-tour.service';
 import { UserSettingService } from './userSetting.service';
 import { ViewsService } from "./views.service";
-
+import { WorkService } from "./work,service";
 
 export const services = [
     ActivityService,
@@ -62,7 +62,8 @@ export const services = [
     UserService,
     UserSettingService,
     UserTourService,
-    ViewsService];
+    ViewsService,
+    WorkService];
 
 
 export * from "./activity.service";
@@ -96,3 +97,4 @@ export { RankingService } from './ranking.service';
 export * from './recruit.service';
 export * from './invitation.service';
 export { ViewsService } from "./views.service";
+export { WorkService } from "./work,service";

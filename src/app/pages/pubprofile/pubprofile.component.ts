@@ -133,7 +133,7 @@ export class PubProfileComponent implements OnInit {
       _id = this.currentUser.id;
     }
     this.userSrv.getUserInfo(userId, _id).then(res => {
-      console.log("userProfile=============", res);
+
       if (res['result'] == 'successful') {
         this.userProfile = res['data'];
         if (!this.utility.IsNullOrEmpty(this.userProfile.skills)) {

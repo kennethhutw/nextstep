@@ -90,11 +90,12 @@ export class HeaderComponent implements OnInit {
     this.currentUser = this.authStoreSrv.getUserData();
     if (!!this.currentUser) {
       this.uid = this.currentUser.uid;
+      if (!this.utility.IsNullOrEmpty(this.currentUser.imageUrl)) {
+        this.currentUser.imageUrl = environment.assetUrl + this.currentUser.imageUrl;
+      }
     }
 
-    if (!this.utility.IsNullOrEmpty(this.currentUser.imageUrl)) {
-      this.currentUser.imageUrl = environment.assetUrl + this.currentUser.imageUrl;
-    }
+
     // this.authStoreSrv.user$.subscribe(user => {
     //   this.currentUser = user
     // });

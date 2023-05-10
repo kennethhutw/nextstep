@@ -111,7 +111,6 @@ export class SigninComponent implements OnInit {
   }
 
   socialSignIn(socialPlatform: string) {
-    console.log("socialSignIn =========", socialPlatform);
 
     let socialPlatformProvider;
     if (socialPlatform === 'google') {

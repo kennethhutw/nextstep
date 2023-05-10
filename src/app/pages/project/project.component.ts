@@ -14,7 +14,8 @@ import {
   ViewsService,
   DialogService,
   RecruitService,
-  NotificationService
+  NotificationService,
+  WorkService
 } from "../../_services";
 import {
   AuthStore
@@ -44,6 +45,8 @@ export class ProjectComponent implements OnInit {
   @ViewChild('close_recruit_button') close_recruit_button: ElementRef;
 
   projectForm: FormGroup;
+  workForm: FormGroup;
+  recruitForm: FormGroup;
   projectMsg: string = "";
 
   defaultProfileLogo = null;
@@ -57,6 +60,7 @@ export class ProjectComponent implements OnInit {
 
       [你的名字]`;
   selectedApplication: any;
+  selectedWork: any;
   currentPageIndex = 1;
 
   isChat: boolean = false;
@@ -66,7 +70,7 @@ export class ProjectComponent implements OnInit {
   currentTab: string = "history";
   submitted = false;
 
-  recruitForm: FormGroup;
+
   constructor(
     private router: Router,
     private projectSrv: ProjectService,
@@ -83,7 +87,8 @@ export class ProjectComponent implements OnInit {
     private SpinnerService: NgxSpinnerService,
     public toastSrv: ToastService,
     private dialogSrv: DialogService,
-    private notificationSrv: NotificationService
+    private notificationSrv: NotificationService,
+    private WorkSrv: WorkService
   ) {
     this.defaultProfileLogo = this.settingSrv.defaultProfileLogo;
     this.skillOptions = this.appSettingsSrv.skillOptions();
@@ -197,9 +202,14 @@ export class ProjectComponent implements OnInit {
       work78: [false],
       work9: [false],
     });
+
+    this.workForm = this.formBuilder.group({
+      id: [""],
+      text: ["", Validators.required],
+      link: ["", Validators.required],
+      isPublic: [false, Validators.required]
+    });
   }
-
-
 
   onApply(application) {
     this.selectedApplication = application;
@@ -259,7 +269,7 @@ export class ProjectComponent implements OnInit {
     return !this.utilitySrv.IsNullOrEmpty(value)
   }
   onImgError(event) {
-    event.target.src = "assets/images/defaultProjectIcon.png";
+    event.target.src = this.settingSrv.defaultProfileLogo;
   }
 
   // Pagination
@@ -335,82 +345,6 @@ export class ProjectComponent implements OnInit {
 
   }
 
-  onChat() {
-
-    this.isChat = !this.isChat;
-  }
-
-  onToggleChat(event) {
-    this.isChat = !this.isChat;
-  }
-
-  onSelectItem(item) {
-    this.selectedApplication = item;
-  }
-
-  onDeleteJobItem(item) {
-    this.dialogSrv.deleteThis('確定刪除此' + item.position, `確定刪除此${item.position}?,此動作將無法復原`, () => {
-      this.recruitSrv.delete(item.id, this.currentUser.id).then(res => {
-        if (res['result'] == "successful") {
-
-          this.currentProject.recruit = this.currentProject.recruit.filter(obj => {
-            return obj.id !== item.id
-          })
-
-          this.toastSrv.showToast('Success',
-            " " + item.name + "已刪除.",
-            this.toastSrv.iconClasses.success);
-        } else {
-          this.toastSrv.showToast('Failed',
-            res['message'],
-            this.toastSrv.iconClasses.error);
-        }
-      }).catch(error => {
-        console.error("Delete failed! " + error.message);
-        this.toastSrv.showToast('Failed',
-          error.message,
-          this.toastSrv.iconClasses.error);
-      })
-    }, () => { })
-
-  }
-  onModifyJobItem(item) {
-    this.selectedApplication = item;
-    let _skills = [];
-    if (!this.utilitySrv.IsNullOrEmpty(item.skills)) {
-
-
-      this.skillOptions.map(option => {
-        if (item.skills.includes(option.value)) {
-          _skills.push(option.text);
-        }
-      })
-    }
-    this.recruitForm.setValue({
-      id: item.id,
-      position: item.position,
-      scopes: item.scopes,
-      skills: _skills,
-      work12: item.work12,
-      work34: item.work34,
-      work56: item.work56,
-      work78: item.work78,
-      work9: item.work9,
-    });
-  }
-
-
-  changeTab(tab) {
-    this.currentTab = tab;
-  }
-
-  convertTag(term) {
-    let _term = this.skillOptions.find(option => option.value == term.toLowerCase());
-    if (_term) {
-      return _term.text;
-    }
-  }
-
 
   onClickJobCollect(recruitId, isCollected) {
     if (isCollected) {
@@ -445,6 +379,85 @@ export class ProjectComponent implements OnInit {
       });
     }
 
+  }
+
+  onCoverImgError(event) {
+    //event.target.src = "https://imagizer.imageshack.com/img921/9628/VIaL8H.jpg";
+    event.target.src = this.settingSrv.defaultProjectCover;
+  }
+
+
+  onToggleChat(event) {
+    this.isChat = !this.isChat;
+  }
+
+  // Job start
+
+  onSelectItem(item) {
+    this.selectedApplication = item;
+  }
+
+  onDeleteJobItem(item) {
+    this.dialogSrv.deleteThis('確定刪除此' + item.position, `確定刪除此${item.position}?,此動作將無法復原`, () => {
+      this.recruitSrv.delete(item.id, this.currentUser.id).then(res => {
+        if (res['result'] == "successful") {
+
+          this.currentProject.recruit = this.currentProject.recruit.filter(obj => {
+            return obj.id !== item.id
+          })
+
+          this.toastSrv.showToast('Success',
+            " " + item.name + "已刪除.",
+            this.toastSrv.iconClasses.success);
+        } else {
+          this.toastSrv.showToast('Failed',
+            res['message'],
+            this.toastSrv.iconClasses.error);
+        }
+      }).catch(error => {
+        console.error("Delete failed! " + error.message);
+        this.toastSrv.showToast('Failed',
+          error.message,
+          this.toastSrv.iconClasses.error);
+      })
+    }, () => { })
+
+  }
+
+  onModifyJobItem(item) {
+    this.selectedApplication = item;
+    let _skills = [];
+    if (!this.utilitySrv.IsNullOrEmpty(item.skills)) {
+
+
+      this.skillOptions.map(option => {
+        if (item.skills.includes(option.value)) {
+          _skills.push(option.text);
+        }
+      })
+    }
+    this.recruitForm.setValue({
+      id: item.id,
+      position: item.position,
+      scopes: item.scopes,
+      skills: _skills,
+      work12: item.work12,
+      work34: item.work34,
+      work56: item.work56,
+      work78: item.work78,
+      work9: item.work9,
+    });
+  }
+
+  changeTab(tab) {
+    this.currentTab = tab;
+  }
+
+  convertTag(term) {
+    let _term = this.skillOptions.find(option => option.value == term.toLowerCase());
+    if (_term) {
+      return _term.text;
+    }
   }
 
   onUploadProfileImage(event) {
@@ -495,13 +508,12 @@ export class ProjectComponent implements OnInit {
     })
   }
 
-  onCoverImgError(event) {
-    event.target.src = "https://imagizer.imageshack.com/img921/9628/VIaL8H.jpg";
-  }
+
 
   get f() {
     return this.projectForm.controls;
   }
+
   inValid() {
     return this.projectForm.invalid;
   }
@@ -664,5 +676,145 @@ export class ProjectComponent implements OnInit {
     })
   }
 
+  onClickWork(work) {
+    this.selectedWork = work;
+    this.workForm.setValue({
+      id: this.selectedWork.id,
+      text: this.selectedWork.text,
+      link: this.selectedWork.link,
+      isPublic: this.selectedWork.isPublic
+    });
+  }
+  onCancelEditWork() {
+    this.selectedWork = null;
+    this.workForm.reset();
+  }
+
+  get g() {
+    return this.workForm.controls;
+  }
+
+  inWorkValid() {
+    return this.workForm.invalid;
+  }
+
+  onAddWork() {
+    this.submitted = true;
+
+    if (this.workForm.invalid) {
+      return;
+    }
+    const values = this.workForm.value;
+    this.WorkSrv.insert(
+      this.currentProject.id,
+      values.text,
+      values.link,
+      values.isPublic,
+      this.currentUser.id
+    ).then(res => {
+      if (res['result'] === 'successful') {
+        if (!this.currentProject.works) {
+          this.currentProject.works = [];
+        }
+
+        this.currentProject.works.push({
+          id: res['data'],
+          text: values.text,
+          link: values.link,
+          isPublic: values.isPublic,
+          uid: this.currentUser.id
+        })
+        this.submitted = false;
+        this.selectedWork = null;
+        document.getElementById("close_work").click();
+        this.workForm.reset();
+        this.toastSrv.showToast('作品', "更新成功", this.toastSrv.iconClasses.success);
+      }
+    }, error => {
+      this.toastSrv.showToast('作品', "更新失敗", this.toastSrv.iconClasses.error);
+      console.error("updated error", error);
+    })
+  }
+
+  onUpdateWork() {
+    this.submitted = true;
+
+    if (this.workForm.invalid) {
+      return;
+    }
+    const values = this.workForm.value;
+    this.WorkSrv.update(this.selectedWork.id, {
+      projectId: this.currentProject.id,
+      text: values.text,
+      link: values.link,
+      isPublic: values.isPublic,
+      uid: this.currentUser.id
+    }).then(res => {
+      if (res['result'] === 'successful') {
+        this.currentProject.works.map(work => {
+          if (work.id === this.selectedWork.id) {
+            work.text = values.text;
+            work.link = values.link;
+            work.isPublic = values.isPublic;
+          }
+        })
+        this.submitted = false;
+        this.selectedWork = null;
+        document.getElementById("close_work").click();
+        this.workForm.reset();
+        this.toastSrv.showToast('作品', "更新成功", this.toastSrv.iconClasses.success);
+      }
+    }, error => {
+      this.toastSrv.showToast('作品', "更新失敗", this.toastSrv.iconClasses.error);
+      console.error("updated error", error);
+    })
+  }
+
+  onDeleteWork(work) {
+    this.dialogSrv.deleteThis('確定刪除此' + work.text, `確定刪除此${work.text}?,此動作將無法復原`, () => {
+
+      this.WorkSrv.delete(
+        work.id,
+      ).then(res => {
+        if (res['result'] == 'successful') {
+          this.currentProject.works = this.currentProject.works.filter(element => {
+            return element.id !== work.id
+          });
+
+          this.toastSrv.showToast('Success',
+            " " + work.text + "已刪除.",
+            this.toastSrv.iconClasses.success);
+        } else {
+          this.toastSrv.showToast('Failed',
+            res['message'],
+            this.toastSrv.iconClasses.error);
+        }
+      }).catch(error => {
+        console.error("Delete failed! " + error.message);
+        this.toastSrv.showToast('Failed',
+          error.message,
+          this.toastSrv.iconClasses.error);
+      })
+
+
+    }, () => { })
+
+  }
+
+  onWorkChange($event) {
+    this.workForm.get('isPublic').setValue($event.target.checked);
+  }
+
+  isShowWork(work) {
+    if (!this.currentUser) {
+      return work.isPublic;
+    }
+    else if (this.currentProject.owner == this.currentUser.id) {
+      return true;
+
+    } else {
+      return work.isPublic;
+    }
+  }
 }
 //https://www.sliderrevolution.com/resources/bootstrap-profile/

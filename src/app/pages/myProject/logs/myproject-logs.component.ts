@@ -39,10 +39,10 @@ export class MyProjectLogComponent implements OnInit {
 
     this.currentUser = this.authStoreSrv.getUserData();
     let projectId = this.route.snapshot.paramMap.get("projectId");
-    console.log("projectId =======", projectId)
+
     this.projectSrv.getProject(projectId,
       this.currentUser.id).then(res => {
-        console.log("========", res)
+
         if (res['result'] === 'successful') {
           this.currentProject = res['data'];
           if (this.currentProject.logs.length > 0) {

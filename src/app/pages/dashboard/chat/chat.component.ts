@@ -61,7 +61,7 @@ export class ChatComponent implements OnInit {
         }
       }
     }).catch(error => {
-      console.log("error ====", error);
+      console.log("init chat error", error);
     })
   }
 

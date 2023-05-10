@@ -73,7 +73,6 @@ export class JobComponent implements OnInit {
           if (!this.utility.IsNullOrEmpty(this.currentRecruit.projectImageUrl)) {
             this.currentRecruit.projectImageUrl = environment.assetUrl + this.currentRecruit.projectImageUrl;
           }
-          console.log("currentRecruit ====", this.currentRecruit)
 
         }
         this.SpinnerService.hide();

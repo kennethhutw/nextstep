@@ -81,7 +81,7 @@ export class FindMemberComponent implements OnInit {
     }
 
     this.userSrv.getPublicPartners(_id).then(res => {
-      console.log("members ==========", res);
+
       if (res['result'] == 'successful') {
         this.items = res['data'];
         if (this.items && this.items.length > 0) {

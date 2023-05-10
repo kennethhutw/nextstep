@@ -140,7 +140,7 @@ export class MentorProfileComponent implements OnInit {
     let userId = this.route.snapshot.paramMap.get('userId');
     let currentUserId = this.currentUser.id ? this.currentUser.id : null;
     this.userSrv.getMentorInfo(userId, currentUserId).then(res => {
-      console.log("getMentorInfo ======", res)
+
       if (res['result'] == 'successful') {
         this.userProfile = res['data'];
         if (!this.utilitySrv.IsNullOrEmpty(this.userProfile.skills)) {

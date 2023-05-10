@@ -39,8 +39,8 @@
     <button type="button" class="btn btn_item" [ngClass]="{'btn_item_selected': currentProject?.isFollowing === true}"
       *ngIf="currentProject?.owner !== currentUser?.id" (click)="onClickFollow()"><i class="fas fa-plus"></i>
       {{currentProject?.isFollowing === true ? "已追蹤" : "追蹤"}} </button>
-    <button type="button" class="btn btn_item" *ngIf="currentProject?.owner !== currentUser?.id" (click)="onChat()"><i
-        class="far fa-comment-dots"></i>
+    <button type="button" class="btn btn_item" *ngIf="currentProject?.owner !== currentUser?.id"
+      (click)="onToggleChat($event)"><i class="far fa-comment-dots"></i>
       訊息</button>
   </div>
 </div>
@@ -108,12 +108,27 @@
       <div class="col-md-12 d-inline">
         <span class="title mb-24">作品區</span>
         <span *ngIf="currentProject?.owner == currentUser?.id" class="btn-standard ml-24" data-toggle="modal"
-          [attr.data-target]="'#modifiedproject'">
+          [attr.data-target]="'#projectwork'">
           <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</span>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12 project_frame">
+    <div class="row frame ">
+      <div class="col-md-12 ">
+        <ng-container *ngFor="let work of currentProject.works; let i = index">
+          <div class="workbar" *ngIf="isShowWork(work)">
+            <span class="dot"></span>
+            <a href="{{ work.link }}" target="_blank">{{work.text}}</a>
+            <div class="dropdown text-right" *ngIf="currentProject?.owner == currentUser?.id"><i
+                class="fas fa-ellipsis-h color-gray text-18" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="true"></i>
+              <div class="dropdown-menu"> <a class="dropdown-item color-gray" data-toggle="modal"
+                  [attr.data-target]="'#projectwork'" (click)="onClickWork(work)"><i
+                    class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</a> <a class="dropdown-item color-gray"
+                  (click)="onDeleteWork(work)"><i class="fas fa-trash"></i>&nbsp;&nbsp;刪除</a></div>
+
+            </div>
+          </div>
+        </ng-container>
 
       </div>
     </div>
@@ -444,6 +459,7 @@
     </div>
   </div>
 </div>
+
 <app-dialog></app-dialog>
 
 <div class="modal fade" id="modifiedJob" tabindex="-1" aria-labelledby="modifiedJob" aria-hidden="true">
@@ -505,6 +521,74 @@
           </div>
           <div class="form-group row justify-content-end">
             <button type="button" class="btn btn-blue  mr-10 float-right" (click)="onUpdateRecruitSubmit()">更新</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="projectwork" tabindex="-1" aria-labelledby="projectwork" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p class="title">作品</p>
+        <button type="button" id="close_work" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body content">
+        <form [formGroup]="workForm">
+          <div class="row">
+            <div class="col-md-12 mb-12 ">
+              <label class=" pr-2" for="workname">
+                <h5> 顯示名稱 :</h5>
+              </label>
+              <input type="text" formControlName="text" id="workname" class="form-control mr-10">
+              <div *ngIf="submitted && g.text.errors">
+                <div class="error-msg" *ngIf="g.text.errors.required">
+                  顯示名稱必須的
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 mb-12 ">
+              <label class=" pr-2" for="worklink">
+                <h5> 連結* :</h5>
+              </label>
+              <input type="text" formControlName="link" id="worklink" class="form-control mr-10">
+              <div *ngIf="submitted && g.link.errors">
+                <div class="error-msg" *ngIf="g.link.errors.required">
+                  連結必須的
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 mb-12 ">
+              <input type="checkbox" (change)="onWorkChange($event)" [checked]="workForm.value.isPublic"
+                value="workForm.value.isPublic"><span>公開
+              </span>
+            </div>
+          </div>
+
+
+          <div class="row item-right">
+            <button type="button" class="btn btn-transparent  mr-10" data-dismiss="modal" aria-label="Close"
+              (click)="onCancelEditWork()">取消
+            </button>
+            <button type="button" *ngIf="!this.selectedWork" class="btn btn-blue  mr-10" (click)="onAddWork()">
+              新增</button>
+            <button type="button" *ngIf="this.selectedWork" class="btn btn-blue  mr-10" (click)="onUpdateWork()">
+              更新</button>
+          </div>
+          <div class="row">
+            <div class="col-md-12 mb-12 form-group text-center">
+              <div class="error-msg" *ngIf="projectMsg!=''">{{ projectMsg }}</div>
+            </div>
           </div>
         </form>
       </div>

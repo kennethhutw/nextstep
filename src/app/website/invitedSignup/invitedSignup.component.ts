@@ -125,7 +125,6 @@ export class InvitedSignupComponent implements OnInit {
       values.name,
       values.email,
       values.password).subscribe(res => {
-        console.log("invitedSignup ===========", res);
 
         if (res['result'] == 'successful') {
 

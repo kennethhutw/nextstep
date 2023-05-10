@@ -151,7 +151,7 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnChanges {
         if (!this.utilitySrv.IsNullOrEmpty(sender.id) && !this.utilitySrv.IsNullOrEmpty(_receiverId)) {
           this.chatSrv.getUserChatRecord(sender.id, _receiverId).subscribe
             (res => {
-              console.log("initChat======", res)
+
               if (res['result'] == 'successful') {
                 this.chatData = res['data'];
               }

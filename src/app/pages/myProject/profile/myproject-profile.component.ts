@@ -57,7 +57,7 @@ export class MyProjectProfileComponent implements OnInit, AfterViewInit {
     this.projectSrv.getProject(projectId,
       this.currentUser.id).then(res => {
         if (res['result'] === 'successful') {
-          console.log("date ======", res)
+
           this.currentProject = res['data'];
           this.projectForm.setValue({
             name: this.currentProject.name,

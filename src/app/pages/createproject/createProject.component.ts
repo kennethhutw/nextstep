@@ -84,8 +84,7 @@ export class CreateProjectComponent implements OnInit, ComponentCanDeactivate {
       }, () => {
         return false;
       });
-    // console.log("===========", isAuthenticate);
-    // return isAuthenticate;
+
   }
 
   onChangeStep(step) {
