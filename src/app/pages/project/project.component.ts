@@ -90,7 +90,7 @@ export class ProjectComponent implements OnInit {
     private notificationSrv: NotificationService,
     private WorkSrv: WorkService
   ) {
-    this.defaultProfileLogo = this.settingSrv.defaultProfileLogo;
+    this.defaultProfileLogo = this.settingSrv.defaultProjectLogo;
     this.skillOptions = this.appSettingsSrv.skillOptions();
     this.projectForm = this.formBuilder.group({
       name: ["", Validators.required],
@@ -269,7 +269,7 @@ export class ProjectComponent implements OnInit {
     return !this.utilitySrv.IsNullOrEmpty(value)
   }
   onImgError(event) {
-    event.target.src = this.settingSrv.defaultProfileLogo;
+    event.target.src = this.settingSrv.defaultProjectLogo;
   }
 
   // Pagination
