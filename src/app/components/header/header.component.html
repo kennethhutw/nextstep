@@ -110,8 +110,8 @@
           <a class=" dropdown-toggle color-gray" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             <i *ngIf="!currentUser.imageUrl" class="far fa-user-circle font-25"></i>
-            <img class="profile-image rounded-circle" src="{{ currentUser.imageUrl }}" (error)="onImgError($event)"
-              alt="" />
+            <img *ngIf="currentUser.imageUrl" class="profile-image rounded-circle" src="{{ currentUser.imageUrl }}"
+              (error)="onImgError($event)" alt="" />
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"

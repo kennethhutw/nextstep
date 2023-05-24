@@ -299,7 +299,7 @@ export class PubProfileComponent implements OnInit {
   }
 
   onCoverImgError(event) {
-    event.target.src = "https://imagizer.imageshack.com/img921/9628/VIaL8H.jpg";
+    event.target.src = this.settingSrv.defaultPersonalCover;
   }
 
   onImgError(event) {
@@ -544,7 +544,7 @@ export class PubProfileComponent implements OnInit {
   }
 
   onProjectImgError(event) {
-    event.target.src = "assets/images/defaultlogo.png";
+    event.target.src = this.settingSrv.defaultProjectLogo;
   }
 }
 //https://www.sliderrevolution.com/resources/bootstrap-profile/
