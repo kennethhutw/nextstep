@@ -1,5 +1,6 @@
 
 import { HomeComponent } from "./home/home.component";
+import { HomeOldComponent } from "./home_old/home.component";
 import { IdeasComponent } from "./ideas/ideas.component";
 import { AboutComponent } from "./about/about.component";
 import { ActivityComponent } from "./activity/activity.component";
@@ -66,6 +67,7 @@ export const containers = [
     FindProjectComponent,
     FindMemberComponent,
     HomeComponent,
+    HomeOldComponent,
     IdeasComponent,
     JobComponent,
     JoinProjectComponent,
@@ -105,6 +107,7 @@ export { FindProjectComponent } from './findproject/findproject.component';
 export { FindMemberComponent } from './findmember/findmember.component';
 export { FeedbackComponent } from "./feedback/feedback.component";
 export { HomeComponent } from "./home/home.component";
+export { HomeOldComponent } from "./home_old/home.component";
 export { IdeasComponent } from "./ideas/ideas.component";
 export { MentorProfileComponent } from './mentorProfile/mentorProfile.component';
 export { newProjectComponent } from './newProject/newProject.component';
