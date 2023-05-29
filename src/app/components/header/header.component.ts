@@ -59,18 +59,17 @@ export class HeaderComponent implements OnInit {
     public authStoreSrv: AuthStore
   ) {
     let _lang = localStorage.getItem("lang");
-    // if (!this.utility.IsNullOrEmpty(_lang)) {
-    //   this.translateSrv.use(_lang);
-    // }
-    // this.dataSrv.langKey.subscribe((lang) => {
-    //   if (!this.utility.IsNullOrEmpty(lang)) {
-    //     this.translateSrv.use(lang);
-    //   }
-    // });
+    if (!this.utility.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
+    }
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utility.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+      }
+    });
   }
 
   ngOnInit() {
-    this.translateSrv.use("zh-tw");
     if (environment.environment !== "production") {
       this.DemoSite = "This is a demo site.";
     }

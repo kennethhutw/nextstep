@@ -11,17 +11,11 @@
 
     <div class=" form-inline col-md-9 color-black" style="    flex-direction: row-reverse;">
 
-      <a [routerLink]="['/feedback']"><span class="item ">意見回饋</span></a>
-      <a [routerLink]="['/qa']"><span class="item">常見問題</span></a>
+      <a [routerLink]="['/feedback']"><span class="item ">{{ "FEEDBACK" | translate }}</span></a>
+      <a [routerLink]="['/qa']"><span class="item">{{ "Q&A" | translate }}</span></a>
 
-      <a [routerLink]="['/about']" fragment="support"> <span class="item ">支持我們</span></a>
-      <a [routerLink]="['/about']"><span class="item ">關於我們</span></a>
-      <!-- <span class="color-black" style="padding-left:20px;padding-right: 20px;">服務條款</span> -->
-    </div>
-
-
-
-    <!-- <div class="col-md-2 test">
+      <a [routerLink]="['/about']" fragment="support"> <span class="item ">{{ "SUPPORTUS" | translate }}</span></a>
+      <a [routerLink]="['/about']"><span class="item ">{{ "ABOUTUS" | translate }}</span></a>
       <div>
         <select [(ngModel)]="SelectedLang" class="footer_dropdown" #Lang (change)="changeLanguage(Lang.value)">
           <option value="zh-tw">繁體中文</option>
@@ -29,7 +23,14 @@
           <option value="en">English</option>
         </select>
       </div>
-    </div> -->
+      <!-- <span class="color-black" style="padding-left:20px;padding-right: 20px;">服務條款</span> -->
+    </div>
+
+
+
+    <div class="col-md-2 test">
+
+    </div>
   </div>
 </div>
 <!-- footer area end -->
