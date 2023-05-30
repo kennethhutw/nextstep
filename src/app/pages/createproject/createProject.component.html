@@ -4,12 +4,12 @@
             <div class="row">
                 <div class="col-md-12 mb-12 form-group ">
                     <label class="pr-2" for="projectname">
-                        <h5> 專案名稱*</h5>
+                        <h5> {{ "PROJECT_NAME" | translate }}<span class="color-red ">*</span></h5>
                     </label>
                     <input type="text" formControlName="name" id="projectname" class="form-control mr-10">
                     <div *ngIf="submitted && f.name.errors">
                         <div class="error-msg" *ngIf="f.name.errors.required">
-                            Project name is required
+                            {{ "PROJECT_NAME" | translate }}
                         </div>
                     </div>
                 </div>
@@ -17,22 +17,23 @@
             <div class="row">
                 <div class="col-md-12 mb-12 form-group ">
                     <label class="pr-2" for="projectname">
-                        <h5> 專案狀態</h5>
+                        <h5> {{ "PROJECT_STATUS" | translate }}</h5>
                     </label>
                     <div class="form-group">
                         <input type="checkbox" (change)="onStatusChange($event, 'isFindPartner')"
-                            [checked]="projectForm.value.isFindPartner"
-                            value="projectForm.value.isFindPartner"><span>徵成員</span>
+                            [checked]="projectForm.value.isFindPartner" value="projectForm.value.isFindPartner"><span>{{
+                            "FIND_MEMBER" | translate }}</span>
                         <input type="checkbox" (change)="onStatusChange($event, 'isFunding')"
-                            [checked]="projectForm.value.isFunding" value="projectForm.value.isFunding"><span>募資中
+                            [checked]="projectForm.value.isFunding" value="projectForm.value.isFunding"><span>{{
+                            "FIND_MONEY" | translate }}
                         </span>
                         <input type="checkbox" (change)="onStatusChange($event, 'isCofounder')"
-                            [checked]="projectForm.value.isCofounder"
-                            value="projectForm.value.isCofounder"><span>找共同創辦人</span>
+                            [checked]="projectForm.value.isCofounder" value="projectForm.value.isCofounder"><span>{{
+                            "FIND_COFOUNDER" | translate }}</span>
                     </div>
 
                 </div>
-                <div class="col-md-12 mb-12 form-group ">
+                <!--       <div class="col-md-12 mb-12 form-group ">
                     <label class="pr-2" for="projectname">
                         <h5> 專案產品</h5>
                     </label>
@@ -44,65 +45,82 @@
                         <input type="checkbox" (change)="onProductChange($event, 'hardware')"
                             [checked]="isInValue('hardware', f.type.value)" value="hardware"><span>硬體</span>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-md-12 mb-12 form-group ">
                     <label class="pr-2" for="projectname">
-                        <h5> 產業類型*</h5>
+                        <h5> {{"INDUSTRY_TYPES" | translate }}<span class="color-red ">*</span></h5>
                     </label>
                     <div class="form-group">
                         <input type="checkbox" (change)="onIndustryTypeChange($event, 'eComm')"
-                            [checked]="isInValue('eComm', f.type.value)" value="eComm"><span>電子商務</span>
+                            [checked]="isInValue('eComm', f.type.value)" value="eComm"><span>{{"ECOMM" | translate
+                            }}</span>
                         <input type="checkbox" (change)="onIndustryTypeChange($event, 'medical')"
-                            [checked]="isInValue('medical', f.type.value)" value="medical"><span>醫學科技</span>
+                            [checked]="isInValue('medical', f.type.value)" value="medical"><span>{{"MEDICAL" | translate
+                            }}</span>
                         <input type="checkbox" (change)="onIndustryTypeChange($event, 'ai')"
-                            [checked]="isInValue('ai', f.type.value)" value="ai"><span>人工智慧</span>
+                            [checked]="isInValue('ai', f.type.value)" value="ai"><span>{{"AI" | translate }}</span>
                         <input type="checkbox" (change)="onIndustryTypeChange($event, 'transport')"
-                            [checked]="isInValue('transport', f.type.value)" value="transport"><span>運輸服務</span>
+                            [checked]="isInValue('transport', f.type.value)" value="transport"><span>{{"TRANSPORT" |
+                            translate }}</span>
                         <input type="checkbox" (change)="onIndustryTypeChange($event, 'edutech')"
-                            [checked]="isInValue('edutech', f.type.value)" value="edutech"><span>教育科技</span>
+                            [checked]="isInValue('edutech', f.type.value)" value="edutech"><span>{{"EDUTECH" | translate
+                            }}</span>
                         <input type="checkbox" (change)="onIndustryTypeChange($event, 'fintech')"
-                            [checked]="isInValue('fintech', f.type.value)" value="fintech"><span>金融科技</span>
+                            [checked]="isInValue('fintech', f.type.value)" value="fintech"><span>{{"FINTECH" | translate
+                            }}</span>
                         <input type="checkbox" (change)="onIndustryTypeChange($event, 'sharingeconomy')"
                             [checked]="isInValue('sharingeconomy', f.type.value)"
-                            value="sharingeconomy"><span>共享經濟</span>
+                            value="sharingeconomy"><span>{{"SHARINGECONOMY" | translate }}</span>
                         <input type="checkbox" (change)="onIndustryTypeChange($event, 'game')"
-                            [checked]="isInValue('game', f.type.value)" value="game"><span>遊戲產業</span>
+                            [checked]="isInValue('game', f.type.value)" value="game"><span>{{"GAME" | translate
+                            }}</span>
                     </div>
                 </div>
                 <div class="col-md-12 mb-12 form-group ">
                     <label class="pr-2" for="stage">
-                        <h5> 目前進度*</h5>
+                        <h5> {{"GAME" | translate
+                            }}<span class="color-red ">*</span></h5>
                     </label>
                     <div class="form-group">
                         <input type="checkbox" (change)="onStageChange($event, 'idea')"
-                            [checked]="isInValue('idea', f.stages.value)" value="idea"><span>已有創業概念</span>
+                            [checked]="isInValue('idea', f.stages.value)" value="idea"><span>{{"PRORGRESS_1" | translate
+                            }}</span>
                         <input type="checkbox" (change)="onStageChange($event, 'businessplan')"
                             [checked]="isInValue('businessplan', f.stages.value)"
-                            value="businessplan"><span>商業計畫初稿</span>
+                            value="businessplan"><span>{{"PRORGRESS_2" | translate
+                            }}</span>
                         <input type="checkbox" (change)="onStageChange($event, 'findpartner')"
-                            [checked]="isInValue('findpartner', f.stages.value)" value="findpartner"><span>找創業夥伴</span>
+                            [checked]="isInValue('findpartner', f.stages.value)"
+                            value="findpartner"><span>{{"PRORGRESS_3" | translate
+                            }}</span>
                         <input type="checkbox" (change)="onStageChange($event, 'buildMVP')"
-                            [checked]="isInValue('buildMVP', f.stages.value)"
-                            value="buildMVP"><span>建構最小可行性產品(MVP)</span>
+                            [checked]="isInValue('buildMVP', f.stages.value)" value="buildMVP"><span>{{"PRORGRESS_4" |
+                            translate
+                            }}</span>
                         <input type="checkbox" (change)="onStageChange($event, 'producttested')"
                             [checked]="isInValue('producttested', f.stages.value)"
-                            value="producttested"><span>驗證產品中</span>
+                            value="producttested"><span>{{"PRORGRESS_5" | translate
+                            }}</span>
                         <input type="checkbox" (change)="onStageChange($event, 'findcustomers')"
                             [checked]="isInValue('findcustomers', f.stages.value)"
-                            value="findcustomers"><span>找用戶中</span>
+                            value="findcustomers"><span>{{"PRORGRESS_6" | translate
+                            }}</span>
                         <input type="checkbox" (change)="onStageChange($event, 'findpayingcustomers')"
                             [checked]="isInValue('findpayingcustomers', f.stages.value)"
-                            value="findpayingcustomers"><span>找付費用戶中</span>
+                            value="findpayingcustomers"><span>{{"PRORGRESS_7" | translate
+                            }}</span>
                         <input type="checkbox" (change)="onStageChange($event, 'fundraising')"
-                            [checked]="isInValue('fundraising', f.stages.value)" value="fundraising"><span>募資中</span>
+                            [checked]="isInValue('fundraising', f.stages.value)"
+                            value="fundraising"><span>{{"PRORGRESS_8" | translate
+                            }}</span>
                     </div>
                 </div>
                 <div class="col-md-12 mb-12 form-group ">
                     <label class="pr-2" for="projectname">
-                        <h5> 簡介 :</h5>
+                        <h5> {{ "PROJECT_INTRO" | translate }} :</h5>
                     </label>
-                    <textarea formControlName="description" type="text" class="form-control" id="" rows="4" cols="50"
-                        placeholder="輸入專案介紹"></textarea>
+                    <textarea formControlName="description" type="text" class="form-control" id="" rows="20" cols="50"
+                        placeholder="{{ 'PROJECT_INTRO_STATEMENT' | translate }}"></textarea>
                     <div *ngIf="submitted && f.description.errors">
                         <div class="error-msg" *ngIf="f.description.errors.required">
                             專案簡介是必要的
@@ -119,9 +137,9 @@
     <div class="row">
         <div class="col-md-12 mb-12 form-group button-center">
             <button type="button" class="btn btn-blue mr-10" [disabled]="!projectForm.valid" (click)="onSaveDraft()">
-                存為草稿</button>
+                {{ "SAVE_DRAFT" | translate }}</button>
             <button type="button" class="btn btn-blue mr-10" [disabled]="!projectForm.valid" (click)="onSave()">
-                發布</button>
+                {{ "PUBLISH" | translate }}</button>
         </div>
 
     </div>

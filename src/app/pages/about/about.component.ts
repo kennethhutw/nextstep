@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { DataService } from "./../../_services";
 import { Utility } from "./../../_helpers";

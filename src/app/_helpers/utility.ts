@@ -49,6 +49,10 @@ export class Utility {
     return time;
   }
 
+  SetPlaceholder(elementName, value) {
+    document.querySelector(elementName).setAttribute("placeholder", value);
+  }
+
   IsNullOrEmpty(value) {
     try {
       if (

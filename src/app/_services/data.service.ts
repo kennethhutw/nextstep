@@ -12,8 +12,6 @@ export class DataService {
   private lang = new BehaviorSubject('');
   langKey = this.lang.asObservable();
 
-  private ethprice = new BehaviorSubject(0);
-  ethpriceKey = this.ethprice.asObservable();
 
 
   private previewBG = new BehaviorSubject('');
@@ -35,9 +33,10 @@ export class DataService {
     this.lang.next(lang);
   }
 
-  setETHPrice(price) {
-    this.ethprice.next(price);
+  getLang() {
+    return this.lang;
   }
+
 
   toggleSidebar() {
     this.isSidebarToggeled = !this.isSidebarToggeled;

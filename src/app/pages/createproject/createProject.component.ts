@@ -1,6 +1,7 @@
 import { HostListener, ViewEncapsulation, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
+  DataService,
   DialogService,
   ProjectService,
   ActivityService,
@@ -10,9 +11,10 @@ import {
   AuthStore
 } from "../../_services/auth.store";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DomSanitizer } from '@angular/platform-browser';
 import { ComponentCanDeactivate } from "../../_guards";
 import { Observable } from 'rxjs';
+import { TranslateService } from "@ngx-translate/core";
+import { Utility } from "./../../_helpers";
 @Component({
   selector: 'app-create-project',
   templateUrl: './createProject.component.html',
@@ -29,6 +31,9 @@ export class CreateProjectComponent implements OnInit, ComponentCanDeactivate {
   isSaveChange = true;
 
   constructor(
+    private dataSrv: DataService,
+    private translateSrv: TranslateService,
+    private utilitySrv: Utility,
     private router: Router,
 
     private formBuilder: FormBuilder,
@@ -54,9 +59,22 @@ export class CreateProjectComponent implements OnInit, ComponentCanDeactivate {
     });
 
     this.projectForm.controls['name'].valueChanges.subscribe(value => {
-      console.log(value);
       this.isSaveChange = false;
     });
+
+    let _lang = localStorage.getItem("lang");
+    if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
+    }
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utilitySrv.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+      }
+    });
+
+ /*    this.translateSrv.get("PRORGRESS_INTRO_STATEMENT").subscribe((text: string) => {
+      this.utilitySrv.SetPlaceholder("#emailsignin", text);
+    }); */
   }
 
   @HostListener('window:beforeunload')
