@@ -54,7 +54,6 @@ export class HeaderComponent implements OnInit {
     private dataSrv: DataService,
     private router: Router,
     private notificationSrv: NotificationService,
-    private route: ActivatedRoute,
     private emailSrv: EmailService,
     public authStoreSrv: AuthStore
   ) {

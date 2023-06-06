@@ -11,7 +11,8 @@ import {
   ToastService,
   AppSettingsService,
   SettingService,
-  UserService
+  UserService,
+  DataService
 } from "../../_services";
 import {
   AuthStore
@@ -59,6 +60,11 @@ export class PubProfileComponent implements OnInit {
   // chat
   isChat: boolean = false;
 
+  strFollow: string = "";
+  strFollowed: string = "";
+  strCollect: string = "";
+  strCollected: string = "";
+  strNoWords: string = "";
 
   // tab
   currentTab: string = "current";
@@ -72,6 +78,7 @@ export class PubProfileComponent implements OnInit {
     private authSrv: AuthStore,
     private settingSrv: SettingService,
     private translateSrv: TranslateService,
+    private dataSrv: DataService,
     private utility: Utility,
     private formBuilder: FormBuilder,
     private appSettingsSrv: AppSettingsService,
@@ -113,6 +120,20 @@ export class PubProfileComponent implements OnInit {
     for (var i = min; i <= max; i++) {
       this.years.push(i.toString());
     }
+
+    let _lang = localStorage.getItem("lang");
+    if (!this.utility.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
+      this.intialTerms();
+    }
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utility.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+        this.intialTerms();
+        this.getFollow(this.userProfile);
+
+      }
+    });
   }
 
   ngOnInit() {
@@ -184,6 +205,41 @@ export class PubProfileComponent implements OnInit {
 
       }
     })
+  }
+
+  intialTerms() {
+    this.translateSrv.get("FOLLOW").subscribe((text: string) => {
+      this.strFollow = text;
+    });
+    this.translateSrv.get("FOLLOWED").subscribe((text: string) => {
+      this.strFollowed = text;
+    });
+    this.translateSrv.get("COLLECT").subscribe((text: string) => {
+      this.strCollect = text;
+    });
+    this.translateSrv.get("COLLECTED").subscribe((text: string) => {
+      this.strCollected = text;
+    });
+    //
+    this.translateSrv.get("NOWORDS").subscribe((text: string) => {
+      this.strNoWords = text;
+    });
+  }
+
+  getFollow(profile) {
+    let _lang = localStorage.getItem("lang");
+
+    if (!this.utility.IsNullOrEmpty(_lang)) {
+      let likedNum = profile.liked ? profile.liked : '0';
+      let likNum = profile.like ? profile.like : '0';
+      if (_lang.indexOf("en") > -1) {
+        return likedNum + " Followers  " + likNum + " Following  ";
+      } else if (_lang.indexOf("tw") > -1) {
+        return likedNum + " 人關注 /  關注" + likNum + " 人  ";
+      }
+
+    }
+
   }
 
   get g() {

@@ -3,7 +3,7 @@
     <div id="profile-banner-image">
       <img (error)="onCoverImgError($event)" src="{{userProfile.cover}}" alt="Banner image">
       <a *ngIf="isOwner" type="button" class="btn-cover" for="profileCover" (click)="profileCover.click()">
-        <svg-icon src="./assets/icons/edit.svg"></svg-icon> 編輯封面相片
+        <svg-icon src="./assets/icons/edit.svg"></svg-icon> {{ "EDITCOVER" | translate }}
       </a>
       <input id="profileCover" #profileCover type="file" accept="image/gif, image/jpg, image/jpeg, image/png, image/gif"
         (change)="onUploadProfileCover($event)" />
@@ -32,19 +32,17 @@
   </div>
   <div class="row mt-50">
     <div class="col-md-12 text-right">
-
       <div *ngIf="!isOwner && currentUser" class=" text-right btn_items">
-
         <button type="button" class="btn btn_item " (click)="onToggleChat($event)"><i class="far fa-comment-alt"></i>
-          訊息</button>
+          {{ "MESSAGE" | translate }}</button>
         <button type="button" class="btn btn_item" [ngClass]="{'btn_item_selected': userProfile?.isFollowing === true}"
           *ngIf="userProfile?.owner !== currentUser?.id" (click)="onClickFollow()"><i class="fas fa-plus"></i>
-          {{userProfile?.isFollowing === true ? "已追蹤" : "追蹤"}} </button>
+          {{userProfile?.isFollowing === true ? this.strFollowed : this.strFollow}} </button>
 
         <button type="button" class="btn btn_item" [ngClass]="{'btn_item_selected': userProfile?.isCollected === true}"
           *ngIf="userProfile?.owner !== currentUser?.id" (click)="onClickCollect()"><i
             class="far fa-bookmark fa-lg"></i>
-          {{userProfile?.isCollected === true ? "已收藏" : "收藏"}} </button>
+          {{userProfile?.isCollected === true ? this.strCollected : this.strCollect}} </button>
       </div>
     </div>
   </div>
@@ -53,8 +51,9 @@
 
     </div>
     <div class="col-md-6 text-right">
-      <span>累積{{ userProfile.viewCount?userProfile.viewCount:"0"}}次瀏覽&nbsp;&nbsp;</span>
-      {{userProfile?.liked ? userProfile.liked:'0'}}人關注/關注{{userProfile?.like? userProfile.like:'0'}}人
+      <span>{{ userProfile.viewCount?userProfile.viewCount:"0"}}&nbsp;&nbsp;{{ "VIEWNUM" | translate
+        }}&nbsp;&nbsp;</span>
+      {{ this.getFollow(userProfile)}}
     </div>
   </div>
 
@@ -64,11 +63,11 @@
       <!--     個人簡介 start -->
       <div class="row">
         <div class="col-md-12 mb-24 title_section">
-          <span class="title">個人簡介</span>
+          <span class="title">{{ "BIO" | translate }}</span>
 
           <span *ngIf="currentUser?.id == userProfile.id" class="btn-standard" data-toggle="modal"
             [attr.data-target]="'#editprofile'" (click)="initProfileForm()">
-            <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</span>
+            <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{ "EDIT" | translate }}</span>
         </div>
       </div>
       <div class="frame">
@@ -79,12 +78,13 @@
                 <ng-container *ngIf="
                                         userProfile?.skills;
                                         else noskill
-                                      "><span class="sub-title">技能:&nbsp;&nbsp;</span>
+                                      "><span class="sub-title">{{ "SKILLS" | translate }}:&nbsp;&nbsp;</span>
                   <span *ngFor="let skill of userProfile.skills; let i = index"
                     class="tag  tag-{{skill}}  mb-2 mr-3">{{convertTag(skill)}}</span>
                 </ng-container>
                 <ng-template #noskill>
-                  <span class="sub-title">技能:&nbsp;&nbsp;</span> <span class="tags">我還沒填寫我的專長</span>
+                  <span class="sub-title">{{ "SKILLS" | translate }}:&nbsp;&nbsp;</span> <span class="tags">{{
+                    "NOTSKILLS" | translate }}</span>
 
                 </ng-template>
               </div>
@@ -102,18 +102,16 @@
                     class="fa-fw fab fa-facebook icon"></i></a>
                 <a *ngIf="IsNullorEmpty(userProfile.instagram)" href="{{ userProfile.instagram }}" target="_blank"> <i
                     *ngIf="userProfile.instagram!=''" class="fab fa-instagram-square icon"></i></a>
-
               </div>
             </div>
-
-
-
           </div>
+
           <div class="col-md-12 mt-26">
-            <span class="sub-title">想說的話:</span>
+            <span class="sub-title">{{ "IWANTTOSAY" |
+              translate }}:</span>
           </div>
           <div class="col-md-12 mt-12">
-            <p>{{this.userProfile.bio?this.userProfile.bio:"尚未有話要說"}}</p>
+            <p>{{this.userProfile.bio?this.userProfile.bio:this.strNoWords}}</p>
           </div>
         </div>
       </div>
@@ -124,15 +122,14 @@
           <ul class="nav nav-tabs" id="projectTab" role="tablist">
             <li class="nav-item" role="presentation">
               <button class="nav-link tab" id="current-tab" [ngClass]="{ 'active': currentTab === 'current' }"
-                type="button" role="tab" (click)="changeTab('current')">目前專案</button>
+                type="button" role="tab" (click)="changeTab('current')">{{ "CUREENTPRO" | translate }}</button>
             </li>
             <li class="nav-item" role="presentation">
               <button class="nav-link tab" id="history-tab" [ngClass]="{ 'active': currentTab === 'history' }"
-                type="button" role="tab" (click)="changeTab('history')">歷史專案</button>
+                type="button" role="tab" (click)="changeTab('history')">{{ "HISTORYPRO" | translate }}</button>
             </li>
-
-
           </ul>
+
           <div class="tab-content" id="myTabContent">
             <!-- 目前參與專案 start -->
             <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'current' }" role="tabpanel"
@@ -164,7 +161,7 @@
 
               <div *ngIf="!userProfile.projects" class="col-md-12 frame mb-20">
                 <div class="col-md-12 empty-text-center">
-                  <span>還沒有參加任何專案</span>
+                  <span>{{ "NOTJOINPROJECT" | translate }}</span>
                 </div>
               </div>
 
@@ -176,7 +173,7 @@
 
               <div *ngIf="!userProfile.pastprojects" class="col-md-12 frame mb-20">
                 <div class="col-md-12 empty-text-center">
-                  <span>還沒有任何專案歷史紀錄</span>
+                  <span>{{ "NOTJOINPROJECT" | translate }}</span>
                 </div>
               </div>
 
@@ -220,15 +217,15 @@
     <div class="col-md-4">
       <div class="row ">
         <div class="col-md-12 mb-24 title_section">
-          <span class="title">工作經歷</span>
+          <span class="title">{{ "EXPERIENCE" | translate }}</span>
           <a type="button" *ngIf="currentUser?.id == userProfile.id" class="btn-standard" data-toggle="modal"
-            [attr.data-target]="'#experienceModal'"><i class="fas fa-plus"></i> 新增
+            [attr.data-target]="'#experienceModal'"><i class="fas fa-plus"></i> {{ "NEW" | translate }}
           </a>
         </div>
       </div>
       <div class="row exp-empty-frame empty-text-center" *ngIf="userProfile.experience.length ==0">
 
-        <span>無工作經歷</span>
+        <span>{{ "NOEXPERIENCE" | translate }}</span>
 
       </div>
       <div class="row exp-frame" *ngIf="userProfile.experience.length >0">
@@ -253,12 +250,13 @@
               <a type="button" href="#" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false"><i class="fas fa-ellipsis-h color-gray"></i></a>
 
-
               <!--Menu-->
               <div class="dropdown-menu dropdown-primary" aria-labelledby="dropdownMenu2">
                 <a class="dropdown-item" (click)="onEditExp(exp)" data-toggle="modal"
-                  [attr.data-target]="'#experienceModal'"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</a>
-                <a class="dropdown-item" (click)="onDeleteExp(exp)"><i class="fas fa-trash"></i>&nbsp;&nbsp;刪除</a>
+                  [attr.data-target]="'#experienceModal'"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{ "EDIT" |
+                  translate }}</a>
+                <a class="dropdown-item" (click)="onDeleteExp(exp)"><i class="fas fa-trash"></i>&nbsp;&nbsp;{{ "DELETE"
+                  | translate }}</a>
               </div>
             </div>
           </div>
@@ -287,7 +285,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <span class="modal-title">編輯個人資料</span>
+        <span class="modal-title">{{ "EDITPROFILE" | translate }}</span>
         <button type="button" #closeInfobutton class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -295,7 +293,7 @@
       <div class="modal-body content">
         <form [formGroup]="profileForm">
           <div class="form-group">
-            <label for="inputName">姓名<span class="color-red">*</span></label>
+            <label for="inputName">{{ "NAMEUP" | translate }}<span class="color-red">*</span></label>
             <input type="text" class="form-control rounded-0" formControlName="name" id="inputName"
               aria-describedby="emailHelp" placeholder="Enter name">
             <div *ngIf="submitted && f.name.errors">
@@ -315,17 +313,17 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="inputPosition">職稱</label>
+            <label for="inputPosition">{{ "POSITION" | translate }}</label>
             <input type="text" class="form-control rounded-0" formControlName="position" id="inputPosition"
               placeholder="職稱">
           </div>
           <div class="form-group">
-            <label for="inputCompany">公司</label>
+            <label for="inputCompany">{{ "COMPANY" | translate }}</label>
             <input type="text" class="form-control rounded-0" formControlName="company" id="inputCompany"
               placeholder="公司名稱">
           </div>
           <div class="form-group">
-            <label for="inputSkills">技能</label>
+            <label for="inputSkills">{{ "SKILLS" | translate }}</label>
             <tag-input id="skills" formControlName="skills" [onlyFromAutocomplete]="true"
               [secondaryPlaceholder]="'前端開發, 市場開發, UIUX...'">
               <tag-input-dropdown [displayBy]="'text'" [appendToBody]="false" [autocompleteItems]="skillOptions"
@@ -384,14 +382,16 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="inputContent">自我介紹</label>
+            <label for="inputContent">{{ "BIO" | translate }}</label>
             <textarea class="form-control" type="text" id="bio" formControlName="bio" rows="4" cols="50"></textarea>
           </div>
           <div class="row item-end">
-            <button type="button" class="btn btn-transparent  mr-10" data-dismiss="modal" aria-label="Close">取消
+            <button type="button" class="btn btn-transparent  mr-10" data-dismiss="modal" aria-label="Close">{{ "CANCEL"
+              | translate }}
             </button>
             <button type="button" class="btn btn-blue  mr-10" (click)="onProfileSubmit()">
-              儲存</button>
+              {{ "CONFIRM"
+              | translate }}</button>
           </div>
 
         </form>
@@ -406,7 +406,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <span class="modal-title">編輯工作經驗</span>
+        <span class="modal-title">{{ "EXPERIENCE" | translate }}</span>
         <button type="button" #closeExpbutton class="close" data-dismiss="modal" aria-label="Close"
           (click)="onCancelEditExp()">
           <span aria-hidden="true">&times;</span>
@@ -416,12 +416,12 @@
         <form [formGroup]="experienceForm">
 
           <div class="form-group">
-            <label for="inputExpCompany">公司<span class="color-red">*</span></label>
+            <label for="inputExpCompany">{{ "COMPANY" | translate }}<span class="color-red">*</span></label>
             <input type="text" class="form-control rounded-0" formControlName="company" id="inputExpCompany"
               placeholder="公司名稱">
           </div>
           <div class="form-group">
-            <label for="inputExpPosition">職稱<span class="color-red">*</span></label>
+            <label for="inputExpPosition">{{ "POSITION" | translate }}<span class="color-red">*</span></label>
             <input type="text" class="form-control rounded-0" formControlName="position" id="inputExpPosition"
               placeholder="職稱">
           </div>
@@ -434,11 +434,11 @@
             </div>
             <div class="during rounded-0">
               <select id="startYear" formControlName="startYear">
-                <option value="">年</option>
+                <option value="">Year</option>
                 <option *ngFor="let year of  years" value="{{year}}">{{year}}</option>
               </select>
               <select id="startMonth" formControlName="startMonth">
-                <option value="">月</option>
+                <option value="">Month</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -455,11 +455,11 @@
 
               <span *ngIf="!g.isCurrent.value" class="pt-6 pl-12 pr-12">至</span>
               <select id="endYear" formControlName="endYear" *ngIf="!g.isCurrent.value">
-                <option value="">年</option>
+                <option value="">Year</option>
                 <option *ngFor="let year of  years" value="{{year}}">{{year}}</option>
               </select>
               <select id="endMonth" formControlName="endMonth" *ngIf="!g.isCurrent.value">
-                <option value="">月</option>
+                <option value="">Month</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -477,16 +477,19 @@
           </div>
 
           <div class="form-group">
-            <label for="inputPosition">簡介</label>
+            <label for="inputPosition">{{ "INTRO"
+              | translate }}</label>
             <textarea class="form-control" placeholder="描述工作內容" type="text" id="content" formControlName="content"
               rows="4" cols="50"></textarea>
           </div>
           <div class="row item-end">
             <button type="button" class="btn btn-transparent  mr-10" data-dismiss="modal" aria-label="Close"
-              (click)="onCancelEditExp()">取消
+              (click)="onCancelEditExp()">{{ "CANCEL"
+              | translate }}
             </button>
             <button type="button" class="btn btn-blue mr-10" (click)="onExperienceSubmit()">
-              儲存</button>
+              {{ "CONFIRM"
+              | translate }}</button>
           </div>
         </form>
 

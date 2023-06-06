@@ -116,16 +116,16 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
-              [routerLink]="['/u/',currentUser?.uid]">我的檔案</a>
-            <a class="dropdown-item" [routerLink]="['/dashboard/collection']">我的收藏</a>
+              [routerLink]="['/u/',currentUser?.uid]">{{ "MYPROFILE" | translate }}</a>
+            <a class="dropdown-item" [routerLink]="['/dashboard/collection']">{{ "MYCOLLECTION" | translate }}</a>
             <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
-              [routerLink]="['/dashboard/settings']">個人設定</a>
+              [routerLink]="['/dashboard/settings']">{{ "MYSETTING" | translate }}</a>
 
             <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
-              [routerLink]="['/dashboard/myproject']">我的專案</a>
+              [routerLink]="['/dashboard/myproject']">{{ "MYPROJECT" | translate }}</a>
 
 
-            <a class="dropdown-item" [routerLink]="['/dashboard/application']">成為導師</a>
+            <a class="dropdown-item" [routerLink]="['/dashboard/application']">{{ "BEMENTOR" | translate }}</a>
             <!-- <a class="dropdown-item" [routerLink]="['/u/',currentUser?.uid]">{{
                   "PUBPROFILE" | translate }}</a> -->
             <!-- <a class="dropdown-item" [routerLink]="['/settings']">{{
@@ -138,18 +138,10 @@
           </div>
         </li>
       </ul>
-      <!--    <form id="index_login" *ngIf="authStoreSrv.isLoggedIn$ | async" class="form-inline my-2 my-lg-0 text-white">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto text-center">
 
-
-          </ul>
-        </div>
-      </form> -->
-      <!-- <i style="color: #fff!important;" class="fas fa-globe"></i> -->
       <form id="index_login" *ngIf="authStoreSrv.isLoggedOut$ | async" class="form-inline my-2 my-lg-0 gap-10">
-        <a class="btn-transparent font-16 " routerLink="/signin">登入</a> <a routerLink="/signup" class="btn-blue font-16"
-          [routerLinkActive]="['active']">註冊</a>
+        <a class="btn-transparent font-16 " routerLink="/signin">{{ "SIGNIN" | translate }}</a> <a routerLink="/signup"
+          class="btn-blue font-16" [routerLinkActive]="['active']">{{ "SIGNUP" | translate }}</a>
       </form>
 
 
