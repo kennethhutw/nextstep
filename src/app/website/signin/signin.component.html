@@ -4,9 +4,10 @@
     <div class="frame">
         <div class="w-100 ">
             <div class="w-100 ">
-                <span class="next-font" style="font-size: 2rem;"> 登入</span>
+                <span class="next-font" style="font-size: 2rem;"> {{"SIGNIN" | translate }}</span>
                 <div class="next-font signup">
-                    沒有帳號?&nbsp;&nbsp;&nbsp;<a routerLink="/signup">前往註冊</a>
+                    {{"NOACCOUNT" | translate }}&nbsp;&nbsp;&nbsp;<a routerLink="/signup">{{"GOSIGNUP" | translate
+                        }}</a>
                 </div>
             </div>
         </div>
@@ -23,7 +24,7 @@
                     <path fill="#4267b2"
                         d="M26.707,29.301h5.176l0.813-5.258h-5.989v-2.874c0-2.184,0.714-4.121,2.757-4.121h3.283V12.46 c-0.577-0.078-1.797-0.248-4.102-0.248c-4.814,0-7.636,2.542-7.636,8.334v3.498H16.06v5.258h4.948v14.452 C21.988,43.9,22.981,44,24,44c0.921,0,1.82-0.084,2.707-0.204V29.301z" />
                 </svg>
-                透過 Facebook 登入
+                {{"FACKBOOKSIGNIN" | translate }}
             </button>
 
         </div>
@@ -51,7 +52,7 @@
                         </clipPath>
                     </defs>
                 </svg>
-                透過 Google 登入
+                {{"GOOGLESIGNIN" | translate }}
             </button>
         </div>
         <h4 style="margin-bottom: 30px !important; margin-top: 30px !important;"><span>或</span></h4>
@@ -61,15 +62,14 @@
                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                     formControlName="email"
                     [ngClass]="{ 'is-invalid': (loginForm.get('email').touched || loginForm.get('email').dirty) && loginForm.get('email').invalid || submitted && loginForm.get('email').invalid }"
-                    placeholder="電子信箱">
+                    placeholder="Email">
                 <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i> 信箱格式不符.</span>
             </div>
             <div class="form-group" style="font-family: var(--font-nunito);">
-                <!-- <label for="password" style="width: 100%;">Password <span (click)="changeInput(pw)"
-                                    class="fa fa-fw fa-eye toggle-password"></span></label> -->
+
                 <input #pw type="password" class="form-control" id="password" formControlName="password"
                     [ngClass]="{ 'is-invalid': (loginForm.get('password').touched || loginForm.get('password').dirty) && loginForm.get('password').invalid || submitted && loginForm.get('password').invalid }"
-                    placeholder="密碼(英數至少4字)">
+                    placeholder="Password">
                 <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i> 密碼是必要的.
                 </span>
 
@@ -84,7 +84,7 @@
             </div>
             <button type="submit" class="btn btn-blue w-100 d-flex align-items-center justify-content-center mt-30"
                 style="height: 45px; " [disabled]="inValid()" (click)="onSubmit()">
-                登入
+                {{"SIGNIN" | translate }}
                 <!-- <div *ngIf="disableSignUp" class="spinner-border ml-3" style="height: 1.5rem; width: 1.5rem;"
                                 role="status"></div> -->
             </button>
@@ -98,7 +98,7 @@
         <div class="w-100 ">
             <div class="float-right">
                 <span class="forgot-password">
-                    <a routerLink="/forgot">忘記密碼?</a>
+                    <a routerLink="/forgot">{{"FORGOTPASSWORD" | translate }}</a>
                 </span>
             </div>
         </div>

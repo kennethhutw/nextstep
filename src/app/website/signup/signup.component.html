@@ -3,11 +3,12 @@
     <div class="signup-bg"></div>
     <div class="frame">
         <div class="w-100 ">
-            <span style="font-size: 2rem;">註冊</span>
+            <span style="font-size: 2rem;">{{"SIGNUP" | translate }}</span>
             <div style="float: right;    vertical-align: middle;
             text-align: center;
             line-height: 50px;">
-                已有帳號?&nbsp;&nbsp; <a class="btn-signin" routerLink="/signin">登入</a>
+                {{"HAVEACCOUNT" | translate }}&nbsp;&nbsp; <a class="btn-signin" routerLink="/signin">{{"SIGNIN" |
+                    translate }}</a>
             </div>
         </div>
         <div class="mt-2 mb-2">
@@ -23,8 +24,7 @@
                     <path fill="#4267b2"
                         d="M26.707,29.301h5.176l0.813-5.258h-5.989v-2.874c0-2.184,0.714-4.121,2.757-4.121h3.283V12.46 c-0.577-0.078-1.797-0.248-4.102-0.248c-4.814,0-7.636,2.542-7.636,8.334v3.498H16.06v5.258h4.948v14.452 C21.988,43.9,22.981,44,24,44c0.921,0,1.82-0.084,2.707-0.204V29.301z" />
                 </svg>
-                <!-- <img src="./assets/icon/facebook.png" class="icon" alt=""> -->
-                透過 Facebook 註冊
+                {{"FACKBOOKSIGNIN" | translate }}
             </button>
 
         </div>
@@ -52,8 +52,7 @@
                         </clipPath>
                     </defs>
                 </svg>
-                <!-- <img src="../../assets/google.png" style="margin-right: 10px;">  -->
-                透過 Google 註冊
+                {{"GOOGLESIGNIN" | translate }}
             </button>
         </div>
         <!-- <div class="separator"
@@ -78,7 +77,7 @@
                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                     formControlName="email"
                     [ngClass]="{ 'is-invalid': (signupForm.get('email').touched || signupForm.get('email').dirty) && signupForm.get('email').invalid || submitted && signupForm.get('email').invalid }"
-                    placeholder="電子信箱">
+                    placeholder="Email">
                 <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i> 電子信箱格式不符.</span>
                 <div *ngIf="emailExistant">
                     <p class="invalid">
@@ -89,7 +88,7 @@
             <div class="form-group">
                 <input #pw type="password" class="form-control" id="password" formControlName="password"
                     [ngClass]="{ 'is-invalid': (signupForm.get('password').touched || signupForm.get('password').dirty) && signupForm.get('password').invalid || submitted && signupForm.get('password').invalid }"
-                    placeholder="密碼(英數至少4字)">
+                    placeholder="Password(英數至少4字)">
                 <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i> 密碼是必要的.
                 </span>
                 <div *ngIf="InvalidUser">
@@ -108,7 +107,7 @@
             </div>
             <button type="submit" class="btn  w-100 d-flex align-items-center justify-content-center btn-signup"
                 [disabled]="inValid()" (click)="onSubmit()">
-                註冊
+                {{"SIGNUP" | translate }}
                 <!-- <div *ngIf="disableSignUp" class="spinner-border ml-3" style="height: 1.5rem; width: 1.5rem;"
                                 role="status"></div> -->
             </button>

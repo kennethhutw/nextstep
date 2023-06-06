@@ -60,9 +60,20 @@ export class SigninComponent implements OnInit {
     private socialAuthService: AuthService,
     private changeDetectorRef: ChangeDetectorRef,
     private translateSrv: TranslateService,
-    private utility: Utility
+    private dataSrv: DataService,
+    private utilitySrv: Utility
   ) {
+    let _lang = localStorage.getItem("lang");
+    if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
 
+    }
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utilitySrv.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+
+      }
+    });
 
   }
 
@@ -119,7 +130,7 @@ export class SigninComponent implements OnInit {
 
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
-        console.log("===============", userData);
+
         this.authSrv.googleLogin(userData.id,
           userData.name,
           userData.email,

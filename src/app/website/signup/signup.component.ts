@@ -38,7 +38,9 @@ export class SignupComponent implements OnInit {
   emailExistant = false;
 
   checkData = null;
-  errMessage = ""
+  errMessage = "";
+
+  strPassword: string = "";
 
   @HostListener("window:resize", ["$event"])
   getScreenSize(event?) {
@@ -56,10 +58,20 @@ export class SignupComponent implements OnInit {
     private fb: FormBuilder,
     private authSrv: AuthStore,
     private translateSrv: TranslateService,
-    private utility: Utility,
+    private utilitySrv: Utility,
     private dataSrv: DataService
   ) {
+    let _lang = localStorage.getItem("lang");
+    if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
 
+    }
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utilitySrv.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+
+      }
+    });
 
   }
 
@@ -80,14 +92,20 @@ export class SignupComponent implements OnInit {
     })
   }
 
+  intialTerms() {
+
+    this.translateSrv.get("PASSWORD").subscribe((text: string) => {
+      this.strPassword = text;
+    });
+
+  }
+
   inValid() {
     return this.signupForm.invalid;
   }
 
   onSubmit() {
 
-
-    // this.router.navigate(["./profile/Christian"], {});
     const values = this.signupForm.value;
     if (this.checkData != null) {
       let _name = values.name.replace(" ", "_");
