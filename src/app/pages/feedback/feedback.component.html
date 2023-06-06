@@ -1,16 +1,16 @@
 <div class=" mb-30">
     <div class=" filter ">
         <select class="form-control" [value]="status" (change)="onSortChange($event)">
-            <option value="">從新到舊</option>
-            <option value="old">從舊到新</option>
-            <option value="height">最高票選</option>
+            <option value="">{{ "LATEST" | translate }}</option>
+            <option value="old">{{ "OLDEST" | translate }}</option>
+            <option value="height">{{ "HEIGHT" | translate }}</option>
             <!-- </ng-template> -->
         </select>
         <select class="form-control" [value]="status" (change)="onSortTypeChange($event)">
-            <option value="">請選擇</option>
-            <option value="improvement">建議改善</option>
-            <option value="bug">有錯誤</option>
-            <option value="help">需要協助</option>
+            <option value="">{{ "PLEASESELECT" | translate }}</option>
+            <option value="improvement">{{ "IMPROVEMENT" | translate }}</option>
+            <option value="bug">{{ "BUG" | translate }}</option>
+            <option value="help">{{ "HELP" | translate }}</option>
 
             <!-- </ng-template> -->
         </select>
@@ -19,22 +19,23 @@
 
         <span></span>
         <button type="button" style="margin: auto;" [disabled]="!this.currentUser" class="btn btn-blue"
-            data-toggle="modal" [attr.data-target]="'#proposal'"><i class="fas fa-plus"></i> 我有話要說
+            data-toggle="modal" [attr.data-target]="'#proposal'"><i class="fas fa-plus"></i> {{
+            "BTNFEEDBACK" | translate }}
         </button>
 
     </div>
     <ul class="nav mb-20" id="fbTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <a class="nav-link" [ngClass]="{ 'active': currentTab === 'all' }" role="tab"
-                (click)="changeTab('all')">全部</a>
+            <a class="nav-link" [ngClass]="{ 'active': currentTab === 'all' }" role="tab" (click)="changeTab('all')">{{
+                "ALL" | translate }}</a>
         </li>
         <li class="nav-item" role="presentation">
             <a class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'processed' }" role="tab"
-                (click)="changeTab('processed')">已處理</a>
+                (click)="changeTab('processed')">{{ "PROCESSED" | translate }}</a>
         </li>
         <li class="nav-item" role="presentation">
             <a class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'myproposal' }" role="tab"
-                (click)="changeTab('myproposal')">我發布的意見</a>
+                (click)="changeTab('myproposal')">{{ "MYFEEDBACK" | translate }}</a>
         </li>
 
 
@@ -44,7 +45,7 @@
             <div class="empty text-center" *ngIf="displayItems.length ===0">
                 <div class="col-md-12 empty-text-center qa-container">
                     <img src="assets/icons/noFeedback.svg" alt="no-comment">
-                    <span>尚無意見回饋</span>
+                    <span>{{ "NOFEEDBACK" | translate }}</span>
                 </div>
             </div>
             <ng-container *ngIf="displayItems.length >0">
@@ -66,16 +67,17 @@
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item color-gray" data-toggle="modal"
                                             [attr.data-target]="'#modifiedproposal'" (click)="onModified(item)"><i
-                                                class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</a> <a
-                                            class="dropdown-item color-gray" data-toggle="modal"
+                                                class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{ "EDIT" | translate }}</a>
+                                        <a class="dropdown-item color-gray" data-toggle="modal"
                                             [attr.data-target]="'#deleteCommentModal'" (click)="onClickDelete(item)"><i
-                                                class="fas fa-trash"></i>&nbsp;&nbsp;刪除</a>
+                                                class="fas fa-trash"></i>&nbsp;&nbsp;{{ "DELETE" | translate }}</a>
                                     </div>
 
                                 </div>
-                                <ui-tag *ngSwitchCase="'improvement'" [class]="'tag-improve'" [tag]="'改善'"></ui-tag>
-                                <ui-tag *ngSwitchCase="'help'" [class]="'tag-help'" [tag]="'需要協助'"></ui-tag>
-                                <ui-tag *ngSwitchCase="'bug'" [class]="'tag-bug'" [tag]="'有錯誤'"></ui-tag>
+                                <ui-tag *ngSwitchCase="'improvement'" [class]="'tag-improve'"
+                                    [tag]="this.strImprovement"></ui-tag>
+                                <ui-tag *ngSwitchCase="'help'" [class]="'tag-help'" [tag]="this.strHelp"></ui-tag>
+                                <ui-tag *ngSwitchCase="'bug'" [class]="'tag-bug'" [tag]="this.strBug"></ui-tag>
 
                             </div>
 
@@ -153,22 +155,19 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <p class="proposal-title">分享您的體驗，讓我們能更清楚進步的方向</p>
+                <p class="proposal-title">{{ "FEEDBACKTITLE" | translate }}</p>
                 <button type="button" id="close_new_proposl" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body content">
-                <!-- <div class="row item-center">
-
-                </div> -->
                 <div class="ctl-center ">
                     <select class="form-control" style="width: 150px;" [value]="proposaltype"
                         (change)="onTypeChange($event)">
-                        <option value="">請選擇</option>
-                        <option value="improvement">建議改善</option>
-                        <option value="bug">有錯誤</option>
-                        <option value="help">需要協助</option>
+                        <option value="">{{ "PLEASESELECT" | translate }}</option>
+                        <option value="improvement">{{ "IMPROVEMENT" | translate }}</option>
+                        <option value="bug">{{ "BUG" | translate }}</option>
+                        <option value="help">{{ "HELP" | translate }}</option>
                     </select>
                 </div>
                 <div class="row item-center">
@@ -176,12 +175,11 @@
                         cols="50"></textarea>
                 </div>
                 <div class="row item-end">
-                    <button type="button" class="btn btn-transparent  mr-10" data-dismiss="modal" aria-label="Close">取消
+                    <button type="button" class="btn btn-transparent  mr-10" data-dismiss="modal"
+                        aria-label="Close">{{"CANCEL" | translate }}
                     </button>
                     <button type="button" class="btn btn-blue  mr-10" (click)="onSubmit()">
-                        分享</button>
-
-
+                        {{"SUBMIT" | translate }}</button>
                 </div>
             </div>
         </div>
@@ -192,22 +190,20 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <p class="proposal-title">分享您的體驗，讓我們能更清楚進步的方向</p>
+                <p class="proposal-title">{{ "FEEDBACKTITLE" | translate }}</p>
                 <button type="button" id="close_modify_proposl" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body content">
-                <!-- <div class="row item-center">
 
-                </div> -->
                 <div class="ctl-center ">
                     <select class="form-control" style="width: 150px;" [value]="proposaltype"
                         (change)="onTypeChange($event)">
-                        <option value="">請選擇</option>
-                        <option value="improvement">建議改善</option>
-                        <option value="bug">有錯誤</option>
-                        <option value="help">需要協助</option>
+                        <option value="">{{ "PLEASESELECT" | translate }}</option>
+                        <option value="improvement">{{ "IMPROVEMENT" | translate }}</option>
+                        <option value="bug">{{ "BUG" | translate }}</option>
+                        <option value="help">{{ "HELP" | translate }}</option>
                     </select>
                 </div>
                 <div class="row item-center">
@@ -215,12 +211,11 @@
                         cols="50"></textarea>
                 </div>
                 <div class="row item-end">
-                    <button type="button" class="btn btn-transparent mr-10" data-dismiss="modal" aria-label="Close">取消
+                    <button type="button" class="btn btn-transparent mr-10" data-dismiss="modal" aria-label="Close">{{
+                        "CANCEL" | translate }}
                     </button>
                     <button type="button" class="btn btn-blue  mr-10" (click)="onModifiedSubmit()">
-                        更新</button>
-
-
+                        {{ "SUBMIT" | translate }}</button>
                 </div>
             </div>
         </div>
@@ -246,12 +241,11 @@
                         cols="50"></textarea>
                 </div>
                 <div class="row item-center">
-                    <button type="button" class="btn btn-transparent mr-10" data-dismiss="modal" aria-label="Close">取消
+                    <button type="button" class="btn btn-transparent mr-10" data-dismiss="modal" aria-label="Close">{{
+                        "CANCEL" | translate }}
                     </button>
                     <button type="button" class="btn btn-blue  mr-10" (click)="onCommentSubmit()">
-                        送出</button>
-
-
+                        {{ "SUBMIT" | translate }}</button>
                 </div>
             </div>
         </div>
@@ -262,17 +256,18 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <span class="modal-title">確定刪除此?</span>
+                <span class="modal-title">{{"CONFIRMDELETE" | translate }}?</span>
                 <button type="button" #closeExpbutton class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body content">
                 <div class="row item-end">
-                    <button type="button" class="btn btn-white  mr-10" data-dismiss="modal" aria-label="Close">取消
+                    <button type="button" class="btn btn-white  mr-10" data-dismiss="modal"
+                        aria-label="Close">{{"CANCEL" | translate }}
                     </button>
                     <button type="button" class="btn btn-delete mr-10" (click)="onDeleteSubmit()">
-                        確認</button>
+                        {{"SUBMIT" | translate }}</button>
                 </div>
             </div>
         </div>

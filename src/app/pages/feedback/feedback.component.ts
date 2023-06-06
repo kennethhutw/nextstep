@@ -1,5 +1,4 @@
 import {
-  HostListener,
   ViewEncapsulation,
   Component,
   OnInit,
@@ -9,8 +8,10 @@ import {
   ProposalService,
   CommentsService,
   DialogService,
-  ToastService
+  ToastService,
+  DataService
 } from 'src/app/_services';
+import { TranslateService } from "@ngx-translate/core";
 import {
   AuthStore
 } from "src/app/_services/auth.store";
@@ -47,6 +48,10 @@ export class FeedbackComponent implements OnInit {
   hideprocessed = {};
   hidemyproposals = {}
 
+  strImprovement: string = "";
+  strBug: string = "";
+  strHelp: string = "";
+
   @ViewChild('closeExpbutton') closeExpbutton;
 
 
@@ -56,9 +61,33 @@ export class FeedbackComponent implements OnInit {
     private authStoreSrv: AuthStore,
     private proposalSrv: ProposalService,
     private CommentsSrv: CommentsService,
-    private dialogSrv: DialogService,
-    private timeUtilitySrv: TimeUtility
+    private dataSrv: DataService,
+    private timeUtilitySrv: TimeUtility,
+    private translateSrv: TranslateService
   ) {
+    let _lang = localStorage.getItem("lang");
+    if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
+      this.init_terms();
+    }
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utilitySrv.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+        this.init_terms();
+      }
+    });
+  }
+
+  init_terms() {
+    this.translateSrv.get("IMPROVEMENT").subscribe((text: string) => {
+      this.strImprovement = text;
+    });
+    this.translateSrv.get("BUG").subscribe((text: string) => {
+      this.strBug = text;
+    });
+    this.translateSrv.get("HELP").subscribe((text: string) => {
+      this.strHelp = text;
+    });
   }
 
   ngOnInit() {
