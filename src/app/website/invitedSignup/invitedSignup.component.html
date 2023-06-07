@@ -59,7 +59,7 @@
         <!-- <div class="separator"
                         style="color: var(--grey-50); font-weight: 500; margin-top: 20px; margin-bottom: 20px;">Or
                     </div> -->
-        <h4 style="margin-bottom: 30px !important; margin-top: 30px !important;"><span>或</span></h4>
+        <h4 style="margin-bottom: 30px !important; margin-top: 30px !important;"><span>{{"OR" | translate }}</span></h4>
         <form [formGroup]="signupForm">
             <div class="form-group">
 
@@ -90,7 +90,8 @@
                 <input #pw type="password" class="form-control" id="password" formControlName="password"
                     [ngClass]="{ 'is-invalid': (signupForm.get('password').touched || signupForm.get('password').dirty) && signupForm.get('password').invalid || submitted && signupForm.get('password').invalid }"
                     placeholder="Enter password">
-                <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i> 密碼是必要的
+                <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i> {{"PASSWORDREQUIRED" |
+                    translate }}
                 </span>
                 <div *ngIf="InvalidUser">
                     <p class="invalid">
@@ -99,7 +100,8 @@
                 </div>
                 <div *ngIf="unverifiedUser">
                     <p class="invalid">
-                        <i class="fas fa-exclamation-triangle"></i>請檢查您的收件箱以驗證您的電子郵件地址
+                        <i class="fas fa-exclamation-triangle"></i>{{"CHECKVERIFYEMAILMSG" |
+                        translate }}
                     </p>
                 </div>
             </div>

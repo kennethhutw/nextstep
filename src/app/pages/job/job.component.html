@@ -145,7 +145,7 @@
   <lab-custom-modal [open]="isChat" (close)="onToggleChat($event)">
     <h3 *ngIf="this.currentRecruit?.projectOwner" class="chat-header" title><img class="chat-user-img rounded-circle"
         [src]="this.currentRecruit?.projectOwner?.imageUrl!= null ?  settingSrv.defaultAssetUrl+this.currentRecruit?.projectOwner?.imageUrl
-                          : 'assets/icons/defaultUserIcon.png'" alt=""><span
+                          : settingSrv.defaultUserLogo" alt=""><span
         class="chat-user-name">{{this.currentRecruit?.projectOwner?.name?
         this.currentRecruit?.projectOwner?.name:"No
         name"}}</span></h3><span aria-hidden="true">X&times;</span>

@@ -36,8 +36,4 @@ export class AppSettingsService {
     return this.skills;
   }
 
-  defaultProfileLogo: string = '././assets/images/default_profile.png';
-  defulatImage: string = '././assets/images/default.png';
-  defaultAssetUrl = environment.assetUrl;
-  defaultApiUrl = environment.apiUrl;
 }

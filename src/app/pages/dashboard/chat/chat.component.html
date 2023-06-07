@@ -9,7 +9,7 @@
             [ngClass]="{ 'active_chat': item.name === selectedItem?.name }">
             <div class="chat_people">
               <div class="chat_img"> <img [src]="item.image!= null ?  settingSrv.defaultAssetUrl+item.image
-                  : 'assets/icons/defaultUserIcon.png'" alt=""> </div>
+                  : settingSrv.defaultUserLogo" alt=""> </div>
               <div class="chat_ib">
                 <h5>{{item.name}} <span class="chat_date">{{item.date | date : 'yyyy-MM-dd'}}</span></h5>
                 <p class="chat_short_msg">{{item.message?item.message:""}}<span *ngIf="item?.readNum>0"
@@ -26,7 +26,7 @@
 
 
         <img [src]="selectedItem?.image!= null ?  settingSrv.defaultAssetUrl+selectedItem.image
-                  : 'assets/icons/defaultUserIcon.png'" alt="">
+                  : settingSrv.defaultUserLogo" alt="">
         <div class="msg_header_name">
           <span>{{selectedItem?.name}} </span>
 

@@ -359,7 +359,7 @@ export class PubProfileComponent implements OnInit {
   }
 
   onImgError(event) {
-    event.target.src = "./../../../assets/icons/profile.png";
+    event.target.src = this.settingSrv.defaultUserLogo;
   }
 
   IsNullorEmpty(value) {

@@ -500,8 +500,7 @@
 <div [class.show]="isChat" class="full">
   <lab-custom-modal [open]="isChat" (close)="onToggleChat($event)">
     <h3 *ngIf="userProfile" class="chat-header" title><img class="chat-user-img rounded-circle" [src]="userProfile.imageUrl!= null ?  userProfile.imageUrl
-                              : 'assets/icons/defaultUserIcon.png'" alt=""><span
-        class="chat-user-name">{{userProfile?.name?
+                              : settingSrv.defaultUserLogo" alt=""><span class="chat-user-name">{{userProfile?.name?
         userProfile?.name:"No
         name"}}</span></h3><span aria-hidden="true">X&times;</span>
     <div>

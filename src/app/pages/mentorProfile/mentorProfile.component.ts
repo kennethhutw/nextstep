@@ -22,8 +22,6 @@ import { environment } from '../../../environments/environment';
 import { NgxSpinnerService } from "ngx-spinner";
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { E } from "@angular/core/src/render3";
-import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 
 @Component({
   selector: "app-mentor-profile",
@@ -302,14 +300,12 @@ export class MentorProfileComponent implements OnInit {
 
   }
 
-
-
   onCoverImgError(event) {
     event.target.src = "https://imagizer.imageshack.com/img921/9628/VIaL8H.jpg";
   }
 
   onImgError(event) {
-    event.target.src = "./../../../assets/icons/profile.png";
+    event.target.src = this.settingSrv.defaultUserLogo;
   }
 
   IsNullorEmpty(value) {

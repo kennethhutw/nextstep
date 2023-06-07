@@ -3,10 +3,8 @@
     <div class="signup-bg"></div>
     <div class="frame">
         <div class="w-100 ">
-            <span style="font-size: 2rem;">{{"SIGNUP" | translate }}</span>
-            <div style="float: right;    vertical-align: middle;
-            text-align: center;
-            line-height: 50px;">
+            <span class="next-font" style="font-size: 2rem;">{{"SIGNUP" | translate }}</span>
+            <div class="signin">
                 {{"HAVEACCOUNT" | translate }}&nbsp;&nbsp; <a class="btn-signin" routerLink="/signin">{{"SIGNIN" |
                     translate }}</a>
             </div>
@@ -58,13 +56,13 @@
         <!-- <div class="separator"
                         style="color: var(--grey-50); font-weight: 500; margin-top: 20px; margin-bottom: 20px;">Or
                     </div> -->
-        <h4 style="margin-bottom: 30px !important; margin-top: 30px !important;"><span>或</span></h4>
+        <h4 style="margin-bottom: 30px !important; margin-top: 30px !important;"><span>{{"OR" | translate }}</span></h4>
         <form [formGroup]="signupForm">
             <div class="form-group">
 
                 <input type="text" class="form-control" id="inputName" aria-describedby="nameHelp"
                     formControlName="name" [ngClass]="{ 'is-invalid':  submitted && signupForm.get('name').invalid }"
-                    placeholder="使用者名稱(4-10碼英文數字)">
+                    placeholder="User Name(4-10碼英文數字)">
                 <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i>使用者名稱是必須的.</span>
                 <div *ngIf="nameExistant">
                     <p class="invalid">
@@ -78,10 +76,11 @@
                     formControlName="email"
                     [ngClass]="{ 'is-invalid': (signupForm.get('email').touched || signupForm.get('email').dirty) && signupForm.get('email').invalid || submitted && signupForm.get('email').invalid }"
                     placeholder="Email">
-                <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i> 電子信箱格式不符.</span>
+                <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i>{{"EMAILFORMATNOT" | translate
+                    }}</span>
                 <div *ngIf="emailExistant">
                     <p class="invalid">
-                        <i class="fas fa-exclamation-triangle"></i> 電子信箱已註冊了.
+                        <i class="fas fa-exclamation-triangle"></i>{{"EMAILREGISTERED" | translate }}
                     </p>
                 </div>
             </div>
@@ -89,16 +88,18 @@
                 <input #pw type="password" class="form-control" id="password" formControlName="password"
                     [ngClass]="{ 'is-invalid': (signupForm.get('password').touched || signupForm.get('password').dirty) && signupForm.get('password').invalid || submitted && signupForm.get('password').invalid }"
                     placeholder="Password(英數至少4字)">
-                <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i> 密碼是必要的.
+                <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i> {{"PASSWORDREQUIRED" |
+                    translate }}
                 </span>
                 <div *ngIf="InvalidUser">
                     <p class="invalid">
-                        <i class="fas fa-exclamation-triangle"></i>Email或密碼不正確.
+                        <i class="fas fa-exclamation-triangle"></i>{{"EMAILORPASSWORDNOTCORRECTMSG" | translate }}
                     </p>
                 </div>
                 <div *ngIf="unverifiedUser">
                     <p class="invalid">
-                        <i class="fas fa-exclamation-triangle"></i>請檢查您的收件箱以驗證您的電子郵件地址
+                        <i class="fas fa-exclamation-triangle"></i>{{"CHECKVERIFYEMAILMSG" |
+                        translate }}
                     </p>
                 </div>
             </div>

@@ -14,7 +14,6 @@ import {
   FormGroup,
   Validators
 } from "@angular/forms";
-import { environment } from "../../../environments/environment";
 import {
   Router,
   ActivatedRoute
@@ -54,14 +53,24 @@ export class InvitedSignupComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private authSrv: AuthStore,
-    private utility: Utility,
+    private utilitySrv: Utility,
     private dataSrv: DataService,
     private projectSrv: ProjectService,
     private activitySrv: ActivityService,
+    private translateSrv: TranslateService,
     private notificationSrv: NotificationService
   ) {
 
+    let _lang = localStorage.getItem("lang");
+    if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
 
+    }
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utilitySrv.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+      }
+    });
   }
 
   ngOnInit() {

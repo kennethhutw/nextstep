@@ -9,7 +9,8 @@ export class SettingService {
     defaultProjectLogo: string = 'assets/images/defaultProjectIcon.png';
     defaultProjectCover: string = 'assets/images/defaultProjectCover.png';
     defaultPersonalCover: string = 'assets/images/defaultPersonalCover.png';
-    defulatImage: string = '././assets/images/default.png';
+    defaultUserLogo: string = 'assets/icons/defaultUserIcon.png';
+    defaultImage: string = '././assets/images/default.png';
     defaultAssetUrl = environment.assetUrl;
     defaultApiUrl = environment.apiUrl;
 

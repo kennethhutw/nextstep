@@ -156,7 +156,7 @@ export class ChatComponent implements OnInit {
   }
 
   onImgError(event) {
-    event.target.src = "assets/icons/defaultUserIcon.png";
+    event.target.src = this.settingSrv.defaultUserLogo;
   }
 
 }
