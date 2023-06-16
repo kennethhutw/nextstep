@@ -3,7 +3,10 @@ import {
   PagerService,
   DialogService,
   NotificationService,
+  DataService
 } from './../../../_services';
+import { Utility } from "../../../_helpers";
+import { TranslateService } from "@ngx-translate/core";
 import { AuthStore } from './../../../_services/auth.store';
 @Component({
   selector: 'app-my-notifications',
@@ -13,22 +16,6 @@ import { AuthStore } from './../../../_services/auth.store';
 })
 export class NotificationsComponent implements OnInit {
 
-  // notifications = [{
-  //   type: "Notification",
-  //   content: "有人注視妳",
-  //   time: "1642506026"
-  // },
-  // {
-  //   type: "Announcement",
-  //   content: "新活動發布",
-  //   time: "1642505026"
-  // },
-  // {
-  //   type: "Announcement",
-  //   content: "Next 有新功能喔!!",
-  //   time: "1642541026"
-  // }]
-  // }]
   notifications: any[] = [];
   currentPageIndex: number = 1;
 

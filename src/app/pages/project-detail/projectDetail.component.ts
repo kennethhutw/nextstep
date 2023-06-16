@@ -7,6 +7,7 @@ import {
 import {
   AuthStore
 } from "../../_services/auth.store";
+import { TranslateService } from "@ngx-translate/core";
 @Component({
   selector: 'app-my-project-detail',
   templateUrl: './projectDetail.component.html',

@@ -77,33 +77,33 @@
             <label class="ml-10" for="programming">程式撰寫</label>
           </li>
           <li class="mb-12">
-            <span class="title">每周願意投入時長</span>
+            <span class="title">{{"PWTC" | translate }}</span>
           </li>
 
           <li>
             <input id="work12" type="checkbox" [(ngModel)]="filterCondition.work12" (change)="onHourChange($event)"
               data-key="hour" />
-            <label class="ml-10" for="work12">1至2小時</label>
+            <label class="ml-10" for="work12">{{"WORK12" | translate }}</label>
           </li>
           <li>
             <input id="work34" type="checkbox" [(ngModel)]="filterCondition.work34" (change)="onHourChange($event)"
               data-key="hour" />
-            <label class="ml-10" for="work34">3至4小時</label>
+            <label class="ml-10" for="work34">{{"WORK34" | translate }}</label>
           </li>
           <li>
             <input id="work56" type="checkbox" [(ngModel)]="filterCondition.work56" (change)="onHourChange($event)"
               data-key="hour" />
-            <label class="ml-10" for="work56">5至6小時</label>
+            <label class="ml-10" for="work56">{{"WORK56" | translate }}</label>
           </li>
           <li>
             <input id="work78" type="checkbox" [(ngModel)]="filterCondition.work78" (change)="onHourChange($event)"
               data-key="hour" />
-            <label class="ml-10" for="work78">7至8小時</label>
+            <label class="ml-10" for="work78">{{"WORK78" | translate }}</label>
           </li>
           <li>
             <input id="work9" type="checkbox" [(ngModel)]="filterCondition.work9" (change)="onHourChange($event)"
               data-key="hour" />
-            <label class="ml-10" for="work9">9小時以上(含)</label>
+            <label class="ml-10" for="work9">{{"WORK9" | translate }}</label>
           </li>
           <!--  <li>
             <input type="text" class="form-control search" style="    width: 90%;" aria-label=""

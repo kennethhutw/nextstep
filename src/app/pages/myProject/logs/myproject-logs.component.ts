@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
   ProjectService,
-  ActivityService
+  ActivityService,
 } from '../../../_services';
 import {
   AuthStore

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
   UserSettingService,
-
+  DataService
 } from "../../../_services";
 import {
   AuthStore
@@ -36,6 +36,20 @@ export class SettingsComponent implements OnInit {
   showPassword = false;
   showNewPassword = false;
   showReNewPassword = false;
+
+
+  privacyOp1: string = "";
+  privacyOp1Desc: string = "";
+  privacyOp2: string = "";
+  privacyOp2Desc: string = "";
+
+  notifOp1: string = "";
+  notifOp1Desc: string = "";
+  notifOp2: string = "";
+  notifOp2Desc: string = "";
+  notifOp3: string = "";
+  notifOp3Desc: string = "";
+
   constructor(
     private translateSrv: TranslateService,
     private utility: Utility,
@@ -59,6 +73,49 @@ export class SettingsComponent implements OnInit {
 
   }
 
+  init_terms() {
+    this.translateSrv.get("PRIVACYOP1").subscribe((text: string) => {
+      this.privacyOp1 = text;
+    });
+    this.translateSrv.get("PRIVACYOP1DES").subscribe((text: string) => {
+      this.privacyOp1Desc = text;
+    });
+    this.translateSrv.get("PRIVACYOP2").subscribe((text: string) => {
+      this.privacyOp2 = text;
+    });
+    this.translateSrv.get("PRIVACYOP2DES").subscribe((text: string) => {
+      this.privacyOp2Desc = text;
+    });
+    this.translateSrv.get("NOTIFOP1").subscribe((text: string) => {
+      this.notifOp1 = text;
+    });
+    this.translateSrv.get("NOTIFOP1DES").subscribe((text: string) => {
+      this.notifOp1Desc = text;
+    });
+
+    this.translateSrv.get("NOTIFOP2").subscribe((text: string) => {
+      this.notifOp2 = text;
+    });
+    this.translateSrv.get("NOTIFOP2DES").subscribe((text: string) => {
+      this.notifOp2Desc = text;
+    });
+    this.translateSrv.get("NOTIFOP3").subscribe((text: string) => {
+      this.notifOp3 = text;
+    });
+    this.translateSrv.get("NOTIFOP3DES").subscribe((text: string) => {
+      this.notifOp3Desc = text;
+    });
+
+    this.translateSrv.get("OLDPSW").subscribe((text: string) => {
+      this.utility.SetPlaceholder("#OLDPSW", text);
+    });
+    this.translateSrv.get("NEWPSW").subscribe((text: string) => {
+      this.utility.SetPlaceholder("#NEWPSW", text);
+    });
+    this.translateSrv.get("CONFIRMPSW").subscribe((text: string) => {
+      this.utility.SetPlaceholder("#CONFIRMPSW", text);
+    });
+  }
 
 
   changeTab(tab) {
@@ -66,6 +123,7 @@ export class SettingsComponent implements OnInit {
   }
   ngOnInit() {
     this.spinnerSrv.show();
+    this.init_terms();
     // let _lang = localStorage.getItem("lang");
     // if (!this.utility.IsNullOrEmpty(_lang)) {
     //   this.translateSrv.use(_lang);

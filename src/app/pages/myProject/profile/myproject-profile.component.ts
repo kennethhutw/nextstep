@@ -1,9 +1,9 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 
 import {
-  DialogService,
   ProjectService,
   ToastService,
+  DataService
 } from '../../../_services';
 import {
   AuthStore
@@ -14,6 +14,7 @@ import {
   Utility
 } from '../../../_helpers';
 import { NgxSpinnerService } from "ngx-spinner";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'app-myproject-profile.',
@@ -29,7 +30,12 @@ export class MyProjectProfileComponent implements OnInit, AfterViewInit {
   projectMsg = "";
   currentProject = null;
   mode = "view";
+
+  project_status_1: string = "";
+  project_status_2: string = "";
   constructor(
+    private dataSrv: DataService,
+    private translateSrv: TranslateService,
     private utilitySrv: Utility,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
@@ -74,6 +80,26 @@ export class MyProjectProfileComponent implements OnInit, AfterViewInit {
       }).then(res => {
         // this.spinnerSrv.hide();
       })
+    let _lang = localStorage.getItem("lang");
+    if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
+      this.init_terms();
+    }
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utilitySrv.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+        this.init_terms();
+      }
+    });
+  }
+
+  init_terms() {
+    this.translateSrv.get("PUBLISH").subscribe((text: string) => {
+      this.project_status_1 = text;
+    });
+    this.translateSrv.get("RESET").subscribe((text: string) => {
+      this.project_status_2 = text;
+    });
   }
 
   ngAfterViewInit(): void {

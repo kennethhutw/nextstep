@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
-  UserSettingService,
+  DataService,
   ProjectService,
   UserService,
 } from "../../../_services";
@@ -32,8 +32,9 @@ export class DashboardComponent implements OnInit {
   currentUser: any;
 
   constructor(
+    private dataSrv: DataService,
     private translateSrv: TranslateService,
-    private utility: Utility,
+    private utilitySrv: Utility,
     private projectSrv: ProjectService,
     private authStore: AuthStore,
     private userSrv: UserService,
@@ -47,6 +48,15 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.spinnerSrv.show();
+    let _lang = localStorage.getItem("lang");
+    if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
+    }
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utilitySrv.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+      }
+    });
     // let _lang = localStorage.getItem("lang");
     // if (!this.utility.IsNullOrEmpty(_lang)) {
     //   this.translateSrv.use(_lang);
@@ -118,13 +128,13 @@ export class DashboardComponent implements OnInit {
         this.mentors = res['data'];
         if (this.mentors && this.mentors.length > 0) {
           this.mentors.forEach(element => {
-            if (!this.utility.IsNullOrEmpty(element.tags)) {
+            if (!this.utilitySrv.IsNullOrEmpty(element.tags)) {
               element.tags = element.tags.split(',');
             }
-            if (!this.utility.IsNullOrEmpty(element.skills)) {
+            if (!this.utilitySrv.IsNullOrEmpty(element.skills)) {
               element.skills = element.skills.split(',');
             }
-            if (!this.utility.IsNullOrEmpty(element.imageUrl)) {
+            if (!this.utilitySrv.IsNullOrEmpty(element.imageUrl)) {
               element.imageUrl = environment.assetUrl + element.imageUrl;
             }
           });

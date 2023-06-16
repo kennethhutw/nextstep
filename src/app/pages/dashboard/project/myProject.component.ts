@@ -1,10 +1,17 @@
-import { ViewEncapsulation, Component, OnInit } from '@angular/core';
+import {
+  ViewEncapsulation,
+  Component,
+  OnInit
+} from '@angular/core';
 
 import {
   DialogService,
   ProjectService,
-  ToastService
+  ToastService,
+  DataService
 } from './../../../_services';
+import { Utility } from "../../../_helpers";
+import { TranslateService } from "@ngx-translate/core";
 import {
   AuthStore
 } from "../../../_services/auth.store";

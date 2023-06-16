@@ -26,7 +26,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
         request = request.clone({
             setHeaders: {
-                Authorization: `Formoas ${localStorage.getItem('access_token')}`
+                Authorization: `NEXTSTEP ${localStorage.getItem('access_token')}`
             }
         });
         /*     if (request.url.indexOf('https://pro-api.coinmarketcap.com') == -1) {

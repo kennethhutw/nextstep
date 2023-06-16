@@ -18,8 +18,9 @@ import {
   FormGroup,
   Validators
 } from "@angular/forms";
-import { environment } from "../../../environments/environment";
+/* import { environment } from "../../../environments/environment";*/
 import { AuthService, GoogleLoginProvider } from "angular-6-social-login";
+
 import {
   Router,
   ActivatedRoute
@@ -134,7 +135,7 @@ export class SigninComponent implements OnInit {
         this.authSrv.googleLogin(userData.id,
           userData.name,
           userData.email,
-          userData.token).subscribe(result => {
+          userData.idToken).subscribe(result => {
 
             if (result['result'] === 'successful') {
               const user = result['data'];
@@ -152,7 +153,7 @@ export class SigninComponent implements OnInit {
             } else if (result['result'] === 'failed') {
               // this.confirmDialogService.infoThis(`This email address is already being used, please login manually.`, () => { });
             } else if (result['result'] === 'new') {
-              this.authSrv.googleSignUp(userData.id, userData.name, userData.email, userData.token).subscribe(value => {
+              this.authSrv.googleSignUp(userData.id, userData.name, userData.email, userData.idToken).subscribe(value => {
 
                 if (value['result'] === 'successful') {
                   const user = value['data'];

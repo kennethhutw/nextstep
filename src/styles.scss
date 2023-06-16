@@ -378,6 +378,10 @@ a.nav-link:hover {
   margin-bottom: 12px;
 }
 
+.mb-15 {
+  margin-bottom: 15px;
+}
+
 .mb-20 {
   margin-bottom: 20px !important;
 }
@@ -1477,7 +1481,7 @@ input:focus:-ms-input-placeholder {
   /* width: 200px; */
   position: absolute;
   transition: left 0.3s ease;
-  left: -260px;
+  /*   left: -260px; */
   top: 0;
   // z-index: 111;
   overflow: auto;

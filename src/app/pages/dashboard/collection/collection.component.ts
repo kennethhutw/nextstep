@@ -1,16 +1,17 @@
-import { HostListener, HostBinding, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import {
   DialogService,
   ProjectService,
-  ViewsService
+  ViewsService,
+  DataService
 } from './../../../_services';
+import { Utility } from "../../../_helpers";
+import { TranslateService } from "@ngx-translate/core";
 import {
   AuthStore
 } from "./../../../_services/auth.store";
-import {
-  Utility
-} from './../../../_helpers';
+
 @Component({
   selector: 'app-my-collection',
   templateUrl: './collection.component.html',
@@ -31,6 +32,8 @@ export class MyCollectionComponent implements OnInit {
   constructor(
     private dialogSrv: DialogService,
     private utilitySrv: Utility,
+    private dataSrv: DataService,
+    private translateSrv: TranslateService,
     private authStoreSrv: AuthStore,
     private viewsSrv: ViewsService) {
   }
@@ -88,6 +91,16 @@ export class MyCollectionComponent implements OnInit {
         }
       }
     })
+
+    let _lang = localStorage.getItem("lang");
+    if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
+    }
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utilitySrv.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+      }
+    });
 
   }
 

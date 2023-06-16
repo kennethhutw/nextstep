@@ -88,14 +88,25 @@
         </div>
         <span>{{this.currentProject.description?this.currentProject.description:"尚未填寫專案內容"}}</span>
         <div class="frame_bottom">
-          <span class="pb-8 fw-500">目前進度</span>
+          <span class="pb-8 fw-500">{{
+            "CURRENT_PROGRESS"
+            | translate }}</span>
           <div class="frame_bottom_items">
-            <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('idea') > -1">#已有創業概念</span>
+            <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('idea') > -1">#{{
+              "PRORGRESS_2"
+              | translate }}</span>
             <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('businessplan') > -1">#商業計畫初稿</span>
-            <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('fundraising') > -1">#募資中</span>
-            <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('findpartner') > -1">#找創業夥伴</span>
-            <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('buildMVP') > -1">#建構最小可行性產品(MVP)</span>
-            <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('producttested') > -1">#驗證產品中</span>
+            <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('fundraising') > -1">#{{ "FIND_MONEY"
+              | translate }}</span>
+            <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('findpartner') > -1">#{{
+              "PRORGRESS_3"
+              | translate }}</span>
+            <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('buildMVP') > -1">#{{
+              "PRORGRESS_4"
+              | translate }}</span>
+            <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('producttested') > -1">#{{
+              "PRORGRESS_5"
+              | translate }}</span>
             <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('findcustomers') > -1">#找用戶中</span>
             <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('findpayingcustomers') > -1">#找付費用戶中</span>
 
@@ -303,12 +314,14 @@
           <div class="row">
             <div class="col-md-12 mb-12 ">
               <label class=" pr-2" for="projectname">
-                <h5> 專案名稱* :</h5>
+                <h5> {{ "PROJECT_NAME"
+                  | translate }}* :</h5>
               </label>
               <input type="text" formControlName="name" id="projectname" class="form-control mr-10">
               <div *ngIf="submitted && f.name.errors">
                 <div class="error-msg" *ngIf="f.name.errors.required">
-                  專案名稱必須的
+                  {{ "PROJECT_NAME_MUST"
+                  | translate }}
                 </div>
               </div>
             </div>
@@ -317,16 +330,21 @@
           <div class="row mt-10">
             <div class="col-md-12 mb-12 form-group ">
               <label class="pr-2" for="projectname">
-                <h5> 專案狀態*</h5>
+                <h5> {{ "PROJECT_STATUS"
+                  | translate }}*</h5>
               </label>
               <div class="form-group">
                 <input type="checkbox" (change)="onStatusChange($event, 'isFindPartner')"
-                  [checked]="projectForm.value.isFindPartner" value="projectForm.value.isFindPartner"><span>徵成員</span>
+                  [checked]="projectForm.value.isFindPartner" value="projectForm.value.isFindPartner"><span>{{
+                  "FIND_MEMBER"
+                  | translate }}</span>
                 <input type="checkbox" (change)="onStatusChange($event, 'isFunding')"
                   [checked]="projectForm.value.isFunding" value="projectForm.value.isFunding"><span>募資中
                 </span>
                 <input type="checkbox" (change)="onStatusChange($event, 'isCofounder')"
-                  [checked]="projectForm.value.isCofounder" value="projectForm.value.isCofounder"><span>找共同創辦人</span>
+                  [checked]="projectForm.value.isCofounder" value="projectForm.value.isCofounder"><span>{{
+                  "FIND_COFOUNDER"
+                  | translate }}</span>
               </div>
             </div>
             <div class="col-md-12 mb-12 form-group ">
@@ -356,98 +374,134 @@
             </div>
             <div class="col-md-12 mb-12 form-group ">
               <label class="pr-2" for="projectname">
-                <h5> 產業類型* :</h5>
+                <h5> {{
+                  "INDUSTRY_TYPES"
+                  | translate }}* :</h5>
               </label>
               <div class="form-check check-group">
                 <div class="form-check form-check-inline"> <input type="checkbox"
                     (change)="onIndustryTypeChange($event, 'eComm')"
-                    [checked]="utilitySrv.isInValue('eComm', f.type.value)" value="eComm"><span>電子商務</span>
+                    [checked]="utilitySrv.isInValue('eComm', f.type.value)" value="eComm"><span>{{
+                    "ECOMM"
+                    | translate }}</span>
                 </div>
                 <div class="form-check form-check-inline"><input type="checkbox"
                     (change)="onIndustryTypeChange($event, 'ai')" [checked]="utilitySrv.isInValue('ai', f.type.value)"
-                    value="ai"><span>人工智慧</span></div>
+                    value="ai"><span>{{
+                    "AI"
+                    | translate }}</span></div>
                 <div class="form-check form-check-inline"><input type="checkbox"
                     (change)="onIndustryTypeChange($event, 'edutech')"
-                    [checked]="utilitySrv.isInValue('edutech', f.type.value)" value="edutech"><span>教育科技</span></div>
+                    [checked]="utilitySrv.isInValue('edutech', f.type.value)" value="edutech"><span>{{
+                    "EDUTECH"
+                    | translate }}</span></div>
                 <div class="form-check form-check-inline"><input type="checkbox"
                     (change)="onIndustryTypeChange($event, 'sharingeconomy')"
-                    [checked]="utilitySrv.isInValue('sharingeconomy', f.type.value)"
-                    value="sharingeconomy"><span>共享經濟</span></div>
+                    [checked]="utilitySrv.isInValue('sharingeconomy', f.type.value)" value="sharingeconomy"><span>{{
+                    "SHARINGECONOMY"
+                    | translate }}</span></div>
                 <div class="form-check form-check-inline"><input type="checkbox"
                     (change)="onIndustryTypeChange($event, 'medical')"
-                    [checked]="utilitySrv.isInValue('medical', f.type.value)" value="medical"><span>醫學科技</span></div>
+                    [checked]="utilitySrv.isInValue('medical', f.type.value)" value="medical"><span>{{
+                    "MEDICAL"
+                    | translate }}</span></div>
                 <div class="form-check form-check-inline"><input type="checkbox"
                     (change)="onIndustryTypeChange($event, 'transport')"
-                    [checked]="utilitySrv.isInValue('transport', f.type.value)" value="transport"><span>運輸服務</span>
+                    [checked]="utilitySrv.isInValue('transport', f.type.value)" value="transport"><span>{{
+                    "TRANSPORT"
+                    | translate }}</span>
                 </div>
                 <div class="form-check form-check-inline"><input type="checkbox"
                     (change)="onIndustryTypeChange($event, 'fintech')"
-                    [checked]="utilitySrv.isInValue('fintech', f.type.value)" value="fintech"><span>金融科技</span></div>
+                    [checked]="utilitySrv.isInValue('fintech', f.type.value)" value="fintech"><span>{{
+                    "FINTECH"
+                    | translate }}</span></div>
                 <div class="form-check form-check-inline"><input type="checkbox"
                     (change)="onIndustryTypeChange($event, 'game')"
-                    [checked]="utilitySrv.isInValue('game', f.type.value)" value="game"><span>遊戲產業</span></div>
+                    [checked]="utilitySrv.isInValue('game', f.type.value)" value="game"><span>{{
+                    "GAME"
+                    | translate }}</span></div>
                 <div class="form-check form-check-inline"><input type="checkbox"
                     (change)="onIndustryTypeChange($event, 'platform')"
-                    [checked]="utilitySrv.isInValue('platform', f.type.value)" value="platform"><span>平台</span></div>
+                    [checked]="utilitySrv.isInValue('platform', f.type.value)" value="platform"><span>{{
+                    "PLATFORM"
+                    | translate }}</span></div>
               </div>
 
             </div>
             <div class="col-md-12 mb-12 form-group ">
               <label class="pr-2" for="stage">
-                <h5> 目前進度* :</h5>
+                <h5> {{
+                  "CURRENT_PROGRESS"
+                  | translate }}* :</h5>
               </label>
               <div class="form-check  check-group">
                 <div class="form-check form-check-inline"> <input type="checkbox"
                     (change)="onStageChange($event, 'idea')" [checked]="utilitySrv.isInValue('idea', f.stages.value)"
-                    value="idea"><span>已有創業概念</span></div>
+                    value="idea"><span>{{
+                    "PRORGRESS_1"
+                    | translate }}</span></div>
                 <div class="form-check form-check-inline"> <input type="checkbox"
                     (change)="onStageChange($event, 'businessplan')"
-                    [checked]="utilitySrv.isInValue('businessplan', f.stages.value)"
-                    value="businessplan"><span>商業計畫初稿</span></div>
+                    [checked]="utilitySrv.isInValue('businessplan', f.stages.value)" value="businessplan"><span>{{
+                    "PRORGRESS_2"
+                    | translate }}</span></div>
                 <div class="form-check form-check-inline"> <input type="checkbox"
                     (change)="onStageChange($event, 'findpartner')"
-                    [checked]="utilitySrv.isInValue('findpartner', f.stages.value)"
-                    value="findpartner"><span>找創業夥伴</span>
+                    [checked]="utilitySrv.isInValue('findpartner', f.stages.value)" value="findpartner"><span>{{
+                    "PRORGRESS_3"
+                    | translate }}</span>
                 </div>
                 <div class="form-check form-check-inline"> <input type="checkbox"
                     (change)="onStageChange($event, 'buildMVP')"
-                    [checked]="utilitySrv.isInValue('buildMVP', f.stages.value)"
-                    value="buildMVP"><span>建構最小可行性產品(MVP)</span></div>
+                    [checked]="utilitySrv.isInValue('buildMVP', f.stages.value)" value="buildMVP"><span>{{
+                    "PRORGRESS_4"
+                    | translate }}</span></div>
                 <div class="form-check form-check-inline"> <input type="checkbox"
                     (change)="onStageChange($event, 'producttested')"
-                    [checked]="utilitySrv.isInValue('producttested', f.stages.value)"
-                    value="producttested"><span>驗證產品中&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                    [checked]="utilitySrv.isInValue('producttested', f.stages.value)" value="producttested"><span>{{
+                    "PRORGRESS_5"
+                    | translate }}&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
                 <div class="form-check form-check-inline"> <input type="checkbox"
                     (change)="onStageChange($event, 'findcustomers')"
-                    [checked]="utilitySrv.isInValue('findcustomers', f.stages.value)"
-                    value="findcustomers"><span>找用戶中&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    [checked]="utilitySrv.isInValue('findcustomers', f.stages.value)" value="findcustomers"><span>{{
+                    "PRORGRESS_6"
+                    | translate }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 </div>
                 <div class="form-check form-check-inline"> <input type="checkbox"
                     (change)="onStageChange($event, 'findpayingcustomers')"
                     [checked]="utilitySrv.isInValue('findpayingcustomers', f.stages.value)"
-                    value="findpayingcustomers"><span>找付費用戶中</span>
+                    value="findpayingcustomers"><span>{{
+                    "PRORGRESS_7"
+                    | translate }}</span>
                 </div>
               </div>
 
             </div>
             <div class="col-md-12 mb-12 form-group ">
               <label class="pr-2" for="projectname">
-                <h5> 簡介 :</h5>
+                <h5> {{
+                  "PROJECT_INTRO"
+                  | translate }} :</h5>
               </label>
               <textarea formControlName="description" type="text" class="form-control" id="" rows="4"
                 cols="50"></textarea>
               <div *ngIf="submitted && f.description.errors">
                 <div class="error-msg" *ngIf="f.description.errors.required">
-                  專案簡介是必要的
+                  {{ "PROJECT_INTRO_MUST" | translate }}
                 </div>
               </div>
             </div>
           </div>
           <div class="row item-right">
-            <button type="button" class="btn btn-transparent  mr-10" data-dismiss="modal" aria-label="Close">取消
+            <button type="button" class="btn btn-transparent  mr-10" data-dismiss="modal" aria-label="Close">{{
+              "CANCEL"
+              | translate }}
             </button>
             <button type="button" class="btn btn-blue  mr-10" (click)="onModifySubmit()">
-              更新</button>
+              {{
+              "RESET"
+              | translate }}</button>
           </div>
           <div class="row">
             <div class="col-md-12 mb-12 form-group text-center">
@@ -466,7 +520,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h1>職缺</h1>
+        <h1>{{ "JOBS" | translate }}</h1>
         <button type="button" id="close_recruit" #close_recruit_button class="close" data-dismiss="modal"
           aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -475,9 +529,9 @@
       <div class="modal-body">
         <form [formGroup]="recruitForm">
           <div class="form-group">
-            <label for="inputPosition">職稱</label>
+            <label for="inputPosition">{{ "POSITION" | translate }}</label>
             <input type="text" class="form-control rounded-0" formControlName="position" id="inputPosition"
-              placeholder="職稱">
+              placeholder="{{ 'POSITION' | translate }}">
           </div>
           <div class="form-group">
             <label for="inputContent">職缺內容</label>
@@ -495,27 +549,27 @@
           </div>
           <div class="form-group">
 
-            <label for="inputSkills">每周願意投入時長</label>
+            <label for="inputSkills">{{"PWTC" | translate }}</label>
             <div class="form-group">
               <div>
                 <input id="work12" type="checkbox" formControlName="work12" data-key="hour" />
-                <label class="option" for="work12">1至2小時</label>
+                <label class="option" for="work12">{{"WORK12" | translate }}</label>
               </div>
               <div>
                 <input id="work34" type="checkbox" formControlName="work34" data-key="hour" />
-                <label class="option" for="work34">3至4小時</label>
+                <label class="option" for="work34">{{"WORK34" | translate }}</label>
               </div>
               <div>
                 <input id="work56" type="checkbox" formControlName="work56" data-key="hour" />
-                <label class="option" for="work56">5至6小時</label>
+                <label class="option" for="work56">{{"WORK56" | translate }}</label>
               </div>
               <div>
                 <input id="work78" type="checkbox" formControlName="work78" data-key="hour" />
-                <label class="option" for="work78">7至8小時</label>
+                <label class="option" for="work78">{{"WORK78" | translate }}</label>
               </div>
               <div>
                 <input id="work9" type="checkbox" formControlName="work9" data-key="hour" />
-                <label class="option" for="work9">9小時以上(含)</label>
+                <label class="option" for="work9">{{"WORK9" | translate }}</label>
               </div>
             </div>
           </div>

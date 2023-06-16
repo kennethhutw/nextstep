@@ -7,7 +7,6 @@ import {
 import {
   ProposalService,
   CommentsService,
-  DialogService,
   ToastService,
   DataService
 } from 'src/app/_services';

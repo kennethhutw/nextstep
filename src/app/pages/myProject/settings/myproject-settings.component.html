@@ -1,31 +1,39 @@
 <div class=" mb-80">
     <div class="row">
         <div class="col-md-12">
-            <h1>專案設定</h1>
+            <h1>{{ "PROJECTSETTING"
+                | translate }}</h1>
         </div>
     </div>
     <div class="row" *ngIf="this.currentProject">
         <div class="col-md-12">
 
-            <ui-radio-item [title]="'開放觀看'" [description]="'在專案列表顯示此專案'" [id]="'isPublic'" [value]="isPublic"
+            <ui-radio-item title="{{ 'PUBLICVIEW'
+                            | translate }}" description="{{ 'PUBLICVIEWDESC'
+                            | translate }}" [id]="'isPublic'" [value]="isPublic"
                 (onChange)="onPublicChange($event)"></ui-radio-item>
         </div>
         <div class="col-md-12">
 
-            <ui-radio-item [title]="'顯示專案成員'" [description]="'顯示團隊成員資訊'" [id]="'isShowMember'" [value]="isShowMember"
+            <ui-radio-item title="{{ 'DISPLAYMEMBERS'
+                            | translate }}" description="{{ 'DISPLAYMEMBERSINFO'
+                            | translate }}" [id]="'isShowMember'" [value]="isShowMember"
                 (onChange)="onMemberChange($event)"></ui-radio-item>
         </div>
         <div class="col-md-12">
             <div class="row pl-15">
                 <div class="bar mt-3 w-100">
                     <div class="item-text">
-                        <p class="text-md m-0">刪除專案
+                        <p class="text-md m-0">{{ "DELPROJECT"
+                            | translate }}
                         </p>
-                        <p class="text-md m-0 item-delete">此動作不可復原
+                        <p class="text-md m-0 item-delete">{{ "NOTRECOVER"
+                            | translate }}
                         </p>
                     </div>
                     <button type="button" class="btn-white mr-10" data-toggle="modal"
-                        [attr.data-target]="'#deleteProjectModal'">刪除專案
+                        [attr.data-target]="'#deleteProjectModal'">{{ "DELPROJECT"
+                        | translate }}
                     </button>
 
                 </div>

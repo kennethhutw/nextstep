@@ -31,7 +31,13 @@ import {
   FacebookLoginProvider,
   LinkedinLoginProvider
 } from "angular-6-social-login";
+
 // Configs
+
+const googleLoginOptions = {
+  scope: 'profile email',
+  plugin_name: 'sample_login' //can be any name
+};
 export function getAuthServiceConfigs() {
   let config = new AuthServiceConfig(
     [
@@ -41,7 +47,7 @@ export function getAuthServiceConfigs() {
       // },
       {
         id: GoogleLoginProvider.PROVIDER_ID,
-        provider: new GoogleLoginProvider("1093364473991-ti8uurvtqd8995s7smn31utnn4c2pttk.apps.googleusercontent.com")
+        provider: new GoogleLoginProvider('1093364473991-70t3haupsjd78sekbn2lkjrqlb5oo6c8.apps.googleusercontent.com')
       },
     ]
   );
@@ -128,11 +134,13 @@ export function appConfigFactory(provider: AppSettingsService) {
     NgbTypeaheadModule,
     NgbRatingModule
   ],
-  providers: [GoogleAnalyticsService,
+  providers: [
+    GoogleAnalyticsService,
     {
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
-    }, AppSettingsService,
+    },
+    AppSettingsService,
     {
       provide: APP_INITIALIZER,
       useFactory: appConfigFactory,

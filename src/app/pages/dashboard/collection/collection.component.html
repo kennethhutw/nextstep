@@ -1,7 +1,8 @@
 <div class=" mb-80">
     <div class="row">
         <div class="col-md-12">
-            <h1>我的收藏</h1>
+            <h1>{{ "MYCOLLECTION"
+                | translate }}</h1>
         </div>
     </div>
     <div class="row">
@@ -10,19 +11,19 @@
                 <li class="nav-item" role="presentation">
                     <button class="nav-link " id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
                         [ngClass]="{ 'active': currentTab === 'project' }" type="button" role="tab"
-                        (click)="changeTab('project')">專案</button>
+                        (click)="changeTab('project')">{{ "PROJECTS" | translate }}</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'partner' }"
-                        type="button" role="tab" (click)="changeTab('partner')">夥伴</button>
+                        type="button" role="tab" (click)="changeTab('partner')">{{ "PARTNERS" | translate }}</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'application' }"
-                        type="button" role="tab" (click)="changeTab('application')">職缺</button>
+                        type="button" role="tab" (click)="changeTab('application')">{{ "JOBS" | translate }}</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'mentor' }"
-                        type="button" role="tab" (click)="changeTab('mentor')">導師</button>
+                        type="button" role="tab" (click)="changeTab('mentor')">{{ "MENTORS" | translate }}</button>
                 </li>
 
             </ul>
@@ -30,7 +31,7 @@
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'project' }" id="home" role="tabpanel"
                     aria-labelledby="home-tab">
                     <div class=" noItem text-center" *ngIf="projects.length ===0">
-                        沒有收藏的專案
+                        {{ "NOPROJECT" | translate }}
                     </div>
                     <ng-container *ngIf="projects">
                         <div class="row  pl-15">
@@ -50,7 +51,7 @@
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'partner' }" role="tabpanel"
                     aria-labelledby="profile-tab">
                     <div class="noItem text-center" *ngIf="partners.length ===0">
-                        <h3>沒有追蹤的夥伴</h3>
+                        <h3>{{ "NOPARTNER" | translate }}</h3>
                     </div>
                     <ng-container *ngIf="partners">
                         <div class="row">
@@ -69,7 +70,7 @@
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'application' }" role="tabpanel"
                     aria-labelledby="profile-tab">
                     <div class="noItem text-center" *ngIf="applications.length ===0">
-                        <h3>沒有收藏的職缺</h3>
+                        <h3>{{ "NOJOBS" | translate }}</h3>
                     </div>
                     <ng-container *ngIf="applications">
                         <div class="row bar">
@@ -90,7 +91,7 @@
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'mentor' }" role="tabpanel"
                     aria-labelledby="profile-tab">
                     <div class="noItem text-center" *ngIf="mentors.length ===0">
-                        沒有收藏的導師
+                        {{ "NOMENTOR" | translate }}
                     </div>
                     <ng-container *ngIf="mentors">
                         <div class="row">

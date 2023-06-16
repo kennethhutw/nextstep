@@ -6,22 +6,27 @@
       <nav class="sidebar-menu pt-3 pb-3">
         <ul class="menu-items">
           <li class="mb-12">
-            <span class="title">專案狀態</span>
+            <span class="title">{{ "PROJECT_STATUS"
+              | translate }}</span>
           </li>
           <li>
             <input type="checkbox" [(ngModel)]="filterCondition.isFindPartner" (change)="onProjectStatusChange($event)"
               data-key="project" />
-            <label class="option" for="firsttimeInput">徵成員</label>
+            <label class="option" for="firsttimeInput">{{ "FIND_MEMBER"
+              | translate }}</label>
           </li>
           <li>
             <input type="checkbox" [(ngModel)]="filterCondition.isFunding" (change)="onProjectStatusChange($event)"
               data-key="project" />
-            <label class="option" for="firsttimeInput">募資中</label>
+            <label class="option" for="firsttimeInput">{{ "FIND_MONEY"
+              | translate }}</label>
           </li>
           <li>
             <input type="checkbox" [(ngModel)]="filterCondition.isCofounder" (change)="onProjectStatusChange($event)"
               data-key="project" />
-            <label class="option" for="firsttimeInput">找共同創辦人</label>
+            <label class="option" for="firsttimeInput">{{
+              "FIND_COFOUNDER"
+              | translate }}</label>
           </li>
 
         </ul>
@@ -48,27 +53,37 @@
         </ul> -->
         <ul class="menu-items">
           <li class="mb-12">
-            <span class="title">產業類型</span>
+            <span class="title">{{
+              "INDUSTRY_TYPES"
+              | translate }}</span>
           </li>
           <li>
             <input id="eComm" type="checkbox" [(ngModel)]="filterCondition.eComm" (change)="onTypeChange($event)"
               data-key="project" />
-            <label class="option" for="eComm">電子商務</label>
+            <label class="option" for="eComm">{{
+              "ECOMM"
+              | translate }}</label>
           </li>
           <li>
             <input id="medical" type="checkbox" [(ngModel)]="filterCondition.medical" (change)="onTypeChange($event)"
               data-key="project" />
-            <label class="option" for="medical">醫學科技</label>
+            <label class="option" for="medical">{{
+              "MEDICAL"
+              | translate }}</label>
           </li>
           <li>
             <input id="ai" type="checkbox" [(ngModel)]="filterCondition.ai" (change)="onTypeChange($event)"
               data-key="project" />
-            <label class="option" for="ai">人工智慧</label>
+            <label class="option" for="ai">{{
+              "AI"
+              | translate }}</label>
           </li>
           <li>
             <input id="transport" type="checkbox" [(ngModel)]="filterCondition.transport"
               (change)="onTypeChange($event)" data-key="project" />
-            <label class="option" for="transport">運輸服務</label>
+            <label class="option" for="transport">{{
+              "TRANSPORT"
+              | translate }}</label>
           </li>
           <li>
             <input id="edutech" type="checkbox" [(ngModel)]="filterCondition.edutech" (change)="onTypeChange($event)"
@@ -78,17 +93,23 @@
           <li>
             <input id="fintech" type="checkbox" [(ngModel)]="filterCondition.fintech" (change)="onTypeChange($event)"
               data-key="project" />
-            <label class="option" for="fintech">金融科技</label>
+            <label class="option" for="fintech">{{
+              "FINTECH"
+              | translate }}</label>
           </li>
           <li>
             <input id="sharingeconomy" type="checkbox" [(ngModel)]="filterCondition.sharingeconomy"
               (change)="onTypeChange($event)" data-key="project" />
-            <label class="option" for="sharingeconomy">共享經濟</label>
+            <label class="option" for="sharingeconomy">{{
+              "SHARINGECONOMY"
+              | translate }}</label>
           </li>
           <li>
             <input id="game" type="checkbox" [(ngModel)]="filterCondition.game" (change)="onTypeChange($event)"
               data-key="project" />
-            <label class="option" for="game">遊戲產業</label>
+            <label class="option" for="game">{{
+              "GAME"
+              | translate }}</label>
           </li>
         </ul>
         <!-- <ul class="menu-items" style="padding-left: 20px;">

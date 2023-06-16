@@ -1,11 +1,14 @@
 import {
-  HostListener, HostBinding,
+
   Component, OnInit
 } from '@angular/core';
 import {
   DialogService,
-  ProjectService
+  ProjectService,
+  DataService
 } from './../../../_services';
+import { Utility } from "./../../../_helpers";
+import { TranslateService } from "@ngx-translate/core";
 import {
   AuthStore
 } from "./../../../_services/auth.store";
@@ -24,6 +27,9 @@ export class MyApplicationComponent implements OnInit {
   publishedprojects = [];
   draftedprojects = [];
   constructor(
+    private utilitySrv: Utility,
+    private dataSrv: DataService,
+    private translateSrv: TranslateService,
     private dialogSrv: DialogService,
     private projectSrv: ProjectService,
     private authStoreSrv: AuthStore) {
@@ -48,6 +54,17 @@ export class MyApplicationComponent implements OnInit {
         }
       }
     })
+
+    this.currentUser = this.authStoreSrv.getUserData();
+    let _lang = localStorage.getItem("lang");
+    if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
+    }
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utilitySrv.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+      }
+    });
 
   }
 

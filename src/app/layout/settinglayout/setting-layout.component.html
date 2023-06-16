@@ -2,26 +2,29 @@
 <div class=" container-bg">
     <div class="container">
         <div id="setting" class=" mb-50 row">
-            <aside class="sidebar ">
+            <aside class="col-md-2 sidebar ">
                 <nav class="sidebar-menu pt-3 pb-3">
                     <ul class="menu-items">
                         <li>
                             <a class="menu-item" [routerLinkActive]="['active']"
                                 [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard']">
-                                <svg-icon class="icon" src="assets/icons/home.svg"></svg-icon><span>首頁</span>
+                                <svg-icon class="icon" src="assets/icons/home.svg"></svg-icon><span>{{ "HOME"
+                                    | translate }}</span>
 
                             </a>
                         </li>
                         <li>
                             <a class="menu-item" [routerLinkActive]="['active']"
                                 [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard/settings']">
-                                <svg-icon class="icon" src="assets/icons/cog.svg"></svg-icon><span>設定</span>
+                                <svg-icon class="icon" src="assets/icons/cog.svg"></svg-icon><span>{{ "PROJECTSETTING"
+                                    | translate }}</span>
                             </a>
                         </li>
                         <li>
                             <a class="menu-item" [routerLinkActive]="['active']"
                                 [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard/myproject']">
-                                <svg-icon class="icon" src="assets/icons/file.svg"></svg-icon><span>我的專案</span>
+                                <svg-icon class="icon" src="assets/icons/file.svg"></svg-icon><span>{{ "MYPROJECT"
+                                    | translate }}</span>
                             </a>
                             <div class="sub-menu" [ngClass]="{ 'show-menu': expand }">
                                 <ul *ngFor="let menu of projects">
@@ -34,26 +37,30 @@
                         <li>
                             <a class="menu-item" [routerLinkActive]="['active']"
                                 [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard/collection']">
-                                <svg-icon class="icon" src="assets/icons/heart.svg"></svg-icon><span>我的收藏</span>
+                                <svg-icon class="icon" src="assets/icons/heart.svg"></svg-icon><span>{{ "MYCOLLECTION"
+                                    | translate }}</span>
                             </a>
                         </li>
 
                         <li>
                             <a class="menu-item" [routerLinkActive]="['active']"
                                 [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard/messages']">
-                                <svg-icon class="icon" src="assets/icons/message.svg"></svg-icon><span>訊息中心</span>
+                                <svg-icon class="icon" src="assets/icons/message.svg"></svg-icon><span>{{ "MYMSG"
+                                    | translate }}</span>
                             </a>
                         </li>
                         <li>
                             <a class="menu-item" [routerLinkActive]="['active']"
                                 [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard/notifications']">
-                                <svg-icon class="icon" src="assets/icons/bell.svg"></svg-icon><span>我的通知</span>
+                                <svg-icon class="icon" src="assets/icons/bell.svg"></svg-icon><span>{{ "MYNOTI"
+                                    | translate }}</span>
                             </a>
                         </li>
                         <li>
                             <a class="menu-item" [routerLinkActive]="['active']"
-                                [routerLinkActiveOptions]="{ exact: true }"
-                                [routerLink]="['/dashboard/application']">成為導師</a>
+                                [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard/application']">{{
+                                "BEMENTOR"
+                                | translate }}</a>
                         </li>
                     </ul>
                 </nav>

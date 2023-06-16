@@ -331,7 +331,8 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <span>編輯個人資料</span>
+        <span>{{"EDITPROFILE" |
+          translate }}</span>
         <button type="button" #closeInfobutton class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -471,7 +472,8 @@
           </div>
 
           <div class="form-group">
-            <label for="inputSkills">期間</label>
+            <label for="inputSkills">{{"DURATION" |
+              translate }}</label>
             <div class=" rounded-0">
               <input id="isCurrent" type="checkbox" formControlName="isCurrent" data-key="isCurrent" />
               <label for="isCurrent">現任工作</label>

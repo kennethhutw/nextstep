@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
   DataService, ChatService,
@@ -24,7 +24,7 @@ export class ChatComponent implements OnInit {
   currentUser;
   constructor(
     private translateSrv: TranslateService,
-    private utility: Utility,
+    private utilitySrv: Utility,
     private dataSrv: DataService,
     private chatSrv: ChatService,
     private authStoreSrv: AuthStore,
@@ -33,11 +33,11 @@ export class ChatComponent implements OnInit {
 
     this.currentUser = this.authStoreSrv.getUserData();
     let _lang = localStorage.getItem("lang");
-    if (!this.utility.IsNullOrEmpty(_lang)) {
+    if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
     }
     this.dataSrv.langKey.subscribe((lang) => {
-      if (!this.utility.IsNullOrEmpty(lang)) {
+      if (!this.utilitySrv.IsNullOrEmpty(lang)) {
         this.translateSrv.use(lang);
       }
     });

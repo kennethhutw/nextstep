@@ -11,7 +11,6 @@ import {
 } from "../../_services/auth.store";
 import { Utility } from "../../_helpers";
 import { Router } from "@angular/router";
-import { environment } from '../../../environments/environment';
 
 @Component({
   selector: "app-setting",
@@ -31,18 +30,18 @@ export class SettingLayoutComponent implements OnInit {
     private settingSrv: SettingService,
     private router: Router,
     private translateSrv: TranslateService,
-    private utility: Utility,
+    private utilitySrv: Utility,
     private dataSrv: DataService,
     private authStoreSrv: AuthStore,
     private projectSrv: ProjectService
   ) {
 
     let _lang = localStorage.getItem("lang");
-    if (!this.utility.IsNullOrEmpty(_lang)) {
+    if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
     }
     this.dataSrv.langKey.subscribe((lang) => {
-      if (!this.utility.IsNullOrEmpty(lang)) {
+      if (!this.utilitySrv.IsNullOrEmpty(lang)) {
         this.translateSrv.use(lang);
       }
     });
@@ -50,7 +49,7 @@ export class SettingLayoutComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.translateSrv.use("zh-tw");
+
     this.currentUser = this.authStoreSrv.getUserData();
     this.projectSrv.getProjectsByUid(
       this.currentUser.id

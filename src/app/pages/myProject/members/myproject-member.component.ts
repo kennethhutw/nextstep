@@ -23,7 +23,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import { Utility } from 'src/app/_helpers';
 import { environment } from "../../../../environments/environment";
-
+import { TranslateService } from "@ngx-translate/core";
 @Component({
   selector: 'app-myproject-member',
   templateUrl: './myproject-member.component.html',

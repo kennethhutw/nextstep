@@ -112,19 +112,18 @@ export class HomeOldComponent implements OnInit {
     private cdf: ChangeDetectorRef,
   ) {
 
-    // let _lang = localStorage.getItem("lang");
-    // if (!this.utility.IsNullOrEmpty(_lang)) {
-    //   this.translateSrv.use(_lang);
-    // }
-    // this.dataSrv.langKey.subscribe((lang) => {
-    //   if (!this.utility.IsNullOrEmpty(lang)) {
-    //     this.translateSrv.use(lang);
-    //   }
-    // });
+    let _lang = localStorage.getItem("lang");
+    if (!this.utility.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
+    }
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utility.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+      }
+    });
   }
 
   ngOnInit() {
-    this.translateSrv.use("zh-tw");
     this.landingSrv.getall().then(res => {
 
       if (res['result'] == 'successful') {

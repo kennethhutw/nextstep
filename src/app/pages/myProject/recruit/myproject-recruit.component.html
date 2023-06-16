@@ -1,16 +1,16 @@
 <div class=" mb-80">
     <div class="row">
         <div class="col-md-12  mb-20" style="display: inline-block;">
-            <span class="title">招募管理</span>
+            <span class="title">{{"RECRUITMANAGEMENT" | translate }}</span>
             <a type="button" class="btn btn-white mr-10 float-right" data-toggle="modal"
                 [attr.data-target]="'#createRcruitModal'" (click)="onCreateRecruit()"><i class="fas fa-plus"></i>
-                新增職缺</a>
+                {{"NEWJOB" | translate }}</a>
             <select class="btn btn-white mr-10 float-right h-40" [disabled]="!canMove" [value]="status"
                 (change)="onStatusChange($event)">
-                <option value="null">移動去</option>
-                <option value="current">目前</option>
-                <option value="drafts">草稿</option>
-                <option value="closed">已關閉</option>
+                <option value="null">{{"MOVETO" | translate }}</option>
+                <option value="current">{{"CURRENT" | translate }}</option>
+                <option value="drafts">{{"DRAFT" | translate }}</option>
+                <option value="closed">{{"CLOSED" | translate }}</option>
 
                 <!-- </ng-template> -->
             </select>
@@ -24,17 +24,20 @@
                     <button class="nav-link " id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
                         [ngClass]="{ 'active': currentTab === 'current' }" type="button" role="tab"
                         (click)="changeTab('current')"><span class="num"
-                            [ngClass]="{ 'active': currentTab === 'current' }">{{current.length}}</span>&nbsp;目前</button>
+                            [ngClass]="{ 'active': currentTab === 'current' }">{{current.length}}</span>&nbsp;{{"CURRENT"
+                        | translate }}</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'drafts' }"
                         type="button" role="tab" (click)="changeTab('drafts')"><span class="num"
-                            [ngClass]="{ 'active': currentTab === 'drafts' }">{{drafts.length}}</span>&nbsp;草稿</button>
+                            [ngClass]="{ 'active': currentTab === 'drafts' }">{{drafts.length}}</span>&nbsp;{{"DRAFT" |
+                        translate }}</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'closed' }"
                         type="button" role="tab" (click)="changeTab('closed')"><span class="num"
-                            [ngClass]="{ 'active': currentTab === 'closed' }">{{closed.length}}</span>已關閉</button>
+                            [ngClass]="{ 'active': currentTab === 'closed' }">{{closed.length}}</span>{{"CLOSED" |
+                        translate }}</button>
                 </li>
 
 
@@ -51,24 +54,24 @@
                                 </label>
                             </div>
                             <div class="d-flex align-items-center">
-                                <span class="fw-500">職缺名稱</span>
+                                <span class="fw-500">{{"JOBTITLE" | translate }}</span>
                             </div>
                             <div class="d-flex align-items-center">
-                                <span class="fw-500">技能需求</span>
+                                <span class="fw-500">{{"SKILLSREQ" | translate }}</span>
                             </div>
                             <div class="d-flex align-items-center">
-                                <span class="fw-500">職務內容</span>
+                                <span class="fw-500">{{"JD" | translate }}</span>
                             </div>
 
                             <div class="d-flex align-items-center">
-                                <span class="fw-500">發布日期</span>
+                                <span class="fw-500">{{"PUBLISHDATE" | translate }}</span>
                             </div>
 
                         </div>
 
                     </div>
                     <div class="empty text-center" *ngIf="current.length ===0">
-                        此專案目前沒有職缺.
+                        {{"NORECORD" | translate }}
                     </div>
                     <ng-container *ngIf="current.length >0">
                         <ng-container *ngFor="let item of  current; let i = index">
@@ -109,8 +112,7 @@
                                     <div class="d-flex align-items-center">
                                         <span> {{item.startDate| date : 'yyyy-MM-dd'}}
                                         </span>
-                                        <!--  <p class="text-md m-0"><i class="far fa-comment-alt"></i>
-                                                                            </p> -->
+
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <div class="dropdown mt--10" *ngIf="item.createdBy === currentUser?.id"><i
@@ -119,9 +121,11 @@
                                             <div class="dropdown-menu"> <a class="dropdown-item color-gray"
                                                     (click)="onClickView(item)" data-toggle="modal"
                                                     [attr.data-target]="'#createRcruitModal'"><i
-                                                        class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</a> <a
-                                                    class="dropdown-item color-gray" (click)="onDeleteJobItem(item)"><i
-                                                        class="fas fa-trash"></i>&nbsp;&nbsp;刪除</a></div>
+                                                        class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{"EDIT" | translate
+                                                    }}</a> <a class="dropdown-item color-gray"
+                                                    (click)="onDeleteJobItem(item)"><i
+                                                        class="fas fa-trash"></i>&nbsp;&nbsp;{{"DELETE" | translate
+                                                    }}</a></div>
 
                                         </div>
                                     </div>
@@ -142,24 +146,24 @@
                                 </label>
                             </div>
                             <div class="d-flex align-items-center">
-                                <span class="fw-500">職缺名稱</span>
+                                <span class="fw-500">{{"JOBTITLE" | translate }}</span>
                             </div>
                             <div class="d-flex align-items-center">
-                                <span class="fw-500">技能需求</span>
+                                <span class="fw-500">{{"SKILLSREQ" | translate }}</span>
                             </div>
                             <div class="d-flex align-items-center">
-                                <span class="fw-500">職務內容</span>
+                                <span class="fw-500">{{"JD" | translate }}</span>
                             </div>
 
                             <div class="d-flex align-items-center">
-                                <span class="fw-500">發布日期</span>
+                                <span class="fw-500">{{"PUBLISHDATE" | translate }}</span>
                             </div>
 
                         </div>
 
                     </div>
                     <div class="empty text-center" *ngIf="drafts.length ===0">
-                        目前沒有草稿
+                        {{"NORECORD" | translate }}
                     </div>
                     <ng-container *ngIf="drafts">
                         <ng-container *ngFor="let item of drafts; let i = index">
@@ -210,9 +214,11 @@
                                             <div class="dropdown-menu"> <a class="dropdown-item color-gray"
                                                     (click)="onClickView(item)" data-toggle="modal"
                                                     [attr.data-target]="'#createRcruitModal'"><i
-                                                        class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</a> <a
-                                                    class="dropdown-item color-gray" (click)="onDeleteJobItem(item)"><i
-                                                        class="fas fa-trash"></i>&nbsp;&nbsp;刪除</a></div>
+                                                        class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{"EDIT" | translate
+                                                    }}</a> <a class="dropdown-item color-gray"
+                                                    (click)="onDeleteJobItem(item)"><i
+                                                        class="fas fa-trash"></i>&nbsp;&nbsp;{{"DELETE" | translate
+                                                    }}</a></div>
 
                                         </div>
                                     </div>
@@ -233,24 +239,24 @@
                                 </label>
                             </div>
                             <div class="d-flex align-items-center">
-                                <span class="fw-500">職缺名稱</span>
+                                <span class="fw-500">{{"JOBTITLE" | translate }}</span>
                             </div>
                             <div class="d-flex align-items-center">
-                                <span class="fw-500">技能需求</span>
+                                <span class="fw-500">{{"SKILLSREQ" | translate }}</span>
                             </div>
                             <div class="d-flex align-items-center">
-                                <span class="fw-500">職務內容</span>
+                                <span class="fw-500">{{"JD" | translate }}</span>
                             </div>
 
                             <div class="d-flex align-items-center">
-                                <span class="fw-500">發布日期</span>
+                                <span class="fw-500">{{"PUBLISHDATE" | translate }}</span>
                             </div>
 
                         </div>
 
                     </div>
                     <div class="empty text-center" *ngIf="closed.length ===0">
-                        目前沒有紀錄
+                        {{"NORECORD" | translate }}
                     </div>
                     <ng-container *ngIf="closed">
                         <ng-container *ngFor="let item of closed; let i = index">
@@ -291,8 +297,7 @@
                                     <div class="d-flex align-items-center">
                                         <span> {{item.startDate| date : 'yyyy-MM-dd'}}
                                         </span>
-                                        <!--  <p class="text-md m-0"><i class="far fa-comment-alt"></i>
-                                                                                                                            </p> -->
+
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <div class="dropdown mt--10" *ngIf="item.createdBy === currentUser?.id"><i
@@ -301,9 +306,11 @@
                                             <div class="dropdown-menu"> <a class="dropdown-item color-gray"
                                                     (click)="onClickView(item)" data-toggle="modal"
                                                     [attr.data-target]="'#createRcruitModal'"><i
-                                                        class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</a> <a
-                                                    class="dropdown-item color-gray" (click)="onDeleteJobItem(item)"><i
-                                                        class="fas fa-trash"></i>&nbsp;&nbsp;刪除</a></div>
+                                                        class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{"EDIT" | translate
+                                                    }}</a> <a class="dropdown-item color-gray"
+                                                    (click)="onDeleteJobItem(item)"><i
+                                                        class="fas fa-trash"></i>&nbsp;&nbsp;{{"DELETE" | translate
+                                                    }}</a></div>
 
                                         </div>
                                     </div>
@@ -322,7 +329,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <span class="modal-title">新增職缺</span>
+                <span class="modal-title">{{"NEWJOB" | translate }}</span>
                 <button type="button" id="close_recruit" #close_recruit_button class="close" data-dismiss="modal"
                     aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -331,12 +338,12 @@
             <div class="modal-body">
                 <form [formGroup]="recruitForm">
                     <div class="form-group">
-                        <label for="inputPosition">職缺名稱</label>
+                        <label for="inputPosition">{{"JOBTITLE" | translate }}</label>
                         <input type="text" class="form-control rounded-0" formControlName="position" id="inputPosition"
-                            placeholder="職稱">
+                            placeholder="{{'POSITION' | translate }}">
                     </div>
                     <div class="form-group">
-                        <label for="inputSkills">技能需求</label>
+                        <label for="inputSkills">{{"SKILLSREQ" | translate }}</label>
                         <tag-input id="skills" formControlName="skills" [onlyFromAutocomplete]="true"
                             [secondaryPlaceholder]="'前端開發, 市場開發, UIUX...'">
                             <tag-input-dropdown [displayBy]="'text'" [appendToBody]="false"
@@ -345,41 +352,41 @@
                         </tag-input>
                     </div>
                     <div class="form-group">
-                        <label for="inputContent">職缺內容</label>
+                        <label for="inputContent">{{"JD" | translate }}</label>
                         <textarea class="form-control" type="text" id="scopes" formControlName="scopes" rows="4"
                             cols="50"></textarea>
                     </div>
 
                     <div class="form-group">
 
-                        <label for="inputSkills">每周願意投入時長</label>
+                        <label for="inputSkills">{{"PWTC" | translate }}</label>
                         <div class="form-group">
                             <div>
                                 <input id="work12" type="checkbox" formControlName="work12" data-key="hour" />
-                                <label class="option" for="work12">1至2小時</label>
+                                <label class="option" for="work12">{{"WORK12" | translate }}</label>
                             </div>
                             <div>
                                 <input id="work34" type="checkbox" formControlName="work34" data-key="hour" />
-                                <label class="option" for="work34">3至4小時</label>
+                                <label class="option" for="work34">{{"WORK34" | translate }}</label>
                             </div>
                             <div>
                                 <input id="work56" type="checkbox" formControlName="work56" data-key="hour" />
-                                <label class="option" for="work56">5至6小時</label>
+                                <label class="option" for="work56">{{"WORK56" | translate }}</label>
                             </div>
                             <div>
                                 <input id="work78" type="checkbox" formControlName="work78" data-key="hour" />
-                                <label class="option" for="work78">7至8小時</label>
+                                <label class="option" for="work78">{{"WORK78" | translate }}</label>
                             </div>
                             <div>
                                 <input id="work9" type="checkbox" formControlName="work9" data-key="hour" />
-                                <label class="option" for="work9">9小時以上(含)</label>
+                                <label class="option" for="work9">{{"WORK9" | translate }}</label>
                             </div>
                         </div>
                     </div>
                     <div class="form-group row justify-content-end">
 
                         <button type="button" style="float: right;" class="btn btn-blue  mr-10"
-                            (click)="onUpdateRecruitSubmit()">更新</button>
+                            (click)="onUpdateRecruitSubmit()">{{"SAVE" | translate }}</button>
                     </div>
                 </form>
             </div>

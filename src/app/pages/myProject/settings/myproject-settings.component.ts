@@ -4,7 +4,7 @@ import {
   DialogService,
   ProjectService,
   ToastService,
-  ConfirmDialogService
+  DataService
 } from '../../../_services';
 import {
   AuthStore
@@ -14,7 +14,8 @@ import { NgxSpinnerService } from "ngx-spinner";
 import {
   Router,
 } from "@angular/router";
-
+import { TranslateService } from "@ngx-translate/core";
+import { Utility } from "../../../_helpers";
 @Component({
   selector: 'app-myproject-settings',
   templateUrl: './myproject-settings.component.html',
@@ -31,6 +32,9 @@ export class MyProjectSettingsComponent implements OnInit {
   currentProject = null;
   projectName = "";
   constructor(
+    private utilitySrv: Utility,
+    private translateSrv: TranslateService,
+    private dataSrv: DataService,
     private route: ActivatedRoute,
     private router: Router,
     private projectSrv: ProjectService,
@@ -54,6 +58,16 @@ export class MyProjectSettingsComponent implements OnInit {
       console.error("error", error);
       this.spinnerSrv.hide();
     })
+
+    let _lang = localStorage.getItem("lang");
+    if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
+    }
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utilitySrv.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+      }
+    });
 
   }
 

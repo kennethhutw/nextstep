@@ -1,7 +1,7 @@
 <div id="set-sidebar" *ngIf="!loading" class=" mb-80">
   <div class="row">
     <div class="col-md-12">
-      <h1>設定</h1>
+      <h1>{{ "SETTING" | translate }}</h1>
     </div>
   </div>
   <div class="row">
@@ -10,25 +10,25 @@
         <li class="nav-item" role="presentation">
           <button class="nav-link " id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
             [ngClass]="{ 'active': currentTab === 'privacy' }" type="button" role="tab"
-            (click)="changeTab('privacy')">隱私相關</button>
+            (click)="changeTab('privacy')">{{ "PRIVACYSETTING" | translate }}</button>
         </li>
         <li class="nav-item" role="presentation">
           <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'notifications' }"
-            type="button" role="tab" (click)="changeTab('notifications')">通知設定</button>
+            type="button" role="tab" (click)="changeTab('notifications')">{{ "NOTISETTING" | translate }}</button>
         </li>
         <li class="nav-item" role="presentation">
           <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'password' }" type="button"
-            role="tab" (click)="changeTab('password')">修改密碼</button>
+            role="tab" (click)="changeTab('password')">{{ "CHANGEPSW" | translate }}</button>
         </li>
 
       </ul>
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'privacy' }" id="home" role="tabpanel"
           aria-labelledby="home-tab">
-          <ui-radio-item [title]="'顯示狀態'" [description]="'是否顯示上限狀態'" [id]="'displayOnline'"
+          <ui-radio-item [title]="this.privacyOp1" [description]="this.privacyOp1Desc" [id]="'displayOnline'"
             [value]="currentSetting.displayOnline" (onChange)="onChange($event)"></ui-radio-item>
-          <ui-radio-item [title]="'公開'" [description]="'檔案隱私是否公開'" [id]="'isPublic'" [value]="currentSetting.isPublic"
-            (onChange)="onChange($event)"></ui-radio-item>
+          <ui-radio-item [title]="this.privacyOp2" [description]="this.privacyOp2Desc" [id]="'isPublic'"
+            [value]="currentSetting.isPublic" (onChange)="onChange($event)"></ui-radio-item>
           <!-- <div class="col-md-12 mb-12 form-group button-center">
             <button type="button" class="btn btn-primary mr-10" (click)="onSavePrivacy()">重設
             </button>
@@ -39,12 +39,12 @@
         </div>
         <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'notifications' }" role="tabpanel"
           aria-labelledby="profile-tab">
-          <ui-radio-item [title]="'追蹤與收藏'" [description]="'當有人追蹤或收藏時，發送通知給我。'" [id]="'notiFollow'"
+          <ui-radio-item [title]="this.notifOp1" [description]="this.notifOp1Desc" [id]="'notiFollow'"
             [value]="currentSetting.notiFollow" (onChange)="onChange($event)"></ui-radio-item>
-          <ui-radio-item [title]="'訊息'" [description]="'當有人傳訊息給我時，發送通知給我。'" [id]="'notiMsg'"
+          <ui-radio-item [title]="this.notifOp2" [description]="this.notifOp2Desc" [id]="'notiMsg'"
             [value]="currentSetting.notiMsg" (onChange)="onChange($event)">
           </ui-radio-item>
-          <ui-radio-item [title]="'系統相關'" [description]="'當有與系統相關的消息時，發送通知給我。'" [id]="'notiSystem'"
+          <ui-radio-item [title]="this.notifOp3" [description]="this.notifOp3Desc" [id]="'notiSystem'"
             [value]="currentSetting.notiSystem" (onChange)="onChange($event)"></ui-radio-item>
           <!-- <div class="col-md-12 mb-12 form-group button-center">
             <button type="button" class="btn btn-primary mr-10" (click)="onSaveNotif()">重設
@@ -60,43 +60,43 @@
             <div class="col-md-6">
               <div class="form-group">
 
-                <input [type]="showPassword ? 'text' : 'password'" class="form-control" placeholder="目前密碼"
-                  formControlName="currentPassword" style="margin-bottom: 15px;" />
+                <input [type]="showPassword ? 'text' : 'password'" class="form-control mb-15" id="OLDPSW"
+                  placeholder="{{ 'OLDPSW' | translate }}" formControlName="currentPassword" />
                 <div class="input-group-addon" (click)="toggleShow()">
                   <i class="fa color-ligh-gray" [ngClass]="{'fa-eye-slash':!showPassword, 'fa-eye':showPassword}"
                     aria-hidden="true"></i>
                 </div>
 
                 <div *ngIf="submitted && f.currentPassword.errors">
-                  <div class="error-msg" *ngIf="f.currentPassword.errors.required">請輸入目前密碼</div>
+                  <div class="error-msg" *ngIf="f.currentPassword.errors.required">{{ "OLDPSWERROR" | translate }}</div>
                 </div>
               </div>
             </div>
 
             <div class="col-md-6">
               <div class="form-group">
-                <input [type]="showNewPassword ? 'text' : 'password'" class="form-control" placeholder="新密碼"
-                  formControlName="newPassword" autocomplete="off" style="margin-bottom: 15px;" />
+                <input [type]="showNewPassword ? 'text' : 'password'" class="form-control mb-15" id="NEWPSW"
+                  placeholder="{{ 'NEWPSW' | translate }}" formControlName="newPassword" autocomplete="off" />
                 <div class="input-group-addon" (click)="toggleNewShow()">
                   <i class="fa color-ligh-gray" [ngClass]="{'fa-eye-slash':!showNewPassword, 'fa-eye':showNewPassword}"
                     aria-hidden="true"></i>
                 </div>
                 <div *ngIf="submitted && f.newPassword.errors">
-                  <div class="error-msg" *ngIf="f.newPassword.errors.required">請輸入新密碼</div>
+                  <div class="error-msg" *ngIf="f.newPassword.errors.required">{{ 'NEWPSWERROR' | translate }}</div>
                 </div>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
 
-                <input [type]="showReNewPassword ? 'text' : 'password'" class="form-control" placeholder="再次輸入新密碼"
-                  [autocomplete]="'off'" formControlName="confirmPassword"
+                <input [type]="showReNewPassword ? 'text' : 'password'" class="form-control" id="CONFIRMPSW"
+                  placeholder="{{ 'CONFIRMPSW' | translate }}" [autocomplete]="'off'" formControlName="confirmPassword"
                   [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }">
                 <div class="input-group-addon" (click)="toggleReNewShow()">
                   <i class="fa color-ligh-gray"
                     [ngClass]="{'fa-eye-slash':!showReNewPassword, 'fa-eye':showReNewPassword}" aria-hidden="true"></i>
                 </div>
-                <div class="error-msg" *ngIf="checkPasswords()"> 與新密碼不符合‘</div>
+                <div class="error-msg" *ngIf="checkPasswords()"> {{ 'CONFIRMPSWERROR' | translate }}</div>
                 <div *ngIf="submitted && f.confirmPassword.errors">
                   <div class="error-msg" *ngIf="f.confirmPassword.errors.required">請輸入新密碼</div>
                 </div>
@@ -108,7 +108,7 @@
             <div class="col-md-6 mb-12 ">
               <div class="form-group">
                 <button type="button" [ngClass]="{ 'btn-disabled': inValid() == false  }" [disabled]="!inValid()"
-                  class="btn btn-blue mr-10 w-100 btn-disabled" (click)="onResetPassword()">重設
+                  class="btn btn-blue mr-10 w-100 btn-disabled" (click)="onResetPassword()">{{ "RESET" | translate }}
                 </button>
               </div>
             </div>

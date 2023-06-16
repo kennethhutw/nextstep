@@ -83,7 +83,7 @@ export class FindProjectComponent implements OnInit {
       this.SpinnerService.hide();
     })
 
-    this.translateSrv.use("zh-tw");
+
     //this.displayItems = this.items;
     //this.SpinnerService.hide();
   }

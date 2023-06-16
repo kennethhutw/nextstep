@@ -1,7 +1,8 @@
 <div class=" mb-80">
     <div class="row">
         <div class="col-md-12">
-            <h1>我的專案</h1>
+            <h1>{{ "MYPROJECT"
+                | translate }}</h1>
         </div>
     </div>
     <div class="row">
@@ -10,11 +11,13 @@
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
                         [ngClass]="{ 'active': currentTab === 'published' }" type="button" role="tab"
-                        (click)="changeTab('published')">已發布</button>
+                        (click)="changeTab('published')">{{ "PUBLISHED"
+                        | translate }}</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'draft' }"
-                        type="button" role="tab" (click)="changeTab('draft')">草稿夾</button>
+                        type="button" role="tab" (click)="changeTab('draft')">{{ "DRAFTS"
+                        | translate }}</button>
                 </li>
 
             </ul>
@@ -22,7 +25,8 @@
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'published' }" id="home" role="tabpanel"
                     aria-labelledby="home-tab">
                     <div class="row noProject" *ngIf="publishedprojects.length ===0">
-                        <span>沒有專案</span>
+                        <span>{{ "NOPROJECT"
+                            | translate }}</span>
                     </div>
                     <ng-container *ngIf="publishedprojects">
                         <div class="row  pl-15">
@@ -47,9 +51,11 @@
                                     <div class="d-flex justify-right">
 
                                         <p class="text-xs grey-50 mb-0 color-gray">
-                                            {{ item.viewCount?item.viewCount:"0"}}&nbsp;瀏覽/
+                                            {{ item.viewCount?item.viewCount:"0"}}&nbsp;{{ "VIEWNUM" | translate
+                                            }}/
                                             {{item.followCount? item.followCount:
-                                            0}}&nbsp;追蹤
+                                            0}}&nbsp;{{ "FOLLOW" | translate
+                                            }}
                                         </p>
 
 
@@ -60,16 +66,24 @@
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></i>
                                             <div class="dropdown-menu"> <a class="dropdown-item"
                                                     [routerLink]="['/myproject/'+this.item?.id+'/members']">
-                                                    <svg-icon src="assets/icons/invite.svg"></svg-icon>&nbsp;&nbsp;邀請
+                                                    <svg-icon src="assets/icons/invite.svg"></svg-icon>&nbsp;&nbsp;{{
+                                                    "INVITE" | translate
+                                                    }}
                                                 </a><a class="dropdown-item"
                                                     [routerLink]="['/myproject/'+this.item?.id+'/settings']">
-                                                    <svg-icon src="assets/icons/cog.svg"></svg-icon>&nbsp;&nbsp;設定
+                                                    <svg-icon src="assets/icons/cog.svg"></svg-icon>&nbsp;&nbsp;{{
+                                                    "PROJECTSETTING" | translate
+                                                    }}
                                                 </a><a class="dropdown-item"
                                                     [routerLink]="['/myproject/'+this.item?.id+'/profile']">
-                                                    <svg-icon src="assets/icons/pencil.svg"></svg-icon>&nbsp;&nbsp;編輯
+                                                    <svg-icon src="assets/icons/pencil.svg"></svg-icon>&nbsp;&nbsp;{{
+                                                    "EDIT" | translate
+                                                    }}
                                                 </a> <a class="dropdown-item"
                                                     [routerLink]="['/myproject/'+this.item?.id+'/settings']">
-                                                    <svg-icon src="assets/icons/trash.svg"></svg-icon>&nbsp;&nbsp;刪除
+                                                    <svg-icon src="assets/icons/trash.svg"></svg-icon>&nbsp;&nbsp;{{
+                                                    "DELETE" | translate
+                                                    }}
                                                 </a></div>
 
                                         </div>
@@ -85,7 +99,8 @@
                     aria-labelledby="profile-tab">
                     <div class=" text-center" *ngIf="draftedprojects.length ===0"
                         style="height:300px;padding:15px;margin-top: 28px;">
-                        <span>沒有專案</span>
+                        <span>{{ "NOPROJECT" | translate
+                            }}</span>
                     </div>
                     <ng-container *ngIf="draftedprojects">
                         <div class="row">

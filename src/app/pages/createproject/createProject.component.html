@@ -123,7 +123,7 @@
                         placeholder="{{ 'PROJECT_INTRO_STATEMENT' | translate }}"></textarea>
                     <div *ngIf="submitted && f.description.errors">
                         <div class="error-msg" *ngIf="f.description.errors.required">
-                            專案簡介是必要的
+                            {{ "PROJECT_INTRO_MUST" | translate }}
                         </div>
                     </div>
                 </div>

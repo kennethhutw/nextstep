@@ -106,7 +106,7 @@ export class FindMentorComponent implements OnInit {
 
     //   }
     // });
-    this.translateSrv.use("zh-tw");
+
     // this.displayItems = this.items;
     //  this.SpinnerService.hide();
   }

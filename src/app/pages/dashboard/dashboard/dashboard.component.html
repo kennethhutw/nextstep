@@ -1,11 +1,11 @@
 <div class="up_container">
-  <span class="sub_title">身分認證</span>
+  <span class="sub_title">{{ "IDENTITY" | translate }}</span>
   <ul class="menu-items mt-12" style="padding-left: 20px;">
 
     <li>
       <input id="email" type="checkbox" [(ngModel)]="idverify.email" class="chk" data-key="email"
         [attr.disabled]="'true'" />
-      <label class="ml-10 option" for="email">信箱驗證</label>
+      <label class="ml-10 option" for="email">{{ "VERIFYEMAIL" | translate }}</label>
     </li>
     <!-- <li>
       <input id="info" type="checkbox" [(ngModel)]="idverify.info" class="chk" data-key="info"
@@ -15,15 +15,15 @@
     <li>
       <input id="interactive" type="checkbox" [(ngModel)]="idverify.interactive" class="chk" data-key="interactive"
         [attr.disabled]="'true'" />
-      <label class="ml-10 option" for="interactive">與一名成員互相追蹤</label>
+      <label class="ml-10 option" for="interactive">{{ "FOLLOWINGAMEMBER" | translate }}</label>
     </li>
   </ul>
 </div>
 <div class="mt-56">
-  <span class="sub_title">也許您會感興趣</span>
+  <span class="sub_title">{{ "YOUMAYINTERESTED" | translate }}</span>
   <div class="row  mt-24 empty_row" *ngIf="items.length ===0">
     <img src="assets/icons/noRecommend.png" alt="noRecommend">
-    無推薦專案
+    {{ "NOPROJECT" | translate }}
   </div>
   <!--person-->
   <ng-container *ngIf="items.length >0">
@@ -39,11 +39,10 @@
   </ng-container>
 </div>
 <div>
-  <span class="sub_title  mt-24 ">推薦給您</span>
+  <span class="sub_title  mt-24 ">{{ "MENTORSMEET" | translate }}</span>
   <div class="row  mt-24 empty_row" *ngIf="mentors.length ===0">
     <img src="assets/icons/glasses.png" style="width: 84px;" alt="glasses">
-
-    無推薦導師
+    {{ "NORECMENTORS" | translate }}
   </div>
   <!--person-->
   <ng-container *ngIf="mentors.length >0">

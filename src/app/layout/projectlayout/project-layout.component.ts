@@ -24,18 +24,18 @@ export class ProjectLayoutComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private translateSrv: TranslateService,
-    private utility: Utility,
+    private utilitySrv: Utility,
     private dataSrv: DataService,
     private authStoreSrv: AuthStore,
     private userSrv: UserService
   ) {
 
     let _lang = localStorage.getItem("lang");
-    if (!this.utility.IsNullOrEmpty(_lang)) {
+    if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
     }
     this.dataSrv.langKey.subscribe((lang) => {
-      if (!this.utility.IsNullOrEmpty(lang)) {
+      if (!this.utilitySrv.IsNullOrEmpty(lang)) {
         this.translateSrv.use(lang);
       }
     });
