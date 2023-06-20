@@ -37,11 +37,13 @@ import {
 import
   * as Pipes from "../_pipe";
 
-
-
 import * as sharedComponents from "./../_shared"
-
-
+import { HttpClient } from "@angular/common/http";
+import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+export function createLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 @NgModule({
   declarations: [
     UploadFileComponent,
@@ -64,7 +66,13 @@ import * as sharedComponents from "./../_shared"
     CommonModule,
     RouterModule,
     NgxSpinnerModule,
-
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createLoader,
+        deps: [HttpClient],
+      },
+    }),
     ModalModule.forRoot()],
   exports: [
     UploadFileComponent,
@@ -91,6 +99,7 @@ import * as sharedComponents from "./../_shared"
     LoadingDialogService,
     BsModalService,
     AuthService,
+
     ...AppServices.services,
     {
       provide: ErrorHandler,

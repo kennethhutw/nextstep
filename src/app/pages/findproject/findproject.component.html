@@ -1,6 +1,7 @@
 <div id="findcontent">
   <div>
-    <div class="cursor-pointer pl-2" (click)="onCleanClick()"><span class="btn-clean">清除全部</span></div>
+    <div class="cursor-pointer pl-2" (click)="onCleanClick()"><span class="btn-clean">{{ "BTNCLEAR"
+        | translate }}</span></div>
 
     <aside class="sidebar">
       <nav class="sidebar-menu pt-3 pb-3">
@@ -88,7 +89,9 @@
           <li>
             <input id="edutech" type="checkbox" [(ngModel)]="filterCondition.edutech" (change)="onTypeChange($event)"
               data-key="project" />
-            <label class="option" for="edutech">教育技術</label>
+            <label class="option" for="edutech">{{
+              "EDUTECH"
+              | translate }}</label>
           </li>
           <li>
             <input id="fintech" type="checkbox" [(ngModel)]="filterCondition.fintech" (change)="onTypeChange($event)"

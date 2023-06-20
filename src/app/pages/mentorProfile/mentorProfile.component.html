@@ -360,19 +360,20 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="inputPosition">職稱</label>
+            <label for="inputPosition">"{{ 'POSITION' | translate }}"</label>
             <input type="text" class="form-control rounded-0" formControlName="position" id="inputPosition"
-              placeholder="職稱">
+              placeholder="{{ 'POSITION' | translate }}">
           </div>
           <div class="form-group">
-            <label for="inputCompany">公司</label>
+            <label for="inputCompany">{{ 'COMPANY' | translate }}</label>
             <input type="text" class="form-control rounded-0" formControlName="company" id="inputCompany"
-              placeholder="公司名稱">
+              placeholder="{{ 'COMPANYNAME' | translate }}">
           </div>
           <div class="form-group">
-            <label for="inputSkills">技能</label>
+            <label for="inputSkills">{{ "SKILLS"
+              | translate }}</label>
             <tag-input id="skills" formControlName="skills" [onlyFromAutocomplete]="true"
-              [secondaryPlaceholder]="'前端開發, 市場開發, UIUX...'">
+              secondaryPlaceholder="{{'SKILLSEXS' | translate }}">
               <tag-input-dropdown [displayBy]="'text'" [appendToBody]="false" [autocompleteItems]="skillOptions"
                 [showDropdownIfEmpty]="true" [dynamicUpdate]="false">
               </tag-input-dropdown>
@@ -384,7 +385,8 @@
               placeholder="Website">
             <div *ngIf="submitted && f.website.errors">
               <div class="error-msg" *ngIf="f.website.errors.pattern">
-                URL 格式不對
+                {{ "WRONGURL"
+                | translate }}
               </div>
             </div>
           </div>
@@ -394,7 +396,8 @@
               placeholder="LinkedIn url">
             <div *ngIf="submitted && f.linkedin.errors">
               <div class="error-msg" *ngIf="f.linkedin.errors.pattern">
-                URL 格式不對
+                {{ "WRONGURL"
+                | translate }}
               </div>
             </div>
           </div>
@@ -404,7 +407,8 @@
               placeholder="Facebook url">
             <div *ngIf="submitted && f.facebook.errors">
               <div class="error-msg" *ngIf="f.facebook.errors.pattern">
-                URL 格式不對
+                {{ "WRONGURL"
+                | translate }}
               </div>
             </div>
           </div>
@@ -414,7 +418,8 @@
               placeholder="Twitter">
             <div *ngIf="submitted && f.twitter.errors">
               <div class="error-msg" *ngIf="f.twitter.errors.pattern">
-                URL 格式不對
+                {{ "WRONGURL"
+                | translate }}
               </div>
             </div>
           </div>
@@ -424,7 +429,8 @@
               placeholder="Github">
             <div *ngIf="submitted && f.github.errors">
               <div class="error-msg" *ngIf="f.github.errors.pattern">
-                URL 格式不對
+                {{ "WRONGURL"
+                | translate }}
               </div>
             </div>
           </div>
@@ -461,14 +467,14 @@
         <form [formGroup]="experienceForm">
 
           <div class="form-group">
-            <label for="inputExpCompany">公司</label>
+            <label for="inputExpCompany">"{{ 'COMPANY' | translate }}"</label>
             <input type="text" class="form-control rounded-0" formControlName="company" id="inputExpCompany"
-              placeholder="公司名稱">
+              placeholder="{{ 'COMPANYNAME' | translate }}">
           </div>
           <div class="form-group">
-            <label for="inputExpPosition">職稱</label>
+            <label for="inputExpPosition">"{{ 'POSITION' | translate }}"</label>
             <input type="text" class="form-control rounded-0" formControlName="position" id="inputExpPosition"
-              placeholder="職稱">
+              placeholder="{{ 'POSITION' | translate }}">
           </div>
 
           <div class="form-group">
@@ -476,11 +482,11 @@
               translate }}</label>
             <div class=" rounded-0">
               <input id="isCurrent" type="checkbox" formControlName="isCurrent" data-key="isCurrent" />
-              <label for="isCurrent">現任工作</label>
+              <label for="isCurrent">{{ 'CURRENT' | translate }}</label>
             </div>
             <div class="during rounded-0">
               <select id="startYear" formControlName="startYear">
-                <option value="">年</option>
+                <option value="">Year</option>
                 <option *ngFor="let year of  years" value="{{year}}">{{year}}</option>
               </select>
               <select id="startMonth" formControlName="startMonth">
@@ -500,11 +506,11 @@
               </select>
               <span *ngIf="!g.isCurrent.value" class="pt-6 pl-12 pr-12">至</span>
               <select id="endYear" formControlName="endYear" *ngIf="!g.isCurrent.value">
-                <option value="">年</option>
+                <option value="">Year</option>
                 <option *ngFor="let year of  years" value="{{year}}">{{year}}</option>
               </select>
               <select id="endMonth" formControlName="endMonth" *ngIf="!g.isCurrent.value">
-                <option value="">月</option>
+                <option value="">Month</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -522,16 +528,17 @@
           </div>
 
           <div class="form-group">
-            <label for="inputPosition">簡介</label>
-            <textarea class="form-control" placeholder="描述工作內容" type="text" id="content" formControlName="content"
-              rows="4" cols="50"></textarea>
+            <label for="inputPosition">{{ "INTRO"
+              | translate }}</label>
+            <textarea class="form-control" placeholder="{{ 'JD' | translate }}" type="text" id="content"
+              formControlName="content" rows="4" cols="50"></textarea>
           </div>
           <div class="row item-end">
             <button type="button" class="btn btn-transparent mr-10" data-dismiss="modal" aria-label="Close"
-              (click)="onCancelEditExp()">取消
+              (click)="onCancelEditExp()">{{ 'CANCEL' | translate }}
             </button>
             <button type="button" class="btn btn-blue mr-10" (click)="onExperienceSubmit()">
-              儲存</button>
+              {{ 'SUBMIT' | translate }}</button>
           </div>
         </form>
 

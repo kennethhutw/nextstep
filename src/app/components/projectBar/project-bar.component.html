@@ -5,12 +5,11 @@
 
   </div>
   <div class="d-flex justify-right">
-
     <p class="text-xs grey-50 mb-0 color-gray">
-      {{ _project.viewCount?_project.viewCount:"0"}}&nbsp;瀏覽/ {{_project.followCount? _project.followCount: 0}}&nbsp;追蹤
+      {{ _project.viewCount?_project.viewCount:"0"}}&nbsp;{{ "VIEWNUM" | translate
+      }}/ {{_project.followCount? _project.followCount: 0}}&nbsp;{{ "FOLLOW" | translate
+      }}
     </p>
-
-
   </div>
 
   <div class="d-flex align-items-center justify-right">

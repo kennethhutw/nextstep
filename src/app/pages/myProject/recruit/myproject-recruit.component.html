@@ -345,7 +345,7 @@
                     <div class="form-group">
                         <label for="inputSkills">{{"SKILLSREQ" | translate }}</label>
                         <tag-input id="skills" formControlName="skills" [onlyFromAutocomplete]="true"
-                            [secondaryPlaceholder]="'前端開發, 市場開發, UIUX...'">
+                            secondaryPlaceholder="{{'SKILLSEXS' | translate }}">
                             <tag-input-dropdown [displayBy]="'text'" [appendToBody]="false"
                                 [autocompleteItems]="skillOptions" [showDropdownIfEmpty]="true" [dynamicUpdate]="false">
                             </tag-input-dropdown>

@@ -9,7 +9,6 @@ import { Router } from "@angular/router";
 import { Utility } from "../../_helpers";
 import {
   DataService,
-  DialogService
 } from "../../_services";
 @Component({
   selector: "app-project-bar",

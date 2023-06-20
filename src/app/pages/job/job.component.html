@@ -86,7 +86,9 @@
               {{item.scopes}}
             </div>
             <div class="col-md-12 text-right">
-              <a class=" clickable" [routerLink]="['/job/',item.id ]" style="color: #4395E7;">查看詳情</a>
+              <a class="clickable text-blue" [routerLink]="['/job/',item.id ]">{{ "VIEWDETAILS" |
+                translate
+                }}</a>
             </div>
           </div>
         </ng-container>
@@ -129,13 +131,17 @@
             {{item.scopes}}
           </div>
           <div class="col-md-12 text-right">
-            <a class=" clickable" [routerLink]="['/job/',item.id ]" style="color: #4395E7;">查看詳情</a>
+            <a class=" clickable text-blue" [routerLink]="['/job/',item.id ]">{{ "VIEWDETAILS" |
+              translate
+              }}</a>
           </div>
         </div>
       </ng-container>
       <div class=" empty text-center">
 
-        <a class=" clickable" [routerLink]="['/recruit/' ]" style="color: #4395E7;">查看全部</a>
+        <a class="clickable text-blue" [routerLink]="['/recruit/' ]">{{ "VIEWDETAILS" |
+          translate
+          }}</a>
       </div>
     </ng-container>
   </div>

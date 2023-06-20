@@ -19,15 +19,20 @@ export class PersonCardComponent implements OnInit {
   @Input() user;
   @Input() type;
 
+  strNoName: string;
+  strNoPosition: string;
+
   constructor(
     private utility: Utility,
     private translateSrv: TranslateService,
     private dataSrv: DataService,
     private router: Router
   ) {
+    this.init_terms();
     let _lang = localStorage.getItem("lang");
     if (!this.utility.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
+      this.init_terms();
     }
   }
 
@@ -39,10 +44,15 @@ export class PersonCardComponent implements OnInit {
     });
   }
 
-  changeLanguage(lang: string) {
-    this.translateSrv.use(lang);
-  }
+  init_terms() {
+    this.translateSrv.get("NONAME").subscribe((text: string) => {
+      this.strNoName = text;
+    });
 
+    this.translateSrv.get("NOPOISTION").subscribe((text: string) => {
+      this.strNoPosition = text;
+    });
+  }
   routeToUserProfile() {
     if (this.type && this.type == "mentor") {
       this.router.navigate(["./mentor/" + this.uid], {});

@@ -2,32 +2,32 @@
     {
         "value": "",
         "group": "",
-        "text": "前端開發"
+        "text": ""
     },
     {
         "value": "frontend",
         "group": "software",
-        "text": "前端開發"
+        "text": "Fronted Dev"
     },
     {
         "value": "backend",
         "group": "software",
-        "text": "後端開發"
+        "text": "Backend Dev"
     },
     {
         "value": "fullstack",
         "group": "software",
-        "text": "全端開發"
+        "text": "Full stack"
     },
     {
         "value": "mobile",
         "group": "software",
-        "text": "行動裝置開發"
+        "text": "Mobile Dev"
     },
     {
         "value": "qa",
         "group": "software",
-        "text": "測試工程師"
+        "text": "QA Dev"
     },
     {
         "value": "devops",
@@ -37,42 +37,42 @@
     {
         "value": "datamining",
         "group": "ai",
-        "text": "資料探勘"
+        "text": "Data mining"
     },
     {
         "value": "ml",
         "group": "ai",
-        "text": "機器學習"
+        "text": "Machine Learning"
     },
     {
         "value": "it",
         "group": "it",
-        "text": "MIS/網路管理"
+        "text": "MIS/Network"
     },
     {
         "value": "marketing",
         "group": "A",
-        "text": "行銷企劃"
+        "text": "Marketing"
     },
     {
         "value": "community",
         "group": "A",
-        "text": "社群經營"
+        "text": "Community"
     },
     {
         "value": "editor",
         "group": "A",
-        "text": "編輯/內容經營"
+        "text": "Editor/Content Writer"
     },
     {
         "value": "advertising",
         "group": "A",
-        "text": "廣告創意/企劃"
+        "text": "Advertising"
     },
     {
         "value": "video",
         "group": "A",
-        "text": "攝影/影音製作"
+        "text": "Video"
     },
     {
         "value": "hacker",
@@ -82,76 +82,76 @@
     {
         "value": "media",
         "group": "A",
-        "text": "媒體公關"
+        "text": "Media"
     },
     {
         "value": "hr",
         "group": "op",
-        "text": "人資"
+        "text": "HR"
     },
     {
         "value": "accounting",
         "group": "op",
-        "text": "財務/會計"
+        "text": "Accounting"
     },
     {
         "value": "administrative",
         "group": "op",
-        "text": "行政"
+        "text": "Administrative"
     },
     {
         "value": "operation",
         "group": "op",
-        "text": "營運"
+        "text": "Operation"
     },
     {
         "value": "crm",
         "group": "op",
-        "text": "客戶服務"
+        "text": "CRM"
     },
     {
         "value": "law",
         "group": "op",
-        "text": "法務"
+        "text": "Law"
     },
     {
         "value": "bd",
         "group": "market",
-        "text": "商業開發"
+        "text": "Business development"
     },
     {
         "value": "channel",
         "group": "market",
-        "text": "通路開發"
+        "text": "Channel"
     },
     {
         "value": "analysis",
         "group": "market",
-        "text": "市場分析"
+        "text": "Marketing Analysis"
     },
     {
         "value": "sale",
         "group": "market",
-        "text": "銷售業務"
+        "text": "Sale"
     },
     {
         "value": "product",
         "group": "management",
-        "text": "產品管理"
+        "text": "Product Management"
     },
     {
         "value": "project",
         "group": "management",
-        "text": "專案管理"
+        "text": "Project Management"
     },
     {
         "value": "uiux",
         "group": "design",
-        "text": "UIUX/視覺設計"
+        "text": "UIUX"
     },
     {
         "value": "3d",
         "group": "design",
-        "text": "3D/動畫設計"
+        "text": "3D/Amination"
     }
 ]

@@ -3,15 +3,16 @@
   <div class="box-title">
     <span class="box-title-text">{{ title }}</span>
     <div class="box-tags">
-      <ui-tag *ngIf="project.isFindPartner" [class]="'tag-hiring'" [tag]="'徵成員'"></ui-tag>
-      <ui-tag *ngIf="project.isFunding" [class]="'tag-funding'" [tag]="'募資中'"></ui-tag>
-      <ui-tag *ngIf="project.isCofounder" [class]="'tag-cofounder'" [tag]="'找聯合創始人'"></ui-tag>
+      <ui-tag *ngIf="project.isFindPartner" [class]="'tag-hiring'" tag="{{ 'FIND_MEMBER' | translate }}"></ui-tag>
+      <ui-tag *ngIf="project.isFunding" [class]="'tag-funding'" tag="{{ 'FIND_MONEY' | translate }}"></ui-tag>
+      <ui-tag *ngIf="project.isCofounder" [class]="'tag-cofounder'" tag="{{ 'FIND_COFOUNDER' | translate }}"></ui-tag>
     </div>
   </div>
   <div class="box-text">
     <span>{{project.description.length>100 ? project.description.substring(0,120)+"...":project.description}}</span>
   </div>
   <div class="box-btn align-item-left">
-    <a (click)="routeToUserProfile()">查看詳情</a>
+    <a (click)="routeToUserProfile()">{{ "VIEWDETAILS" | translate
+    }}</a>
   </div>
 </div>

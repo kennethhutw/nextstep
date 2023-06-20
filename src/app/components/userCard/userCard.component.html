@@ -7,7 +7,7 @@
       </a>
       <div class="u-name">
         <span class=" text-body name">{{ user.name }}</span>
-        <span class="title">{{ user.title? user.title:"尚未填寫職稱"}}</span>
+        <span class="title">{{ user.title? user.title:this.strNoPosition}}</span>
       </div>
     </div>
 
@@ -17,20 +17,24 @@
         <i *ngIf="!user.isCollect" (click)="onClickCollect()" class="far fa-bookmark "></i>
         <i class="far fa-comment-dots " (click)="onClickChat()"></i>
         <!-- <span class="follow">追蹤</span> -->
-        <span *ngIf="user.isFollow" class="followed" (click)="onClickUnFollow()">已追蹤</span>
-        <span *ngIf="!user.isFollow" class="follow" (click)="onClickFollow()">追蹤</span>
+        <span *ngIf="user.isFollow" class="followed" (click)="onClickUnFollow()">{{ "FOLLOWED" |
+          translate
+          }}</span>
+        <span *ngIf="!user.isFollow" class="follow" (click)="onClickFollow()">{{ "FOLLOW" |
+          translate
+          }}</span>
       </div>
     </div>
   </div>
   <div class="row" style="min-height:70px">
     <div class="col-md-12 discr">
-      {{user?.bio.length> 0? user.bio.length>39?user.bio.substring(0,40)+' ...':user.bio : "尚未填寫"}}
+      {{user?.bio.length> 0? user.bio.length>39?user.bio.substring(0,40)+' ...':user.bio : this.strNotFilled}}
     </div>
   </div>
   <div class="row" style="min-height:27px">
     <ng-container *ngIf="user.skills">
       <ng-container *ngFor=" let tag of user.skills; let i=index">
-        <span *ngIf="!this.utility.IsNullOrEmpty(tag)" class="tag  tag-{{tag}}  mb-2 mr-5">{{convertTag(tag)}}</span>
+        <span *ngIf="!this.utility.IsNullOrEmpty(tag)" class="tag tag-{{tag}}  mb-2 mr-5">{{convertTag(tag)}}</span>
       </ng-container>
     </ng-container>
     <ng-container *ngIf="user.interested && type!=='partner'">

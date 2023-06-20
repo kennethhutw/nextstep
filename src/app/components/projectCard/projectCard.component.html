@@ -7,14 +7,16 @@
 
     </div>
     <div class="item-left">
-      <ui-tag *ngIf="project.isFindPartner" [class]="'tag-hiring'" [tag]="'徵成員'"></ui-tag>
-      <ui-tag *ngIf="project.isFunding" [class]="'tag-funding'" [tag]="'募資中'"></ui-tag>
-      <ui-tag *ngIf="project.isCofounder" [class]="'tag-cofounder'" [tag]="'找聯合創始人'"></ui-tag>
+      <ui-tag *ngIf="project.isFindPartner" [class]="'tag-hiring'" tag="{{ 'FIND_MEMBER' | translate }}"></ui-tag>
+      <ui-tag *ngIf="project.isFunding" [class]="'tag-funding'" tag="{{ 'FIND_MONEY' | translate }}"></ui-tag>
+      <ui-tag *ngIf="project.isCofounder" [class]="'tag-cofounder'" tag="{{ 'FIND_COFOUNDER' | translate }}"></ui-tag>
       <i *ngIf="project.isCollect && user " (click)="onClickUnCollect()"
         class="fas fa-bookmark fa-lg  fa-bookmark-selected"></i>
       <i *ngIf="!project.isCollect && user" (click)="onClickCollect()" class="far fa-bookmark fa-lg  color-gray"></i>
-      <span *ngIf="project.isFollow && user" class="followed" (click)="onClickUnFollow()">已追蹤</span>
-      <span *ngIf="!project.isFollow && user" class="follow" (click)="onClickFollow()">追蹤</span>
+      <span *ngIf="project.isFollow && user" class="followed" (click)="onClickUnFollow()">{{ "FOLLOWED" | translate
+        }}</span>
+      <span *ngIf="!project.isFollow && user" class="follow" (click)="onClickFollow()">{{ "FOLLOW" | translate
+        }}</span>
     </div>
 
   </div>
@@ -26,13 +28,9 @@
   </div>
   <div class="row">
     <ng-container *ngIf="project.tags">
-
       <ng-container *ngFor="let tag of  project.tags; let i = index">
-
         <a href="#" class="label label-success mb-2 mr-5">{{tag}}</a>
-
       </ng-container>
-
     </ng-container>
 
   </div>

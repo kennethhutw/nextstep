@@ -15,7 +15,7 @@
             <!-- </ng-template> -->
         </select>
         <input type="text" class="form-control search" [(ngModel)]="searchText" aria-label=""
-            aria-describedby="button-addon2" placeholder="輸入關鍵字" />
+            aria-describedby="button-addon2" placeholder="{{ 'INPUT_KW' | translate }}" />
 
         <span></span>
         <button type="button" style="margin: auto;" [disabled]="!this.currentUser" class="btn btn-blue"

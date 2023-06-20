@@ -1,10 +1,10 @@
 <div class="box">
   <img class="profile-img" src="{{imageUrl}}" (error)="onImgError($event)" alt="" />
   <!--   {{user|json}} -->
-  <div class="box-title" (click)="routeToUserProfile()">{{ name }}</div>
+  <div class="box-title" (click)="routeToUserProfile()">{{ name? name:this.strNoName }}</div>
 
   <div class="box-position">
-    <span>{{ position? position:"尚未填寫職稱"}}</span>
+    <span>{{ position? position:this.strNoPosition}}</span>
   </div>
 
   <div class="icons">

@@ -18,6 +18,9 @@ export class MemberCardComponent implements OnInit {
   @Input() uid: string;
   @Input() user;
 
+  strNoName: string;
+  strNoPosition: string;
+
   constructor(
     private utility: Utility,
     private translateSrv: TranslateService,
@@ -25,9 +28,21 @@ export class MemberCardComponent implements OnInit {
     private router: Router
   ) {
     let _lang = localStorage.getItem("lang");
+    this.init_terms();
     if (!this.utility.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
+      this.init_terms();
     }
+  }
+
+  init_terms() {
+    this.translateSrv.get("NONAME").subscribe((text: string) => {
+      this.strNoName = text;
+    });
+
+    this.translateSrv.get("NOPOISTION").subscribe((text: string) => {
+      this.strNoPosition = text;
+    });
   }
 
   ngOnInit() {
@@ -38,9 +53,6 @@ export class MemberCardComponent implements OnInit {
     });
   }
 
-  changeLanguage(lang: string) {
-    this.translateSrv.use(lang);
-  }
 
   routeToUserProfile() {
     this.router.navigate(["./u/" + this.uid], {});
@@ -50,56 +62,5 @@ export class MemberCardComponent implements OnInit {
     event.target.src = "assets/images/defaultlogo.png";
   }
 
-  convertTag(term) {
 
-    let _term = "";
-    switch (term.toLowerCase()) {
-      case "ecomm":
-        _term = "電子商務";
-        break;
-      case "medical":
-        _term = "醫學科技";
-        break;
-      case "ai":
-        _term = "人工智慧";
-        break;
-      case "transport":
-        _term = "運輸服務";
-        break;
-      case "edutech":
-        _term = "教育技術";
-        break;
-      case "fintech":
-        _term = "金融科技";
-        break;
-      case "sharingeconomy":
-        _term = "共享經濟";
-        break;
-      case "game":
-        _term = "遊戲產業";
-        break;
-      case "bd":
-        _term = "市場開發";
-        break;
-      case "software":
-        _term = "軟體開發";
-        break;
-      case "it":
-        _term = "系統與基礎架構";
-        break;
-      case "marketing":
-        _term = "行銷/企劃/內容";
-        break;
-      case "op":
-        _term = "營運";
-        break;
-      case "design":
-        _term = "產品/設計";
-        break;
-      case "pm":
-        _term = "產品/設計";
-        break;
-    }
-    return _term;
-  }
 }

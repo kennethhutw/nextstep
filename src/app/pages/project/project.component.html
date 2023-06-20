@@ -534,14 +534,16 @@
               placeholder="{{ 'POSITION' | translate }}">
           </div>
           <div class="form-group">
-            <label for="inputContent">職缺內容</label>
+            <label for="inputContent">{{ "JD"
+              | translate }}</label>
             <textarea class="form-control" type="text" id="scopes" formControlName="scopes" rows="4"
               cols="50"></textarea>
           </div>
           <div class="form-group">
-            <label for="inputSkills">技能</label>
+            <label for="inputSkills">{{ "SKILLS"
+              | translate }}</label>
             <tag-input id="skills" formControlName="skills" [onlyFromAutocomplete]="true"
-              [secondaryPlaceholder]="'前端開發, 市場開發, UIUX...'">
+              secondaryPlaceholder="{{'SKILLSEXS' | translate }}">
               <tag-input-dropdown [displayBy]="'text'" [appendToBody]="false" [autocompleteItems]="skillOptions"
                 [showDropdownIfEmpty]="true" [dynamicUpdate]="false">
               </tag-input-dropdown>

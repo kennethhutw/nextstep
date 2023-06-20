@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DialogService } from './../../_services/dialog.service';
-
+import { TranslateService } from "@ngx-translate/core";
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
@@ -11,10 +11,11 @@ import { DialogService } from './../../_services/dialog.service';
 
 export class DialogComponent implements OnInit {
   message: any;
-  title:string;
+  title: string;
   msg: string;
 
   constructor(
+    private translateSrv: TranslateService,
     private dialogSrv: DialogService
   ) { }
 

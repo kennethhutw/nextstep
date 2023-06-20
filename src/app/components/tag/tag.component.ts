@@ -12,16 +12,11 @@ export class TagComponent {
 
 
   constructor(
-
   ) {
-
 
   }
 
   ngOnInit() {
-
-
-
 
   }
 

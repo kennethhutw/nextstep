@@ -34,7 +34,8 @@
         <figure class="no-comment">
 
           <img src="assets/icons/noMsg.png" alt="no-comment">
-          <span class="text mt-10">尚無對話內容</span>
+          <span class="text mt-10">{{ "NOCONVERSATION"
+            | translate }}</span>
         </figure>
       </ng-template>
     </div>
@@ -54,7 +55,8 @@
       </div> -->
       <!-- <ui-button class="btn-outline round cancel" (click)="onClose()">Cancel</ui-button> -->
       <ui-button class="btn-solid blue round send" (click)="onComment()"><img src="assets/icons/Cursor.png"
-          alt="no-comment">傳送</ui-button>
+          alt="no-comment">{{ "MSGSEND"
+        | translate }}</ui-button>
     </div>
 
   </footer>

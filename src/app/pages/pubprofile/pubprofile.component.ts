@@ -65,7 +65,7 @@ export class PubProfileComponent implements OnInit {
   strCollect: string = "";
   strCollected: string = "";
   strNoWords: string = "";
-
+  strNoJD: string = "";
   // tab
   currentTab: string = "current";
 
@@ -208,6 +208,10 @@ export class PubProfileComponent implements OnInit {
   }
 
   intialTerms() {
+
+    this.translateSrv.get("NOJD").subscribe((text: string) => {
+      this.strNoJD = text;
+    });
     this.translateSrv.get("FOLLOW").subscribe((text: string) => {
       this.strFollow = text;
     });
