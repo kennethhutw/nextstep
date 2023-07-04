@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-12">
 
-                    <span class="title">個人資料</span>
+                    <span class="title">{{ "PERSONALPROFILE" | translate }}</span>
                 </div>
                 <div class="col-md-12 mt-2 mb-2 align-items-center" id="select_img">
                     <input id="profileImage" type="file" accept="image/gif, image/jpg, image/jpeg, image/png, image/gif"
@@ -27,15 +27,15 @@
                 <div class="col-md-12 mt-2 mb-2 align-items-center" id="select_img">
                     <form style="width: 80%;" [formGroup]="profileForm">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">姓名*</label>
+                            <label for="exampleInputEmail1">{{ "NAMEUP" | translate }}*</label>
                             <input type="text" class="form-control rounded-0" id="name" formControlName="name"
-                                aria-describedby="emailHelp" placeholder="姓名">
+                                aria-describedby="emailHelp" placeholder="{{ 'NAMEUP' | translate }}">
 
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">職稱</label>
+                            <label for="exampleInputPassword1">{{ "POSITION" | translate }}</label>
                             <input type="text" class="form-control rounded-0" formControlName="position" id="position"
-                                placeholder="職稱">
+                                placeholder="{{ 'POSITION' | translate }}">
                         </div>
 
                         <div class="form-group">
@@ -52,12 +52,13 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputPassword1">自我介紹</label>
+                            <label for="exampleInputPassword1">{{'BIO' | translate }}</label>
                             <textarea class="form-control" type="text" id="bio" formControlName="bio" rows="4" cols="50"
-                                placeholder="自我介紹"></textarea>
+                                placeholder="{{'BIO' | translate }}"></textarea>
                         </div>
                         <div class="form-group">
-                            <button type="button" (click)="NextStep(1)" class="btn btn-continue ">下一步</button>
+                            <button type="button" (click)="NextStep(1)" class="btn btn-continue ">{{'NEXT' | translate
+                                }}</button>
                         </div>
                     </form>
 
@@ -72,8 +73,10 @@
     <div class="row mt-60" *ngIf="step==1">
         <div class="col-md-12">
 
-            <p class="title">Hi {{name}},很高興見到您!</p>
-            <p class="title">你最想在NEXT STEP做什麼事呢?(可複選)</p>
+            <p class="title">Hi {{name}},{{'NICETOMEET' | translate
+                }}</p>
+            <p class="title">{{'WANTUTODO' | translate
+                }}</p>
         </div>
         <div class="row mt-30">
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 ">
@@ -84,11 +87,13 @@
                     <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
 
                     <div class="title">
-                        <h4>找專案</h4>
+                        <h4>{{'SECTION_0_BTN_1' | translate
+                            }}</h4>
                     </div>
 
                     <div class="text">
-                        <span>找有興趣的專案參加</span>
+                        <span>{{'SECTION_1_PIONT_4' | translate
+                            }}加</span>
                     </div>
 
                 </div>
@@ -101,11 +106,13 @@
                     <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
 
                     <div class="title">
-                        <h4>找夥伴</h4>
+                        <h4>{{'SECTION_0_BTN_2' | translate
+                            }}</h4>
                     </div>
 
                     <div class="text">
-                        <span>為團隊招募優秀的合作夥伴</span>
+                        <span>{{'SECTION_1_PIONT_5' | translate
+                            }}</span>
                     </div>
 
                 </div>
@@ -117,11 +124,13 @@
                     <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
 
                     <div class="title">
-                        <h4>找導師</h4>
+                        <h4>{{'SECTION_0_BTN_3' | translate
+                            }}</h4>
                     </div>
 
                     <div class="text">
-                        <span>幫助你解決職涯方面的疑難雜症</span>
+                        <span>{{'SECTION_1_PIONT_6' | translate
+                            }}</span>
                     </div>
 
                 </div>
@@ -134,11 +143,13 @@
                     <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
 
                     <div class="title">
-                        <h4>當導師</h4>
+                        <h4>{{'BEMENTOR' | translate
+                            }}</h4>
                     </div>
 
                     <div class="text">
-                        <span>我給人意見引導團隊給予資源</span>
+                        <span>{{'SECTION_1_PIONT_7' | translate
+                            }}</span>
                     </div>
 
                 </div>
@@ -147,8 +158,8 @@
         <div class="col-md-12 mt-50 text-center">
 
             <button type="button" (click)="NextStep(0)" class="btn btn-step mr-2">
-                上一步</button>
-            <button type="button" (click)="onSubmit()" class="btn btn-step ml-2">下一步</button>
+                {{'PRESTEP' | translate }}</button>
+            <button type="button" (click)="onSubmit()" class="btn btn-step ml-2">{{'NEXT' | translate }}</button>
 
         </div>
     </div>

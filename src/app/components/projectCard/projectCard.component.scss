@@ -160,4 +160,10 @@ ui-project-card {
     .mt-6 {
         margin-top: 6px;
     }
+
+    .project_status {
+        display: flex;
+        gap: 10px;
+        padding-top: 5px;
+    }
 }

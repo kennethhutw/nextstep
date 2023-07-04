@@ -335,6 +335,7 @@ export class FindProjectComponent implements OnInit {
 
   onClearFilter() {
     this.displayItems = this.items;
+    this.foundItemNum = -1;
   }
 
   checkProjectStatus(items) {

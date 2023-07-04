@@ -37,6 +37,7 @@ export class FindMentorComponent implements OnInit {
   }
   items = [];
   displayItems = [];
+  foundItemNum: number = -1;
   currentUser;
 
   isChat: boolean = false;
@@ -85,6 +86,7 @@ export class FindMentorComponent implements OnInit {
           });
         }
         this.displayItems = this.items ? this.items : [];
+        this.foundItemNum = this.items.length;
       }
       this.SpinnerService.hide();
     }).catch(error => {
@@ -149,6 +151,7 @@ export class FindMentorComponent implements OnInit {
   onSkills(event) {
     this.displayItems = [];
 
+
     if (this.filterCondition.design &&
       this.filterCondition.finance &&
       this.filterCondition.marketing &&
@@ -160,6 +163,7 @@ export class FindMentorComponent implements OnInit {
       this.filterCondition.strategy &&
       this.filterCondition.programming) {
       this.displayItems = this.items;
+      this.foundItemNum = -1;
     } else if (!this.filterCondition.design &&
       !this.filterCondition.finance &&
       !this.filterCondition.marketing &&
@@ -171,6 +175,7 @@ export class FindMentorComponent implements OnInit {
       this.filterCondition.strategy &&
       this.filterCondition.programming) {
       this.displayItems = this.items;
+      this.foundItemNum = -1;
     } else {
       let currentItem = []
       this.items.map(item => {
@@ -257,6 +262,7 @@ export class FindMentorComponent implements OnInit {
     this.filterCondition.programming = false;
 
     this.displayItems = this.items;
+    this.foundItemNum = -1;
   }
 
   isExist(items, id) {

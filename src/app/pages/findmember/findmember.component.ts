@@ -26,6 +26,7 @@ export class FindMemberComponent implements OnInit {
 
   items = [];
   displayItems = [];
+  foundItemNum: number = -1;
   currentUser;
   values = "";
   tags = [];

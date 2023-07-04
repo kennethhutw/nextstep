@@ -44,10 +44,7 @@
 
   <footer #comments class="comments-footer">
 
-    <!-- <div #textarea class="textarea" contenteditable="true" data-placeholder="輸入訊息" (keyup)="onChange($event)">
-    </div> -->
-
-    <input type="text" class="textarea" [(ngModel)]="message" placeholder="輸入訊息" />
+    <input type="text" class="textarea" [(ngModel)]="message" placeholder="{{ 'INPUTMSG' | translate }}" />
 
     <div class="actions">
       <!-- <div *ngIf="isSupportPrivate" class="control-form check" (click)="onToggleChecked()">

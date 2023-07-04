@@ -152,12 +152,14 @@
   </div>
   <div>
     <div class="row" *ngIf="foundItemNum !== items.length">
-      <p> {{foundItemNum}} 筆篩選結果</p>
+      <p> {{foundItemNum}} {{ "NFOUND"
+        | translate }}</p>
 
     </div>
     <div class="col-md-12 empty-text-center h-100" *ngIf="foundItemNum !== displayItems.length">
       <svg-icon class="icon" src="assets/icons/magnifier.svg"></svg-icon>
-      <span>查無結果</span>
+      <span>{{ "NORESULT"
+        | translate }}</span>
     </div>
     <!--person-->
     <ng-container *ngIf="displayItems">

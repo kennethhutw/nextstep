@@ -63,10 +63,11 @@
                 <input type="text" class="form-control" id="inputName" aria-describedby="nameHelp"
                     formControlName="name" [ngClass]="{ 'is-invalid':  submitted && signupForm.get('name').invalid }"
                     placeholder="User Name(4-10碼英文數字)">
-                <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i>使用者名稱是必須的.</span>
+                <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i>{{"USER_NAME_MUST" | translate
+                    }}</span>
                 <div *ngIf="nameExistant">
                     <p class="invalid">
-                        <i class="fas fa-exclamation-triangle"></i> 該名稱已有人使用
+                        <i class="fas fa-exclamation-triangle"></i> {{"USER_NAME_TAKEN" | translate }}
                     </p>
                 </div>
             </div>

@@ -7,9 +7,7 @@
 
     </div>
     <div class="item-left">
-      <ui-tag *ngIf="project.isFindPartner" [class]="'tag-hiring'" tag="{{ 'FIND_MEMBER' | translate }}"></ui-tag>
-      <ui-tag *ngIf="project.isFunding" [class]="'tag-funding'" tag="{{ 'FIND_MONEY' | translate }}"></ui-tag>
-      <ui-tag *ngIf="project.isCofounder" [class]="'tag-cofounder'" tag="{{ 'FIND_COFOUNDER' | translate }}"></ui-tag>
+
       <i *ngIf="project.isCollect && user " (click)="onClickUnCollect()"
         class="fas fa-bookmark fa-lg  fa-bookmark-selected"></i>
       <i *ngIf="!project.isCollect && user" (click)="onClickCollect()" class="far fa-bookmark fa-lg  color-gray"></i>
@@ -33,5 +31,12 @@
       </ng-container>
     </ng-container>
 
+  </div>
+  <div class="row">
+    <div class="col-md-12 project_status">
+      <ui-tag *ngIf="project.isFindPartner" [class]="'tag-hiring'" tag="{{ 'FIND_MEMBER' | translate }}"></ui-tag>
+      <ui-tag *ngIf="project.isFunding" [class]="'tag-funding'" tag="{{ 'FIND_MONEY' | translate }}"></ui-tag>
+      <ui-tag *ngIf="project.isCofounder" [class]="'tag-cofounder'" tag="{{ 'FIND_COFOUNDER' | translate }}"></ui-tag>
+    </div>
   </div>
 </div>

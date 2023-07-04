@@ -3,11 +3,12 @@
     <div class="signup-bg"></div>
     <div class="frame">
         <div class="w-100 ">
-            <span style="font-size: 2rem;">註冊</span>
+            <span style="font-size: 2rem;">{{ 'SIGNUP' | translate }}</span>
             <div style="float: right;    vertical-align: middle;
             text-align: center;
             line-height: 50px;">
-                已有帳號?&nbsp; <a class="btn-signin" routerLink="/signin">登入</a>
+                {{ 'HAVEACCOUNT' | translate }} &nbsp; <a class="btn-signin" routerLink="/signin">{{ 'SIGNIN' |
+                    translate }}</a>
             </div>
         </div>
         <div class="mt-2 mb-2">
@@ -23,8 +24,8 @@
                     <path fill="#4267b2"
                         d="M26.707,29.301h5.176l0.813-5.258h-5.989v-2.874c0-2.184,0.714-4.121,2.757-4.121h3.283V12.46 c-0.577-0.078-1.797-0.248-4.102-0.248c-4.814,0-7.636,2.542-7.636,8.334v3.498H16.06v5.258h4.948v14.452 C21.988,43.9,22.981,44,24,44c0.921,0,1.82-0.084,2.707-0.204V29.301z" />
                 </svg>
-                <!-- <img src="./assets/icon/facebook.png" class="icon" alt=""> -->
-                透過 Facebook 註冊
+                {{"FACKBOOKSIGNUP" |
+                translate }}
             </button>
 
         </div>
@@ -52,13 +53,11 @@
                         </clipPath>
                     </defs>
                 </svg>
-                <!-- <img src="../../assets/google.png" style="margin-right: 10px;">  -->
-                透過 Google 註冊
+
+                {{"GOOGLESIGNUP" |
+                translate }}
             </button>
         </div>
-        <!-- <div class="separator"
-                        style="color: var(--grey-50); font-weight: 500; margin-top: 20px; margin-bottom: 20px;">Or
-                    </div> -->
         <h4 style="margin-bottom: 30px !important; margin-top: 30px !important;"><span>{{"OR" | translate }}</span></h4>
         <form [formGroup]="signupForm">
             <div class="form-group">
@@ -66,10 +65,11 @@
                 <input type="text" class="form-control" id="inputName" aria-describedby="nameHelp"
                     formControlName="name" [ngClass]="{ 'is-invalid':  submitted && signupForm.get('name').invalid }"
                     placeholder="User name">
-                <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i> 使用者名稱是必須的.</span>
+                <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i>{{"USER_NAME_MUST" | translate
+                    }}</span>
                 <div *ngIf="nameExistant">
                     <p class="invalid">
-                        <i class="fas fa-exclamation-triangle"></i>該名稱已有人使用.
+                        <i class="fas fa-exclamation-triangle"></i>{{"USER_NAME_TAKEN" | translate }}
                     </p>
                 </div>
             </div>
@@ -79,10 +79,11 @@
                     formControlName="email"
                     [ngClass]="{ 'is-invalid': (signupForm.get('email').touched || signupForm.get('email').dirty) && signupForm.get('email').invalid || submitted && signupForm.get('email').invalid }"
                     placeholder="hi@next.com">
-                <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i>電子信箱格式不符.</span>
+                <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i>{{"EMAILFORMATNOT" | translate
+                    }}</span>
                 <div *ngIf="emailExistant">
                     <p class="invalid">
-                        <i class="fas fa-exclamation-triangle"></i> 電子信箱已註冊了.
+                        <i class="fas fa-exclamation-triangle"></i>{{"EMAILREGISTERED" | translate }}
                     </p>
                 </div>
             </div>
@@ -95,7 +96,8 @@
                 </span>
                 <div *ngIf="InvalidUser">
                     <p class="invalid">
-                        <i class="fas fa-exclamation-triangle"></i> 密碼或電子信箱不正確.
+                        <i class="fas fa-exclamation-triangle"></i> {{"EMAILORPASSWORDNOTCORRECTMSG" |
+                        translate }}
                     </p>
                 </div>
                 <div *ngIf="unverifiedUser">
@@ -110,10 +112,8 @@
             </div>
             <button type="submit" class="btn w-100 d-flex align-items-center justify-content-center btn-signup"
                 [disabled]="inValid()" (click)="onSubmit()">
-                註冊
+                {{ 'SIGNUP' | translate }}
             </button>
         </form>
     </div>
-
-
 </div>

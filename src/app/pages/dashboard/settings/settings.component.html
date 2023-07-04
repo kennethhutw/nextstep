@@ -98,7 +98,7 @@
                 </div>
                 <div class="error-msg" *ngIf="checkPasswords()"> {{ 'CONFIRMPSWERROR' | translate }}</div>
                 <div *ngIf="submitted && f.confirmPassword.errors">
-                  <div class="error-msg" *ngIf="f.confirmPassword.errors.required">請輸入新密碼</div>
+                  <div class="error-msg" *ngIf="f.confirmPassword.errors.required">{{ 'NEWPSWERROR' | translate }}</div>
                 </div>
               </div>
 

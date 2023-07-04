@@ -5,21 +5,23 @@
             <a routerLink="/signin"> <i class="far fa-arrow-alt-circle-left" style="font-size: 25px;"></i></a>
         </div>
         <div class="w-100  mt-30">
-            <h2>忘記密碼?</h2>
+            <h2>{{ "FORGOTPASSWORD"
+                | translate }}?</h2>
         </div>
         <div class="w-100 mt-30">
-            請輸入電子信箱，我們將寄送重設密碼的連結給您。
+            {{ "FORGOTPASSWORDDESC"
+            | translate }}
         </div>
 
         <form class="mt-30" [formGroup]="resetEmailForm">
             <div class="form-group" style="font-family: var(--font-nunito);">
-
                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                     formControlName="email"
                     [ngClass]="{ 'is-invalid': (resetEmailForm.get('email').touched || resetEmailForm.get('email').dirty) && resetEmailForm.get('email').invalid || submit && resetEmailForm.get('email').invalid }"
                     placeholder="hi@next.com">
-                <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i> Invalid email
-                    address.</span>
+                <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i>
+                    {{ "EMAILFORMATNOT"
+                    | translate }}</span>
             </div>
             <div>
 
@@ -27,12 +29,15 @@
             <button *ngIf="!this.timerSub" type="submit"
                 class="btn btn-blue w-100 d-flex align-items-center justify-content-center"
                 style="height: 45px; margin-top: 30px;" [disabled]="inValid()" (click)="onSubmit()">
-                寄送
+                {{ "SEND"
+                | translate }}
             </button>
             <button *ngIf="this.timerSub" type="submit"
                 class="btn color-gray btn-countdown w-100 d-flex align-items-center justify-content-center"
                 style="height: 45px; margin-top: 30px;">
-                {{this.value}} 秒後可重新寄送
+                {{ "RESENDFGEMAILF"
+                | translate }} {{this.value}}{{ "RESENDFGEMAILB"
+                | translate }}
             </button>
         </form>
     </div>

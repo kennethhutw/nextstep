@@ -1,22 +1,26 @@
 <div class="container mb-80">
     <div class="row">
         <div class="col-md-12">
-            <h1 class="footer_title_line"><span class="page-title">關於Next Step</span></h1>
+            <h1 class="footer_title_line"><span class="page-title">{{ "ABOUT_1_TITLE"
+                    | translate }}</span></h1>
         </div>
     </div>
 
     <div class="row mt-40">
         <!-- <div class="col-md-12 offset-md-1 text-justify footer_text"> -->
         <div class="col-md-12  text-justify content-goal">
-            <span>Next Step 創立初衷即是為了解決<span style="color:#FF3356">「缺乏一個可以尋找 Side project的平台」</span>的問題。</span>
+            <span>{{ "ABOUT_1_1"
+                | translate }}<span class="color-red">{{ "ABOUT_1_2"
+                    | translate }}</span>{{ "ABOUT_1_3"
+                | translate }}</span>
 
-            <span>我們觀察到有許多人想利用下班或課餘時間做 side project，但是卻很難透過統一的管道或平台尋找合作對象，抑或是有很好的點子，卻因找不到志同道合的夥伴而遲遲未開始執行。NextStep
-                是一個專為尋找 side project 夥伴而設計的平台。在這個平台上，您可以創建自己的 side
-                project，並尋找志同道合的夥伴加入您的項目。同時，您也可以加入其他人的項目，並與他們一起開發創意項目。</span>
+            <span>{{ "ABOUT_1_4"
+                | translate }}</span>
 
-            <span>除此之外，NextStep 還提供了一個社群，讓使用者可以與其他創業者、開發人員和設計師互動，分享創意和經驗。如果您正在尋找一個具有創意和協作精神的平台來實現您的想法，NextStep
-                可能是一個不錯的選擇。</span>
-            <span>因此，為了解決以上種種問題， Next Step 規劃了以下功能，讓你可以：</span>
+            <span>{{ "ABOUT_1_5"
+                | translate }}</span>
+            <span>{{ "ABOUT_1_6"
+                | translate }}</span>
             <br>
             <br>
             <div class="row">
@@ -28,11 +32,13 @@
                         <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
 
                         <div class="title">
-                            <span class="option_title">尋找 side project</span>
+                            <span class="option_title">{{ "ABOUT_2_1"
+                                | translate }}</span>
                         </div>
 
                         <div class="text">
-                            <span class="option_desc">踏出你的 next step！</span>
+                            <span class="option_desc">{{ "ABOUT_2_2"
+                                | translate }}</span>
                         </div>
 
                     </div>
@@ -45,11 +51,13 @@
                         <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
 
                         <div class="title">
-                            <span class="option_title">尋找 side project 夥伴</span>
+                            <span class="option_title">{{ "ABOUT_2_3"
+                                | translate }}</span>
                         </div>
 
                         <div class="text">
-                            <span class="option_desc">加入或打造一個優質團隊</span>
+                            <span class="option_desc">{{ "ABOUT_2_4"
+                                | translate }}</span>
                         </div>
 
                     </div>
@@ -61,27 +69,26 @@
                         <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
 
                         <div class="title">
-                            <span class="option_title">建立專案頁面</span>
+                            <span class="option_title">{{ "ABOUT_2_5"
+                                | translate }}</span>
                         </div>
 
                         <div class="text">
-                            <span class="option_desc">增進交流與合作機會，打開知名度！</span>
+                            <span class="option_desc">{{ "ABOUT_2_6"
+                                | translate }}</span>
                         </div>
 
                     </div>
                 </div>
             </div>
-            <!-- <span><span class="step">1</span>尋找 side project ，踏出你的 next step！</span>
-            <span><span class="step">2</span>尋找 side project 夥伴，加入/建立一個優質團隊</span>
-            <span><span class="step">3</span>建立專案頁，讓更多人認識你們，促進交流、增加合作機會，甚至打開知名度！</span> -->
+
         </div>
-        <!-- <div class="col-md-5">
-            <img class="w-100" src="./../../../assets/images/footer_about.jpg" alt="">
-        </div> -->
+
     </div>
     <div class="row mt-20">
         <div class="col-md-12">
-            <h1 class="footer_title_line"><span class="page-title">團隊介紹</span></h1>
+            <h1 class="footer_title_line"><span class="page-title">{{ "ABOUT_3_TITILE"
+                    | translate }}</span></h1>
         </div>
     </div>
     <div class="row mt-20">
@@ -90,29 +97,37 @@
                 <div class="profile-pic">
                     <img (error)="onImgError($event)" src="assets/images/kenneth.svg">
                 </div>
-                <span class="member_name">Kenneth Hu</span>
-                <span class="member_position">開發者</span>
-                <span class="member_intro">撰寫任何事情，O型水瓶混魔羯，咖啡愛好者，Full stack/Web3 developer</span>
+                <span class="member_name">{{ "ABOUT_3_1"
+                    | translate }}</span>
+                <span class="member_position">{{ "ABOUT_3_2"
+                    | translate }}</span>
+                <span class="member_intro">{{ "ABOUT_3_3"
+                    | translate }}</span>
             </div>
             <div class="member">
                 <div class="profile-pic">
                     <img (error)="onImgError($event)" src="assets/images/jolin.svg">
 
                 </div>
-                <span class="member_name">Jolin Tseng</span>
-                <span class="member_position">UXUI設計師</span>
-                <span class="member_intro">喜歡畫畫、閱讀、看電影，希望有朝一日能成為藝術家。</span>
+                <span class="member_name">{{ "ABOUT_3_4"
+                    | translate }}</span>
+                <span class="member_position">{{ "ABOUT_3_5"
+                    | translate }}</span>
+                <span class="member_intro">{{ "ABOUT_3_6"
+                    | translate }}</span>
             </div>
         </div>
     </div>
     <div class="row mt-20" id="support" #support>
         <div class="col-md-12">
-            <h1 class="footer_title_line"><span class="page-title">支持我們</span></h1>
+            <h1 class="footer_title_line"><span class="page-title">{{ "ABOUT_4_1"
+                    | translate }}</span></h1>
         </div>
     </div>
     <div class="row mt-20 mb-30">
         <div class="col-md-12 ">
-            <span>若您喜歡或認同 Next Step的理念，歡迎給予我們任何形式的支持！
+            <span>{{ "ABOUT_4_2"
+                | translate }}
             </span>
         </div>
     </div>
