@@ -497,6 +497,19 @@ a.nav-link:hover {
   border: 2px solid #69738C !important;
 }
 
+
+.btn-transparent-noborder {
+  color: #8F95A8 !important;
+  padding: 6px 12px 6px 12px !important;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.btn-transparent-noborder:hover {
+  color: #69738C !important;
+
+}
+
 .btn-gray {
   background-color: #E3E5EC !important;
   color: #fff !important;

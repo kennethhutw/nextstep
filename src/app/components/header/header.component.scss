@@ -30,11 +30,7 @@
   margin-top: 7px !important;
 }
 
-@media (min-width: 992px) {
-  #index_login {
-    margin-top: 12px !important;
-  }
-}
+@media (min-width: 992px) {}
 
 .dropdown-item {
   color: #69738C;
@@ -79,6 +75,24 @@
   font-size: 18px;
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
+}
+
+.min-width-1 {
+  min-width: 1rem !important;
+}
+
+.lang-box {
+  display: grid;
+  padding: 16px 16px;
+  min-width: max-content;
+  gap: 16px;
+
+  /*  box-shadow: -2px -2px 4px rgb(0 0 0 / 8%), 2px 2px 4px rgb(0 0 0 / 8%); */
+  border-radius: 4px;
+
+  .selected {
+    color: #56BDF4;
+  }
 }
 
 
@@ -173,5 +187,9 @@ i.message:hover {
 }
 
 #navbarNotifDropdown {
+  position: relative;
+}
+
+#navbarLangDropdown {
   position: relative;
 }

@@ -4,14 +4,14 @@
       <img src="./../../../assets/images/logo.png" height="40" alt="" />
       <span class="logo">Next Step</span>
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenuContent"
+      aria-controls="navbarMenuContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
+    <div class="collapse navbar-collapse" id="navbarMenuContent">
+      <ul class="navbar-nav mr-auto ">
         <li class="nav-item">
           <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
             routerLink="/index" (click)="ToggleNavBar()"> {{ "HOME" | translate }} <span
@@ -69,19 +69,32 @@
         </div>
 
       </ul>
+
       <ul class="navbar-nav">
-
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+          id="navbarLangDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <span
+            class="btn-transparent-noborder font-16 ">{{this.SelectedLang=="en"?"EN":this.SelectedLang=="zh-tw"?"繁中":"简中"}}</span>
+          <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary min-width-1"
+            aria-labelledby="navbarLangDropdown">
+            <div class="lang-box">
+              <div (click)="changeLanguage('zh-tw')" [ngClass]="{ 'selected': this.SelectedLang == 'zh-tw'  }">繁體中文
+              </div>
+              <div (click)="changeLanguage('zh-cn')" [ngClass]="{ 'selected': this.SelectedLang == 'zh-cn'  }">简体中文
+              </div>
+              <div (click)="changeLanguage('en')" [ngClass]="{ 'selected': this.SelectedLang == 'en'  }">English</div>
+            </div>
+          </div>
+        </li>
       </ul>
-
-
-      <ul *ngIf="authStoreSrv.isLoggedIn$ | async" class="navbar-nav ml-auto nav-flex-icons gap-15">
+      <ul *ngIf="authStoreSrv.isLoggedIn$ | async" class="navbar-nav nav-flex-icons gap-15">
         <li class="nav-item m-auto" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-          <a class=" btn-blue font-16" (click)="RouteToNewProject()">{{ "CREATEPROJECT" | translate }}</a>
+          <a class="btn-blue font-16" (click)="RouteToNewProject()">{{ "CREATEPROJECT" | translate }}</a>
         </li>
 
         <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
           id="navbarNotifDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          <!--           <a class="nav-link" routerLink="/notifications"> <i class="far fa-bell icon"></i></a> -->
+
           <i class="far fa-bell noti"> <span *ngIf="notiNum>0" class="notification-dot"></span></i>
           <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary " aria-labelledby="navbarNotifDropdown">
             <div class="notification-box">

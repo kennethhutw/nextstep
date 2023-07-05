@@ -46,6 +46,8 @@ export class HeaderComponent implements OnInit {
   notiNum = 0;
   msgNum = 0;
   notis;
+
+  SelectedLang = "en";
   constructor(
     private utility: Utility,
     private fb: FormBuilder,
@@ -60,6 +62,7 @@ export class HeaderComponent implements OnInit {
     let _lang = localStorage.getItem("lang");
     if (!this.utility.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
+      this.SelectedLang = _lang;
     }
     this.dataSrv.langKey.subscribe((lang) => {
       if (!this.utility.IsNullOrEmpty(lang)) {
@@ -69,6 +72,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+
     if (environment.environment !== "production") {
       this.DemoSite = "This is a demo site.";
     }
@@ -177,6 +181,9 @@ export class HeaderComponent implements OnInit {
 
   changeLanguage(lang: string) {
     this.translateSrv.use(lang);
+    this.dataSrv.setLang(lang);
+    localStorage.setItem("lang", lang);
+    this.SelectedLang = lang;
   }
 
   inValid() {
