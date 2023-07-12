@@ -7,7 +7,8 @@ import {
   MembersService,
   SettingService,
   ToastService,
-  ViewsService
+  ViewsService,
+  DataService
 } from "../../_services";
 import {
   AuthStore
@@ -32,15 +33,32 @@ export class JobComponent implements OnInit {
   skillOptions: any[] = [];
   @ViewChild('closebutton') closebutton;
   selectedApplication: any;
-  application_message: string = `很高興看到你們正在開發一個非常有趣的 side project，並且正在尋找一名前端工程師。我認為我有能力和動機加入你們的團隊並貢獻我的技能和熱情。
+  defual_application_message: string;
+  application_message: string = "";
 
-      我對你們的項目充滿熱情，並且非常想為之做出貢獻。我相信我可以和你們的團隊一起協作，並且學習和成長。如果你們覺得我是你們需要的人選，請不要猶豫聯繫我。謝謝你們的時間和考慮！
-
-[你的名字]`;
+  msg = {
+    jobtitle: "",
+    startfollow: "",
+    stopfollow: "",
+    collectla: "",
+    uncollectla: "",
+    wantapply: "",
+    confirmdel: "",
+    deleted: "",
+    updateSuc: "",
+    updateFailed: "",
+    worktitle: "",
+    uncovered: "",
+    collect: "",
+    collected: "",
+    following: "",
+    followed: "",
+    notfilled: ""
+  }
   constructor(
     private settingSrv: SettingService,
     private recruitSrv: RecruitService,
-    private utility: Utility,
+    private utilitySrv: Utility,
     private authStore: AuthStore,
     private route: ActivatedRoute,
     private viewsSrv: ViewsService,
@@ -48,9 +66,24 @@ export class JobComponent implements OnInit {
     private SpinnerService: NgxSpinnerService,
     private notificationSrv: NotificationService,
     private membersSrv: MembersService,
-    public toastr: ToastService
+    private dataSrv: DataService,
+    private translateSrv: TranslateService,
+    public toastSrv: ToastService
   ) {
     this.skillOptions = this.appSettingsSrv.skillOptions();
+    let _lang = localStorage.getItem("lang");
+    if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
+      this.toastSrv.changeLang(this.translateSrv);
+      this.init_terms();
+    }
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utilitySrv.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+        this.toastSrv.changeLang(this.translateSrv);
+        this.init_terms();
+      }
+    });
   }
 
   ngOnInit() {
@@ -67,10 +100,10 @@ export class JobComponent implements OnInit {
       this.recruitSrv.getById(_recruitId, _userId).then(res => {
         if (res['result'] == 'successful') {
           this.currentRecruit = res['data'];
-          if (!this.utility.IsNullOrEmpty(this.currentRecruit.skills)) {
+          if (!this.utilitySrv.IsNullOrEmpty(this.currentRecruit.skills)) {
             this.currentRecruit.skills = this.currentRecruit.skills.split(',');
           }
-          if (!this.utility.IsNullOrEmpty(this.currentRecruit.projectImageUrl)) {
+          if (!this.utilitySrv.IsNullOrEmpty(this.currentRecruit.projectImageUrl)) {
             this.currentRecruit.projectImageUrl = environment.assetUrl + this.currentRecruit.projectImageUrl;
           }
 
@@ -101,6 +134,99 @@ export class JobComponent implements OnInit {
   }
 
 
+  init_terms() {
+    this.translateSrv.get("STARTFOLLOW").subscribe((text: string) => {
+      this.msg.startfollow = text;
+    });
+
+    this.translateSrv.get("STOPFOLLOW").subscribe((text: string) => {
+      this.msg.stopfollow = text;
+    });
+
+    this.translateSrv.get("COLLECTLA").subscribe((text: string) => {
+      this.msg.collectla = text;
+    });
+
+    this.translateSrv.get("UNCOLLECT").subscribe((text: string) => {
+      this.msg.uncollectla = text;
+    });
+
+    this.translateSrv.get("APPMSG").subscribe((text: string) => {
+      this.defual_application_message = text;
+      this.application_message = this.defual_application_message;
+    });
+
+    this.translateSrv.get("WANTAPPLY").subscribe((text: string) => {
+      this.msg.wantapply = text;
+    });
+
+    this.translateSrv.get("CONFIRMDELETE").subscribe((text: string) => {
+      this.msg.confirmdel = text;
+    });
+
+    this.translateSrv.get("DELETED").subscribe((text: string) => {
+      this.msg.deleted = text;
+    });
+
+    this.translateSrv.get("UPDATEDSUC").subscribe((text: string) => {
+      this.msg.updateSuc = text;
+    });
+
+    this.translateSrv.get("UPDATEDFAILED").subscribe((text: string) => {
+      this.msg.updateFailed = text;
+    });
+
+    this.translateSrv.get("WORK").subscribe((text: string) => {
+      this.msg.worktitle = text;
+    });
+
+    this.translateSrv.get("ACTIONUNCOVER").subscribe((text: string) => {
+      this.msg.uncovered = text;
+    });
+
+    this.translateSrv.get("FOLLOW").subscribe((text: string) => {
+      this.msg.following = text;
+    });
+
+    this.translateSrv.get("FOLLOWED").subscribe((text: string) => {
+      this.msg.followed = text;
+    });
+
+    this.translateSrv.get("COLLECT").subscribe((text: string) => {
+      this.msg.collect = text;
+    });
+
+    this.translateSrv.get("COLLECTED").subscribe((text: string) => {
+      this.msg.collected = text;
+    });
+
+    this.translateSrv.get("NOTFILLED").subscribe((text: string) => {
+      this.msg.notfilled = text;
+    });
+
+    this.translateSrv.get("JOBTITLE").subscribe((text: string) => {
+      this.msg.jobtitle = text;
+    });
+  }
+
+  getFollow(job) {
+    let _lang = localStorage.getItem("lang");
+
+    if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
+      let collectCount = job.collectCount ? job.collectCount : '0';
+      let followCount = job.followCount ? job.followCount : '0';
+      if (_lang.indexOf("en") > -1) {
+        return collectCount + " collected  /" + followCount + " following  ";
+      } else if (_lang.indexOf("tw") > -1) {
+        return collectCount + " 人收藏 / " + followCount + " 人追蹤 ";
+      } else if (_lang.indexOf("tw") > -1) {
+        return collectCount + " 人收藏 / " + followCount + " 人追踪 ";
+      }
+
+    }
+
+  }
+
   onSelectItem(item) {
     this.selectedApplication = item;
   }
@@ -126,7 +252,9 @@ export class JobComponent implements OnInit {
       params
     ).then(res => {
       if (res["result"] == "successful") {
-        this.toastr.showToast('Success', "申請成功送出", this.toastr.iconClasses.success);
+        this.toastSrv.showToast('Success',
+          this.toastSrv.applysendsuc,
+          this.toastSrv.iconClasses.success);
         this.selectedApplication = null;
 
         this.notificationSrv.infoProjectMembers(application.projectId,
@@ -138,18 +266,18 @@ export class JobComponent implements OnInit {
           this.currentUser.id
         ).then(res => {
           if (res['result'] === 'successful') {
-            this.application_message = `很高興看到你們正在開發一個非常有趣的 side project，並且正在尋找一名前端工程師。我認為我有能力和動機加入你們的團隊並貢獻我的技能和熱情。
-
-      我對你們的項目充滿熱情，並且非常想為之做出貢獻。我相信我可以和你們的團隊一起協作，並且學習和成長。如果你們覺得我是你們需要的人選，請不要猶豫聯繫我。謝謝你們的時間和考慮！
-
-[你的名字]`;
+            this.application_message = this.defual_application_message;
           }
         })
       } else {
-        this.toastr.showToast('Failed', "申請送出失敗", this.toastr.iconClasses.error);
+        this.toastSrv.showToast('Failed',
+          this.toastSrv.applysendfailed,
+          this.toastSrv.iconClasses.error);
       }
     }).catch(error => {
-      this.toastr.showToast('Failed', "申請送出失敗", this.toastr.iconClasses.error);
+      this.toastSrv.showToast('Failed',
+        this.toastSrv.applysendfailed,
+        this.toastSrv.iconClasses.error);
     })
     this.closebutton.nativeElement.click();
   }
@@ -170,9 +298,13 @@ export class JobComponent implements OnInit {
         if (res['result'] == 'successful') {
           this.currentRecruit.followCount -= 1;
           this.currentRecruit.isFollowing = false;
-          this.toastr.showToast('Success', "取消追蹤成功 ", this.toastr.iconClasses.success);
+          this.toastSrv.showToast('Success',
+            this.toastSrv.unfollowingStr + this.toastSrv.successfulStr,
+            this.toastSrv.iconClasses.success);
         } else {
-          this.toastr.showToast('Failed', "取消追蹤失敗", this.toastr.iconClasses.error);
+          this.toastSrv.showToast('Failed',
+            this.toastSrv.unfollowingStr + this.toastSrv.failedStr,
+            this.toastSrv.iconClasses.success);
         }
       });
     }
@@ -185,9 +317,13 @@ export class JobComponent implements OnInit {
         if (res['result'] == 'successful') {
           this.currentRecruit.followCount += 1;
           this.currentRecruit.isFollowing = true;
-          this.toastr.showToast('Success', "追蹤成功 ", this.toastr.iconClasses.success);
+          this.toastSrv.showToast('Success',
+            this.toastSrv.followingStr + this.toastSrv.successfulStr,
+            this.toastSrv.iconClasses.success);
         } else {
-          this.toastr.showToast('Failed', "追蹤失敗", this.toastr.iconClasses.error);
+          this.toastSrv.showToast('Failed',
+            this.toastSrv.followingStr + this.toastSrv.failedStr,
+            this.toastSrv.iconClasses.success);
         }
       });
     }
@@ -204,9 +340,13 @@ export class JobComponent implements OnInit {
         if (res['result'] == 'successful') {
           this.currentRecruit.collectCount -= 1;
           this.currentRecruit.isCollected = false;
-          this.toastr.showToast('Success', "取消收藏成功 ", this.toastr.iconClasses.success);
+          this.toastSrv.showToast('Success',
+            this.toastSrv.uncollectStr + this.toastSrv.successfulStr,
+            this.toastSrv.iconClasses.error);
         } else {
-          this.toastr.showToast('Failed', "取消收藏失敗", this.toastr.iconClasses.error);
+          this.toastSrv.showToast('Failed',
+            this.toastSrv.uncollectStr + this.toastSrv.failedStr,
+            this.toastSrv.iconClasses.error);
         }
       });
     } else {
@@ -218,9 +358,13 @@ export class JobComponent implements OnInit {
         if (res['result'] == 'successful') {
           this.currentRecruit.collectCount += 1;
           this.currentRecruit.isCollected = true;
-          this.toastr.showToast('Success', "收藏成功 ", this.toastr.iconClasses.success);
+          this.toastSrv.showToast('Success',
+            this.toastSrv.collectStr + this.toastSrv.successfulStr,
+            this.toastSrv.iconClasses.error);
         } else {
-          this.toastr.showToast('Failed', "收藏失敗", this.toastr.iconClasses.error);
+          this.toastSrv.showToast('Failed',
+            this.toastSrv.collectStr + this.toastSrv.failedStr,
+            this.toastSrv.iconClasses.error);
         }
       });
     }
@@ -241,9 +385,13 @@ export class JobComponent implements OnInit {
           let _index = this.currentRecruit.others.findIndex((obj => obj.id == recruitId));
           this.currentRecruit.others[_index].isCollected = false;
 
-          this.toastr.showToast('Success', "取消收藏成功 ", this.toastr.iconClasses.success);
+          this.toastSrv.showToast('Success',
+            this.toastSrv.uncollectStr + this.toastSrv.successfulStr,
+            this.toastSrv.iconClasses.error);
         } else {
-          this.toastr.showToast('Failed', "取消收藏失敗", this.toastr.iconClasses.error);
+          this.toastSrv.showToast('Failed',
+            this.toastSrv.uncollectStr + this.toastSrv.failedStr,
+            this.toastSrv.iconClasses.error);
         }
       });
     } else {
@@ -256,9 +404,13 @@ export class JobComponent implements OnInit {
 
           let _index = this.currentRecruit.others.findIndex((obj => obj.id == recruitId));
           this.currentRecruit.others[_index].isCollected = true;
-          this.toastr.showToast('Success', "收藏成功 ", this.toastr.iconClasses.success);
+          this.toastSrv.showToast('Success',
+            this.toastSrv.collectStr + this.toastSrv.successfulStr,
+            this.toastSrv.iconClasses.error);
         } else {
-          this.toastr.showToast('Failed', "收藏失敗", this.toastr.iconClasses.error);
+          this.toastSrv.showToast('Failed',
+            this.toastSrv.collectStr + this.toastSrv.failedStr,
+            this.toastSrv.iconClasses.error);
         }
       });
     }

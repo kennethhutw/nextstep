@@ -16,7 +16,6 @@
         <i *ngIf="user.isCollect" (click)="onClickUnCollect()" class="fas fa-bookmark fa-bookmark-selected"></i>
         <i *ngIf="!user.isCollect" (click)="onClickCollect()" class="far fa-bookmark "></i>
         <i class="far fa-comment-dots " (click)="onClickChat()"></i>
-        <!-- <span class="follow">追蹤</span> -->
         <span *ngIf="user.isFollow" class="followed" (click)="onClickUnFollow()">{{ "FOLLOWED" |
           translate
           }}</span>

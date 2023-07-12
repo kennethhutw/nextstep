@@ -151,12 +151,12 @@
 
   </div>
   <div>
-    <div class="row" *ngIf="foundItemNum !== items.length">
+    <div class="row" *ngIf="foundItemNum >0">
       <p> {{foundItemNum}} {{ "NFOUND"
         | translate }}</p>
 
     </div>
-    <div class="col-md-12 empty-text-center h-100" *ngIf="foundItemNum !== displayItems.length">
+    <div class="col-md-12 empty-text-center h-100" *ngIf="foundItemNum  ==-1 && displayItems.length ==0">
       <svg-icon class="icon" src="assets/icons/magnifier.svg"></svg-icon>
       <span>{{ "NORESULT"
         | translate }}</span>

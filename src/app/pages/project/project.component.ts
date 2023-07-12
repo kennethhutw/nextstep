@@ -15,7 +15,8 @@ import {
   DialogService,
   RecruitService,
   NotificationService,
-  WorkService
+  WorkService,
+  DataService
 } from "../../_services";
 import {
   AuthStore
@@ -54,11 +55,28 @@ export class ProjectComponent implements OnInit {
   currentUser;
   currentProject = null;
   projectId;
-  application_message: string = `很高興看到你們正在開發一個非常有趣的 side project，並且正在尋找一名前端工程師。我認為我有能力和動機加入你們的團隊並貢獻我的技能和熱情。
+  defual_application_message: string = ``;
 
-      我對你們的項目充滿熱情，並且非常想為之做出貢獻。我相信我可以和你們的團隊一起協作，並且學習和成長。如果你們覺得我是你們需要的人選，請不要猶豫聯繫我。謝謝你們的時間和考慮！
+  application_message: string;
 
-      [你的名字]`;
+  msg = {
+    startfollow: "",
+    stopfollow: "",
+    collectla: "",
+    uncollectla: "",
+    wantapply: "",
+    confirmdel: "",
+    deleted: "",
+    updateSuc: "",
+    updateFailed: "",
+    worktitle: "",
+    uncovered: "",
+    collect: "",
+    collected: "",
+    following: "",
+    followed: "",
+    notfilled: ""
+  }
   selectedApplication: any;
   selectedWork: any;
   currentPageIndex = 1;
@@ -88,6 +106,8 @@ export class ProjectComponent implements OnInit {
     public toastSrv: ToastService,
     private dialogSrv: DialogService,
     private notificationSrv: NotificationService,
+    private dataSrv: DataService,
+    private translateSrv: TranslateService,
     private WorkSrv: WorkService
   ) {
     this.defaultProfileLogo = this.settingSrv.defaultProjectLogo;
@@ -101,6 +121,21 @@ export class ProjectComponent implements OnInit {
       product: ["", Validators.required],
       type: ["", Validators.required],
       stages: ["", Validators.required],
+    });
+
+    let _lang = localStorage.getItem("lang");
+    if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
+      this.toastSrv.changeLang(this.translateSrv);
+      this.init_terms();
+
+    }
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utilitySrv.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+        this.toastSrv.changeLang(this.translateSrv);
+        this.init_terms();
+      }
     });
   }
 
@@ -211,6 +246,95 @@ export class ProjectComponent implements OnInit {
     });
   }
 
+  init_terms() {
+    this.translateSrv.get("STARTFOLLOW").subscribe((text: string) => {
+      this.msg.startfollow = text;
+    });
+
+    this.translateSrv.get("STOPFOLLOW").subscribe((text: string) => {
+      this.msg.stopfollow = text;
+    });
+
+    this.translateSrv.get("COLLECTLA").subscribe((text: string) => {
+      this.msg.collectla = text;
+    });
+
+    this.translateSrv.get("UNCOLLECT").subscribe((text: string) => {
+      this.msg.uncollectla = text;
+    });
+
+    this.translateSrv.get("APPMSG").subscribe((text: string) => {
+      this.defual_application_message = text;
+      this.application_message = this.defual_application_message;
+    });
+
+    this.translateSrv.get("WANTAPPLY").subscribe((text: string) => {
+      this.msg.wantapply = text;
+    });
+
+    this.translateSrv.get("CONFIRMDELETE").subscribe((text: string) => {
+      this.msg.confirmdel = text;
+    });
+
+    this.translateSrv.get("DELETED").subscribe((text: string) => {
+      this.msg.deleted = text;
+    });
+
+    this.translateSrv.get("UPDATEDSUC").subscribe((text: string) => {
+      this.msg.updateSuc = text;
+    });
+
+    this.translateSrv.get("UPDATEDFAILED").subscribe((text: string) => {
+      this.msg.updateFailed = text;
+    });
+
+    this.translateSrv.get("WORK").subscribe((text: string) => {
+      this.msg.worktitle = text;
+    });
+
+    this.translateSrv.get("ACTIONUNCOVER").subscribe((text: string) => {
+      this.msg.uncovered = text;
+    });
+
+    this.translateSrv.get("FOLLOW").subscribe((text: string) => {
+      this.msg.following = text;
+    });
+
+    this.translateSrv.get("FOLLOWED").subscribe((text: string) => {
+      this.msg.followed = text;
+    });
+
+    this.translateSrv.get("COLLECT").subscribe((text: string) => {
+      this.msg.collect = text;
+    });
+
+    this.translateSrv.get("COLLECTED").subscribe((text: string) => {
+      this.msg.collected = text;
+    });
+
+    this.translateSrv.get("NOTFILLED").subscribe((text: string) => {
+      this.msg.notfilled = text;
+    });
+  }
+
+  getFollow(project) {
+    let _lang = localStorage.getItem("lang");
+
+    if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
+      let collectCount = project.collectCount ? project.collectCount : '0';
+      let followCount = project.followCount ? project.followCount : '0';
+      if (_lang.indexOf("en") > -1) {
+        return collectCount + " collected  /" + followCount + " following  ";
+      } else if (_lang.indexOf("tw") > -1) {
+        return collectCount + " 人收藏 / " + followCount + " 人追蹤 ";
+      } else if (_lang.indexOf("tw") > -1) {
+        return collectCount + " 人收藏 / " + followCount + " 人追踪 ";
+      }
+
+    }
+
+  }
+
   onApply(application) {
     this.selectedApplication = application;
   }
@@ -236,31 +360,33 @@ export class ProjectComponent implements OnInit {
       params
     ).then(res => {
       if (res["result"] == "successful") {
-        this.toastSrv.showToast('Success', "申請成功送出", this.toastSrv.iconClasses.success);
+        this.toastSrv.showToast('Success',
+          this.toastSrv.applysendsuc,
+          this.toastSrv.iconClasses.success);
 
         this.selectedApplication = null;
 
         this.notificationSrv.infoProjectMembers(this.currentProject.id,
           this.currentUser.id,
-          `${this.currentUser.name}  想要應徵 ${this.currentProject.name} - ${application.position} ！` + this.application_message,
+          `${this.currentUser.name}   ${this.msg.wantapply} ${this.currentProject.name} - ${application.position} ！` + this.application_message,
           "1",
           '0',
           '0',
           this.currentUser.id
         ).then(res => {
           if (res['result'] === 'successful') {
-            this.application_message = `很高興看到你們正在開發一個非常有趣的 side project，並且正在尋找一名前端工程師。我認為我有能力和動機加入你們的團隊並貢獻我的技能和熱情。
-
-      我對你們的項目充滿熱情，並且非常想為之做出貢獻。我相信我可以和你們的團隊一起協作，並且學習和成長。如果你們覺得我是你們需要的人選，請不要猶豫聯繫我。謝謝你們的時間和考慮！
-
-[你的名字]`;
+            this.application_message = this.defual_application_message;
           }
         })
       } else {
-        this.toastSrv.showToast('Failed', "申請送出失敗", this.toastSrv.iconClasses.error);
+        this.toastSrv.showToast('Failed',
+          this.toastSrv.applysendfailed,
+          this.toastSrv.iconClasses.error);
       }
     }).catch(error => {
-      this.toastSrv.showToast('Failed', "申請送出失敗", this.toastSrv.iconClasses.error);
+      this.toastSrv.showToast('Failed',
+        this.toastSrv.applysendfailed,
+        this.toastSrv.iconClasses.error);
     })
     this.closebutton.nativeElement.click();
   }
@@ -288,9 +414,13 @@ export class ProjectComponent implements OnInit {
         if (res['result'] == 'successful') {
           this.currentProject.followCount -= 1;
           this.currentProject.isFollowing = false;
-          this.toastSrv.showToast('Success', "取消追蹤成功 ", this.toastSrv.iconClasses.success);
+          this.toastSrv.showToast('Success',
+            this.toastSrv.unfollowingStr + this.toastSrv.successfulStr,
+            this.toastSrv.iconClasses.success);
         } else {
-          this.toastSrv.showToast('Failed', "取消追蹤失敗", this.toastSrv.iconClasses.error);
+          this.toastSrv.showToast('Failed',
+            this.toastSrv.unfollowingStr + this.toastSrv.failedStr,
+            this.toastSrv.iconClasses.success);
         }
       });
     }
@@ -301,11 +431,15 @@ export class ProjectComponent implements OnInit {
         this.currentUser.id
       ).then(res => {
         if (res['result'] == 'successful') {
-          this.currentProject.followCount += 1;
-          this.currentProject.isFollowing = true;
-          this.toastSrv.showToast('Success', "追蹤成功 ", this.toastSrv.iconClasses.success);
+          this.currentProject.followCount -= 1;
+          this.currentProject.isFollowing = false;
+          this.toastSrv.showToast('Success',
+            this.toastSrv.followingStr + this.toastSrv.successfulStr,
+            this.toastSrv.iconClasses.success);
         } else {
-          this.toastSrv.showToast('Failed', "追蹤失敗", this.toastSrv.iconClasses.error);
+          this.toastSrv.showToast('Failed',
+            this.toastSrv.followingStr + this.toastSrv.failedStr,
+            this.toastSrv.iconClasses.success);
         }
       });
     }
@@ -322,9 +456,13 @@ export class ProjectComponent implements OnInit {
         if (res['result'] == 'successful') {
           this.currentProject.collectCount -= 1;
           this.currentProject.isCollected = false;
-          this.toastSrv.showToast('Success', "取消收藏成功 ", this.toastSrv.iconClasses.success);
+          this.toastSrv.showToast('Success',
+            this.toastSrv.uncollectStr + this.toastSrv.successfulStr,
+            this.toastSrv.iconClasses.error);
         } else {
-          this.toastSrv.showToast('Failed', "取消收藏失敗", this.toastSrv.iconClasses.error);
+          this.toastSrv.showToast('Failed',
+            this.toastSrv.uncollectStr + this.toastSrv.failedStr,
+            this.toastSrv.iconClasses.error);
         }
       });
     } else {
@@ -336,9 +474,13 @@ export class ProjectComponent implements OnInit {
         if (res['result'] == 'successful') {
           this.currentProject.collectCount += 1;
           this.currentProject.isCollected = true;
-          this.toastSrv.showToast('Success', "收藏成功 ", this.toastSrv.iconClasses.success);
+          this.toastSrv.showToast('Success',
+            this.toastSrv.collectStr + this.toastSrv.successfulStr,
+            this.toastSrv.iconClasses.error);
         } else {
-          this.toastSrv.showToast('Failed', "收藏失敗", this.toastSrv.iconClasses.error);
+          this.toastSrv.showToast('Failed',
+            this.toastSrv.collectStr + this.toastSrv.failedStr,
+            this.toastSrv.iconClasses.error);
         }
       });
     }
@@ -357,9 +499,13 @@ export class ProjectComponent implements OnInit {
           let _index = this.currentProject.recruit.findIndex((obj => obj.id == recruitId));
           this.currentProject.recruit[_index].isCollected = false;
 
-          this.toastSrv.showToast('Success', "取消收藏成功 ", this.toastSrv.iconClasses.success);
+          this.toastSrv.showToast('Success',
+            this.toastSrv.uncollectStr + this.toastSrv.successfulStr,
+            this.toastSrv.iconClasses.error);
         } else {
-          this.toastSrv.showToast('Failed', "取消收藏失敗", this.toastSrv.iconClasses.error);
+          this.toastSrv.showToast('Failed',
+            this.toastSrv.uncollectStr + this.toastSrv.failedStr,
+            this.toastSrv.iconClasses.error);
         }
       });
     } else {
@@ -372,9 +518,13 @@ export class ProjectComponent implements OnInit {
 
           let _index = this.currentProject.recruit.findIndex((obj => obj.id == recruitId));
           this.currentProject.recruit[_index].isCollected = true;
-          this.toastSrv.showToast('Success', "收藏成功 ", this.toastSrv.iconClasses.success);
+          this.toastSrv.showToast('Success',
+            this.toastSrv.collectStr + this.toastSrv.successfulStr,
+            this.toastSrv.iconClasses.error);
         } else {
-          this.toastSrv.showToast('Failed', "收藏失敗", this.toastSrv.iconClasses.error);
+          this.toastSrv.showToast('Failed',
+            this.toastSrv.collectStr + this.toastSrv.failedStr,
+            this.toastSrv.iconClasses.error);
         }
       });
     }
@@ -385,7 +535,6 @@ export class ProjectComponent implements OnInit {
     //event.target.src = "https://imagizer.imageshack.com/img921/9628/VIaL8H.jpg";
     event.target.src = this.settingSrv.defaultProjectCover;
   }
-
 
   onToggleChat(event) {
     this.isChat = !this.isChat;
@@ -398,29 +547,30 @@ export class ProjectComponent implements OnInit {
   }
 
   onDeleteJobItem(item) {
-    this.dialogSrv.deleteThis('確定刪除此' + item.position, `確定刪除此${item.position}?,此動作將無法復原`, () => {
-      this.recruitSrv.delete(item.id, this.currentUser.id).then(res => {
-        if (res['result'] == "successful") {
+    this.dialogSrv.deleteThis(this.msg.confirmdel + item.position,
+      `${this.msg.deleted} ${item.position}?, ${this.msg.uncovered}`, () => {
+        this.recruitSrv.delete(item.id, this.currentUser.id).then(res => {
+          if (res['result'] == "successful") {
 
-          this.currentProject.recruit = this.currentProject.recruit.filter(obj => {
-            return obj.id !== item.id
-          })
+            this.currentProject.recruit = this.currentProject.recruit.filter(obj => {
+              return obj.id !== item.id
+            })
 
-          this.toastSrv.showToast('Success',
-            " " + item.name + "已刪除.",
-            this.toastSrv.iconClasses.success);
-        } else {
+            this.toastSrv.showToast('Success',
+              " " + item.name + this.msg.deleted,
+              this.toastSrv.iconClasses.success);
+          } else {
+            this.toastSrv.showToast('Failed',
+              res['message'],
+              this.toastSrv.iconClasses.error);
+          }
+        }).catch(error => {
+          console.error("Delete failed! " + error.message);
           this.toastSrv.showToast('Failed',
-            res['message'],
+            error.message,
             this.toastSrv.iconClasses.error);
-        }
-      }).catch(error => {
-        console.error("Delete failed! " + error.message);
-        this.toastSrv.showToast('Failed',
-          error.message,
-          this.toastSrv.iconClasses.error);
-      })
-    }, () => { })
+        })
+      }, () => { })
 
   }
 
@@ -507,8 +657,6 @@ export class ProjectComponent implements OnInit {
       }
     })
   }
-
-
 
   get f() {
     return this.projectForm.controls;
@@ -664,7 +812,7 @@ export class ProjectComponent implements OnInit {
         });
         this.close_recruit_button.nativeElement.click();
         this.toastSrv.showToast('Success',
-          " " + values.position + "已更新.",
+          " " + values.position + " " + this.msg.updateSuc,
           this.toastSrv.iconClasses.success);
       } else {
 
@@ -728,10 +876,14 @@ export class ProjectComponent implements OnInit {
         this.selectedWork = null;
         document.getElementById("close_work").click();
         this.workForm.reset();
-        this.toastSrv.showToast('作品', "更新成功", this.toastSrv.iconClasses.success);
+        this.toastSrv.showToast(this.msg.worktitle,
+          this.msg.updateSuc,
+          this.toastSrv.iconClasses.success);
       }
     }, error => {
-      this.toastSrv.showToast('作品', "更新失敗", this.toastSrv.iconClasses.error);
+      this.toastSrv.showToast(this.msg.worktitle,
+        this.msg.updateFailed,
+        this.toastSrv.iconClasses.error);
       console.error("updated error", error);
     })
   }
@@ -762,42 +914,46 @@ export class ProjectComponent implements OnInit {
         this.selectedWork = null;
         document.getElementById("close_work").click();
         this.workForm.reset();
-        this.toastSrv.showToast('作品', "更新成功", this.toastSrv.iconClasses.success);
+        this.toastSrv.showToast(this.msg.worktitle,
+          this.msg.updateSuc,
+          this.toastSrv.iconClasses.success);
       }
     }, error => {
-      this.toastSrv.showToast('作品', "更新失敗", this.toastSrv.iconClasses.error);
+      this.toastSrv.showToast(this.msg.worktitle, this.msg.updateFailed,
+        this.toastSrv.iconClasses.error);
       console.error("updated error", error);
     })
   }
 
   onDeleteWork(work) {
-    this.dialogSrv.deleteThis('確定刪除此' + work.text, `確定刪除此${work.text}?,此動作將無法復原`, () => {
+    this.dialogSrv.deleteThis(this.msg.deleted + work.text,
+      `${this.msg.deleted} ${work.text}?, ${this.msg.uncovered}`, () => {
 
-      this.WorkSrv.delete(
-        work.id,
-      ).then(res => {
-        if (res['result'] == 'successful') {
-          this.currentProject.works = this.currentProject.works.filter(element => {
-            return element.id !== work.id
-          });
+        this.WorkSrv.delete(
+          work.id,
+        ).then(res => {
+          if (res['result'] == 'successful') {
+            this.currentProject.works = this.currentProject.works.filter(element => {
+              return element.id !== work.id
+            });
 
-          this.toastSrv.showToast('Success',
-            " " + work.text + "已刪除.",
-            this.toastSrv.iconClasses.success);
-        } else {
+            this.toastSrv.showToast('Success',
+              " " + work.text + this.msg.deleted,
+              this.toastSrv.iconClasses.success);
+          } else {
+            this.toastSrv.showToast('Failed',
+              res['message'],
+              this.toastSrv.iconClasses.error);
+          }
+        }).catch(error => {
+          console.error("Delete failed! " + error.message);
           this.toastSrv.showToast('Failed',
-            res['message'],
+            error.message,
             this.toastSrv.iconClasses.error);
-        }
-      }).catch(error => {
-        console.error("Delete failed! " + error.message);
-        this.toastSrv.showToast('Failed',
-          error.message,
-          this.toastSrv.iconClasses.error);
-      })
+        })
 
 
-    }, () => { })
+      }, () => { })
 
   }
 

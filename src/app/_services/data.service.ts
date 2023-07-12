@@ -12,8 +12,6 @@ export class DataService {
   private lang = new BehaviorSubject('');
   langKey = this.lang.asObservable();
 
-
-
   private previewBG = new BehaviorSubject('');
   previewBGKey = this.previewBG.asObservable();
   constructor(

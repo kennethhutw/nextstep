@@ -187,6 +187,15 @@
   --modal-width-for-invite: 665px;
 }
 
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+}
+
 .nav-link {
   background-color: transparent !important;
   white-space: nowrap;
@@ -469,6 +478,7 @@ a.nav-link:hover {
   background-color: #FF859A !important;
   color: white !important;
   border: 2px solid #FF859A !important;
+  text-decoration: none;
 }
 
 .btn-white {
@@ -483,6 +493,7 @@ a.nav-link:hover {
   background-color: #FF859A !important;
   color: white !important;
   border: 2px solid #FF859A !important;
+  text-decoration: none;
 }
 
 .btn-transparent {
@@ -495,6 +506,7 @@ a.nav-link:hover {
 .btn-transparent:hover {
   color: #69738C !important;
   border: 2px solid #69738C !important;
+  text-decoration: none;
 }
 
 
@@ -507,7 +519,7 @@ a.nav-link:hover {
 
 .btn-transparent-noborder:hover {
   color: #69738C !important;
-
+  text-decoration: none;
 }
 
 .btn-gray {
@@ -542,6 +554,7 @@ a.nav-link:hover {
   font-weight: 400;
   padding: 6px 12px 6px 12px;
   border-radius: 4px;
+  cursor: pointer;
 }
 
 .btn_small:focus,
@@ -765,7 +778,7 @@ input:focus:-ms-input-placeholder {
   color: #262E42;
   margin: 0 auto;
   text-align: center;
-  font-family: "Noto Serif JP", sans-serif;
+  // font-family: "Noto Serif TC", sans-serif;
   /* font-weight: bold; */
 }
 
@@ -2053,4 +2066,22 @@ a {
     margin-top: 10px;
 
   }
+}
+
+.font-16 {
+  font-size: 16px !important;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.font-25 {
+  font-size: 25px;
+}
+
+.font-24 {
+  font-size: 24px;
+}
+
+.font-32 {
+  font-size: 32px;
 }

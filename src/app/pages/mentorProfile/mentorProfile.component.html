@@ -3,7 +3,8 @@
     <div id="profile-banner-image">
       <img (error)="onCoverImgError($event)" src="{{userProfile.cover}}" alt="Banner image">
       <a *ngIf="isOwner" type="button" class="btn-cover" for="profileCover" (click)="profileCover.click()">
-        <svg-icon src="./assets/icons/edit.svg"></svg-icon> 編輯封面相片
+        <svg-icon src="./assets/icons/edit.svg"></svg-icon> {{ "EDITCOVER" | translate
+        }}
       </a>
       <input id="profileCover" #profileCover type="file" accept="image/gif, image/jpg, image/jpeg, image/png, image/gif"
         (change)="onUploadProfileCover($event)" />
@@ -44,7 +45,7 @@
           *ngIf="userProfile?.owner !== currentUser?.id" (click)="onClickFollow()"><i class="fas fa-plus"></i>
           {{userProfile?.isFollowing === true ? "已追蹤" : "追蹤"}} </button>
         <button type="button" class="btn btn_item " (click)="onToggleChat($event)"><i class="far fa-comment-dots"></i>
-          訊息</button>
+          {{ 'MESSAGE' | translate }}</button>
 
 
       </div>
@@ -68,12 +69,10 @@
       <div class="row">
         <div class="col-md-12 mb-24 title_section">
           <span class="title">個人簡介</span>
-          <!-- <a type="button" *ngIf="currentUser?.id == userProfile.id" class="btn-standard" (click)="initProfileForm()"><img src="./assets/icons/edit.png"
-              alt="edit" width="21px"> 編輯
-          </a> -->
           <span *ngIf="currentUser?.id == userProfile.id" class="btn-standard" data-toggle="modal"
             [attr.data-target]="'#editprofile'" (click)="initProfileForm()">
-            <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</span>
+            <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{ "EDIT" | translate
+            }}</span>
         </div>
       </div>
       <div class="row">
@@ -300,8 +299,12 @@
               <!--Menu-->
               <div class="dropdown-menu dropdown-primary" aria-labelledby="dropdownMenu2">
                 <a class="dropdown-item" (click)="onEditExp(exp)" data-toggle="modal"
-                  [attr.data-target]="'#experienceModal'"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</a>
-                <a class="dropdown-item" (click)="onDeleteExp(exp)"><i class="fas fa-trash"></i>&nbsp;&nbsp;刪除</a>
+                  [attr.data-target]="'#experienceModal'"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{ "EDIT" |
+                  translate
+                  }}</a>
+                <a class="dropdown-item" (click)="onDeleteExp(exp)"><i class="fas fa-trash"></i>&nbsp;&nbsp;{{ "DELETE"
+                  | translate
+                  }}</a>
                 <!-- <a class="dropdown-item" href="#"><i class="far fa-envelope"></i>&nbsp;&nbsp;Check mail</a> -->
               </div>
             </div>
@@ -435,7 +438,8 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="inputContent">自我介紹</label>
+            <label for="inputContent">{{ "SELF_INTRO"
+              | translate }}</label>
             <textarea class="form-control" type="text" id="bio" formControlName="bio" rows="4" cols="50"></textarea>
           </div>
           <div class="row item-end">

@@ -5,7 +5,7 @@
 
     <aside class="sidebar mt-10">
       <nav class="sidebar-menu pb-3">
-        <ul class="menu-items" style="padding-left: 20px;">
+        <ul class="menu-items">
           <li class="mb-12">
             <span class="title">{{ "WORKMODE"
               | translate }}</span>
@@ -131,8 +131,18 @@
 
   </div>
   <div>
-    <div class="row" *ngIf="displayItems.length ===0" style="height:300px">
+    <!--found result start-->
+    <div class="row" *ngIf="foundItemNum >0">
+      <p> {{foundItemNum}} {{ "NFOUND"
+        | translate }}</p>
+
     </div>
+    <div class="col-md-12 empty-text-center h-100" *ngIf="foundItemNum ==0">
+      <svg-icon class="icon" src="assets/icons/magnifier.svg"></svg-icon>
+      <span>{{ "NORESULT"
+        | translate }}</span>
+    </div>
+    <!--found result end-->
     <!--person-->
     <ng-container *ngIf="displayItems">
       <div class="row">

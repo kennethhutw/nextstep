@@ -3,7 +3,9 @@
     <img (error)="onCoverImgError($event)" src="{{this.currentProject.coverUrl}}" alt="cover image">
     <a *ngIf="currentProject?.owner == currentUser?.id" type="button" class="btn-cover" for="profileCover"
       (click)="profileCover.click()">
-      <svg-icon src="./assets/icons/edit.svg"></svg-icon> 編輯封面相片
+      <svg-icon src="./assets/icons/edit.svg"></svg-icon> {{
+      "EDITCOVER"
+      | translate }}
     </a>
     <input id="profileCover" #profileCover type="file" accept="image/gif, image/jpg, image/jpeg, image/png, image/gif"
       (change)="onUploadProfileCover($event)" />
@@ -34,21 +36,21 @@
     <button type="button" class="btn btn_item" [ngClass]="{'btn_item_selected': currentProject?.isCollected === true}"
       *ngIf="currentProject?.owner !== currentUser?.id" (click)="onClickCollect()"><i
         class="far fa-bookmark fa-lg "></i>
-      {{currentProject?.isCollected === true ? "已收藏" : "收藏"}} </button>
+      {{currentProject?.isCollected === true ? this.msg.collected : this.msg.collect}} </button>
 
     <button type="button" class="btn btn_item" [ngClass]="{'btn_item_selected': currentProject?.isFollowing === true}"
       *ngIf="currentProject?.owner !== currentUser?.id" (click)="onClickFollow()"><i class="fas fa-plus"></i>
-      {{currentProject?.isFollowing === true ? "已追蹤" : "追蹤"}} </button>
+      {{currentProject?.isFollowing === true ? this.msg.followed : this.msg.following}} </button>
     <button type="button" class="btn btn_item" *ngIf="currentProject?.owner !== currentUser?.id"
       (click)="onToggleChat($event)"><i class="far fa-comment-dots"></i>
-      訊息</button>
+      {{ 'MESSAGE' | translate }}</button>
   </div>
 </div>
 <div *ngIf="currentProject" class="row mt-10">
   <div class="col-md-3 text-right">
 
   </div>
-  <div class="col-md-6">
+  <div class="col-md-5">
     <a *ngIf="IsNullorEmpty(currentProject.website)" href="{{ currentProject.website }}" target="_blank"> <i
         class="fas fa-globe icon color-gray"></i></a>
     <a *ngIf="IsNullorEmpty(currentProject.github)" href="{{ currentProject.github }}" target="_blank"> <i
@@ -63,9 +65,10 @@
         class="fab fa-instagram-square icon color-gray"></i></a>
   </div>
 
-  <div class="col-md-3 project-info">
-    <span>{{ currentProject.viewCount}}次瀏覽</span>
-    <span>{{currentProject.collectCount?currentProject.collectCount:0}}人收藏/{{currentProject.followCount}}人追蹤</span>
+  <div class="col-md-4 project-info">
+    <span>{{ currentProject.viewCount}}&nbsp;&nbsp;{{ "VIEWNUM" | translate
+      }}</span>
+    <span>{{ this.getFollow(currentProject)}}</span>
   </div>
 </div>
 
@@ -73,20 +76,25 @@
   <div class="col-md-8">
     <div class="row mb-24">
       <div class="col-md-12 d-inline">
-        <span class="title mb-24">專案簡介</span>
+        <span class="title mb-24">{{ "PROJECT_INTRO" | translate
+          }}</span>
         <span *ngIf="currentProject?.owner == currentUser?.id" class="btn-standard ml-24" data-toggle="modal"
           [attr.data-target]="'#modifiedproject'">
-          <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</span>
+          <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{ "EDIT" | translate
+          }}</span>
       </div>
     </div>
     <div class="row">
       <div class="col-md-12 project_frame">
         <div class="tags">
-          <ui-tag *ngIf="currentProject.isFindPartner" [class]="'tag-hiring'" [tag]="'徵成員'"></ui-tag>
-          <ui-tag *ngIf="currentProject.isFunding" [class]="'tag-funding'" [tag]="'募資中'"></ui-tag>
-          <ui-tag *ngIf="currentProject.isCofounder" [class]="'tag-cofounder'" [tag]="'找聯合創始人'"></ui-tag>
+          <ui-tag *ngIf="currentProject.isFindPartner" [class]="'tag-hiring'" tag="{{ 'FIND_MEMBER' | translate }}">
+          </ui-tag>
+          <ui-tag *ngIf="currentProject.isFunding" [class]="'tag-funding'" tag="{{ 'FIND_MONEY' | translate }}">
+          </ui-tag>
+          <ui-tag *ngIf="currentProject.isCofounder" [class]="'tag-cofounder'" tag="{{ 'FIND_COFOUNDER' | translate }}">
+          </ui-tag>
         </div>
-        <span>{{this.currentProject.description?this.currentProject.description:"尚未填寫專案內容"}}</span>
+        <span>{{this.currentProject.description?this.currentProject.description:this.msg.notfilled}}</span>
         <div class="frame_bottom">
           <span class="pb-8 fw-500">{{
             "CURRENT_PROGRESS"
@@ -95,7 +103,8 @@
             <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('idea') > -1">#{{
               "PRORGRESS_2"
               | translate }}</span>
-            <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('businessplan') > -1">#商業計畫初稿</span>
+            <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('businessplan') > -1">#{{ "PRORGRESS_2"
+              | translate }}</span>
             <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('fundraising') > -1">#{{ "FIND_MONEY"
               | translate }}</span>
             <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('findpartner') > -1">#{{
@@ -107,8 +116,12 @@
             <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('producttested') > -1">#{{
               "PRORGRESS_5"
               | translate }}</span>
-            <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('findcustomers') > -1">#找用戶中</span>
-            <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('findpayingcustomers') > -1">#找付費用戶中</span>
+            <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('findcustomers') > -1">#{{
+              "PRORGRESS_6"
+              | translate }}</span>
+            <span class="stage_tag" *ngIf="currentProject?.stage.indexOf('findpayingcustomers') > -1">#{{
+              "PRORGRESS_7"
+              | translate }}</span>
 
           </div>
         </div>
@@ -117,10 +130,12 @@
 
     <div class="row mb-24">
       <div class="col-md-12 d-inline">
-        <span class="title mb-24">作品區</span>
+        <span class="title mb-24">{{ "PORTFOLIOAREA" | translate
+          }}</span>
         <span *ngIf="currentProject?.owner == currentUser?.id" class="btn-standard ml-24" data-toggle="modal"
           [attr.data-target]="'#projectwork'">
-          <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</span>
+          <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{ "EDIT" | translate
+          }}</span>
       </div>
     </div>
     <div class="row frame ">
@@ -134,8 +149,10 @@
                 aria-expanded="true"></i>
               <div class="dropdown-menu"> <a class="dropdown-item color-gray" data-toggle="modal"
                   [attr.data-target]="'#projectwork'" (click)="onClickWork(work)"><i
-                    class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</a> <a class="dropdown-item color-gray"
-                  (click)="onDeleteWork(work)"><i class="fas fa-trash"></i>&nbsp;&nbsp;刪除</a></div>
+                    class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{ "EDIT" | translate
+                  }}</a> <a class="dropdown-item color-gray" (click)="onDeleteWork(work)"><i
+                    class="fas fa-trash"></i>&nbsp;&nbsp;{{ "DELETE" | translate
+                  }}</a></div>
 
             </div>
           </div>
@@ -149,11 +166,15 @@
           <li class="nav-item" role="presentation">
             <button class="nav-link " id="history-tab" data-bs-toggle="tab" data-bs-target="#history"
               [ngClass]="{ 'active': currentTab === 'history' }" type="button" role="tab"
-              (click)="changeTab('history')">專案歷程</button>
+              (click)="changeTab('history')">{{
+              "PROJECTHISTORY"
+              | translate }}</button>
           </li>
           <li class="nav-item" role="presentation">
             <button class="nav-link" id="members-tab" [ngClass]="{ 'active': currentTab === 'members' }" type="button"
-              role="tab" (click)="changeTab('members')">成員介紹</button>
+              role="tab" (click)="changeTab('members')">{{
+              "PROJECTMEMBER"
+              | translate }}</button>
           </li>
 
 
@@ -162,7 +183,9 @@
           <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'history' }" id="history" role="tabpanel"
             aria-labelledby="home-tab">
             <div class="empty frame text-center mt-20" *ngIf="currentProject.logs.length ===0">
-              <span class="empty-text">還沒開始</span>
+              <span class="empty-text">{{
+                "NOTYET"
+                | translate }}</span>
             </div>
             <ng-container *ngIf="this.currentProject?.logs?.length >0">
               <div class="frame mt-10">
@@ -178,8 +201,10 @@
           </div>
           <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'members' }" role="tabpanel"
             aria-labelledby="new-tab">
-            <div class="empty text-center  mt-20" *ngIf="currentProject.members ===0">
-              沒有其他成員
+            <div class="empty text-center mt-20" *ngIf="currentProject.members ===0">
+              {{
+              "NOMEMBER"
+              | translate }}
             </div>
             <div class="row" *ngIf="this.currentProject?.members">
               <ng-container *ngFor="let member of currentProject.members ; let i = index">
@@ -203,13 +228,15 @@
   <div class="col-md-4">
     <div class="row mb-24">
       <div class="col-md-12">
-        <span class="title mb-24 pl-10">成員募集</span>
+        <span class="title mb-24 pl-10">{{ "RECRUITMENT" | translate
+          }}</span>
         <span *ngIf="currentProject?.owner == currentUser?.id" class="btn-standard ml-24" (click)="onEditMembers()">
-          <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</span>
+          <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{ "EDIT" | translate
+          }}</span>
       </div>
     </div>
     <div class="row frame empty text-center" *ngIf="!this.currentProject.recruit">
-      此專案目前沒有職缺.
+      {{ "NOJOBOPEN" | translate }}
     </div>
     <ng-container *ngIf="this.currentProject?.recruit">
 
@@ -227,14 +254,16 @@
               <i *ngIf="!item.isCollected" (click)="onClickJobCollect(item.id, item.isCollected)"
                 class="far fa-bookmark color-gray icon-frame"></i>
               <i class="far fa-envelope color-gray icon-frame" data-toggle="modal" data-target="#modal_apply"
-                data-dismiss="modal" (click)="onSelectItem(item)" tooltip="申請"></i>
+                data-dismiss="modal" (click)="onSelectItem(item)" tooltip="{{ 'APPLY' | translate }}"></i>
               <div class="dropdown mt--10" *ngIf="currentProject?.owner == currentUser?.id"><i
                   class="fas fa-ellipsis-h color-gray text-18" data-toggle="dropdown" aria-haspopup="true"
                   aria-expanded="true"></i>
                 <div class="dropdown-menu"> <a class="dropdown-item color-gray" data-toggle="modal"
                     [attr.data-target]="'#modifiedJob'" (click)="onModifyJobItem(item)"><i
-                      class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</a> <a class="dropdown-item color-gray"
-                    (click)="onDeleteJobItem(item)"><i class="fas fa-trash"></i>&nbsp;&nbsp;刪除</a></div>
+                      class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{ "EDIT" | translate
+                    }}</a> <a class="dropdown-item color-gray" (click)="onDeleteJobItem(item)"><i
+                      class="fas fa-trash"></i>&nbsp;&nbsp;{{ "DELETE" | translate
+                    }}</a></div>
 
               </div>
             </div>
@@ -244,7 +273,8 @@
             {{item.scopes}}
           </div>
           <div class="col-md-12 text-right">
-            <a class="clickable" [routerLink]="['/job/',item.id ]" style="color: #4395E7;">查看詳情</a>
+            <a class="clickable" [routerLink]="['/job/',item.id ]">{{ "VIEWDETAILS" | translate
+              }}</a>
           </div>
         </div>
       </ng-container>
@@ -283,19 +313,21 @@
         <span>X</span>
       </button>
       <div class="text-center mb-4">
-        <span class="modal_title">我要申請加入 {{this.selectedApplication.position}}</span>
+        <span class="modal_title">{{ "IAPPLYFOR"
+          | translate }} {{this.selectedApplication.position}}</span>
       </div>
     </div>
     <div>
       <div class="form-group">
 
-        <textarea class="form-control rounded-0" placeholder="自我介紹" [(ngModel)]="application_message"
-          id="application_message" rows="15"></textarea>
+        <textarea class="form-control rounded-0" placeholder="{{ 'SELF_INTRO' | translate }}"
+          [(ngModel)]="application_message" id="application_message" rows="15"></textarea>
       </div>
     </div>
     <div class="text-right ">
       <button (click)="onSubmit(this.selectedApplication)" class="model_btn_normal mb-2 ">
-        送出申請
+        {{ "SUBMIT"
+        | translate }}
       </button>
     </div>
   </div>
@@ -304,7 +336,8 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <p class="title">編輯專案簡介</p>
+        <p class="title">{{ "PROJECT_INTRO"
+          | translate }}</p>
         <button type="button" id="close_modify_project" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -339,7 +372,9 @@
                   "FIND_MEMBER"
                   | translate }}</span>
                 <input type="checkbox" (change)="onStatusChange($event, 'isFunding')"
-                  [checked]="projectForm.value.isFunding" value="projectForm.value.isFunding"><span>募資中
+                  [checked]="projectForm.value.isFunding" value="projectForm.value.isFunding"><span> {{
+                  "FIND_MONEY"
+                  | translate }}
                 </span>
                 <input type="checkbox" (change)="onStatusChange($event, 'isCofounder')"
                   [checked]="projectForm.value.isCofounder" value="projectForm.value.isCofounder"><span>{{
@@ -349,14 +384,18 @@
             </div>
             <div class="col-md-12 mb-12 form-group ">
               <label class="pr-2" for="product">
-                <h5> 專案產品 :</h5>
+                <h5> {{
+                  "PROJECT_PRODUCT"
+                  | translate }} :</h5>
               </label>
               <div class="form-check">
                 <div class="form-check form-check-inline">
                   <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
                     (change)="onProductChange($event, 'website')"
                     [checked]="utilitySrv.isInValue('website', f.product.value)" value="website">
-                  <label class="form-check-label" for="inlineCheckbox1">網站</label>
+                  <label class="form-check-label" for="inlineCheckbox1">{{
+                    "WEBSITE"
+                    | translate }}</label>
                 </div>
                 <div class="form-check form-check-inline">
                   <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
@@ -368,7 +407,9 @@
                   <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
                     (change)="onProductChange($event, 'hardware')"
                     [checked]="utilitySrv.isInValue('hardware', f.product.value)" value="hardware">
-                  <label class="form-check-label" for="inlineCheckbox3">硬體</label>
+                  <label class="form-check-label" for="inlineCheckbox3">{{
+                    "HARDWARE"
+                    | translate }}</label>
                 </div>
               </div>
             </div>
@@ -576,7 +617,8 @@
             </div>
           </div>
           <div class="form-group row justify-content-end">
-            <button type="button" class="btn btn-blue  mr-10 float-right" (click)="onUpdateRecruitSubmit()">更新</button>
+            <button type="button" class="btn btn-blue  mr-10 float-right" (click)="onUpdateRecruitSubmit()">{{"UPDATE" |
+              translate }}</button>
           </div>
         </form>
       </div>
@@ -588,7 +630,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <p class="title">作品</p>
+        <p class="title">{{"WORK" | translate }}</p>
         <button type="button" id="close_work" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -598,12 +640,12 @@
           <div class="row">
             <div class="col-md-12 mb-12 ">
               <label class=" pr-2" for="workname">
-                <h5> 顯示名稱 :</h5>
+                <h5> {{"DISPLAYNAME" | translate }} :</h5>
               </label>
               <input type="text" formControlName="text" id="workname" class="form-control mr-10">
               <div *ngIf="submitted && g.text.errors">
                 <div class="error-msg" *ngIf="g.text.errors.required">
-                  顯示名稱必須的
+                  {{"DISPLAYNAME_MUST" | translate }}
                 </div>
               </div>
             </div>
@@ -612,12 +654,12 @@
           <div class="row">
             <div class="col-md-12 mb-12 ">
               <label class=" pr-2" for="worklink">
-                <h5> 連結* :</h5>
+                <h5> {{"LINK" | translate }}* :</h5>
               </label>
               <input type="text" formControlName="link" id="worklink" class="form-control mr-10">
               <div *ngIf="submitted && g.link.errors">
                 <div class="error-msg" *ngIf="g.link.errors.required">
-                  連結必須的
+                  {{"LINK_MUST" | translate }}
                 </div>
               </div>
             </div>
@@ -626,7 +668,7 @@
           <div class="row">
             <div class="col-md-12 mb-12 ">
               <input type="checkbox" (change)="onWorkChange($event)" [checked]="workForm.value.isPublic"
-                value="workForm.value.isPublic"><span>公開
+                value="workForm.value.isPublic"><span>{{"PRIVACYOP2" | translate }}
               </span>
             </div>
           </div>
@@ -634,12 +676,12 @@
 
           <div class="row item-right">
             <button type="button" class="btn btn-transparent  mr-10" data-dismiss="modal" aria-label="Close"
-              (click)="onCancelEditWork()">取消
+              (click)="onCancelEditWork()">{{"CANCEL" | translate }}
             </button>
             <button type="button" *ngIf="!this.selectedWork" class="btn btn-blue  mr-10" (click)="onAddWork()">
-              新增</button>
+              {{"NEW" | translate }}</button>
             <button type="button" *ngIf="this.selectedWork" class="btn btn-blue  mr-10" (click)="onUpdateWork()">
-              更新</button>
+              {{"UPDATE" | translate }}</button>
           </div>
           <div class="row">
             <div class="col-md-12 mb-12 form-group text-center">

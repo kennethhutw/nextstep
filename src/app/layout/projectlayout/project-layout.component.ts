@@ -37,6 +37,7 @@ export class ProjectLayoutComponent implements OnInit {
     this.dataSrv.langKey.subscribe((lang) => {
       if (!this.utilitySrv.IsNullOrEmpty(lang)) {
         this.translateSrv.use(lang);
+
       }
     });
     this.router.events.subscribe((val) => {

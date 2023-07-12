@@ -125,11 +125,13 @@ export class PubProfileComponent implements OnInit {
     if (!this.utility.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
       this.intialTerms();
+      this.toastSrv.changeLang(this.translateSrv);
     }
     this.dataSrv.langKey.subscribe((lang) => {
       if (!this.utility.IsNullOrEmpty(lang)) {
         this.translateSrv.use(lang);
         this.intialTerms();
+        this.toastSrv.changeLang(this.translateSrv);
         this.getFollow(this.userProfile);
 
       }
@@ -265,17 +267,20 @@ export class PubProfileComponent implements OnInit {
           this.notificationSrv.insert(
             this.userProfile.id,
             this.currentUser.id,
-            this.currentUser.name + "停止追蹤你",
+            this.currentUser.name + this.toastSrv.stopfollowu,
             "user",
             0,
             0,
             this.currentUser.id
           ).then(res => { });
-          this.toastSrv.showToast('Success', "取消追蹤成功 ", this.toastSrv.iconClasses.success);
+          this.toastSrv.showToast('Success',
+            this.toastSrv.unfollowingStr + this.toastSrv.successfulStr,
+            this.toastSrv.iconClasses.success);
         } else {
-          this.toastSrv.showToast('Failed', "取消追蹤失敗", this.toastSrv.iconClasses.error);
+          this.toastSrv.showToast('Failed',
+            this.toastSrv.unfollowingStr + this.toastSrv.failedStr,
+            this.toastSrv.iconClasses.error);
         }
-
       });
     } else {
       this.viewsSrv.follow(
@@ -289,15 +294,18 @@ export class PubProfileComponent implements OnInit {
           this.notificationSrv.insert(
             this.userProfile.id,
             this.currentUser.id,
-            this.currentUser.name + "開始追蹤你",
-            "user",
+            this.currentUser.name + this.toastSrv.startfollowu,
+            this.notificationSrv.types.user,
             0,
             0,
             this.currentUser.id
           ).then(res => { });
-          this.toastSrv.showToast('Success', "追蹤成功 ", this.toastSrv.iconClasses.success);
+          this.toastSrv.showToast('Success',
+            this.toastSrv.followingStr + this.toastSrv.successfulStr,
+            this.toastSrv.iconClasses.success);
         } else {
-          this.toastSrv.showToast('Failed', "追蹤失敗", this.toastSrv.iconClasses.error);
+          this.toastSrv.showToast('Failed', this.toastSrv.followingStr + this.toastSrv.failedStr,
+            this.toastSrv.iconClasses.error);
         }
       });
     }
@@ -316,19 +324,25 @@ export class PubProfileComponent implements OnInit {
           this.notificationSrv.insert(
             this.userProfile.id,
             this.currentUser.id,
-            this.currentUser.name + "取消收藏你的檔案",
-            "user",
+            this.currentUser.name + this.toastSrv.stopcollect,
+            this.notificationSrv.types.user,
             0,
             0,
             this.currentUser.id
           ).then(res => { });
-          this.toastSrv.showToast('Success', "取消收藏成功 ", this.toastSrv.iconClasses.success);
+          this.toastSrv.showToast('Success',
+            this.toastSrv.uncollectStr + this.toastSrv.successfulStr,
+            this.toastSrv.iconClasses.success);
         } else {
-          this.toastSrv.showToast('Failed', "取消收藏失敗", this.toastSrv.iconClasses.error);
+          this.toastSrv.showToast('Failed',
+            this.toastSrv.uncollectStr + this.toastSrv.failedStr,
+            this.toastSrv.iconClasses.error);
         }
       }).catch(error => {
-        console.log("取消收藏", error)
-        this.toastSrv.showToast('Failed', "取消收藏失敗", this.toastSrv.iconClasses.error);
+        console.log(error)
+        this.toastSrv.showToast('Failed',
+          this.toastSrv.uncollectStr + this.toastSrv.failedStr,
+          this.toastSrv.iconClasses.error);
       });
     }
     else {
@@ -343,15 +357,19 @@ export class PubProfileComponent implements OnInit {
           this.notificationSrv.insert(
             this.userProfile.id,
             this.currentUser.id,
-            this.currentUser.name + "收藏了你的檔案",
-            "user",
+            this.currentUser.name + this.toastSrv.successfulStr,
+            this.notificationSrv.types.user,
             0,
             0,
             this.currentUser.id
           ).then(res => { });
-          this.toastSrv.showToast('Success', "收藏成功 ", this.toastSrv.iconClasses.success);
+          this.toastSrv.showToast('Success',
+            this.toastSrv.collectStr + this.toastSrv.successfulStr,
+            this.toastSrv.iconClasses.success);
         } else {
-          this.toastSrv.showToast('Failed', "收藏失敗", this.toastSrv.iconClasses.error);
+          this.toastSrv.showToast('Failed',
+            this.toastSrv.collectStr + this.toastSrv.failedStr,
+            this.toastSrv.iconClasses.error);
         }
       });
     }

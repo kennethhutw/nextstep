@@ -1,22 +1,23 @@
 <div *ngIf="currentRecruit" class="row ">
   <div class="col-md-6 text-center d-flex flex-row gap-10">
-    <h1>{{this.currentRecruit.position? this.currentRecruit.position :'職缺名稱'}}</h1>
-    <span class="update_date">{{this.currentRecruit.createdAt | date:"MM/dd"}}更新</span>
+    <h1>{{this.currentRecruit.position? this.currentRecruit.position :this.msg.jobtitle}}</h1>
+    <span class="update_date">{{this.currentRecruit.createdAt | date:"MM/dd"}} {{ "UPDATE" | translate
+      }}</span>
   </div>
 
   <div *ngIf="currentUser" class="col-md-6 text-right btn_items">
     <button type="button" class="btn btn_item" data-toggle="modal" data-target="#modal_apply" data-dismiss="modal"
-      (click)="onSelectItem(currentRecruit)"><i class="far fa-envelope" tooltip="申請"></i>
-      申請</button><button type="button" class="btn btn_item"
+      (click)="onSelectItem(currentRecruit)"><i class="far fa-envelope" tooltip="{{ 'APPLY' | translate }}"></i>
+      {{ 'APPLY' | translate }}</button><button type="button" class="btn btn_item"
       [ngClass]="{'btn_item_selected': currentRecruit?.isCollected === true}"
       *ngIf="currentRecruit?.owner !== currentUser?.id" (click)="onClickCollect()"><i class="far fa-bookmark fa-lg"></i>
-      {{currentRecruit?.isCollected === true ? "已收藏" : "收藏"}} </button>
+      {{currentRecruit?.isCollected === true ? this.msg.collected : this.msg.collect}} </button>
 
     <button type="button" class="btn btn_item" [ngClass]="{'btn_item_selected': currentRecruit?.isFollowing === true}"
       *ngIf="currentRecruit?.owner !== currentUser?.id" (click)="onClickFollow()"><i class="fas fa-plus"></i>
-      {{currentRecruit?.isFollowing === true ? "已追蹤" : "追蹤"}} </button>
+      {{currentRecruit?.isFollowing === true ? this.msg.followed : this.msg.following}} </button>
     <button type="button" class="btn btn_item " (click)="onToggleChat($event)"><i class="far fa-comment-alt"></i>
-      訊息</button>
+      {{ 'MESSAGE' | translate }}</button>
 
 
   </div>
@@ -28,7 +29,7 @@
     <span class="update_date">{{ currentRecruit.projectName }}</span>
   </div>
   <div class="col-md-4 text-right">
-    <span>{{currentRecruit.collectCount?currentRecruit.collectCount:0}}人收藏/{{currentRecruit.followCount?currentRecruit.followCount:0}}人追蹤</span>
+    <span>{{ this.getFollow(currentRecruit)}}</span>
     <!-- <span class="update_date">xx人收藏/xx人追蹤</span> -->
   </div>
 </div>
@@ -38,34 +39,40 @@
   <div class="col-md-8">
     <div class="row">
       <div class="col-md-12">
-        <span class="title">職缺簡介</span>
+        <span class="title">{{ "JD" | translate
+          }}</span>
         <span *ngIf="currentRecruit ?.createdBy == currentUser?.id" class="btn-standard ml-24"
           (click)="onEditMembers()">
-          <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;編輯</span>
+          <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{ "EDIT" | translate
+          }}</span>
       </div>
       <div class="col-md-12 frame-news">
         <p>
           <small class="mt-10 inline-flex">
             <ng-container *ngIf="currentRecruit.skills">
+
               <ng-container *ngFor=" let tag of currentRecruit.skills; let i=index">
-                <span *ngIf="!this.utility.IsNullOrEmpty(tag)" class="tag tag-{{tag}} mr--5">{{convertTag(tag)}}</span>
+                <span *ngIf="!this.utilitySrv.IsNullOrEmpty(tag)"
+                  class="tag tag-{{tag}} mr--5">{{convertTag(tag)}}</span>
               </ng-container>
             </ng-container>
           </small>
         </p>
-        <span>{{this.currentRecruit.scopes? this.currentRecruit.scopes :'職缺名稱'}}</span>
+        <span>{{this.currentRecruit.scopes? this.currentRecruit.scopes :this.msg.jobtitle}}</span>
       </div>
     </div>
     <div class="row ">
       <div class="col-md-12 mb-24">
-        <span class="title">此專案其他職缺</span>
+        <span class="title">{{ "OTHERJOBS" | translate
+          }}</span>
       </div>
-      <div class="row frame empty text-center" *ngIf="!this.currentRecruit.projectOthers">
-        此專案目前沒有職缺.
+      <div class="row job_frame empty text-center" *ngIf="!this.currentRecruit.projectOthers">
+        {{ "NOJOBOPEN" | translate
+        }}
       </div>
       <ng-container *ngIf="this.currentRecruit?.projectOthers">
         <ng-container *ngFor="let item of  this.currentRecruit.projectOthers; let i = index">
-          <div *ngIf="item.status =='1'" class="frame" [ngClass]="{'mt-10':i>1}">
+          <div *ngIf="item.status =='1'" class="job_frame" [ngClass]="{'mt-10':i>1}">
 
             <div class="col-md-12" style="display: inline-flex;">
               <div class="col-md-8">
@@ -99,20 +106,19 @@
   <div class="col-md-4">
     <div class="row">
       <div class="col-md-12 mb-24">
-        <span class="title">其他相似職缺</span>
+        <span class="title"> {{ "SIMILARJOBS" | translate }}</span>
       </div>
     </div>
-    <div class="row frame empty text-center" *ngIf="!this.currentRecruit.others">
-      沒有職缺
+    <div class="row job_frame empty text-center" *ngIf="!this.currentRecruit.others">
+      {{ "NOJOBOPEN" | translate }}
     </div>
     <ng-container *ngIf="this.currentRecruit?.others">
       <ng-container *ngFor="let item of  this.currentRecruit.others; let i = index">
-        <div *ngIf="item.status =='1'" class="row frame" [ngClass]="{'mt-10':i>1}">
+        <div *ngIf="item.status =='1'" class="row job_frame" [ngClass]="{'mt-10':i>1}">
 
           <div class="col-md-12" style="display: inline-flex;">
             <div class="col-md-8  pl-0">
               <p class="position"><b>{{item.position}}</b></p>
-              <!-- <small>{{item.skills}}</small> -->
             </div>
             <div *ngIf="currentUser" class="col-md-4 btn_items">
               <!-- <a href="#"> <i class="far fa-bookmark"></i></a> -->
@@ -121,9 +127,7 @@
               <i *ngIf="!item.isCollected" (click)="onClickJobCollect(item.id, item.isCollected)"
                 class="far fa-bookmark color-gray"></i>
               <i class="far fa-envelope color-gray" data-toggle="modal" data-target="#modal_apply" data-dismiss="modal"
-                (click)="onSelectItem(item)" tooltip="申請"></i>
-              <!-- <a href="#" data-toggle="modal" data-target="#modal_apply" data-dismiss="modal"
-                  (click)="onSelectItem(item)"> <i class="far fa-envelope"></i></a> -->
+                (click)="onSelectItem(item)" tooltip="{{ 'APPLY' | translate }}"></i>
             </div>
           </div>
 
@@ -139,7 +143,7 @@
       </ng-container>
       <div class=" empty text-center">
 
-        <a class="clickable text-blue" [routerLink]="['/recruit/' ]">{{ "VIEWDETAILS" |
+        <a class="clickable text-blue" [routerLink]="['/recruit/' ]">{{ "VIEWMORE" |
           translate
           }}</a>
       </div>
@@ -176,7 +180,8 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content model_padding">
       <div class="modal-header text-center">
-        <span class="modal_title w-100">我要申請加入{{this.selectedApplication?.position}}！</span>
+        <span class="modal_title w-100">{{ "IAPPLYFOR"
+          | translate }} {{this.selectedApplication?.position}}！</span>
         <button type="button" class="close" #closebutton data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">╳</span>
         </button>
@@ -188,8 +193,8 @@
         </div>
         <div class=" text-right">
           <button type="button" class="btn btn-blue  mr-10" (click)="onSubmitApplication(this.selectedApplication)">
-            送出申請</button>
-
+            {{ "SUBMIT"
+            | translate }}</button>
         </div>
       </div>
     </div>

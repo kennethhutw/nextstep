@@ -111,7 +111,7 @@ export class UserCardComponent {
   }
 
   convertTag(term) {
-  
+
     let _term = this.skillOptions.find(option => option.value == term.toLowerCase());
     if (_term) {
       return _term.text;

@@ -131,25 +131,34 @@
                         </label>
                         <div class="form-group">
                             <input type="checkbox" (change)="onStageChange($event, 'idea')"
-                                [checked]="isInValue('idea', f.stages.value)" value="idea"><span>已有創業概念</span>
+                                [checked]="isInValue('idea', f.stages.value)" value="idea"><span>{{
+                                "PRORGRESS_1"
+                                | translate }}</span>
                             <input type="checkbox" (change)="onStageChange($event, 'businessplan')"
-                                [checked]="isInValue('businessplan', f.stages.value)"
-                                value="businessplan"><span>商業計畫初稿</span>
+                                [checked]="isInValue('businessplan', f.stages.value)" value="businessplan"><span>{{
+                                "PRORGRESS_2"
+                                | translate }}</span>
                             <input type="checkbox" (change)="onStageChange($event, 'findpartner')"
-                                [checked]="isInValue('findpartner', f.stages.value)"
-                                value="findpartner"><span>找創業夥伴</span>
+                                [checked]="isInValue('findpartner', f.stages.value)" value="findpartner"><span>{{
+                                "PRORGRESS_3"
+                                | translate }}</span>
                             <input type="checkbox" (change)="onStageChange($event, 'buildMVP')"
-                                [checked]="isInValue('buildMVP', f.stages.value)"
-                                value="buildMVP"><span>建構最小可行性產品(MVP)</span>
+                                [checked]="isInValue('buildMVP', f.stages.value)" value="buildMVP"><span>{{
+                                "PRORGRESS_4"
+                                | translate }}</span>
                             <input type="checkbox" (change)="onStageChange($event, 'producttested')"
-                                [checked]="isInValue('producttested', f.stages.value)"
-                                value="producttested"><span>驗證產品中</span>
+                                [checked]="isInValue('producttested', f.stages.value)" value="producttested"><span>{{
+                                "PRORGRESS_5"
+                                | translate }}</span>
                             <input type="checkbox" (change)="onStageChange($event, 'findcustomers')"
-                                [checked]="isInValue('findcustomers', f.stages.value)"
-                                value="findcustomers"><span>找用戶中</span>
+                                [checked]="isInValue('findcustomers', f.stages.value)" value="findcustomers"><span>{{
+                                "PRORGRESS_6"
+                                | translate }}</span>
                             <input type="checkbox" (change)="onStageChange($event, 'findpayingcustomers')"
                                 [checked]="isInValue('findpayingcustomers', f.stages.value)"
-                                value="findpayingcustomers"><span>找付費用戶中</span>
+                                value="findpayingcustomers"><span>{{
+                                "PRORGRESS_7"
+                                | translate }}</span>
                             <input type="checkbox" (change)="onStageChange($event, 'fundraising')"
                                 [checked]="isInValue('fundraising', f.stages.value)" value="fundraising"><span>{{
                                 "FIND_MONEY"
@@ -199,7 +208,7 @@
                 <div><span class="num">{{i+1}}</span></div>
                 <div [formGroup]="member" class="row">
                     <div class="col-md-6 mb-3 form-group ">
-                        <label>成員姓名</label>
+                        <label>{{"NAME" | translate }}</label>
                         <input type="text" formControlName="email" id="email" class="form-control mr-10">
                         <div *ngIf="submitted && t.email.errors">
                             <div class="error-msg" *ngIf="t.email.errors.required">
@@ -258,7 +267,7 @@
                 <div><span class="num">{{i+1}}</span></div>
                 <div [formGroup]="job" class="row">
                     <div class="col-md-6 mb-3 form-group ">
-                        <label>成員姓名</label>
+                        <label>{{"NAME" | translate }}</label>
                         <input type="text" formControlName="position" id="position" class="form-control mr-10">
                         <!-- <div *ngIf="submitted && h.position.errors">
                             <div class="error-msg" *ngIf="h.position.errors.required">
@@ -267,7 +276,7 @@
                         </div> -->
                     </div>
                     <div class="col-md-6 mb-3 form-group ">
-                        <label>職位名稱</label>
+                        <label>{{"POSITION" | translate }}</label>
                         <input type="text" formControlName="skills" id="skills" class="form-control mr-10">
                         <!-- <div *ngIf="submitted && h.skills.errors">
                             <div class="error-msg" *ngIf="h.skills.errors.required">

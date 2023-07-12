@@ -44,7 +44,7 @@ export class FindMentorComponent implements OnInit {
   reciver;
   constructor(
     private viewsSrv: ViewsService,
-    public toastr: ToastService,
+    public toastSrv: ToastService,
     private notificationSrv: NotificationService,
     private settingSrv: SettingService,
     private translateSrv: TranslateService,
@@ -53,9 +53,23 @@ export class FindMentorComponent implements OnInit {
     private authStore: AuthStore,
     private userSrv: UserService,
     private likeSrv: LikeService,
+    private dataSrv: DataService,
     private SpinnerService: NgxSpinnerService
   ) {
+    let _lang = localStorage.getItem("lang");
+    if (!this.utility.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
 
+      this.toastSrv.changeLang(this.translateSrv);
+    }
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utility.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+
+        this.toastSrv.changeLang(this.translateSrv);
+
+      }
+    });
   }
 
   ngOnInit() {
@@ -127,25 +141,6 @@ export class FindMentorComponent implements OnInit {
         }
       })
     }
-  }
-
-
-  onKey(event: any) {
-
-  }
-
-
-  onfilter(value) {
-
-
-  }
-
-  onClearFilter() {
-
-  }
-
-  onChange(deviceValue) {
-
   }
 
   onSkills(event) {
@@ -279,7 +274,7 @@ export class FindMentorComponent implements OnInit {
 
     this.viewsSrv.follow(
       event.userId,
-      "mentor",
+      this.notificationSrv.types.mentor,
       this.currentUser.id
     ).then(res => {
       if (res['result'] == 'successful') {
@@ -288,15 +283,19 @@ export class FindMentorComponent implements OnInit {
         this.notificationSrv.insert(
           this.items[_index].id,
           this.currentUser.id,
-          this.currentUser.name + "開始追蹤你",
-          "mentor",
+          this.currentUser.name + this.toastSrv.startfollowu,
+          this.notificationSrv.types.mentor,
           0,
           0,
           this.currentUser.id
         ).then(res => { });
-        this.toastr.showToast('Success', "追蹤成功 ", this.toastr.iconClasses.success);
+        this.toastSrv.showToast('Success',
+          this.toastSrv.followingStr + this.toastSrv.successfulStr,
+          this.toastSrv.iconClasses.success);
       } else {
-        this.toastr.showToast('Failed', "追蹤失敗", this.toastr.iconClasses.error);
+        this.toastSrv.showToast('Failed',
+          this.toastSrv.followingStr + this.toastSrv.failedStr,
+          this.toastSrv.iconClasses.error);
       }
     });
   }
@@ -305,7 +304,7 @@ export class FindMentorComponent implements OnInit {
 
     this.viewsSrv.unFollow(
       event.userId,
-      "mentor",
+      this.notificationSrv.types.mentor,
       this.currentUser.id
     ).then(res => {
       if (res['result'] == 'successful') {
@@ -314,15 +313,19 @@ export class FindMentorComponent implements OnInit {
         this.notificationSrv.insert(
           this.items[_index].id,
           this.currentUser.id,
-          this.currentUser.name + "停止追蹤你",
-          "mentor",
+          this.currentUser.name + this.toastSrv.stopfollowu,
+          this.notificationSrv.types.mentor,
           0,
           0,
           this.currentUser.id
         ).then(res => { });
-        this.toastr.showToast('Success', "停止追蹤成功 ", this.toastr.iconClasses.success);
+        this.toastSrv.showToast('Success',
+          this.toastSrv.unfollowingStr + this.toastSrv.successfulStr,
+          this.toastSrv.iconClasses.success);
       } else {
-        this.toastr.showToast('Failed', "停止追蹤失敗", this.toastr.iconClasses.error);
+        this.toastSrv.showToast('Failed',
+          this.toastSrv.unfollowingStr + this.toastSrv.failedStr,
+          this.toastSrv.iconClasses.error);
       }
     });
   }
@@ -331,7 +334,7 @@ export class FindMentorComponent implements OnInit {
 
     this.viewsSrv.collect(
       event.userId,
-      "mentor",
+      this.notificationSrv.types.mentor,
       this.currentUser.id
     ).then(res => {
       if (res['result'] == 'successful') {
@@ -340,15 +343,19 @@ export class FindMentorComponent implements OnInit {
         this.notificationSrv.insert(
           this.items[_index].id,
           this.currentUser.id,
-          this.currentUser.name + "收藏了你的檔案",
-          "mentor",
+          this.currentUser.name + this.toastSrv.startcollect,
+          this.notificationSrv.types.mentor,
           0,
           0,
           this.currentUser.id
         ).then(res => { });
-        this.toastr.showToast('Success', "收藏成功 ", this.toastr.iconClasses.success);
+        this.toastSrv.showToast('Success',
+          this.toastSrv.collectStr + this.toastSrv.successfulStr,
+          this.toastSrv.iconClasses.success);
       } else {
-        this.toastr.showToast('Failed', "收藏失敗", this.toastr.iconClasses.error);
+        this.toastSrv.showToast('Failed',
+          this.toastSrv.collectStr + this.toastSrv.failedStr,
+          this.toastSrv.iconClasses.error);
       }
     });
 
@@ -367,19 +374,25 @@ export class FindMentorComponent implements OnInit {
         this.notificationSrv.insert(
           this.items[_index].id,
           this.currentUser.id,
-          this.currentUser.name + "取消收藏你的檔案",
-          "mentor",
+          this.currentUser.name + this.toastSrv.stopcollect,
+          this.notificationSrv.types.mentor,
           0,
           0,
           this.currentUser.id
         ).then(res => { });
-        this.toastr.showToast('Success', "取消收藏成功 ", this.toastr.iconClasses.success);
+        this.toastSrv.showToast('Success',
+          this.toastSrv.uncollectStr + this.toastSrv.successfulStr,
+          this.toastSrv.iconClasses.success);
       } else {
-        this.toastr.showToast('Failed', "取消收藏失敗", this.toastr.iconClasses.error);
+        this.toastSrv.showToast('Failed',
+          this.toastSrv.uncollectStr + this.toastSrv.failedStr,
+          this.toastSrv.iconClasses.error);
       }
     }).catch(error => {
       console.log("取消收藏", error)
-      this.toastr.showToast('Failed', "取消收藏失敗", this.toastr.iconClasses.error);
+      this.toastSrv.showToast('Failed',
+        this.toastSrv.uncollectStr + this.toastSrv.failedStr,
+        this.toastSrv.iconClasses.error);
     });
 
   }

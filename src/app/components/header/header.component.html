@@ -12,11 +12,11 @@
 
     <div class="collapse navbar-collapse" id="navbarMenuContent">
       <ul class="navbar-nav mr-auto ">
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
             routerLink="/index" (click)="ToggleNavBar()"> {{ "HOME" | translate }} <span
               class="sr-only">(current)</span></a>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
             routerLink="/projects" (click)="ToggleNavBar()">{{ "PROJECTS" | translate }}</a>
@@ -78,11 +78,14 @@
           <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary min-width-1"
             aria-labelledby="navbarLangDropdown">
             <div class="lang-box">
-              <div (click)="changeLanguage('zh-tw')" [ngClass]="{ 'selected': this.SelectedLang == 'zh-tw'  }">繁體中文
+              <div class="dropdown-item cursor-pointer" (click)="changeLanguage('zh-tw')"
+                [ngClass]="{ 'selected': this.SelectedLang == 'zh-tw'  }">繁體中文
               </div>
-              <div (click)="changeLanguage('zh-cn')" [ngClass]="{ 'selected': this.SelectedLang == 'zh-cn'  }">简体中文
+              <div class="dropdown-item cursor-pointer" (click)="changeLanguage('zh-cn')"
+                [ngClass]="{ 'selected': this.SelectedLang == 'zh-cn'  }">简体中文
               </div>
-              <div (click)="changeLanguage('en')" [ngClass]="{ 'selected': this.SelectedLang == 'en'  }">English</div>
+              <div class="dropdown-item cursor-pointer" (click)="changeLanguage('en')"
+                [ngClass]="{ 'selected': this.SelectedLang == 'en'  }">English</div>
             </div>
           </div>
         </li>
@@ -176,7 +179,7 @@
     <div class="text-center mb-4">
       <h3>{{ "EMAILSIGNIN" | translate }}</h3>
     </div>
-    <div [formGroup]="signinEmailForm" class="row text-center">
+    <form [formGroup]="signinEmailForm" class="row text-center">
       <input class="modal_input w-100 mb-2" type="text" id="emailsignin" placeholder="{{ 'EMAILSIGNIN' | translate }}"
         (focus)="this.placeholder = ''" (blur)="setBlur('emailsignin', 'EMAILSIGNIN')" />
       <input class="modal_input w-100 mb-2" type="password" id="headeremailpassword"
@@ -196,7 +199,7 @@
             | translate }}</a>
         </div>
       </div>
-    </div>
+    </form>
   </div>
 </app-modal>
 <!--Modal forget password-->

@@ -50,7 +50,16 @@ import * as moment from 'moment';
 
 @Injectable()
 export class NotificationService {
-    constructor(private http: HttpClient) { }
+
+    types: any;
+    constructor(private http: HttpClient) {
+        this.types = {
+            user: 'user',
+            mentor: 'mentor',
+            project: 'project',
+            application: 'application',
+        };
+    }
 
     getall() {
         return this.http.get(`${environment.apiUrl}/notifications`);
@@ -64,12 +73,6 @@ export class NotificationService {
         return await this.http.get(`${environment.apiUrl}/notifications/firstFive/${uid}`, {}).toPromise();
     }
 
-    //  receiver_id,
-    //   sender_id,
-    //   content,
-    //   type,
-    // isRead,
-    // status
     async insert(receiver_id,
         sender_id,
         content,
@@ -104,8 +107,6 @@ export class NotificationService {
             uid
         }).toPromise();
     }
-
-
 
     allread(uid: string) {
         return this.http.put(`${environment.apiUrl}/notifications/allread/${uid}`, {

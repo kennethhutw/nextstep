@@ -1,13 +1,13 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
   ViewsService,
   ToastService,
   NotificationService,
   UserService,
-  DataService,
   LikeService,
-  SettingService
+  SettingService,
+  DataService
 } from "../../_services";
 import {
   AuthStore
@@ -52,22 +52,22 @@ export class FindMemberComponent implements OnInit {
     work56: false,
     work78: false,
     work9: false
-
   }
 
   isChat: boolean = false;
+  chatUser;
   constructor(
     private viewsSrv: ViewsService,
-    public toastr: ToastService,
+    public toastSrv: ToastService,
     private notificationSrv: NotificationService,
     private settingSrv: SettingService,
     private translateSrv: TranslateService,
-    private utility: Utility,
+    private utilitySrv: Utility,
     private router: Router,
     private authStore: AuthStore,
     private userSrv: UserService,
     private likeSrv: LikeService,
-
+    private dataSrv: DataService,
     private SpinnerService: NgxSpinnerService
   ) {
     this.defaultProfileLogo = this.settingSrv.defaultProfileLogo;
@@ -80,6 +80,17 @@ export class FindMemberComponent implements OnInit {
     if (this.currentUser && this.currentUser.id) {
       _id = this.currentUser.id;
     }
+    let _lang = localStorage.getItem("lang");
+    if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
+      this.toastSrv.changeLang(this.translateSrv);
+    }
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utilitySrv.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+        this.toastSrv.changeLang(this.translateSrv);
+      }
+    });
 
     this.userSrv.getPublicPartners(_id).then(res => {
 
@@ -87,16 +98,16 @@ export class FindMemberComponent implements OnInit {
         this.items = res['data'];
         if (this.items && this.items.length > 0) {
           this.items.forEach(element => {
-            if (!this.utility.IsNullOrEmpty(element.tags)) {
+            if (!this.utilitySrv.IsNullOrEmpty(element.tags)) {
               element.tags = element.tags.split(',');
             }
-            if (!this.utility.IsNullOrEmpty(element.interested)) {
+            if (!this.utilitySrv.IsNullOrEmpty(element.interested)) {
               element.interested = element.interested.split(',');
             }
-            if (!this.utility.IsNullOrEmpty(element.skills)) {
+            if (!this.utilitySrv.IsNullOrEmpty(element.skills)) {
               element.skills = element.skills.split(',');
             }
-            if (!this.utility.IsNullOrEmpty(element.imageUrl)) {
+            if (!this.utilitySrv.IsNullOrEmpty(element.imageUrl)) {
               element.imageUrl = environment.assetUrl + element.imageUrl;
             }
           });
@@ -109,6 +120,8 @@ export class FindMemberComponent implements OnInit {
       this.SpinnerService.hide();
     })
   }
+
+
 
   onCollect($event) {
     if ($event.isCollect && this.currentUser) {
@@ -130,10 +143,7 @@ export class FindMemberComponent implements OnInit {
     this.IsShowTags = !this.IsShowTags;
   }
 
-  onfilter(value) {
 
-
-  }
 
   onClearFilter() {
     this.filterValue = null;
@@ -159,8 +169,10 @@ export class FindMemberComponent implements OnInit {
   }
 
   onLine(event) {
+
     if (this.filterCondition.online && this.filterCondition.offline) {
       this.displayItems = this.items;
+      this.foundItemNum = -1;
     } else if (!this.filterCondition.online && this.filterCondition.offline) {
       this.displayItems = this.items.filter(item => {
         return item.online == 0 && item.offline == 1
@@ -181,7 +193,7 @@ export class FindMemberComponent implements OnInit {
   }
 
   onSkills(event) {
-
+    console.log("===============", event);
     if (this.filterCondition.design &&
       this.filterCondition.finance &&
       this.filterCondition.marketing &&
@@ -213,9 +225,7 @@ export class FindMemberComponent implements OnInit {
         }
         if (this.filterCondition.finance &&
           item.skills.indexOf('finance') > -1) {
-
           currentItem.push(item);
-
         }
         if (this.filterCondition.marketing &&
           item.skills.indexOf('marketing') > -1) {
@@ -473,7 +483,8 @@ export class FindMemberComponent implements OnInit {
       this.filterCondition.work56 &&
       this.filterCondition.work78 &&
       this.filterCondition.work9) {
-      this.displayItems = this.items;;
+      this.displayItems = this.items;
+      this.foundItemNum = -1;
     } else if (
       !this.filterCondition.design &&
       !this.filterCondition.finance &&
@@ -491,7 +502,9 @@ export class FindMemberComponent implements OnInit {
       !this.filterCondition.work78 &&
       !this.filterCondition.work9) {
       this.displayItems = this.items;
+      this.foundItemNum = -1;
     }
+
   }
 
   onCleanClick() {
@@ -511,6 +524,7 @@ export class FindMemberComponent implements OnInit {
     this.filterCondition.work78 = false;
     this.filterCondition.work9 = false;
     this.displayItems = this.items;
+    this.foundItemNum = -1;
   }
 
   isExist(items, id) {
@@ -537,15 +551,19 @@ export class FindMemberComponent implements OnInit {
         this.notificationSrv.insert(
           this.items[_index].id,
           this.currentUser.id,
-          this.currentUser.name + "開始追蹤你",
-          "user",
+          this.currentUser.name + this.toastSrv.startfollowu,
+          this.notificationSrv.types.user,
           0,
           0,
           this.currentUser.id
         ).then(res => { });
-        this.toastr.showToast('Success', "追蹤成功 ", this.toastr.iconClasses.success);
+        this.toastSrv.showToast('Success',
+          this.toastSrv.followingStr + this.toastSrv.successfulStr,
+          this.toastSrv.iconClasses.success);
       } else {
-        this.toastr.showToast('Failed', "追蹤失敗", this.toastr.iconClasses.error);
+        this.toastSrv.showToast('Failed',
+          this.toastSrv.followingStr + this.toastSrv.failedStr,
+          this.toastSrv.iconClasses.error);
       }
     });
   }
@@ -563,15 +581,19 @@ export class FindMemberComponent implements OnInit {
         this.notificationSrv.insert(
           this.items[_index].id,
           this.currentUser.id,
-          this.currentUser.name + "停止追蹤你",
-          "user",
+          this.currentUser.name + this.toastSrv.stopfollowu,
+          this.notificationSrv.types.user,
           0,
           0,
           this.currentUser.id
         ).then(res => { });
-        this.toastr.showToast('Success', "停止追蹤成功 ", this.toastr.iconClasses.success);
+        this.toastSrv.showToast('Success',
+          this.toastSrv.unfollowingStr + this.toastSrv.successfulStr,
+          this.toastSrv.iconClasses.success);
       } else {
-        this.toastr.showToast('Failed', "停止追蹤失敗", this.toastr.iconClasses.error);
+        this.toastSrv.showToast('Failed',
+          this.toastSrv.unfollowingStr + this.toastSrv.failedStr,
+          this.toastSrv.iconClasses.error);
       }
     });
   }
@@ -589,15 +611,19 @@ export class FindMemberComponent implements OnInit {
         this.notificationSrv.insert(
           this.items[_index].id,
           this.currentUser.id,
-          this.currentUser.name + "收藏了你的檔案",
-          "user",
+          this.currentUser.name + this.toastSrv.startcollect,
+          this.notificationSrv.types.user,
           0,
           0,
           this.currentUser.id
         ).then(res => { });
-        this.toastr.showToast('Success', "收藏成功 ", this.toastr.iconClasses.success);
+        this.toastSrv.showToast('Success',
+          this.toastSrv.collectStr + this.toastSrv.successfulStr,
+          this.toastSrv.iconClasses.success);
       } else {
-        this.toastr.showToast('Failed', "收藏失敗", this.toastr.iconClasses.error);
+        this.toastSrv.showToast('Failed',
+          this.toastSrv.collectStr + this.toastSrv.failedStr,
+          this.toastSrv.iconClasses.error);
       }
     });
 
@@ -616,21 +642,32 @@ export class FindMemberComponent implements OnInit {
         this.notificationSrv.insert(
           this.items[_index].id,
           this.currentUser.id,
-          this.currentUser.name + "取消收藏你的檔案",
-          "user",
+          this.currentUser.name + this.toastSrv.stopcollect,
+          this.notificationSrv.types.user,
           0,
           0,
           this.currentUser.id
         ).then(res => { });
-        this.toastr.showToast('Success', "取消收藏成功 ", this.toastr.iconClasses.success);
+        this.toastSrv.showToast('Success',
+          this.toastSrv.uncollectStr + this.toastSrv.successfulStr,
+          this.toastSrv.iconClasses.success);
       } else {
-        this.toastr.showToast('Failed', "取消收藏失敗", this.toastr.iconClasses.error);
+        this.toastSrv.showToast('Failed',
+          this.toastSrv.uncollectStr + this.toastSrv.failedStr,
+          this.toastSrv.iconClasses.error);
       }
     }).catch(error => {
       console.log("取消收藏", error)
-      this.toastr.showToast('Failed', "取消收藏失敗", this.toastr.iconClasses.error);
+      this.toastSrv.showToast('Failed',
+        this.toastSrv.uncollectStr + this.toastSrv.failedStr,
+        this.toastSrv.iconClasses.error);
     });
 
+  }
+
+  onToggleChat(event) {
+    this.chatUser = event;
+    this.isChat = !this.isChat;
   }
 
   OnClickProfile(event) {

@@ -4,15 +4,13 @@ import {
   ViewsService,
   ProjectService,
   ToastService,
-  AppSettingsService,
   NotificationService,
-  LikeService
+  DataService
 } from "../../_services";
 import {
   AuthStore
 } from "../../_services/auth.store";
 import { Utility } from "../../_helpers";
-import { environment } from '../../../environments/environment';
 import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
@@ -47,20 +45,38 @@ export class FindProjectComponent implements OnInit {
     work56: false,
     work78: false,
     work9: false
+  }
 
+  msg = {
+    startfollow: "開始追蹤",
+    stopfollow: "停止追蹤",
+    collectla: "收藏了",
+    uncollectla: "取消收藏"
   }
   constructor(
     private projectSrv: ProjectService,
     private translateSrv: TranslateService,
-    private utility: Utility,
+    private utilitySrv: Utility,
     private viewsSrv: ViewsService,
     private authStore: AuthStore,
-    private likeSrv: LikeService,
     private SpinnerService: NgxSpinnerService,
-    public toastr: ToastService,
+    public toastSrv: ToastService,
+    private dataSrv: DataService,
     private notificationSrv: NotificationService,
   ) {
-
+    let _lang = localStorage.getItem("lang");
+    if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
+      this.toastSrv.changeLang(this.translateSrv);
+      this.init_terms();
+    }
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utilitySrv.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+        this.toastSrv.changeLang(this.translateSrv);
+        this.init_terms();
+      }
+    });
   }
 
   ngOnInit() {
@@ -75,17 +91,31 @@ export class FindProjectComponent implements OnInit {
       if (res['result'] == 'successful') {
         this.items = res['data'];
         this.displayItems = this.items ? this.items : [];
-        this.foundItemNum = this.items.length;
+        //this.foundItemNum = this.items.length;
       }
       this.SpinnerService.hide();
     }).catch(error => {
       console.error("error", error);
       this.SpinnerService.hide();
     })
+  }
 
+  init_terms() {
+    this.translateSrv.get("STARTFOLLOW").subscribe((text: string) => {
+      this.msg.startfollow = text;
+    });
 
-    //this.displayItems = this.items;
-    //this.SpinnerService.hide();
+    this.translateSrv.get("STOPFOLLOW").subscribe((text: string) => {
+      this.msg.stopfollow = text;
+    });
+
+    this.translateSrv.get("COLLECTLA").subscribe((text: string) => {
+      this.msg.collectla = text;
+    });
+
+    this.translateSrv.get("UNCOLLECT").subscribe((text: string) => {
+      this.msg.uncollectla = text;
+    });
   }
 
   onProjectStatusChange(event) {
@@ -94,6 +124,7 @@ export class FindProjectComponent implements OnInit {
       !this.filterCondition.isFunding &&
       !this.filterCondition.isCofounder) {
       this.displayItems = this.items;
+      this.foundItemNum = -1;
     } else {
       let currentItem = []
       this.items.map(item => {
@@ -114,7 +145,15 @@ export class FindProjectComponent implements OnInit {
             currentItem.push(item);
           }
         }
+
         this.displayItems = currentItem;
+        if (this.displayItems.length == 0 || this.displayItems.length == this.items.length) {
+          this.foundItemNum = -1;
+        } else {
+          this.foundItemNum = this.displayItems.length;
+        }
+
+
       })
 
     }
@@ -330,7 +369,11 @@ export class FindProjectComponent implements OnInit {
       this.displayItems = this.items;
     }
 
-    this.foundItemNum = this.displayItems.length;
+    if (this.displayItems.length == 0 || this.displayItems.length == this.items.length) {
+      this.foundItemNum = -1;
+    } else {
+      this.foundItemNum = this.displayItems.length;
+    }
   }
 
   onClearFilter() {
@@ -509,7 +552,7 @@ export class FindProjectComponent implements OnInit {
   onClickFollow(event) {
     this.viewsSrv.follow(
       event.projectId,
-      "project",
+      this.notificationSrv.types.project,
       this.currentUser.id
     ).then(res => {
       if (res['result'] == 'successful') {
@@ -518,15 +561,19 @@ export class FindProjectComponent implements OnInit {
         this.notificationSrv.insert(
           this.items[_index].owner,
           this.currentUser.id,
-          this.currentUser.name + "開始追蹤" + this.items[_index].name,
-          "project",
+          this.currentUser.name + this.msg.startfollow + this.items[_index].name,
+          this.notificationSrv.types.project,
           0,
           0,
           this.currentUser.id
         ).then(res => { });
-        this.toastr.showToast('Success', "追蹤成功 ", this.toastr.iconClasses.success);
+        this.toastSrv.showToast('Success',
+          this.toastSrv.followingStr + this.toastSrv.successfulStr,
+          this.toastSrv.iconClasses.success);
       } else {
-        this.toastr.showToast('Failed', "追蹤失敗", this.toastr.iconClasses.error);
+        this.toastSrv.showToast('Failed',
+          this.toastSrv.followingStr + this.toastSrv.failedStr,
+          this.toastSrv.iconClasses.error);
       }
     });
   }
@@ -535,7 +582,7 @@ export class FindProjectComponent implements OnInit {
 
     this.viewsSrv.unFollow(
       event.projectId,
-      "project",
+      this.notificationSrv.types.project,
       this.currentUser.id
     ).then(res => {
       if (res['result'] == 'successful') {
@@ -544,15 +591,19 @@ export class FindProjectComponent implements OnInit {
         this.notificationSrv.insert(
           this.items[_index].owner,
           this.currentUser.id,
-          this.currentUser.name + "停止追蹤" + this.items[_index].name,
-          "project",
+          this.currentUser.name + this.msg.stopfollow + this.items[_index].name,
+          this.notificationSrv.types.project,
           0,
           0,
           this.currentUser.id
         ).then(res => { });
-        this.toastr.showToast('Success', "停止追蹤成功 ", this.toastr.iconClasses.success);
+        this.toastSrv.showToast('Success',
+          this.toastSrv.unfollowingStr + this.toastSrv.successfulStr,
+          this.toastSrv.iconClasses.success);
       } else {
-        this.toastr.showToast('Failed', "停止追蹤失敗", this.toastr.iconClasses.error);
+        this.toastSrv.showToast('Failed',
+          this.toastSrv.unfollowingStr + this.toastSrv.failedStr,
+          this.toastSrv.iconClasses.error);
       }
     });
   }
@@ -561,7 +612,7 @@ export class FindProjectComponent implements OnInit {
 
     this.viewsSrv.collect(
       event.projectId,
-      "project",
+      this.notificationSrv.types.project,
       this.currentUser.id
     ).then(res => {
       if (res['result'] == 'successful') {
@@ -570,15 +621,19 @@ export class FindProjectComponent implements OnInit {
         this.notificationSrv.insert(
           this.items[_index].owner,
           this.currentUser.id,
-          this.currentUser.name + "收藏了" + this.items[_index].name,
-          "project",
+          this.currentUser.name + this.msg.collectla + this.items[_index].name,
+          this.notificationSrv.types.project,
           0,
           0,
           this.currentUser.id
         ).then(res => { });
-        this.toastr.showToast('Success', "收藏成功 ", this.toastr.iconClasses.success);
+        this.toastSrv.showToast('Success',
+          this.toastSrv.collectStr + this.toastSrv.successfulStr,
+          this.toastSrv.iconClasses.success);
       } else {
-        this.toastr.showToast('Failed', "收藏失敗", this.toastr.iconClasses.error);
+        this.toastSrv.showToast('Failed',
+          this.toastSrv.collectStr + this.toastSrv.failedStr,
+          this.toastSrv.iconClasses.error);
       }
     });
 
@@ -588,7 +643,7 @@ export class FindProjectComponent implements OnInit {
 
     this.viewsSrv.unCollect(
       event.projectId,
-      "project",
+      this.notificationSrv.types.project,
       this.currentUser.id
     ).then(res => {
       if (res['result'] == 'successful') {
@@ -597,19 +652,25 @@ export class FindProjectComponent implements OnInit {
         this.notificationSrv.insert(
           this.items[_index].owner,
           this.currentUser.id,
-          this.currentUser.name + "取消收藏" + this.items[_index].name,
-          "project",
+          this.currentUser.name + this.msg.uncollectla + this.items[_index].name,
+          this.notificationSrv.types.project,
           0,
           0,
           this.currentUser.id
         ).then(res => { });
-        this.toastr.showToast('Success', "取消收藏成功 ", this.toastr.iconClasses.success);
+        this.toastSrv.showToast('Success',
+          this.toastSrv.uncollectStr + this.toastSrv.successfulStr,
+          this.toastSrv.iconClasses.success);
       } else {
-        this.toastr.showToast('Failed', "取消收藏失敗", this.toastr.iconClasses.error);
+        this.toastSrv.showToast('Failed',
+          this.toastSrv.uncollectStr + this.toastSrv.failedStr,
+          this.toastSrv.iconClasses.error);
       }
     }).catch(error => {
       console.log("取消收藏", error)
-      this.toastr.showToast('Failed', "取消收藏失敗", this.toastr.iconClasses.error);
+      this.toastSrv.showToast('Failed',
+        this.toastSrv.uncollectStr + this.toastSrv.failedStr,
+        this.toastSrv.iconClasses.error);
     });
 
   }
