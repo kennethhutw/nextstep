@@ -157,7 +157,7 @@
   <p style="color: white">Please Wait. </p>
 </ngx-spinner>
 <div [class.show]="isChat" class="full">
-  <lab-custom-modal [open]="isChat" (close)="onToggleChat($event,false)">
+  <lab-custom-modal [open]="isChat" (close)="onToggleChat($event)">
     <h3 *ngIf="this.chatUser" class="chat-header" title><img class="chat-user-img rounded-circle" [src]="this.chatUser.imageUrl!= null ?  this.chatUser.imageUrl
                               : settingSrv.defaultUserLogo" alt=""><span class="chat-user-name">{{this.chatUser?.name?
         this.chatUser?.name:"No
