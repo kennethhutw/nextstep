@@ -70,18 +70,20 @@ export class JobComponent implements OnInit {
     private translateSrv: TranslateService,
     public toastSrv: ToastService
   ) {
-    this.skillOptions = this.appSettingsSrv.skillOptions();
+
     let _lang = localStorage.getItem("lang");
     if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
       this.toastSrv.changeLang(this.translateSrv);
-      this.init_terms();
+      this.init_terms(_lang);
     }
+
+    this.skillOptions = this.appSettingsSrv.skillOptions();
     this.dataSrv.langKey.subscribe((lang) => {
       if (!this.utilitySrv.IsNullOrEmpty(lang)) {
         this.translateSrv.use(lang);
         this.toastSrv.changeLang(this.translateSrv);
-        this.init_terms();
+        this.init_terms(lang);
       }
     });
   }
@@ -134,7 +136,7 @@ export class JobComponent implements OnInit {
   }
 
 
-  init_terms() {
+  init_terms(lang) {
     this.translateSrv.get("STARTFOLLOW").subscribe((text: string) => {
       this.msg.startfollow = text;
     });
@@ -207,6 +209,8 @@ export class JobComponent implements OnInit {
     this.translateSrv.get("JOBTITLE").subscribe((text: string) => {
       this.msg.jobtitle = text;
     });
+
+    this.skillOptions = this.appSettingsSrv.skillOptionsWithLang(lang);
   }
 
   getFollow(job) {
@@ -259,7 +263,7 @@ export class JobComponent implements OnInit {
 
         this.notificationSrv.infoProjectMembers(application.projectId,
           this.currentUser.id,
-          `${this.currentUser.name}  想要應徵 ${application.projectName} - ${application.position} ！` + this.application_message,
+          `${this.currentUser.name}  ${this.msg.wantapply} ${application.projectName} - ${application.position} ！` + this.application_message,
           "1",
           '0',
           '0',
@@ -418,10 +422,12 @@ export class JobComponent implements OnInit {
   }
 
   convertTag(term) {
+
     let _term = this.skillOptions.find(option => option.value == term.toLowerCase());
     if (_term) {
       return _term.text;
     }
+
   }
 }
 //https://www.sliderrevolution.com/resources/bootstrap-profile/

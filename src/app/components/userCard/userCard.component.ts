@@ -44,16 +44,16 @@ export class UserCardComponent {
     if (!this.utility.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
     }
-    this.init_terms();
+    this.init_terms(_lang);
     this.dataSrv.langKey.subscribe((lang) => {
       if (!this.utility.IsNullOrEmpty(lang)) {
         this.translateSrv.use(lang);
-        this.init_terms();
+        this.init_terms(lang);
       }
     });
   }
 
-  init_terms() {
+  init_terms(lang) {
     this.translateSrv.get("NONAME").subscribe((text: string) => {
       this.strNotFilled = text;
     });
@@ -61,6 +61,8 @@ export class UserCardComponent {
     this.translateSrv.get("NOPOISTION").subscribe((text: string) => {
       this.strNoPosition = text;
     });
+
+    this.skillOptions = this.appSettingsSrv.skillOptionsWithLang(lang);
   }
 
 
@@ -69,12 +71,8 @@ export class UserCardComponent {
   }
 
   ngOnInit() {
-    this.skillOptions = this.appSettingsSrv.skillOptions();
-    this.dataSrv.langKey.subscribe((lang) => {
-      if (!this.utility.IsNullOrEmpty(lang)) {
-        this.translateSrv.use(lang);
-      }
-    });
+
+
 
   }
 

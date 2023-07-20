@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
   UserService,
-  AppSettingsService
+  AppSettingsService, DataService
 } from "../../../_services";
 import {
   FormBuilder,
@@ -44,6 +44,8 @@ export class SignupInfoComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authSrv: AuthStore,
+    private utilitySrv: Utility,
+    private dataSrv: DataService,
     private userSrv: UserService,
     private translateSrv: TranslateService,
     private appSettingsSrv: AppSettingsService,
@@ -51,6 +53,15 @@ export class SignupInfoComponent implements OnInit {
   ) {
 
     this.skillOptions = this.appSettingsSrv.skillOptions();
+    let _lang = localStorage.getItem("lang");
+    if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
+    }
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utilitySrv.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+      }
+    });
   }
 
   ngOnInit() {

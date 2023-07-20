@@ -7,6 +7,8 @@ import { environment } from '../../environments/environment';
 export class AppSettingsService {
   /*   CountryOptions: [];*/
   skills;
+
+  skills_en;
   constructor(private http: HttpClient) { }
 
   public init(): Promise<any> {
@@ -16,6 +18,14 @@ export class AppSettingsService {
         .get('./../../assets/data/skills.json')
         .subscribe(response => {
           this.skills = response;
+
+          resolve(true);
+        })
+
+      this.http
+        .get('./../../assets/data/skills_en.json')
+        .subscribe(response => {
+          this.skills_en = response;
 
           resolve(true);
         })
@@ -34,6 +44,14 @@ export class AppSettingsService {
 
   public skillOptions() {
     return this.skills;
+  }
+
+  public skillOptionsWithLang(lang) {
+    if (lang == "en") {
+      return this.skills_en;
+    } else {
+      return this.skills;
+    }
   }
 
 }

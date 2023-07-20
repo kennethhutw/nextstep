@@ -119,6 +119,8 @@
   "FACKBOOKSIGNIN": "透過 Facebook 登入",
   "GOOGLESIGNUP": "透過 Google 註冊",
   "FACKBOOKSIGNUP": "透過 Facebook 註冊",
+  "USERNAMEPLACE": "姓名(4-10碼英文數字)",
+  "PASSWORDPLACE": "密碼(英數至少4字)",
   "SIGNIN": "登入",
   "FORGOTPASSWORD": "忘記密碼",
   "FORGOTPASSWORDDESC": "請輸入電子信箱，我們將寄送重設密碼的連結給您。",

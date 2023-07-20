@@ -16,6 +16,15 @@ app-signin {
         background-color: white;
     }
 
+    #buttonDiv {
+        width: 0px;
+        height: 0px;
+
+        iframe {
+            display: none !important;
+        }
+    }
+
     .facebook {
         background-color: #1877F2;
         border-radius: 4px;

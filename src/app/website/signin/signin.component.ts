@@ -3,7 +3,9 @@ import {
   OnInit,
   HostListener,
   ChangeDetectorRef,
-  ViewEncapsulation
+  ViewEncapsulation,
+  AfterViewInit,
+  ViewChild
 } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
@@ -19,7 +21,12 @@ import {
   Validators
 } from "@angular/forms";
 /* import { environment } from "../../../environments/environment";*/
-import { AuthService, GoogleLoginProvider } from "angular-6-social-login";
+import {
+  AuthService,
+  GoogleLoginProvider,
+  FacebookLoginProvider
+} from "angular-6-social-login";
+declare var google: any;
 
 import {
   Router,
@@ -33,7 +40,9 @@ import {
   ],
   encapsulation: ViewEncapsulation.None
 })
-export class SigninComponent implements OnInit {
+export class SigninComponent implements OnInit, AfterViewInit {
+
+  @ViewChild('buttonDiv') socialbutton;
   width = false;
   loginForm: FormGroup;
   submitted = false;
@@ -42,6 +51,8 @@ export class SigninComponent implements OnInit {
   unverifiedUser = false;
   GooglePlusNotExist = false;
   redirectURL: string = "";
+
+  client = null;
 
   @HostListener("window:resize", ["$event"])
   getScreenSize(event?) {
@@ -90,6 +101,91 @@ export class SigninComponent implements OnInit {
     }
   }
 
+  ngAfterViewInit(): void {
+    this.client = google.accounts.id.initialize({
+      client_id: "1093364473991-70t3haupsjd78sekbn2lkjrqlb5oo6c8.apps.googleusercontent.com",
+      ux_mode: "popup",
+      callback: (response: any) => this.handleGoogleSignIn(response)
+    });
+
+    google.accounts.id.renderButton(
+      document.getElementById("buttonDiv"),
+      {
+        theme: 'outline',
+
+        text: "透過 Google 登入"
+      }  // customization attributes
+    );
+
+  }
+
+  socialSignIn2() {
+    let btn = <HTMLElement>document.querySelector("div[role=button]");
+    if (btn instanceof HTMLElement) {
+      (<HTMLElement>document.querySelector("div[role=button]")).click();
+    }
+
+  }
+
+  handleGoogleSignIn(response: any) {
+
+
+    // This next is for decoding the idToken to an object if you want to see the details.
+    let base64Url = response.credential.split('.')[1];
+    let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    let jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+
+    var userData = JSON.parse(jsonPayload);
+
+    this.authSrv.socialLogin(userData.id,
+      userData.name,
+      userData.email,
+      userData.idToken,
+      'google').subscribe(result => {
+
+        if (result['result'] === 'successful') {
+          const user = result['data'];
+          if (user !== undefined) {
+            if (user.firstTime !== 1) {
+              localStorage.setItem("access_token", result["token"]);
+              localStorage.setItem("auth_data", JSON.stringify(user));
+              this.router.navigate(["./dashboard"], {});
+            } else if (user.firstTime === 1) {
+              localStorage.setItem('token', result['token']);
+              localStorage.setItem('auth_data', JSON.stringify(user));
+              this.router.navigate(["./info"], {});
+            }
+          }
+        } else if (result['result'] === 'failed') {
+          // this.confirmDialogService.infoThis(`This email address is already being used, please login manually.`, () => { });
+        } else if (result['result'] === 'new') {
+          this.authSrv.socialSignUp(userData.id, userData.name,
+            userData.email, userData.idToken,
+            'google').subscribe(value => {
+
+              if (value['result'] === 'successful') {
+                const user = value['data'];
+                if (user.firstTime !== 1) {
+                  localStorage.setItem("access_token", value["token"]);
+                  localStorage.setItem("auth_data", JSON.stringify(user));
+                  this.router.navigate(["./dashboard"], {});
+                } else if (user.firstTime === 1) {
+                  localStorage.setItem('token', value['token']);
+                  localStorage.setItem('auth_data', JSON.stringify(user));
+                  this.router.navigate(["./info"], {});
+                }
+              }
+            });
+        } else if (result['error']) {
+          console.log(result['error']);
+        }
+      }, error => console.error('Error :', error));
+
+  }
+
   inValid() {
     return this.loginForm.invalid;
   }
@@ -118,63 +214,67 @@ export class SigninComponent implements OnInit {
         this.changeDetectorRef.detectChanges();
       }
     );
-
-
   }
 
   socialSignIn(socialPlatform: string) {
-
     let socialPlatformProvider;
     if (socialPlatform === 'google') {
       socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+    } else if (socialPlatform === 'facebook') {
+      socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID
     }
 
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
 
-        this.authSrv.googleLogin(userData.id,
+        this.authSrv.socialLogin(userData.id,
           userData.name,
           userData.email,
-          userData.idToken).subscribe(result => {
+          userData.idToken,
+          socialPlatform).subscribe(result => {
 
             if (result['result'] === 'successful') {
               const user = result['data'];
               if (user !== undefined) {
-                if (user.dob) {
+                if (user.firstTime !== 1) {
+                  localStorage.setItem("access_token", result["token"]);
+                  localStorage.setItem("auth_data", JSON.stringify(user));
+                  this.router.navigate(["./dashboard"], {});
+                } else if (user.firstTime === 1) {
                   localStorage.setItem('token', result['token']);
-                  localStorage.setItem('currentUser', JSON.stringify(user));
-                  // this.router.navigate(["./profile/" + res['data'].id], {});
-                } else {
-                  localStorage.setItem('token', result['token']);
-                  localStorage.setItem('currentUser', JSON.stringify(user));
-
+                  localStorage.setItem('auth_data', JSON.stringify(user));
+                  this.router.navigate(["./info"], {});
                 }
               }
+
             } else if (result['result'] === 'failed') {
               // this.confirmDialogService.infoThis(`This email address is already being used, please login manually.`, () => { });
             } else if (result['result'] === 'new') {
-              this.authSrv.googleSignUp(userData.id, userData.name, userData.email, userData.idToken).subscribe(value => {
+              this.authSrv.socialSignUp(userData.id, userData.name,
+                userData.email, userData.idToken,
+                socialPlatform).subscribe(value => {
 
-                if (value['result'] === 'successful') {
-                  const user = value['data'];
-                  if (user.firstTime !== 1) {
-                    localStorage.setItem('token', value['token']);
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-
-                  } else if (user.firstTime === 1) {
-                    localStorage.setItem('token', value['token']);
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-
+                  if (value['result'] === 'successful') {
+                    const user = value['data'];
+                    if (user.firstTime !== 1) {
+                      localStorage.setItem("access_token", value["token"]);
+                      localStorage.setItem("auth_data", JSON.stringify(user));
+                      this.router.navigate(["./dashboard"], {});
+                    } else if (user.firstTime === 1) {
+                      localStorage.setItem('token', value['token']);
+                      localStorage.setItem('auth_data', JSON.stringify(user));
+                      this.router.navigate(["./info"], {});
+                    }
                   }
-                }
-              });
+                });
             } else if (result['error']) {
               console.log(result['error']);
             }
           }, error => console.error('Error :', error));
+
       }
     ).catch(error => {
-      console.error('Error 111111:', error);
+      console.error('socialSignIn Error:', error);
     });
 
 

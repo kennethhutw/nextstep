@@ -30,7 +30,8 @@
 
         </div>
         <div class="mt-2 mb-2">
-            <button class="btn btn-social google w-100 " (click)="socialSignIn('google')">
+            <button id="buttonDiv" #buttonDiv style="display: none;"></button>
+            <button class="btn btn-social google w-100 " (click)="socialSignIn2()">
                 <svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 10px;" width="32px" height="30px"
                     viewBox="0 0 32 30" fill="none">
                     <g clip-path="url(#clip0)">
@@ -64,7 +65,7 @@
 
                 <input type="text" class="form-control" id="inputName" aria-describedby="nameHelp"
                     formControlName="name" [ngClass]="{ 'is-invalid':  submitted && signupForm.get('name').invalid }"
-                    placeholder="User name">
+                    placeholder="{{ 'USERNAMEPLACE' | translate }}">
                 <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i>{{"USER_NAME_MUST" | translate
                     }}</span>
                 <div *ngIf="nameExistant">
@@ -90,7 +91,7 @@
             <div class="form-group">
                 <input #pw type="password" class="form-control" id="password" formControlName="password"
                     [ngClass]="{ 'is-invalid': (signupForm.get('password').touched || signupForm.get('password').dirty) && signupForm.get('password').invalid || submitted && signupForm.get('password').invalid }"
-                    placeholder="Enter password">
+                    placeholder="{{ 'PASSWORDPLACE' | translate }}">
                 <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i> {{"PASSWORDREQUIRED" |
                     translate }}
                 </span>

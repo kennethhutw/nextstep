@@ -98,8 +98,9 @@ app-pub-profile {
 
     .profile-header {
         display: grid;
-        grid-auto-flow: column;
-        grid-template-columns: 50% 50%;
+        grid-auto-flow: row;
+        // grid-auto-flow: column;
+        // grid-template-columns: 50% 50%;
     }
 
     .tags {

@@ -90,6 +90,33 @@ export class AuthStore {
       );
   }
 
+  socialInvitedSignup(invitationId,
+    projectId,
+    id: string,
+    name: string,
+    email: string,
+    token: string,
+    provider: string) {
+    return this.http
+      .post(`${environment.apiUrl}/authenticate/socialInvitedSignup`, {
+        invitationId,
+        projectId,
+        id,
+        name,
+        email,
+        token,
+        provider
+      })
+      .pipe(
+        tap((resResult) => {
+          const _user = resResult['data'];
+          this.subject.next(_user);
+          localStorage.setItem(AUTH_DATA, JSON.stringify(_user));
+        }),
+        shareReplay()
+      );
+  }
+
   login(email: string, password: string): Observable<resResult> {
     return this.http
       .post<resResult>(`${environment.apiUrl}/authenticate/emailLogin`, {
@@ -128,27 +155,33 @@ export class AuthStore {
     );
   }
 
-  googleLogin(id: string, name: string, email: string, token: string) {
+
+  socialLogin(id: string, name: string,
+    email: string, token: string,
+    provider: string) {
     return this.http
-      .post(`${environment.apiUrl}/authenticate/googleLogin`, {
+      .post(`${environment.apiUrl}/authenticate/socialLogin`, {
         'id': id,
         'name': name,
         'email': email,
         'token': token,
-        'provider': 'google'
+        'provider': provider
       });
   }
 
-  googleSignUp(id: string, name: string, email: string, token: string) {
+  socialSignUp(id: string, name: string,
+    email: string, token: string,
+    provider: string) {
     return this.http
-      .post(`${environment.apiUrl}/authenticate/googleSignUp`, {
+      .post(`${environment.apiUrl}/authenticate/socialSignUp`, {
         'id': id,
         'name': name,
         'email': email,
         'token': token,
-        'provider': 'google'
+        'provider': provider
       });
   }
+
 
 
   logout() {

@@ -1,4 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  AfterViewInit
+} from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
   DataService,
@@ -18,7 +23,12 @@ import {
   Router,
   ActivatedRoute
 } from "@angular/router";
-
+import {
+  AuthService,
+  GoogleLoginProvider,
+  FacebookLoginProvider
+} from "angular-6-social-login";
+declare var google: any;
 @Component({
   selector: "app-invitedSignup",
   templateUrl: "./invitedSignup.component.html",
@@ -27,7 +37,7 @@ import {
   ],
   encapsulation: ViewEncapsulation.None
 })
-export class InvitedSignupComponent implements OnInit {
+export class InvitedSignupComponent implements OnInit, AfterViewInit {
   projectId = "";
   email = "";
   name = "";
@@ -46,9 +56,13 @@ export class InvitedSignupComponent implements OnInit {
   checkData = null;
   errMessage = "";
 
-
+  msg = {
+    strJoin: "",
+    strProject: ""
+  }
 
   constructor(
+    private socialAuthService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
@@ -64,11 +78,14 @@ export class InvitedSignupComponent implements OnInit {
     let _lang = localStorage.getItem("lang");
     if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
-
+      this.init_terms(_lang)
+    } else {
+      this.init_terms('en')
     }
     this.dataSrv.langKey.subscribe((lang) => {
       if (!this.utilitySrv.IsNullOrEmpty(lang)) {
         this.translateSrv.use(lang);
+        this.init_terms(lang)
       }
     });
   }
@@ -100,13 +117,97 @@ export class InvitedSignupComponent implements OnInit {
     })
 
     this.authSrv.getCheckData().then(res => {
-      console.log("")
       if (res['result'] == 'successful') {
         this.checkData = res['data'];
       }
     }).catch(error => {
       console.error("check data failed", error);
     })
+  }
+
+  init_terms(lang) {
+    this.translateSrv.get("JOIN").subscribe((text: string) => {
+      this.msg.strJoin = text;
+    });
+
+    this.translateSrv.get("PROJECT").subscribe((text: string) => {
+      this.msg.strProject = text;
+    });
+
+
+  }
+
+
+
+  ngAfterViewInit(): void {
+    google.accounts.id.initialize({
+      client_id: "1093364473991-70t3haupsjd78sekbn2lkjrqlb5oo6c8.apps.googleusercontent.com",
+      ux_mode: "popup",
+      callback: (response: any) => this.handleGoogleSignIn(response)
+    });
+
+    google.accounts.id.renderButton(
+      document.getElementById("buttonDiv"),
+      {
+        theme: 'outline',
+
+        text: "透過 Google 登入"
+      }  // customization attributes
+    );
+
+  }
+
+  socialSignIn2() {
+    let btn = <HTMLElement>document.querySelector("div[role=button]");
+    if (btn instanceof HTMLElement) {
+      (<HTMLElement>document.querySelector("div[role=button]")).click();
+    }
+
+  }
+
+  handleGoogleSignIn(response: any) {
+
+
+    // This next is for decoding the idToken to an object if you want to see the details.
+    let base64Url = response.credential.split('.')[1];
+    let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    let jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+
+    var userData = JSON.parse(jsonPayload);
+
+    this.authSrv.socialInvitedSignup(
+      this.invitationId,
+      this.projectId,
+      userData.id,
+      userData.name,
+      userData.email,
+      userData.idToken,
+      'google').subscribe(result => {
+
+        if (result['result'] === 'successful') {
+          const user = result['data'];
+          if (user !== undefined) {
+
+            if (user.firstTime !== 1) {
+              localStorage.setItem("access_token", result["token"]);
+              localStorage.setItem("auth_data", JSON.stringify(user));
+              this.router.navigate(["./dashboard"], {});
+            } else if (user.firstTime === 1) {
+              localStorage.setItem('token', result['token']);
+              localStorage.setItem('auth_data', JSON.stringify(user));
+              this.router.navigate(["./info"], {});
+            }
+
+          }
+
+        } else if (result['error']) {
+          console.log(result['error']);
+        }
+      }, error => console.error('Error :', error));
+
   }
 
   inValid() {
@@ -137,26 +238,8 @@ export class InvitedSignupComponent implements OnInit {
 
         if (res['result'] == 'successful') {
 
-          this.activitySrv.insert(res['data']["id"],
-            this.projectId,
-            "join",
-            `${values.name} 加入${this.project.name}專案！`
-          ).subscribe(res => {
-            if (res['result'] === 'successful') { }
-          });
+          this.notification(res['data']["id"], values.name, this.projectId);
 
-          this.notificationSrv.infoProjectMembers(this.projectId,
-            res['data']["id"],
-            `${values.name} 加入${this.project.name}專案！`,
-            "1",
-            '0',
-            '0',
-            res['data']["id"]
-          ).then(res => {
-            if (res['result'] === 'successful') {
-
-            }
-          })
           this.router.navigate(["./info"], {});
         } else {
 
@@ -166,12 +249,74 @@ export class InvitedSignupComponent implements OnInit {
 
   }
 
-  socialSignIn(socialPlatform: string) {
-    this.authSrv.socialSignIn(socialPlatform).then(res => {
-      // this.router.navigate(["./profile/" + res['data'].id], {});
-      this.router.navigate(["./info"], {});
+  socialSignUp(socialPlatform: string) {
+    let socialPlatformProvider;
+    if (socialPlatform === 'google') {
+      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+    } else if (socialPlatform === 'facebook') {
+      socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID
+    }
+
+    this.socialAuthService.signIn(socialPlatformProvider).then(
+      (userData) => {
+
+        this.authSrv.socialInvitedSignup(
+          this.invitationId,
+          this.projectId,
+          userData.id,
+          userData.name,
+          userData.email,
+          userData.idToken,
+          socialPlatform).subscribe(result => {
+
+            if (result['result'] === 'successful') {
+              const user = result['data'];
+              if (user !== undefined) {
+
+                if (user.firstTime !== 1) {
+                  localStorage.setItem("access_token", result["token"]);
+                  localStorage.setItem("auth_data", JSON.stringify(user));
+                  this.router.navigate(["./dashboard"], {});
+                } else if (user.firstTime === 1) {
+                  localStorage.setItem('token', result['token']);
+                  localStorage.setItem('auth_data', JSON.stringify(user));
+                  this.router.navigate(["./info"], {});
+                }
+
+              }
+
+            } else if (result['error']) {
+              console.log(result['error']);
+            }
+          }, error => console.error('Error :', error));
+
+      }
+    ).catch(error => {
+      console.error('socialSignUp Error:', error);
+    });
+  }
+
+  notification(userId, usernName, projectId) {
+    this.activitySrv.insert(userId,
+      projectId,
+      "join",
+      `${usernName} ${this.msg.strJoin} ${this.project.name}${this.msg.strProject}！`
+    ).subscribe(res => {
+      if (res['result'] === 'successful') { }
     });
 
+    this.notificationSrv.infoProjectMembers(projectId,
+      userId,
+      `${usernName} ${this.msg.strJoin} ${this.project.name}${this.msg.strProject}！`,
+      "1",
+      '0',
+      '0',
+      userId
+    ).then(res => {
+      if (res['result'] === 'successful') {
+
+      }
+    })
   }
 
 }

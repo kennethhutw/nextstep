@@ -11,7 +11,7 @@ declare let gtag: Function;
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-  title = "Formosa";
+  title = "Next Step";
   constructor(public router: Router) {
 
 

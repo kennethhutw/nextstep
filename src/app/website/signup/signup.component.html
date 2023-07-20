@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="mt-2 mb-2">
-            <button class="btn facebook w-100 " (click)="socialSignIn('facebook')">
+            <button class="btn facebook w-100 " (click)="socialSignup('facebook')">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="30px" height="30px"
                     style="border-radius: 50% !important;">
                     <linearGradient id=" Ld6sqrtcxMyckEl6xeDdMa" x1="9.993" x2="40.615" y1="9.993" y2="40.615"
@@ -22,12 +22,13 @@
                     <path fill="#4267b2"
                         d="M26.707,29.301h5.176l0.813-5.258h-5.989v-2.874c0-2.184,0.714-4.121,2.757-4.121h3.283V12.46 c-0.577-0.078-1.797-0.248-4.102-0.248c-4.814,0-7.636,2.542-7.636,8.334v3.498H16.06v5.258h4.948v14.452 C21.988,43.9,22.981,44,24,44c0.921,0,1.82-0.084,2.707-0.204V29.301z" />
                 </svg>
-                {{"FACKBOOKSIGNIN" | translate }}
+                {{"FACKBOOKSIGNUP" | translate }}
             </button>
 
         </div>
         <div class="mt-2 mb-2">
-            <button class="btn btn-social google w-100 " (click)="socialSignIn('google')">
+            <button id="buttonDiv" #buttonDiv style="display: none;"></button>
+            <button class="btn btn-social google w-100 " (click)="socialSignIn2()">
                 <svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 10px;" width="32px" height="30px"
                     viewBox="0 0 32 30" fill="none">
                     <g clip-path="url(#clip0)">
@@ -50,7 +51,7 @@
                         </clipPath>
                     </defs>
                 </svg>
-                {{"GOOGLESIGNIN" | translate }}
+                {{"GOOGLESIGNUP" | translate }}
             </button>
         </div>
         <!-- <div class="separator"
@@ -62,7 +63,7 @@
 
                 <input type="text" class="form-control" id="inputName" aria-describedby="nameHelp"
                     formControlName="name" [ngClass]="{ 'is-invalid':  submitted && signupForm.get('name').invalid }"
-                    placeholder="User Name(4-10碼英文數字)">
+                    placeholder="{{ 'USERNAMEPLACE' | translate }}">
                 <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i>{{"USER_NAME_MUST" | translate
                     }}</span>
                 <div *ngIf="nameExistant">
@@ -88,7 +89,7 @@
             <div class="form-group">
                 <input #pw type="password" class="form-control" id="password" formControlName="password"
                     [ngClass]="{ 'is-invalid': (signupForm.get('password').touched || signupForm.get('password').dirty) && signupForm.get('password').invalid || submitted && signupForm.get('password').invalid }"
-                    placeholder="Password(英數至少4字)">
+                    placeholder="{{ 'PASSWORDPLACE' | translate }}">
                 <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i> {{"PASSWORDREQUIRED" |
                     translate }}
                 </span>
@@ -110,8 +111,6 @@
             <button type="submit" class="btn  w-100 d-flex align-items-center justify-content-center btn-signup"
                 [disabled]="inValid()" (click)="onSubmit()">
                 {{"SIGNUP" | translate }}
-                <!-- <div *ngIf="disableSignUp" class="spinner-border ml-3" style="height: 1.5rem; width: 1.5rem;"
-                                role="status"></div> -->
             </button>
         </form>
     </div>

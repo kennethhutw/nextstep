@@ -37,10 +37,12 @@ export class RecruitCardComponent {
     let _lang = localStorage.getItem("lang");
     if (!this.utility.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
+      this.skillOptions = this.appSettingsSrv.skillOptionsWithLang(_lang);
     }
     this.dataSrv.langKey.subscribe((lang) => {
       if (!this.utility.IsNullOrEmpty(lang)) {
         this.translateSrv.use(lang);
+        this.skillOptions = this.appSettingsSrv.skillOptionsWithLang(lang);
       }
     });
   }
