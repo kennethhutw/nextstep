@@ -4,46 +4,75 @@
         </div>
         <div class="col-sm-6">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 info_title_wrap">
 
                     <span class="title">{{ "PERSONALPROFILE" | translate }}</span>
                 </div>
                 <div class="col-md-12 mt-2 mb-2 align-items-center" id="select_img">
-                    <input id="profileImage" type="file" accept="image/gif, image/jpg, image/jpeg, image/png, image/gif"
-                        (change)="onDetectImage($event)" style="opacity:0; padding: 0px" />
+                    <input id="profileImage" #profileImageCrI type="file"
+                        accept="image/gif, image/jpg, image/jpeg, image/png, image/gif" (change)="onDetectImage($event)"
+                        style="opacity:0; padding: 0px" />
                     <label for="profileImage">
                         <!-- <span *ngIf="this.profileImage != null " (click)="onRemoveImg($event,'1')" class="close">&times;</span> -->
                         <button *ngIf="profileImage != null" class="image_deleted" (click)="onRemoveImg($event,'1')"><i
-                                class="fas fa-times"></i></button>
+                                class="fa fa-times"></i></button>
                         <img for="profileImage" class="profile_image" *ngIf="profileImage" [src]="profileImage"
                             alt="" />
                         <img for="profileImage" class="profile_image" *ngIf="!profileImage"
                             src="./../../../assets/icons/defaultUserIcon.png" alt="" />
+
                         <!-- <img for="profileImage" class="profile_image" *ngIf="!profileImage"
                             src="https://fakeimg.pl/350x350/?text=Image" alt="" /> -->
                     </label>
-
+                    <div *ngIf="!profileImage" id="edit-profileImage" for="profileImage"
+                        (click)="profileImageCrI.click()">
+                        <i class="material-icons">camera_alt</i>
+                    </div>
                 </div>
                 <div class="col-md-12 mt-2 mb-2 align-items-center" id="select_img">
                     <form style="width: 80%;" [formGroup]="profileForm">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">{{ "NAMEUP" | translate }}*</label>
-                            <input type="text" class="form-control rounded-0" id="name" formControlName="name"
-                                aria-describedby="emailHelp" placeholder="{{ 'NAMEUP' | translate }}">
-
+                            <label for="exampleInputName">{{ "NAMEUP" | translate }}<span
+                                    class="color-red">*</span></label>
+                            <input type="text" class="form-control" id="name" formControlName="name"
+                                [ngClass]="{ 'is-invalid':  submitted && profileForm.get('name').invalid }"
+                                aria-describedby="NameHelp">
+                            <div *ngIf="submitted && f.name.errors">
+                                <div class="error-msg" *ngIf="f.name.errors.required"><i
+                                        class="fas fa-exclamation-triangle"></i>{{"USER_NAME_MUST"
+                                    | translate
+                                    }}</div>
+                                <div class="error-msg" *ngIf="f.name.errors?.pattern"><i
+                                        class="fas fa-exclamation-triangle"></i>{{"NOT_ALLOW_SYMBOL"
+                                    | translate
+                                    }}</div>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">{{ "POSITION" | translate }}</label>
-                            <input type="text" class="form-control rounded-0" formControlName="position" id="position"
-                                placeholder="{{ 'POSITION' | translate }}">
+                            <label for="InputPosition">{{ "POSITION" | translate }}<span
+                                    class="color-red">*</span></label>
+                            <input type="text" class="form-control "
+                                [ngClass]="{ 'is-invalid':  submitted && profileForm.get('position').invalid }"
+                                formControlName="position" id="position">
+                            <div *ngIf="submitted && f.position.errors">
+                                <div class="error-msg" *ngIf="f.position.errors.required"><i
+                                        class="fas fa-exclamation-triangle"></i>{{"POSITION_MUST"
+                                    | translate
+                                    }}</div>
+                                <div class="error-msg" *ngIf="f.position.errors?.pattern"><i
+                                        class="fas fa-exclamation-triangle"></i>{{"NOT_ALLOW_SYMBOL"
+                                    | translate
+                                    }}</div>
+                            </div>
                         </div>
 
                         <div class="form-group">
 
-                            <label for="exampleInputPassword1">{{ "SKILLS"
-                                | translate }}</label>
-                            <tag-input class="input-frame" id="skills" formControlName="skills"
-                                [onlyFromAutocomplete]="true" secondaryPlaceholder="{{'SKILLSEXS' | translate }}">
+                            <label for="InputSkills">{{ "SKILLS"
+                                | translate }} ( {{this.profileForm.value.skills.length}} /5 )</label>
+                            <tag-input class="input-frame rounded-4" id="skills" formControlName="skills"
+                                [onlyFromAutocomplete]="true" [maxItems]='5'
+                                secondaryPlaceholder="{{'SKILLSEXS' | translate }}">
                                 <tag-input-dropdown [displayBy]="'text'" [appendToBody]="false"
                                     [autocompleteItems]="skillOptions" [showDropdownIfEmpty]="true"
                                     [dynamicUpdate]="false">
@@ -52,11 +81,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputPassword1">{{'BIO' | translate }}</label>
-                            <textarea class="form-control" type="text" id="bio" formControlName="bio" rows="4" cols="50"
-                                placeholder="{{'BIO' | translate }}"></textarea>
+                            <label for="InputBio">{{'BIO' | translate }}</label>
+                            <textarea class="form-control" (keydown)="wordCounter()" #text type="text" id="bio"
+                                formControlName="bio" rows="4" cols="50"></textarea>
+                            <div><span id="wordCount">({{ words }} / 300 )</span></div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mt-36">
                             <button type="button" (click)="NextStep(1)" class="btn btn-continue ">{{'NEXT' | translate
                                 }}</button>
                         </div>

@@ -109,6 +109,15 @@ export class JobComponent implements OnInit {
             this.currentRecruit.projectImageUrl = environment.assetUrl + this.currentRecruit.projectImageUrl;
           }
 
+          if (!this.utilitySrv.IsNullOrEmpty(this.currentRecruit.projectOthers)) {
+            this.currentRecruit.projectOthers.forEach(element => {
+
+              if (!this.utilitySrv.IsNullOrEmpty(element.skills)) {
+                element.skills = element.skills.split(',');
+              }
+            })
+          }
+
         }
         this.SpinnerService.hide();
       }).catch(error => {

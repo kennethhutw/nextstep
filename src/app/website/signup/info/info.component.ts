@@ -1,4 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ViewChild, ElementRef
+} from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
   UserService,
@@ -6,7 +10,8 @@ import {
 } from "../../../_services";
 import {
   FormBuilder,
-  FormGroup
+  FormGroup,
+  Validators
 } from "@angular/forms";
 import { Utility } from "../../../_helpers";
 import {
@@ -28,7 +33,7 @@ export class SignupInfoComponent implements OnInit {
   currentUser: any = null;
   profileImage = null;
   profileImageFile = null;
-  step = 0;
+  step = 1;
   isProject = false;
   isPartner = false;
   beMentor = false;
@@ -38,7 +43,11 @@ export class SignupInfoComponent implements OnInit {
 
   skillOptions: any[] = [];
   name: string = "";
+  submitted = false;
 
+  wordCount: any;
+  words = 0;
+  @ViewChild("text") text: ElementRef;
 
   constructor(
     private route: ActivatedRoute,
@@ -66,12 +75,12 @@ export class SignupInfoComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = this.authSrv.getUserData();
-    const emailRegex = /^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const _regex = /([A-Za-z0-9]+)/g;
     this.profileForm = this.formBuilder.group({
-      name: [""],
-      position: [""],
+      name: ["", [Validators.required, Validators.pattern('^[a-zA-Z 0-9]*$')]],
+      position: ["", [Validators.required, Validators.pattern('^[a-zA-Z 0-9]*$')]],
       company: [""],
-      bio: [""],
+      bio: ["", Validators.maxLength(300)],
       skills: [""],
       website: [""],
       github: [""],
@@ -86,6 +95,10 @@ export class SignupInfoComponent implements OnInit {
 
   get f() {
     return this.profileForm.controls;
+  }
+
+  inValid() {
+    return this.profileForm.invalid;
   }
 
   onSelectedProject() {
@@ -168,11 +181,20 @@ export class SignupInfoComponent implements OnInit {
 
   }
 
-
+  wordCounter() {
+    //alert(this.text.nativeElement.value)
+    this.wordCount = this.text ? this.text.nativeElement.value.split(/\s+/) : 0;
+    this.words = this.wordCount ? this.wordCount.length : 0;
+  }
 
   NextStep(value) {
+
+    this.submitted = true;
+    if (this.profileForm.invalid) {
+      return;
+    }
     this.step = value;
-    if (this.step === 0) {
+    if (this.step === 1) {
       this.name = this.profileForm.value.name;
     }
   }

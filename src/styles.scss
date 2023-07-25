@@ -194,6 +194,14 @@ body {
   margin: 0px;
   padding: 0px;
   overflow-x: hidden;
+
+  a {
+    color: #56BDF4;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
 }
 
 .nav-link {

@@ -34,6 +34,7 @@ export class FindMemberComponent implements OnInit {
   defaultProfileLogo = null;
   filterValue = null;
   searchText = '';
+  isInit: boolean = true;
   filterCondition = {
     online: false,
     offline: false,
@@ -110,14 +111,20 @@ export class FindMemberComponent implements OnInit {
             if (!this.utilitySrv.IsNullOrEmpty(element.imageUrl)) {
               element.imageUrl = environment.assetUrl + element.imageUrl;
             }
+
+            if (this.utilitySrv.IsNullOrEmpty(element.bio)) {
+              element.bio = "";
+            }
           });
         }
         this.displayItems = this.items ? this.items : [];
       }
       this.SpinnerService.hide();
+      this.isInit = false;
     }).catch(error => {
       console.error("error", error);
       this.SpinnerService.hide();
+      this.isInit = false;
     })
   }
 

@@ -134,5 +134,9 @@ app-signin {
         line-height: 56px;
         text-align: right;
         margin-top: 10px;
+
+        a {
+            color: rgb(33, 37, 41) !important;
+        }
     }
 }

@@ -77,7 +77,13 @@
             <div class="col-md-12" style="display: inline-flex;">
               <div class="col-md-8">
                 <p class="position"><b>{{item.position}}</b></p>
-                <small>{{item.skills}}</small>
+                <small><ng-container *ngIf="item.skills">
+
+                    <ng-container *ngFor=" let tag of item.skills; let i=index">
+                      <span *ngIf="!this.utilitySrv.IsNullOrEmpty(tag)"
+                        class="tag tag-{{tag}} mr--5">{{convertTag(tag)}}</span>
+                    </ng-container>
+                  </ng-container></small>
               </div>
               <div *ngIf="currentUser" class="col-md-4 btn_items">
                 <i *ngIf="item.isCollected" (click)="onClickJobCollect(item.id, item.isCollected)"
@@ -93,7 +99,7 @@
               {{item.scopes}}
             </div>
             <div class="col-md-12 text-right">
-              <a class="clickable text-blue" [routerLink]="['/job/',item.id ]">{{ "VIEWDETAILS" |
+              <a class="clickable " [routerLink]="['/job/',item.id ]">{{ "VIEWDETAILS" |
                 translate
                 }}</a>
             </div>
@@ -125,7 +131,7 @@
               <i *ngIf="item.isCollected" (click)="onClickJobCollect(item.id, item.isCollected)"
                 class="fas fa-bookmark collected"></i>
               <i *ngIf="!item.isCollected" (click)="onClickJobCollect(item.id, item.isCollected)"
-                class="far fa-bookmark color-gray"></i>
+                class="far fa-bookmark color-gray" tooltip="{{ 'COLLECT' | translate }}"></i>
               <i class="far fa-envelope color-gray" data-toggle="modal" data-target="#modal_apply" data-dismiss="modal"
                 (click)="onSelectItem(item)" tooltip="{{ 'APPLY' | translate }}"></i>
             </div>
@@ -135,7 +141,7 @@
             {{item.scopes}}
           </div>
           <div class="col-md-12 text-right">
-            <a class=" clickable text-blue" [routerLink]="['/job/',item.id ]">{{ "VIEWDETAILS" |
+            <a class=" clickable " [routerLink]="['/job/',item.id ]">{{ "VIEWDETAILS" |
               translate
               }}</a>
           </div>
@@ -143,7 +149,7 @@
       </ng-container>
       <div class=" empty text-center">
 
-        <a class="clickable text-blue" [routerLink]="['/recruit/' ]">{{ "VIEWMORE" |
+        <a class="clickable " [routerLink]="['/recruit/' ]">{{ "VIEWMORE" |
           translate
           }}</a>
       </div>

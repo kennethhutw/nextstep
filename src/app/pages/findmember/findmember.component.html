@@ -125,7 +125,7 @@
     </aside>
 
   </div>
-  <div>
+  <div *ngIf="!isInit">
     <div class="row" *ngIf="foundItemNum >0">
       <p> {{foundItemNum}} {{ "NFOUND"
         | translate }}</p>

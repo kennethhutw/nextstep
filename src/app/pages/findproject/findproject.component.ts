@@ -23,6 +23,7 @@ export class FindProjectComponent implements OnInit {
   displayItems = [];
   foundItemNum: number = -1;
   currentUser;
+  isInit: boolean = true;
   filterCondition = {
     isFindPartner: false,
     isFunding: false,
@@ -91,12 +92,14 @@ export class FindProjectComponent implements OnInit {
       if (res['result'] == 'successful') {
         this.items = res['data'];
         this.displayItems = this.items ? this.items : [];
-        //this.foundItemNum = this.items.length;
+
       }
       this.SpinnerService.hide();
+      this.isInit = false;
     }).catch(error => {
       console.error("error", error);
       this.SpinnerService.hide();
+      this.isInit = false;
     })
   }
 
