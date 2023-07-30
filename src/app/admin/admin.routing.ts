@@ -14,7 +14,8 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'users/info/:id', component: Containers.UserInfoComponent },
   { path: 'notifications', component: Containers.NotificationsComponent },
   { path: 'usersetting/:id', component: Containers.UserSettingComponent },
-
+  { path: 'projects', component: Containers.AdminProjectsComponent },
+  { path: 'projects/:id', component: Containers.ProjectInfoComponent },
   { path: 'delegate', component: Containers.AdminDelegateEmailComponent },
 
   { path: 'settings', component: Containers.AdminSettingsComponent },

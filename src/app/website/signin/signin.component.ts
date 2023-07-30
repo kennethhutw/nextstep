@@ -139,13 +139,13 @@ export class SigninComponent implements OnInit, AfterViewInit {
 
 
     var userData = JSON.parse(jsonPayload);
-
+    debugger;
     this.authSrv.socialLogin(userData.id,
       userData.name,
       userData.email,
       userData.idToken,
       'google').subscribe(result => {
-
+        debugger;
         if (result['result'] === 'successful') {
           const user = result['data'];
           if (user !== undefined) {

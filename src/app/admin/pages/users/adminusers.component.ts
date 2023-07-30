@@ -3,9 +3,14 @@ import {
   ViewChild,
   HostListener
 } from '@angular/core';
-import { UserService, ToastService } from '../../../_services';
+import {
+  UserService,
+  ToastService,
+  ConfirmDialogService
+} from '../../../_services';
 import { Subject } from 'rxjs';
 import { BsDaterangepickerDirective } from 'ngx-bootstrap/datepicker';
+
 import {
   trigger,
   state,
@@ -55,6 +60,7 @@ export class AdminUsersComponent implements OnInit {
   };
 
   sendEmail = '';
+  searchUserName = '';
   // fiter
   filterPanelOpen: string;
   FromDate: string;
@@ -72,7 +78,8 @@ export class AdminUsersComponent implements OnInit {
 
   constructor(
     private toastSrv: ToastService,
-    private userSrv: UserService
+    private userSrv: UserService,
+    private confirmDialogSrv: ConfirmDialogService
   ) { }
 
   ngOnInit() {
@@ -137,18 +144,25 @@ export class AdminUsersComponent implements OnInit {
 
   deleteUser(id, name) {
     try {
-      this.userSrv.deleteUser(id).subscribe(res => {
-        if (res["result"] == "successful") {
-          this.getAllUser();
-          this.toastSrv.showToast('Success',
-            "delete " + name,
-            this.toastSrv.iconClasses.success);
-        } else {
-          this.toastSrv.showToast('Failed',
-            res['message'],
-            this.toastSrv.iconClasses.error);
-        }
+
+      this.confirmDialogSrv.confirmThis("確認要刪除此成員", () => {
+        this.userSrv.deleteUser(id).subscribe(res => {
+          if (res["result"] == "successful") {
+            this.getAllUser();
+            this.toastSrv.showToast('Success',
+              "delete " + name,
+              this.toastSrv.iconClasses.success);
+          } else {
+            this.toastSrv.showToast('Failed',
+              res['message'],
+              this.toastSrv.iconClasses.error);
+          }
+        })
+
+      }, () => {
+
       })
+
     } catch (error) {
       console.error('delete user failed', error);
       this.toastSrv.showToast('Failed',

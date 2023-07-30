@@ -133,6 +133,8 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+              [routerLink]="['/admin']">管理員</a>
+            <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
               [routerLink]="['/u/',currentUser?.uid]">{{ "MYPROFILE" | translate }}</a>
             <a class="dropdown-item" [routerLink]="['/dashboard/collection']">{{ "MYCOLLECTION" | translate }}</a>
             <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"

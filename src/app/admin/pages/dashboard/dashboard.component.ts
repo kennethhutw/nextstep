@@ -108,8 +108,8 @@ export class DashboardComponent implements OnInit {
   };
   Nums: any;
   total = 0;
-  artists = 0;
-  collectors = 0;
+  usersNum = 0;
+  projectNum = 0;
   totalEdition = 0;
   soldArtwork = 0;
   constructor(
@@ -118,32 +118,20 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
 
-    this.adminSrv.userNumber().subscribe(res => {
+    this.adminSrv.getStatistics().subscribe(res => {
       if (res["result"] == "successful") {
         let data = res["data"];
         if (data != null) {
-          this.total = data[0]["total"];
-          this.artists = data[0]["artist"];
-          this.collectors = data[0]["collector"];
+
+          this.usersNum = data["users"];
+          this.projectNum = data["projects"];
         }
       }
     }, error => {
       console.error("error ", error);
     })
 
-    this.adminSrv.artworkNumber().subscribe(res => {
 
-      if (res["result"] == "successful") {
-        let data = res["data"];
-        if (data != null) {
-          this.totalEdition = data[0]["total"];
-          this.soldArtwork = data[0]["sold"];
-
-        }
-      }
-    }, error => {
-      console.error("error ", error);
-    })
 
     this.adminSrv.getNewSignUpsperDay().subscribe(res => {
       if (res["result"] == "successful") {
@@ -159,7 +147,6 @@ export class DashboardComponent implements OnInit {
           _x.push(this.ConvertUnixTimeToDateString(element.x));
         });
         this.initialChart(_y, _x);
-        console.log(" ================= ", _y);
       }
     }, error => {
       console.error("error ", error);

@@ -125,6 +125,7 @@ export class AuthStore {
       })
       .pipe(
         tap((resResult) => {
+
           const _user = resResult.data as UserInterface;
 
           localStorage.setItem("access_token", resResult["token"]);

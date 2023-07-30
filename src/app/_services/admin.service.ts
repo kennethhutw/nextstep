@@ -25,12 +25,12 @@ export class AdminService {
         }
     }
 
-    public userNumber() {
-        return this.http.get<any>(`${environment.apiUrl}/admin/userNumber`);
+    public getStatistics() {
+        return this.http.get<any>(`${environment.apiUrl}/admin/statistics`);
     }
 
-    artworkNumber() {
-        return this.http.get<any>(`${environment.apiUrl}/admin/artworkNumber`);
+    public projectNumber() {
+        return this.http.get<any>(`${environment.apiUrl}/admin/projectNumber`);
     }
 
 

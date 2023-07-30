@@ -12,21 +12,27 @@ import { UserInfoComponent } from './pages/users/info/info.component';
 
 import { AdminSettingsComponent } from './pages/settings/settings.component';
 
+import { AdminProjectsComponent } from './pages/projects/projects.component';
+import { ProjectInfoComponent } from './pages/projects/info/info.component';
+import { ProjectSettingComponent } from './pages/projects/projectsetting/setting.component';
+
 
 export const containers = [
+    AdminProjectsComponent,
+    AdminDelegateEmailComponent,
+    AdminSettingsComponent,
+    AdminUsersComponent,
     DashboardComponent,
     TablesComponent,
     FormsComponent,
     TypographyComponent,
     MapsComponent,
     NotificationsComponent,
-    AdminUsersComponent,
+    ProjectInfoComponent,
+    ProjectSettingComponent,
     UserSettingComponent,
-
-    AdminDelegateEmailComponent,
     UserInfoComponent,
 
-    AdminSettingsComponent
 ];
 
 export { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -41,3 +47,7 @@ export { AdminDelegateEmailComponent } from './pages/delegateEmail/delegate-emai
 export { UserInfoComponent } from './pages/users/info/info.component';
 
 export { AdminSettingsComponent } from './pages/settings/settings.component';
+
+export { AdminProjectsComponent } from './pages/projects/projects.component';
+export { ProjectInfoComponent } from './pages/projects/info/info.component';
+export { ProjectSettingComponent } from './pages/projects/projectsetting/setting.component';

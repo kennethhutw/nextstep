@@ -33,7 +33,7 @@ export class SignupInfoComponent implements OnInit {
   currentUser: any = null;
   profileImage = null;
   profileImageFile = null;
-  step = 1;
+  step = 0;
   isProject = false;
   isPartner = false;
   beMentor = false;
@@ -74,6 +74,7 @@ export class SignupInfoComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.currentUser = this.authSrv.getUserData();
     const _regex = /([A-Za-z0-9]+)/g;
     this.profileForm = this.formBuilder.group({
@@ -171,6 +172,7 @@ export class SignupInfoComponent implements OnInit {
         formData.append("profileImage", this.profileImageFile);
 
       this.userSrv.updateUserBasicInfo(formData).subscribe(res => {
+
         if (res['result'] == 'successful') {
           this.router.navigate(["./dashboard"], {});
         }

@@ -200,7 +200,7 @@ export class FindMemberComponent implements OnInit {
   }
 
   onSkills(event) {
-    console.log("===============", event);
+
     if (this.filterCondition.design &&
       this.filterCondition.finance &&
       this.filterCondition.marketing &&

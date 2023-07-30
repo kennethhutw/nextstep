@@ -10,7 +10,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getAllUser() {
-    return this.http.get(`${environment.apiUrl}/users/getAllUser`, {});
+    return this.http.get(`${environment.apiUrl}/users/allUser`, {});
   }
 
   getUserIDByEmail(email: string) { }
