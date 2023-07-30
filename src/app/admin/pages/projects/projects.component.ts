@@ -40,6 +40,7 @@ export class AdminProjectsComponent implements OnInit {
   displayItems: Array<any> = [];
   isLoading = true;
   currentUser
+  searchName = '';
 
   constructor(
     private toastSrv: ToastService,
