@@ -1,0 +1,28 @@
+app-msg-bar {
+
+  .header {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: 1fr;
+    grid-template-columns: 70px auto 100px;
+    gap: 20px;
+  }
+
+  .profile-detail {
+    display: grid;
+  }
+
+  .profile-image {
+    vertical-align: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+  }
+
+  .createdTime {
+    color: rgba(52, 58, 64, 0.5);
+    float: right;
+  }
+}

@@ -1,0 +1,16 @@
+<a *ngIf="preview.url" href="{{preview.url}}" target="_blank" class="preview">
+  <div [hidden]="!preview.image">
+    <img class="image" [src]="preview.image" (error)="onImgError($event)">
+  </div>
+  <div class="preview-text">
+    <div [hidden]="!preview.url" class="url">
+      <span></span>
+    </div>
+    <div [hidden]="!preview.title" class="title">
+      <span>{{preview.title}}</span>
+    </div>
+    <div [hidden]="!preview.description" class="description">
+      <span>{{preview.description}}</span>
+    </div>
+  </div>
+</a>

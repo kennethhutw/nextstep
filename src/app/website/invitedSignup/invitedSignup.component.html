@@ -69,7 +69,7 @@
                 <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i>{{"USER_NAME_MUST" | translate
                     }}</span>
                 <div *ngIf="nameExistant">
-                    <p class="invalid">
+                    <p class="invalid-feedback">
                         <i class="fas fa-exclamation-triangle"></i>{{"USER_NAME_TAKEN" | translate }}
                     </p>
                 </div>
@@ -83,7 +83,7 @@
                 <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i>{{"EMAILFORMATNOT" | translate
                     }}</span>
                 <div *ngIf="emailExistant">
-                    <p class="invalid">
+                    <p class="invalid-feedback">
                         <i class="fas fa-exclamation-triangle"></i>{{"EMAILREGISTERED" | translate }}
                     </p>
                 </div>
@@ -96,13 +96,13 @@
                     translate }}
                 </span>
                 <div *ngIf="InvalidUser">
-                    <p class="invalid">
+                    <p class="invalid-feedback">
                         <i class="fas fa-exclamation-triangle"></i> {{"EMAILORPASSWORDNOTCORRECTMSG" |
                         translate }}
                     </p>
                 </div>
                 <div *ngIf="unverifiedUser">
-                    <p class="invalid">
+                    <p class="invalid-feedback">
                         <i class="fas fa-exclamation-triangle"></i>{{"CHECKVERIFYEMAILMSG" |
                         translate }}
                     </p>

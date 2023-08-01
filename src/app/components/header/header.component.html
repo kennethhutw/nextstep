@@ -29,6 +29,11 @@
           <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
             routerLink="/members" (click)="ToggleNavBar()">{{ "PARTNERS" | translate }}</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+            routerLink="/inspiration" (click)="ToggleNavBar()">{{ "INSPIRATION" | translate }}</a>
+        </li>
+
         <!-- <li class="nav-item">
           <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
             routerLink="/mentors" (click)="ToggleNavBar()">導師</a>
@@ -79,10 +84,10 @@
             aria-labelledby="navbarLangDropdown">
             <div class="lang-box">
               <div class="dropdown-item cursor-pointer" (click)="changeLanguage('zh-tw')"
-                [ngClass]="{ 'selected': this.SelectedLang == 'zh-tw'  }">繁體中文
+                [ngClass]="{ 'selected': this.SelectedLang == 'zh-tw'  }">繁中
               </div>
               <div class="dropdown-item cursor-pointer" (click)="changeLanguage('zh-cn')"
-                [ngClass]="{ 'selected': this.SelectedLang == 'zh-cn'  }">简体中文
+                [ngClass]="{ 'selected': this.SelectedLang == 'zh-cn'  }">简中
               </div>
               <div class="dropdown-item cursor-pointer" (click)="changeLanguage('en')"
                 [ngClass]="{ 'selected': this.SelectedLang == 'en'  }">English</div>
@@ -106,7 +111,7 @@
                   <a *ngIf="i<5" class="notification" routerLink="/dashboard/notifications">
                     <i class="far fa-bell mt-15"></i>
                     <div class="notifciation-row">
-                      <span> {{noti?.content.length>15?noti?.content.substring(0,15)+"...":noti?.content}}</span>
+                      <span> {{noti?.content.length>20?noti?.content.substring(0,20)+"...":noti?.content}}</span>
                       <span class="notifciation-date"> {{(noti?.createdAt !==null) ?
                         this.utility.timeSince(noti.createdAt ) : ''
                         }}</span>
@@ -190,7 +195,7 @@
       <button (click)="onSignIn()" class="model_btn_normal mb-2 w-100">
         {{ "SIGNIN" | translate }}
       </button>
-      <div *ngIf="IsSignInFailed" class="invalid">{{LoginFailedMsg}}</div>
+      <div *ngIf="IsSignInFailed" class="invalid-feedback">{{LoginFailedMsg}}</div>
       <div class="w-100">
         <div class="float-left">
           <a href="#" data-toggle="modal" data-target="#modal_register" data-dismiss="modal">

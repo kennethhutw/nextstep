@@ -204,6 +204,31 @@ body {
   }
 }
 
+//cookie
+
+#cookieconsent .cc-color-override--1172037365.cc-window {
+  align-items: center;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 60% 40%;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  gap: 42px;
+  background-color: #fff;
+  border: 1px solid #CFD2DA !important;
+
+  .cc-message {
+    text-align: end;
+  }
+
+  .cc-compliance .cc-btn {
+    background: #56BDF4;
+    color: #fff;
+    padding: 6px 25px;
+    border-radius: 4px;
+  }
+}
+
 .nav-link {
   background-color: transparent !important;
   white-space: nowrap;
@@ -453,6 +478,13 @@ a.nav-link:hover {
 
 
 /** buttons **/
+button:disabled,
+button[disabled] {
+  border: 1px solid #F1F2F5 !important;
+  background-color: #F1F2F5 !important;
+  color: #CFD2DA !important;
+}
+
 .btn-standard {
   cursor: pointer;
   color: #8F95A8 !important;

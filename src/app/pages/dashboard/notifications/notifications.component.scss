@@ -1,5 +1,27 @@
 app-my-notifications {
 
+  .header {
+    padding-bottom: 24px;
+    border-bottom: 1px solid #E3E5EC;
+  }
+
+  .first_row {
+    margin-top: 32px;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+  }
+
+  .last_row {
+
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 9px;
+  }
+
+  .clean-column {
+    text-align: end;
+    padding-right: 0px;
+  }
+
   .msg-bar {
     display: grid;
     grid-template-columns: 3% auto 10%;

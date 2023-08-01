@@ -1,0 +1,303 @@
+<div class=" mb-30">
+    <div class="filter">
+
+        <input type="text" class="form-control search" [(ngModel)]="searchText" aria-label=""
+            aria-describedby="button-addon2" placeholder="{{ 'INPUT_KW' | translate }}" />
+
+        <span></span>
+        <button type="button" style="margin: auto;" [disabled]="!this.currentUser" class="btn btn-blue"
+            data-toggle="modal" [attr.data-target]="'#proposal'"><i class="fas fa-plus"></i> {{
+            "NEW" | translate }}
+        </button>
+
+    </div>
+    <ul class="nav mb-20" id="fbTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" [ngClass]="{ 'active': currentTab === 'stories' }" role="tab"
+                (click)="changeTab('stories')">創意實踐</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'ideas' }" role="tab"
+                (click)="changeTab('ideas')">點子激發</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'myproposal' }" role="tab"
+                (click)="changeTab('experience')">經驗之談</a>
+        </li>
+
+
+    </ul>
+    <!-- <app-linkpreview
+        link="https://www.forbes.com/sites/jodiecook/2019/07/15/side-project/?sh=6778a22339b7"></app-linkpreview> -->
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane  active" id="all" role="tabpanel" aria-labelledby="all-tab">
+            <div class="empty text-center" *ngIf="displayItems.length ===0">
+                <div class="col-md-12 empty-text-center qa-container">
+                    <img src="assets/icons/noFeedback.svg" alt="no-comment">
+                    <span>{{ "NOFEEDBACK" | translate }}</span>
+                </div>
+            </div>
+            <ng-container *ngIf="displayItems.length >0">
+                <ng-container
+                    *ngFor="let item of  ( displayItems | itemFilter: searchText : 'content' ); let i = index">
+                    <div *ngIf="item.type ==='content'; else preview">
+                        <div class="row bar">
+                            <div class="col-md-12 proposal">
+                                <img class="profile-image rounded-circle" src="{{ item.imageUrl }}"
+                                    (error)="onImgError($event)" alt="" />
+                                <div class="profile-detail">
+                                    <span>{{item.userName}}</span>
+                                    <span class="createdTime">{{(item?.createdAt !==null) ?
+                                        this.utilitySrv.timeSince(item.createdAt ) : ''
+                                        }}</span>
+                                </div>
+                                <div class="category" [ngSwitch]="item.category">
+                                    <div class="dropdown" *ngIf="item.createdBy === currentUser?.id"><i
+                                            class="fas fa-ellipsis-h" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="true" tooltip="更多"></i>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item color-gray" data-toggle="modal"
+                                                [attr.data-target]="'#modifiedproposal'" (click)="onModified(item)"><i
+                                                    class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{ "EDIT" | translate
+                                                }}</a>
+                                            <a class="dropdown-item color-gray" data-toggle="modal"
+                                                [attr.data-target]="'#deleteCommentModal'"
+                                                (click)="onClickDelete(item)"><i class="fas fa-trash"></i>&nbsp;&nbsp;{{
+                                                "DELETE" | translate }}</a>
+                                        </div>
+
+                                    </div>
+                                    <ui-tag *ngSwitchCase="'improvement'" [class]="'tag-improve'"
+                                        [tag]="this.strImprovement"></ui-tag>
+                                    <ui-tag *ngSwitchCase="'help'" [class]="'tag-help'" [tag]="this.strHelp"></ui-tag>
+                                    <ui-tag *ngSwitchCase="'bug'" [class]="'tag-bug'" [tag]="this.strBug"></ui-tag>
+
+                                </div>
+
+
+                            </div>
+                            <div class="col-md-12 content">
+                                {{item.content}}
+                            </div>
+
+                            <div class="col-md-12 footer">
+                                <div class="cell color-gray" (click)="onVote(event,'likes',item.id)">
+                                    <img src="assets/icons/arrow_up.png" alt="arrow_up">
+                                    <span>{{item.like_count}}</span>
+                                    <!-- <i class="fas fa-arrow-up"></i> -->
+                                </div>
+                                <div class="cell color-gray" (click)="onVote(event,'dislikes',item.id)">
+                                    <img src="assets/icons/arrow_down.png" alt="arrow_down">
+                                    <span>{{item.dislike_count}}</span>
+                                    <!-- <i class="fas fa-arrow-down"></i> -->
+                                </div>
+                                <div *ngIf="item.comment_count ==0" class="cell color-gray" data-toggle="modal"
+                                    [attr.data-target]="'#new_comment'" (click)="new_comment(item)">
+                                    <img src="assets/icons/comment.png" class="mt-5 color-gray" alt="comment">
+                                    <span>{{item.comment_count}}</span>
+                                    <!-- <i class="far fa-comment"></i> -->
+                                </div>
+
+                                <div *ngIf="item.comment_count >0" class="cell color-gray"
+                                    (click)="show_comment(this.hideall,item)">
+                                    <img src="assets/icons/comment.png" class="mt-5 color-gray" alt="comment">
+                                    <span class="color-gray">{{item.comment_count}}</span>
+                                    <!-- <i class="far fa-comment"></i> -->
+                                </div>
+                                <div class="cell"></div>
+
+                            </div>
+
+                        </div>
+
+                        <div [hidden]="!hideall[item.id]">
+                            <ng-container *ngFor="let comment of  item.comments; let j = index">
+                                <div class="row comment">
+                                    <div class="col-md-12 profile">
+                                        <img class="profile-image-small rounded-circle" src="{{ item.imageUrl }}"
+                                            (error)="onImgError($event)" alt="" />
+                                        <div class="profile-detail">
+                                            <div>
+                                                <span>{{comment.userName}}</span>
+                                                <span class="createdTime">{{(comment?.createdAt !==null) ?
+                                                    this.utilitySrv.timeSince(comment.createdAt ) : ''
+                                                    }}</span>
+                                            </div>
+                                            <div class="content">
+                                                {{comment.content}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div *ngIf="j == item.comments.length -1" class="row new_comment">
+                                    <input type="text" #yourInput (keyup.enter)="onComment($event, item)"
+                                        class="form-control" placeholder="輸入留言" aria-describedby="">
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <ng-template #preview>
+
+                        <app-linkpreview [metadata]='item.metadata'></app-linkpreview>
+                    </ng-template>
+                </ng-container>
+            </ng-container>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="modal fade" id="proposal" tabindex="-1" aria-labelledby="proposal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="proposal-title">New</p>
+                <button type="button" id="close_new_proposl" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body content">
+                <form [formGroup]="inspirationForm">
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <div class="form-group row">
+                                <label for="InputCategory" class="col-sm-4 col-form-label">類別 :</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" style="width: 150px;" formControlName="category"
+                                        (change)="onCategoryChange($event)">
+                                        <option value="">{{ "PLEASESELECT" | translate }}</option>
+                                        <option value="stories">創意實踐</option>
+                                        <option value="ideas">點子激發</option>
+                                        <option value="experience">經驗之談</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group row">
+                                <label for="InputCategory" class="col-sm-4 col-form-label">內文 :</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" style="width: 150px;" formControlName="type"
+                                        (change)="onTypeChange($event)">
+                                        <option value="">{{ "PLEASESELECT" | translate }}</option>
+                                        <option value="content">內文</option>
+                                        <option value="link">連結</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row item-center">
+
+                        <textarea *ngIf="f?.type.value=='content'" class="form-control w-96" type="text"
+                            formControlName="content" id="" rows="4" cols="50"></textarea>
+
+                        <input type="text" *ngIf="f?.type.value=='link'" class="form-control w-96 "
+                            formControlName="content" aria-label="" (keyup.enter)="onLinkEnter($event)"
+                            aria-describedby="button-addon2" />
+                        <app-linkpreview *ngIf="link !==''" link="{{link}}"
+                            (onMetaData)="onMetaData($event)"></app-linkpreview>
+                    </div>
+                    <div class="row item-end">
+                        <button type="button" class="btn btn-transparent  mr-10" data-dismiss="modal"
+                            aria-label="Close">{{"CANCEL" | translate }}
+                        </button>
+                        <button type="button" class="btn btn-blue  mr-10" (click)="onSubmit()">
+                            {{"SUBMIT" | translate }}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modifiedproposal" tabindex="-1" aria-labelledby="modifiedproposal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="proposal-title">{{ "FEEDBACKTITLE" | translate }}</p>
+                <button type="button" id="close_modify_proposl" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body content">
+
+                <div class="ctl-center ">
+                    <select class="form-control" style="width: 150px;" [value]="proposaltype"
+                        (change)="onTypeChange($event)">
+                        <option value="">{{ "PLEASESELECT" | translate }}</option>
+                        <option value="improvement">{{ "IMPROVEMENT" | translate }}</option>
+                        <option value="bug">{{ "BUG" | translate }}</option>
+                        <option value="help">{{ "HELP" | translate }}</option>
+                    </select>
+                </div>
+                <div class="row item-center">
+                    <textarea class="form-control w-96" type="text" [(ngModel)]="propsoalContent" id="" rows="4"
+                        cols="50"></textarea>
+                </div>
+                <div class="row item-end">
+                    <button type="button" class="btn btn-transparent mr-10" data-dismiss="modal" aria-label="Close">{{
+                        "CANCEL" | translate }}
+                    </button>
+                    <button type="button" class="btn btn-blue  mr-10" (click)="onModifiedSubmit()">
+                        {{ "SUBMIT" | translate }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="new_comment" tabindex="-1" aria-labelledby="new_comment" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1></h1>
+                <button type="button" id="close_new_comment" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body content">
+                <div class="row item-center">
+                    <p>{{this.editedItem?.detail?this.editedItem?.detail:""}}</p>
+                </div>
+
+                <div class="row item-center">
+                    <textarea class="form-control" type="text" [(ngModel)]="commentContent" id="" rows="4"
+                        cols="50"></textarea>
+                </div>
+                <div class="row item-center">
+                    <button type="button" class="btn btn-transparent mr-10" data-dismiss="modal" aria-label="Close">{{
+                        "CANCEL" | translate }}
+                    </button>
+                    <button type="button" class="btn btn-blue  mr-10" (click)="onCommentSubmit()">
+                        {{ "SUBMIT" | translate }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-dialog></app-dialog>
+<div class="modal fade" id="deleteCommentModal" tabindex="-1" aria-labelledby="deleteCommentModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">{{"CONFIRMDELETE" | translate }}?</span>
+                <button type="button" #closeExpbutton class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body content">
+                <div class="row item-end">
+                    <button type="button" class="btn btn-white  mr-10" data-dismiss="modal"
+                        aria-label="Close">{{"CANCEL" | translate }}
+                    </button>
+                    <button type="button" class="btn btn-delete mr-10" (click)="onDeleteSubmit()">
+                        {{"SUBMIT" | translate }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

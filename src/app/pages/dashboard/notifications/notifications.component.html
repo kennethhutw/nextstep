@@ -1,7 +1,12 @@
-<div class="row">
-    <div class="col-md-12">
-        <h1>{{ "MYNOTI"
-            | translate }}</h1>
+<div class="row header">
+    <div class="col-md-8">
+        <h2>{{ "MYNOTI" | translate }}</h2>
+    </div>
+    <div class="col-md-4 clean-column">
+        <button type="button" class="btn btn-transparent " aria-label="Close" (click)="onReadAll()">
+            <span aria-hidden="true">全部已讀
+            </span>
+        </button>
     </div>
 </div>
 <ng-container *ngIf="notifications.length>0;else noItem ">
@@ -9,7 +14,8 @@
         <ng-container *ngIf="onPage(i)">
             <div class="row">
 
-                <div class="col-md-12 form-inline msg-bar">
+                <div class="col-md-12 form-inline msg-bar"
+                    [ngClass]="{ 'first_row': i == 0 ,'last_row': i == notifications.length -1, 'last_row': (i%9) == 0 }">
                     <span>
                         <svg-icon src="assets/icons/msg-bell.svg"></svg-icon><!-- <i class="far fa-bell icon"></i> -->
                     </span>

@@ -80,12 +80,18 @@
 
 .lang-box {
   display: grid;
-  padding: 16px 16px;
+  // padding: 16px 16px;
   min-width: max-content;
-  gap: 16px;
+  // gap: 16px;
 
   /*  box-shadow: -2px -2px 4px rgb(0 0 0 / 8%), 2px 2px 4px rgb(0 0 0 / 8%); */
   border-radius: 4px;
+
+  .dropdown-item {
+    padding-left: 16px;
+    padding-right: 16px;
+
+  }
 
   .selected {
     color: #56BDF4;
@@ -104,6 +110,10 @@
 
   .notification-more {
     color: #56BDF4;
+  }
+
+  .fa-bell {
+    font-size: 20px;
   }
 }
 

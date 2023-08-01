@@ -1,11 +1,14 @@
 import { HostListener, ViewEncapsulation, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
+  DataService,
   DialogService,
   ProjectService,
   ActivityService,
   NotificationService
 } from '../../_services';
+import { TranslateService } from "@ngx-translate/core";
+import { Utility } from "./../../_helpers";
 import {
   AuthStore
 } from "../../_services/auth.store";
@@ -26,7 +29,15 @@ export class newProjectComponent implements OnInit {
   projectMsg = "";
   currentStep = "basic";
 
+  msg = {
+    project: "",
+    create: ""
+  }
+
   constructor(
+    private dataSrv: DataService,
+    private translateSrv: TranslateService,
+    private utilitySrv: Utility,
     private router: Router,
     private sanitizer: DomSanitizer,
     private formBuilder: FormBuilder,
@@ -53,6 +64,19 @@ export class newProjectComponent implements OnInit {
       members: this.fb.array([this.createMember()]),
       jobs: this.fb.array([this.createJob()]),
     });
+
+    let _lang = localStorage.getItem("lang");
+    if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
+    }
+    this.init_terms();
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utilitySrv.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+        this.init_terms();
+      }
+    });
+
   }
 
   try() {
@@ -62,6 +86,17 @@ export class newProjectComponent implements OnInit {
       }, () => {
         console.log("No ----");
       });
+  }
+
+  init_terms() {
+    this.translateSrv.get("PROJECT").subscribe((text: string) => {
+      this.msg.project = text;
+    });
+    this.translateSrv.get("CREATE").subscribe((text: string) => {
+      this.msg.create = text;
+    });
+
+
   }
 
   onChangeStep(step) {
@@ -216,13 +251,13 @@ export class newProjectComponent implements OnInit {
         this.activitySrv.insert(this.currentUser.id,
           res['data'],
           "create",
-          `${this.currentUser.name}成功建立${projectName}專案！`
+          `${this.currentUser.name} ${this.msg.create}${projectName}${this.msg.project}！`
         ).subscribe(res => {
           if (res['result'] === 'successful') { }
         });
         this.notificationSrv.insert(this.currentUser.id,
           null,
-          `成功建立${projectName}專案！`,
+          ` ${this.msg.create}${projectName}${this.msg.project}！`,
           "1",
           '0',
           '0',

@@ -10,6 +10,8 @@ import { DelegateEmailService } from './delegateEmail.service';
 import { EmailService } from "./email.service";
 
 import { InvitationService } from './invitation.service';
+import { InspirationService } from './inspiration.service';
+
 import { LandingService } from './landing.service';
 import { LikeService } from "./like.service";
 import { MembersService } from "./members.service";
@@ -44,6 +46,7 @@ export const services = [
     EmailService,
 
     InvitationService,
+    InspirationService,
     LandingService,
     PagerService,
     ProjectService,
@@ -98,3 +101,4 @@ export * from './recruit.service';
 export * from './invitation.service';
 export { ViewsService } from "./views.service";
 export { WorkService } from "./work,service";
+export { InspirationService } from './inspiration.service';

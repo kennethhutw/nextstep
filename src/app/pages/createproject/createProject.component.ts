@@ -30,12 +30,16 @@ export class CreateProjectComponent implements OnInit, ComponentCanDeactivate {
   currentStep = "basic";
   isSaveChange = true;
 
+  msg = {
+    project: "",
+    create: ""
+  }
+
   constructor(
     private dataSrv: DataService,
     private translateSrv: TranslateService,
     private utilitySrv: Utility,
     private router: Router,
-
     private formBuilder: FormBuilder,
     private dialogSrv: DialogService,
     private projectSrv: ProjectService,
@@ -66,15 +70,25 @@ export class CreateProjectComponent implements OnInit, ComponentCanDeactivate {
     if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
     }
+    this.init_terms();
     this.dataSrv.langKey.subscribe((lang) => {
       if (!this.utilitySrv.IsNullOrEmpty(lang)) {
         this.translateSrv.use(lang);
+        this.init_terms();
       }
     });
 
- /*    this.translateSrv.get("PRORGRESS_INTRO_STATEMENT").subscribe((text: string) => {
-      this.utilitySrv.SetPlaceholder("#emailsignin", text);
-    }); */
+  }
+
+  init_terms() {
+    this.translateSrv.get("PROJECT").subscribe((text: string) => {
+      this.msg.project = text;
+    });
+    this.translateSrv.get("CREATE").subscribe((text: string) => {
+      this.msg.create = text;
+    });
+
+
   }
 
   @HostListener('window:beforeunload')
@@ -219,13 +233,13 @@ export class CreateProjectComponent implements OnInit, ComponentCanDeactivate {
         this.activitySrv.insert(this.currentUser.id,
           res['data'],
           "create",
-          `${this.currentUser.name}成功建立${projectName}專案！`
+          `${this.currentUser.name} ${this.msg.create}${projectName}${this.msg.project}！`
         ).subscribe(res => {
           if (res['result'] === 'successful') { }
         });
         this.notificationSrv.insert(this.currentUser.id,
           null,
-          `成功建立${projectName}專案！`,
+          ` ${this.msg.create}${projectName}${this.msg.project}！`,
           "1",
           '0',
           '0',
@@ -234,6 +248,8 @@ export class CreateProjectComponent implements OnInit, ComponentCanDeactivate {
           if (res['result'] === 'successful') {
             this.router.navigate([`./myproject/${projectId}/profile`], {});
           }
+        }).catch(error => {
+          this.router.navigate([`./myproject/${projectId}/profile`], {});
         })
         //this.projectForm.reset();
       } else {

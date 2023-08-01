@@ -72,4 +72,17 @@ export class NotificationsComponent implements OnInit {
     let _num = this.pagerSrv.Page(i, this.currentPageIndex, 10);
     return _num;
   }
+
+  onReadAll() {
+    this.notificationSrv.allread(this.currentUser.id).subscribe(res => {
+
+      if (res['result'] == 'successful') {
+
+      } else {
+
+      }
+    }, error => {
+      console.error("allread error", error);
+    })
+  }
 }

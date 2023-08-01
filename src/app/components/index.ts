@@ -12,6 +12,7 @@ import { ProjectBarComponent } from './projectBar/project-bar.component';
 import { RecruitCardComponent } from './recruitCard/recruitCard.component';
 import { TagComponent } from './tag/tag.component';
 import { LogBarComponent } from './log-bar/log-bar.component';
+import { LinkPreviewComponent } from './linkpreview/linkpreview.component';
 import { RadioItemComponent } from './radioItem/radio-item.component';
 import { UserCardComponent } from "./userCard/userCard.component";
 export const components = [
@@ -23,6 +24,7 @@ export const components = [
     RadioItemComponent,
     RecruitCardComponent,
     LogBarComponent,
+    LinkPreviewComponent,
     MemberCardComponent,
     PaginationComponent,
     ProjectBarComponent,
@@ -68,6 +70,7 @@ export { ViewModeDirective } from "./editableInput/view-mode.directive";
 export { EditableOnEnterDirective } from './editableInput/editable-on-enter.directive';
 
 export { LoadingComponent } from './loading/loading.component';
+export { LinkPreviewComponent } from './linkpreview/linkpreview.component';
 export { LogBarComponent } from './log-bar/log-bar.component';
 export { MemberCardComponent } from './memberCard/memberCard.component';
 export { RadioItemComponent } from './radioItem/radio-item.component';

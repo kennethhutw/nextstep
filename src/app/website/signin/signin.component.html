@@ -77,7 +77,7 @@
                 </span>
 
                 <div *ngIf="unverifiedUser">
-                    <p class="invalid">
+                    <p class="invalid-feedback">
                         <i class="fas fa-exclamation-triangle"></i> {{"CHECKVERIFYEMAILMSG" |
                         translate }}
                     </p>
@@ -94,7 +94,7 @@
             </button>
 
             <div *ngIf="invalidUser">
-                <p class="invalid">
+                <p class="invalid-feedback">
                     <i class="fas fa-exclamation-triangle"></i> {{"EMAILORPASSWORDNOTCORRECTMSG" | translate }}
                 </p>
             </div>
