@@ -134,17 +134,14 @@ Please let us know ASAP.
     }
   ]
 
-  myproposals: any[] = [];
   editedItem = null;
-  editedProposal = null;
+
   commentContent: string = "";
 
   searchText: string = "";
 
   replyComment: string = "";
   hideall = {};
-  hideprocessed = {};
-  hidemyproposals = {}
 
   strImprovement: string = "";
   strBug: string = "";
@@ -340,9 +337,6 @@ Please let us know ASAP.
     this.inspirationSrv.delete(this.editedItem.id, this.currentUser.id).then(res => {
 
       if (res['result'] == "successful") {
-        this.myproposals = this.myproposals.filter(obj => {
-          return obj.id !== this.editedItem.id
-        })
 
         this.allitems = this.allitems.filter(obj => {
           return obj.id !== this.editedItem.id
