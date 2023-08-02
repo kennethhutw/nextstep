@@ -32,129 +32,129 @@
                 (click)="changeTab('templates')">{{
                 "TEMPLATES" | translate }}</a>
         </li>
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane  active" id="all" role="tabpanel" aria-labelledby="all-tab">
-                <div class="empty text-center" *ngIf="displayItems.length ===0">
-                    <div class="col-md-12 empty-text-center qa-container">
-                        <img src="assets/icons/noFeedback.svg" alt="no-comment">
-                    </div>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane  active" id="all" role="tabpanel" aria-labelledby="all-tab">
+            <div class="empty text-center" *ngIf="displayItems.length ===0">
+                <div class="col-md-12 empty-text-center qa-container">
+                    <img src="assets/icons/noFeedback.svg" alt="no-comment">
                 </div>
-                <ng-container *ngIf="displayItems.length >0">
-                    <ng-container
-                        *ngFor="let item of  ( displayItems | itemFilter: searchText : 'content' ); let i = index">
-                        <ng-container [ngSwitch]="item.type">
-                            <div *ngSwitchCase="'content'">
-                                <div class="row bar">
-                                    <div class="col-md-12 proposal">
-                                        <img class="profile-image rounded-circle" src="{{ item.imageUrl }}"
-                                            (error)="onImgError($event)" alt="" />
-                                        <div class="profile-detail">
-                                            <span>{{item.userName}}</span>
-                                            <span class="createdTime">{{(item?.createdAt !==null) ?
-                                                this.utilitySrv.timeSince(item.createdAt ) : ''
-                                                }}</span>
-                                        </div>
-                                        <div class="category" [ngSwitch]="item.category">
-                                            <div class="dropdown" *ngIf="item.createdBy === currentUser?.id"><i
-                                                    class="fas fa-ellipsis-h" data-toggle="dropdown"
-                                                    aria-haspopup="true" aria-expanded="true" tooltip="更多"></i>
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item color-gray" data-toggle="modal"
-                                                        [attr.data-target]="'#modifiedproposal'"
-                                                        (click)="onModified(item)"><i
-                                                            class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{ "EDIT" |
-                                                        translate
-                                                        }}</a>
-                                                    <a class="dropdown-item color-gray" data-toggle="modal"
-                                                        [attr.data-target]="'#deleteCommentModal'"
-                                                        (click)="onClickDelete(item)"><i
-                                                            class="fas fa-trash"></i>&nbsp;&nbsp;{{
-                                                        "DELETE" | translate }}</a>
-                                                </div>
-
+            </div>
+            <ng-container *ngIf="displayItems.length >0">
+                <ng-container
+                    *ngFor="let item of  ( displayItems | itemFilter: searchText : 'content' ); let i = index">
+                    <ng-container [ngSwitch]="item.type">
+                        <div *ngSwitchCase="'content'">
+                            <div class="row bar">
+                                <div class="col-md-12 proposal">
+                                    <img class="profile-image rounded-circle" src="{{ item.imageUrl }}"
+                                        (error)="onImgError($event)" alt="" />
+                                    <div class="profile-detail">
+                                        <span>{{item.userName}}</span>
+                                        <span class="createdTime">{{(item?.createdAt !==null) ?
+                                            this.utilitySrv.timeSince(item.createdAt ) : ''
+                                            }}</span>
+                                    </div>
+                                    <div class="category" [ngSwitch]="item.category">
+                                        <div class="dropdown" *ngIf="item.createdBy === currentUser?.id"><i
+                                                class="fas fa-ellipsis-h" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="true" tooltip="更多"></i>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item color-gray" data-toggle="modal"
+                                                    [attr.data-target]="'#modifiedproposal'"
+                                                    (click)="onModified(item)"><i
+                                                        class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{ "EDIT" |
+                                                    translate
+                                                    }}</a>
+                                                <a class="dropdown-item color-gray" data-toggle="modal"
+                                                    [attr.data-target]="'#deleteCommentModal'"
+                                                    (click)="onClickDelete(item)"><i
+                                                        class="fas fa-trash"></i>&nbsp;&nbsp;{{
+                                                    "DELETE" | translate }}</a>
                                             </div>
-                                            <ui-tag *ngSwitchCase="'improvement'" [class]="'tag-improve'"
-                                                [tag]="this.strImprovement"></ui-tag>
-                                            <ui-tag *ngSwitchCase="'help'" [class]="'tag-help'"
-                                                [tag]="this.strHelp"></ui-tag>
-                                            <ui-tag *ngSwitchCase="'bug'" [class]="'tag-bug'"
-                                                [tag]="this.strBug"></ui-tag>
 
                                         </div>
-
+                                        <ui-tag *ngSwitchCase="'improvement'" [class]="'tag-improve'"
+                                            [tag]="this.strImprovement"></ui-tag>
+                                        <ui-tag *ngSwitchCase="'help'" [class]="'tag-help'"
+                                            [tag]="this.strHelp"></ui-tag>
+                                        <ui-tag *ngSwitchCase="'bug'" [class]="'tag-bug'" [tag]="this.strBug"></ui-tag>
 
                                     </div>
-                                    <div class="col-md-12 content">
-                                        {{item.content}}
+
+
+                                </div>
+                                <div class="col-md-12 content">
+                                    {{item.content}}
+                                </div>
+
+                                <div class="col-md-12 footer">
+                                    <div class="cell color-gray" (click)="onVote(event,'likes',item.id)">
+                                        <img src="assets/icons/arrow_up.png" alt="arrow_up">
+                                        <span>{{item.like_count}}</span>
+                                        <!-- <i class="fas fa-arrow-up"></i> -->
+                                    </div>
+                                    <div class="cell color-gray" (click)="onVote(event,'dislikes',item.id)">
+                                        <img src="assets/icons/arrow_down.png" alt="arrow_down">
+                                        <span>{{item.dislike_count}}</span>
+                                        <!-- <i class="fas fa-arrow-down"></i> -->
+                                    </div>
+                                    <div *ngIf="item.comment_count ==0" class="cell color-gray" data-toggle="modal"
+                                        [attr.data-target]="'#new_comment'" (click)="new_comment(item)">
+                                        <img src="assets/icons/comment.png" class="mt-5 color-gray" alt="comment">
+                                        <span>{{item.comment_count}}</span>
+                                        <!-- <i class="far fa-comment"></i> -->
                                     </div>
 
-                                    <div class="col-md-12 footer">
-                                        <div class="cell color-gray" (click)="onVote(event,'likes',item.id)">
-                                            <img src="assets/icons/arrow_up.png" alt="arrow_up">
-                                            <span>{{item.like_count}}</span>
-                                            <!-- <i class="fas fa-arrow-up"></i> -->
-                                        </div>
-                                        <div class="cell color-gray" (click)="onVote(event,'dislikes',item.id)">
-                                            <img src="assets/icons/arrow_down.png" alt="arrow_down">
-                                            <span>{{item.dislike_count}}</span>
-                                            <!-- <i class="fas fa-arrow-down"></i> -->
-                                        </div>
-                                        <div *ngIf="item.comment_count ==0" class="cell color-gray" data-toggle="modal"
-                                            [attr.data-target]="'#new_comment'" (click)="new_comment(item)">
-                                            <img src="assets/icons/comment.png" class="mt-5 color-gray" alt="comment">
-                                            <span>{{item.comment_count}}</span>
-                                            <!-- <i class="far fa-comment"></i> -->
-                                        </div>
-
-                                        <div *ngIf="item.comment_count >0" class="cell color-gray"
-                                            (click)="show_comment(this.hideall,item)">
-                                            <img src="assets/icons/comment.png" class="mt-5 color-gray" alt="comment">
-                                            <span class="color-gray">{{item.comment_count}}</span>
-                                            <!-- <i class="far fa-comment"></i> -->
-                                        </div>
-                                        <div class="cell"></div>
-
+                                    <div *ngIf="item.comment_count >0" class="cell color-gray"
+                                        (click)="show_comment(this.hideall,item)">
+                                        <img src="assets/icons/comment.png" class="mt-5 color-gray" alt="comment">
+                                        <span class="color-gray">{{item.comment_count}}</span>
+                                        <!-- <i class="far fa-comment"></i> -->
                                     </div>
+                                    <div class="cell"></div>
 
                                 </div>
 
-                                <div [hidden]="!hideall[item.id]">
-                                    <ng-container *ngFor="let comment of  item.comments; let j = index">
-                                        <div class="row comment">
-                                            <div class="col-md-12 profile">
-                                                <img class="profile-image-small rounded-circle"
-                                                    src="{{ item.imageUrl }}" (error)="onImgError($event)" alt="" />
-                                                <div class="profile-detail">
-                                                    <div>
-                                                        <span>{{comment.userName}}</span>
-                                                        <span class="createdTime">{{(comment?.createdAt !==null) ?
-                                                            this.utilitySrv.timeSince(comment.createdAt ) : ''
-                                                            }}</span>
-                                                    </div>
-                                                    <div class="content">
-                                                        {{comment.content}}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div *ngIf="j == item.comments.length -1" class="row new_comment">
-                                            <input type="text" #yourInput (keyup.enter)="onComment($event, item)"
-                                                class="form-control" placeholder="輸入留言" aria-describedby="">
-                                        </div>
-                                    </ng-container>
-                                </div>
                             </div>
 
-                            <app-linkpreview *ngSwitchCase="'link'" [metadata]='item.metadata'></app-linkpreview>
-                            <ui-email-template-card *ngSwitchCase="'template'" [template]="item">
-                            </ui-email-template-card>
-                        </ng-container>
+                            <div [hidden]="!hideall[item.id]">
+                                <ng-container *ngFor="let comment of  item.comments; let j = index">
+                                    <div class="row comment">
+                                        <div class="col-md-12 profile">
+                                            <img class="profile-image-small rounded-circle" src="{{ item.imageUrl }}"
+                                                (error)="onImgError($event)" alt="" />
+                                            <div class="profile-detail">
+                                                <div>
+                                                    <span>{{comment.userName}}</span>
+                                                    <span class="createdTime">{{(comment?.createdAt !==null) ?
+                                                        this.utilitySrv.timeSince(comment.createdAt ) : ''
+                                                        }}</span>
+                                                </div>
+                                                <div class="content">
+                                                    {{comment.content}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="j == item.comments.length -1" class="row new_comment">
+                                        <input type="text" #yourInput (keyup.enter)="onComment($event, item)"
+                                            class="form-control" placeholder="輸入留言" aria-describedby="">
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+
+                        <app-linkpreview *ngSwitchCase="'link'" [metadata]='item.metadata'></app-linkpreview>
+                        <ui-email-template-card *ngSwitchCase="'template'" [template]="item">
+                        </ui-email-template-card>
                     </ng-container>
                 </ng-container>
-            </div>
-
+            </ng-container>
         </div>
+
+    </div>
 
 </div>
 
