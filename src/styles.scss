@@ -742,6 +742,10 @@ body {
   background-color: #f4f4f4;
 }
 
+.text-white {
+  color: #fff;
+}
+
 .text-green {
   color: #17f596;
 }
@@ -1747,6 +1751,10 @@ input[type=radio] {
     pointer-events: all;
     opacity: 1;
   }
+}
+
+.texe-right {
+  text-align: end;
 }
 
 .texe-center {

@@ -70,6 +70,13 @@ export class InspirationService {
             });
     }
 
-
+    insertComment(userId, id, content) {
+        return this.http.post(`${environment.apiUrl}/inspiration/comment`,
+            {
+                uid: userId,
+                id,
+                content
+            });
+    }
 
 }

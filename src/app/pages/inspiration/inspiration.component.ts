@@ -453,14 +453,26 @@ Please let us know ASAP.
       this.inspirationSrv.vote(action,
         this.currentUser.id,
         proposialId).then(res => {
-          let _index = this.allitems.findIndex((obj => obj.id == proposialId));
+          let _index = this.displayItems.findIndex((obj => obj.id == proposialId));
           if (_index > -1) {
+
+
             if (action === "likes") {
-              this.allitems[_index].like_count = this.allitems[_index].like_count + 1
-              this.displayItems = this.allitems;
+              this.displayItems[_index].like_count += 1
+
             } else {
-              this.allitems[_index].dislike_count = this.allitems[_index].dislike_count + 1
-              this.displayItems = this.allitems;
+              this.displayItems[_index].dislike_count += 1
+
+            }
+
+            if (this.currentTab === "stories") {
+              this.stories = this.displayItems;
+            } else if (this.currentTab === "ideas") {
+              this.ideas = this.displayItems;
+            } else if (this.currentTab === "experience") {
+              this.experience = this.displayItems;
+            } else if (this.currentTab === "templates") {
+              this.templates = this.displayItems;
             }
 
             // this.processed = this.allitems.filter(item => {
