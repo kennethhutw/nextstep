@@ -1,4 +1,4 @@
-<div *ngIf="currentRecruit" class="row ">
+<div *ngIf="currentRecruit" class="row mt-50 ">
   <div class="col-md-6 text-center d-flex flex-row gap-10">
     <h1>{{this.currentRecruit.position? this.currentRecruit.position :this.msg.jobtitle}}</h1>
     <span class="update_date">{{this.currentRecruit.createdAt | date:"MM/dd"}} {{ "UPDATE" | translate
@@ -10,7 +10,8 @@
       (click)="onSelectItem(currentRecruit)"><i class="far fa-envelope" tooltip="{{ 'APPLY' | translate }}"></i>
       {{ 'APPLY' | translate }}</button><button type="button" class="btn btn_item"
       [ngClass]="{'btn_item_selected': currentRecruit?.isCollected === true}"
-      *ngIf="currentRecruit?.owner !== currentUser?.id" (click)="onClickCollect()"><i class="far fa-bookmark fa-lg"></i>
+      *ngIf="currentRecruit?.owner !== currentUser?.id" (click)="onClickCollect()"><i class="far fa-bookmark fa-lg"
+        tooltip="{{ 'COLLECT' | translate }}"></i>
       {{currentRecruit?.isCollected === true ? this.msg.collected : this.msg.collect}} </button>
 
     <button type="button" class="btn btn_item" [ngClass]="{'btn_item_selected': currentRecruit?.isFollowing === true}"
@@ -123,13 +124,13 @@
         <div *ngIf="item.status =='1'" class="row job_frame" [ngClass]="{'mt-10':i>1}">
 
           <div class="col-md-12" style="display: inline-flex;">
-            <div class="col-md-8  pl-0">
-              <p class="position"><b>{{item.position}}</b></p>
+            <div class="col-md-8 pl-0 col-form-label">
+              <p class="position col-form-label"><b>{{item.position}}</b></p>
             </div>
             <div *ngIf="currentUser" class="col-md-4 btn_items">
               <!-- <a href="#"> <i class="far fa-bookmark"></i></a> -->
               <i *ngIf="item.isCollected" (click)="onClickJobCollect(item.id, item.isCollected)"
-                class="fas fa-bookmark collected"></i>
+                class="fas fa-bookmark collected" tooltip="{{ 'COLLECT' | translate }}"></i>
               <i *ngIf="!item.isCollected" (click)="onClickJobCollect(item.id, item.isCollected)"
                 class="far fa-bookmark color-gray" tooltip="{{ 'COLLECT' | translate }}"></i>
               <i class="far fa-envelope color-gray" data-toggle="modal" data-target="#modal_apply" data-dismiss="modal"
@@ -137,7 +138,7 @@
             </div>
           </div>
 
-          <div class="col-md-12">
+          <div class="col-md-12 job_scopes">
             {{item.scopes}}
           </div>
           <div class="col-md-12 text-right">
@@ -163,8 +164,7 @@
         [src]="this.currentRecruit?.projectOwner?.imageUrl!= null ?  settingSrv.defaultAssetUrl+this.currentRecruit?.projectOwner?.imageUrl
                           : settingSrv.defaultUserLogo" alt=""><span
         class="chat-user-name">{{this.currentRecruit?.projectOwner?.name?
-        this.currentRecruit?.projectOwner?.name:"No
-        name"}}</span></h3><span aria-hidden="true">X&times;</span>
+        this.currentRecruit?.projectOwner?.name:"No name"}}</span></h3><span aria-hidden="true">X&times;</span>
     <div>
     </div>
     <lab-comments [currentUser]="currentUser" [receiverUser]="this.currentRecruit?.projectOwner"

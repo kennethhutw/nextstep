@@ -33,6 +33,11 @@ export class MyProjectProfileComponent implements OnInit, AfterViewInit {
 
   project_status_1: string = "";
   project_status_2: string = "";
+
+  msg = {
+    updateSuc: "",
+    updateFailed: ""
+  }
   constructor(
     private dataSrv: DataService,
     private translateSrv: TranslateService,
@@ -99,6 +104,14 @@ export class MyProjectProfileComponent implements OnInit, AfterViewInit {
     });
     this.translateSrv.get("RESET").subscribe((text: string) => {
       this.project_status_2 = text;
+    });
+
+    this.translateSrv.get("UPDATEDSUC").subscribe((text: string) => {
+      this.msg.updateSuc = text;
+    });
+
+    this.translateSrv.get("UPDATEDFAILED").subscribe((text: string) => {
+      this.msg.updateFailed = text;
     });
   }
 
@@ -270,14 +283,14 @@ export class MyProjectProfileComponent implements OnInit, AfterViewInit {
     }).subscribe(res => {
 
       if (res['result'] === 'successful') {
-        this.projectMsg = "更新成功";
+        this.projectMsg = this.msg.updateSuc;
         this.mode = "view";
-        this.toastSrv.showToast('Success', "更新成功 ", this.toastSrv.iconClasses.success);
+        this.toastSrv.showToast('Success', this.projectMsg, this.toastSrv.iconClasses.success);
       }
     }, error => {
-      this.projectMsg = "更新失敗";
+      this.projectMsg = this.msg.updateFailed;
       console.error("updated error", error);
-      this.toastSrv.showToast('Failed', "更新失敗", this.toastSrv.iconClasses.error);
+      this.toastSrv.showToast('Failed', this.projectMsg, this.toastSrv.iconClasses.error);
     })
   }
 

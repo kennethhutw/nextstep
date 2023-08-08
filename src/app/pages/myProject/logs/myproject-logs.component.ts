@@ -11,7 +11,7 @@ import {
   Utility
 } from 'src/app/_helpers';
 import { environment } from "../../../../environments/environment";
-import { E } from '@angular/core/src/render3';
+import { NgxSpinnerService } from "ngx-spinner";
 @Component({
   selector: 'app-myproject-logs',
   templateUrl: './myproject-logs.component.html',
@@ -32,11 +32,11 @@ export class MyProjectLogComponent implements OnInit {
     private route: ActivatedRoute,
     private projectSrv: ProjectService,
     private authStoreSrv: AuthStore,
-    private activitySrv: ActivityService) {
+    private spinnerSrv: NgxSpinnerService) {
   }
 
   ngOnInit() {
-
+    this.spinnerSrv.show();
     this.currentUser = this.authStoreSrv.getUserData();
     let projectId = this.route.snapshot.paramMap.get("projectId");
 
@@ -62,6 +62,10 @@ export class MyProjectLogComponent implements OnInit {
             this.displayItems = this.currentProject.logs;
           }
         }
+      }).catch(e => {
+        console.log("error", e)
+      }).then(() => {
+        this.spinnerSrv.hide();
       })
 
   }

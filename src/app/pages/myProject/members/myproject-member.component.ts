@@ -13,17 +13,23 @@ import {
   RecruitService,
   MembersService,
   ActivityService,
-  NotificationService
+  NotificationService,
+  DataService
 } from '../../../_services';
 import {
   AuthStore
 } from "../../../_services/auth.store";
 import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators
+} from '@angular/forms';
 import * as moment from 'moment';
 import { Utility } from 'src/app/_helpers';
 import { environment } from "../../../../environments/environment";
 import { TranslateService } from "@ngx-translate/core";
+import { NgxSpinnerService } from "ngx-spinner";
 @Component({
   selector: 'app-myproject-member',
   templateUrl: './myproject-member.component.html',
@@ -67,8 +73,6 @@ export class MyProjectMemberComponent implements OnInit {
   // 移動成員去
   status: string = "null";
 
-
-
   canMoveMember: boolean = false;
 
   skillOptions: any[] = [];
@@ -76,6 +80,37 @@ export class MyProjectMemberComponent implements OnInit {
   @ViewChild('close_recruit_button') close_recruit_button: ElementRef;
   @ViewChild('closeInfobutton') close_Info_button: ElementRef;
 
+  msg = {
+    uncovered: "",
+    deleted: "",
+    insertSuc: "",
+    insertFailed: "",
+    updateSuc: "",
+    updateFailed: "",
+    confirmdel: "",
+    notfilled: "",
+    currentMemberStr: "",
+    invitingStr: "",
+    interviewStr: "",
+    rejectedStr: "",
+    pastmemberStr: "",
+    ensuremoveStr: "",
+    movetoStr: "",
+    projectmemberStr: "",
+    inviteStr: "",
+    successfulStr: "",
+    failedStr: "",
+    deletefulStr: "",
+    deletefailedStr: "",
+    projectAccepted_1: "",
+    projectAccepted_2: "",
+    joinStr: "",
+    projectStr: "",
+    leftStr: "",
+    inviteAgainStr: "",
+    confirmDelete: "",
+    switchRoleStr: ""
+  }
   constructor(
     private formBuilder: FormBuilder,
     private membersSrv: MembersService,
@@ -89,7 +124,10 @@ export class MyProjectMemberComponent implements OnInit {
     private utilitySrv: Utility,
     private authStoreSrv: AuthStore,
     private activitySrv: ActivityService,
-    private notificationSrv: NotificationService) {
+    private notificationSrv: NotificationService,
+    private dataSrv: DataService,
+    private translateSrv: TranslateService,
+    private spinnerSrv: NgxSpinnerService) {
     this.skillOptions = this.appSettingsSrv.skillOptions();
     this.invitationForm = this.formBuilder.group({
       name: ["", Validators.required],
@@ -112,9 +150,22 @@ export class MyProjectMemberComponent implements OnInit {
       isAdmin: [false],
       isOwner: [false]
     });
+
+    let _lang = localStorage.getItem("lang");
+    if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
+    }
+    this.init_terms(_lang);
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utilitySrv.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+        this.init_terms(lang);
+      }
+    });
   }
 
   ngOnInit() {
+    this.spinnerSrv.show();
     this.currentUser = this.authStoreSrv.getUserData();
     this.projectId = this.route.snapshot.paramMap.get("projectId");
     this.projectSrv.getProject(this.projectId, this.currentUser.id).then(res => {
@@ -146,6 +197,127 @@ export class MyProjectMemberComponent implements OnInit {
       }
     })
 
+  }
+
+  init_terms(lang) {
+
+    this.translateSrv.get("UPDATEDSUC").subscribe((text: string) => {
+      this.msg.updateSuc = text;
+    });
+
+    this.translateSrv.get("UPDATEDFAILED").subscribe((text: string) => {
+      this.msg.updateFailed = text;
+    });
+
+    this.translateSrv.get("INSERTSUC").subscribe((text: string) => {
+      this.msg.insertSuc = text;
+    });
+
+    this.translateSrv.get("INSERTFAILED").subscribe((text: string) => {
+      this.msg.insertFailed = text;
+    });
+
+    this.translateSrv.get("CONFIRMDELETE").subscribe((text: string) => {
+      this.msg.confirmdel = text;
+    });
+
+    this.translateSrv.get("DELETED").subscribe((text: string) => {
+      this.msg.deleted = text;
+    });
+
+    this.translateSrv.get("ACTIONUNCOVER").subscribe((text: string) => {
+      this.msg.uncovered = text;
+    });
+
+    this.translateSrv.get("CURRENTMEMBER").subscribe((text: string) => {
+      this.msg.currentMemberStr = text;
+    });
+
+    this.translateSrv.get("INTERVIEW").subscribe((text: string) => {
+      this.msg.interviewStr = text;
+    });
+
+    this.translateSrv.get("INVITING").subscribe((text: string) => {
+      this.msg.invitingStr = text;
+    });
+    this.translateSrv.get("REJECTEDMEMBER").subscribe((text: string) => {
+      this.msg.rejectedStr = text;
+    });
+    this.translateSrv.get("PASTMEMBER").subscribe((text: string) => {
+      this.msg.pastmemberStr = text;
+    });
+
+    this.translateSrv.get("ENSUREMOVE").subscribe((text: string) => {
+      this.msg.ensuremoveStr = text;
+    });
+
+    this.translateSrv.get("MOVETO").subscribe((text: string) => {
+      this.msg.movetoStr = text;
+    });
+
+    this.translateSrv.get("PROJECTMEMBER").subscribe((text: string) => {
+      this.msg.projectmemberStr = text;
+    });
+
+    this.translateSrv.get("INVITE").subscribe((text: string) => {
+      this.msg.inviteStr = text;
+    });
+
+    this.translateSrv.get("SUCCESSFUL").subscribe((text: string) => {
+      this.msg.successfulStr = text;
+    });
+
+    this.translateSrv.get("FAILED").subscribe((text: string) => {
+      this.msg.failedStr = text;
+    });
+
+
+    this.translateSrv.get("DELETEDSUC").subscribe((text: string) => {
+      this.msg.deletefulStr = text;
+    });
+
+    this.translateSrv.get("DELETEDFAILED").subscribe((text: string) => {
+      this.msg.deletefailedStr = text;
+    });
+
+
+    this.translateSrv.get("PROJECTACCEPTED_FRONT").subscribe((text: string) => {
+      this.msg.projectAccepted_1 = text;
+    });
+
+    this.translateSrv.get("PROJECTACCEPTED_LAST").subscribe((text: string) => {
+      this.msg.projectAccepted_2 = text;
+    });
+
+    this.translateSrv.get("JOIN").subscribe((text: string) => {
+      this.msg.joinStr = text;
+    });
+
+    this.translateSrv.get("PROJECT").subscribe((text: string) => {
+      this.msg.projectStr = text;
+    });
+
+    this.translateSrv.get("LEFTTHE").subscribe((text: string) => {
+      this.msg.leftStr = text;
+    });
+
+    switch (lang) {
+      case "zh-tw":
+        this.msg.inviteAgainStr = "確定要再次邀請嗎？";
+        this.msg.confirmDelete = "確定要刪除";
+        this.msg.switchRoleStr = "切換角色為"
+        break;
+      case "en":
+        this.msg.inviteAgainStr = "Are you sure you want to send the invitation again?";
+        this.msg.confirmDelete = "Are you sure you want to delete?";
+        this.msg.switchRoleStr = "Switch role to "
+        break;
+      case "zh-cn":
+        this.msg.inviteAgainStr = "确定要再次邀请吗？";
+        this.msg.confirmDelete = "确定要删除";
+        this.msg.switchRoleStr = "切换角色为"
+        break;
+    }
   }
 
   isAllowEdit() {
@@ -230,15 +402,15 @@ export class MyProjectMemberComponent implements OnInit {
         this.invitationForm.reset();
         this.invitedUserId = "";
         document.getElementById('close_invited').click();
-        this.toastr.showToast('成員', '邀請' + this.invitedUserId + 'Email已寄出', 'success');
+        this.toastr.showToast(this.msg.projectmemberStr, this.msg.inviteStr + this.invitedUserId + 'Email已寄出', 'success');
       } else {
         this.projectMsg = res['message'];
-        this.toastr.showToast('成員', '邀請' + this.invitedUserId + 'Email寄失敗! '
+        this.toastr.showToast(this.msg.projectmemberStr, this.msg.inviteStr + this.invitedUserId + 'Email寄失敗! '
           + this.projectMsg, 'error');
       }
 
     }, (error) => {
-      this.toastr.showToast('成員', '邀請' + this.invitedUserId + 'Email寄失敗! '
+      this.toastr.showToast(this.msg.projectmemberStr, this.msg.inviteStr + this.invitedUserId + 'Email寄失敗! '
         + this.projectMsg, 'error');
       console.error("saveError", error);
       this.projectMsg = error.message;
@@ -280,15 +452,15 @@ export class MyProjectMemberComponent implements OnInit {
         this.invitationForm.reset();
         this.invitedUserId = "";
         document.getElementById('close_invited').click();
-        this.toastr.showToast('成員', '邀請' + values.name + 'Email已寄出', 'success');
+        this.toastr.showToast(this.msg.projectmemberStr, this.msg.inviteStr + values.name + 'Email已寄出', 'success');
 
       } else {
         this.projectMsg = res['error'].message;
-        this.toastr.showToast('成員', '邀請' + values.name + 'Email寄失敗', 'error');
+        this.toastr.showToast(this.msg.projectmemberStr, this.msg.inviteStr + values.name + 'Email寄失敗', 'error');
       }
 
     }, (error) => {
-      this.toastr.showToast('成員', '邀請' + values.name + 'Email寄失敗', 'error');
+      this.toastr.showToast(this.msg.projectmemberStr, this.msg.inviteStr + values.name + 'Email寄失敗', 'error');
       console.error("saveError", error);
       this.projectMsg = error.message;
     })
@@ -302,7 +474,7 @@ export class MyProjectMemberComponent implements OnInit {
 
   onClickResend(invitation) {
 
-    this.confirmDialogService.confirmThis('確定要再次邀請嗎？', () => {
+    this.confirmDialogService.confirmThis(this.msg.inviteAgainStr, () => {
       // Yes clicked
       let domain = window.location.origin;
       let _projectLink = domain + "/project/" + this.projectId;
@@ -346,20 +518,23 @@ export class MyProjectMemberComponent implements OnInit {
   }
 
   onClickDelete(id) {
-    this.confirmDialogService.confirmThis('確定要刪除？', () => {
+    this.confirmDialogService.confirmThis(this.msg.confirmDelete, () => {
       this.invitationSrv.delete(id).then(res => {
         if (res['result'] === 'successful') {
           this.invitingList = this.invitingList.filter(option => option.id != id);
 
 
-          this.toastr.showToast('成員', '刪除成功', 'success');
+          this.toastr.showToast(this.msg.projectmemberStr,
+            this.msg.deletefulStr, 'success');
         } else {
-          this.toastr.showToast('成員', '刪除失敗', 'error');
+          this.toastr.showToast(this.msg.projectmemberStr,
+            this.msg.deletefailedStr, 'error');
         }
 
       }).catch(error => {
         console.log("delete failed", error);
-        this.toastr.showToast('成員', '刪除失敗', 'error');
+        this.toastr.showToast(this.msg.projectmemberStr,
+          this.msg.deletefailedStr, 'error');
       })
     }, () => {
       // No clicked
@@ -377,24 +552,24 @@ export class MyProjectMemberComponent implements OnInit {
   }
 
   onStatusChange(event) {
-    let displayStatus = "目前成員";
+    let displayStatus = this.msg.currentMemberStr;
     let _changeto = event.target.value;
     if (event.target.value != "null") {
       switch (event.target.value) {
         case "inviting":
-          displayStatus = "邀請中";
+          displayStatus = this.msg.invitingStr;
           break;
         case "interview":
-          displayStatus = "面談中";
+          displayStatus = this.msg.interviewStr;
           break;
         case "rejected":
-          displayStatus = "已拒絕";
+          displayStatus = this.msg.rejectedStr;
           break;
         case "history":
-          displayStatus = "歷程成員";
+          displayStatus = this.msg.pastmemberStr;
           break;
       }
-      this.confirmDialogService.confirmThis('確定要移動至' + displayStatus, () => {
+      this.confirmDialogService.confirmThis(this.msg.ensuremoveStr + displayStatus, () => {
         // Yes clicked
 
         this.projectSrv.updateMemberstatus(this.currentProject.id,
@@ -403,7 +578,7 @@ export class MyProjectMemberComponent implements OnInit {
           this.currentUser.id).then(res => {
             if (res["result"] == 'successful') {
 
-              this.toastr.showToast('成員', '移動至' + displayStatus + '成功', 'success');
+              this.toastr.showToast(this.msg.projectmemberStr, this.msg.movetoStr + displayStatus + this.msg.successfulStr, 'success');
 
               if (_changeto == "current") {
                 let _new_join_members = "";
@@ -413,7 +588,7 @@ export class MyProjectMemberComponent implements OnInit {
                       _new_join_members = member.name + ", ";
                       this.notificationSrv.insert(userId,
                         this.currentUser.id,
-                        `恭喜你申請加入${this.currentProject.name}專案被接受！`,
+                        `${this.msg.projectAccepted_1}${this.currentProject.name}${this.msg.projectAccepted_2}`,
                         "1",
                         '0',
                         '0',
@@ -430,7 +605,7 @@ export class MyProjectMemberComponent implements OnInit {
                   this.activitySrv.insert(this.currentUser.id,
                     this.currentProject.id,
                     "join",
-                    `${_new_join_members} 加入${this.currentProject.name}專案！`
+                    `${_new_join_members} ${this.msg.joinStr} ${this.currentProject.name} ${this.msg.projectStr}`
                   ).subscribe(res => {
                     if (res['result'] === 'successful') { }
                   });
@@ -438,7 +613,7 @@ export class MyProjectMemberComponent implements OnInit {
 
                 this.notificationSrv.infoProjectMembers(this.currentProject.id,
                   this.currentUser.id,
-                  `${_new_join_members} 加入${this.currentProject.name}專案！`,
+                  `${_new_join_members}  ${this.msg.joinStr} ${this.currentProject.name} ${this.msg.projectStr}`,
                   "1",
                   '0',
                   '0',
@@ -452,11 +627,11 @@ export class MyProjectMemberComponent implements OnInit {
 
               this.refreshMemberList();
             } else {
-              this.toastr.showToast('成員', '移動至' + displayStatus + '失敗', 'error');
+              this.toastr.showToast(this.msg.projectmemberStr, this.msg.movetoStr + displayStatus + this.msg.failedStr, 'error');
             }
           }).catch(error => {
             console.log("update failed", error);
-            this.toastr.showToast('成員', '移動至' + displayStatus + '失敗', 'error');
+            this.toastr.showToast(this.msg.projectmemberStr, this.msg.movetoStr + displayStatus + this.msg.failedStr, 'error');
           })
 
       }, () => {
@@ -487,6 +662,8 @@ export class MyProjectMemberComponent implements OnInit {
   }
 
   refreshMemberList() {
+
+    this.spinnerSrv.show();
     this.projectSrv.getMembers(
       this.projectId
     ).then(res => {
@@ -527,6 +704,10 @@ export class MyProjectMemberComponent implements OnInit {
 
         }
       }
+    }).catch(e => {
+      console.log(e);
+    }).then(() => {
+      this.spinnerSrv.hide();
     })
   }
   onToggleChat(event) {
@@ -627,14 +808,14 @@ export class MyProjectMemberComponent implements OnInit {
       this.currentUser.id).then(res => {
         if (res["result"] == 'successful') {
           this.refreshMemberList();
-          this.toastr.showToast('成員', '切換角色為' + event.target.value + '成功', 'success');
+          this.toastr.showToast(this.msg.projectmemberStr, this.msg.switchRoleStr + event.target.value + this.msg.successfulStr, 'success');
 
         } else {
-          this.toastr.showToast('成員', '切換角色為' + event.target.value + '失敗', 'error');
+          this.toastr.showToast(this.msg.projectmemberStr, this.msg.switchRoleStr + event.target.value + this.msg.failedStr, 'error');
         }
       }).catch(error => {
         console.log("update failed", error);
-        this.toastr.showToast('成員', '移動至' + event.target.value + '失敗', 'error');
+        this.toastr.showToast(this.msg.projectmemberStr, this.msg.movetoStr + event.target.value + this.msg.failedStr, 'error');
       })
   }
 
@@ -677,38 +858,38 @@ export class MyProjectMemberComponent implements OnInit {
         this.selectedEditeMember = null;
         this.close_Info_button.nativeElement.click();
         this.refreshMemberList();
-        this.toastr.showToast('成員', '更新成功', 'success');
+        this.toastr.showToast(this.msg.projectmemberStr, this.msg.updateSuc, 'success');
       } else {
-        this.toastr.showToast('成員', '更新失敗', 'error');
+        this.toastr.showToast(this.msg.projectmemberStr, this.msg.updateFailed, 'error');
       }
     }).catch(error => {
       console.log("update failed", error);
-      this.toastr.showToast('成員', '更新失敗', 'error');
+      this.toastr.showToast(this.msg.projectmemberStr, this.msg.updateFailed, 'error');
     })
   }
 
   onDeleteMemberSubmit(event, member) {
     this.selectedEditeMember = member;
-    this.confirmDialogService.confirmThis("確認要刪除此成員", () => {
+    this.confirmDialogService.confirmThis(this.msg.confirmDelete, () => {
       this.membersSrv.delete(member.id, this.currentUser.id).then(res => {
 
         if (res['result'] == "successful") {
           this.selectedEditeMember = null;
           this.refreshMemberList();
-          this.toastr.showToast('成員', `${member.name} 已經被刪除`, 'success');
+          this.toastr.showToast(this.msg.projectmemberStr, `${member.name} ${this.msg.deleted}`, 'success');
 
 
           this.activitySrv.insert(this.currentUser.id,
             this.currentProject.id,
             "leave",
-            `${member.name} 離開 ${this.currentProject.name}專案！`
+            `${member.name} ${this.msg.leftStr} ${this.currentProject.name}  ${this.msg.projectStr}`
           ).subscribe(res => {
             if (res['result'] === 'successful') { }
           });
 
           this.notificationSrv.infoProjectMembers(this.currentProject.id,
             this.currentUser.id,
-            `${member.name}  離開  ${this.currentProject.name}專案！`,
+            `${member.name}  ${this.msg.leftStr}  ${this.currentProject.name} ${this.msg.projectStr}`,
             "1",
             '0',
             '0',
@@ -720,10 +901,10 @@ export class MyProjectMemberComponent implements OnInit {
           })
 
         } else {
-          this.toastr.showToast('成員', `${member.name} 刪除失敗`, 'error');
+          this.toastr.showToast(this.msg.projectmemberStr, `${member.name} ${this.msg.deletefailedStr}`, 'error');
         }
       }, (error) => {
-        this.toastr.showToast('成員', `${member.name} 刪除失敗`, 'error');
+        this.toastr.showToast(this.msg.projectmemberStr, `${member.name} ${this.msg.deletefailedStr}`, 'error');
         console.log("error", error);
       })
     }, () => {

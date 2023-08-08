@@ -25,10 +25,10 @@
 
 </div>
 <div *ngIf="currentProject" class="row mt-24">
-  <div class="col-md-3 text-right">
+  <div class="col-md-2 text-right">
 
   </div>
-  <div class="col-md-5">
+  <div class="col-md-5 pl-55">
     <h1>{{this.currentProject?.name}}</h1>
   </div>
 
@@ -51,6 +51,7 @@
 
   </div>
   <div class="col-md-5">
+
     <a *ngIf="IsNullorEmpty(currentProject.website)" href="{{ currentProject.website }}" target="_blank"> <i
         class="fas fa-globe icon color-gray"></i></a>
     <a *ngIf="IsNullorEmpty(currentProject.github)" href="{{ currentProject.github }}" target="_blank"> <i

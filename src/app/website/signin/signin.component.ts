@@ -196,7 +196,9 @@ export class SigninComponent implements OnInit, AfterViewInit {
 
     this.authSrv.login(values.email, values.password).subscribe(
       (res) => {
+        console.log("res =================", res);
         if (res["result"] === "successful") {
+
           if (this.redirectURL) {
             this.router.navigateByUrl(this.redirectURL,)
               .catch(() => this.router.navigate(["./dashboard"]))

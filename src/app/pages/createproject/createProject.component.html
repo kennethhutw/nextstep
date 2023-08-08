@@ -78,7 +78,7 @@
                 </div>
                 <div class="col-md-12 mb-12 form-group ">
                     <label class="pr-2" for="stage">
-                        <h5> {{"GAME" | translate
+                        <h5> {{"CURRENT_PROGRESS" | translate
                             }}<span class="color-red ">*</span></h5>
                     </label>
                     <div class="form-group">
@@ -136,7 +136,7 @@
 
     <div class="row">
         <div class="col-md-12 mb-12 form-group button-center">
-            <button type="button" class="btn btn-blue mr-10" [disabled]="!projectForm.valid" (click)="onSaveDraft()">
+            <button type="button" class="btn btn-blue mr-10" (click)="onSaveDraft()">
                 {{ "SAVE_DRAFT" | translate }}</button>
             <button type="button" class="btn btn-blue mr-10" [disabled]="!projectForm.valid" (click)="onSave()">
                 {{ "PUBLISH" | translate }}</button>

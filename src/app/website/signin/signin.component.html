@@ -93,8 +93,8 @@
                                 role="status"></div> -->
             </button>
 
-            <div *ngIf="invalidUser">
-                <p class="invalid-feedback">
+            <div *ngIf="this.invalidUser">
+                <p class="invalidUser">
                     <i class="fas fa-exclamation-triangle"></i> {{"EMAILORPASSWORDNOTCORRECTMSG" | translate }}
                 </p>
             </div>

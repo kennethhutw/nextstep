@@ -9,7 +9,7 @@ import {
   RecruitService,
   AppSettingsService,
   ToastService,
-
+  DataService
 } from '../../../_services';
 import {
   Utility
@@ -20,7 +20,8 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
-
+import { NgxSpinnerService } from "ngx-spinner";
+import { TranslateService } from "@ngx-translate/core";
 @Component({
   selector: 'app-myproject-recruit',
   templateUrl: './myproject-recruit.component.html',
@@ -44,18 +45,23 @@ export class MyProjectRecruitComponent implements OnInit {
   items = [];
   recruitForm: FormGroup;
   skillOptions = [];
-
   status: string = "null";
-
   selectedItem: any[] = [];
-
   canMove: boolean = false;
-
 
   @ViewChild('selectCountry') selectCountry: ElementRef;
   @ViewChild('close_recruit_button') close_recruit_button: ElementRef;
 
-
+  msg = {
+    uncovered: "",
+    deleted: "",
+    insertSuc: "",
+    insertFailed: "",
+    updateSuc: "",
+    updateFailed: "",
+    confirmdel: "",
+    notfilled: ""
+  }
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -63,16 +69,32 @@ export class MyProjectRecruitComponent implements OnInit {
     private dialogSrv: DialogService,
     private toastSrv: ToastService,
     public utilitySrv: Utility,
+    private dataSrv: DataService,
     private appSettingsSrv: AppSettingsService,
-    private authStoreSrv: AuthStore) {
+    private authStoreSrv: AuthStore,
+    private translateSrv: TranslateService,
+    private spinnerSrv: NgxSpinnerService) {
     this.skillOptions = this.appSettingsSrv.skillOptions();
     this.invitationForm = this.formBuilder.group({
       name: ["", Validators.required],
       email: ["", Validators.required]
     });
+
+    let _lang = localStorage.getItem("lang");
+    if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
+    }
+    this.init_terms(_lang);
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utilitySrv.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+        this.init_terms(lang);
+      }
+    });
   }
 
   ngOnInit() {
+    this.spinnerSrv.show();
     this.currentUser = this.authStoreSrv.getUserData();
 
     this.projectId = this.route.snapshot.paramMap.get("projectId");
@@ -90,6 +112,39 @@ export class MyProjectRecruitComponent implements OnInit {
       work78: [false],
       work9: [false],
     });
+
+  }
+
+  init_terms(lang) {
+
+    this.translateSrv.get("UPDATEDSUC").subscribe((text: string) => {
+      this.msg.updateSuc = text;
+    });
+
+    this.translateSrv.get("UPDATEDFAILED").subscribe((text: string) => {
+      this.msg.updateFailed = text;
+    });
+
+    this.translateSrv.get("INSERTSUC").subscribe((text: string) => {
+      this.msg.insertSuc = text;
+    });
+
+    this.translateSrv.get("INSERTFAILED").subscribe((text: string) => {
+      this.msg.insertFailed = text;
+    });
+
+    this.translateSrv.get("CONFIRMDELETE").subscribe((text: string) => {
+      this.msg.confirmdel = text;
+    });
+
+    this.translateSrv.get("DELETED").subscribe((text: string) => {
+      this.msg.deleted = text;
+    });
+
+    this.translateSrv.get("ACTIONUNCOVER").subscribe((text: string) => {
+      this.msg.uncovered = text;
+    });
+
 
   }
 
@@ -172,11 +227,14 @@ export class MyProjectRecruitComponent implements OnInit {
           this.closed = data.filter((application) => {
             return application.status == '2'
           });
-
         }
-
       }
+    }).catch(e => {
+      console.log("error", e)
+    }).then(() => {
+      this.spinnerSrv.hide();
     })
+
   }
 
 
@@ -252,9 +310,6 @@ export class MyProjectRecruitComponent implements OnInit {
     });
   }
 
-  onRecruitSubmit() {
-    // todo
-  }
 
   onUpdateRecruitSubmit() {
     this.submitted = true;
@@ -303,52 +358,53 @@ export class MyProjectRecruitComponent implements OnInit {
         this.recruitForm.reset();
         this.close_recruit_button.nativeElement.click();
         this.toastSrv.showToast('Success',
-          " " + values.position + "已更新.",
+          " " + values.position + this.msg.updateSuc,
           this.toastSrv.iconClasses.success);
         this.refreshRecruitList();
       }
     }).catch(error => {
       this.toastSrv.showToast('Failed',
-        error.message,
+        error.message + " " + this.msg.updateFailed,
         this.toastSrv.iconClasses.error);
     })
   }
 
   onDeleteJobItem(item) {
-    this.dialogSrv.deleteThis('確定刪除此' + item.position, `確定刪除此${item.position}?,此動作將無法復原`, () => {
-      this.recruitSrv.delete(item.id, this.currentUser.id).then(res => {
-        if (res['result'] == "successful") {
+    this.dialogSrv.deleteThis(this.msg.confirmdel + item.position,
+      `${this.msg.confirmdel} ${item.position}?, ${this.msg.uncovered}`, () => {
+        this.recruitSrv.delete(item.id, this.currentUser.id).then(res => {
+          if (res['result'] == "successful") {
 
-          this.items = this.items.filter(obj => {
-            return obj.id !== item.id
-          })
+            this.items = this.items.filter(obj => {
+              return obj.id !== item.id
+            })
 
-          this.current = this.items.filter((application) => {
-            return application.status == '1'
-          });
-          this.drafts = this.items.filter((application) => {
-            return application.status == '0'
-          });
-          this.closed = this.items.filter((application) => {
-            return application.status == '2'
-          });
+            this.current = this.items.filter((application) => {
+              return application.status == '1'
+            });
+            this.drafts = this.items.filter((application) => {
+              return application.status == '0'
+            });
+            this.closed = this.items.filter((application) => {
+              return application.status == '2'
+            });
 
 
-          this.toastSrv.showToast('Success',
-            " " + item.position + "已刪除.",
-            this.toastSrv.iconClasses.success);
-        } else {
+            this.toastSrv.showToast('Success',
+              " " + item.position + this.msg.deleted,
+              this.toastSrv.iconClasses.success);
+          } else {
+            this.toastSrv.showToast('Failed',
+              res['message'],
+              this.toastSrv.iconClasses.error);
+          }
+        }).catch(error => {
+          console.error("Delete failed! " + error.message);
           this.toastSrv.showToast('Failed',
-            res['message'],
+            error.message,
             this.toastSrv.iconClasses.error);
-        }
-      }).catch(error => {
-        console.error("Delete failed! " + error.message);
-        this.toastSrv.showToast('Failed',
-          error.message,
-          this.toastSrv.iconClasses.error);
-      })
-    }, () => { })
+        })
+      }, () => { })
 
   }
 
@@ -360,8 +416,64 @@ export class MyProjectRecruitComponent implements OnInit {
   }
 
   onCreateRecruit() {
-    this.isViewMode = false;
-    this.recruitForm.reset();
+    // this.isViewMode = false;
+    // this.recruitForm.reset();
+
+    this.submitted = true;
+    if (this.recruitForm.invalid) {
+      return;
+    }
+    const values = this.recruitForm.value;
+    let _skills = "";
+    let _skills_array = [];
+    if (values.skills) {
+      values.skills.map(skill => {
+        let _skill_text = skill;
+        if (typeof skill == "object") {
+          _skill_text = skill.text;
+        }
+        let _index = this.skillOptions.findIndex((obj => obj.text == _skill_text));
+        if (_index) {
+          _skills += this.skillOptions[_index].value + ",";
+          _skills_array.push(this.skillOptions[_index].value);
+        }
+      })
+
+      if (_skills.length > 0) {
+        _skills = _skills.substring(0, _skills.length - 1);
+      }
+    }
+    let params = {
+      position: values.position,
+      scopes: values.scopes,
+      projectId: this.projectId,
+      status: "0",
+      skills: _skills,
+      work12: values.work12 ? values.work12 : "0",
+      work34: values.work34 ? values.work34 : "0",
+      work56: values.work56 ? values.work56 : "0",
+      work78: values.work78 ? values.work78 : "0",
+      work9: values.work9 ? values.work9 : "0",
+      uid: this.currentUser.id,
+      startDate: moment.utc().valueOf(),
+      endDate: moment.utc().valueOf()
+    }
+
+    this.recruitSrv.insert(params).subscribe(res => {
+
+      if (res["result"] === "successful") {
+        this.recruitForm.reset();
+        this.close_recruit_button.nativeElement.click();
+        this.toastSrv.showToast('Success',
+          " " + values.position + "已更新.",
+          this.toastSrv.iconClasses.success);
+        this.refreshRecruitList();
+      }
+    }, error => {
+      this.toastSrv.showToast('Failed',
+        error.message,
+        this.toastSrv.iconClasses.error);
+    })
   }
 
 }

@@ -32,11 +32,31 @@ export class MyProjectComponent implements OnInit {
   publishedprojects = [];
   draftedprojects = [];
 
+  msg = {
+
+    deleted: "",
+  }
+
   constructor(
+    private translateSrv: TranslateService,
+    public utilitySrv: Utility,
+    private dataSrv: DataService,
     private toastSrv: ToastService,
     private dialogSrv: DialogService,
     private projectSrv: ProjectService,
     private authStoreSrv: AuthStore) {
+
+    let _lang = localStorage.getItem("lang");
+    if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
+    }
+    this.init_terms(_lang);
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utilitySrv.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+        this.init_terms(lang);
+      }
+    });
   }
 
   ngOnInit() {
@@ -63,6 +83,8 @@ export class MyProjectComponent implements OnInit {
 
   }
 
+  init_terms(lang) { }
+
   changeTab(tab) {
     this.currentTab = tab;
   }
@@ -81,7 +103,7 @@ export class MyProjectComponent implements OnInit {
               return obj.id !== project.id
             })
             this.toastSrv.showToast('Success',
-              " " + project.name + "已刪除.",
+              " " + project.name + this.msg.deleted,
               this.toastSrv.iconClasses.success);
           } else {
             this.toastSrv.showToast('Failed',

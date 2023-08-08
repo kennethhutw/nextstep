@@ -57,14 +57,14 @@ export class CreateProjectComponent implements OnInit, ComponentCanDeactivate {
       isFindPartner: [0, Validators.required],
       isFunding: [0, Validators.required],
       isCofounder: [0, Validators.required],
-      product: ["", Validators.required],
+      product: [""],
       type: ["", Validators.required],
       stages: ["", Validators.required]
     });
 
-    this.projectForm.controls['name'].valueChanges.subscribe(value => {
-      this.isSaveChange = false;
-    });
+    // this.projectForm.controls['name'].valueChanges.subscribe(value => {
+    //   this.isSaveChange = false;
+    // });
 
     let _lang = localStorage.getItem("lang");
     if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
@@ -205,6 +205,7 @@ export class CreateProjectComponent implements OnInit, ComponentCanDeactivate {
     if (this.projectForm.invalid) {
       return;
     }
+    return;
     this.saveProject('draft', 0);
   }
 

@@ -206,28 +206,32 @@ body {
 
 //cookie
 
-#cookieconsent .cc-color-override--1172037365.cc-window {
-  align-items: center;
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: 60% 40%;
-  padding-top: 18px;
-  padding-bottom: 18px;
-  gap: 42px;
-  background-color: #fff;
-  border: 1px solid #CFD2DA !important;
+#cookieconsent {
+  .cc-color-override--1172037365 {
+    align-items: center;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 60% 40%;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    gap: 42px;
+    background-color: #fff;
+    border: 1px solid #CFD2DA !important;
 
-  .cc-message {
-    text-align: end;
-  }
+    .cc-message {
+      text-align: end;
+    }
 
-  .cc-compliance .cc-btn {
-    background: #56BDF4;
-    color: #fff;
-    padding: 6px 25px;
-    border-radius: 4px;
+    .cc-compliance .cc-btn {
+      background: #56BDF4;
+      color: #fff;
+      padding: 6px 25px;
+      border-radius: 4px;
+    }
   }
 }
+
+
 
 .nav-link {
   background-color: transparent !important;
@@ -1701,6 +1705,10 @@ a.menu-item:hover {
 
 .pl-10 {
   padding-left: 10px;
+}
+
+.pl-55 {
+  padding-left: 55px;
 }
 
 input[type=checkbox] {

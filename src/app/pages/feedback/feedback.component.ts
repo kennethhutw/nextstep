@@ -53,7 +53,11 @@ export class FeedbackComponent implements OnInit {
 
   @ViewChild('closeExpbutton') closeExpbutton;
 
-
+  msg = {
+    deletefailedStr: "",
+    deletefulStr: "",
+    feedbackStr: "",
+  }
   constructor(
     private toastSrv: ToastService,
     private utilitySrv: Utility,
@@ -86,6 +90,18 @@ export class FeedbackComponent implements OnInit {
     });
     this.translateSrv.get("HELP").subscribe((text: string) => {
       this.strHelp = text;
+    });
+
+    this.translateSrv.get("DELETEDFAILED").subscribe((text: string) => {
+      this.msg.deletefailedStr = text;
+    });
+
+    this.translateSrv.get("DELETEDSUC").subscribe((text: string) => {
+      this.msg.deletefulStr = text;
+    });
+
+    this.translateSrv.get("FEEDBACK").subscribe((text: string) => {
+      this.msg.feedbackStr = text;
     });
   }
 
@@ -220,19 +236,19 @@ export class FeedbackComponent implements OnInit {
 
         this.displayItems = this.allitems;
         this.editedItem = null;
-        this.toastSrv.showToast('意見回饋',
-          "刪除成功 ",
+        this.toastSrv.showToast(this.msg.feedbackStr,
+          this.msg.deletefulStr,
           this.toastSrv.iconClasses.success);
       } else {
-        this.toastSrv.showToast('意見回饋',
-          "刪除失敗 ",
+        this.toastSrv.showToast(this.msg.feedbackStr,
+          this.msg.deletefailedStr,
           this.toastSrv.iconClasses.error);
       }
       this.closeExpbutton.nativeElement.click();
     }, (error) => {
       console.log("error", error);
-      this.toastSrv.showToast('意見回饋',
-        "刪除失敗 ",
+      this.toastSrv.showToast(this.msg.feedbackStr,
+        this.msg.deletefailedStr,
         this.toastSrv.iconClasses.error);
       this.closeExpbutton.nativeElement.click();
     })
