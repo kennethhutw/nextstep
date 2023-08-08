@@ -205,12 +205,14 @@ export class CreateProjectComponent implements OnInit, ComponentCanDeactivate {
     if (this.projectForm.invalid) {
       return;
     }
-    return;
+
     this.saveProject('draft', 0);
+
   }
 
   saveProject(status, isPublic) {
     this.submitted = true;
+
     const value = this.projectForm.value;
     let projectName = value.name;
     this.isSaveChange = true;
