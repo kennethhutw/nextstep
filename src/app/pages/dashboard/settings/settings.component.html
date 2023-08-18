@@ -61,7 +61,7 @@
               <div class="form-group">
 
                 <input [type]="showPassword ? 'text' : 'password'" class="form-control mb-15" id="OLDPSW"
-                  placeholder="{{ 'OLDPSW' | translate }}" formControlName="currentPassword" />
+                  placeholder="{{ 'CURRENTPSW' | translate }}" formControlName="currentPassword" />
                 <div class="input-group-addon" (click)="toggleShow()">
                   <i class="fa color-ligh-gray" [ngClass]="{'fa-eye-slash':!showPassword, 'fa-eye':showPassword}"
                     aria-hidden="true"></i>
@@ -90,8 +90,8 @@
               <div class="form-group">
 
                 <input [type]="showReNewPassword ? 'text' : 'password'" class="form-control" id="CONFIRMPSW"
-                  placeholder="{{ 'CONFIRMPSW' | translate }}" [autocomplete]="'off'" formControlName="confirmPassword"
-                  [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }">
+                  placeholder="{{ 'REENTERNEWPSW' | translate }}" [autocomplete]="'off'"
+                  formControlName="confirmPassword" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }">
                 <div class="input-group-addon" (click)="toggleReNewShow()">
                   <i class="fa color-ligh-gray"
                     [ngClass]="{'fa-eye-slash':!showReNewPassword, 'fa-eye':showReNewPassword}" aria-hidden="true"></i>

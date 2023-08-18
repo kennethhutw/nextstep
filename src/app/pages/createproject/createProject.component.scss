@@ -3,9 +3,6 @@ app-create-project {
     width: 50%;
   }
 
-
-
-
   .selected {
     background-color: #2EC2E2 !important;
   }
@@ -36,6 +33,16 @@ app-create-project {
     color: white;
     border: 2px solid #E3E5EC !important;
 
+  }
+
+  .options-3 {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 33.3% 33.3% 33.3%;
+  }
+
+  textarea#PROJECT_INTRO::placeholder {
+    opacity: 0.6;
   }
 
   .members {

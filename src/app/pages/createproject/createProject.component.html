@@ -1,4 +1,8 @@
-<div class="container mb-80">
+<div class="container mb-80 mt-50">
+    <div class="row">
+        <h1>{{ "CREATEPROJECT"
+            | translate }}</h1>
+    </div>
     <div class="row">
         <form [formGroup]="projectForm">
             <div class="row">
@@ -50,30 +54,53 @@
                     <label class="pr-2" for="projectname">
                         <h5> {{"INDUSTRY_TYPES" | translate }}<span class="color-red ">*</span></h5>
                     </label>
-                    <div class="form-group">
-                        <input type="checkbox" (change)="onIndustryTypeChange($event, 'eComm')"
-                            [checked]="isInValue('eComm', f.type.value)" value="eComm"><span>{{"ECOMM" | translate
-                            }}</span>
-                        <input type="checkbox" (change)="onIndustryTypeChange($event, 'medical')"
-                            [checked]="isInValue('medical', f.type.value)" value="medical"><span>{{"MEDICAL" | translate
-                            }}</span>
-                        <input type="checkbox" (change)="onIndustryTypeChange($event, 'ai')"
-                            [checked]="isInValue('ai', f.type.value)" value="ai"><span>{{"AI" | translate }}</span>
-                        <input type="checkbox" (change)="onIndustryTypeChange($event, 'transport')"
-                            [checked]="isInValue('transport', f.type.value)" value="transport"><span>{{"TRANSPORT" |
-                            translate }}</span>
-                        <input type="checkbox" (change)="onIndustryTypeChange($event, 'edutech')"
-                            [checked]="isInValue('edutech', f.type.value)" value="edutech"><span>{{"EDUTECH" | translate
-                            }}</span>
-                        <input type="checkbox" (change)="onIndustryTypeChange($event, 'fintech')"
-                            [checked]="isInValue('fintech', f.type.value)" value="fintech"><span>{{"FINTECH" | translate
-                            }}</span>
-                        <input type="checkbox" (change)="onIndustryTypeChange($event, 'sharingeconomy')"
-                            [checked]="isInValue('sharingeconomy', f.type.value)"
-                            value="sharingeconomy"><span>{{"SHARINGECONOMY" | translate }}</span>
-                        <input type="checkbox" (change)="onIndustryTypeChange($event, 'game')"
-                            [checked]="isInValue('game', f.type.value)" value="game"><span>{{"GAME" | translate
-                            }}</span>
+                    <div class="form-group options-3">
+                        <div>
+                            <input type="checkbox" (change)="onIndustryTypeChange($event, 'eComm')"
+                                [checked]="isInValue('eComm', f.type.value)" value="eComm"><span>{{"ECOMM" | translate
+                                }}</span>
+                        </div>
+                        <div>
+                            <input type="checkbox" (change)="onIndustryTypeChange($event, 'medical')"
+                                [checked]="isInValue('medical', f.type.value)" value="medical"><span>{{"MEDICAL" |
+                                translate
+                                }}</span>
+                        </div>
+                        <div>
+                            <input type="checkbox" (change)="onIndustryTypeChange($event, 'ai')"
+                                [checked]="isInValue('ai', f.type.value)" value="ai"><span>{{"AI" | translate }}</span>
+                        </div>
+                    </div>
+                    <div class="form-group options-3">
+                        <div>
+                            <input type="checkbox" (change)="onIndustryTypeChange($event, 'transport')"
+                                [checked]="isInValue('transport', f.type.value)" value="transport"><span>{{"TRANSPORT" |
+                                translate }}</span>
+                        </div>
+                        <div>
+                            <input type="checkbox" (change)="onIndustryTypeChange($event, 'edutech')"
+                                [checked]="isInValue('edutech', f.type.value)" value="edutech"><span>{{"EDUTECH" |
+                                translate
+                                }}</span>
+                        </div>
+                        <div>
+                            <input type="checkbox" (change)="onIndustryTypeChange($event, 'fintech')"
+                                [checked]="isInValue('fintech', f.type.value)" value="fintech"><span>{{"FINTECH" |
+                                translate
+                                }}</span>
+                        </div>
+                    </div>
+                    <div class="form-group options-3">
+                        <div>
+                            <input type="checkbox" (change)="onIndustryTypeChange($event, 'sharingeconomy')"
+                                [checked]="isInValue('sharingeconomy', f.type.value)"
+                                value="sharingeconomy"><span>{{"SHARINGECONOMY" | translate }}</span>
+                        </div>
+                        <div>
+                            <input type="checkbox" (change)="onIndustryTypeChange($event, 'game')"
+                                [checked]="isInValue('game', f.type.value)" value="game"><span>{{"GAME" | translate
+                                }}</span>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-12 mb-12 form-group ">
@@ -81,46 +108,72 @@
                         <h5> {{"CURRENT_PROGRESS" | translate
                             }}<span class="color-red ">*</span></h5>
                     </label>
-                    <div class="form-group">
-                        <input type="checkbox" (change)="onStageChange($event, 'idea')"
-                            [checked]="isInValue('idea', f.stages.value)" value="idea"><span>{{"PRORGRESS_1" | translate
-                            }}</span>
-                        <input type="checkbox" (change)="onStageChange($event, 'businessplan')"
-                            [checked]="isInValue('businessplan', f.stages.value)"
-                            value="businessplan"><span>{{"PRORGRESS_2" | translate
-                            }}</span>
-                        <input type="checkbox" (change)="onStageChange($event, 'findpartner')"
-                            [checked]="isInValue('findpartner', f.stages.value)"
-                            value="findpartner"><span>{{"PRORGRESS_3" | translate
-                            }}</span>
-                        <input type="checkbox" (change)="onStageChange($event, 'buildMVP')"
-                            [checked]="isInValue('buildMVP', f.stages.value)" value="buildMVP"><span>{{"PRORGRESS_4" |
-                            translate
-                            }}</span>
-                        <input type="checkbox" (change)="onStageChange($event, 'producttested')"
-                            [checked]="isInValue('producttested', f.stages.value)"
-                            value="producttested"><span>{{"PRORGRESS_5" | translate
-                            }}</span>
-                        <input type="checkbox" (change)="onStageChange($event, 'findcustomers')"
-                            [checked]="isInValue('findcustomers', f.stages.value)"
-                            value="findcustomers"><span>{{"PRORGRESS_6" | translate
-                            }}</span>
-                        <input type="checkbox" (change)="onStageChange($event, 'findpayingcustomers')"
-                            [checked]="isInValue('findpayingcustomers', f.stages.value)"
-                            value="findpayingcustomers"><span>{{"PRORGRESS_7" | translate
-                            }}</span>
-                        <input type="checkbox" (change)="onStageChange($event, 'fundraising')"
-                            [checked]="isInValue('fundraising', f.stages.value)"
-                            value="fundraising"><span>{{"PRORGRESS_8" | translate
-                            }}</span>
+                    <div class="form-group options-3">
+                        <div>
+                            <input type="checkbox" (change)="onStageChange($event, 'idea')"
+                                [checked]="isInValue('idea', f.stages.value)" value="idea"><span>{{"PRORGRESS_1" |
+                                translate
+                                }}</span>
+                        </div>
+                        <div>
+                            <input type="checkbox" (change)="onStageChange($event, 'businessplan')"
+                                [checked]="isInValue('businessplan', f.stages.value)"
+                                value="businessplan"><span>{{"PRORGRESS_2" | translate
+                                }}</span>
+                        </div>
+                        <div>
+                            <input type="checkbox" (change)="onStageChange($event, 'findpartner')"
+                                [checked]="isInValue('findpartner', f.stages.value)"
+                                value="findpartner"><span>{{"PRORGRESS_3" | translate
+                                }}</span>
+                        </div>
+                    </div>
+                    <div class="form-group options-3">
+                        <div>
+                            <input type="checkbox" (change)="onStageChange($event, 'buildMVP')"
+                                [checked]="isInValue('buildMVP', f.stages.value)" value="buildMVP"><span>{{"PRORGRESS_4"
+                                |
+                                translate
+                                }}</span>
+                        </div>
+                        <div>
+                            <input type="checkbox" (change)="onStageChange($event, 'producttested')"
+                                [checked]="isInValue('producttested', f.stages.value)"
+                                value="producttested"><span>{{"PRORGRESS_5" | translate
+                                }}</span>
+                        </div>
+
+                        <div>
+                            <input type="checkbox" (change)="onStageChange($event, 'findcustomers')"
+                                [checked]="isInValue('findcustomers', f.stages.value)"
+                                value="findcustomers"><span>{{"PRORGRESS_6" | translate
+                                }}</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group options-3">
+                        <div>
+                            <input type="checkbox" (change)="onStageChange($event, 'findpayingcustomers')"
+                                [checked]="isInValue('findpayingcustomers', f.stages.value)"
+                                value="findpayingcustomers"><span>{{"PRORGRESS_7" | translate
+                                }}</span>
+                        </div>
+                        <div>
+                            <input type="checkbox" (change)="onStageChange($event, 'fundraising')"
+                                [checked]="isInValue('fundraising', f.stages.value)"
+                                value="fundraising"><span>{{"PRORGRESS_8" | translate
+                                }}</span>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-12 mb-12 form-group ">
-                    <label class="pr-2" for="projectname">
-                        <h5> {{ "PROJECT_INTRO" | translate }} :</h5>
+                    <label class="d-flex pr-2" for="projectname">
+                        <h5 class="mr-10"> {{ "PROJECT_INTRO" | translate }} :</h5>
+                        <button type="button" class="btn btn-blue  mr-10" (click)="onTemplate()">
+                            {{ "TEMPLATE" | translate }}</button>
                     </label>
-                    <textarea formControlName="description" type="text" class="form-control" id="" rows="20" cols="50"
-                        placeholder="{{ 'PROJECT_INTRO_STATEMENT' | translate }}"></textarea>
+                    <textarea formControlName="description" type="text" class="form-control" id="PROJECT_INTRO"
+                        rows="20" cols="50" placeholder="{{ 'PROJECT_INTRO_STATEMENT' | translate }}"></textarea>
                     <div *ngIf="submitted && f.description.errors">
                         <div class="error-msg" *ngIf="f.description.errors.required">
                             {{ "PROJECT_INTRO_MUST" | translate }}
@@ -136,7 +189,9 @@
 
     <div class="row">
         <div class="col-md-12 mb-12 form-group button-center">
-            <button type="button" class="btn btn-blue mr-10" (click)="onSaveDraft()">
+            <button type="button" class="btn btn-transparent  mr-10" (click)="onCancel()">
+                {{ "CANCEL" | translate }}</button>
+            <button type="button" class="btn btn-blue mr-10" [disabled]="!projectForm.valid" (click)="onSaveDraft()">
                 {{ "SAVE_DRAFT" | translate }}</button>
             <button type="button" class="btn btn-blue mr-10" [disabled]="!projectForm.valid" (click)="onSave()">
                 {{ "PUBLISH" | translate }}</button>

@@ -32,7 +32,8 @@ export class CreateProjectComponent implements OnInit, ComponentCanDeactivate {
 
   msg = {
     project: "",
-    create: ""
+    create: "",
+    template_statment: ""
   }
 
   constructor(
@@ -87,7 +88,9 @@ export class CreateProjectComponent implements OnInit, ComponentCanDeactivate {
     this.translateSrv.get("CREATE").subscribe((text: string) => {
       this.msg.create = text;
     });
-
+    this.translateSrv.get("PROJECT_INTRO_STATEMENT").subscribe((text: string) => {
+      this.msg.template_statment = text;
+    });
 
   }
 
@@ -198,6 +201,11 @@ export class CreateProjectComponent implements OnInit, ComponentCanDeactivate {
     this.router.navigate(['./index'], {});
   }
 
+  onTemplate() {
+    this.projectForm.get("description").setValue(this.msg.template_statment);
+
+  }
+
   onSaveDraft() {
     console.log("Draft ----");
 
@@ -264,5 +272,7 @@ export class CreateProjectComponent implements OnInit, ComponentCanDeactivate {
       this.projectMsg = error.message;
     })
   }
+
+
 
 }

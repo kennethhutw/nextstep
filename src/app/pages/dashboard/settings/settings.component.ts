@@ -106,9 +106,9 @@ export class SettingsComponent implements OnInit {
       this.notifOp3Desc = text;
     });
 
-    this.translateSrv.get("OLDPSW").subscribe((text: string) => {
-      this.utility.SetPlaceholder("#OLDPSW", text);
-    });
+    // this.translateSrv.get("CURRENTPSW").subscribe((text: string) => {
+    //   this.utility.SetPlaceholder("#CURRENTPSW", text);
+    // });
     this.translateSrv.get("NEWPSW").subscribe((text: string) => {
       this.utility.SetPlaceholder("#NEWPSW", text);
     });

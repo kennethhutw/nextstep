@@ -1,8 +1,10 @@
 <div class="forgot-container">
-    <div class="forgot-left-bg"></div>
+    <div class="forget-left-area">
+        <img src="assets/images/forgotPSW.png" />
+    </div>
     <div class="frame">
         <div class="w-100">
-            <a routerLink="/signin"> <i class="far fa-arrow-alt-circle-left" style="font-size: 25px;"></i></a>
+            <a routerLink="/signin"> <i class="far fa-arrow-alt-circle-left font-25"></i></a>
         </div>
         <div class="w-100  mt-30">
             <h2>{{ "FORGOTPASSWORD"
@@ -14,7 +16,7 @@
         </div>
 
         <form class="mt-30" [formGroup]="resetEmailForm">
-            <div class="form-group" style="font-family: var(--font-nunito);">
+            <div class="form-group">
                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                     formControlName="email"
                     [ngClass]="{ 'is-invalid': (resetEmailForm.get('email').touched || resetEmailForm.get('email').dirty) && resetEmailForm.get('email').invalid || submit && resetEmailForm.get('email').invalid }"
@@ -27,14 +29,13 @@
 
             </div>
             <button *ngIf="!this.timerSub" type="submit"
-                class="btn btn-blue w-100 d-flex align-items-center justify-content-center"
-                style="height: 45px; margin-top: 30px;" [disabled]="inValid()" (click)="onSubmit()">
+                class="btn btn-blue w-100 d-flex align-items-center justify-content-center" [disabled]="inValid()"
+                (click)="onSubmit()">
                 {{ "SEND"
                 | translate }}
             </button>
             <button *ngIf="this.timerSub" type="submit"
-                class="btn color-gray btn-countdown w-100 d-flex align-items-center justify-content-center"
-                style="height: 45px; margin-top: 30px;">
+                class="btn color-gray btn-countdown w-100 d-flex align-items-center justify-content-center">
                 {{ "RESENDFGEMAILF"
                 | translate }} {{this.value}}{{ "RESENDFGEMAILB"
                 | translate }}

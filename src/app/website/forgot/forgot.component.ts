@@ -4,7 +4,7 @@ import {
   EmailService,
   ToastService
 } from "../../_services";
-
+import { Utility } from "src/app/_helpers";
 import {
   FormBuilder,
   FormGroup,
@@ -47,8 +47,13 @@ export class ForgotComponent implements OnInit {
     private fb: FormBuilder,
     private emailSrv: EmailService,
     private toastSrv: ToastService,
+    private utilitySrv: Utility,
+    private translateSrv: TranslateService,
   ) {
-
+    let _lang = localStorage.getItem("lang");
+    if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
+    }
 
   }
 
