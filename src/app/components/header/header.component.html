@@ -163,10 +163,10 @@
         </li>
       </ul>
 
-      <form id="index_login" *ngIf="authStoreSrv.isLoggedOut$ | async" class="form-inline my-2 my-lg-0 gap-10">
+      <div id="index_login" *ngIf="authStoreSrv.isLoggedOut$ | async" class="form-inline my-2 my-lg-0 gap-10">
         <a class="btn-transparent font-16 " routerLink="/signin">{{ "SIGNIN" | translate }}</a> <a routerLink="/signup"
           class="btn-blue font-16" [routerLinkActive]="['active']">{{ "SIGNUP" | translate }}</a>
-      </form>
+      </div>
 
 
     </div>
@@ -209,99 +209,7 @@
     </form>
   </div>
 </app-modal>
-<!--Modal forget password-->
-<div class="modal fade" id="modal_forget_password" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content model_padding">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">╳</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="text-center mb-4">
-          <h3>{{ "FORGOTPASSWORD" | translate }}</h3>
-        </div>
-        <div class="row text-center">
-          <input class="modal_input w-100 mb-2" type="text" id="signinPassword" placeholder="{{ 'EMAIL' | translate }}"
-            [(ngModel)]="ForgotPasswordEmail" (focus)="this.placeholder = ''"
-            (blur)="setBlur('signinPassword', 'PASSWORD')" />
-          <!-- <button class="model_btn_normal mb-2 w-100" data-target="#modal_password_thanks" data-toggle="modal"
-            (click)="onResetPassword()" data-dismiss="modal">
-            {{ "SEND" | translate }}
-          </button> -->
-          <button class="model_btn_normal mb-2 w-100" (click)="onResetPassword()">
-            {{ "SEND" | translate }}
-          </button>
-        </div>
-        <div class="text-center mb-4">
-          <app-loading *ngIf="pswloading"></app-loading>
-        </div>
-        <div [ngClass]="{ 'error-msg': pswMsgFailed == false }" class="text-center mb-4">
-          <p> {{pswActionMsg}}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!--Modal register-->
-<div class="modal fade" id="modal_register" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content model_padding">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">╳</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="text-center mb-4">
-          <h2>{{ "IAMA" | translate }}</h2>
-        </div>
-        <div class="row text-center">
-          <div class="col-md-6">
-            <a routerLink="/register-artist"><button data-dismiss="modal" aria-label="Close" class="model_btn_normal">
-                {{ "IAMCREATOR" | translate }}
-              </button></a>
-            <p class="mt-2 model-p-small">{{ "IAMCREATORDEC" | translate }}</p>
-          </div>
-          <div class="col-md-6">
-            <a routerLink="/register-collector"><button data-dismiss="modal" aria-label="Close"
-                class="model_btn_normal">
-                {{ "COLLECTOR" | translate }}
-              </button></a>
-            <p class="mt-2 model-p-small">
-              {{ "IAMCOLLECTORDEC" | translate }}
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
-<!--Modal password thank you-->
-<app-modal [modalid]="'modal_password_thanks'">
-  <div body>
-    <div class="row text-center">
-      <p>{{ "ANEWPASSWORDHASBEENSENT" | translate }}</p>
-      <button class="model_btn_normal mb-2 w-100" data-dismiss="modal" aria-label="Close">
-        {{ "CONFRIM" | translate }}
-      </button>
-    </div>
-  </div>
-</app-modal>
-
-<!--Modal wallet wrong-->
-<app-modal [modalid]="'modal_wallet_wrong'">
-  <div body>
-    <div class="row text-center">
-      <p>{{ "NOTFOUNDWALLET" | translate }}</p>
-      <button class="model_btn_normal mb-2 w-100" data-dismiss="modal" aria-label="Close">
-        {{ "CONFRIM" | translate }}
-      </button>
-    </div>
-  </div>
-</app-modal>
 <!-- [hidden]="true" -->
 <button id="openCollectorheaderModalButton" [hidden]="true" data-toggle="modal"
   data-target="#modal_collector_header_guide">Open

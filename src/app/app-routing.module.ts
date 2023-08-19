@@ -1,4 +1,4 @@
-import { RouterModule, Routes, UrlSerializer, } from "@angular/router";
+import { RouterModule, Routes } from "@angular/router";
 import { Component, Type } from '@angular/core';
 import * as Pages from './pages';
 import * as AppLayouts from "./layout";

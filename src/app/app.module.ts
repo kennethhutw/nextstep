@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule, APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { NgModule, APP_INITIALIZER, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -114,20 +114,15 @@ export function appConfigFactory(provider: AppSettingsService) {
     NgbTypeaheadModule,
     NgbRatingModule
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA,
+    NO_ERRORS_SCHEMA],
   providers: [
-    GoogleAnalyticsService,
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
         autoLogin: false,
         providers: [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(
-              '1093364473991-70t3haupsjd78sekbn2lkjrqlb5oo6c8.apps.googleusercontent.com'
-            )
-          },
+
           {
             id: FacebookLoginProvider.PROVIDER_ID,
             provider: new FacebookLoginProvider('4372722732764052')
@@ -137,8 +132,9 @@ export function appConfigFactory(provider: AppSettingsService) {
           console.error(err);
         }
       } as SocialAuthServiceConfig,
-
     },
+    GoogleAnalyticsService,
+
     AppSettingsService,
     {
       provide: APP_INITIALIZER,

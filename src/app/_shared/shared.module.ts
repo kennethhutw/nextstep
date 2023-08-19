@@ -1,4 +1,8 @@
-import { NgModule, ErrorHandler } from "@angular/core";
+import {
+  NgModule, ErrorHandler,
+  NO_ERRORS_SCHEMA
+  , CUSTOM_ELEMENTS_SCHEMA
+} from "@angular/core";
 
 import { ErrorDialogService } from "./errors/error-dialog.service";
 import { LoadingDialogService } from "./loading/loading-dialog.service";
@@ -9,8 +13,8 @@ import { RouterModule } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService, TokenInterceptor } from "./../_guards";
 import { Utility, SocialMediaUtility, TimeUtility } from "../_helpers";
-import { BsModalService } from "ngx-bootstrap/modal";
-import { ModalModule } from "ngx-bootstrap";
+import { BsModalService, ModalModule } from "ngx-bootstrap/modal";
+
 import { GlobalErrorHandler } from "./../_core/errors/global-error-handler";
 import { NgxSpinnerModule } from "ngx-spinner";
 
@@ -60,6 +64,8 @@ export function createLoader(http: HttpClient) {
     LoadingComponent,
     ...sharedComponents.components,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA,
+    NO_ERRORS_SCHEMA],
   imports: [
     FormsModule,
     ReactiveFormsModule,
