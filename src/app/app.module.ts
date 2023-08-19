@@ -3,7 +3,7 @@ import { NgModule, APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core
 import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-
+import { RouterModule } from "@angular/router";
 
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -88,6 +88,7 @@ export function appConfigFactory(provider: AppSettingsService) {
   imports: [
     ModalModule,
     BrowserModule,
+    RouterModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     routing,

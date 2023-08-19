@@ -15,24 +15,31 @@ import { AdminSettingsComponent } from './pages/settings/settings.component';
 import { AdminProjectsComponent } from './pages/projects/projects.component';
 import { ProjectInfoComponent } from './pages/projects/info/info.component';
 import { ProjectSettingComponent } from './pages/projects/projectsetting/setting.component';
+import {
 
+    NavbarComponent,
+    SidebarComponent,
+    AdminFooterComponent,
+} from "./../components";
 
 export const containers = [
     AdminProjectsComponent,
     AdminDelegateEmailComponent,
     AdminSettingsComponent,
     AdminUsersComponent,
+    AdminFooterComponent,
     DashboardComponent,
     TablesComponent,
     FormsComponent,
     TypographyComponent,
     MapsComponent,
     NotificationsComponent,
+    NavbarComponent,
     ProjectInfoComponent,
     ProjectSettingComponent,
     UserSettingComponent,
     UserInfoComponent,
-
+    SidebarComponent,
 ];
 
 export { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -51,3 +58,9 @@ export { AdminSettingsComponent } from './pages/settings/settings.component';
 export { AdminProjectsComponent } from './pages/projects/projects.component';
 export { ProjectInfoComponent } from './pages/projects/info/info.component';
 export { ProjectSettingComponent } from './pages/projects/projectsetting/setting.component';
+export {
+
+    NavbarComponent,
+    SidebarComponent,
+    AdminFooterComponent,
+} from "./../components";
