@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule, APP_INITIALIZER } from "@angular/core";
+import { NgModule, APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -113,6 +113,7 @@ export function appConfigFactory(provider: AppSettingsService) {
     NgbTypeaheadModule,
     NgbRatingModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     GoogleAnalyticsService,
     {

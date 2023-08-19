@@ -85,6 +85,7 @@ export function createLoader(http: HttpClient) {
     DialogComponent,
     ModalComponent,
     EditableInputComponent,
+    TranslateModule,
     ...Pipes.pipes,
     LoadingComponent,
     ...sharedComponents.components,

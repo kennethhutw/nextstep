@@ -1,5 +1,5 @@
 <div class="container text-center">
-    <ng-container [ngSwitch]="switch_expression">
+    <div [ngSwitch]="switch_expression">
         <div class="content" *ngSwitchCase="2">
             <span class="title text-center mb-20">是否接受加入[{{invitation? invitation.name:"專案名稱"}}]的邀請？</span>
             <div class="btns">
@@ -48,5 +48,5 @@
 
             </button>
         </div>
-    </ng-container>
+    </div>
 </div>
