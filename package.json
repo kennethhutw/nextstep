@@ -5,9 +5,9 @@
     "heroku-postbuild": "npm run patch-webpack && ng build --aot --configuration=${environment} --prod --namedChunks=true --stats-json --force",
     "ng": "ng",
     "start": "node server.js",
-    "build": "npm run patch-webpack && ng build --aot --configuration=production  --prod --namedChunks=true --stats-json --force",
+    "build": "npm run patch-webpack --force && ng build --aot --configuration=production  --prod --namedChunks=true --stats-json --force",
     "test": "ng test",
-    "lint": "ng lint",
+    "lint": "ng lint --force",
     "e2e": "ng e2e",
     "patch-webpack": "node plugins/patch.js"
   },
