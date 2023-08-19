@@ -33,7 +33,7 @@
     "@angular/router": "^10.2.5",
     "@material/icon-button": "^0.44.1",
     "@ng-bootstrap/ng-bootstrap": "^8.0.0",
-    "@ngx-translate/core": "^10.0.2",
+    "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
     "@types/jasmine": "^2.8.17",
     "@types/jasminewd2": "~2.0.3",
