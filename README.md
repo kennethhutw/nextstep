@@ -32,3 +32,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 fixed python issue
 npm --add-python-to-path='true' --debug install --global windows-build-tools
+
+Running Angular Application: error:0308010C:digital envelope routines::unsupported [duplicate]
+https://stackoverflow.com/questions/70951422/running-angular-application-error0308010cdigital-envelope-routinesunsupport
+Windows: set NODE_OPTIONS=--openssl-legacy-provider
