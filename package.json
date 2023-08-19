@@ -2,12 +2,12 @@
   "name": "nextstep",
   "version": "0.0.0",
   "scripts": {
-    "heroku-postbuild": "npm run patch-webpack && ng build --aot --configuration=${environment} --prod --namedChunks=true --stats-json --force",
+    "heroku-postbuild": "npm run patch-webpack && ng build --aot --configuration=${environment} --prod --namedChunks=true --stats-json ",
     "ng": "ng",
     "start": "node server.js",
-    "build": "npm run patch-webpack --force && ng build --aot --configuration=production  --prod --namedChunks=true --stats-json --force",
+    "build": "npm run patch-webpack  && ng build --aot --configuration=production  --prod --namedChunks=true --stats-json ",
     "test": "ng test",
-    "lint": "ng lint --force",
+    "lint": "ng lint ",
     "e2e": "ng e2e",
     "patch-webpack": "node plugins/patch.js"
   },
