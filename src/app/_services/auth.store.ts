@@ -7,14 +7,9 @@ import { resResult } from "./../_models";
 import { map, shareReplay, tap } from "rxjs/operators";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Utility } from "../_helpers";
-import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
-import {
-  AuthService,
-  FacebookLoginProvider,
-  GoogleLoginProvider,
-  LinkedinLoginProvider
-} from 'angular-6-social-login';
+import { SocialAuthService } from "angularx-social-login";
+import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
+
 
 const AUTH_DATA = "auth_data";
 @Injectable({
@@ -35,7 +30,7 @@ export class AuthStore {
     private utility: Utility,
     private emailService: EmailService,
     private userSrv: UserService,
-    private socialAuthService: AuthService) {
+    private socialAuthService: SocialAuthService) {
     this.isLoggedIn$ = this.user$.pipe(map((user) => !!user));
 
     this.isLoggedOut$ = this.isLoggedIn$.pipe(map((LoggedIn) => !LoggedIn));
@@ -142,8 +137,6 @@ export class AuthStore {
       socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
     } else if (socialPlatform == "google") {
       socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
-    } else if (socialPlatform == "linkedin") {
-      socialPlatformProvider = LinkedinLoginProvider.PROVIDER_ID;
     }
 
     return this.socialAuthService.signIn(socialPlatformProvider).then(

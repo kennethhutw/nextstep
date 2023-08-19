@@ -23,11 +23,9 @@ import {
   Router,
   ActivatedRoute
 } from "@angular/router";
-import {
-  AuthService,
-  GoogleLoginProvider,
-  FacebookLoginProvider
-} from "angular-6-social-login";
+import { SocialAuthService } from "angularx-social-login";
+import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
+
 declare var google: any;
 @Component({
   selector: "app-invitedSignup",
@@ -62,7 +60,7 @@ export class InvitedSignupComponent implements OnInit, AfterViewInit {
   }
 
   constructor(
-    private socialAuthService: AuthService,
+    private socialAuthService: SocialAuthService,
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,

@@ -21,11 +21,8 @@ import {
   Validators
 } from "@angular/forms";
 /* import { environment } from "../../../environments/environment";*/
-import {
-  AuthService,
-  GoogleLoginProvider,
-  FacebookLoginProvider
-} from "angular-6-social-login";
+import { SocialAuthService } from "angularx-social-login";
+import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 declare var google: any;
 
 import {
@@ -69,7 +66,7 @@ export class SigninComponent implements OnInit, AfterViewInit {
     private router: Router,
     private fb: FormBuilder,
     private authSrv: AuthStore,
-    private socialAuthService: AuthService,
+    private socialAuthService: SocialAuthService,
     private changeDetectorRef: ChangeDetectorRef,
     private translateSrv: TranslateService,
     private dataSrv: DataService,

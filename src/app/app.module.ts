@@ -25,34 +25,18 @@ import {
 } from "./components";
 
 import {
-  SocialLoginModule,
-  AuthServiceConfig,
   GoogleLoginProvider,
   FacebookLoginProvider,
-  LinkedinLoginProvider
-} from "angular-6-social-login";
 
+} from "angularx-social-login";
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 // Configs
 
 const googleLoginOptions = {
   scope: 'profile email',
   plugin_name: 'sample_login' //can be any name
 };
-export function getAuthServiceConfigs() {
-  let config = new AuthServiceConfig(
-    [
-      {
-        id: FacebookLoginProvider.PROVIDER_ID,
-        provider: new FacebookLoginProvider("4372722732764052")
-      },
-      {
-        id: GoogleLoginProvider.PROVIDER_ID,
-        provider: new GoogleLoginProvider('1093364473991-70t3haupsjd78sekbn2lkjrqlb5oo6c8.apps.googleusercontent.com')
-      },
-    ]
-  );
-  return config;
-}
+
 
 import * as AppComponents from "./components";
 
@@ -137,8 +121,26 @@ export function appConfigFactory(provider: AppSettingsService) {
   providers: [
     GoogleAnalyticsService,
     {
-      provide: AuthServiceConfig,
-      useFactory: getAuthServiceConfigs
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '1093364473991-70t3haupsjd78sekbn2lkjrqlb5oo6c8.apps.googleusercontent.com'
+            )
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('4372722732764052')
+          }
+        ],
+        onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig,
+
     },
     AppSettingsService,
     {
