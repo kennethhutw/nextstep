@@ -3,8 +3,10 @@ import { NgModule, APP_INITIALIZER } from "@angular/core";
 import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { FormsModule } from "@angular/forms";
-import { ReactiveFormsModule } from "@angular/forms";
+
+
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 // https://www.npmjs.com/package/ng-circle-progress
 import { AppComponent } from "./app.component";
@@ -17,7 +19,6 @@ import { TooltipModule, TooltipConfig } from 'ngx-bootstrap/tooltip';
 import {
   FooterComponent,
   HeaderComponent,
-
   ProfileEditorComponent,
   NavbarComponent,
   SidebarComponent,
@@ -31,11 +32,6 @@ import {
 } from "angularx-social-login";
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 // Configs
-
-const googleLoginOptions = {
-  scope: 'profile email',
-  plugin_name: 'sample_login' //can be any name
-};
 
 
 import * as AppComponents from "./components";
@@ -95,7 +91,6 @@ export function appConfigFactory(provider: AppSettingsService) {
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     routing,
-    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     AnQrcodeModule,
