@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { RouterModule } from "@angular/router";
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 // https://www.npmjs.com/package/ng-circle-progress
@@ -92,6 +92,7 @@ export function appConfigFactory(provider: AppSettingsService) {
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     routing,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     AnQrcodeModule,
