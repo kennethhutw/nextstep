@@ -2,7 +2,8 @@ import {
   Component,
   OnInit,
   ViewEncapsulation,
-  ViewChild
+  ViewChild,
+  ChangeDetectorRef
 } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
@@ -70,6 +71,7 @@ export class PubProfileComponent implements OnInit {
   currentTab: string = "current";
 
   constructor(
+    private changeDetectorRef: ChangeDetectorRef,
     private viewsSrv: ViewsService,
     public toastSrv: ToastService,
     private notificationSrv: NotificationService,
@@ -410,11 +412,13 @@ export class PubProfileComponent implements OnInit {
     formData.append("file", event.target.files[0]);
 
     this.userSrv.updateImage(this.currentUser.id, formData).subscribe(res => {
+
       if (res['result'] == 'successful') {
         this.userProfile.imageUrl = environment.assetUrl + res["data"];
       } else {
         this.userProfile.imageUrl = this.defaultProfileLogo;
       }
+      this.changeDetectorRef.detectChanges();
     })
   }
 

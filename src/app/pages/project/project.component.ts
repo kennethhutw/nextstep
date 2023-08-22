@@ -1,7 +1,8 @@
 import {
   Component, OnInit,
   ViewChild,
-  ElementRef
+  ElementRef,
+  ChangeDetectorRef
 } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
@@ -90,6 +91,7 @@ export class ProjectComponent implements OnInit {
 
 
   constructor(
+    private changeDetectorRef: ChangeDetectorRef,
     private router: Router,
     private projectSrv: ProjectService,
     private pagerSrv: PagerService,
@@ -626,11 +628,13 @@ export class ProjectComponent implements OnInit {
     formData.append("file", event.target.files[0]);
 
     this.projectSrv.updateImage(this.currentProject.id, formData).subscribe(res => {
+
       if (res['result'] == 'successful') {
         this.currentProject.imageUrl = environment.assetUrl + res["data"];
       } else {
         this.currentProject.imageUrl = this.defaultProfileLogo;
       }
+      this.changeDetectorRef.detectChanges();
     })
   }
 
