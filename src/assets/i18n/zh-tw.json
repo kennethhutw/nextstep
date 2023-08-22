@@ -349,6 +349,8 @@
   "PROJECTACCPETED_FRONT": "恭喜你申請加入",
   "PROJECTACCPETED_LAST": "專案被接受！",
   "LEFTTHE": "離開",
+  "GOVIEW": "前往查看",
+  "PROJECTDELETECONFIRM": "若確定要刪除此專案，請在下列欄位中輸入專案名稱:",
   "-----": "---------------------------------------",
   "DASHBOARD": "儀表板",
   "AREYOUA": "你是",

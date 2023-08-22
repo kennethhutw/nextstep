@@ -46,7 +46,8 @@
                                     <div class="d-flex justify-right">
                                         <a type="button" class="btn btn-blue mr-10"
                                             [routerLink]="['/project/',item?.id]">
-                                            前往查看</a>
+                                            {{ "GOVIEW" | translate
+                                            }}</a>
                                     </div>
                                     <div class="d-flex justify-right">
 
@@ -97,15 +98,68 @@
                 </div>
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'draft' }" role="tabpanel"
                     aria-labelledby="profile-tab">
-                    <div class=" text-center" *ngIf="draftedprojects.length ===0"
-                        style="height:300px;padding:15px;margin-top: 28px;">
+                    <div class="row noProject" *ngIf="draftedprojects.length ===0">
                         <span>{{ "NOPROJECT" | translate
                             }}</span>
                     </div>
                     <ng-container *ngIf="draftedprojects">
-                        <div class="row">
+                        <div class="row pl-15">
                             <ng-container *ngFor="let item of  draftedprojects; let i = index">
-                                <h1>{{item.name}}</h1>
+                                <div class="card mt-3 cursor-pointer">
+                                    <div class="d-flex">
+                                        <p class="text-md m-0">{{item.name}}
+                                        </p>
+
+                                    </div>
+
+                                    <div class="d-flex justify-right">
+                                        <a type="button" class="btn btn-blue mr-10"
+                                            [routerLink]="['/project/',item?.id]">
+                                            {{ "GOVIEW" | translate
+                                            }}</a>
+                                    </div>
+                                    <div class="d-flex justify-right">
+
+                                        <p class="text-xs grey-50 mb-0 color-gray">
+                                            {{ item.viewCount?item.viewCount:"0"}}&nbsp;{{ "VIEWNUM" | translate
+                                            }}/
+                                            {{item.followCount? item.followCount:
+                                            0}}&nbsp;{{ "FOLLOW" | translate
+                                            }}
+                                        </p>
+
+
+                                    </div>
+
+                                    <div class="d-flex align-items-center justify-right">
+                                        <div class="dropdown "><i class="fas fa-ellipsis-h color-gray"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></i>
+                                            <div class="dropdown-menu"> <a class="dropdown-item"
+                                                    [routerLink]="['/myproject/'+this.item?.id+'/members']">
+                                                    <svg-icon src="assets/icons/invite.svg"></svg-icon>&nbsp;&nbsp;{{
+                                                    "INVITE" | translate
+                                                    }}
+                                                </a><a class="dropdown-item"
+                                                    [routerLink]="['/myproject/'+this.item?.id+'/settings']">
+                                                    <svg-icon src="assets/icons/cog.svg"></svg-icon>&nbsp;&nbsp;{{
+                                                    "PROJECTSETTING" | translate
+                                                    }}
+                                                </a><a class="dropdown-item"
+                                                    [routerLink]="['/myproject/'+this.item?.id+'/profile']">
+                                                    <svg-icon src="assets/icons/pencil.svg"></svg-icon>&nbsp;&nbsp;{{
+                                                    "EDIT" | translate
+                                                    }}
+                                                </a> <a class="dropdown-item"
+                                                    [routerLink]="['/myproject/'+this.item?.id+'/settings']">
+                                                    <svg-icon src="assets/icons/trash.svg"></svg-icon>&nbsp;&nbsp;{{
+                                                    "DELETE" | translate
+                                                    }}
+                                                </a></div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
                             </ng-container>
                         </div>
                     </ng-container>
@@ -117,5 +171,5 @@
 </div>
 <app-dialog></app-dialog>
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
-    <p style="color: white">Please Wait. </p>
+    <p class="text-white">Please Wait. </p>
 </ngx-spinner>

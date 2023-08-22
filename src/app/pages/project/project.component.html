@@ -15,7 +15,7 @@
       <!-- <img src="https://imagizer.imageshack.com/img921/3072/rqkhIb.jpg"> -->
       <img (error)="onImgError($event)" src="{{currentProject.imageUrl}}">
     </div>
-    <div *ngIf="currentProject?.owner == currentUser?.id" id="edit-profileImage" for="profileImage"
+    <div *ngIf="currentProject?.owner == currentUser?.id" class="edit-profileImage" for="profileImage"
       (click)="profileImage.click()"><i class="material-icons">camera_alt</i>
     </div>
     <input id="profileImage" #profileImage type="file" accept="image/gif, image/jpg, image/jpeg, image/png, image/gif"
@@ -95,7 +95,8 @@
           <ui-tag *ngIf="currentProject.isCofounder" [class]="'tag-cofounder'" tag="{{ 'FIND_COFOUNDER' | translate }}">
           </ui-tag>
         </div>
-        <span>{{this.currentProject.description?this.currentProject.description:this.msg.notfilled}}</span>
+        <div class="frame_content">
+          {{this.currentProject.description?this.currentProject.description:this.msg.notfilled}}</div>
         <div class="frame_bottom">
           <span class="pb-8 fw-500">{{
             "CURRENT_PROGRESS"
@@ -301,7 +302,7 @@
 
 
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
-  <p style="color: white">Please Wait. </p>
+  <p class="text-white">Please Wait. </p>
 </ngx-spinner>
 <!--Modal login mail-->
 <app-modal [modalid]="'modal_apply'">

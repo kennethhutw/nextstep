@@ -50,30 +50,36 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <span class="modal-title">確定刪除此專案?</span>
+                <span class="modal-title">{{ "CONFIRMDELETE"
+                    | translate }}</span>
                 <button type="button" #closeExpbutton class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body content">
-                <p class="text-md m-0 item-delete">此動作不可復原
+                <p class="text-md m-0 item-delete">{{ "NOTRECOVER"
+                    | translate }}
                 </p>
                 <p class="text-md m-0">
-                    若確定要刪除此專案，請在下列欄位中輸入專案名稱:<strong>{{this.currentProject?.name}}</strong>。
+                    {{ "PROJECTDELETECONFIRM"
+                    | translate }}<strong>{{this.currentProject?.name}}</strong>。
                 </p>
                 <input type="text" id="projectname" [(ngModel)]="projectName" class="form-control mr-10 mt-32">
                 <div class="row item-end">
-                    <button type="button" class="btn btn-white  mr-10" data-dismiss="modal" aria-label="Close">取消
+                    <button type="button" class="btn btn-white  mr-10" data-dismiss="modal" aria-label="Close">{{
+                        "CANCEL"
+                        | translate }}
                     </button>
                     <button type="button" class="btn mr-10"
                         [ngClass]="{'btn-disabled':projectName.length ==0,'btn-delete':projectName.length >0}"
                         (click)="onDeleteProject()">
-                        確認</button>
+                        {{ "CONFIRM"
+                        | translate }}</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
-    <p style="color: white">Please Wait. </p>
+    <p class="text-white">Please Wait. </p>
 </ngx-spinner>

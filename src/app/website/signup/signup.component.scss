@@ -10,6 +10,14 @@ app-signup {
         transition: 0.15s linear;
         height: 100%;
         background-color: white;
+
+        .left-area {
+            align-items: flex-end;
+            display: flex;
+            padding-top: 182px;
+            flex-direction: column;
+            padding-right: 100px;
+        }
     }
 
     .signin {
@@ -58,6 +66,8 @@ app-signup {
         border-bottom: 1px solid #B5BAC7;
         line-height: 0.1em;
         margin: 10px 0 20px;
+        margin-bottom: 30px !important;
+        margin-top: 30px !important;
     }
 
     h4>span {
@@ -69,26 +79,7 @@ app-signup {
     }
 
 
-    .separator {
-        display: flex;
-        align-items: center;
-        text-align: center;
-    }
 
-    .separator::before,
-    .separator::after {
-        content: '';
-        flex: 1;
-        border-bottom: 1px solid var(--grey-12);
-    }
-
-    .separator:not(:empty)::before {
-        margin-right: .5em;
-    }
-
-    .separator:not(:empty)::after {
-        margin-left: .5em;
-    }
 
     .next-font {
         font-weight: 500;
@@ -104,9 +95,10 @@ app-signup {
     .frame {
         padding: 15px;
         background-color: white;
-        /* padding-left: 10%; */
-        padding-right: 40%;
-        margin-top: 100px;
+        padding-left: 100px;
+
+        margin-top: 260px;
+        max-width: 513px;
     }
 
     .signup-bg {

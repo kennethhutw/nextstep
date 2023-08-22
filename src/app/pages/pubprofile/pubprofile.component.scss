@@ -10,6 +10,10 @@ app-pub-profile {
         right: 0px;
         height: 180px;
         z-index: 2;
+
+        .edit-profileImage {
+            margin-top: -40px;
+        }
     }
 
     #profile-banner-image {
@@ -30,7 +34,7 @@ app-pub-profile {
     #profile-banner-image .btn-cover {
         position: absolute;
         top: 80%;
-        left: 85%;
+        left: 92%;
         transform: translate(-50%, -50%);
         -ms-transform: translate(-50%, -50%);
         background-color: white;
@@ -42,6 +46,7 @@ app-pub-profile {
         padding: 3px 6px 3px 6px !important;
         font-size: 16px;
         z-index: 100;
+        width: max-content;
     }
 
     #profile-pic {

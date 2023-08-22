@@ -83,7 +83,10 @@ export class MyProjectComponent implements OnInit {
 
   }
 
-  init_terms(lang) { }
+  init_terms(lang) {
+
+
+  }
 
   changeTab(tab) {
     this.currentTab = tab;
@@ -92,7 +95,7 @@ export class MyProjectComponent implements OnInit {
     //Are you sure you want to delete
     this.dialogSrv.confirmThis("你確定要刪除此專案 -[" + project.name + "]嗎? ",
       () => {
-        console.log("yed ===");
+
         this.projectSrv.delete(project.id, this.currentUser.id).then(res => {
           if (res['result'] == "successful") {
 

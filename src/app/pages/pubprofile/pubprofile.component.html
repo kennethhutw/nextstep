@@ -13,7 +13,7 @@
         <img (error)="onImgError($event)" src="{{userProfile.imageUrl}}">
 
       </div>
-      <div *ngIf="isOwner" id="edit-profileImage" for="profileImage" (click)="profileImage.click()">
+      <div *ngIf="isOwner" class="edit-profileImage" for="profileImage" (click)="profileImage.click()">
         <i class="material-icons">camera_alt</i>
 
       </div>
