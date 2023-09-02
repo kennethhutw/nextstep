@@ -36,7 +36,27 @@ export class MyProjectProfileComponent implements OnInit, AfterViewInit {
 
   msg = {
     updateSuc: "",
-    updateFailed: ""
+    updateFailed: "",
+    strfindMember: "",
+    strfindMoney: "",
+    strfindCofounder: "",
+    strECOMM: "",
+    strAI: "",
+    strMEDICAL: "",
+    strTRANSPORT: "",
+    strEDUTECH: "",
+    strFINTECH: "",
+    strSHARINGECONOMY: "",
+    strGAME: "",
+    strPLATFORM: "",
+    strPRORGRESS_1: "",
+    strPRORGRESS_2: "",
+    strPRORGRESS_3: "",
+    strPRORGRESS_4: "",
+    strPRORGRESS_5: "",
+    strPRORGRESS_6: "",
+    strPRORGRESS_7: "",
+    strPRORGRESS_8: "",
   }
   constructor(
     private dataSrv: DataService,
@@ -113,6 +133,50 @@ export class MyProjectProfileComponent implements OnInit, AfterViewInit {
     this.translateSrv.get("UPDATEDFAILED").subscribe((text: string) => {
       this.msg.updateFailed = text;
     });
+
+    this.translateSrv.get(["FIND_MEMBER",
+      "FIND_MONEY",
+      "FIND_COFOUNDER",
+      "ECOMM",
+      "AI",
+      "MEDICAL",
+      "TRANSPORT",
+      "EDUTECH",
+      "FINTECH",
+      "SHARINGECONOMY",
+      "GAME",
+      "PLATFORM",
+      "PRORGRESS_1",
+      "PRORGRESS_2",
+      "PRORGRESS_3",
+      "PRORGRESS_4",
+      "PRORGRESS_5",
+      "PRORGRESS_6",
+      "PRORGRESS_7",
+      "PRORGRESS_8",
+    ]).subscribe((words: string) => {
+      this.msg.strfindMoney = words["FIND_MONEY"];
+      this.msg.strfindMember = words["FIND_MEMBER"];
+      this.msg.strfindCofounder = words["FIND_COFOUNDER"];
+      this.msg.strECOMM = words["ECOMM"];
+      this.msg.strAI = words["AI"];
+      this.msg.strMEDICAL = words["MEDICAL"];
+      this.msg.strTRANSPORT = words["TRANSPORT"];
+      this.msg.strEDUTECH = words["EDUTECH"];
+      this.msg.strFINTECH = words["FINTECH"];
+      this.msg.strSHARINGECONOMY = words["SHARINGECONOMY"];
+      this.msg.strGAME = words["GAME"];
+      this.msg.strPLATFORM = words["PLATFORM"];
+      this.msg.strPRORGRESS_1 = words["PRORGRESS_1"];
+      this.msg.strPRORGRESS_2 = words["PRORGRESS_2"];
+      this.msg.strPRORGRESS_3 = words["PRORGRESS_3"];
+      this.msg.strPRORGRESS_4 = words["PRORGRESS_4"];
+      this.msg.strPRORGRESS_5 = words["PRORGRESS_5"];
+      this.msg.strPRORGRESS_6 = words["PRORGRESS_6"];
+      this.msg.strPRORGRESS_7 = words["PRORGRESS_7"];
+      this.msg.strPRORGRESS_8 = words["PRORGRESS_8"];
+
+    });
   }
 
   ngAfterViewInit(): void {
@@ -126,15 +190,15 @@ export class MyProjectProfileComponent implements OnInit, AfterViewInit {
     let content = "";
 
     if (this.projectForm.value.isFindPartner) {
-      content += " 徵成員中,"
+      content += ` ${this.msg.strfindMember},`
     }
 
     if (this.projectForm.value.isFunding) {
-      content += " 募資中,"
+      content += ` ${this.msg.strfindMoney},`
     }
 
     if (this.projectForm.value.isCofounder) {
-      content += " 找共同創辦人,"
+      content += ` ${this.msg.strfindCofounder},`
     }
     if (content.length > 0) {
       content = content.substring(0, content.length - 1);
@@ -145,33 +209,33 @@ export class MyProjectProfileComponent implements OnInit, AfterViewInit {
   getIndustryType() {
     let content = "";
 
-    if (this.projectForm.value.type.indexOf('eComm') > 0) {
-      content += " 電子商務,"
+    if (this.projectForm.value.type.indexOf('eComm') > -1) {
+      content += ` ${this.msg.strECOMM},`
     }
 
-    if (this.projectForm.value.type.indexOf('ai') > 0) {
-      content += " 人工智慧,"
+    if (this.projectForm.value.type.indexOf('ai') > -1) {
+      content += ` ${this.msg.strAI},`
     }
-    if (this.projectForm.value.type.indexOf('edutech') > 0) {
-      content += " 教育科技,"
+    if (this.projectForm.value.type.indexOf('edutech') > -1) {
+      content += ` ${this.msg.strEDUTECH},`
     }
-    if (this.projectForm.value.type.indexOf('sharingeconomy') > 0) {
-      content += " 共享經濟,"
+    if (this.projectForm.value.type.indexOf('sharingeconomy') > -1) {
+      content += ` ${this.msg.strSHARINGECONOMY},`
     }
-    if (this.projectForm.value.type.indexOf('medical') > 0) {
-      content += " 醫學科技,"
+    if (this.projectForm.value.type.indexOf('medical') > -1) {
+      content += ` ${this.msg.strMEDICAL},`
     }
-    if (this.projectForm.value.type.indexOf('transport') > 0) {
-      content += " 運輸服務,"
+    if (this.projectForm.value.type.indexOf('transport') > -1) {
+      content += ` ${this.msg.strTRANSPORT},`
     }
-    if (this.projectForm.value.type.indexOf('fintech') > 0) {
-      content += " 金融科技,"
+    if (this.projectForm.value.type.indexOf('fintech') > -1) {
+      content += ` ${this.msg.strFINTECH},`
     }
-    if (this.projectForm.value.type.indexOf('game') > 0) {
-      content += " 遊戲產業,"
+    if (this.projectForm.value.type.indexOf('game') > -1) {
+      content += ` ${this.msg.strGAME},`
     }
-    if (this.projectForm.value.type.indexOf('platform') > 0) {
-      content += " 平台,"
+    if (this.projectForm.value.type.indexOf('platform') > -1) {
+      content += ` ${this.msg.strPLATFORM},`
     }
     if (content.length > 0) {
       content = content.substring(0, content.length - 1);
@@ -181,29 +245,31 @@ export class MyProjectProfileComponent implements OnInit, AfterViewInit {
 
   getStage() {
     let content = "";
-
-    if (this.projectForm.value.stages.indexOf('idea') > 0) {
-      content += " 已有創業概念,"
+    if (this.projectForm.value.stages.indexOf('idea') > -1) {
+      content += ` ${this.msg.strPRORGRESS_1},`
     }
 
-    if (this.projectForm.value.stages.indexOf('businessplan') > 0) {
-      content += " 商業計畫初稿,"
+    if (this.projectForm.value.stages.indexOf('businessplan') > -1) {
+      content += ` ${this.msg.strPRORGRESS_2},`
     }
 
-    if (this.projectForm.value.stages.indexOf('findpartner') > 0) {
-      content += " 找創業夥伴,"
+    if (this.projectForm.value.stages.indexOf('findpartner') > -1) {
+      content += ` ${this.msg.strPRORGRESS_3},`
     }
-    if (this.projectForm.value.stages.indexOf('buildMVP') > 0) {
-      content += " 建構最小可行性產品(MVP),"
+    if (this.projectForm.value.stages.indexOf('buildMVP') > -1) {
+      content += ` ${this.msg.strPRORGRESS_4},`
     }
-    if (this.projectForm.value.stages.indexOf('producttested') > 0) {
-      content += " 驗證產品中,"
+    if (this.projectForm.value.stages.indexOf('producttested') > -1) {
+      content += ` ${this.msg.strPRORGRESS_5},`
     }
-    if (this.projectForm.value.stages.indexOf('findcustomers') > 0) {
-      content += " 找用戶中,"
+    if (this.projectForm.value.stages.indexOf('findcustomers') > -1) {
+      content += ` ${this.msg.strPRORGRESS_6},`
     }
-    if (this.projectForm.value.stages.indexOf('findpayingcustomers') > 0) {
-      content += " 找付費用戶中,"
+    if (this.projectForm.value.stages.indexOf('findpayingcustomers') > -1) {
+      content += ` ${this.msg.strPRORGRESS_7},`
+    }
+    if (this.projectForm.value.stages.indexOf('fundraising') > -1) {
+      content += ` ${this.msg.strPRORGRESS_8},`
     }
 
     if (content.length > 0) {
@@ -269,13 +335,14 @@ export class MyProjectProfileComponent implements OnInit, AfterViewInit {
       return;
     }
     const value = this.projectForm.value;
+    debugger;
     this.projectSrv.update(this.currentProject.id, {
       name: value.name,
       description: value.description,
       status: 'published',
       product: value.product,
       type: value.type,
-      stage: value.stages,
+      stages: value.stages,
       isFindPartner: value.isFindPartner,
       isFunding: value.isFunding,
       isCofounder: value.isCofounder,

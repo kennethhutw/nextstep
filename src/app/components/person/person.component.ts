@@ -21,6 +21,17 @@ export class PersonCardComponent implements OnInit {
 
   strNoName: string;
   strNoPosition: string;
+  terms = {
+    strECOMM: "",
+    strAI: "",
+    strMEDICAL: "",
+    strTRANSPORT: "",
+    strEDUTECH: "",
+    strFINTECH: "",
+    strSHARINGECONOMY: "",
+    strGAME: "",
+    strPLATFORM: "",
+  }
 
   constructor(
     private utility: Utility,
@@ -52,6 +63,31 @@ export class PersonCardComponent implements OnInit {
     this.translateSrv.get("NOPOISTION").subscribe((text: string) => {
       this.strNoPosition = text;
     });
+
+    this.translateSrv.get([
+      "ECOMM",
+      "AI",
+      "MEDICAL",
+      "TRANSPORT",
+      "EDUTECH",
+      "FINTECH",
+      "SHARINGECONOMY",
+      "GAME",
+      "PLATFORM",
+
+    ]).subscribe((words: string) => {
+
+      this.terms.strECOMM = words["ECOMM"];
+      this.terms.strAI = words["AI"];
+      this.terms.strMEDICAL = words["MEDICAL"];
+      this.terms.strTRANSPORT = words["TRANSPORT"];
+      this.terms.strEDUTECH = words["EDUTECH"];
+      this.terms.strFINTECH = words["FINTECH"];
+      this.terms.strSHARINGECONOMY = words["SHARINGECONOMY"];
+      this.terms.strGAME = words["GAME"];
+      this.terms.strPLATFORM = words["PLATFORM"];
+
+    });
   }
   routeToUserProfile() {
     if (this.type && this.type == "mentor") {
@@ -71,28 +107,28 @@ export class PersonCardComponent implements OnInit {
     let _term = "";
     switch (term.toLowerCase()) {
       case "ecomm":
-        _term = "電子商務";
+        _term = this.terms.strECOMM;
         break;
       case "medical":
-        _term = "醫學科技";
+        _term = this.terms.strMEDICAL;
         break;
       case "ai":
-        _term = "人工智慧";
+        _term = this.terms.strAI;
         break;
       case "transport":
-        _term = "運輸服務";
+        _term = this.terms.strTRANSPORT;
         break;
       case "edutech":
-        _term = "教育技術";
+        _term = this.terms.strEDUTECH;
         break;
       case "fintech":
-        _term = "金融科技";
+        _term = this.terms.strFINTECH;
         break;
       case "sharingeconomy":
-        _term = "共享經濟";
+        _term = this.terms.strSHARINGECONOMY;
         break;
       case "game":
-        _term = "遊戲產業";
+        _term = this.terms.strGAME;
         break;
       case "bd":
         _term = "市場開發";

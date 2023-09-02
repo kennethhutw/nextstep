@@ -28,9 +28,15 @@ export class MyProjectSettingsComponent implements OnInit {
   submitted = false;
   currentUser;
   projectMsg = "";
-  msg = "";
+
   currentProject = null;
   projectName = "";
+
+  msg = {
+    result: "",
+    updateSuc: "",
+    updateFailed: ""
+  }
   constructor(
     private utilitySrv: Utility,
     private translateSrv: TranslateService,
@@ -63,68 +69,84 @@ export class MyProjectSettingsComponent implements OnInit {
     if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);
     }
+    this.init_terms();
     this.dataSrv.langKey.subscribe((lang) => {
       if (!this.utilitySrv.IsNullOrEmpty(lang)) {
         this.translateSrv.use(lang);
+        this.init_terms();
       }
     });
 
   }
 
+
+  init_terms() {
+    this.translateSrv.get("UPDATEDSUC").subscribe((text: string) => {
+      this.msg.updateSuc = text;
+    });
+
+    this.translateSrv.get("UPDATEDFAILED").subscribe((text: string) => {
+      this.msg.updateFailed = text;
+    });
+  }
+
+
   onSave() {
-    this.msg = "";
+    this.msg.result = "";
     this.projectSrv.update(this.currentProject.id, {
       isPublic: this.isPublic,
       isShowMember: this.isShowMember
     }).subscribe(res => {
       if (res['result'] === 'successful') {
-        this.msg = "Update successfully.";
+        this.msg.result = this.msg.updateSuc;
       } else {
-        this.msg = "Update failed.";
+        this.msg.result = this.msg.updateFailed;
       }
     }, error => {
-      this.msg = "Update failed.";
+      this.msg.result = this.msg.updateFailed;
       console.error("updated error", error);
     })
   }
 
   onPublicChange(event) {
+    this.isPublic = event.value;
     this.projectSrv.updatePublic(this.currentProject.id,
       this.isPublic ? 1 : 0, this.currentUser.id).then(res => {
         if (res['result'] === 'successful') {
           this.toastSrv.showToast('顯示專案',
-            "更新成功 ",
+            this.msg.updateSuc,
             this.toastSrv.iconClasses.success);
         } else {
           this.toastSrv.showToast('顯示專案',
-            "更新失敗 ",
+            this.msg.updateFailed,
             this.toastSrv.iconClasses.error);
         }
       }).catch(error => {
         this.toastSrv.showToast('顯示專案',
-          "更新失敗 ",
+          this.msg.updateFailed,
           this.toastSrv.iconClasses.error);
         console.error("updated error", error.message);
       })
   }
 
   onMemberChange(event) {
+    this.isShowMember = event.value;
     this.projectSrv.updatePublicMember(this.currentProject.id,
       this.isShowMember ? 1 : 0,
       this.currentUser.id).then(res => {
         if (res['result'] === 'successful') {
 
           this.toastSrv.showToast('顯示專案成員',
-            "更新成功 ",
+            this.msg.updateSuc,
             this.toastSrv.iconClasses.success);
         } else {
           this.toastSrv.showToast('顯示專案成員',
-            "更新失敗 ",
+            this.msg.updateFailed,
             this.toastSrv.iconClasses.error);
         }
       }).catch(error => {
         this.toastSrv.showToast('顯示專案成員',
-          "更新失敗 ",
+          this.msg.updateFailed,
           this.toastSrv.iconClasses.error);
         console.error("updated error", error.message);
       })
@@ -138,10 +160,10 @@ export class MyProjectSettingsComponent implements OnInit {
           if (res['result'] === 'successful') {
             this.router.navigate([`./dashboard/myproject`], {});
           } else {
-            this.msg = "Update failed.";
+            this.msg.result = this.msg.updateFailed;
           }
         }).catch(error => {
-          this.msg = "Update failed.";
+          this.msg.result = this.msg.updateFailed;
           console.error("updated error", error.message);
         })
     }

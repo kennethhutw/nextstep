@@ -67,7 +67,6 @@ export class JoinProjectComponent implements OnInit {
 
     this.invitationSrv.getInvitation(this.invitiationId,
       this.currentUser.id).then(res => {
-
         if (res["result"] == 'successful') {
           this.invitation = res["data"];
           this.projectId = this.invitation.projectId;
