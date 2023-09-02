@@ -17,7 +17,6 @@
   },
   "private": true,
   "dependencies": {
-    "@angular-devkit/build-angular": "^0.1100.2",
     "@angular/animations": "^10.2.5",
     "@angular/cdk": "^10.2.7",
     "@angular/cli": "^10.2.0",
@@ -79,6 +78,7 @@
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "^0.1102.19",
     "@types/datatables.net": "^1.10.19",
     "@types/jquery": "^3.5.5"
   },

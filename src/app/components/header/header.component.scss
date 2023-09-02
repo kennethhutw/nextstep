@@ -57,7 +57,11 @@
 }
 
 
-
+.dropdown-menu {
+  box-shadow: 2px 2px 16px 2px #10184014;
+  border: 0px !important;
+  top: 150% !important;
+}
 
 .navbar-light .navbar-nav .nav-link {
   color: #69738C;
