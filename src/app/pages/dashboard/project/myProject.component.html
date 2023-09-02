@@ -29,14 +29,14 @@
                             | translate }}</span>
                     </div>
                     <ng-container *ngIf="publishedprojects">
-                        <div class="row  pl-15">
+                        <div class="row  pl-15 mt-3">
                             <ng-container *ngFor="let item of  publishedprojects; let i = index">
                                 <!--
                                 <app-project-bar style="width: 100%;" (onDelete)="onClickDelete($event, item)"
                                     [isShowEdit]="'false'" [isShowUser]="'false'" isShowRemove="'false'"
                                     [isShowSetting]="'false'" [project]="item"></app-project-bar> -->
 
-                                <div class="card mt-3 cursor-pointer">
+                                <div class="card  cursor-pointer">
                                     <div class="d-flex">
                                         <p class="text-md m-0">{{item.name}}
                                         </p>
