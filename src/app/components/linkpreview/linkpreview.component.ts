@@ -63,7 +63,6 @@ export class LinkPreviewComponent implements OnInit {
   };
 
   @Input() set metadata(values) {
-    console.log("=======value", values);
     if (!this.utilitySrv.IsNullOrEmpty(values)) {
       this.preview = values;
     }

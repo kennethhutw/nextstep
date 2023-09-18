@@ -70,16 +70,19 @@ export class RecruitCardComponent {
 
   }
 
-  onClickApply() {
+  onClickApply(event, item) {
+    event.stopPropagation();
     this.Apply.emit(this.job);
   }
 
-  onClickCollect() {
+  onClickCollect(event) {
+    event.stopPropagation();
     this.user.isCollect = !this.user.isCollect;
     this.Collect.emit({ jobId: this.job.id });
   }
 
-  onClickUnCollect() {
+  onClickUnCollect(event) {
+    event.stopPropagation();
     this.user.isCollect = !this.user.isCollect;
     this.UnCollect.emit({ jobId: this.job.id });
   }

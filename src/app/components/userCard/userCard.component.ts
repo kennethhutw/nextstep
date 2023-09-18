@@ -109,34 +109,34 @@ export class UserCardComponent {
 
   ngOnInit() {
 
-
-
   }
 
 
-  onClickCollect() {
-
+  onClickCollect(event) {
+    event.stopPropagation();
     this.user.isCollect = !this.user.isCollect;
     this.Collect.emit({ userId: this.user.id });
   }
 
-  onClickUnCollect() {
-
+  onClickUnCollect(event) {
+    event.stopPropagation();
     this.user.isCollect = !this.user.isCollect;
     this.UnCollect.emit({ userId: this.user.id });
   }
 
-  onClickChat() {
+  onClickChat(event) {
+    event.stopPropagation();
     this.Chat.emit(this.user);
   }
 
-  onClickFollow() {
-
+  onClickFollow(event) {
+    event.stopPropagation();
     this.user.isFollow = !this.user.isFollow;
     this.Follow.emit({ userId: this.user.id });
   }
 
-  onClickUnFollow() {
+  onClickUnFollow(event) {
+    event.stopPropagation();
     this.user.isFollow = !this.user.isFollow;
     this.UnFollow.emit({ userId: this.user.id });
   }

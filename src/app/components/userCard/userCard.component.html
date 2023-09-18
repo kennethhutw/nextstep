@@ -1,4 +1,4 @@
-<div class="card card-white grid-margin">
+<div class="card card-white grid-margin" (click)="routeToUserProfile()">
   <div class="row">
 
     <div class="col-md-7 d-flex flex-row gap-10">
@@ -13,13 +13,13 @@
 
     <div class="col-md-5 text-right">
       <div class="actions" *ngIf="currentuser">
-        <i *ngIf="user.isCollect" (click)="onClickUnCollect()" class="fas fa-bookmark fa-bookmark-selected"></i>
-        <i *ngIf="!user.isCollect" (click)="onClickCollect()" class="far fa-bookmark "></i>
-        <i class="far fa-comment-dots " (click)="onClickChat()"></i>
-        <span *ngIf="user.isFollow" class="followed" (click)="onClickUnFollow()">{{ "FOLLOWED" |
+        <i *ngIf="user.isCollect" (click)="onClickUnCollect($event)" class="fas fa-bookmark fa-bookmark-selected"></i>
+        <i *ngIf="!user.isCollect" (click)="onClickCollect($event)" class="far fa-bookmark "></i>
+        <i class="far fa-comment-dots " (click)="onClickChat($event)"></i>
+        <span *ngIf="user.isFollow" class="followed" (click)="onClickUnFollow($event)">{{ "FOLLOWED" |
           translate
           }}</span>
-        <span *ngIf="!user.isFollow" class="follow" (click)="onClickFollow()">{{ "FOLLOW" |
+        <span *ngIf="!user.isFollow" class="follow" (click)="onClickFollow($event)">{{ "FOLLOW" |
           translate
           }}</span>
       </div>

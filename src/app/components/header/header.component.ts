@@ -98,9 +98,9 @@ export class HeaderComponent implements OnInit {
     }
 
 
-    // this.authStoreSrv.user$.subscribe(user => {
-    //   this.currentUser = user
-    // });
+    this.authStoreSrv.user$.subscribe(user => {
+      this.currentUser = user
+    });
     if (this.uid) {
       this.notificationSrv.getFirstFiveNotifications(this.currentUser.id).then(res => {
         if (res['result'] == 'successful') {
@@ -111,6 +111,14 @@ export class HeaderComponent implements OnInit {
       }).catch(error => {
         console.log("getNotifications ", error);
       })
+    }
+  }
+
+  logoRedirect() {
+    if (!this.currentUser) {
+      this.router.navigate(['./index'], {});
+    } else {
+      this.router.navigate(['./dashboard'], {});
     }
   }
 
@@ -127,6 +135,7 @@ export class HeaderComponent implements OnInit {
       .subscribe(data => console.log(data))
 
   }
+
   onSignIn() {
 
     // this.closeModal.nativeElement.click();

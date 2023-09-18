@@ -41,14 +41,6 @@
                                     | translate }}</span>
                             </a>
                         </li>
-
-                        <li>
-                            <a class="menu-item" [routerLinkActive]="['active']"
-                                [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard/messages']">
-                                <svg-icon class="icon" src="assets/icons/message.svg"></svg-icon><span>{{ "MYMSG"
-                                    | translate }}</span>
-                            </a>
-                        </li>
                         <li>
                             <a class="menu-item" [routerLinkActive]="['active']"
                                 [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard/notifications']">
@@ -56,6 +48,14 @@
                                     | translate }}</span>
                             </a>
                         </li>
+                        <li>
+                            <a class="menu-item" [routerLinkActive]="['active']"
+                                [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard/messages']">
+                                <svg-icon class="icon" src="assets/icons/message.svg"></svg-icon><span>{{ "MYMSG"
+                                    | translate }}</span>
+                            </a>
+                        </li>
+
                         <!-- <li>
                             <a class="menu-item" [routerLinkActive]="['active']"
                                 [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard/application']">{{

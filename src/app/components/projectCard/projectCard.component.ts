@@ -58,24 +58,30 @@ export class ProjectCardComponent {
 
   }
 
-  onClickCollect() {
+  onClickCollect(event) {
+    event.stopPropagation();
+
     this.user.isCollect = !this.user.isCollect;
     this.Collect.emit({ projectId: this.project.id });
   }
 
-  onClickUnCollect() {
+  onClickUnCollect(event) {
+    event.stopPropagation();
 
     this.user.isCollect = !this.user.isCollect;
     this.UnCollect.emit({ projectId: this.project.id });
   }
 
-  onClickFollow() {
+  onClickFollow(event) {
+    event.stopPropagation();
 
     this.user.isFollow = !this.user.isFollow;
     this.Follow.emit({ projectId: this.project.id });
   }
 
-  onClickUnFollow() {
+  onClickUnFollow(event) {
+    event.stopPropagation();
+
     this.user.isFollow = !this.user.isFollow;
     this.UnFollow.emit({ projectId: this.project.id });
   }

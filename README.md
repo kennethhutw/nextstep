@@ -37,7 +37,7 @@ Running Angular Application: error:0308010C:digital envelope routines::unsupport
 https://stackoverflow.com/questions/70951422/running-angular-application-error0308010cdigital-envelope-routinesunsupport
 Windows: set NODE_OPTIONS=--openssl-legacy-provider
 
-
+export NODE_OPTIONS=--openssl-legacy-provider
 https://fontawesome.com/icons/eye?f=classic&s=regular
 
 https://fontawesome.com/search?q=eyes&o=r

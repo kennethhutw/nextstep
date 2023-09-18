@@ -1,4 +1,4 @@
-<div class="card card-white grid-margin">
+<div class="card card-white grid-margin" (click)="routeToUserProfile()">
   <div class="header" [ngClass]="{ 'header-nologin': !user }">
     <div class="">
       <a (click)="routeToUserProfile()">
@@ -8,12 +8,14 @@
     </div>
     <div class="item-left">
 
-      <i *ngIf="project.isCollect && user " (click)="onClickUnCollect()"
+      <i *ngIf="project.isCollect && user " (click)="onClickUnCollect($event)"
         class="fas fa-bookmark fa-lg  fa-bookmark-selected"></i>
-      <i *ngIf="!project.isCollect && user" (click)="onClickCollect()" class="far fa-bookmark fa-lg  color-gray"></i>
-      <span *ngIf="project.isFollow && user" class="followed" (click)="onClickUnFollow()">{{ "FOLLOWED" | translate
+      <i *ngIf="!project.isCollect && user" (click)="onClickCollect($event)"
+        class="far fa-bookmark fa-lg  color-gray"></i>
+      <span *ngIf="project.isFollow && user" class="followed" (click)="onClickUnFollow($event)">{{ "FOLLOWED" |
+        translate
         }}</span>
-      <span *ngIf="!project.isFollow && user" class="follow" (click)="onClickFollow()">{{ "FOLLOW" | translate
+      <span *ngIf="!project.isFollow && user" class="follow" (click)="onClickFollow($event)">{{ "FOLLOW" | translate
         }}</span>
     </div>
 

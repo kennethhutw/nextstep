@@ -160,8 +160,7 @@
   <lab-custom-modal [open]="isChat" (close)="onToggleChat($event)">
     <h3 *ngIf="this.chatUser" class="chat-header" title><img class="chat-user-img rounded-circle" [src]="this.chatUser.imageUrl!= null ?  this.chatUser.imageUrl
                               : settingSrv.defaultUserLogo" alt=""><span class="chat-user-name">{{this.chatUser?.name?
-        this.chatUser?.name:"No
-        name"}}</span></h3><span aria-hidden="true">X&times;</span>
+        this.chatUser?.name:"No name"}}</span></h3><span aria-hidden="true">X&times;</span>
     <div>
     </div>
     <lab-comments [currentUser]="currentUser" [receiverUser]="this.chatUser" (close)="onToggleChat($event)" body>
