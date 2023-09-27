@@ -176,7 +176,7 @@
                 </div>
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'candidate' }" role="tabpanel"
                     aria-labelledby="candidate-tab">
-                    <div class="row  pl-15">
+                    <div *ngIf="candidates.length >0" class="row  pl-15">
                         <div class="bar mt-3 cursor-pointer w-100">
                             <div class="d-flex align-items-center mt-10">
                                 <label class="switch" for="allitem">
@@ -256,7 +256,7 @@
                 </div>
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'inviting' }" role="tabpanel"
                     aria-labelledby="inviting-tab">
-                    <div class="row  pl-15">
+                    <div *ngIf="invitingList.length >0" class="row  pl-15">
                         <div class="bar-6 mt-3 cursor-pointer w-100">
                             <div class="d-flex align-items-center mt-10">
                                 <label class="switch" for="allitem">
@@ -287,9 +287,7 @@
 
                             </div>
                         </div>
-
                     </div>
-
                     <div class="empty text-center d-grid" *ngIf="invitingList.length ===0">
                         <svg-icon class="icon" src="assets/icons/NoUser.svg"></svg-icon>
                         <span class="empty-text"> {{"NORECORD" | translate }}</span>
@@ -346,7 +344,7 @@
                 </div>
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'interview' }" role="tabpanel"
                     aria-labelledby="interview-tab">
-                    <div class="bar mt-3 cursor-pointer w-100">
+                    <div *ngIf="interviews.length >0" class="bar mt-3 cursor-pointer w-100">
                         <div class="d-flex align-items-center mt-10">
                             <label class="switch" for="allitem">
                                 <input type="checkbox" id="allitem" />
@@ -421,7 +419,7 @@
                 </div>
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'rejected' }" role="tabpanel"
                     aria-labelledby="rejected-tab">
-                    <div class="bar mt-3 cursor-pointer w-100">
+                    <div *ngIf="rejected.length >0" class="bar mt-3 cursor-pointer w-100">
                         <div class="d-flex align-items-center mt-10">
                             <label class="switch" for="allitem">
                                 <input type="checkbox" id="allitem" />
@@ -496,7 +494,7 @@
                 </div>
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'history' }" role="tabpanel"
                     aria-labelledby="history-tab">
-                    <div class="row  pl-15">
+                    <div *ngIf="past.length >0" class="row  pl-15">
                         <div class="bar mt-3 cursor-pointer w-100">
                             <div class="d-flex align-items-center mt-10">
                                 <label class="switch" for="allitem">
