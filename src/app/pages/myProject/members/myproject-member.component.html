@@ -9,7 +9,7 @@
                 | translate }}
             </a>
             <a type="button" class="btn btn-white mr-10 float-right" data-toggle="modal"
-                [attr.data-target]="'#createRcruitModal'"><i class="fas fa-plus"></i>
+                [attr.data-target]="'#createRcruitModal'" (click)="onCreateRecruit()"><i class="fas fa-plus"></i>
                 {{"NEWJOB" | translate }}</a>
             <select *ngIf="this.isAllowEdit()" class="btn  mr-10 float-right h-40" [disabled]="!canMoveMember"
                 [value]="status" (change)="onStatusChange($event)">

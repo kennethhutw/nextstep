@@ -28,21 +28,12 @@ export class ForgotComponent implements OnInit {
 
   InvalidUser = false;
   unverifiedUser = false;
-
-
+  submitted = false;
+  errorMsg = "";
   public timerSub: Subscription;
   public value: number = 0;
 
-  @HostListener("window:resize", ["$event"])
-  getScreenSize(event?) {
-    let screenHeight = window.innerHeight;
-    let screenWidth = window.innerWidth;
-    if (screenWidth > 991) {
-      this.width = true;
-    } else {
-      this.width = false;
-    }
-  }
+
   constructor(
     private fb: FormBuilder,
     private emailSrv: EmailService,
@@ -65,11 +56,17 @@ export class ForgotComponent implements OnInit {
   }
 
   inValid() {
-    return this.resetEmailForm.invalid;
+    if (this.submitted) {
+      return true;
+    }
+    if (!this.submitted) {
+      return this.resetEmailForm.invalid;
+    }
   }
 
   onSubmit() {
-
+    this.submitted = true;
+    this.hideErrorMsg();
     let domain = window.location.origin;
     let url = '/resetPassword';
     let link = domain + url;
@@ -80,16 +77,25 @@ export class ForgotComponent implements OnInit {
       link).subscribe(sendRes => {
         if (sendRes['result'] == 'successful') {
           this.startTimer();
-          this.toastSrv.showToast('Success', "Reset Email Sent", this.toastSrv.iconClasses.success);
+          //this.toastSrv.showToast('Success', "Reset Email Sent", this.toastSrv.iconClasses.success);
+          this.submitted = false;
+
         } else {
-          this.toastSrv.showToast('Failed', sendRes['message'], this.toastSrv.iconClasses.error);
+          this.errorMsg = sendRes['message'];
+          // this.toastSrv.showToast('Failed', sendRes['message'], this.toastSrv.iconClasses.error);
+          this.submitted = false;
         }
 
       }, error => {
         console.error(` sendResetEmail error`, error);
-        this.toastSrv.showToast('Failed', error, this.toastSrv.iconClasses.error);
+        // this.toastSrv.showToast('Failed', error, this.toastSrv.iconClasses.error);
+        this.submitted = false;
       });
 
+  }
+
+  hideErrorMsg() {
+    this.errorMsg = "";
   }
 
 

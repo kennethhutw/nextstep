@@ -40,6 +40,11 @@
                 | translate }} {{this.value}}{{ "RESENDFGEMAILB"
                 | translate }}
             </button>
+            <div *ngIf="this.errorMsg!=''" class="alert alert-wrong mt-12" role="alert">
+
+                <svg-icon src="assets/icons/circle-xmark-regular.svg"></svg-icon>
+                <span>{{this.errorMsg}}</span>
+            </div>
         </form>
     </div>
 
