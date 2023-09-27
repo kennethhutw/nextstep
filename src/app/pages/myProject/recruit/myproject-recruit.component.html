@@ -45,7 +45,7 @@
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'current' }" id="home" role="tabpanel"
                     aria-labelledby="home-tab">
-                    <div class="row  pl-15">
+                    <div *ngIf="current.length >0" class="row  pl-15">
                         <div class="bar mt-3 cursor-pointer w-100">
                             <div class="d-flex align-items-center mt-10">
                                 <label class="switch" for="allitem">
@@ -138,7 +138,7 @@
                 </div>
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'drafts' }" role="tabpanel"
                     aria-labelledby="new-tab">
-                    <div class="row  pl-15">
+                    <div *ngIf="drafts.length >0" class="row  pl-15">
                         <div class="bar mt-3 cursor-pointer w-100">
                             <div class="d-flex align-items-center mt-10">
                                 <label class="switch" for="allitem">
@@ -232,7 +232,7 @@
                 </div>
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'closed' }" role="tabpanel"
                     aria-labelledby="new-tab">
-                    <div class="row  pl-15">
+                    <div *ngIf="closed.length >0" class="row  pl-15">
                         <div class="bar mt-3 cursor-pointer w-100">
                             <div class="d-flex align-items-center mt-10">
                                 <label class="switch" for="allitem">
@@ -255,7 +255,6 @@
                             </div>
 
                         </div>
-
                     </div>
                     <div class="empty text-center d-grid" *ngIf="closed.length ===0">
                         <svg-icon class="icon" src="assets/icons/Suitcase.svg"></svg-icon>
