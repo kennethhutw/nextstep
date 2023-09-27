@@ -75,6 +75,8 @@ export class MyProjectMemberComponent implements OnInit {
 
   canMoveMember: boolean = false;
 
+  selectedEditItem = null;
+
   skillOptions: any[] = [];
   @ViewChild('selectCountry') selectCountry: ElementRef;
   @ViewChild('close_recruit_button') close_recruit_button: ElementRef;
@@ -912,4 +914,7 @@ export class MyProjectMemberComponent implements OnInit {
     })
   }
 
+  onCleanSelectedEditeItem() {
+    this.selectedEditItem = null;
+  }
 }

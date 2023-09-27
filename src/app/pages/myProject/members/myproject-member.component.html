@@ -9,7 +9,7 @@
                 | translate }}
             </a>
             <a type="button" class="btn btn-white mr-10 float-right" data-toggle="modal"
-                [attr.data-target]="'#createRcruitModal'" (click)="onCreateRecruit()"><i class="fas fa-plus"></i>
+                [attr.data-target]="'#createRcruitModal'"><i class="fas fa-plus"></i>
                 {{"NEWJOB" | translate }}</a>
             <select *ngIf="this.isAllowEdit()" class="btn  mr-10 float-right h-40" [disabled]="!canMoveMember"
                 [value]="status" (change)="onStatusChange($event)">
@@ -100,9 +100,9 @@
                         </div>
 
                     </div>
-                    <div class="empty text-center" *ngIf="current.length ===0">
-                        {{"NORECORD" |
-                        translate }}
+                    <div class="empty text-center d-grid" *ngIf="current.length ===0">
+                        <svg-icon class="icon" src="assets/icons/NoUser.svg"></svg-icon>
+                        <span class="empty-text"> {{"NORECORD" | translate }}</span>
                     </div>
                     <ng-container *ngIf="current.length >0">
 
@@ -206,9 +206,9 @@
                         </div>
 
                     </div>
-                    <div class="empty text-center" *ngIf="candidates.length ===0">
-                        {{"NORECORD" |
-                        translate }}
+                    <div class="empty text-center d-grid" *ngIf="candidates.length ===0">
+                        <svg-icon class="icon" src="assets/icons/NoUser.svg"></svg-icon>
+                        <span class="empty-text"> {{"NORECORD" | translate }}</span>
                     </div>
                     <ng-container *ngIf="candidates">
                         <ng-container *ngFor="let member of candidates; let i = index">
@@ -290,9 +290,9 @@
 
                     </div>
 
-                    <div class="empty text-center" *ngIf="invitingList.length ===0">
-                        {{"NORECORD" |
-                        translate }}
+                    <div class="empty text-center d-grid" *ngIf="invitingList.length ===0">
+                        <svg-icon class="icon" src="assets/icons/NoUser.svg"></svg-icon>
+                        <span class="empty-text"> {{"NORECORD" | translate }}</span>
                     </div>
                     <ng-container *ngIf="invitingList">
                         <ng-container *ngFor="let member of invitingList; let i = index">
@@ -373,9 +373,9 @@
                         </div>
 
                     </div>
-                    <div class="empty text-center" *ngIf="interviews.length ===0">
-                        {{"NORECORD" |
-                        translate }}
+                    <div class="empty text-center d-grid" *ngIf="interviews.length ===0">
+                        <svg-icon class="icon" src="assets/icons/NoUser.svg"></svg-icon>
+                        <span class="empty-text"> {{"NORECORD" | translate }}</span>
                     </div>
                     <ng-container *ngIf="interviews">
                         <ng-container *ngFor="let member of interviews; let i = index">
@@ -448,9 +448,9 @@
                         </div>
 
                     </div>
-                    <div class="empty text-center" *ngIf="rejected.length ===0">
-                        {{"NORECORD" |
-                        translate }}
+                    <div class="empty text-center d-grid" *ngIf="rejected.length ===0">
+                        <svg-icon class="icon" src="assets/icons/NoUser.svg"></svg-icon>
+                        <span class="empty-text"> {{"NORECORD" | translate }}</span>
                     </div>
                     <ng-container *ngIf="rejected">
                         <ng-container *ngFor="let member of rejected; let i = index">
@@ -526,9 +526,9 @@
                         </div>
 
                     </div>
-                    <div class="empty text-center" *ngIf="past.length ===0">
-                        {{"NORECORD" |
-                        translate }}
+                    <div class="empty text-center d-grid" *ngIf="past.length ===0">
+                        <svg-icon class="icon" src="assets/icons/NoUser.svg"></svg-icon>
+                        <span class="empty-text"> {{"NORECORD" | translate }}</span>
                     </div>
                     <ng-container *ngIf="past">
                         <ng-container *ngFor="let member of past; let i = index">
@@ -687,9 +687,11 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <span class="modal-title">{{"NEWJOB" | translate }}</span>
+                <span *ngIf="!this.selectedEditItem;else edit_job" class="modal-title">{{"NEWJOB" | translate }}</span>
+                <ng-template #edit_job><span class="modal-title">{{"EDITJOB" | translate }}</span>
+                </ng-template>
                 <button type="button" id="close_recruit" #close_recruit_button class="close" data-dismiss="modal"
-                    aria-label="Close">
+                    (click)="onCleanSelectedEditeItem()" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>

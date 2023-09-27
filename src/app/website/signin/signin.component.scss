@@ -1,7 +1,3 @@
-// * {
-//     background-color: white;
-// }
-
 app-signin {
     color: #262E42;
 
@@ -58,6 +54,10 @@ app-signin {
         vertical-align: middle;
         text-align: center;
         line-height: 50px;
+
+        .signup-link:hover {
+            color: #FF859A;
+        }
     }
 
     .btn-signup {
@@ -89,15 +89,10 @@ app-signin {
         font-weight: 400;
     }
 
-
-
-
     .next-font {
         font-weight: 500;
         line-height: 56px;
-
     }
-
 
     .btn-social {
         border: 2px solid #ced4da;
@@ -109,13 +104,11 @@ app-signin {
         padding: 15px;
         background-color: white;
         padding-left: 100px;
-
         margin-top: 260px;
         max-width: 513px;
     }
 
     .signup-bg {
-
         background-image: url("./../../../assets/images/signin_Left.png");
         background-position: left;
         background-size: auto 100%;
@@ -130,9 +123,9 @@ app-signin {
         text-align: right;
         margin-top: 10px;
 
-        a {
-            color: rgb(33, 37, 41) !important;
-        }
+        // a {
+        //     color: rgb(33, 37, 41) !important;
+        // }
     }
 
     .invalidUser {
@@ -140,5 +133,18 @@ app-signin {
         margin-top: 0.25rem;
         font-size: 80%;
         color: #dc3545;
+    }
+
+    .link_btn {
+        color: #69738C;
+    }
+
+    .link_btn:hover {
+        color: #56BDF4;
+    }
+
+    .link_btn:focus {
+        border: 2px solid #ccebfc;
+        color: #69738C;
     }
 }

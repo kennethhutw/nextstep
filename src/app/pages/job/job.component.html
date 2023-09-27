@@ -8,7 +8,7 @@
   <div *ngIf="currentUser" class="col-md-6 text-right btn_items">
     <button type="button" class="btn btn_item" data-toggle="modal" data-target="#modal_apply" data-dismiss="modal"
       (click)="onSelectItem(currentRecruit)"><i class="far fa-envelope" tooltip="{{ 'APPLY' | translate }}"></i>
-      {{ 'APPLY' | translate }}</button><button type="button" class="btn btn_item"
+      {{ 'APPLY' | translate }}</button><button type="button" class="d-flex btn btn_item"
       [ngClass]="{'btn_item_selected': currentRecruit?.isCollected === true}"
       *ngIf="currentRecruit?.owner !== currentUser?.id" (click)="onClickCollect()"><i class="far fa-bookmark fa-lg"
         tooltip="{{ 'COLLECT' | translate }}"></i>
@@ -67,9 +67,10 @@
         <span class="title">{{ "OTHERJOBS" | translate
           }}</span>
       </div>
-      <div class="row job_frame empty text-center" *ngIf="!this.currentRecruit.projectOthers">
-        {{ "NOJOBOPEN" | translate
-        }}
+      <div class="row job_frame empty text-center  empty-frame" *ngIf="!isHasOthersJob()">
+        <svg-icon class="icon" src="assets/icons/Suitcase.svg"></svg-icon>
+        <span class="empty-text"> {{ "NOJOBOPEN" | translate
+          }}</span>
       </div>
       <ng-container *ngIf="this.currentRecruit?.projectOthers">
         <ng-container *ngFor="let item of  this.currentRecruit.projectOthers; let i = index">
@@ -128,7 +129,7 @@
               <p class="position col-form-label"><b>{{item.position}}</b></p>
             </div>
             <div *ngIf="currentUser" class="col-md-4 btn_items">
-              <!-- <a href="#"> <i class="far fa-bookmark"></i></a> -->
+
               <i *ngIf="item.isCollected" (click)="onClickJobCollect(item.id, item.isCollected)"
                 class="fas fa-bookmark collected" tooltip="{{ 'COLLECT' | translate }}"></i>
               <i *ngIf="!item.isCollected" (click)="onClickJobCollect(item.id, item.isCollected)"
@@ -194,8 +195,8 @@
       </div>
       <div class="modal-body">
         <div class="text-center mb-4">
-          <textarea class="form-control" rows="15" placeholder="自我介紹與為什麼想加入" [(ngModel)]="application_message"
-            id="application_message"></textarea>
+          <textarea class="form-control" rows="15" placeholder="{{ 'INTROANDJOIN' | translate }}"
+            [(ngModel)]="application_message" id="application_message"></textarea>
         </div>
         <div class=" text-right">
           <button type="button" class="btn btn-blue  mr-10" (click)="onSubmitApplication(this.selectedApplication)">

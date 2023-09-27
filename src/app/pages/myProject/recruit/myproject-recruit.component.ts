@@ -48,6 +48,7 @@ export class MyProjectRecruitComponent implements OnInit {
   status: string = "null";
   selectedItem: any[] = [];
   canMove: boolean = false;
+  selectedEditItem = null;
 
   @ViewChild('selectCountry') selectCountry: ElementRef;
   @ViewChild('close_recruit_button') close_recruit_button: ElementRef;
@@ -212,7 +213,7 @@ export class MyProjectRecruitComponent implements OnInit {
         let data = res['data'];
         data.forEach((item) => {
           item['isSelected'] = false;
-          if (!this.utilitySrv.IsNullOrEmpty(item['skills'].toString())) {
+          if (!this.utilitySrv.IsNullOrEmpty(item['skills'])) {
             item['skills'] = item['skills'].toString().split(',');
           }
         });
@@ -285,8 +286,9 @@ export class MyProjectRecruitComponent implements OnInit {
     })
   }
 
-  onClickView(item) {
-
+  onClickEdit(item) {
+    console.log(item);
+    this.selectedEditItem = item;
     let _skills = [];
     if (!this.utilitySrv.IsNullOrEmpty(item.skills)) {
       // let _skill_values = this.userProfile.skills.split(",");
@@ -337,6 +339,7 @@ export class MyProjectRecruitComponent implements OnInit {
       }
     }
     let params = {
+      id: this.selectedEditItem.id,
       position: values.position,
       scopes: values.scopes,
       projectId: this.projectId,
@@ -361,6 +364,7 @@ export class MyProjectRecruitComponent implements OnInit {
           " " + values.position + this.msg.updateSuc,
           this.toastSrv.iconClasses.success);
         this.refreshRecruitList();
+        this.selectedEditItem = null;
       }
     }).catch(error => {
       this.toastSrv.showToast('Failed',
@@ -465,15 +469,20 @@ export class MyProjectRecruitComponent implements OnInit {
         this.recruitForm.reset();
         this.close_recruit_button.nativeElement.click();
         this.toastSrv.showToast('Success',
-          " " + values.position + "已更新.",
+          " " + values.position + this.msg.insertSuc,
           this.toastSrv.iconClasses.success);
         this.refreshRecruitList();
+        this.selectedEditItem = null;
       }
     }, error => {
       this.toastSrv.showToast('Failed',
-        error.message,
+        error.message + this.msg.insertFailed,
         this.toastSrv.iconClasses.error);
     })
+  }
+
+  onCleanSelectedEditeItem() {
+    this.selectedEditItem = null;
   }
 
 }

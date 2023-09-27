@@ -71,8 +71,8 @@
         </div>
       </div>
       <div class="frame">
-        <div class="row ">
-          <div class="col-md-12 ">
+        <div class="row">
+          <div class="col-md-12">
             <div class="profile-header">
               <div class=" tags">
                 <ng-container *ngIf="
@@ -117,7 +117,7 @@
       </div>
       <!-- 個人簡介 end -->
 
-      <div class="row">
+      <div class="row mt-16">
         <div class="col-md-12">
           <ul class="nav nav-tabs" id="projectTab" role="tablist">
             <li class="nav-item" role="presentation">
@@ -139,7 +139,7 @@
                 <div class="col-md-12 frame mb-20">
                   <div class="col-md-12" style=" display:inline-block;">
                     <div class="exp-bar-2">
-                      <span class="exp-position">{{project.position? project.position:"未填寫職稱"}}</span>
+                      <span class="exp-position">{{project.position? project.position:this.msg.noTitle}}</span>
                       <div class="exp-duration">
                         <span>{{project.firstDate | date : 'yyyy-MM-dd'}}</span><span
                           *ngIf="IsNullorEmpty(project.lastDate)">~ {{project.lastDate |
@@ -183,7 +183,7 @@
                 <div class="col-md-12 frame mb-20">
                   <div class="col-md-12" style=" display:inline-block;">
                     <div class="exp-bar-2">
-                      <span class="exp-position">{{project.position? project.position:"未填寫職稱"}}</span>
+                      <span class="exp-position">{{project.position? project.position:this.msg.noTitle}}</span>
                       <!--  <a data-toggle="modal" [attr.data-target]="'#modal_project'"><i class="fas fa-pencil-alt"></i></a> -->
                       <div class="exp-duration">
                         <span>{{project.firstDate | date : 'yyyy-MM-dd'}}</span><span

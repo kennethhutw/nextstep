@@ -438,5 +438,23 @@ export class JobComponent implements OnInit {
     }
 
   }
+
+  isHasOthersJob() {
+
+    if (this.currentRecruit.projectOthers) {
+
+      let _jobs = this.currentRecruit.projectOthers.filter((item) => {
+        return item.status == '1'
+      });
+
+      if (_jobs && _jobs.length > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
 }
 //https://www.sliderrevolution.com/resources/bootstrap-profile/

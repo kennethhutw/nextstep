@@ -31,7 +31,8 @@
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'project' }" id="home" role="tabpanel"
                     aria-labelledby="home-tab">
                     <div class=" noItem text-center" *ngIf="projects.length ===0">
-                        {{ "NOPROJECT" | translate }}
+                        <img src="assets/icons/noRecommend.png" alt="noRecommend">
+                        <span>{{ "NOCOLLECTEDPROJECT" | translate }}</span>
                     </div>
                     <ng-container *ngIf="projects">
                         <div class="row  pl-15">
@@ -51,7 +52,8 @@
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'partner' }" role="tabpanel"
                     aria-labelledby="profile-tab">
                     <div class="noItem text-center" *ngIf="partners.length ===0">
-                        <h3>{{ "NOPARTNER" | translate }}</h3>
+                        <svg-icon class="icon" src="assets/icons/NoUser.svg"></svg-icon>
+                        <span>{{ "NOPARTNER" | translate }}</span>
                     </div>
                     <ng-container *ngIf="partners">
                         <div class="row">
@@ -70,7 +72,8 @@
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'application' }" role="tabpanel"
                     aria-labelledby="profile-tab">
                     <div class="noItem text-center" *ngIf="applications.length ===0">
-                        <h3>{{ "NOJOBS" | translate }}</h3>
+                        <svg-icon class="icon" src="assets/icons/Suitcase.svg"></svg-icon>
+                        <span>{{ "NOJOBS" | translate }}</span>
                     </div>
                     <ng-container *ngIf="applications">
                         <div class="row bar">
@@ -91,7 +94,8 @@
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'mentor' }" role="tabpanel"
                     aria-labelledby="profile-tab">
                     <div class="noItem text-center" *ngIf="mentors.length ===0">
-                        {{ "NOMENTOR" | translate }}
+                        <svg-icon class="icon" src="assets/icons/NoMentor.svg"></svg-icon>
+                        <span> {{ "NOMENTOR" | translate }}</span>
                     </div>
                     <ng-container *ngIf="mentors">
                         <div class="row">

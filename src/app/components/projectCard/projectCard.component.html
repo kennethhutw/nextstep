@@ -1,4 +1,4 @@
-<div class="card card-white grid-margin" (click)="routeToUserProfile()">
+<div class="card card-white grid-margin cursor-pointer" (click)="routeToUserProfile()">
   <div class="header" [ngClass]="{ 'header-nologin': !user }">
     <div class="">
       <a (click)="routeToUserProfile()">
@@ -7,7 +7,6 @@
 
     </div>
     <div class="item-left">
-
       <i *ngIf="project.isCollect && user " (click)="onClickUnCollect($event)"
         class="fas fa-bookmark fa-lg  fa-bookmark-selected"></i>
       <i *ngIf="!project.isCollect && user" (click)="onClickCollect($event)"

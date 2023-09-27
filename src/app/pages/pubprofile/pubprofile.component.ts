@@ -69,6 +69,9 @@ export class PubProfileComponent implements OnInit {
   strNoJD: string = "";
   // tab
   currentTab: string = "current";
+  msg = {
+    noTitle: "",
+  }
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
@@ -231,6 +234,10 @@ export class PubProfileComponent implements OnInit {
     //
     this.translateSrv.get("NOWORDS").subscribe((text: string) => {
       this.strNoWords = text;
+    });
+
+    this.translateSrv.get("NOPOISTION").subscribe((text: string) => {
+      this.msg.noTitle = text;
     });
   }
 

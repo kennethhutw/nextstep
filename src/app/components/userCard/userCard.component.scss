@@ -1,24 +1,11 @@
 app-user-card {
 
-
     p {
         margin-top: 0;
         margin-bottom: 1rem;
     }
 
-    .search_input {
-        background: transparent;
-        border: none;
-        border-bottom: 1px solid #210b2c;
-        -webkit-box-shadow: none;
-        box-shadow: none;
-        border-radius: 0;
-    }
 
-    .bio {
-        font-size: 1.5rem;
-        color: #210b2c;
-    }
 
     .title {
         white-space: nowrap;
@@ -31,16 +18,9 @@ app-user-card {
         text-align: center !important;
     }
 
-    .mt-4,
-    .my-4 {
+    .mt-4 {
         margin-top: 1.5rem !important;
     }
-
-    .ml-3,
-    .mx-3 {
-        margin-left: 1rem !important;
-    }
-
 
     .profile-image {
         vertical-align: center;
@@ -54,27 +34,17 @@ app-user-card {
 
     .card {
         background-color: white;
-        box-shadow: 1px 2px 9px rgba(0, 0, 0, 0.04) !important;
+        //  box-shadow: 1px 2px 9px rgba(0, 0, 0, 0.04) !important;
+        box-shadow: 1px 2px 9px 0px #0000000A !important;
         border: 0px !important;
         border-radius: 12px;
         color: black;
         padding: 25px;
     }
 
-    // .card.card-white {
-    //     background-color: #fff;
-    //     border: 1px solid transparent;
-    //     border-radius: 4px;
-    //     box-shadow: 0 0.05rem 0.01rem rgba(75, 75, 90, 0.075);
-    //     padding: 25px;
-    // }
 
     .grid-margin {
         margin-bottom: 2rem;
-    }
-
-    .artist {
-        cursor: pointer;
     }
 
     .name {
@@ -84,8 +54,12 @@ app-user-card {
         color: #333333;
     }
 
-    th {
-        font-weight: 300;
+    .mh-70 {
+        min-height: 70px
+    }
+
+    .mh-27 {
+        min-height: 27px
     }
 
     .discr {
@@ -97,21 +71,6 @@ app-user-card {
 
     .mr-5 {
         margin-right: 5px !important;
-    }
-
-
-
-    .label {
-        font-weight: 400;
-        padding: 4px 8px;
-        font-size: 11px;
-        display: inline-block;
-        line-height: 1;
-        color: #fff;
-        text-align: center;
-        white-space: nowrap;
-        vertical-align: baseline;
-        border-radius: 0.25em;
     }
 
     .actions {

@@ -487,6 +487,7 @@ button[disabled] {
   border: 1px solid #F1F2F5 !important;
   background-color: #F1F2F5 !important;
   color: #CFD2DA !important;
+  pointer-events: none;
 }
 
 .btn-standard {
@@ -1707,6 +1708,10 @@ a.menu-item:hover {
   padding-left: 10px;
 }
 
+.pl-40 {
+  padding-left: 40px;
+}
+
 .pl-55 {
   padding-left: 55px;
 }
@@ -1793,6 +1798,16 @@ input[type=radio] {
 
 .gap-15 {
   gap: 15px;
+}
+
+.empty-frame {
+  position: relative;
+
+  .empty-text {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+  }
 }
 
 .empty-text-center {
@@ -2140,4 +2155,17 @@ a {
 
 .font-32 {
   font-size: 32px;
+}
+
+
+.flot-right {
+  float: right;
+}
+
+.flot-left {
+  float: left;
+}
+
+.d-grid {
+  display: grid;
 }

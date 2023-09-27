@@ -84,10 +84,13 @@ app-pub-profile {
 
     .frame {
         border: 0px;
+        border-radius: 12px;
         min-height: 300px;
         padding-top: 15px;
         padding-bottom: 15px;
-        box-shadow: 1px 2px 9px rgba(0, 0, 0, 0.04) !important;
+        //   box-shadow: 1px 2px 9px rgba(0, 0, 0, 0.04) !important;
+        box-shadow: 1px 2px 9px 0px #0000000A !important;
+        background-color: #fff;
         padding-left: 10px;
         padding-right: 10px;
 
@@ -95,6 +98,10 @@ app-pub-profile {
             font-weight: 500;
 
         }
+    }
+
+    .mt-16 {
+        margin-top: 16px;
     }
 
     .mt-26 {
@@ -159,6 +166,8 @@ app-pub-profile {
 
     .content {
         min-height: 100px;
+        padding-top: 12px;
+        padding-bottom: 12px;
     }
 
     .btn_items {
@@ -290,5 +299,14 @@ app-pub-profile {
 
     .tab-pane {
         padding-top: 24px;
+    }
+
+    .nav-tabs {
+        border-bottom: 0px !important;
+    }
+
+
+    .nav-tabs .nav-link:hover {
+        border: 0px;
     }
 }

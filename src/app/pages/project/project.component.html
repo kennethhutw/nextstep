@@ -32,8 +32,9 @@
     <h1>{{this.currentProject?.name}}</h1>
   </div>
 
-  <div class="col-md-4 text-right  btn_items" *ngIf="currentUser">
-    <button type="button" class="btn btn_item" [ngClass]="{'btn_item_selected': currentProject?.isCollected === true}"
+  <div class="col-md-5 text-right  btn_items" *ngIf="currentUser">
+    <button type="button" class="d-flex btn btn_item"
+      [ngClass]="{'btn_item_selected': currentProject?.isCollected === true}"
       *ngIf="currentProject?.owner !== currentUser?.id" (click)="onClickCollect()"><i
         class="far fa-bookmark fa-lg "></i>
       {{currentProject?.isCollected === true ? this.msg.collected : this.msg.collect}} </button>
@@ -47,10 +48,10 @@
   </div>
 </div>
 <div *ngIf="currentProject" class="row mt-10">
-  <div class="col-md-3 text-right">
+  <div class="col-md-2 text-right">
 
   </div>
-  <div class="col-md-5">
+  <div class="col-md-5 pl-40">
 
     <a *ngIf="IsNullorEmpty(currentProject.website)" href="{{ currentProject.website }}" target="_blank"> <i
         class="fas fa-globe icon color-gray"></i></a>
@@ -66,7 +67,7 @@
         class="fab fa-instagram-square icon color-gray"></i></a>
   </div>
 
-  <div class="col-md-4 project-info">
+  <div class="col-md-5 project-info">
     <span>{{ currentProject.viewCount}}&nbsp;&nbsp;{{ "VIEWNUM" | translate
       }}</span>
     <span>{{ this.getFollow(currentProject)}}</span>

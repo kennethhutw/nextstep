@@ -1,4 +1,4 @@
-<div class="card card-white grid-margin" (click)="routeToUserProfile()">
+<div class="card card-white grid-margin  cursor-pointer" (click)="routeToUserProfile()">
   <div class="row">
 
     <div class="col-md-7 d-flex flex-row gap-10">
@@ -25,12 +25,12 @@
       </div>
     </div>
   </div>
-  <div class="row" style="min-height:70px">
+  <div class="row mh-70">
     <div class="col-md-12 discr">
       {{user?.bio.length> 0? user.bio.length>39?user.bio.substring(0,40)+' ...':user.bio : this.strNotFilled}}
     </div>
   </div>
-  <div class="row" style="min-height:27px">
+  <div class="row mh-27">
     <ng-container *ngIf="user.skills">
       <ng-container *ngFor=" let tag of user.skills; let i=index">
         <span *ngIf="!this.utility.IsNullOrEmpty(tag)" class="tag tag-{{tag}}  mb-2 mr-5">{{convertTag(tag)}}</span>

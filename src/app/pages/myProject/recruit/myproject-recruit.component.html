@@ -3,7 +3,7 @@
         <div class="col-md-12  mb-20" style="display: inline-block;">
             <span class="title">{{"RECRUITMANAGEMENT" | translate }}</span>
             <a type="button" class="btn btn-white mr-10 float-right" data-toggle="modal"
-                [attr.data-target]="'#createRcruitModal'" (click)="onCreateRecruit()"><i class="fas fa-plus"></i>
+                [attr.data-target]="'#createRcruitModal'"><i class="fas fa-plus"></i>
                 {{"NEWJOB" | translate }}</a>
             <select class="btn btn-white mr-10 float-right h-40" [disabled]="!canMove" [value]="status"
                 (change)="onStatusChange($event)">
@@ -70,8 +70,9 @@
                         </div>
 
                     </div>
-                    <div class="empty text-center" *ngIf="current.length ===0">
-                        {{"NORECORD" | translate }}
+                    <div class="empty text-center d-grid" *ngIf="current.length ===0">
+                        <svg-icon class="icon" src="assets/icons/Suitcase.svg"></svg-icon>
+                        <span class="empty-text"> {{"NORECORD" | translate }}</span>
                     </div>
                     <ng-container *ngIf="current.length >0">
                         <ng-container *ngFor="let item of  current; let i = index">
@@ -119,7 +120,7 @@
                                                 class="fas fa-ellipsis-h color-gray text-18" data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="true"></i>
                                             <div class="dropdown-menu"> <a class="dropdown-item color-gray"
-                                                    (click)="onClickView(item)" data-toggle="modal"
+                                                    (click)="onClickEdit(item)" data-toggle="modal"
                                                     [attr.data-target]="'#createRcruitModal'"><i
                                                         class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{"EDIT" | translate
                                                     }}</a> <a class="dropdown-item color-gray"
@@ -162,8 +163,9 @@
                         </div>
 
                     </div>
-                    <div class="empty text-center" *ngIf="drafts.length ===0">
-                        {{"NORECORD" | translate }}
+                    <div class="empty text-center d-grid" *ngIf="drafts.length ===0">
+                        <svg-icon class="icon" src="assets/icons/Suitcase.svg"></svg-icon>
+                        <span class="empty-text"> {{"NORECORD" | translate }}</span>
                     </div>
                     <ng-container *ngIf="drafts">
                         <ng-container *ngFor="let item of drafts; let i = index">
@@ -212,7 +214,7 @@
                                                 class="fas fa-ellipsis-h color-gray text-18" data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="true"></i>
                                             <div class="dropdown-menu"> <a class="dropdown-item color-gray"
-                                                    (click)="onClickView(item)" data-toggle="modal"
+                                                    (click)="onClickEdit(item)" data-toggle="modal"
                                                     [attr.data-target]="'#createRcruitModal'"><i
                                                         class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{"EDIT" | translate
                                                     }}</a> <a class="dropdown-item color-gray"
@@ -255,8 +257,9 @@
                         </div>
 
                     </div>
-                    <div class="empty text-center" *ngIf="closed.length ===0">
-                        {{"NORECORD" | translate }}
+                    <div class="empty text-center d-grid" *ngIf="closed.length ===0">
+                        <svg-icon class="icon" src="assets/icons/Suitcase.svg"></svg-icon>
+                        <span class="empty-text"> {{"NORECORD" | translate }}</span>
                     </div>
                     <ng-container *ngIf="closed">
                         <ng-container *ngFor="let item of closed; let i = index">
@@ -329,16 +332,19 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <span class="modal-title">{{"NEWJOB" | translate }}</span>
+
+                <span *ngIf="!this.selectedEditItem;else edit_job" class="modal-title">{{"NEWJOB" | translate }}</span>
+                <ng-template #edit_job><span class="modal-title">{{"EDITJOB" | translate }}</span>
+                </ng-template>
                 <button type="button" id="close_recruit" #close_recruit_button class="close" data-dismiss="modal"
-                    aria-label="Close">
+                    (click)="onCleanSelectedEditeItem()" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <form [formGroup]="recruitForm">
                     <div class="form-group">
-                        <label for="inputPosition">{{"JOBTITLE" | translate }}</label>
+                        <label for="inputPosition">{{"JOBTITLE" | translate }}*</label>
                         <input type="text" class="form-control rounded-0" formControlName="position" id="inputPosition"
                             placeholder="{{'POSITION' | translate }}">
                     </div>
@@ -352,7 +358,7 @@
                         </tag-input>
                     </div>
                     <div class="form-group">
-                        <label for="inputContent">{{"JD" | translate }}</label>
+                        <label for="inputContent">{{"JD" | translate }}*</label>
                         <textarea class="form-control" type="text" id="scopes" formControlName="scopes" rows="4"
                             cols="50"></textarea>
                     </div>
@@ -385,8 +391,12 @@
                     </div>
                     <div class="form-group row justify-content-end">
 
-                        <button type="button" style="float: right;" class="btn btn-blue  mr-10"
-                            (click)="onUpdateRecruitSubmit()">{{"SAVE" | translate }}</button>
+                        <button *ngIf="!this.selectedEditItem;else edit_job_btn" type="button"
+                            class="btn btn-blue  mr-10 flot-right" (click)="onCreateRecruit()">{{"CREATE" | translate
+                            }}</button>
+                        <ng-template #edit_job_btn> <button type="button" class="btn btn-blue  mr-10 flot-right"
+                                (click)="onUpdateRecruitSubmit()">{{"UPDATE" |
+                                translate }}</button></ng-template>
                     </div>
                 </form>
             </div>
