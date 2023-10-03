@@ -67,12 +67,12 @@
         <span class="title">{{ "OTHERJOBS" | translate
           }}</span>
       </div>
-      <div class="col-md-12  noItem" *ngIf="!isHasOthersJob()">
+      <div class="col-md-12  noItem">
         <svg-icon src="assets/icons/Suitcase.svg"></svg-icon>
         <span class="empty-text"> {{ "NOJOBOPEN" | translate
           }}</span>
       </div>
-      <ng-container *ngIf="this.currentRecruit?.projectOthers">
+      <ng-container *ngIf="!this.currentRecruit?.projectOthers">
         <ng-container *ngFor="let item of  this.currentRecruit.projectOthers; let i = index">
           <div *ngIf="item.status =='1'" class="job_frame" [ngClass]="{'mt-10':i>1}">
 

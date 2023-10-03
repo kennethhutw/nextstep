@@ -109,7 +109,7 @@
               <ng-container *ngIf="notis">
                 <ng-container *ngFor="let noti of  notis; let i = index">
                   <a *ngIf="i<5" class="notification" routerLink="/dashboard/notifications">
-                    <i class="far fa-bell mt-15"></i>
+                    <i class="far fa-bell mt-15 backgroud-gray"></i>
                     <div class="notifciation-row">
                       <span> {{noti?.content.length>20?noti?.content.substring(0,20)+"...":noti?.content}}</span>
                       <span class="notifciation-date"> {{(noti?.createdAt !==null) ?

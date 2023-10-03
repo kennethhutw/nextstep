@@ -141,6 +141,7 @@ export class JobComponent implements OnInit {
 
         }
 
+
         this.SpinnerService.hide();
       }).catch(error => {
         console.error("error", error);

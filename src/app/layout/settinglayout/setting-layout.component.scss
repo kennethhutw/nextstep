@@ -34,6 +34,16 @@ app-setting {
           text-decoration: none;
           cursor: pointer;
           display: block;
+
+          svg-icon svg path {
+            fill: rgb(105, 115, 140) !important;
+          }
+
+          .icon {
+            svg path {
+              fill: rgb(105, 115, 140) !important;
+            }
+          }
         }
 
         &:hover {
@@ -76,4 +86,8 @@ app-setting {
 
 
 
+}
+
+svg-icon svg path {
+  fill: rgb(105, 115, 140) !important;
 }
