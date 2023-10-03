@@ -4,7 +4,7 @@
     </div>
     <div class="col-md-4 clean-column">
         <button type="button" class="btn btn-transparent " aria-label="Close" (click)="onReadAll()">
-            <span aria-hidden="true">全部已讀
+            <span aria-hidden="true">{{ "READALLMSG" | translate }}
             </span>
         </button>
     </div>
@@ -15,7 +15,7 @@
             <div class="row">
 
                 <div class="col-md-12 form-inline msg-bar"
-                    [ngClass]="{ 'first_row': i == 0 ,'last_row': i == notifications.length -1, 'last_row': (i%9) == 0 }">
+                    [ngClass]="{ 'first_row': i == 0 ,'last_row': i == notifications.length -1 }">
                     <span>
                         <svg-icon src="assets/icons/msg-bell.svg"></svg-icon><!-- <i class="far fa-bell icon"></i> -->
                     </span>
@@ -32,10 +32,14 @@
 </ng-container>
 <ng-template #noItem>
     <div class="row mt-10">
-        <div class="col-md-12 text-center text-18">目前沒有訊息</div>
+
+        <div class="col-md-12 text-center text-18 noItem">
+            <svg-icon class="icon" src="assets/icons/NoQ&A.svg"></svg-icon> <span>{{ "NOMSG" | translate }}</span>
+        </div>
     </div>
 </ng-template>
 <div class="mt-30">
-    <app-pagination [currentPage]="currentPageIndex" totalPages="10" (onPageChange)="onPageChange($event)">
+    <app-pagination *ngIf="notifications.length>10" [currentPage]="currentPageIndex" totalPages="10"
+        (onPageChange)="onPageChange($event)">
     </app-pagination>
 </div>

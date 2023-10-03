@@ -1,0 +1,65 @@
+app-jobCard {
+  .frame {
+    border: 2px solid #fff;
+    margin-bottom: 30px;
+    margin-left: 10px;
+    background-color: #fff;
+    display: grid;
+    grid-auto-flow: row;
+    gap: 10px;
+    padding: 12px 10px 12px 10px;
+    border-radius: 12px;
+    //box-shadow: 1px 2px rgba(0, 0, 0, 0.04);
+    box-shadow: 1px 2px 9px 0px #0000000A !important;
+  }
+
+  .header {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 60% 40%;
+    width: 100%;
+
+    .position {
+      font-size: 16px;
+      margin-bottom: 0px;
+      font-weight: 500;
+      word-wrap: break-word;
+    }
+  }
+
+  .body {
+    min-height: 200px;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .btn_items {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
+    margin-top: auto;
+    margin-bottom: auto;
+    color: #262E42;
+    font-size: 24px;
+  }
+
+  .btn_item {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;
+    padding: 4px 10px;
+    color: #fff;
+    background-color: #56BDF4;
+    border: 1px solid #56BDF4;
+    border-radius: 4px;
+    // width: 84px;
+    height: 36px;
+
+    i {
+      border: 0px !important;
+    }
+  }
+}

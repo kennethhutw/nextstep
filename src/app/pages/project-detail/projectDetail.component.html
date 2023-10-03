@@ -22,7 +22,7 @@
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'published' }" id="home" role="tabpanel"
                     aria-labelledby="home-tab">
                     <div class="row" *ngIf="publishedprojects.length ===0" style="height:300px;margin-top: 28px;">
-                        {{ "NOPROJECT" | translate}}
+                        <span>{{ "NOPROJECT" | translate}}</span>
                     </div>
                     <ng-container *ngIf="publishedprojects">
                         <div class="row  pl-15">

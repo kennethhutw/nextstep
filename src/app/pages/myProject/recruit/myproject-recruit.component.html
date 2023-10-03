@@ -2,10 +2,10 @@
     <div class="row">
         <div class="col-md-12  mb-20" style="display: inline-block;">
             <span class="title">{{"RECRUITMANAGEMENT" | translate }}</span>
-            <a type="button" class="btn btn-white mr-10 float-right" data-toggle="modal"
+            <a type="button" class="btn btn-dropdown mr-10 float-right" data-toggle="modal"
                 [attr.data-target]="'#createRcruitModal'"><i class="fas fa-plus"></i>
                 {{"NEWJOB" | translate }}</a>
-            <select class="btn btn-white mr-10 float-right h-40" [disabled]="!canMove" [value]="status"
+            <select class="btn btn-dropdown mr-10 float-right h-40" [disabled]="!canMove" [value]="status"
                 (change)="onStatusChange($event)">
                 <option value="null">{{"MOVETO" | translate }}</option>
                 <option value="current">{{"CURRENT" | translate }}</option>

@@ -3,6 +3,7 @@ import { CustomModalComponent } from './custom-modal/custom-modal.component';
 import { CommentComponent } from './comment/comment.component';
 import { CommentsComponent } from './comments/comments.component';
 import { EmailTemplateCardComponent } from './emailTemplateCard/emailTemplateCard.component';
+import { JobCardComponent } from './jobCard/jobCard.component';
 import { MemberCardComponent } from './memberCard/memberCard.component';
 import { ProjectItemComponent } from "./projectItem/project-item.component";
 import { PersonCardComponent } from "./person/person.component";
@@ -21,6 +22,7 @@ export const components = [
     CommentComponent,
     CommentsComponent,
     EmailTemplateCardComponent,
+    JobCardComponent,
     RadioItemComponent,
     RecruitCardComponent,
     LogBarComponent,
@@ -40,6 +42,7 @@ export { CustomModalComponent } from './custom-modal/custom-modal.component';
 export { CommentComponent } from './comment/comment.component';
 export { CommentsComponent } from './comments/comments.component';
 export { EmailTemplateCardComponent } from './emailTemplateCard/emailTemplateCard.component';
+export { JobCardComponent } from './jobCard/jobCard.component';
 export { UserCardComponent } from "./userCard/userCard.component";
 export { ProjectCardComponent } from './projectCard/projectCard.component';
 export { ProjectItemComponent } from "./projectItem/project-item.component";

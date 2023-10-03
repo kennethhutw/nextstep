@@ -25,6 +25,7 @@
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'published' }" id="home" role="tabpanel"
                     aria-labelledby="home-tab">
                     <div class="row noProject" *ngIf="publishedprojects.length ===0">
+                        <img src="assets/icons/noRecommend.png" alt="noRecommend">
                         <span>{{ "NOPROJECT"
                             | translate }}</span>
                     </div>
@@ -99,6 +100,7 @@
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'draft' }" role="tabpanel"
                     aria-labelledby="profile-tab">
                     <div class="row noProject" *ngIf="draftedprojects.length ===0">
+                        <img src="assets/icons/noRecommend.png" alt="noRecommend">
                         <span>{{ "NOPROJECT" | translate
                             }}</span>
                     </div>

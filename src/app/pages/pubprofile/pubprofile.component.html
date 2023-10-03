@@ -159,7 +159,7 @@
                 </div>
               </ng-container>
 
-              <div *ngIf="!userProfile.projects" class="col-md-12 frame mb-20">
+              <div *ngIf="!userProfile.projects" class="col-md-12 mb-20">
                 <div class="col-md-12 empty-text-center">
                   <img src="assets/icons/noRecommend.png" alt="noRecommend">
                   <span class="mt-3">{{ "NOTJOINPROJECT" | translate }}</span>
@@ -172,7 +172,7 @@
               aria-labelledby="new-tab">
               <!-- 目前過去參與專案 start -->
 
-              <div *ngIf="!userProfile.pastprojects" class="col-md-12 frame mb-20">
+              <div *ngIf="!userProfile.pastprojects" class="col-md-12  mb-20">
                 <div class="col-md-12 empty-text-center">
                   <img src="assets/icons/noRecommend.png" alt="noRecommend">
                   <span class="mt-3">{{ "NOTJOINPROJECT" | translate }}</span>
@@ -225,8 +225,8 @@
           </a>
         </div>
       </div>
-      <div class="row exp-empty-frame empty-text-center" *ngIf="userProfile.experience.length ==0">
-
+      <div class="noItem" *ngIf="userProfile.experience.length ==0">
+        <svg-icon src="./assets/icons/experience.svg" class="noItemIcon"></svg-icon>
         <span>{{ "NOEXPERIENCE" | translate }}</span>
 
       </div>
@@ -300,7 +300,7 @@
               aria-describedby="emailHelp" placeholder="Enter name">
             <div *ngIf="submitted && f.name.errors">
               <div class="error-msg" *ngIf="f.name.errors.required">
-                姓名是必要的
+                {{ "NAMEREQUIRED" | translate }}
               </div>
             </div>
           </div>
@@ -310,7 +310,7 @@
               aria-describedby="emailHelp" placeholder="Enter email">
             <div *ngIf="submitted && f.email.errors">
               <div class="error-msg" *ngIf="f.email.errors.required">
-                Email是必要的
+                {{ "EMAILREQUIRED" | translate }}
               </div>
             </div>
           </div>

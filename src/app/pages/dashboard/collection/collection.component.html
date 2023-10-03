@@ -30,7 +30,7 @@
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'project' }" id="home" role="tabpanel"
                     aria-labelledby="home-tab">
-                    <div class=" noItem text-center" *ngIf="projects.length ===0">
+                    <div class="noItem text-center" *ngIf="projects.length ===0">
                         <img src="assets/icons/noRecommend.png" alt="noRecommend">
                         <span>{{ "NOCOLLECTEDPROJECT" | translate }}</span>
                     </div>

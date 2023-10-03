@@ -80,7 +80,11 @@
 </div>
 <ng-template #noItem>
   <div class="row mt-10">
-    <div class="col-md-12 text-center text-18">{{ "NOMSG"
-      | translate }}</div>
+
+    <div class="col-md-12 text-center text-18 noItem">
+      <svg-icon class="icon" src="assets/icons/NoQ&A.svg"></svg-icon>
+      <span>{{ "NOMSG"
+        | translate }}</span>
+    </div>
   </div>
 </ng-template>

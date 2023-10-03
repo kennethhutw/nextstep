@@ -17,7 +17,11 @@ import { Utility } from "../../_helpers";
 import { environment } from '../../../environments/environment';
 import { NgxSpinnerService } from "ngx-spinner";
 import { ActivatedRoute } from '@angular/router';
-
+import {
+  FormBuilder,
+  FormGroup,
+  Validators
+} from '@angular/forms';
 @Component({
   selector: "app-job",
   templateUrl: "./job.component.html",
@@ -30,11 +34,14 @@ export class JobComponent implements OnInit {
 
   isChat: boolean = false;
   projectOwner;
+  submitted = false;
   skillOptions: any[] = [];
   @ViewChild('closebutton') closebutton;
+  @ViewChild('close_recruit_button') close_recruit_button;
   selectedApplication: any;
   defual_application_message: string;
   application_message: string = "";
+  recruitForm: FormGroup;
 
   msg = {
     jobtitle: "",
@@ -57,6 +64,7 @@ export class JobComponent implements OnInit {
   }
   constructor(
     private settingSrv: SettingService,
+    private formBuilder: FormBuilder,
     private recruitSrv: RecruitService,
     private utilitySrv: Utility,
     private authStore: AuthStore,
@@ -86,6 +94,18 @@ export class JobComponent implements OnInit {
         this.init_terms(lang);
       }
     });
+
+    this.recruitForm = this.formBuilder.group({
+      id: [""],
+      position: ["", Validators.required],
+      scopes: ["", Validators.required],
+      skills: [""],
+      work12: [false],
+      work34: [false],
+      work56: [false],
+      work78: [false],
+      work9: [false],
+    });
   }
 
   ngOnInit() {
@@ -100,6 +120,7 @@ export class JobComponent implements OnInit {
 
       let _recruitId = params['id'];
       this.recruitSrv.getById(_recruitId, _userId).then(res => {
+        console.log("data-------------", res);
         if (res['result'] == 'successful') {
           this.currentRecruit = res['data'];
           if (!this.utilitySrv.IsNullOrEmpty(this.currentRecruit.skills)) {
@@ -119,6 +140,7 @@ export class JobComponent implements OnInit {
           }
 
         }
+
         this.SpinnerService.hide();
       }).catch(error => {
         console.error("error", error);
@@ -455,6 +477,112 @@ export class JobComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  onModifyJob(item) {
+    this.selectedApplication = item;
+    let _skills = [];
+    if (!this.utilitySrv.IsNullOrEmpty(item.skills)) {
+
+
+      this.skillOptions.map(option => {
+        if (item.skills.includes(option.value)) {
+          _skills.push(option.text);
+        }
+      })
+    }
+    this.recruitForm.setValue({
+      id: item.id,
+      position: item.position,
+      scopes: item.scopes,
+      skills: _skills,
+      work12: item.work12,
+      work34: item.work34,
+      work56: item.work56,
+      work78: item.work78,
+      work9: item.work9,
+    });
+  }
+
+  onUpdateRecruitSubmit() {
+    this.submitted = true;
+    if (this.recruitForm.invalid) {
+      return;
+    }
+    const values = this.recruitForm.value;
+    let _skills = "";
+    let _skills_array = [];
+
+    if (values.skills) {
+      values.skills.map(skill => {
+        let _skill_text = skill;
+        if (typeof skill == "object") {
+          _skill_text = skill.text;
+        }
+        let _index = this.skillOptions.findIndex((obj => obj.text == _skill_text));
+        if (_index > -1) {
+          _skills += this.skillOptions[_index].value + ",";
+          _skills_array.push(this.skillOptions[_index].value);
+        }
+      })
+
+      if (_skills.length > 0) {
+        _skills = _skills.substring(0, _skills.length - 1);
+      }
+    }
+    let params = {
+      position: values.position,
+      scopes: values.scopes,
+      projectId: this.selectedApplication.projectId,
+      skills: _skills,
+      work12: values.work12 ? values.work12 : "0",
+      work34: values.work34 ? values.work34 : "0",
+      work56: values.work56 ? values.work56 : "0",
+      work78: values.work78 ? values.work78 : "0",
+      work9: values.work9 ? values.work9 : "0",
+      uid: this.currentUser.id
+    }
+
+    this.recruitSrv.update(values.id, params).then(res => {
+
+      if (res["result"] === "successful") {
+        this.recruitForm.reset();
+        this.close_recruit_button.nativeElement.click();
+        this.currentRecruit.position = values.position;
+        this.currentRecruit.scopes = values.scopes;
+        this.currentRecruit.skills = _skills_array;
+        this.currentRecruit.work12 = values.work12,
+          this.currentRecruit.work34 = values.work34,
+          this.currentRecruit.work56 = values.work56,
+          this.currentRecruit.work78 = values.work78,
+          this.currentRecruit.work9 = values.work9;
+
+        // this.currentProject.recruit.forEach(element => {
+        //   if (element.id === values.id) {
+        //     element.position = values.position,
+        //       element.scopes = values.scopes,
+        //       element.work12 = values.work12,
+        //       element.work34 = values.work34,
+        //       element.work56 = values.work56,
+        //       element.work78 = values.work78,
+        //       element.work9 = values.work9;
+        //     element.skills = _skills_array;
+
+        //   }
+        // });
+        this.close_recruit_button.nativeElement.click();
+        this.toastSrv.showToast('Success',
+          " " + values.position + " " + this.msg.updateSuc,
+          this.toastSrv.iconClasses.success);
+        this.selectedApplication = null;
+      } else {
+
+      }
+    }).catch(error => {
+      this.toastSrv.showToast('Failed',
+        error.message,
+        this.toastSrv.iconClasses.error);
+    })
   }
 }
 //https://www.sliderrevolution.com/resources/bootstrap-profile/

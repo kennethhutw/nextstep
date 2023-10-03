@@ -541,6 +541,14 @@ button[disabled] {
   text-decoration: none;
 }
 
+.btn-dropdown {
+  background-color: #fff !important;
+  color: #8F95A8 !important;
+  border: 2px solid #8F95A8 !important;
+  border-radius: 4px !important;
+  padding: 6px 12px 6px 12px !important;
+}
+
 .btn-transparent {
   color: #8F95A8 !important;
   border: 2px solid #8F95A8 !important;
@@ -2168,4 +2176,28 @@ a {
 
 .d-grid {
   display: grid;
+}
+
+
+.noItem {
+  padding: 15px;
+  margin-top: 28px;
+  // font-size: 1.75rem;
+  color: black !important;
+  display: grid;
+  justify-content: center;
+  font-size: 16px;
+  gap: 10px;
+  justify-items: center;
+
+
+  .noItemIcon {
+    svg {
+      width: 40px;
+      height: 40px;
+    }
+
+    // transform: scale(2);
+    // font-size: 20px;
+  }
 }

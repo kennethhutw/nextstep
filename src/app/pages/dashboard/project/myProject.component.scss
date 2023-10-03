@@ -7,10 +7,6 @@ app-my-project {
     border-bottom-color: #56BDF4 !important;
   }
 
-
-
-
-
   .card {
     padding: 12px 24px;
     display: grid;
@@ -43,14 +39,13 @@ app-my-project {
     display: block;
   }
 
+  .noProject {
 
+    margin-top: 28px;
+    display: grid !important;
+    gap: 10px;
+    justify-items: center;
+    justify-content: center;
+  }
 
-}
-
-
-.noProject {
-  height: 300px;
-  margin-top: 28px;
-
-  justify-content: center;
 }

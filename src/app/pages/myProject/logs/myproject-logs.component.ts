@@ -26,6 +26,8 @@ export class MyProjectLogComponent implements OnInit {
   members = [];
   displayItems: any[] = [];
 
+  isLoading = true;
+
   currentProject = null;
   constructor(
     private utilitySrv: Utility,
@@ -37,6 +39,8 @@ export class MyProjectLogComponent implements OnInit {
 
   ngOnInit() {
     this.spinnerSrv.show();
+
+
     this.currentUser = this.authStoreSrv.getUserData();
     let projectId = this.route.snapshot.paramMap.get("projectId");
 
@@ -66,6 +70,7 @@ export class MyProjectLogComponent implements OnInit {
         console.log("error", e)
       }).then(() => {
         this.spinnerSrv.hide();
+        this.isLoading = false;
       })
 
   }
@@ -81,12 +86,23 @@ export class MyProjectLogComponent implements OnInit {
 
   onUserChange(event) {
     if (event.target.value === "") {
-      this.displayItems = this.currentProject.logs;;
+      this.displayItems = this.currentProject.logs;
     } else {
       this.displayItems = this.currentProject.logs.filter((log) => {
         return log.createdBy == event.target.value
       });
     }
+  }
+
+  isLogs() {
+    if (!this.currentProject) {
+      return false;
+    }
+    if (this.currentProject.logs.length == 0) {
+      return false;
+    }
+
+    return true;
   }
 
 }

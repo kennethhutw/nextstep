@@ -4,11 +4,11 @@
             <h1>{{ "PROJECTMEMBERMANAGEMENT"
                 | translate }}</h1>
 
-            <a type="button" class="btn btn-white mr-10 float-right" data-toggle="modal"
+            <a type="button" class="btn btn-dropdown mr-10 float-right" data-toggle="modal"
                 [attr.data-target]="'#invitedMember'"><i class="fa fa-plus"></i> {{ "INVITE"
                 | translate }}
             </a>
-            <a type="button" class="btn btn-white mr-10 float-right" data-toggle="modal"
+            <a type="button" class="btn btn-dropdown mr-10 float-right" data-toggle="modal"
                 [attr.data-target]="'#createRcruitModal'" (click)="onCreateRecruit()"><i class="fas fa-plus"></i>
                 {{"NEWJOB" | translate }}</a>
             <select *ngIf="this.isAllowEdit()" class="btn  mr-10 float-right h-40" [disabled]="!canMoveMember"

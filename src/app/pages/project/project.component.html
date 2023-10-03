@@ -238,16 +238,21 @@
           }}</span>
       </div>
     </div>
-    <div class="row frame empty text-center" *ngIf="!this.currentProject.recruit">
-      {{ "NOJOBOPEN" | translate }}
+    <div class="noItem" *ngIf="!this.currentProject.recruit">
+      <svg-icon class="icon" src="assets/icons/Suitcase.svg"></svg-icon>
+      <span> {{ "NOJOBOPEN" | translate
+        }}</span>
     </div>
     <ng-container *ngIf="this.currentProject?.recruit">
 
       <ng-container *ngFor="let item of  this.currentProject.recruit; let i = index">
-        <div *ngIf="item.status =='1'" class="row frame" [ngClass]="{'mt-10':i>1}">
+        <app-jobCard [item]="item" [currentUser]="currentUser" [currentProject]="currentProject"
+          (ClickJobCollect)="onClickJobCollect($event)" (SelectItem)="onSelectItem($event)"
+          (ModifyJobItem)="onModifyJobItem($event)" (DeleteJobItem)="onDeleteJobItem($event)"></app-jobCard>
+        <!-- <div *ngIf="item.status =='1'" class="row frame" [ngClass]="{'mt-10':i>1}">
 
           <div class="col-md-12" style="display: inline-flex;">
-            <div class="col-md-8 pl-0">
+            <div class="col-md-8 pl-0 m--auto">
               <p class="position"><b>{{item.position}}</b></p>
 
             </div>
@@ -279,7 +284,7 @@
             <a class="clickable" [routerLink]="['/job/',item.id ]">{{ "VIEWDETAILS" | translate
               }}</a>
           </div>
-        </div>
+        </div> -->
       </ng-container>
     </ng-container>
 

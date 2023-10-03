@@ -757,13 +757,6 @@ export class MyProjectMemberComponent implements OnInit {
       endDate: moment.utc().valueOf()
     }
 
-    // projectId,
-    //   position,
-    //   skills,
-    //   scopes,
-    //   status,
-    //   startDate,
-    //   endDate, uid
     this.recruitSrv.insert(params).subscribe(res => {
 
       if (res["result"] === "successful") {

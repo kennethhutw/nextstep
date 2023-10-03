@@ -117,20 +117,20 @@
           <ul class="nav nav-tabs" id="projectTab" role="tablist">
             <li class="nav-item" role="presentation">
               <button class="nav-link tab" id="current-tab" [ngClass]="{ 'active': currentTab === 'current' }"
-                type="button" role="tab" (click)="changeTab('current')">目前專案</button>
+                type="button" role="tab" (click)="changeTab('current')">{{ "CUREENTPRO" | translate }}</button>
             </li>
             <li class="nav-item" role="presentation">
               <button class="nav-link tab" id="history-tab" [ngClass]="{ 'active': currentTab === 'history' }"
-                type="button" role="tab" (click)="changeTab('history')">歷史專案</button>
+                type="button" role="tab" (click)="changeTab('history')">{{"HISTORYPRO" | transalate}}</button>
             </li>
             <li class="nav-item" role="presentation">
               <button class="nav-link tab" id="feedback-tab" [ngClass]="{ 'active': currentTab === 'feedback' }"
-                type="button" role="tab" (click)="changeTab('feedback')">評語</button>
+                type="button" role="tab" (click)="changeTab('feedback')">{{"WCOMMENT" | transalate}}</button>
             </li>
             <li class="nav-item" role="presentation">
               <button type="button" [attr.disabled]="!currentUser" class="btn btn_item" data-toggle="modal"
                 [attr.data-target]="'#feedbackModal'">
-                撰寫評語</button>
+                {{"COMMENTS" | transalate}}</button>
             </li>
 
           </ul>
@@ -262,15 +262,15 @@
     <div class="col-md-4">
       <div class="row ">
         <div class="col-md-12 mb-24 title_section">
-          <span class="title">工作經歷</span>
+          <span class="title">{{ "EXPERIENCE" | translate }}</span>
           <a type="button" *ngIf="currentUser?.id == userProfile.id" class="btn-standard" data-toggle="modal"
             [attr.data-target]="'#experienceModal'" (click)="onAddExp()"><i class="fas fa-plus"></i> 新增
           </a>
         </div>
       </div>
       <div class="row exp-empty-frame empty-text-center" *ngIf="userProfile.experience.length ==0">
-
-        <span>無工作經歷</span>
+        <svg-icon src="./assets/icons/experience.svg"></svg-icon>
+        <span>{{ "NOEXPERIENCE" | translate }}</span>
 
       </div>
       <div class="row exp-frame" *ngIf="userProfile.experience.length >0">
@@ -348,7 +348,7 @@
               aria-describedby="emailHelp" placeholder="Enter name">
             <div *ngIf="submitted && f.name.errors">
               <div class="error-msg" *ngIf="f.name.errors.required">
-                姓名是必要的
+                {{ "NAMEREQUIRED" | translate }}
               </div>
             </div>
           </div>
@@ -358,7 +358,7 @@
               aria-describedby="emailHelp" placeholder="Enter email">
             <div *ngIf="submitted && f.email.errors">
               <div class="error-msg" *ngIf="f.email.errors.required">
-                Email是必要的
+                {{ "EMAILREQUIRED" | translate }}
               </div>
             </div>
           </div>

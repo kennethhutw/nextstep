@@ -42,8 +42,8 @@
       <div class="col-md-12">
         <span class="title">{{ "JD" | translate
           }}</span>
-        <span *ngIf="currentRecruit ?.createdBy == currentUser?.id" class="btn-standard ml-24"
-          (click)="onEditMembers()">
+        <span *ngIf="currentRecruit ?.createdBy == currentUser?.id" class="btn-standard ml-24" data-toggle="modal"
+          [attr.data-target]="'#modifiedJob'" (click)="onModifyJob(currentRecruit)">
           <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{ "EDIT" | translate
           }}</span>
       </div>
@@ -67,8 +67,8 @@
         <span class="title">{{ "OTHERJOBS" | translate
           }}</span>
       </div>
-      <div class="row job_frame empty text-center  empty-frame" *ngIf="!isHasOthersJob()">
-        <svg-icon class="icon" src="assets/icons/Suitcase.svg"></svg-icon>
+      <div class="col-md-12  noItem" *ngIf="!isHasOthersJob()">
+        <svg-icon src="assets/icons/Suitcase.svg"></svg-icon>
         <span class="empty-text"> {{ "NOJOBOPEN" | translate
           }}</span>
       </div>
@@ -79,13 +79,7 @@
             <div class="col-md-12" style="display: inline-flex;">
               <div class="col-md-8">
                 <p class="position"><b>{{item.position}}</b></p>
-                <small><ng-container *ngIf="item.skills">
 
-                    <ng-container *ngFor=" let tag of item.skills; let i=index">
-                      <span *ngIf="!this.utilitySrv.IsNullOrEmpty(tag)"
-                        class="tag tag-{{tag}} mr--5">{{convertTag(tag)}}</span>
-                    </ng-container>
-                  </ng-container></small>
               </div>
               <div *ngIf="currentUser" class="col-md-4 btn_items">
                 <i *ngIf="item.isCollected" (click)="onClickJobCollect(item.id, item.isCollected)"
@@ -95,6 +89,15 @@
                 <a data-toggle="modal" data-target="#modal_apply" data-dismiss="modal" (click)="onSelectItem(item)">
                   <i class="far fa-envelope"></i></a>
               </div>
+            </div>
+            <div class="col-md-12 pl-30">
+              <small><ng-container *ngIf="item.skills">
+
+                  <ng-container *ngFor=" let tag of item.skills; let i=index">
+                    <span *ngIf="!this.utilitySrv.IsNullOrEmpty(tag)"
+                      class="tag tag-{{tag}} mr--5">{{convertTag(tag)}}</span>
+                  </ng-container>
+                </ng-container></small>
             </div>
 
             <div class="col-md-12 scopes">
@@ -117,8 +120,10 @@
         <span class="title"> {{ "SIMILARJOBS" | translate }}</span>
       </div>
     </div>
-    <div class="row job_frame empty text-center" *ngIf="!this.currentRecruit.others">
-      {{ "NOJOBOPEN" | translate }}
+    <div class="noItem text-center" *ngIf="!this.currentRecruit.others">
+      <svg-icon class="icon" src="assets/icons/Suitcase.svg"></svg-icon>
+      <span class="empty-text"> {{ "NOJOBOPEN" | translate
+        }}</span>
     </div>
     <ng-container *ngIf="this.currentRecruit?.others">
       <ng-container *ngFor="let item of  this.currentRecruit.others; let i = index">
@@ -203,6 +208,76 @@
             {{ "SUBMIT"
             | translate }}</button>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="modifiedJob" tabindex="-1" aria-labelledby="modifiedJob" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1>{{ "JOBS" | translate }}</h1>
+        <button type="button" id="close_recruit" #close_recruit_button class="close" data-dismiss="modal"
+          aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="recruitForm">
+          <div class="form-group">
+            <label for="inputPosition">{{ "POSITION" | translate }}</label>
+            <input type="text" class="form-control rounded-0" formControlName="position" id="inputPosition"
+              placeholder="{{ 'POSITION' | translate }}">
+          </div>
+          <div class="form-group">
+            <label for="inputContent">{{ "JD"
+              | translate }}</label>
+            <textarea class="form-control" type="text" id="scopes" formControlName="scopes" rows="4"
+              cols="50"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="inputSkills">{{ "SKILLS"
+              | translate }}</label>
+            <tag-input id="skills" formControlName="skills" [onlyFromAutocomplete]="true"
+              secondaryPlaceholder="{{'SKILLSEXS' | translate }}">
+              <tag-input-dropdown [displayBy]="'text'" [appendToBody]="false" [autocompleteItems]="skillOptions"
+                [showDropdownIfEmpty]="true" [dynamicUpdate]="false">
+              </tag-input-dropdown>
+            </tag-input>
+          </div>
+          <div class="form-group">
+
+            <label for="inputSkills">{{"PWTC" | translate }}</label>
+            <div class="form-group">
+              <div>
+                <input id="work12" type="checkbox" formControlName="work12" data-key="hour" />
+                <label class="option" for="work12">{{"WORK12" | translate }}</label>
+              </div>
+              <div>
+                <input id="work34" type="checkbox" formControlName="work34" data-key="hour" />
+                <label class="option" for="work34">{{"WORK34" | translate }}</label>
+              </div>
+              <div>
+                <input id="work56" type="checkbox" formControlName="work56" data-key="hour" />
+                <label class="option" for="work56">{{"WORK56" | translate }}</label>
+              </div>
+              <div>
+                <input id="work78" type="checkbox" formControlName="work78" data-key="hour" />
+                <label class="option" for="work78">{{"WORK78" | translate }}</label>
+              </div>
+              <div>
+                <input id="work9" type="checkbox" formControlName="work9" data-key="hour" />
+                <label class="option" for="work9">{{"WORK9" | translate }}</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row justify-content-end">
+            <button type="button" class="btn btn-blue  mr-10 float-right" (click)="onUpdateRecruitSubmit()">{{"UPDATE" |
+              translate }}</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

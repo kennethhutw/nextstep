@@ -1,0 +1,35 @@
+<div *ngIf="item.status =='1'" class="row frame" [ngClass]="{'mt-10':i>1}">
+
+  <div class="header">
+    <div>
+      <p class="position"><b>{{item.position}}</b></p>
+    </div>
+    <div *ngIf="currentUser" class="btn_items pr-0">
+      <i *ngIf="item.isCollected" (click)="onClickJobCollect(item.id, item.isCollected)"
+        class="fas fa-bookmark collected icon-frame"></i>
+      <i *ngIf="!item.isCollected" (click)="onClickJobCollect(item.id, item.isCollected)"
+        class="far fa-bookmark color-gray icon-frame"></i>
+      <i class="far fa-envelope color-gray icon-frame" data-toggle="modal" data-target="#modal_apply"
+        data-dismiss="modal" (click)="onSelectItem(item)" tooltip="{{ 'APPLY' | translate }}"></i>
+      <div class="dropdown mt--10" *ngIf="currentProject?.owner == currentUser?.id"><i
+          class="fas fa-ellipsis-h color-gray text-18" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="true"></i>
+        <div class="dropdown-menu"> <a class="dropdown-item color-gray" data-toggle="modal"
+            [attr.data-target]="'#modifiedJob'" (click)="onModifyJobItem(item)"><i
+              class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{ "EDIT" | translate
+            }}</a> <a class="dropdown-item color-gray" (click)="onDeleteJobItem(item)"><i
+              class="fas fa-trash"></i>&nbsp;&nbsp;{{ "DELETE" | translate
+            }}</a></div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="body">
+    {{item.scopes}}
+  </div>
+  <div class="footer text-right">
+    <a class="clickable" [routerLink]="['/job/',item.id ]">{{ "VIEWDETAILS" | translate
+      }}</a>
+  </div>
+</div>

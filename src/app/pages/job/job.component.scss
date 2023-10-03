@@ -1,6 +1,6 @@
 .job_frame {
     border: 2px solid #fff;
-    min-height: 300px;
+
     margin-bottom: 30px;
     margin-left: 10px;
     background-color: #fff;
@@ -9,6 +9,15 @@
     padding: 12px 10px 12px 10px;
     width: 100%;
     border-radius: 9px;
+    gap: 5px;
+
+    .pl-30 {
+        padding-left: 30px;
+    }
+
+    .job_frame_body {
+        min-height: 200px;
+    }
 
     // .clickable {
     //     color: #7F7F7F;
@@ -80,7 +89,9 @@
 }
 
 .scopes {
+    padding-top: 10px;
     padding-left: 30px;
+    min-height: 150px;
 }
 
 .job_scopes {

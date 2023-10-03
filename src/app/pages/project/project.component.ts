@@ -490,20 +490,21 @@ export class ProjectComponent implements OnInit {
   }
 
 
-  onClickJobCollect(recruitId, isCollected) {
-    if (isCollected) {
+  onClickJobCollect(event) {
+    console.log(event);
+    if (event.isCollected) {
       this.viewsSrv.unCollect(
-        recruitId,
+        event.recruitId,
         "job",
         this.currentUser.id
       ).then(res => {
         if (res['result'] == 'successful') {
-          let _index = this.currentProject.recruit.findIndex((obj => obj.id == recruitId));
+          let _index = this.currentProject.recruit.findIndex((obj => obj.id == event.recruitId));
           this.currentProject.recruit[_index].isCollected = false;
 
           this.toastSrv.showToast('Success',
             this.toastSrv.uncollectStr + this.toastSrv.successfulStr,
-            this.toastSrv.iconClasses.error);
+            this.toastSrv.iconClasses.success);
         } else {
           this.toastSrv.showToast('Failed',
             this.toastSrv.uncollectStr + this.toastSrv.failedStr,
@@ -512,17 +513,17 @@ export class ProjectComponent implements OnInit {
       });
     } else {
       this.viewsSrv.collect(
-        recruitId,
+        event.recruitId,
         "job",
         this.currentUser.id
       ).then(res => {
         if (res['result'] == 'successful') {
 
-          let _index = this.currentProject.recruit.findIndex((obj => obj.id == recruitId));
+          let _index = this.currentProject.recruit.findIndex((obj => obj.id == event.recruitId));
           this.currentProject.recruit[_index].isCollected = true;
           this.toastSrv.showToast('Success',
             this.toastSrv.collectStr + this.toastSrv.successfulStr,
-            this.toastSrv.iconClasses.error);
+            this.toastSrv.iconClasses.success);
         } else {
           this.toastSrv.showToast('Failed',
             this.toastSrv.collectStr + this.toastSrv.failedStr,
@@ -544,8 +545,9 @@ export class ProjectComponent implements OnInit {
 
   // Job start
 
-  onSelectItem(item) {
-    this.selectedApplication = item;
+  onSelectItem(event) {
+    console.log("event", event)
+    this.selectedApplication = event;
   }
 
   onDeleteJobItem(item) {
