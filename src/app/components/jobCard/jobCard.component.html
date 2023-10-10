@@ -1,8 +1,9 @@
 <div *ngIf="item.status =='1'" class="row frame" [ngClass]="{'mt-10':i>1}">
 
+
   <div class="header">
     <div>
-      <p class="position"><b>{{item.position}}</b></p>
+      <p class="position  col-form-label"><b>{{item.position}}</b></p>
     </div>
     <div *ngIf="currentUser" class="btn_items pr-0">
       <i *ngIf="item.isCollected" (click)="onClickJobCollect(item.id, item.isCollected)"

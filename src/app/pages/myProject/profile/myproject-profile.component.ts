@@ -335,7 +335,6 @@ export class MyProjectProfileComponent implements OnInit, AfterViewInit {
       return;
     }
     const value = this.projectForm.value;
-    debugger;
     this.projectSrv.update(this.currentProject.id, {
       name: value.name,
       description: value.description,
