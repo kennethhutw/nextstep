@@ -112,6 +112,7 @@ export class JobComponent implements OnInit {
     this.SpinnerService.show();
     this.currentUser = this.authStore.getUserData();
 
+
     let _userId = null;
     if (this.currentUser && this.currentUser.id) {
       _userId = this.currentUser.id;
@@ -120,7 +121,6 @@ export class JobComponent implements OnInit {
 
       let _recruitId = params['id'];
       this.recruitSrv.getById(_recruitId, _userId).then(res => {
-        console.log("data-------------", res);
         if (res['result'] == 'successful') {
           this.currentRecruit = res['data'];
           if (!this.utilitySrv.IsNullOrEmpty(this.currentRecruit.skills)) {
@@ -143,6 +143,11 @@ export class JobComponent implements OnInit {
 
 
         this.SpinnerService.hide();
+        window.scroll({
+          top: 0,
+          left: 0,
+          behavior: 'smooth'
+        });
       }).catch(error => {
         console.error("error", error);
         this.SpinnerService.hide();

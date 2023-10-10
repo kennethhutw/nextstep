@@ -5,7 +5,7 @@ app-mentor-profile {
 
     #profile-d {
         position: absolute;
-        left: 39px;
+        left: 34px;
         bottom: 0px;
         right: 0px;
         height: 180px;
@@ -199,6 +199,7 @@ app-mentor-profile {
         grid-auto-flow: row;
         gap: 24px;
         padding: 12px 10px 12px 10px;
+        box-shadow: 1px 2px 9px 0px #0000000A !important;
     }
 
     .exp-empty-frame {

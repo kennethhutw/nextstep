@@ -63,13 +63,18 @@ export class SettingLayoutComponent implements OnInit {
     })
   }
 
-
-
   toggleSidebar() {
     this.dataSrv.toggleSidebar();
   }
 
-  ddToggle() {
-    this.expand = !this.expand;
+
+  onActivate(event) {
+    // window.scroll(0,0);
+
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
   }
 }

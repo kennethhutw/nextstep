@@ -41,3 +41,7 @@ export NODE_OPTIONS=--openssl-legacy-provider
 https://fontawesome.com/icons/eye?f=classic&s=regular
 
 https://fontawesome.com/search?q=eyes&o=r
+
+
+scroll top
+https://stackoverflow.com/questions/48048299/angular-5-scroll-to-top-on-every-route-click

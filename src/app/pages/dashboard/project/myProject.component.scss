@@ -17,6 +17,7 @@ app-my-project {
     transition: 200ms;
     flex-direction: row;
     width: 100%;
+    border-radius: 0rem;
 
     .text-md {
       font-size: 16px;
@@ -29,11 +30,21 @@ app-my-project {
     justify-content: right;
   }
 
-
-
-  .card:hover {
-    border: 2px solid var(--action-pri-active);
+  .first_row {
+    margin-top: 32px;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
   }
+
+  .last_row {
+
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 9px;
+  }
+
+  // .card:hover {
+  //   border: 2px solid var(--action-pri-active);
+  // }
 
   .card:hover .dropdown {
     display: block;

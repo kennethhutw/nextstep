@@ -644,7 +644,7 @@ export class ProjectComponent implements OnInit {
         this.currentProject.imageUrl = this.defaultProfileLogo;
       }
 
-      // this.currentProject.imageUrl = this.sanitizer.bypassSecurityTrustUrl(this.currentProject.imageUrl);
+      this.currentProject.imageUrl = this.sanitizer.bypassSecurityTrustUrl(this.currentProject.imageUrl);
 
       this.changeDetectorRef.detectChanges();
     })
@@ -671,6 +671,7 @@ export class ProjectComponent implements OnInit {
         this.currentProject.coverUrl = "https://imagizer.imageshack.com/img921/9628/VIaL8H.jpg";
         //this.currentProject.coverUrl = "assets/images/defaultCover.png";
       }
+      this.currentProject.coverUrl = this.sanitizer.bypassSecurityTrustUrl(this.currentProject.coverUrl);
     })
   }
 
