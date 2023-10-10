@@ -1,5 +1,10 @@
+body {
+    overflow: hidden;
+}
+
 .forgot-container {
-    min-height: 95vh;
+    overflow: hidden;
+    min-height: 93vh;
     position: relative;
     display: grid;
     grid-template-rows: 1fr;
@@ -36,27 +41,28 @@
         }
     }
 
+    .frame {
+        padding: 15px;
+        background-color: white;
 
-}
+        padding-right: 40%;
+        margin-top: 300px;
+        padding-left: 10%;
 
+        a {
+            color: black;
+        }
 
-
-.frame {
-    padding: 15px;
-    background-color: white;
-
-    padding-right: 40%;
-    margin-top: 400px;
-
-    a {
-        color: black;
-    }
-
-    button {
-        height: 45px;
-        margin-top: 30px;
+        button {
+            height: 45px;
+            margin-top: 30px;
+        }
     }
 }
+
+
+
+
 
 .forgot-left-bg {
 
@@ -70,11 +76,36 @@
 .forget-left-area {
     align-items: flex-end;
     display: flex;
-    padding-top: 182px;
+    padding-top: 152px;
     flex-direction: column;
     padding-right: 140px;
 }
 
 .btn-countdown {
     background-color: #F1F2F5;
+}
+
+#cookieconsent {
+    .cc-color-override--1172037365 {
+        align-items: center;
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-columns: 60% 40%;
+        padding-top: 18px;
+        padding-bottom: 18px;
+        gap: 42px;
+        background-color: #fff;
+        border: 1px solid #CFD2DA !important;
+
+        .cc-message {
+            text-align: end;
+        }
+
+        .cc-compliance .cc-btn {
+            background: #56BDF4;
+            color: #fff;
+            padding: 6px 25px;
+            border-radius: 4px;
+        }
+    }
 }
