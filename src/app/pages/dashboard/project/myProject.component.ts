@@ -12,6 +12,7 @@ import {
 } from './../../../_services';
 import { Utility } from "../../../_helpers";
 import { TranslateService } from "@ngx-translate/core";
+import { NgxSpinnerService } from "ngx-spinner";
 import {
   AuthStore
 } from "../../../_services/auth.store";
@@ -24,8 +25,8 @@ import {
 })
 export class MyProjectComponent implements OnInit {
 
+  loading = true;
   isFindPartnerPanel: boolean = false;
-  submitted = false;
   currentUser;
   projectMsg = "";
   currentTab = "published";
@@ -33,7 +34,6 @@ export class MyProjectComponent implements OnInit {
   draftedprojects = [];
 
   msg = {
-
     deleted: "",
   }
 
@@ -44,7 +44,8 @@ export class MyProjectComponent implements OnInit {
     private toastSrv: ToastService,
     private dialogSrv: DialogService,
     private projectSrv: ProjectService,
-    private authStoreSrv: AuthStore) {
+    private authStoreSrv: AuthStore,
+    private spinnerSrv: NgxSpinnerService) {
 
     let _lang = localStorage.getItem("lang");
     if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
@@ -60,7 +61,7 @@ export class MyProjectComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.spinnerSrv.show();
     this.currentUser = this.authStoreSrv.getUserData();
     this.projectSrv.getProjectsByUid(
       this.currentUser.id
@@ -77,8 +78,15 @@ export class MyProjectComponent implements OnInit {
             });
 
           }
+
         }
+        this.loading = false;
+        this.spinnerSrv.hide();
       }
+    }).catch((e) => {
+      this.loading = false;
+      this.spinnerSrv.hide();
+      console.error("load failed", e)
     })
 
   }
@@ -91,35 +99,36 @@ export class MyProjectComponent implements OnInit {
   changeTab(tab) {
     this.currentTab = tab;
   }
-  onClickDelete($event, project) {
-    //Are you sure you want to delete
-    this.dialogSrv.confirmThis("你確定要刪除此專案 -[" + project.name + "]嗎? ",
-      () => {
 
-        this.projectSrv.delete(project.id, this.currentUser.id).then(res => {
-          if (res['result'] == "successful") {
+  // onClickDelete($event, project) {
+  //   //Are you sure you want to delete
+  //   this.dialogSrv.confirmThis("你確定要刪除此專案 -[" + project.name + "]嗎? ",
+  //     () => {
 
-            this.publishedprojects = this.publishedprojects.filter(obj => {
-              return obj.id !== project.id
-            })
-            this.draftedprojects = this.draftedprojects.filter(obj => {
-              return obj.id !== project.id
-            })
-            this.toastSrv.showToast('Success',
-              " " + project.name + this.msg.deleted,
-              this.toastSrv.iconClasses.success);
-          } else {
-            this.toastSrv.showToast('Failed',
-              res['message'],
-              this.toastSrv.iconClasses.error);
-          }
-        }, (error) => {
-          console.log("error", error);
-        })
-      }, () => {
-        console.log("No ----");
-      });
-  }
+  //       this.projectSrv.delete(project.id, this.currentUser.id).then(res => {
+  //         if (res['result'] == "successful") {
+
+  //           this.publishedprojects = this.publishedprojects.filter(obj => {
+  //             return obj.id !== project.id
+  //           })
+  //           this.draftedprojects = this.draftedprojects.filter(obj => {
+  //             return obj.id !== project.id
+  //           })
+  //           this.toastSrv.showToast('Success',
+  //             " " + project.name + this.msg.deleted,
+  //             this.toastSrv.iconClasses.success);
+  //         } else {
+  //           this.toastSrv.showToast('Failed',
+  //             res['message'],
+  //             this.toastSrv.iconClasses.error);
+  //         }
+  //       }, (error) => {
+  //         console.log("error", error);
+  //       })
+  //     }, () => {
+  //       console.log("No ----");
+  //     });
+  // }
 
 
 }
