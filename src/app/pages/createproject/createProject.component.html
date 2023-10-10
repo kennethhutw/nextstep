@@ -3,12 +3,13 @@
         <h1>{{ "CREATEPROJECT"
             | translate }}</h1>
     </div>
-    <div class="row">
+    <div class="row mt-10">
         <form [formGroup]="projectForm">
             <div class="row">
                 <div class="col-md-12 mb-12 form-group ">
                     <label class="pr-2" for="projectname">
-                        <h5> {{ "PROJECT_NAME" | translate }}<span class="color-red">*</span></h5>
+                        <span class="project-form-title"> {{ "PROJECT_NAME" | translate }}<span
+                                class="color-red ml-1">*</span></span>
                     </label>
                     <input type="text" formControlName="name" id="projectname" class="form-control mr-10">
                     <div *ngIf="submitted && f.name.errors">
@@ -21,19 +22,20 @@
             <div class="row">
                 <div class="col-md-12 mb-12 form-group ">
                     <label class="pr-2" for="projectname">
-                        <h5> {{ "PROJECT_STATUS" | translate }}</h5>
+                        <span class="project-form-title"> {{ "PROJECT_STATUS" | translate }}</span>
                     </label>
-                    <div class="form-group">
-                        <input type="checkbox" (change)="onStatusChange($event, 'isFindPartner')"
-                            [checked]="projectForm.value.isFindPartner" value="projectForm.value.isFindPartner"><span>{{
-                            "FIND_MEMBER" | translate }}</span>
-                        <input type="checkbox" (change)="onStatusChange($event, 'isFunding')"
-                            [checked]="projectForm.value.isFunding" value="projectForm.value.isFunding"><span>{{
-                            "FIND_MONEY" | translate }}
-                        </span>
-                        <input type="checkbox" (change)="onStatusChange($event, 'isCofounder')"
-                            [checked]="projectForm.value.isCofounder" value="projectForm.value.isCofounder"><span>{{
-                            "FIND_COFOUNDER" | translate }}</span>
+                    <div class="form-group  options-3">
+                        <div> <input type="checkbox" (change)="onStatusChange($event, 'isFindPartner')"
+                                [checked]="projectForm.value.isFindPartner"
+                                value="projectForm.value.isFindPartner"><span>{{
+                                "FIND_MEMBER" | translate }}</span></div>
+                        <div> <input type="checkbox" (change)="onStatusChange($event, 'isFunding')"
+                                [checked]="projectForm.value.isFunding" value="projectForm.value.isFunding"><span>{{
+                                "FIND_MONEY" | translate }}
+                            </span></div>
+                        <div> <input type="checkbox" (change)="onStatusChange($event, 'isCofounder')"
+                                [checked]="projectForm.value.isCofounder" value="projectForm.value.isCofounder"><span>{{
+                                "FIND_COFOUNDER" | translate }}</span></div>
                     </div>
 
                 </div>
@@ -52,7 +54,8 @@
                 </div> -->
                 <div class="col-md-12 mb-12 form-group ">
                     <label class="pr-2" for="projectname">
-                        <h5> {{"INDUSTRY_TYPES" | translate }}<span class="color-red ">*</span></h5>
+                        <span class="project-form-title"> {{"INDUSTRY_TYPES" | translate }}<span
+                                class="color-red ml-1">*</span></span>
                     </label>
                     <div class="form-group options-3">
                         <div>
@@ -105,8 +108,8 @@
                 </div>
                 <div class="col-md-12 mb-12 form-group ">
                     <label class="pr-2" for="stage">
-                        <h5> {{"CURRENT_PROGRESS" | translate
-                            }}<span class="color-red ">*</span></h5>
+                        <span class="project-form-title"> {{"CURRENT_PROGRESS" | translate
+                            }}<span class="color-red ml-1">*</span></span>
                     </label>
                     <div class="form-group options-3">
                         <div>
@@ -168,9 +171,10 @@
                 </div>
                 <div class="col-md-12 mb-12 form-group ">
                     <label class="d-flex pr-2" for="projectname">
-                        <h5 class="mr-10"> {{ "PROJECT_INTRO" | translate }} :</h5>
-                        <button type="button" class="btn btn-blue  mr-10" (click)="onTemplate()">
-                            {{ "TEMPLATE" | translate }}</button>
+                        <span class="mr-10 col-form-label project-form-title"> {{ "PROJECT_INTRO" | translate }}
+                            :</span>
+                        <button type="button" class="btn btn-transparent  mr-10" (click)="onTemplate()">
+                            <i class="fas fa-edit"></i> {{ "ADOPTTEMPLATE" | translate }}</button>
                     </label>
                     <textarea formControlName="description" type="text" class="form-control" id="PROJECT_INTRO"
                         rows="20" cols="50" placeholder="{{ 'PROJECT_INTRO_STATEMENT' | translate }}"></textarea>
@@ -191,7 +195,8 @@
         <div class="col-md-12 mb-12 form-group button-center">
             <button type="button" class="btn btn-transparent  mr-10" (click)="onCancel()">
                 {{ "CANCEL" | translate }}</button>
-            <button type="button" class="btn btn-blue mr-10" [disabled]="!projectForm.valid" (click)="onSaveDraft()">
+            <button type="button" class="btn btn-transparent mr-10" [disabled]="!projectForm.valid"
+                (click)="onSaveDraft()">
                 {{ "SAVE_DRAFT" | translate }}</button>
             <button type="button" class="btn btn-blue mr-10" [disabled]="!projectForm.valid" (click)="onSave()">
                 {{ "PUBLISH" | translate }}</button>
