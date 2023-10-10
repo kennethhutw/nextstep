@@ -1,6 +1,6 @@
 <div *ngIf="currentProject" id="profile-upper">
   <div id="profile-banner-image">
-    <img (error)="onCoverImgError($event)" src="{{this.currentProject.coverUrl}}" alt="cover image">
+    <img (error)="onCoverImgError($event)" [src]="this.currentProject.coverUrl" alt="cover image">
     <a *ngIf="currentProject?.owner == currentUser?.id" type="button" class="btn-cover" for="profileCover"
       (click)="profileCover.click()">
       <svg-icon src="./assets/icons/edit.svg"></svg-icon> {{

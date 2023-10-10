@@ -34,8 +34,12 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms';
-import * as moment from 'moment';
 
+import {
+  DomSanitizer,
+  SafeResourceUrl,
+  SafeUrl
+} from '@angular/platform-browser';
 @Component({
   selector: "app-project",
   templateUrl: "./project.component.html",
@@ -110,7 +114,8 @@ export class ProjectComponent implements OnInit {
     private notificationSrv: NotificationService,
     private dataSrv: DataService,
     private translateSrv: TranslateService,
-    private WorkSrv: WorkService
+    private WorkSrv: WorkService,
+    private sanitizer: DomSanitizer
   ) {
     this.defaultProfileLogo = this.settingSrv.defaultProjectLogo;
     this.skillOptions = this.appSettingsSrv.skillOptions();
@@ -199,6 +204,8 @@ export class ProjectComponent implements OnInit {
           } else {
             this.currentProject.imageUrl = environment.assetUrl + this.currentProject.imageUrl;
           }
+          // this.currentProject.imageUrl = this.sanitizer.bypassSecurityTrustUrl(this.currentProject.imageUrl);
+
           if (!this.utilitySrv.IsNullOrEmpty(this.currentProject.coverUrl)) {
 
             this.currentProject.coverUrl = environment.assetUrl + this.currentProject.coverUrl;
@@ -636,6 +643,9 @@ export class ProjectComponent implements OnInit {
       } else {
         this.currentProject.imageUrl = this.defaultProfileLogo;
       }
+
+      // this.currentProject.imageUrl = this.sanitizer.bypassSecurityTrustUrl(this.currentProject.imageUrl);
+
       this.changeDetectorRef.detectChanges();
     })
   }
