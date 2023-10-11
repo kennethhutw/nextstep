@@ -46,7 +46,7 @@ export class SignupInfoComponent implements OnInit {
   submitted = false;
 
   wordCount: any;
-  words = 0;
+  words = 1;
   @ViewChild("text") text: ElementRef;
 
   constructor(

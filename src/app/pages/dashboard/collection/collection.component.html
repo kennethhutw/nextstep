@@ -1,8 +1,8 @@
-<div class=" mb-80">
+<div class="mb-80" *ngIf="!this.loading">
     <div class="row">
         <div class="col-md-12">
-            <h1>{{ "MYCOLLECTION"
-                | translate }}</h1>
+            <h2>{{ "MYCOLLECTION"
+                | translate }}</h2>
         </div>
     </div>
     <div class="row">
@@ -31,8 +31,9 @@
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'project' }" id="home" role="tabpanel"
                     aria-labelledby="home-tab">
                     <div class="noItem text-center" *ngIf="projects.length ===0">
-                        <img src="assets/icons/noRecommend.png" alt="noRecommend">
-                        <span>{{ "NOCOLLECTEDPROJECT" | translate }}</span>
+                        <!-- <img src="assets/icons/noRecommend.png" alt="noRecommend"> -->
+                        <svg-icon class="icon" src="assets/icons/noRecommend.svg"></svg-icon>
+                        <span class="d_icon_title">{{ "NOCOLLECTEDPROJECT" | translate }}</span>
                     </div>
                     <ng-container *ngIf="projects">
                         <div class="row  pl-15">
@@ -53,7 +54,7 @@
                     aria-labelledby="profile-tab">
                     <div class="noItem text-center" *ngIf="partners.length ===0">
                         <svg-icon class="icon" src="assets/icons/NoUser.svg"></svg-icon>
-                        <span>{{ "NOPARTNER" | translate }}</span>
+                        <span class="d_icon_title">{{ "NOPARTNER" | translate }}</span>
                     </div>
                     <ng-container *ngIf="partners">
                         <div class="row">
@@ -73,7 +74,7 @@
                     aria-labelledby="profile-tab">
                     <div class="noItem text-center" *ngIf="applications.length ===0">
                         <svg-icon class="icon" src="assets/icons/Suitcase.svg"></svg-icon>
-                        <span>{{ "NOJOBS" | translate }}</span>
+                        <span class="d_icon_title">{{ "NOJOBS" | translate }}</span>
                     </div>
                     <ng-container *ngIf="applications">
                         <div class="row bar">
@@ -95,7 +96,7 @@
                     aria-labelledby="profile-tab">
                     <div class="noItem text-center" *ngIf="mentors.length ===0">
                         <svg-icon class="icon" src="assets/icons/NoMentor.svg"></svg-icon>
-                        <span> {{ "NOMENTOR" | translate }}</span>
+                        <span class="d_icon_title"> {{ "NOMENTOR" | translate }}</span>
                     </div>
                     <ng-container *ngIf="mentors">
                         <div class="row">
@@ -117,3 +118,6 @@
         </div>
     </div>
 </div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p class="text-white">Please Wait. </p>
+</ngx-spinner>

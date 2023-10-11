@@ -1,61 +1,63 @@
-<div class="up_container">
-  <span class="d_sub_title">{{ "IDENTITY" | translate }}</span>
-  <ul class="menu-items mt-12" style="padding-left: 20px;">
+<div *ngIf="!isLoading()">
+  <div class="up_container">
+    <span class="d_sub_title">{{ "IDENTITY" | translate }}</span>
+    <ul class="menu-items mt-12" style="padding-left: 20px;">
 
-    <li>
-      <input id="email" type="checkbox" [(ngModel)]="idverify.email" class="chk" data-key="email"
-        [attr.disabled]="'true'" />
-      <label class="ml-10 option" for="email">{{ "VERIFYEMAIL" | translate }}</label>
-    </li>
-    <!-- <li>
+      <li>
+        <input id="email" type="checkbox" [(ngModel)]="idverify.email" class="chk" data-key="email"
+          [attr.disabled]="'true'" />
+        <label class="ml-10 option" for="email">{{ "VERIFYEMAIL" | translate }}</label>
+      </li>
+      <!-- <li>
       <input id="info" type="checkbox" [(ngModel)]="idverify.info" class="chk" data-key="info"
         [attr.disabled]="'true'" />
       <label class="ml-10 option" for="info">個人資料填寫完成</label>
     </li> -->
-    <li>
-      <input id="interactive" type="checkbox" [(ngModel)]="idverify.interactive" class="chk" data-key="interactive"
-        [attr.disabled]="'true'" />
-      <label class="ml-10 option" for="interactive">{{ "FOLLOWINGAMEMBER" | translate }}</label>
-    </li>
-  </ul>
-</div>
-<div class="mt-56">
-  <span class="sub_title">{{ "YOUMAYINTERESTED" | translate }}</span>
-  <div class="row  mt-24 empty_row" *ngIf="items.length ===0">
-    <img src="assets/icons/noRecommend.png" alt="noRecommend">
-    {{ "NOPROJECT" | translate }}
+      <li>
+        <input id="interactive" type="checkbox" [(ngModel)]="idverify.interactive" class="chk" data-key="interactive"
+          [attr.disabled]="'true'" />
+        <label class="ml-10 option" for="interactive">{{ "FOLLOWINGAMEMBER" | translate }}</label>
+      </li>
+    </ul>
   </div>
-  <!--person-->
-  <ng-container *ngIf="items.length >0">
-    <div class="row  mt-24">
-      <ng-container *ngFor="let item of  items| slice:0:2;let i = index">
-        <div class="col-md-6 text-center">
-
-          <ui-project-card (onCollect)="onCollect($event)" [project]="item" [user]="currentUser"></ui-project-card>
-        </div>
-      </ng-container>
+  <div class="mt-56">
+    <span class="d_sub_title">{{ "YOUMAYINTERESTED" | translate }}</span>
+    <div class="row  mt-24 empty_row" *ngIf="items.length ===0">
+      <img src="assets/icons/noRecommend.png" alt="noRecommend">
+      <span class="d_icon_title">{{ "NOPROJECT" | translate }}</span>
     </div>
+    <!--person-->
+    <ng-container *ngIf="items.length >0">
+      <div class="row  mt-24">
+        <ng-container *ngFor="let item of  items| slice:0:2;let i = index">
+          <div class="col-md-6 text-center">
 
-  </ng-container>
-</div>
-<div>
-  <span class="sub_title  mt-24 ">{{ "MENTORSMEET" | translate }}</span>
-  <div class="row  mt-24 empty_row" *ngIf="mentors.length ===0">
-    <img src="assets/icons/glasses.png" style="width: 84px;" alt="glasses">
-    {{ "NORECMENTORS" | translate }}
+            <ui-project-card (onCollect)="onCollect($event)" [project]="item" [user]="currentUser"></ui-project-card>
+          </div>
+        </ng-container>
+      </div>
+
+    </ng-container>
   </div>
-  <!--person-->
-  <ng-container *ngIf="mentors.length >0">
-    <div class="row  mt-24 ">
-      <ng-container *ngFor="let item of mentors | slice:0:2; let i = index">
-        <div class="col-md-6 text-center">
-          <app-user-card (Collect)="onCollect($event)" [user]="item" [type]="'mentor'" [currentuser]="currentUser">
-          </app-user-card>
-        </div>
-      </ng-container>
+  <div>
+    <span class="d_sub_title">{{ "MENTORSMEET" | translate }}</span>
+    <div class="row  mt-24 empty_row" *ngIf="mentors.length ===0">
+      <img src="assets/icons/glasses.png" style="width: 84px;" alt="glasses">
+      <span class="d_icon_title"> {{ "NORECMENTORS" | translate }} </span>
     </div>
+    <!--person-->
+    <ng-container *ngIf="mentors.length >0">
+      <div class="row  mt-24 ">
+        <ng-container *ngFor="let item of mentors | slice:0:2; let i = index">
+          <div class="col-md-6 text-center">
+            <app-user-card (Collect)="onCollect($event)" [user]="item" [type]="'mentor'" [currentuser]="currentUser">
+            </app-user-card>
+          </div>
+        </ng-container>
+      </div>
 
-  </ng-container>
+    </ng-container>
+  </div>
 </div>
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
   <p class="text-white">Please Wait. </p>

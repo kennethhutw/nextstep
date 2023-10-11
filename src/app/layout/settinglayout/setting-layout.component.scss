@@ -35,9 +35,9 @@ app-setting {
           cursor: pointer;
           display: block;
 
-          svg-icon svg path {
-            fill: rgb(105, 115, 140) !important;
-          }
+          // svg-icon svg path {
+          //   fill: rgb(105, 115, 140) !important;
+          // }
 
           .icon {
             svg path {
@@ -88,6 +88,8 @@ app-setting {
 
 }
 
-svg-icon svg path {
-  fill: rgb(105, 115, 140) !important;
+.sidebar {
+  svg-icon svg path {
+    fill: rgb(105, 115, 140) !important;
+  }
 }

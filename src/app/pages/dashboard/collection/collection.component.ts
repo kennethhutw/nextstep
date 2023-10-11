@@ -11,6 +11,7 @@ import { TranslateService } from "@ngx-translate/core";
 import {
   AuthStore
 } from "./../../../_services/auth.store";
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-my-collection',
@@ -28,9 +29,10 @@ export class MyCollectionComponent implements OnInit {
   partners = [];
   applications = [];
   mentors = [];
+  loading = true;
 
   constructor(
-    private dialogSrv: DialogService,
+    private spinnerSrv: NgxSpinnerService,
     private utilitySrv: Utility,
     private dataSrv: DataService,
     private translateSrv: TranslateService,
@@ -39,6 +41,7 @@ export class MyCollectionComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.spinnerSrv.show();
     this.currentUser = this.authStoreSrv.getUserData();
     this.viewsSrv.getCollect(
       this.currentUser.id
@@ -90,6 +93,12 @@ export class MyCollectionComponent implements OnInit {
           });
         }
       }
+      this.spinnerSrv.hide();
+      this.loading = false;
+    }).catch((e) => {
+      console.error(e);
+      this.spinnerSrv.hide();
+      this.loading = false;
     })
 
     let _lang = localStorage.getItem("lang");

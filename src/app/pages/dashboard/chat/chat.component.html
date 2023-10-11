@@ -1,90 +1,100 @@
-<span class="message_title ">{{ "MYMSG"
-  | translate }}</span>
-<div *ngIf="this.items.length >0;else noItem" class="messaging">
-  <div class="inbox_msg">
-    <div class="inbox_people">
-
-      <div class="inbox_chat scroll">
-        <ng-container *ngFor="let item of ( items | itemFilter: searchText : 'name' ) let i=index ;">
-          <div class="chat_list" (click)="onClick(item)"
-            [ngClass]="{ 'active_chat': item.name === selectedItem?.name }">
-            <div class="chat_people">
-              <div class="chat_img"> <img [src]="item.image!= null ?  settingSrv.defaultAssetUrl+item.image
-                  : settingSrv.defaultUserLogo" alt=""> </div>
-              <div class="chat_ib">
-                <h5>{{item.name}} <span class="chat_date">{{item.date | date : 'yyyy-MM-dd'}}</span></h5>
-                <p class="chat_short_msg">{{item.message?item.message:""}}<span *ngIf="item?.readNum>0"
-                    class="chat_num">{{item?.readNum}}</span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </ng-container>
-      </div>
+<div *ngIf="!this.loading">
+  <div class="row header">
+    <div class="col-md-12">
+      <h2>{{ "MYMSG"
+        | translate }}</h2>
     </div>
-    <div class="mesgs">
-      <div class="msg_header">
+  </div>
+  <div *ngIf="this.items.length >0;else noItem" class="messaging">
+    <div class="inbox_msg">
+      <div class="inbox_people">
 
-
-        <img [src]="selectedItem?.image!= null ?  settingSrv.defaultAssetUrl+selectedItem.image
-                  : settingSrv.defaultUserLogo" alt="">
-        <div class="msg_header_name">
-          <span>{{selectedItem?.name}} </span>
-
-        </div>
-
-      </div>
-
-      <div class="msg_history">
-        <ng-container *ngFor="let item of selectedItem?.chat; let i=index ;">
-          <ng-container *ngIf="item.sender == currentUser.id; else receiver_msg">
-
-            <div class="outgoing_msg">
-
-              <div class="sent_msg">
-                <p>{{item.content}} </p>
-
-              </div>
-              <span class="time_date">{{item.createdAt | date : 'yyyy-MM-dd'}}</span>
-
-            </div>
-          </ng-container>
-          <ng-template #receiver_msg>
-            <div class="incoming_msg">
-              <div class="incoming_msg_img"><img src="{{settingSrv.defaultAssetUrl+item.senderImageUrl}}"
-                  (error)="onImgError($event)" alt="sunil">
-              </div>
-              <div class="received_msg">
-                <div class="received_withd_msg">
-                  <p>{{item.content}} </p>
-                  <span class="time_date"> {{item.createdAt | date : 'yyyy-MM-dd'}}</span>
+        <div class="inbox_chat scroll">
+          <ng-container *ngFor="let item of ( items | itemFilter: searchText : 'name' ) let i=index ;">
+            <div class="chat_list" (click)="onClick(item)"
+              [ngClass]="{ 'active_chat': item.name === selectedItem?.name }">
+              <div class="chat_people">
+                <div class="chat_img"> <img [src]="item.image!= null ?  settingSrv.defaultAssetUrl+item.image
+                  : settingSrv.defaultUserLogo" alt=""> </div>
+                <div class="chat_ib">
+                  <h5>{{item.name}} <span class="chat_date">{{item.date | date : 'yyyy-MM-dd'}}</span></h5>
+                  <p class="chat_short_msg">{{item.message?item.message:""}}<span *ngIf="item?.readNum>0"
+                      class="chat_num">{{item?.readNum}}</span>
+                  </p>
                 </div>
               </div>
             </div>
-          </ng-template>
-        </ng-container>
-
-
+          </ng-container>
+        </div>
       </div>
-      <div class="type_msg">
-        <div class="input_msg_write">
-          <input type="text" class="write_msg" [(ngModel)]="message" (keyup)="onChange($event)"
-            placeholder="{{ 'INPUTMSG' | translate }}" />
-          <ui-button class="btn-solid blue round send" style="top:-3px" (click)="onSendMsg()"><img
-              src="assets/icons/Cursor.png" alt="no-comment">{{ "MSGSEND"
-            | translate }}</ui-button>
+      <div class="mesgs">
+        <div class="msg_header">
+
+
+          <img [src]="selectedItem?.image!= null ?  settingSrv.defaultAssetUrl+selectedItem.image
+                  : settingSrv.defaultUserLogo" alt="">
+          <div class="msg_header_name">
+            <span>{{selectedItem?.name}} </span>
+
+          </div>
+
+        </div>
+
+        <div class="msg_history">
+          <ng-container *ngFor="let item of selectedItem?.chat; let i=index ;">
+            <ng-container *ngIf="item.sender == currentUser.id; else receiver_msg">
+
+              <div class="outgoing_msg">
+
+                <div class="sent_msg">
+                  <p>{{item.content}} </p>
+
+                </div>
+                <span class="time_date">{{item.createdAt | date : 'yyyy-MM-dd'}}</span>
+
+              </div>
+            </ng-container>
+            <ng-template #receiver_msg>
+              <div class="incoming_msg">
+                <div class="incoming_msg_img"><img src="{{settingSrv.defaultAssetUrl+item.senderImageUrl}}"
+                    (error)="onImgError($event)" alt="sunil">
+                </div>
+                <div class="received_msg">
+                  <div class="received_withd_msg">
+                    <p>{{item.content}} </p>
+                    <span class="time_date"> {{item.createdAt | date : 'yyyy-MM-dd'}}</span>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ng-container>
+
+
+        </div>
+        <div class="type_msg">
+          <div class="input_msg_write">
+            <input type="text" class="write_msg" [(ngModel)]="message" (keyup)="onChange($event)"
+              placeholder="{{ 'INPUTMSG' | translate }}" />
+            <ui-button class="btn-solid blue round send" style="top:-3px" (click)="onSendMsg()"><img
+                src="assets/icons/Cursor.png" alt="no-comment">{{ "MSGSEND"
+              | translate }}</ui-button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<ng-template #noItem>
-  <div class="row mt-10">
+  <ng-template #noItem>
+    <div class="row mt-10">
 
-    <div class="col-md-12 text-center text-18 noItem">
-      <svg-icon class="icon" src="assets/icons/NoQ&A.svg"></svg-icon>
-      <span>{{ "NOMSG"
-        | translate }}</span>
+      <div class="col-md-12 text-center text-18 noItem">
+        <svg-icon class="icon" src="assets/icons/NoQ&A.svg"></svg-icon>
+        <span>{{ "NOMSG"
+          | translate }}</span>
+      </div>
     </div>
-  </div>
-</ng-template>
+  </ng-template>
+
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+  <p class="text-white">Please Wait. </p>
+</ngx-spinner>

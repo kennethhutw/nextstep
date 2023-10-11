@@ -22,7 +22,8 @@ export class DashboardComponent implements OnInit {
 
   items: any[] = [];
   mentors: any[] = [];
-
+  loadingProject = true;
+  loadingMentor = true;
   idverify = {
     email: false,
     info: false,
@@ -116,8 +117,10 @@ export class DashboardComponent implements OnInit {
           this.items = res['data'];
         }
       }
+      this.loadingProject = false;
       this.spinnerSrv.hide();
     }).catch(error => {
+      this.loadingProject = false;
       console.error("error", error);
       this.spinnerSrv.hide();
     })
@@ -141,15 +144,23 @@ export class DashboardComponent implements OnInit {
         }
 
       }
+
+      this.loadingMentor = false;
       this.spinnerSrv.hide();
     }).catch(error => {
+      this.loadingMentor = false;
       console.error("error", error);
       this.spinnerSrv.hide();
     })
   }
 
 
-
+  isLoading() {
+    if (!this.loadingMentor && !this.loadingProject) {
+      return false;
+    }
+    return true;
+  }
 
 
 }

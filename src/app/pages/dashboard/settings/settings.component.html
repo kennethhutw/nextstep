@@ -1,7 +1,7 @@
 <div id="set-sidebar" *ngIf="!loading" class=" mb-80">
   <div class="row">
     <div class="col-md-12">
-      <h1>{{ "SETTING" | translate }}</h1>
+      <h2>{{ "SETTING" | translate }}</h2>
     </div>
   </div>
   <div class="row">
@@ -25,10 +25,10 @@
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'privacy' }" id="home" role="tabpanel"
           aria-labelledby="home-tab">
-          <ui-radio-item [title]="this.privacyOp1" [description]="this.privacyOp1Desc" [id]="'displayOnline'"
-            [value]="currentSetting.displayOnline" (onChange)="onChange($event)"></ui-radio-item>
-          <ui-radio-item [title]="this.privacyOp2" [description]="this.privacyOp2Desc" [id]="'isPublic'"
-            [value]="currentSetting.isPublic" (onChange)="onChange($event)"></ui-radio-item>
+          <ui-radio-item [title]="this.msg.privacyOp1" [description]="this.msg.privacyOp1Desc" [id]="'displayOnline'"
+            [value]="currentSetting.displayOnline" (onChange)="onChange($event, this.msg.privacyOp1)"></ui-radio-item>
+          <ui-radio-item [title]="this.msg.privacyOp2" [description]="this.msg.privacyOp2Desc" [id]="'isPublic'"
+            [value]="currentSetting.isPublic" (onChange)="onChange($event,this.msg.privacyOp2 )"></ui-radio-item>
           <!-- <div class="col-md-12 mb-12 form-group button-center">
             <button type="button" class="btn btn-primary mr-10" (click)="onSavePrivacy()">重設
             </button>
@@ -39,13 +39,13 @@
         </div>
         <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'notifications' }" role="tabpanel"
           aria-labelledby="profile-tab">
-          <ui-radio-item [title]="this.notifOp1" [description]="this.notifOp1Desc" [id]="'notiFollow'"
-            [value]="currentSetting.notiFollow" (onChange)="onChange($event)"></ui-radio-item>
-          <ui-radio-item [title]="this.notifOp2" [description]="this.notifOp2Desc" [id]="'notiMsg'"
-            [value]="currentSetting.notiMsg" (onChange)="onChange($event)">
+          <ui-radio-item [title]="this.msg.notifOp1" [description]="this.msg.notifOp1Desc" [id]="'notiFollow'"
+            [value]="currentSetting.notiFollow" (onChange)="onChange($event, this.msg.notifOp1)"></ui-radio-item>
+          <ui-radio-item [title]="this.msg.notifOp2" [description]="this.msg.notifOp2Desc" [id]="'notiMsg'"
+            [value]="currentSetting.notiMsg" (onChange)="onChange($event, this.msg.notifOp2)">
           </ui-radio-item>
-          <ui-radio-item [title]="this.notifOp3" [description]="this.notifOp3Desc" [id]="'notiSystem'"
-            [value]="currentSetting.notiSystem" (onChange)="onChange($event)"></ui-radio-item>
+          <ui-radio-item [title]="this.msg.notifOp3" [description]="this.msg.notifOp3Desc" [id]="'notiSystem'"
+            [value]="currentSetting.notiSystem" (onChange)="onChange($event, this.msg.notifOp3)"></ui-radio-item>
           <!-- <div class="col-md-12 mb-12 form-group button-center">
             <button type="button" class="btn btn-primary mr-10" (click)="onSaveNotif()">重設
             </button>
@@ -56,7 +56,7 @@
         </div>
         <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'password' }" role="tabpanel"
           aria-labelledby="profile-tab">
-          <div class="row" id="reset_form" [formGroup]="PasswordForm">
+          <div class="row pl-30" id="reset_form" [formGroup]="PasswordForm">
             <div class="col-md-6">
               <div class="form-group">
 
@@ -112,8 +112,9 @@
                 </button>
               </div>
             </div>
-            <div class="col-md-4 mb-12 form-group ">
-              <span class="error-msg">{{passwordMsg}}</span>
+            <div class="col-md-6 mb-12 form-group ">
+              <app-msgAlertBox *ngIf="passwordMsg!=''" [msg]="passwordMsg"></app-msgAlertBox>
+              <!-- <span class="error-msg">{{passwordMsg}}</span> -->
             </div>
           </div>
         </div>

@@ -7,7 +7,7 @@ import {
 import { Utility } from "./../../../_helpers";
 import { AuthStore } from "src/app/_services/auth.store";
 import * as moment from 'moment';
-
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: "app-chat",
@@ -22,13 +22,15 @@ export class ChatComponent implements OnInit {
   message = '';
   sendDisabeld: boolean = true;
   currentUser;
+  loading = true;
   constructor(
     private translateSrv: TranslateService,
     private utilitySrv: Utility,
     private dataSrv: DataService,
     private chatSrv: ChatService,
     private authStoreSrv: AuthStore,
-    public settingSrv: SettingService
+    public settingSrv: SettingService,
+    private spinnerSrv: NgxSpinnerService
   ) {
 
     this.currentUser = this.authStoreSrv.getUserData();
@@ -50,6 +52,8 @@ export class ChatComponent implements OnInit {
   }
 
   initChat(uid) {
+    this.spinnerSrv.show();
+
     this.chatSrv.getConversations(uid).then(res => {
 
       if (res["result"] == "successful") {
@@ -60,8 +64,12 @@ export class ChatComponent implements OnInit {
           }
         }
       }
+      this.loading = false;
+      this.spinnerSrv.hide();
     }).catch(error => {
       console.log("init chat error", error);
+      this.spinnerSrv.hide();
+      this.loading = false;
     })
   }
 

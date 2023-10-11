@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {
-  UserSettingService,
-  DataService
+  DataService,
+  ToastService,
+  UserSettingService
 } from "../../../_services";
 import {
   AuthStore
@@ -11,6 +12,7 @@ import { Utility } from "../../../_helpers";
 import { NgxSpinnerService } from "ngx-spinner";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: "app-settings",
   templateUrl: "./settings.component.html",
@@ -37,20 +39,30 @@ export class SettingsComponent implements OnInit {
   showNewPassword = false;
   showReNewPassword = false;
 
+  //UPDATEDFAILED
+  msg = {
 
-  privacyOp1: string = "";
-  privacyOp1Desc: string = "";
-  privacyOp2: string = "";
-  privacyOp2Desc: string = "";
+    privacyOp1: "",
+    privacyOp1Desc: "",
+    privacyOp2: "",
+    privacyOp2Desc: "",
 
-  notifOp1: string = "";
-  notifOp1Desc: string = "";
-  notifOp2: string = "";
-  notifOp2Desc: string = "";
-  notifOp3: string = "";
-  notifOp3Desc: string = "";
+    notifOp1: "",
+    notifOp1Desc: "",
+    notifOp2: "",
+    notifOp2Desc: "",
+    notifOp3: "",
+    notifOp3Desc: "",
+    updatefailed: "",
+    updateSuc: "",
+    updateFailed: "",
+    changePSWTitle: "",
+    oldPSWWrong: ""
+  }
 
   constructor(
+    public toastSrv: ToastService,
+    private dataSrv: DataService,
     private translateSrv: TranslateService,
     private utility: Utility,
     private formBuilder: FormBuilder,
@@ -75,36 +87,52 @@ export class SettingsComponent implements OnInit {
 
   init_terms() {
     this.translateSrv.get("PRIVACYOP1").subscribe((text: string) => {
-      this.privacyOp1 = text;
+      this.msg.privacyOp1 = text;
     });
     this.translateSrv.get("PRIVACYOP1DES").subscribe((text: string) => {
-      this.privacyOp1Desc = text;
+      this.msg.privacyOp1Desc = text;
     });
     this.translateSrv.get("PRIVACYOP2").subscribe((text: string) => {
-      this.privacyOp2 = text;
+      this.msg.privacyOp2 = text;
     });
     this.translateSrv.get("PRIVACYOP2DES").subscribe((text: string) => {
-      this.privacyOp2Desc = text;
+      this.msg.privacyOp2Desc = text;
     });
     this.translateSrv.get("NOTIFOP1").subscribe((text: string) => {
-      this.notifOp1 = text;
+      this.msg.notifOp1 = text;
     });
     this.translateSrv.get("NOTIFOP1DES").subscribe((text: string) => {
-      this.notifOp1Desc = text;
+      this.msg.notifOp1Desc = text;
     });
 
     this.translateSrv.get("NOTIFOP2").subscribe((text: string) => {
-      this.notifOp2 = text;
+      this.msg.notifOp2 = text;
     });
     this.translateSrv.get("NOTIFOP2DES").subscribe((text: string) => {
-      this.notifOp2Desc = text;
+      this.msg.notifOp2Desc = text;
     });
     this.translateSrv.get("NOTIFOP3").subscribe((text: string) => {
-      this.notifOp3 = text;
+      this.msg.notifOp3 = text;
     });
     this.translateSrv.get("NOTIFOP3DES").subscribe((text: string) => {
-      this.notifOp3Desc = text;
+      this.msg.notifOp3Desc = text;
     });
+    this.translateSrv.get("UPDATEDSUC").subscribe((text: string) => {
+      this.msg.updateSuc = text;
+    });
+
+    this.translateSrv.get("UPDATEDFAILED").subscribe((text: string) => {
+      this.msg.updateFailed = text;
+    });
+    this.translateSrv.get("CHANGEPSW").subscribe((text: string) => {
+      this.msg.changePSWTitle = text;
+    });
+
+    this.translateSrv.get("OLDPSWERROR").subscribe((text: string) => {
+      this.msg.oldPSWWrong = text;
+    });
+
+
 
     // this.translateSrv.get("CURRENTPSW").subscribe((text: string) => {
     //   this.utility.SetPlaceholder("#CURRENTPSW", text);
@@ -123,22 +151,23 @@ export class SettingsComponent implements OnInit {
   }
   ngOnInit() {
     this.spinnerSrv.show();
-    this.init_terms();
-    // let _lang = localStorage.getItem("lang");
-    // if (!this.utility.IsNullOrEmpty(_lang)) {
-    //   this.translateSrv.use(_lang);
-    //   this.initTags(_lang);
-    // } else {
+
+    let _lang = localStorage.getItem("lang");
+    if (!this.utility.IsNullOrEmpty(_lang)) {
+      this.translateSrv.use(_lang);
+      this.init_terms();
+    }
+    // else {
     //   let _browserLang = this.translateSrv.getBrowserLang();
     //   this.translateSrv.use(_browserLang);
     //   this.initTags(_browserLang);
     // }
-    // this.dataSrv.langKey.subscribe((lang) => {
-    //   if (!this.utility.IsNullOrEmpty(lang)) {
-    //     this.translateSrv.use(lang);
-    //     this.initTags(lang);
-    //   }
-    // });
+    this.dataSrv.langKey.subscribe((lang) => {
+      if (!this.utility.IsNullOrEmpty(lang)) {
+        this.translateSrv.use(lang);
+        this.init_terms();
+      }
+    });
     this.userSettingSrv.getByUserId(this.currentUser.id).then(res => {
       if (res['result'] == 'successful') {
         let _setting = res['data'];
@@ -169,7 +198,7 @@ export class SettingsComponent implements OnInit {
   }
 
 
-  onChange(event) {
+  onChange(event, title) {
 
     switch (event.id) {
       case "displayOnline":
@@ -189,7 +218,7 @@ export class SettingsComponent implements OnInit {
         this.currentSetting.notiSystem = event.value;
         break;
     }
-    this.onSavePrivacy();
+    this.onSavePrivacy(title);
   }
 
   get f() {
@@ -205,6 +234,7 @@ export class SettingsComponent implements OnInit {
 
   onResetPassword() {
     this.submitted = true;
+    this.passwordMsg = "";
     if (this.PasswordForm.invalid) {
       return;
     }
@@ -216,23 +246,35 @@ export class SettingsComponent implements OnInit {
       }).subscribe(res => {
 
         if (res['result'] == 'successful') {
-          this.passwordMsg = "Updated successfully";
+          //this.passwordMsg = "Updated successfully";
+          this.toastSrv.showToast(this.msg.changePSWTitle,
+            this.msg.updateSuc,
+            this.toastSrv.iconClasses.success);
           this.submitted = false;
           this.PasswordForm.reset();
         } else {
           this.passwordMsg = res['message'];
           if ("Password is not correct" === this.passwordMsg) {
-            this.passwordMsg = "密碼不符";
+            this.passwordMsg = this.msg.oldPSWWrong;
+            this.toastSrv.showToast(this.msg.changePSWTitle,
+              this.passwordMsg,
+              this.toastSrv.iconClasses.error);
+          } else {
+            this.toastSrv.showToast(this.msg.changePSWTitle,
+              this.msg.updateFailed,
+              this.toastSrv.iconClasses.error);
           }
         }
 
       }, error => {
         console.log("reset password failed", error);
-        this.passwordMsg = "更新失敗";
+        this.toastSrv.showToast(this.msg.changePSWTitle,
+          this.msg.updateFailed,
+          this.toastSrv.iconClasses.error);
       })
   }
 
-  onSavePrivacy() {
+  onSavePrivacy(title) {
     this.privacyMsg = "";
     let params = {
       userId: this.currentUser.id,
@@ -244,18 +286,24 @@ export class SettingsComponent implements OnInit {
 
     this.userSettingSrv.update(params).subscribe(res => {
       if (res['result'] == 'successful') {
-        this.privacyMsg = "Updated successfully";
+        this.toastSrv.showToast(title,
+          this.msg.updateSuc,
+          this.toastSrv.iconClasses.success);
       } else {
-        this.privacyMsg = "Update failed";
+        this.toastSrv.showToast(title,
+          this.msg.updateFailed,
+          this.toastSrv.iconClasses.error);
       }
 
     }, (error => {
-      console.error("cannot get setting.", error);
-      this.privacyMsg = "Update failed";
+      console.error("update setting failed", error);
+      this.toastSrv.showToast(title,
+        this.msg.updateFailed,
+        this.toastSrv.iconClasses.error);
     }))
   }
 
-  onSaveNotif() {
+  onSaveNotif(title) {
     this.notifMsg = "";
     let params = {
       userId: this.currentUser.id,
@@ -266,14 +314,20 @@ export class SettingsComponent implements OnInit {
     }
     this.userSettingSrv.update(params).subscribe(res => {
       if (res['result'] == 'successful') {
-        this.notifMsg = "Updated successfully";
+        this.toastSrv.showToast(title,
+          this.msg.updateSuc,
+          this.toastSrv.iconClasses.success);
       } else {
-        this.notifMsg = "Update failed";
+        this.toastSrv.showToast(title,
+          this.msg.updateFailed,
+          this.toastSrv.iconClasses.error);
       }
 
     }, (error => {
       console.error("cannot get setting.", error);
-      this.notifMsg = "Update failed";
+      this.toastSrv.showToast(title,
+        this.msg.updateFailed,
+        this.toastSrv.iconClasses.error);
     }))
   }
 

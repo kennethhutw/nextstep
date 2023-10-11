@@ -1,13 +1,17 @@
-import { HostListener, ViewEncapsulation, Component, OnInit } from '@angular/core';
+import {
+  ViewEncapsulation,
+  Component,
+  OnInit
+} from '@angular/core';
 import {
   PagerService,
   DialogService,
-  NotificationService,
-  DataService
+  NotificationService
 } from './../../../_services';
 import { Utility } from "../../../_helpers";
 import { TranslateService } from "@ngx-translate/core";
 import { AuthStore } from './../../../_services/auth.store';
+import { NgxSpinnerService } from "ngx-spinner";
 @Component({
   selector: 'app-my-notifications',
   templateUrl: './notifications.component.html',
@@ -16,6 +20,7 @@ import { AuthStore } from './../../../_services/auth.store';
 })
 export class NotificationsComponent implements OnInit {
 
+  loading = true;
   notifications: any[] = [];
   currentPageIndex: number = 1;
 
@@ -24,7 +29,8 @@ export class NotificationsComponent implements OnInit {
     private pagerSrv: PagerService,
     private notificationSrv: NotificationService,
     private dialogSrv: DialogService,
-    private authStore: AuthStore) {
+    private authStore: AuthStore,
+    private spinnerSrv: NgxSpinnerService) {
   }
 
   ngOnInit() {

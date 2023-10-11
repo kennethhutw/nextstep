@@ -71,8 +71,7 @@
                             <label for="InputSkills">{{ "SKILLS"
                                 | translate }} ( {{this.profileForm.value.skills.length}} /5 )</label>
                             <tag-input class="input-frame rounded-4" id="skills" formControlName="skills"
-                                [onlyFromAutocomplete]="true" [maxItems]='5'
-                                secondaryPlaceholder="{{'SKILLSEXS' | translate }}">
+                                [onlyFromAutocomplete]="true" [maxItems]='5' secondaryPlaceholder="">
                                 <tag-input-dropdown [displayBy]="'text'" [appendToBody]="false"
                                     [autocompleteItems]="skillOptions" [showDropdownIfEmpty]="true"
                                     [dynamicUpdate]="false">
@@ -103,9 +102,9 @@
     <div class="row mt-60" *ngIf="step==1">
         <div class="col-md-12">
 
-            <p class="title">Hi {{name}},{{'NICETOMEET' | translate
+            <p class="step_2_title">Hi {{name}}，{{'NICETOMEET' | translate
                 }}</p>
-            <p class="title">{{'WANTUTODO' | translate
+            <p class="step_2_title">{{'WANTUTODO' | translate
                 }}</p>
         </div>
         <div class="row mt-30">
@@ -123,7 +122,7 @@
 
                     <div class="text">
                         <span>{{'SECTION_1_PIONT_4' | translate
-                            }}加</span>
+                            }}</span>
                     </div>
 
                 </div>
