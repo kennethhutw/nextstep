@@ -250,6 +250,7 @@
   "DELPROJECT": "Delete this project",
   "NOTRECOVER": "Once you delete a project, there is no going back. Please be certain",
   "DISPLAYMEMBERS": "Display project members.",
+  "NODISPLAYMEMBERS": "Project Members Not Visible",
   "DISPLAYMEMBERSINFO": "Display team member information.",
   "PUBLICVIEW": "Open for viewing.",
   "PUBLICVIEWDESC": "Display this project in the project list.",

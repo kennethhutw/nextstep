@@ -1,6 +1,9 @@
 import { HostListener, HostBinding, Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { DialogService } from './../../_services';
+import {
+  DialogService,
+  ToastService
+} from './../../_services';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 declare var $: any; // ADD THIS
@@ -29,6 +32,7 @@ export class ExampleComponent implements OnInit {
   SlideOptions = { items: 1, dots: true, nav: true };
   CarouselOptions = { items: 3, dots: true, nav: true };
   constructor(
+    private toastSrv: ToastService,
     private http: HttpClient,
     private sanitizer: DomSanitizer,
     private formBuilder: FormBuilder,
@@ -48,6 +52,15 @@ export class ExampleComponent implements OnInit {
       }, () => {
         console.log("No ----");
       });
+  }
+
+  onAlert() {
+    this.toastSrv.showToast('Success', 'Success', this.toastSrv.iconClasses.info);
+    //  this.toastSrv.showToast2('Success', 'Success');
+  }
+
+  onFailed() {
+    this.toastSrv.showToast('Failed', 'Success', this.toastSrv.iconClasses.warning);
   }
 
 }

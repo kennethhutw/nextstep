@@ -36,6 +36,7 @@ import { NgxSpinnerService } from "ngx-spinner";
   styleUrls: ['./myproject-member.component.scss']
 })
 export class MyProjectMemberComponent implements OnInit {
+  loading = true;
   projectId = "";
   currentProject;
   currentUser;
@@ -710,6 +711,7 @@ export class MyProjectMemberComponent implements OnInit {
       console.log(e);
     }).then(() => {
       this.spinnerSrv.hide();
+      this.loading = false;
     })
   }
   onToggleChat(event) {

@@ -2222,3 +2222,100 @@ a {
     fill: #69738C !important;
   }
 }
+
+.d_icon_title {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+#toast-container {
+  .icon {
+    fill: red;
+  }
+
+  .toast-message {
+    font-weight: 600;
+  }
+
+  .toast-success {
+    /* https://github.com/FortAwesome/Font-Awesome-Pro/blob/master/advanced-options/raw-svg/solid/check.svg */
+    border: 1px solid #BFE275;
+    border-radius: 4px;
+    background: linear-gradient(0deg, #F4FAE8, #F4FAE8), linear-gradient(0deg, #BFE275, #BFE275);
+    color: #77A614 !important;
+  }
+
+
+  .toast-error {
+    /* https://github.com/FortAwesome/Font-Awesome-Pro/blob/master/advanced-options/raw-svg/solid/check.svg */
+    border: 1px solid #FFB2C0;
+    background: linear-gradient(0deg, #FFE6EA, #FFE6EA),
+      linear-gradient(0deg, #FFB3C0, #FFB3C0);
+    color: #CC0023 !important;
+  }
+
+  .toast-success::before {
+    content: url("../src//assets//icons/Successful.svg") !important;
+    font-family: 'FontAwesome';
+    position: absolute !important;
+    top: 10px !important;
+    left: 20px !important;
+    color: #333 !important;
+    font-size: 1.5em !important;
+  }
+
+  .toast-error::before {
+    content: url("../src//assets//icons/Xcircle.svg") !important;
+    font-family: 'FontAwesome';
+    position: absolute !important;
+    top: 10px !important;
+    left: 20px !important;
+    color: #333 !important;
+    font-size: 1.5em !important;
+  }
+
+  .toast-warning {
+    border: 1px solid #FDD079;
+    background: linear-gradient(0deg, #FFF7E9, #FFF7E9),
+      linear-gradient(0deg, #FDD079, #FDD079);
+    color: #CA8E19 !important;
+  }
+
+  .toast-warning::before {
+    content: url("../src//assets//icons/WarningAlertIcon.svg") !important;
+    font-family: 'FontAwesome';
+    position: absolute !important;
+    top: 10px !important;
+    left: 20px !important;
+    color: #333 !important;
+    font-size: 1.5em !important;
+  }
+
+
+  .toast-info {
+    border: 1px solid #82B5FD;
+    background: linear-gradient(0deg, #EAF3FF, #EAF3FF),
+      linear-gradient(0deg, #82B5FD, #82B5FD);
+    color: #2E83FB !important;
+  }
+
+  .toast-info::before {
+    content: url("../src//assets//icons/InfoAlertIcon.svg") !important;
+    font-family: 'FontAwesome';
+    position: absolute !important;
+    top: 10px !important;
+    left: 20px !important;
+    color: #333 !important;
+    font-size: 1.5em !important;
+  }
+}
+
+// #toast-container>.fa-check,
+// .toast {
+//   background-color: #328b17 !important;
+// }
+
+// #toast-container>.fa-trash,
+// .toast {
+//   background-color: #590619 !important;
+// }

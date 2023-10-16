@@ -209,21 +209,29 @@
           </div>
           <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'members' }" role="tabpanel"
             aria-labelledby="new-tab">
-            <div class="empty text-center mt-20" *ngIf="currentProject.members ===0">
-              {{
-              "NOMEMBER"
-              | translate }}
+
+            <div class="noItem mt-20" *ngIf="currentProject.isShowMember ===0 ;else showMember ">
+              <svg-icon class="icon" src="assets/icons/NoUser.svg"></svg-icon>
+              <span class="d_icon_title">{{"NODISPLAYMEMBERS" | translate }}</span>
             </div>
-            <div class="row" *ngIf="this.currentProject?.members">
-              <ng-container *ngFor="let member of currentProject.members ; let i = index">
-                <ng-container *ngIf="onPage(i,this.currentPageIndex)">
-                  <div class="col-md-4 profile">
-                    <app-member-card [user]="member" [uid]="member.uid" [name]="member.userName"
-                      [position]="member.position" [imageUrl]="member.imageUrl" class="w-100"></app-member-card>
-                  </div>
+            <ng-template #showMember>
+              <div class="noItem mt-20" *ngIf="currentProject.members ===0">
+                <svg-icon class="icon" src="assets/icons/NoUser.svg"></svg-icon>
+                <span class="d_icon_title">{{
+                  "NOMEMBER"
+                  | translate }}</span>
+              </div>
+              <div class="row" *ngIf="this.currentProject?.members">
+                <ng-container *ngFor="let member of currentProject.members ; let i = index">
+                  <ng-container *ngIf="onPage(i,this.currentPageIndex)">
+                    <div class="col-md-4 profile">
+                      <app-member-card [user]="member" [uid]="member.uid" [name]="member.userName"
+                        [position]="member.position" [imageUrl]="member.imageUrl" class="w-100"></app-member-card>
+                    </div>
+                  </ng-container>
                 </ng-container>
-              </ng-container>
-            </div>
+              </div>
+            </ng-template>
           </div>
 
 
@@ -254,42 +262,7 @@
         <app-jobCard [item]="item" [currentUser]="currentUser" [currentProject]="currentProject"
           (ClickJobCollect)="onClickJobCollect($event)" (SelectItem)="onSelectItem($event)"
           (ModifyJobItem)="onModifyJobItem($event)" (DeleteJobItem)="onDeleteJobItem($event)"></app-jobCard>
-        <!-- <div *ngIf="item.status =='1'" class="row frame" [ngClass]="{'mt-10':i>1}">
 
-          <div class="col-md-12" style="display: inline-flex;">
-            <div class="col-md-8 pl-0 m--auto">
-              <p class="position"><b>{{item.position}}</b></p>
-
-            </div>
-            <div *ngIf="currentUser" class="col-md-4 btn_items pr-0">
-              <i *ngIf="item.isCollected" (click)="onClickJobCollect(item.id, item.isCollected)"
-                class="fas fa-bookmark collected icon-frame"></i>
-              <i *ngIf="!item.isCollected" (click)="onClickJobCollect(item.id, item.isCollected)"
-                class="far fa-bookmark color-gray icon-frame"></i>
-              <i class="far fa-envelope color-gray icon-frame" data-toggle="modal" data-target="#modal_apply"
-                data-dismiss="modal" (click)="onSelectItem(item)" tooltip="{{ 'APPLY' | translate }}"></i>
-              <div class="dropdown mt--10" *ngIf="currentProject?.owner == currentUser?.id"><i
-                  class="fas fa-ellipsis-h color-gray text-18" data-toggle="dropdown" aria-haspopup="true"
-                  aria-expanded="true"></i>
-                <div class="dropdown-menu"> <a class="dropdown-item color-gray" data-toggle="modal"
-                    [attr.data-target]="'#modifiedJob'" (click)="onModifyJobItem(item)"><i
-                      class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{ "EDIT" | translate
-                    }}</a> <a class="dropdown-item color-gray" (click)="onDeleteJobItem(item)"><i
-                      class="fas fa-trash"></i>&nbsp;&nbsp;{{ "DELETE" | translate
-                    }}</a></div>
-
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-12">
-            {{item.scopes}}
-          </div>
-          <div class="col-md-12 text-right">
-            <a class="clickable" [routerLink]="['/job/',item.id ]">{{ "VIEWDETAILS" | translate
-              }}</a>
-          </div>
-        </div> -->
       </ng-container>
     </ng-container>
 
@@ -301,8 +274,7 @@
   <lab-custom-modal [open]="isChat" (close)="onToggleChat($event)">
     <h3 *ngIf="projectOwner" class="chat-header" title><img class="chat-user-img" [src]="projectOwner.imageUrl!= null ?  settingSrv.defaultAssetUrl+projectOwner.imageUrl
                       : settingSrv.defaultUserLogo" alt=""><span class="chat-user-name">{{projectOwner.name?
-        projectOwner.name:"No
-        name"}}</span></h3>
+        projectOwner.name:"No name"}}</span></h3>
 
     <lab-comments [currentUser]="currentUser" [receiverUser]="projectOwner" (close)="onToggleChat($event)" body>
     </lab-comments>

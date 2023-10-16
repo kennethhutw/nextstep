@@ -344,19 +344,19 @@ Please let us know ASAP.
 
         this.displayItems = this.allitems;
         this.editedItem = null;
-        this.toastSrv.showToast('意見回饋',
-          "刪除成功 ",
+        this.toastSrv.showToast('',
+          "delete successful",
           this.toastSrv.iconClasses.success);
       } else {
-        this.toastSrv.showToast('意見回饋',
-          "刪除失敗 ",
+        this.toastSrv.showToast('',
+          "delete failed ",
           this.toastSrv.iconClasses.error);
       }
       this.closeExpbutton.nativeElement.click();
     }, (error) => {
       console.log("error", error);
-      this.toastSrv.showToast('意見回饋',
-        "刪除失敗 ",
+      this.toastSrv.showToast('',
+        "delete failed ",
         this.toastSrv.iconClasses.error);
       this.closeExpbutton.nativeElement.click();
     })

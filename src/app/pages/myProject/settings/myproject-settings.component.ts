@@ -113,16 +113,16 @@ export class MyProjectSettingsComponent implements OnInit {
     this.projectSrv.updatePublic(this.currentProject.id,
       this.isPublic ? 1 : 0, this.currentUser.id).then(res => {
         if (res['result'] === 'successful') {
-          this.toastSrv.showToast('顯示專案',
+          this.toastSrv.showToast('',
             this.msg.updateSuc,
             this.toastSrv.iconClasses.success);
         } else {
-          this.toastSrv.showToast('顯示專案',
+          this.toastSrv.showToast('',
             this.msg.updateFailed,
             this.toastSrv.iconClasses.error);
         }
       }).catch(error => {
-        this.toastSrv.showToast('顯示專案',
+        this.toastSrv.showToast('',
           this.msg.updateFailed,
           this.toastSrv.iconClasses.error);
         console.error("updated error", error.message);
@@ -136,16 +136,16 @@ export class MyProjectSettingsComponent implements OnInit {
       this.currentUser.id).then(res => {
         if (res['result'] === 'successful') {
 
-          this.toastSrv.showToast('顯示專案成員',
+          this.toastSrv.showToast('',
             this.msg.updateSuc,
             this.toastSrv.iconClasses.success);
         } else {
-          this.toastSrv.showToast('顯示專案成員',
+          this.toastSrv.showToast('',
             this.msg.updateFailed,
             this.toastSrv.iconClasses.error);
         }
       }).catch(error => {
-        this.toastSrv.showToast('顯示專案成員',
+        this.toastSrv.showToast('',
           this.msg.updateFailed,
           this.toastSrv.iconClasses.error);
         console.error("updated error", error.message);

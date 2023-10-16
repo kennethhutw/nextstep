@@ -157,6 +157,8 @@ export class ProjectComponent implements OnInit {
     }
 
     this.projectSrv.getProject(this.projectId, _id).then(res => {
+
+      console.log("project ================", res);
       if (res['result'] == 'successful') {
 
         this.currentProject = res['data'];

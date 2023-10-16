@@ -29,6 +29,7 @@ export class ToastService {
         this.options = this.toastr.toastrConfig;
         this.options.positionClass = 'toast-top-right';
         this.options.timeOut = 1500;
+        // this.options.disableTimeOut = true
         this.iconClasses = {
             error: 'error',
             info: 'info',
@@ -92,6 +93,10 @@ export class ToastService {
 
     showToast(title, message, type) {
         this.toastr.show(message, title, this.options, 'toast-' + type);
+    }
+
+    showToast2(title, message) {
+        this.toastr.show(message, title, this.options);
     }
 
 }

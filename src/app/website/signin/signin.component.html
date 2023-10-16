@@ -60,6 +60,13 @@
             </button>
         </div>
         <h4><span>{{"OR" | translate }}</span></h4>
+        <div *ngIf="this.invalidUser">
+
+            <app-msgAlertBox msg="{{'EMAILORPASSWORDNOTCORRECTMSG' | translate }}"></app-msgAlertBox>
+            <!-- <p class="invalidUser">
+                <i class="fas fa-exclamation-triangle"></i> {{"EMAILORPASSWORDNOTCORRECTMSG" | translate }}
+            </p> -->
+        </div>
         <form [formGroup]="loginForm">
             <div class="form-group" style="font-family: var(--font-nunito);">
 
@@ -90,17 +97,13 @@
 
             </div>
             <button type="submit" class="btn btn-blue w-100 d-flex align-items-center justify-content-center mt-30"
-                style="height: 45px; " [disabled]="inValid()" (click)="onSubmit()">
+                style="height: 45px;" [disabled]="inValid()" (click)="onSubmit()">
                 {{"SIGNIN" | translate }}
                 <!-- <div *ngIf="disableSignUp" class="spinner-border ml-3" style="height: 1.5rem; width: 1.5rem;"
                                 role="status"></div> -->
             </button>
 
-            <div *ngIf="this.invalidUser">
-                <p class="invalidUser">
-                    <i class="fas fa-exclamation-triangle"></i> {{"EMAILORPASSWORDNOTCORRECTMSG" | translate }}
-                </p>
-            </div>
+
         </form>
         <div class="w-100 ">
             <div class="float-right">
