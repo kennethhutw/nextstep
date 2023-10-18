@@ -38,12 +38,10 @@
                                 [ngClass]="{ 'is-invalid':  submitted && profileForm.get('name').invalid }"
                                 aria-describedby="NameHelp">
                             <div *ngIf="submitted && f.name.errors">
-                                <div class="error-msg" *ngIf="f.name.errors.required"><i
-                                        class="fas fa-exclamation-triangle"></i>{{"USER_NAME_MUST"
+                                <div class="error-msg" *ngIf="f.name.errors.required">{{"USER_NAME_MUST"
                                     | translate
                                     }}</div>
-                                <div class="error-msg" *ngIf="f.name.errors?.pattern"><i
-                                        class="fas fa-exclamation-triangle"></i>{{"NOT_ALLOW_SYMBOL"
+                                <div class="error-msg" *ngIf="f.name.errors?.pattern">{{"NOT_ALLOW_SYMBOL"
                                     | translate
                                     }}</div>
                             </div>
@@ -55,12 +53,10 @@
                                 [ngClass]="{ 'is-invalid':  submitted && profileForm.get('position').invalid }"
                                 formControlName="position" id="position">
                             <div *ngIf="submitted && f.position.errors">
-                                <div class="error-msg" *ngIf="f.position.errors.required"><i
-                                        class="fas fa-exclamation-triangle"></i>{{"POSITION_MUST"
+                                <div class="error-msg" *ngIf="f.position.errors.required">{{"POSITION_MUST"
                                     | translate
                                     }}</div>
-                                <div class="error-msg" *ngIf="f.position.errors?.pattern"><i
-                                        class="fas fa-exclamation-triangle"></i>{{"NOT_ALLOW_SYMBOL"
+                                <div class="error-msg" *ngIf="f.position.errors?.pattern">{{"NOT_ALLOW_SYMBOL"
                                     | translate
                                     }}</div>
                             </div>

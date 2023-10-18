@@ -25,7 +25,7 @@
                     formControlName="email"
                     [ngClass]="{ 'is-invalid': (resetEmailForm.get('email').touched || resetEmailForm.get('email').dirty) && resetEmailForm.get('email').invalid || submit && resetEmailForm.get('email').invalid }"
                     placeholder="hi@next.com">
-                <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i>
+                <span class="invalid-feedback">
                     {{ "EMAILFORMATNOT"
                     | translate }}</span>
             </div>

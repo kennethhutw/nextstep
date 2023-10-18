@@ -242,6 +242,7 @@ body {
 
 .nav-link:hover {
   border-color: none !important;
+
 }
 
 .nav-tabs .nav-item.show .nav-link,
@@ -264,7 +265,7 @@ a.nav-link.active {
 }
 
 a.nav-link:hover {
-  color: #FF859A !important;
+  color: #56BDF4 !important;
 }
 
 /* // Extra small devices (portrait phones, less than 576px)
@@ -1663,10 +1664,11 @@ a.menu-item.active {
 }
 
 a.menu-item:hover {
-  color: #FF859A !important;
+  // color: #FF859A !important;
+  color: #56BDF4 !important;
 
   svg-icon svg path {
-    fill: #FF859A !important;
+    fill: #56BDF4 !important;
   }
 }
 
@@ -2319,3 +2321,8 @@ a {
 // .toast {
 //   background-color: #590619 !important;
 // }
+
+
+.btn-link:hover {
+  color: #56BDF4;
+}

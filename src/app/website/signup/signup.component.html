@@ -66,11 +66,11 @@
                 <input type="text" class="form-control" id="inputName" aria-describedby="nameHelp"
                     formControlName="name" [ngClass]="{ 'is-invalid':  submitted && signupForm.get('name').invalid }"
                     placeholder="{{ 'USERNAMEPLACE' | translate }}">
-                <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i>{{"USER_NAME_MUST" | translate
+                <span class="invalid-feedback">{{"USER_NAME_MUST" | translate
                     }}</span>
                 <div *ngIf="nameExistant">
                     <p class="invalid-feedback">
-                        <i class="fas fa-exclamation-triangle"></i> {{"USER_NAME_TAKEN" | translate }}
+                        {{"USER_NAME_TAKEN" | translate }}
                     </p>
                 </div>
             </div>
@@ -80,11 +80,11 @@
                     formControlName="email"
                     [ngClass]="{ 'is-invalid': (signupForm.get('email').touched || signupForm.get('email').dirty) && signupForm.get('email').invalid || submitted && signupForm.get('email').invalid }"
                     placeholder="Email">
-                <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i>{{"EMAILFORMATNOT" | translate
+                <span class="invalid-feedback">{{"EMAILFORMATNOT" | translate
                     }}</span>
                 <div *ngIf="emailExistant">
                     <p class="invalid-feedback">
-                        <i class="fas fa-exclamation-triangle"></i>{{"EMAILREGISTERED" | translate }}
+                        {{"EMAILREGISTERED" | translate }}
                     </p>
                 </div>
             </div>
@@ -92,17 +92,17 @@
                 <input #pw type="password" class="form-control" id="password" formControlName="password"
                     [ngClass]="{ 'is-invalid': (signupForm.get('password').touched || signupForm.get('password').dirty) && signupForm.get('password').invalid || submitted && signupForm.get('password').invalid }"
                     placeholder="{{ 'PASSWORDPLACE' | translate }}">
-                <span class="invalid-feedback"><i class="fas fa-exclamation-triangle"></i> {{"PASSWORDREQUIRED" |
+                <span class="invalid-feedback"> {{"PASSWORDREQUIRED" |
                     translate }}
                 </span>
                 <div *ngIf="InvalidUser">
                     <p class="invalid-feedback">
-                        <i class="fas fa-exclamation-triangle"></i>{{"EMAILORPASSWORDNOTCORRECTMSG" | translate }}
+                        {{"EMAILORPASSWORDNOTCORRECTMSG" | translate }}
                     </p>
                 </div>
                 <div *ngIf="unverifiedUser">
                     <p class="invalid-feedback">
-                        <i class="fas fa-exclamation-triangle"></i>{{"CHECKVERIFYEMAILMSG" |
+                        {{"CHECKVERIFYEMAILMSG" |
                         translate }}
                     </p>
                 </div>
