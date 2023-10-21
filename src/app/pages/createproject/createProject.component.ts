@@ -99,7 +99,7 @@ export class CreateProjectComponent implements OnInit, ComponentCanDeactivate {
     // insert logic to check if there are pending changes here;
     // returning true will navigate without confirmation
     // returning false will show a confirm dialog before navigating away
-    // const result = this.dialogSrv.confirmThis("您有未保存的更改。 按取消返回並保存這些更改，或按確定放棄這些更改。 ",
+    // const result = this.dialogSrv.confirmThis("你有未保存的更改。 按取消返回並保存這些更改，或按確定放棄這些更改。 ",
     //   () => {
     //     return true;
 
@@ -113,7 +113,7 @@ export class CreateProjectComponent implements OnInit, ComponentCanDeactivate {
 
   async checkAuthentication() {
     // Implement your authentication in authService
-    return await this.dialogSrv.confirmThis("您有未保存的更改。 按取消返回並保存這些更改，或按確定放棄這些更改。 ",
+    return await this.dialogSrv.confirmThis("你有未保存的更改。 按取消返回並保存這些更改，或按確定放棄這些更改。 ",
       () => {
         return true;
       }, () => {

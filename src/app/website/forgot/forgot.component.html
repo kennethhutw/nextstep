@@ -52,7 +52,9 @@
                 | translate }} {{this.value}}{{ "RESENDFGEMAILB"
                 | translate }}
             </button>
-
+            <span *ngIf="this.showSPAMmsg" class="spamMsg">
+                {{ "SPAM"
+                | translate }}</span>
         </form>
     </div>
 

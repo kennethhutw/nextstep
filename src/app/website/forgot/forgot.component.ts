@@ -29,6 +29,7 @@ export class ForgotComponent implements OnInit {
   InvalidUser = false;
   unverifiedUser = false;
   submitted = false;
+  showSPAMmsg = false;
   errorMsg = "";
   public timerSub: Subscription;
   public value: number = 0;
@@ -66,6 +67,7 @@ export class ForgotComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+    this.showSPAMmsg = true;
     this.hideErrorMsg();
     let domain = window.location.origin;
     let url = '/resetPassword';

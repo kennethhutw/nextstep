@@ -27,7 +27,7 @@ export class PendingChangesGuard implements CanDeactivate<ComponentCanDeactivate
 
     async checkAuthentication(): Promise<boolean> {
         // Implement your authentication in authService
-        return await this.dialogSrv.confirmThis("您有未保存的更改。 按取消返回並保存這些更改，或按確定放棄這些更改。 ",
+        return await this.dialogSrv.confirmThis("你有未保存的更改。 按取消返回並保存這些更改，或按確定放棄這些更改。 ",
             () => {
                 return true;
             }, () => {
