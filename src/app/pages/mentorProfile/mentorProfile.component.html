@@ -71,7 +71,7 @@
           <span class="title">個人簡介</span>
           <span *ngIf="currentUser?.id == userProfile.id" class="btn-standard" data-toggle="modal"
             [attr.data-target]="'#editprofile'" (click)="initProfileForm()">
-            <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{ "EDIT" | translate
+            <svg-icon src="assets/icons/pencil.svg"></svg-icon>&nbsp;&nbsp;{{ "EDIT" | translate
             }}</span>
         </div>
       </div>
@@ -299,7 +299,8 @@
               <!--Menu-->
               <div class="dropdown-menu dropdown-primary" aria-labelledby="dropdownMenu2">
                 <a class="dropdown-item" (click)="onEditExp(exp)" data-toggle="modal"
-                  [attr.data-target]="'#experienceModal'"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{ "EDIT" |
+                  [attr.data-target]="'#experienceModal'"><svg-icon
+                    src="assets/icons/pencil.svg"></svg-icon>&nbsp;&nbsp;{{ "EDIT" |
                   translate
                   }}</a>
                 <a class="dropdown-item" (click)="onDeleteExp(exp)"><i class="fas fa-trash"></i>&nbsp;&nbsp;{{ "DELETE"

@@ -66,8 +66,10 @@
                                         aria-expanded="true" tooltip="更多"></i>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item color-gray" data-toggle="modal"
-                                            [attr.data-target]="'#modifiedproposal'" (click)="onModified(item)"><i
-                                                class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{ "EDIT" | translate }}</a>
+                                            [attr.data-target]="'#modifiedproposal'"
+                                            (click)="onModified(item)"><svg-icon
+                                                src="assets/icons/pencil.svg"></svg-icon>&nbsp;&nbsp;{{ "EDIT" |
+                                            translate }}</a>
                                         <a class="dropdown-item color-gray" data-toggle="modal"
                                             [attr.data-target]="'#deleteCommentModal'" (click)="onClickDelete(item)"><i
                                                 class="fas fa-trash"></i>&nbsp;&nbsp;{{ "DELETE" | translate }}</a>

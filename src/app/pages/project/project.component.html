@@ -87,7 +87,7 @@
           }}</span>
         <span *ngIf="currentProject?.owner == currentUser?.id" class="btn-standard ml-24" data-toggle="modal"
           [attr.data-target]="'#modifiedproject'">
-          <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{ "EDIT" | translate
+          <svg-icon src="assets/icons/pencil.svg"></svg-icon>&nbsp;&nbsp;{{ "EDIT" | translate
           }}</span>
       </div>
     </div>
@@ -142,7 +142,7 @@
           }}</span>
         <span *ngIf="currentProject?.owner == currentUser?.id" class="btn-standard ml-24" data-toggle="modal"
           [attr.data-target]="'#projectwork'">
-          <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{ "EDIT" | translate
+          <svg-icon src="assets/icons/pencil.svg"></svg-icon>&nbsp;&nbsp;{{ "EDIT" | translate
           }}</span>
       </div>
     </div>
@@ -156,8 +156,8 @@
                 class="fas fa-ellipsis-h color-gray text-18" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="true"></i>
               <div class="dropdown-menu"> <a class="dropdown-item color-gray" data-toggle="modal"
-                  [attr.data-target]="'#projectwork'" (click)="onClickWork(work)"><i
-                    class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{ "EDIT" | translate
+                  [attr.data-target]="'#projectwork'" (click)="onClickWork(work)"><svg-icon
+                    src="assets/icons/pencil.svg"></svg-icon>&nbsp;&nbsp;{{ "EDIT" | translate
                   }}</a> <a class="dropdown-item color-gray" (click)="onDeleteWork(work)"><i
                     class="fas fa-trash"></i>&nbsp;&nbsp;{{ "DELETE" | translate
                   }}</a></div>
@@ -247,7 +247,7 @@
         <span class="title mb-24 pl-10">{{ "RECRUITMENT" | translate
           }}</span>
         <span *ngIf="currentProject?.owner == currentUser?.id" class="btn-standard ml-24" (click)="onEditMembers()">
-          <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{ "EDIT" | translate
+          <svg-icon src="assets/icons/pencil.svg"></svg-icon>&nbsp;&nbsp;{{ "EDIT" | translate
           }}</span>
       </div>
     </div>

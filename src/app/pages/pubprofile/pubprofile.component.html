@@ -67,7 +67,7 @@
 
           <span *ngIf="currentUser?.id == userProfile.id" class="btn-standard" data-toggle="modal"
             [attr.data-target]="'#editprofile'" (click)="initProfileForm()">
-            <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{ "EDIT" | translate }}</span>
+            <svg-icon src="assets/icons/pencil.svg"></svg-icon>&nbsp;&nbsp;{{ "EDIT" | translate }}</span>
         </div>
       </div>
       <div class="frame">
@@ -184,7 +184,7 @@
                   <div class="col-md-12" style=" display:inline-block;">
                     <div class="exp-bar-2">
                       <span class="exp-position">{{project.position? project.position:this.msg.noTitle}}</span>
-                      <!--  <a data-toggle="modal" [attr.data-target]="'#modal_project'"><i class="fas fa-pencil-alt"></i></a> -->
+                      <!--  <a data-toggle="modal" [attr.data-target]="'#modal_project'"><svg-icon src="assets/icons/pencil.svg"></svg-icon></a> -->
                       <div class="exp-duration">
                         <span>{{project.firstDate | date : 'yyyy-MM-dd'}}</span><span
                           *ngIf="IsNullorEmpty(project.lastDate)">~ {{project.lastDate |
@@ -255,7 +255,8 @@
               <!--Menu-->
               <div class="dropdown-menu dropdown-primary" aria-labelledby="dropdownMenu2">
                 <a class="dropdown-item" (click)="onEditExp(exp)" data-toggle="modal"
-                  [attr.data-target]="'#experienceModal'"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{ "EDIT" |
+                  [attr.data-target]="'#experienceModal'"><svg-icon
+                    src="assets/icons/pencil.svg"></svg-icon>&nbsp;&nbsp;{{ "EDIT" |
                   translate }}</a>
                 <a class="dropdown-item" (click)="onDeleteExp(exp)"><i class="fas fa-trash"></i>&nbsp;&nbsp;{{ "DELETE"
                   | translate }}</a>

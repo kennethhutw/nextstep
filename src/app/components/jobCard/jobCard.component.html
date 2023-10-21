@@ -16,8 +16,8 @@
           class="fas fa-ellipsis-h color-gray text-18" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="true"></i>
         <div class="dropdown-menu"> <a class="dropdown-item color-gray" data-toggle="modal"
-            [attr.data-target]="'#modifiedJob'" (click)="onModifyJobItem(item)"><i
-              class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{ "EDIT" | translate
+            [attr.data-target]="'#modifiedJob'" (click)="onModifyJobItem(item)"><svg-icon
+              src="assets/icons/pencil.svg"></svg-icon>&nbsp;&nbsp;{{ "EDIT" | translate
             }}</a> <a class="dropdown-item color-gray" (click)="onDeleteJobItem(item)"><i
               class="fas fa-trash"></i>&nbsp;&nbsp;{{ "DELETE" | translate
             }}</a></div>

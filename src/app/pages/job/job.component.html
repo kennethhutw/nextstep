@@ -44,7 +44,7 @@
           }}</span>
         <span *ngIf="currentRecruit ?.createdBy == currentUser?.id" class="btn-standard ml-24" data-toggle="modal"
           [attr.data-target]="'#modifiedJob'" (click)="onModifyJob(currentRecruit)">
-          <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{ "EDIT" | translate
+          <svg-icon src="assets/icons/pencil.svg"></svg-icon>&nbsp;&nbsp;{{ "EDIT" | translate
           }}</span>
       </div>
       <div class="col-md-12 frame-news">

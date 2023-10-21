@@ -32,11 +32,6 @@
                     <ng-container *ngIf="publishedprojects">
                         <div class="row  pl-15 mt-3">
                             <ng-container *ngFor="let item of  publishedprojects; let i = index">
-                                <!--
-                                <app-project-bar style="width: 100%;" (onDelete)="onClickDelete($event, item)"
-                                    [isShowEdit]="'false'" [isShowUser]="'false'" isShowRemove="'false'"
-                                    [isShowSetting]="'false'" [project]="item"></app-project-bar> -->
-
                                 <div class="card  cursor-pointer"
                                     [ngClass]="{ 'first_row': i == 0 ,'last_row': i == publishedprojects.length -1 }">
                                     <div class="d-flex">
@@ -106,9 +101,9 @@
                             }}</span>
                     </div>
                     <ng-container *ngIf="draftedprojects">
-                        <div class="row pl-15">
+                        <div class="row pl-15  mt-3">
                             <ng-container *ngFor="let item of  draftedprojects; let i = index">
-                                <div class="card mt-3 cursor-pointer"
+                                <div class="card cursor-pointer"
                                     [ngClass]="{ 'first_row': i == 0 ,'last_row': i == draftedprojects.length -1 }">
                                     <div class="d-flex">
                                         <p class="text-md m-0">{{item.name}}
