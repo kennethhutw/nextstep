@@ -20,7 +20,14 @@ export class AuthStore {
 
   user$: Observable<UserInterface> = this.subject.asObservable();
 
+  /*
+  0:logout
+  1:login
+  2:forcedlogout
+  */
 
+  private _logoutState = new BehaviorSubject(0);
+  logoutState = this._logoutState.asObservable();
 
   isLoggedIn$: Observable<boolean>;
   isLoggedOut$: Observable<boolean>;
@@ -126,6 +133,7 @@ export class AuthStore {
           localStorage.setItem("access_token", resResult["token"]);
           localStorage.setItem(AUTH_DATA, JSON.stringify(_user));
           this.subject.next(_user);
+          this._logoutState.next(1);
         }),
         shareReplay()
       );
@@ -176,6 +184,9 @@ export class AuthStore {
       });
   }
 
+  forecdLogout() {
+    this._logoutState.next(2);
+  }
 
 
   logout() {
@@ -184,6 +195,7 @@ export class AuthStore {
 
     this.isLoggedOut$ = this.isLoggedIn$.pipe(map((LoggedIn) => !LoggedIn));
     localStorage.removeItem(AUTH_DATA);
+    this._logoutState.next(0);
   }
 
   getUserData() {
@@ -221,7 +233,7 @@ export class AuthStore {
     const link = domain + url + '?uid=' + uid + '&time=' + timeInMs + '&role=' + role;
 
     return this.emailService.authenticateEmail(
-      'Welcome to the FormosArt platform!',
+      'Welcome to the NextStep platform!',
       email,
       link,
       uid);

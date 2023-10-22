@@ -247,7 +247,7 @@ export class SettingsComponent implements OnInit {
 
         if (res['result'] == 'successful') {
           //this.passwordMsg = "Updated successfully";
-          this.toastSrv.showToast(this.msg.changePSWTitle,
+          this.toastSrv.showToast("",
             this.msg.updateSuc,
             this.toastSrv.iconClasses.success);
           this.submitted = false;
@@ -256,11 +256,11 @@ export class SettingsComponent implements OnInit {
           this.passwordMsg = res['message'];
           if ("Password is not correct" === this.passwordMsg) {
             this.passwordMsg = this.msg.oldPSWWrong;
-            this.toastSrv.showToast(this.msg.changePSWTitle,
+            this.toastSrv.showToast("",
               this.passwordMsg,
               this.toastSrv.iconClasses.error);
           } else {
-            this.toastSrv.showToast(this.msg.changePSWTitle,
+            this.toastSrv.showToast("",
               this.msg.updateFailed,
               this.toastSrv.iconClasses.error);
           }
@@ -268,7 +268,7 @@ export class SettingsComponent implements OnInit {
 
       }, error => {
         console.log("reset password failed", error);
-        this.toastSrv.showToast(this.msg.changePSWTitle,
+        this.toastSrv.showToast("",
           this.msg.updateFailed,
           this.toastSrv.iconClasses.error);
       })
@@ -286,18 +286,18 @@ export class SettingsComponent implements OnInit {
 
     this.userSettingSrv.update(params).subscribe(res => {
       if (res['result'] == 'successful') {
-        this.toastSrv.showToast(title,
+        this.toastSrv.showToast("",
           this.msg.updateSuc,
           this.toastSrv.iconClasses.success);
       } else {
-        this.toastSrv.showToast(title,
+        this.toastSrv.showToast("",
           this.msg.updateFailed,
           this.toastSrv.iconClasses.error);
       }
 
     }, (error => {
       console.error("update setting failed", error);
-      this.toastSrv.showToast(title,
+      this.toastSrv.showToast("",
         this.msg.updateFailed,
         this.toastSrv.iconClasses.error);
     }))
@@ -314,18 +314,18 @@ export class SettingsComponent implements OnInit {
     }
     this.userSettingSrv.update(params).subscribe(res => {
       if (res['result'] == 'successful') {
-        this.toastSrv.showToast(title,
+        this.toastSrv.showToast("",
           this.msg.updateSuc,
           this.toastSrv.iconClasses.success);
       } else {
-        this.toastSrv.showToast(title,
+        this.toastSrv.showToast("",
           this.msg.updateFailed,
           this.toastSrv.iconClasses.error);
       }
 
     }, (error => {
       console.error("cannot get setting.", error);
-      this.toastSrv.showToast(title,
+      this.toastSrv.showToast("",
         this.msg.updateFailed,
         this.toastSrv.iconClasses.error);
     }))

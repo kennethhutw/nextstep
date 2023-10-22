@@ -351,12 +351,12 @@ export class MyProjectProfileComponent implements OnInit, AfterViewInit {
       if (res['result'] === 'successful') {
         this.projectMsg = this.msg.updateSuc;
         this.mode = "view";
-        this.toastSrv.showToast('Success', this.projectMsg, this.toastSrv.iconClasses.success);
+        this.toastSrv.showToast('', this.projectMsg, this.toastSrv.iconClasses.success);
       }
     }, error => {
       this.projectMsg = this.msg.updateFailed;
       console.error("updated error", error);
-      this.toastSrv.showToast('Failed', this.projectMsg, this.toastSrv.iconClasses.error);
+      this.toastSrv.showToast('', this.projectMsg, this.toastSrv.iconClasses.error);
     })
   }
 
@@ -383,12 +383,12 @@ export class MyProjectProfileComponent implements OnInit, AfterViewInit {
       if (res['result'] === 'successful') {
         this.projectMsg = "存草稿成功";
         this.mode = "view";
-        this.toastSrv.showToast('Success', "存草稿成功 ", this.toastSrv.iconClasses.success);
+        this.toastSrv.showToast('', "存草稿成功 ", this.toastSrv.iconClasses.success);
       }
     }, error => {
       this.projectMsg = "存草稿失敗";
       console.error("updated error", error);
-      this.toastSrv.showToast('Failed', "存草稿失敗", this.toastSrv.iconClasses.error);
+      this.toastSrv.showToast('', "存草稿失敗", this.toastSrv.iconClasses.error);
     })
   }
 

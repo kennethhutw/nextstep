@@ -570,11 +570,11 @@ export class FindProjectComponent implements OnInit {
           0,
           this.currentUser.id
         ).then(res => { });
-        this.toastSrv.showToast('Success',
+        this.toastSrv.showToast('',
           this.toastSrv.followingStr + this.toastSrv.successfulStr,
           this.toastSrv.iconClasses.success);
       } else {
-        this.toastSrv.showToast('Failed',
+        this.toastSrv.showToast('',
           this.toastSrv.followingStr + this.toastSrv.failedStr,
           this.toastSrv.iconClasses.error);
       }
@@ -600,11 +600,11 @@ export class FindProjectComponent implements OnInit {
           0,
           this.currentUser.id
         ).then(res => { });
-        this.toastSrv.showToast('Success',
+        this.toastSrv.showToast('',
           this.toastSrv.unfollowingStr + this.toastSrv.successfulStr,
           this.toastSrv.iconClasses.success);
       } else {
-        this.toastSrv.showToast('Failed',
+        this.toastSrv.showToast('',
           this.toastSrv.unfollowingStr + this.toastSrv.failedStr,
           this.toastSrv.iconClasses.error);
       }
@@ -630,11 +630,11 @@ export class FindProjectComponent implements OnInit {
           0,
           this.currentUser.id
         ).then(res => { });
-        this.toastSrv.showToast('Success',
+        this.toastSrv.showToast('',
           this.toastSrv.collectStr + this.toastSrv.successfulStr,
           this.toastSrv.iconClasses.success);
       } else {
-        this.toastSrv.showToast('Failed',
+        this.toastSrv.showToast('',
           this.toastSrv.collectStr + this.toastSrv.failedStr,
           this.toastSrv.iconClasses.error);
       }
@@ -661,17 +661,17 @@ export class FindProjectComponent implements OnInit {
           0,
           this.currentUser.id
         ).then(res => { });
-        this.toastSrv.showToast('Success',
+        this.toastSrv.showToast('',
           this.toastSrv.uncollectStr + this.toastSrv.successfulStr,
           this.toastSrv.iconClasses.success);
       } else {
-        this.toastSrv.showToast('Failed',
+        this.toastSrv.showToast('',
           this.toastSrv.uncollectStr + this.toastSrv.failedStr,
           this.toastSrv.iconClasses.error);
       }
     }).catch(error => {
-      console.log("取消收藏", error)
-      this.toastSrv.showToast('Failed',
+
+      this.toastSrv.showToast('',
         this.toastSrv.uncollectStr + this.toastSrv.failedStr,
         this.toastSrv.iconClasses.error);
     });

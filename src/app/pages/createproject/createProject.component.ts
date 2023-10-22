@@ -63,10 +63,6 @@ export class CreateProjectComponent implements OnInit, ComponentCanDeactivate {
       stages: ["", Validators.required]
     });
 
-    // this.projectForm.controls['name'].valueChanges.subscribe(value => {
-    //   this.isSaveChange = false;
-    // });
-
     let _lang = localStorage.getItem("lang");
     if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
       this.translateSrv.use(_lang);

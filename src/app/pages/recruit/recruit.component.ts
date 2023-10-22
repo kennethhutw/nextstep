@@ -605,11 +605,11 @@ export class RecruitComponent implements OnInit {
           0,
           this.currentUser.id
         ).then(res => { });
-        this.toastSrv.showToast('Success',
+        this.toastSrv.showToast("",
           this.toastSrv.collectStr + this.toastSrv.successfulStr,
           this.toastSrv.iconClasses.success);
       } else {
-        this.toastSrv.showToast('Failed',
+        this.toastSrv.showToast("",
           this.toastSrv.collectStr + this.toastSrv.failedStr,
           this.toastSrv.iconClasses.error);
       }
@@ -634,17 +634,17 @@ export class RecruitComponent implements OnInit {
           0,
           this.currentUser.id
         ).then(res => { });
-        this.toastSrv.showToast('Success',
+        this.toastSrv.showToast("",
           this.toastSrv.uncollectStr + this.toastSrv.successfulStr,
           this.toastSrv.iconClasses.success);
       } else {
-        this.toastSrv.showToast('Failed',
+        this.toastSrv.showToast("",
           this.toastSrv.uncollectStr + this.toastSrv.failedStr,
           this.toastSrv.iconClasses.error);
       }
     }).catch(error => {
       console.log("取消收藏", error)
-      this.toastSrv.showToast('Failed',
+      this.toastSrv.showToast("",
         this.toastSrv.uncollectStr + this.toastSrv.failedStr,
         this.toastSrv.iconClasses.error);
     });
@@ -671,7 +671,7 @@ export class RecruitComponent implements OnInit {
       params
     ).then(res => {
       if (res["result"] == "successful") {
-        this.toastSrv.showToast('Success',
+        this.toastSrv.showToast("",
           this.toastSrv.applysendsuc,
           this.toastSrv.iconClasses.success);
         this.selectedApplication = null;
@@ -689,12 +689,12 @@ export class RecruitComponent implements OnInit {
           }
         })
       } else {
-        this.toastSrv.showToast('Failed',
+        this.toastSrv.showToast("",
           this.toastSrv.applysendfailed,
           this.toastSrv.iconClasses.error);
       }
     }).catch(error => {
-      this.toastSrv.showToast('Failed',
+      this.toastSrv.showToast("",
         this.toastSrv.applysendfailed,
         this.toastSrv.iconClasses.error);
     })

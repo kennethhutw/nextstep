@@ -149,11 +149,11 @@ export class AdminUsersComponent implements OnInit {
         this.userSrv.deleteUser(id).subscribe(res => {
           if (res["result"] == "successful") {
             this.getAllUser();
-            this.toastSrv.showToast('Success',
+            this.toastSrv.showToast('',
               "delete " + name,
               this.toastSrv.iconClasses.success);
           } else {
-            this.toastSrv.showToast('Failed',
+            this.toastSrv.showToast('',
               res['message'],
               this.toastSrv.iconClasses.error);
           }
@@ -165,7 +165,7 @@ export class AdminUsersComponent implements OnInit {
 
     } catch (error) {
       console.error('delete user failed', error);
-      this.toastSrv.showToast('Failed',
+      this.toastSrv.showToast('',
         error.message,
         this.toastSrv.iconClasses.error);
     }

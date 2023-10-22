@@ -74,9 +74,9 @@ export class AdminDelegateEmailComponent implements OnInit {
 
   showToaster(success: boolean, message: string) {
     if (success) {
-      this.toasterSrv.showToast('Success', message, this.toasterSrv.iconClasses.success);
+      this.toasterSrv.showToast("", message, this.toasterSrv.iconClasses.success);
     } else {
-      this.toasterSrv.showToast('Failed', message, this.toasterSrv.iconClasses.error);
+      this.toasterSrv.showToast("", message, this.toasterSrv.iconClasses.error);
     }
   }
 

@@ -236,18 +236,18 @@ export class FeedbackComponent implements OnInit {
 
         this.displayItems = this.allitems;
         this.editedItem = null;
-        this.toastSrv.showToast(this.msg.feedbackStr,
+        this.toastSrv.showToast("",
           this.msg.deletefulStr,
           this.toastSrv.iconClasses.success);
       } else {
-        this.toastSrv.showToast(this.msg.feedbackStr,
+        this.toastSrv.showToast("",
           this.msg.deletefailedStr,
           this.toastSrv.iconClasses.error);
       }
       this.closeExpbutton.nativeElement.click();
     }, (error) => {
       console.log("error", error);
-      this.toastSrv.showToast(this.msg.feedbackStr,
+      this.toastSrv.showToast("",
         this.msg.deletefailedStr,
         this.toastSrv.iconClasses.error);
       this.closeExpbutton.nativeElement.click();

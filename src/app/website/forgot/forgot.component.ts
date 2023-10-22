@@ -79,18 +79,16 @@ export class ForgotComponent implements OnInit {
       link).subscribe(sendRes => {
         if (sendRes['result'] == 'successful') {
           this.startTimer();
-          //this.toastSrv.showToast('Success', "Reset Email Sent", this.toastSrv.iconClasses.success);
           this.submitted = false;
 
         } else {
           this.errorMsg = sendRes['message'];
-          // this.toastSrv.showToast('Failed', sendRes['message'], this.toastSrv.iconClasses.error);
           this.submitted = false;
         }
 
       }, error => {
         console.error(` sendResetEmail error`, error);
-        // this.toastSrv.showToast('Failed', error, this.toastSrv.iconClasses.error);
+
         this.submitted = false;
       });
 

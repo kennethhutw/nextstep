@@ -11,7 +11,7 @@ import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AuthService, TokenInterceptor } from "./../_guards";
+import { TokenInterceptor } from "./../_guards";
 import { Utility, SocialMediaUtility, TimeUtility } from "../_helpers";
 import { BsModalService, ModalModule } from "ngx-bootstrap/modal";
 
@@ -105,8 +105,6 @@ export function createLoader(http: HttpClient) {
     ErrorDialogService,
     LoadingDialogService,
     BsModalService,
-    AuthService,
-
     ...AppServices.services,
     {
       provide: ErrorHandler,

@@ -24,6 +24,7 @@ export class AuthGuard implements CanActivate {
         if (res['data']) {
           return true;
         } else {
+          this.auth.forecdLogout();
           this.auth.logout();
           this.router.navigate(['/']);
           return false;
@@ -31,21 +32,12 @@ export class AuthGuard implements CanActivate {
       }));
     }
     else {
+      this.auth.forecdLogout();
       this.auth.logout();
       this.router.navigate(['/']);
       return false;
     }
   }
-
-  //CanActivateChild
-  //canActivateChild(): Observable<boolean | UrlTree> {}
-
-  //   canActivateChild(
-  //     childRoute: ActivatedRouteSnapshot,
-  //     state: RouterStateSnapshot
-  //   ): Observable<boolean | UrlTree> {
-  //     return this.checkIfAuthenticated();
-  //   }
 
   private checkIfAuthenticated() {
     return this.auth.isLoggedIn$.pipe(

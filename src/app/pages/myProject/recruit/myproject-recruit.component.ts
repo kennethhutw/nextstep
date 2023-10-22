@@ -360,14 +360,14 @@ export class MyProjectRecruitComponent implements OnInit {
       if (res["result"] === "successful") {
         this.recruitForm.reset();
         this.close_recruit_button.nativeElement.click();
-        this.toastSrv.showToast('Success',
+        this.toastSrv.showToast('',
           " " + values.position + this.msg.updateSuc,
           this.toastSrv.iconClasses.success);
         this.refreshRecruitList();
         this.selectedEditItem = null;
       }
     }).catch(error => {
-      this.toastSrv.showToast('Failed',
+      this.toastSrv.showToast('',
         error.message + " " + this.msg.updateFailed,
         this.toastSrv.iconClasses.error);
     })
@@ -394,17 +394,17 @@ export class MyProjectRecruitComponent implements OnInit {
             });
 
 
-            this.toastSrv.showToast('Success',
+            this.toastSrv.showToast('',
               " " + item.position + this.msg.deleted,
               this.toastSrv.iconClasses.success);
           } else {
-            this.toastSrv.showToast('Failed',
+            this.toastSrv.showToast('',
               res['message'],
               this.toastSrv.iconClasses.error);
           }
         }).catch(error => {
           console.error("Delete failed! " + error.message);
-          this.toastSrv.showToast('Failed',
+          this.toastSrv.showToast('',
             error.message,
             this.toastSrv.iconClasses.error);
         })
@@ -468,14 +468,14 @@ export class MyProjectRecruitComponent implements OnInit {
       if (res["result"] === "successful") {
         this.recruitForm.reset();
         this.close_recruit_button.nativeElement.click();
-        this.toastSrv.showToast('Success',
+        this.toastSrv.showToast('',
           " " + values.position + this.msg.insertSuc,
           this.toastSrv.iconClasses.success);
         this.refreshRecruitList();
         this.selectedEditItem = null;
       }
     }, error => {
-      this.toastSrv.showToast('Failed',
+      this.toastSrv.showToast('',
         error.message + this.msg.insertFailed,
         this.toastSrv.iconClasses.error);
     })

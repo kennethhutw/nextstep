@@ -6,7 +6,6 @@ import {
     HttpInterceptor,
     HttpErrorResponse
 } from '@angular/common/http';
-import { AuthService } from './auth.service';
 import { Observable, throwError } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
 
@@ -17,7 +16,7 @@ import { LoadingDialogService } from "../_shared/loading/loading-dialog.service"
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
     constructor(
-        public auth: AuthService,
+
         private errorDialogService: ErrorDialogService,
         private loadingDialogService: LoadingDialogService) { }
     intercept(request: HttpRequest<any>,
@@ -29,14 +28,7 @@ export class TokenInterceptor implements HttpInterceptor {
                 Authorization: `NEXTSTEP ${localStorage.getItem('access_token')}`
             }
         });
-        /*     if (request.url.indexOf('https://pro-api.coinmarketcap.com') == -1) {
-                request = request.clone({
-                    setHeaders: {
-                        Authorization: `Crypto ${this.auth.getToken()}`
-                    }
-                });
-            } */
-        //  console.log(request);
+
         return next.handle(request).pipe(
             catchError((error: HttpErrorResponse) => {
                 console.error("Error from error interceptor", error);

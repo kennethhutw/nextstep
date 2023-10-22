@@ -135,17 +135,10 @@ Please let us know ASAP.
       selBox.select();
       document.execCommand('copy');
       document.body.removeChild(selBox);
-      this.toastr.showToast('Share', 'copied', 'success');
+      this.toastr.showToast("", 'copied', 'success');
     } catch (error) {
-      this.toastr.showToast('Share', 'Failed to generate the shared link', 'error');
+      this.toastr.showToast("", 'Failed to copy', 'error');
     }
   }
-  /*
-         this.toastr.showToast('Success', "新增評語成功", this.toastr.iconClasses.success);
-          }
-        }, (error => {
-    this.toastr.showToast('Failed', "新增評語失敗", this.toastr.iconClasses.error);
-  })) */
-
 
 }

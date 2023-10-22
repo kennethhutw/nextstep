@@ -33,7 +33,7 @@ export class ProjectSettingComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.toastSrv.showToast('Success', "Sent", this.toastSrv.iconClasses.success);
+    // this.toastSrv.showToast('', "Sent", this.toastSrv.iconClasses.success);
     // this.toastr.success('Hello world!', 'Toastr fun!');
     this.route.params.subscribe(params => {
       const _uid = params["id"];
@@ -67,13 +67,13 @@ export class ProjectSettingComponent implements OnInit {
 
     AuthEmailRes.subscribe(_res => {
       if (_res['result'] = 'successful') {
-        this.toastSrv.showToast('Success', "Sent", this.toastSrv.iconClasses.success);
+        this.toastSrv.showToast('', "Sent", this.toastSrv.iconClasses.success);
       } else {
-        this.toastSrv.showToast('Failed', _res['message'], this.toastSrv.iconClasses.error);
+        this.toastSrv.showToast('', _res['message'], this.toastSrv.iconClasses.error);
       }
     }, error => {
       console.error(` AuthEmailRes error`, error);
-      this.toastSrv.showToast('Failed', error, this.toastSrv.iconClasses.error);
+      this.toastSrv.showToast('', error, this.toastSrv.iconClasses.error);
     });
 
   }
@@ -87,14 +87,14 @@ export class ProjectSettingComponent implements OnInit {
       this.editedUser.email,
       link).subscribe(sendRes => {
         if (sendRes['result'] == 'successful') {
-          this.toastSrv.showToast('Success', "Reset Email Sent", this.toastSrv.iconClasses.success);
+          this.toastSrv.showToast('', "Reset Email Sent", this.toastSrv.iconClasses.success);
         } else {
-          this.toastSrv.showToast('Failed', sendRes['message'], this.toastSrv.iconClasses.error);
+          this.toastSrv.showToast('', sendRes['message'], this.toastSrv.iconClasses.error);
         }
 
       }, error => {
         console.error(` sendResetEmail error`, error);
-        this.toastSrv.showToast('Failed', error, this.toastSrv.iconClasses.error);
+        this.toastSrv.showToast('', error, this.toastSrv.iconClasses.error);
       });
   }
 

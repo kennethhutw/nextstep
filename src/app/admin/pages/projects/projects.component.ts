@@ -102,18 +102,18 @@ export class AdminProjectsComponent implements OnInit {
       this.projectSrv.delete(id, this.currentUser.id).then(res => {
         if (res["result"] == "successful") {
           this.getAll();
-          this.toastSrv.showToast('Success',
+          this.toastSrv.showToast("",
             "delete " + name,
             this.toastSrv.iconClasses.success);
         } else {
-          this.toastSrv.showToast('Failed',
+          this.toastSrv.showToast("",
             res['message'],
             this.toastSrv.iconClasses.error);
         }
       })
     } catch (error) {
       console.error('delete user failed', error);
-      this.toastSrv.showToast('Failed',
+      this.toastSrv.showToast("",
         error.message,
         this.toastSrv.iconClasses.error);
     }

@@ -511,9 +511,10 @@ Please let us know ASAP.
       selBox.select();
       document.execCommand('copy');
       document.body.removeChild(selBox);
-      this.toastSrv.showToast('Share', 'copied', 'success');
+      this.toastSrv.showToast('', 'copied', 'success');
     } catch (error) {
-      this.toastSrv.showToast('Share', 'Failed to generate the shared link', 'error');
+      console.log("error", error);
+      this.toastSrv.showToast('', 'Failed to copy', 'error');
     }
   }
 }

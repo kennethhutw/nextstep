@@ -64,7 +64,7 @@ export class UserInfoComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.currentUser = this.authStoreSrv.getUserData();
-    // this.toastSrv.showToast('Success', "Sent", this.toastSrv.iconClasses.success);
+    // this.toastSrv.showToast('', "Sent", this.toastSrv.iconClasses.success);
     // this.toastr.success('Hello world!', 'Toastr fun!');
     this.route.params.subscribe(params => {
       const _uid = params["id"];
@@ -193,14 +193,14 @@ export class UserInfoComponent implements OnInit, OnDestroy {
         link,
         this.currentUser.id).subscribe(sendRes => {
           if (sendRes['result'] == 'successful') {
-            this.toastSrv.showToast('Success', "Reject Email Sent", this.toastSrv.iconClasses.success);
+            this.toastSrv.showToast('', "Reject Email Sent", this.toastSrv.iconClasses.success);
           } else {
-            this.toastSrv.showToast('Failed', sendRes['message'], this.toastSrv.iconClasses.error);
+            this.toastSrv.showToast('', sendRes['message'], this.toastSrv.iconClasses.error);
           }
           // this.msg = true;
           // this.message = 'E-mail has been sent to reset your password.';
         }, error => {
-          this.toastSrv.showToast('Failed', error, this.toastSrv.iconClasses.error);
+          this.toastSrv.showToast('', error, this.toastSrv.iconClasses.error);
         });
     } catch (error) {
 
@@ -220,14 +220,14 @@ export class UserInfoComponent implements OnInit, OnDestroy {
       link,
       this.currentUser.id).subscribe(sendRes => {
         if (sendRes['result'] == 'successful') {
-          this.toastSrv.showToast('Success', "Approved Email Sent", this.toastSrv.iconClasses.success);
+          this.toastSrv.showToast('', "Approved Email Sent", this.toastSrv.iconClasses.success);
         } else {
-          this.toastSrv.showToast('Failed', sendRes['message'], this.toastSrv.iconClasses.error);
+          this.toastSrv.showToast('', sendRes['message'], this.toastSrv.iconClasses.error);
         }
         // this.msg = true;
         // this.message = 'E-mail has been sent to reset your password.';
       }, error => {
-        this.toastSrv.showToast('Failed', error, this.toastSrv.iconClasses.error);
+        this.toastSrv.showToast('', error, this.toastSrv.iconClasses.error);
       });
   }
 

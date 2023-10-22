@@ -12,6 +12,7 @@ import {
   EmailService,
   UserService,
   NotificationService,
+  ToastService
 } from "../../_services";
 import {
   AuthStore
@@ -48,6 +49,9 @@ export class HeaderComponent implements OnInit {
   notis;
 
   SelectedLang = "en";
+  msg = {
+    logout: ""
+  }
   constructor(
     private utility: Utility,
     private fb: FormBuilder,
@@ -57,7 +61,8 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private notificationSrv: NotificationService,
     private emailSrv: EmailService,
-    public authStoreSrv: AuthStore
+    public authStoreSrv: AuthStore,
+    private toasterSrv: ToastService,
   ) {
     let _lang = localStorage.getItem("lang");
     if (!this.utility.IsNullOrEmpty(_lang)) {
@@ -67,8 +72,12 @@ export class HeaderComponent implements OnInit {
     this.dataSrv.langKey.subscribe((lang) => {
       if (!this.utility.IsNullOrEmpty(lang)) {
         this.translateSrv.use(lang);
+        this.init_terms();
       }
     });
+    this.init_terms();
+
+
   }
 
   ngOnInit() {
@@ -112,6 +121,18 @@ export class HeaderComponent implements OnInit {
         console.log("getNotifications ", error);
       })
     }
+
+    this.authStoreSrv.logoutState.subscribe(value => {
+      if (value == 2) {
+        this.toasterSrv.showToast("", this.msg.logout, this.toasterSrv.iconClasses.info);
+      }
+    })
+  }
+
+  init_terms() {
+    this.translateSrv.get("LOGOUT").subscribe((text: string) => {
+      this.msg.logout = text;
+    });
   }
 
   logoRedirect() {
@@ -138,9 +159,6 @@ export class HeaderComponent implements OnInit {
 
   onSignIn() {
 
-    // this.closeModal.nativeElement.click();
-    //  this.closeModal['el'].nativeElement.style.display = 'none';
-    //  this.closeModal['el'].nativeElement.classList.add('sshow');
     this.IsSignInFailed = false;
     const val = this.signinEmailForm.value;
     this.LoginFailedMsg = "Incorrect email or password.";
@@ -198,9 +216,6 @@ export class HeaderComponent implements OnInit {
   inValid() {
     return this.signinEmailForm.invalid;
   }
-
-
-
 
   emailsignin() {
     // let _password = this.signinEmailForm.value.password;

@@ -293,7 +293,7 @@ export class JobComponent implements OnInit {
       params
     ).then(res => {
       if (res["result"] == "successful") {
-        this.toastSrv.showToast('Success',
+        this.toastSrv.showToast('',
           this.toastSrv.applysendsuc,
           this.toastSrv.iconClasses.success);
         this.selectedApplication = null;
@@ -311,12 +311,12 @@ export class JobComponent implements OnInit {
           }
         })
       } else {
-        this.toastSrv.showToast('Failed',
+        this.toastSrv.showToast('',
           this.toastSrv.applysendfailed,
           this.toastSrv.iconClasses.error);
       }
     }).catch(error => {
-      this.toastSrv.showToast('Failed',
+      this.toastSrv.showToast('',
         this.toastSrv.applysendfailed,
         this.toastSrv.iconClasses.error);
     })
@@ -339,11 +339,11 @@ export class JobComponent implements OnInit {
         if (res['result'] == 'successful') {
           this.currentRecruit.followCount -= 1;
           this.currentRecruit.isFollowing = false;
-          this.toastSrv.showToast('Success',
+          this.toastSrv.showToast('',
             this.toastSrv.unfollowingStr + this.toastSrv.successfulStr,
             this.toastSrv.iconClasses.success);
         } else {
-          this.toastSrv.showToast('Failed',
+          this.toastSrv.showToast('',
             this.toastSrv.unfollowingStr + this.toastSrv.failedStr,
             this.toastSrv.iconClasses.success);
         }
@@ -358,11 +358,11 @@ export class JobComponent implements OnInit {
         if (res['result'] == 'successful') {
           this.currentRecruit.followCount += 1;
           this.currentRecruit.isFollowing = true;
-          this.toastSrv.showToast('Success',
+          this.toastSrv.showToast('',
             this.toastSrv.followingStr + this.toastSrv.successfulStr,
             this.toastSrv.iconClasses.success);
         } else {
-          this.toastSrv.showToast('Failed',
+          this.toastSrv.showToast('',
             this.toastSrv.followingStr + this.toastSrv.failedStr,
             this.toastSrv.iconClasses.success);
         }
@@ -381,11 +381,11 @@ export class JobComponent implements OnInit {
         if (res['result'] == 'successful') {
           this.currentRecruit.collectCount -= 1;
           this.currentRecruit.isCollected = false;
-          this.toastSrv.showToast('Success',
+          this.toastSrv.showToast('',
             this.toastSrv.uncollectStr + this.toastSrv.successfulStr,
             this.toastSrv.iconClasses.error);
         } else {
-          this.toastSrv.showToast('Failed',
+          this.toastSrv.showToast('',
             this.toastSrv.uncollectStr + this.toastSrv.failedStr,
             this.toastSrv.iconClasses.error);
         }
@@ -399,11 +399,11 @@ export class JobComponent implements OnInit {
         if (res['result'] == 'successful') {
           this.currentRecruit.collectCount += 1;
           this.currentRecruit.isCollected = true;
-          this.toastSrv.showToast('Success',
+          this.toastSrv.showToast('',
             this.toastSrv.collectStr + this.toastSrv.successfulStr,
             this.toastSrv.iconClasses.error);
         } else {
-          this.toastSrv.showToast('Failed',
+          this.toastSrv.showToast('',
             this.toastSrv.collectStr + this.toastSrv.failedStr,
             this.toastSrv.iconClasses.error);
         }
@@ -426,11 +426,11 @@ export class JobComponent implements OnInit {
           let _index = this.currentRecruit.others.findIndex((obj => obj.id == recruitId));
           this.currentRecruit.others[_index].isCollected = false;
 
-          this.toastSrv.showToast('Success',
+          this.toastSrv.showToast('',
             this.toastSrv.uncollectStr + this.toastSrv.successfulStr,
             this.toastSrv.iconClasses.error);
         } else {
-          this.toastSrv.showToast('Failed',
+          this.toastSrv.showToast('',
             this.toastSrv.uncollectStr + this.toastSrv.failedStr,
             this.toastSrv.iconClasses.error);
         }
@@ -445,11 +445,11 @@ export class JobComponent implements OnInit {
 
           let _index = this.currentRecruit.others.findIndex((obj => obj.id == recruitId));
           this.currentRecruit.others[_index].isCollected = true;
-          this.toastSrv.showToast('Success',
+          this.toastSrv.showToast('',
             this.toastSrv.collectStr + this.toastSrv.successfulStr,
             this.toastSrv.iconClasses.error);
         } else {
-          this.toastSrv.showToast('Failed',
+          this.toastSrv.showToast('',
             this.toastSrv.collectStr + this.toastSrv.failedStr,
             this.toastSrv.iconClasses.error);
         }
@@ -577,7 +577,7 @@ export class JobComponent implements OnInit {
         //   }
         // });
         this.close_recruit_button.nativeElement.click();
-        this.toastSrv.showToast('Success',
+        this.toastSrv.showToast('',
           " " + values.position + " " + this.msg.updateSuc,
           this.toastSrv.iconClasses.success);
         this.selectedApplication = null;
@@ -585,7 +585,7 @@ export class JobComponent implements OnInit {
 
       }
     }).catch(error => {
-      this.toastSrv.showToast('Failed',
+      this.toastSrv.showToast('',
         error.message,
         this.toastSrv.iconClasses.error);
     })

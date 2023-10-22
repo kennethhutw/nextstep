@@ -213,9 +213,9 @@ export class MentorProfileComponent implements OnInit {
             0,
             this.currentUser.id
           ).then(res => { });
-          this.toastSrv.showToast('Success', "取消追蹤成功 ", this.toastSrv.iconClasses.success);
+          this.toastSrv.showToast('', "取消追蹤成功 ", this.toastSrv.iconClasses.success);
         } else {
-          this.toastSrv.showToast('Failed', "取消追蹤失敗", this.toastSrv.iconClasses.error);
+          this.toastSrv.showToast('', "取消追蹤失敗", this.toastSrv.iconClasses.error);
         }
 
       });
@@ -237,9 +237,9 @@ export class MentorProfileComponent implements OnInit {
             0,
             this.currentUser.id
           ).then(res => { });
-          this.toastSrv.showToast('Success', "追蹤成功 ", this.toastSrv.iconClasses.success);
+          this.toastSrv.showToast('', "追蹤成功 ", this.toastSrv.iconClasses.success);
         } else {
-          this.toastSrv.showToast('Failed', "追蹤失敗", this.toastSrv.iconClasses.error);
+          this.toastSrv.showToast('', "追蹤失敗", this.toastSrv.iconClasses.error);
         }
       });
     }
@@ -264,13 +264,13 @@ export class MentorProfileComponent implements OnInit {
             0,
             this.currentUser.id
           ).then(res => { });
-          this.toastSrv.showToast('Success', "取消收藏成功 ", this.toastSrv.iconClasses.success);
+          this.toastSrv.showToast('', "取消收藏成功 ", this.toastSrv.iconClasses.success);
         } else {
-          this.toastSrv.showToast('Failed', "取消收藏失敗", this.toastSrv.iconClasses.error);
+          this.toastSrv.showToast('', "取消收藏失敗", this.toastSrv.iconClasses.error);
         }
       }).catch(error => {
         console.log("取消收藏", error)
-        this.toastSrv.showToast('Failed', "取消收藏失敗", this.toastSrv.iconClasses.error);
+        this.toastSrv.showToast('', "取消收藏失敗", this.toastSrv.iconClasses.error);
       });
     }
     else {
@@ -291,9 +291,9 @@ export class MentorProfileComponent implements OnInit {
             0,
             this.currentUser.id
           ).then(res => { });
-          this.toastSrv.showToast('Success', "收藏成功 ", this.toastSrv.iconClasses.success);
+          this.toastSrv.showToast('', "收藏成功 ", this.toastSrv.iconClasses.success);
         } else {
-          this.toastSrv.showToast('Failed', "收藏失敗", this.toastSrv.iconClasses.error);
+          this.toastSrv.showToast('', "收藏失敗", this.toastSrv.iconClasses.error);
         }
       });
     }
@@ -575,10 +575,10 @@ export class MentorProfileComponent implements OnInit {
           this.feedbackForm.reset();
           this.commentModel = "new";
           this.closefbbutton.nativeElement.click();
-          this.toastSrv.showToast('Success', "新增評語成功", this.toastSrv.iconClasses.success);
+          this.toastSrv.showToast('', "新增評語成功", this.toastSrv.iconClasses.success);
         }
       }, (error => {
-        this.toastSrv.showToast('Failed', "新增評語失敗", this.toastSrv.iconClasses.error);
+        this.toastSrv.showToast('', "新增評語失敗", this.toastSrv.iconClasses.error);
       }))
 
   }

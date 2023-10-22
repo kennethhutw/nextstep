@@ -100,35 +100,5 @@ export class MyProjectComponent implements OnInit {
     this.currentTab = tab;
   }
 
-  // onClickDelete($event, project) {
-  //   //Are you sure you want to delete
-  //   this.dialogSrv.confirmThis("你確定要刪除此專案 -[" + project.name + "]嗎? ",
-  //     () => {
-
-  //       this.projectSrv.delete(project.id, this.currentUser.id).then(res => {
-  //         if (res['result'] == "successful") {
-
-  //           this.publishedprojects = this.publishedprojects.filter(obj => {
-  //             return obj.id !== project.id
-  //           })
-  //           this.draftedprojects = this.draftedprojects.filter(obj => {
-  //             return obj.id !== project.id
-  //           })
-  //           this.toastSrv.showToast('Success',
-  //             " " + project.name + this.msg.deleted,
-  //             this.toastSrv.iconClasses.success);
-  //         } else {
-  //           this.toastSrv.showToast('Failed',
-  //             res['message'],
-  //             this.toastSrv.iconClasses.error);
-  //         }
-  //       }, (error) => {
-  //         console.log("error", error);
-  //       })
-  //     }, () => {
-  //       console.log("No ----");
-  //     });
-  // }
-
 
 }

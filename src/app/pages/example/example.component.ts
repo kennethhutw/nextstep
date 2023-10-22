@@ -55,12 +55,11 @@ export class ExampleComponent implements OnInit {
   }
 
   onAlert() {
-    this.toastSrv.showToast('Success', 'Success', this.toastSrv.iconClasses.info);
-    //  this.toastSrv.showToast2('Success', 'Success');
+    this.toastSrv.showToast('', 'Success', this.toastSrv.iconClasses.info);
   }
 
   onFailed() {
-    this.toastSrv.showToast('Failed', 'Success', this.toastSrv.iconClasses.warning);
+    this.toastSrv.showToast('', 'Success', this.toastSrv.iconClasses.warning);
   }
 
 }

@@ -32,9 +32,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         console.error("Error from error interceptor", error);
 
-        // this.errorDialogService.openDialog(
-        //     error.message
-        // , error.status);
         this.auth.logout();
         this.router.navigate(['/']);
         return throwError(error);
