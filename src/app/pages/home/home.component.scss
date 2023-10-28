@@ -85,10 +85,10 @@
   background-color: #F9FAFB;
 }
 
-/* #section_3 {
-  background-color: #FFF7E9;
+#section_3 {
+  background-color: #ffff;
 }
- */
+
 #section_4 {
   background-color: #FFF7E9;
 }
@@ -104,7 +104,7 @@
   }
 
   .btn-tg {
-    font-size: 32px;
+    font-size: 24px;
     font-weight: 500;
     margin-top: 3rem;
     background-color: #56BDF4 !important;
@@ -153,5 +153,55 @@
         font-weight: 500;
       }
     }
+  }
+}
+
+@media (max-width: 450px) {
+
+  #section_1 {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  #section_2 {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  #section_6 {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .section_card {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 60px;
+    padding-top: 60px;
+
+    .bar {
+      display: grid;
+      gap: 32px;
+
+      .bar_right {
+        text-align: center;
+      }
+    }
+  }
+
+  .title {
+
+    font-size: 32px;
+    line-height: 1.5em;
+  }
+
+  .sub_title {
+
+    font-size: 18px;
+    line-height: 1.5em;
+  }
+
+  #section_6 .btn-tg {
+    font-size: 24px;
   }
 }

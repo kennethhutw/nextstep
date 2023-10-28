@@ -4,6 +4,7 @@ import { CommentComponent } from './comment/comment.component';
 import { CommentsComponent } from './comments/comments.component';
 import { EmailTemplateCardComponent } from './emailTemplateCard/emailTemplateCard.component';
 import { JobCardComponent } from './jobCard/jobCard.component';
+import { LeftSidebarComponent } from './left-sidebar/left-sidebar.component';
 import { LogBarComponent } from './log-bar/log-bar.component';
 import { LinkPreviewComponent } from './linkpreview/linkpreview.component';
 import { MsgAlertBoxComponent } from './msgAlertBox/msgAlertBox.component';
@@ -27,6 +28,7 @@ export const components = [
     JobCardComponent,
     RadioItemComponent,
     RecruitCardComponent,
+    LeftSidebarComponent,
     LogBarComponent,
     LinkPreviewComponent,
     MsgAlertBoxComponent,
@@ -54,6 +56,7 @@ export { FooterComponent } from "./footer/footer.component";
 export { HeaderComponent } from "./header/header.component";
 export { JobCardComponent } from './jobCard/jobCard.component';
 export { SidebarComponent } from "./admin/sidebar/sidebar.component";
+export { LeftSidebarComponent } from './left-sidebar/left-sidebar.component';
 export { LoadingComponent } from './loading/loading.component';
 export { LinkPreviewComponent } from './linkpreview/linkpreview.component';
 export { LogBarComponent } from './log-bar/log-bar.component';

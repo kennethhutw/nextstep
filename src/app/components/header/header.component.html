@@ -42,36 +42,11 @@
           <a class="nav-link " [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
             routerLink="/ranking" (click)="ToggleNavBar()">{{ "RANKING" | translate }}</a>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
-            routerLink="/resources" (click)="ToggleNavBar()">資源</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
-            routerLink="/ideas" (click)="ToggleNavBar()">許願池
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
-            routerLink="/templates" (click)="ToggleNavBar()">範本</a>
-        </li>-->
+
         <li class="nav-item">
           <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
             routerLink="/feedback" (click)="ToggleNavBar()">{{ "FEEDBACK" | translate }}</a>
         </li>
-        <!--  <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-                    <i class="fa-fw fab fa-telegram icon"></i>
-          <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
-            (click)="ToggleNavBar()">Telegram</a>
-        </li> -->
-        <!--  <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-                  <i class="fa-fw fab fa-discord icon"></i>
-          <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
-            (click)="ToggleNavBar()">Discord</a>
-        </li>-->
-        <div>
-          <!-- <h4 style="color:red">{{this.DemoSite}}</h4> -->
-        </div>
 
       </ul>
 
@@ -96,7 +71,8 @@
         </li>
       </ul>
       <ul *ngIf="authStoreSrv.isLoggedIn$ | async" class="navbar-nav nav-flex-icons gap-15">
-        <li class="nav-item m-auto" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+        <li class="nav-item btn-createProject" [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }">
           <a class="btn-blue font-16" (click)="RouteToNewProject()">{{ "CREATEPROJECT" | translate }}</a>
         </li>
 
@@ -148,17 +124,6 @@
 
             <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
               [routerLink]="['/dashboard/myproject']">{{ "MYPROJECT" | translate }}</a>
-
-
-            <!-- <a class="dropdown-item" [routerLink]="['/dashboard/application']">{{ "BEMENTOR" | translate }}</a> -->
-            <!-- <a class="dropdown-item" [routerLink]="['/u/',currentUser?.uid]">{{
-                  "PUBPROFILE" | translate }}</a> -->
-            <!-- <a class="dropdown-item" [routerLink]="['/settings']">{{
-                  "DASHBOARD" | translate }}</a> -->
-            <!-- <a class="dropdown-item" routerLink="/artist/basic">{{ "EDITPROFILE" | translate }}</a> -->
-
-            <!-- <div class="dropdown-divider"> </div> -->
-            <!-- <a class="dropdown-item" href="#">登出</a> -->
             <button class="dropdown-item" (click)="Signout()">{{ "SIGNOUT" | translate }}</button>
           </div>
         </li>

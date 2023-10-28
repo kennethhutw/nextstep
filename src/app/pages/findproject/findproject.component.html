@@ -1,5 +1,113 @@
-<div id="findcontent" class=" mt-50">
-  <div>
+<div id="findcontent">
+  <app-left-sidebar [sidebarId]="'navbaSideMenuContent'">
+    <div header>
+      <div class="cursor-pointer" (click)="onCleanClick()"><span class="btn-clean">{{ "BTNCLEAR"
+          | translate }}</span></div>
+      <button type="button" class="btn-close text-reset close" type="button" data-toggle="collapse"
+        data-target="#navbaSideMenuContent" aria-controls="navbaSideMenuContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div body>
+      <aside class="sidebar">
+        <nav class="sidebar-menu pt-3 pb-3">
+          <ul class="menu-items">
+            <li class="mb-12">
+              <span class="title">{{ "PROJECT_STATUS"
+                | translate }}</span>
+            </li>
+            <li>
+              <input type="checkbox" [(ngModel)]="filterCondition.isFindPartner"
+                (change)="onProjectStatusChange($event)" data-key="project" />
+              <label class="option" for="firsttimeInput">{{ "FIND_MEMBER"
+                | translate }}</label>
+            </li>
+            <li>
+              <input type="checkbox" [(ngModel)]="filterCondition.isFunding" (change)="onProjectStatusChange($event)"
+                data-key="project" />
+              <label class="option" for="firsttimeInput">{{ "FIND_MONEY"
+                | translate }}</label>
+            </li>
+            <li>
+              <input type="checkbox" [(ngModel)]="filterCondition.isCofounder" (change)="onProjectStatusChange($event)"
+                data-key="project" />
+              <label class="option" for="firsttimeInput">{{
+                "FIND_COFOUNDER"
+                | translate }}</label>
+            </li>
+
+          </ul>
+
+          <ul class="menu-items">
+            <li class="mb-12">
+              <span class="title">{{
+                "INDUSTRY_TYPES"
+                | translate }}</span>
+            </li>
+            <li>
+              <input id="eComm" type="checkbox" [(ngModel)]="filterCondition.eComm" (change)="onTypeChange($event)"
+                data-key="project" />
+              <label class="option" for="eComm">{{
+                "ECOMM"
+                | translate }}</label>
+            </li>
+            <li>
+              <input id="medical" type="checkbox" [(ngModel)]="filterCondition.medical" (change)="onTypeChange($event)"
+                data-key="project" />
+              <label class="option" for="medical">{{
+                "MEDICAL"
+                | translate }}</label>
+            </li>
+            <li>
+              <input id="ai" type="checkbox" [(ngModel)]="filterCondition.ai" (change)="onTypeChange($event)"
+                data-key="project" />
+              <label class="option" for="ai">{{
+                "AI"
+                | translate }}</label>
+            </li>
+            <li>
+              <input id="transport" type="checkbox" [(ngModel)]="filterCondition.transport"
+                (change)="onTypeChange($event)" data-key="project" />
+              <label class="option" for="transport">{{
+                "TRANSPORT"
+                | translate }}</label>
+            </li>
+            <li>
+              <input id="edutech" type="checkbox" [(ngModel)]="filterCondition.edutech" (change)="onTypeChange($event)"
+                data-key="project" />
+              <label class="option" for="edutech">{{
+                "EDUTECH"
+                | translate }}</label>
+            </li>
+            <li>
+              <input id="fintech" type="checkbox" [(ngModel)]="filterCondition.fintech" (change)="onTypeChange($event)"
+                data-key="project" />
+              <label class="option" for="fintech">{{
+                "FINTECH"
+                | translate }}</label>
+            </li>
+            <li>
+              <input id="sharingeconomy" type="checkbox" [(ngModel)]="filterCondition.sharingeconomy"
+                (change)="onTypeChange($event)" data-key="project" />
+              <label class="option" for="sharingeconomy">{{
+                "SHARINGECONOMY"
+                | translate }}</label>
+            </li>
+            <li>
+              <input id="game" type="checkbox" [(ngModel)]="filterCondition.game" (change)="onTypeChange($event)"
+                data-key="project" />
+              <label class="option" for="game">{{
+                "GAME"
+                | translate }}</label>
+            </li>
+          </ul>
+
+        </nav>
+      </aside>
+    </div>
+  </app-left-sidebar>
+  <div class="dt-sidebar">
     <div class="cursor-pointer pl-2" (click)="onCleanClick()"><span class="btn-clean">{{ "BTNCLEAR"
         | translate }}</span></div>
 
@@ -151,10 +259,18 @@
 
   </div>
   <div *ngIf="!isInit">
-    <div class="row" *ngIf="foundItemNum >0">
-      <p> {{foundItemNum}} {{ "NFOUND"
-        | translate }}</p>
+    <div class="row-reverse">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbaSideMenuContent"
+        aria-controls="navbaSideMenuContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-bars icon-frame"></i>
+      </button>
 
+    </div>
+    <div class="row" *ngIf="foundItemNum >0">
+      <div class="col-md-12">
+        <p> {{foundItemNum}} {{ "NFOUND"
+          | translate }}</p>
+      </div>
     </div>
     <div class="col-md-12 empty-text-center h-100" *ngIf="foundItemNum  ==-1 && displayItems.length ==0">
       <svg-icon class="icon" src="assets/icons/magnifier.svg"></svg-icon>

@@ -1,5 +1,6 @@
 #footer_bg {
   background-color: #E3E5EC;
+  padding: 60px 80px;
 }
 
 
@@ -29,11 +30,24 @@ a:hover {
   font-size: 48px;
 }
 
+.foot_link {
+  flex-direction: row-reverse;
+}
 
+@media (max-width: 450px) {
+  #footer_bg {
+    padding: 60px 60px;
+  }
 
-@media (max-width: 500px) {
   .col-sm-6 {
     flex: 0 0 50%;
     max-width: 60%;
+  }
+
+  .foot_link {
+    display: grid;
+    gap: 10px;
+
+    padding-left: 0px;
   }
 }

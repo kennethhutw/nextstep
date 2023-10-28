@@ -1,0 +1,37 @@
+ #navbaSideMenuContent {
+     z-index: 110;
+     position: absolute;
+     height: 100%;
+     width: 90%;
+     background-color: #fff;
+     padding: 10px 20px;
+
+     .sidebar {
+         position: relative;
+     }
+
+     .side-bar-header>div {
+         display: flex;
+         justify-content: space-between;
+
+         .close {
+             float: right;
+             font-size: 1.5rem;
+             font-weight: 700;
+             line-height: 1;
+             color: #000;
+             text-shadow: 0 1px 0 #fff;
+             opacity: .5;
+         }
+
+         .close {
+             padding: 1rem 1rem;
+             margin: -1rem -1rem -1rem auto;
+         }
+
+         .close:hover {
+             color: #000;
+             text-decoration: none;
+         }
+     }
+ }

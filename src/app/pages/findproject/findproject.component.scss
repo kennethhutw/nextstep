@@ -2,19 +2,24 @@
   padding-bottom: 30px;
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 0px 200px 1fr;
+  margin-top: 50px;
+
+  .navbar-toggler {
+    display: none;
+  }
+
+  @media (max-width: 450px) {
+    grid-template-columns: none;
+    margin-top: 10px;
+
+    .navbar-toggler {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+  }
 }
 
-@media (min-width: 1900px) {
-  /* #findcontent {
-   margin-left: 15%;
-   margin-right: 15%;
-  } */
-}
-
-.show_tags {
-  height: auto !important;
-}
 
 .search {
   background-color: #fff;
@@ -30,17 +35,13 @@
   background-repeat: no-repeat;
 }
 
-.title {
-  margin-bottom: 12px;
-  font-weight: 700;
-  font-size: 36px;
-}
 
 .title {
   font-size: 16px;
   font-weight: 600;
   font-family: 'Noto Sans TC';
   line-height: 20px;
+  margin-bottom: 12px;
 }
 
 .option {

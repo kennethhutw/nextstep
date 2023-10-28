@@ -1,5 +1,5 @@
 .fixed-top {
-  z-index: 100;
+  z-index: 150;
   border-bottom: 1px solid #dee2e6;
 }
 
@@ -52,6 +52,25 @@
   color: #FF859A !important;
 }
 
+.btn-createProject {
+  margin: auto !important;
+}
+
+
+@media (max-width: 450px) {
+  #navbarLangDropdown {
+    margin-left: -10px;
+  }
+
+  .nav-flex-icons {
+    margin-top: 10px;
+  }
+
+  .btn-createProject {
+    margin: unset !important;
+  }
+}
+
 .fa-bell {
   color: #8F95A8;
 }
@@ -84,11 +103,7 @@
 
 .lang-box {
   display: grid;
-  // padding: 16px 16px;
   min-width: max-content;
-  // gap: 16px;
-
-  /*  box-shadow: -2px -2px 4px rgb(0 0 0 / 8%), 2px 2px 4px rgb(0 0 0 / 8%); */
   border-radius: 4px;
 
   .dropdown-item {
@@ -108,8 +123,6 @@
   padding: 16px 16px;
   min-width: max-content;
   gap: 16px;
-
-  /*  box-shadow: -2px -2px 4px rgb(0 0 0 / 8%), 2px 2px 4px rgb(0 0 0 / 8%); */
   border-radius: 4px;
 
   .notification-more {
@@ -173,8 +186,6 @@ i.noti {
   background-size: contain;
   text-decoration: none;
   color: #8F95A8;
-
-
 }
 
 .background-gray {

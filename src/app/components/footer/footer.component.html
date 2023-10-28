@@ -3,13 +3,13 @@
   <div class="row">
     <div class="col-md-3 foot_titles">
       <span class="color-black foot_title">Next Step</span>
-      <span class="color-black">© 2023 Next Step. All rights reserved.</span>
+
       <!-- <a class="navbar-brand" routerLink="/index">
         <img class="footer-logo" src="./../../../assets/images/formosart_footer_logo.svg" />
       </a> -->
     </div>
 
-    <div class=" form-inline col-md-9 color-black" style="    flex-direction: row-reverse;">
+    <div class="foot_link form-inline col-md-9 color-black">
 
       <a [routerLink]="['/feedback']"><span class="item ">{{ "FEEDBACK" | translate }}</span></a>
       <a [routerLink]="['/qa']"><span class="item">{{ "Q&A" | translate }}</span></a>
@@ -28,9 +28,7 @@
 
 
 
-    <div class="col-md-2 test">
-
-    </div>
   </div>
+  <div class="row col-md-12 mt-10"><span class="color-black">© 2023 Next Step. All rights reserved.</span></div>
 </div>
 <!-- footer area end -->

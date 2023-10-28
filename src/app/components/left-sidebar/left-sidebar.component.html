@@ -1,0 +1,7 @@
+<div class="collapse navbar-collapse" id="{{ sidebarId }}">
+  <div class="side-bar-header" #headererContent>
+    <ng-content select="[header]"></ng-content>
+  </div>
+  <ng-content select="[body]"></ng-content>
+  <ng-content select="[footer]"></ng-content>
+</div>
