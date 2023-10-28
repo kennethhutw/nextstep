@@ -6,12 +6,16 @@ app-linkpreview {
     margin-top: 20px;
     gap: 10px;
     border-radius: 12px;
-    // box-shadow: 1px 2px 9px rgba(0, 0, 0, 0.04) !important;
     box-shadow: 1px 2px 9px 0px #0000000A !important;
     display: grid;
     grid-auto-flow: column;
     grid-template-rows: 1fr;
     grid-template-columns: 20% 80%;
+
+    @media (max-width: 450px) {
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   .preview-text {
@@ -19,9 +23,13 @@ app-linkpreview {
 
     .title {
       font-size: 20px;
-      font-weight: 400;
+      font-weight: 600;
       line-height: 30px;
       color: rgb(33, 37, 41);
+
+      @media (max-width: 450px) {
+        font-size: 18px;
+      }
     }
 
     .description {

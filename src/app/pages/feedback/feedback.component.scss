@@ -1,4 +1,15 @@
 app-feedback {
+    #feedback-container {
+        margin-top: 50px;
+        margin-bottom: 30px;
+
+        @media (max-width: 450px) {
+            margin-top: 10px;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+    }
+
     a {
         color: #69738C;
     }
@@ -23,7 +34,13 @@ app-feedback {
         grid-auto-flow: column;
         grid-template-rows: 1fr;
         grid-template-columns: 184px 184px 192px auto 146px;
-        gap: 20px
+        gap: 20px;
+
+        @media (max-width: 450px) {
+            grid-auto-flow: row;
+            grid-template-columns: unset;
+            gap: 10px
+        }
     }
 
     .search {
@@ -45,7 +62,12 @@ app-feedback {
         font-weight: 500;
         line-height: 28.8px;
         border: 0px solid #fff;
-        /*    background-color: #fff; */
+
+        @media (max-width: 450px) {
+            font-size: 18px;
+            padding-left: 8px;
+            padding-right: 8px;
+        }
 
     }
 

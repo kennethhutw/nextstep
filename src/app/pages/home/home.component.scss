@@ -55,6 +55,11 @@
     text-align: center;
     align-items: center;
 
+    @media (max-width: 450px) {
+
+      flex-direction: column;
+    }
+
     .item {
       display: flex;
       flex-direction: column;

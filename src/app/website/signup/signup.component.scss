@@ -18,6 +18,27 @@ app-signup {
             flex-direction: column;
             padding-right: 100px;
         }
+
+        @media (max-width: 450px) {
+            display: flex;
+            flex-direction: column;
+            grid-template-columns: unset;
+            align-items: center;
+
+            .left-area {
+                padding-top: 50px;
+                padding-right: unset;
+
+                img {
+                    height: 400px;
+                }
+            }
+
+            .frame {
+                padding-left: unset;
+                margin-top: unset;
+            }
+        }
     }
 
     .signin {
@@ -78,9 +99,6 @@ app-signup {
         font-weight: 400;
     }
 
-
-
-
     .next-font {
         font-weight: 500;
         line-height: 56px;
@@ -90,6 +108,16 @@ app-signup {
         border: 2px solid #ced4da;
         border-radius: 3px;
         height: 50px;
+
+        @media (max-width: 450px) {
+            padding-left: 0px;
+
+            svg {
+                margin-right: 10px;
+                width: 25px;
+                height: 25px;
+            }
+        }
     }
 
     .frame {

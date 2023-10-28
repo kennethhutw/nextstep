@@ -15,6 +15,29 @@ body {
     height: 100%;
     background-color: white;
 
+    @media (max-width: 450px) {
+        display: flex;
+        flex-direction: column;
+        grid-template-columns: unset;
+        align-items: center;
+
+        .forget-left-area {
+            padding-top: 50px;
+            padding-right: unset;
+
+            img {
+                height: 400px;
+            }
+        }
+
+        .frame {
+            padding-right: 10% !important;
+            padding-left: 10% !important;
+            margin-top: 10px !important;
+            margin-bottom: 20px !important;
+        }
+    }
+
     .mt-12 {
         margin-top: 12px;
     }
@@ -44,10 +67,10 @@ body {
     .frame {
         padding: 15px;
         background-color: white;
-
         padding-right: 40%;
         margin-top: 300px;
         padding-left: 10%;
+        max-width: 513px;
 
         a {
             color: black;

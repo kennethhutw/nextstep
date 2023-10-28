@@ -45,7 +45,12 @@ app-inspiration {
         font-weight: 500;
         line-height: 28.8px;
         border: 0px solid #fff;
-        /*    background-color: #fff; */
+
+        @media (max-width: 450px) {
+            font-size: 18px;
+            padding-left: 8px;
+            padding-right: 8px;
+        }
 
     }
 
