@@ -2,8 +2,85 @@
 <div class=" container-bg">
     <div class="container">
         <div id="setting" class=" mb-50 row">
-            <aside class="col-md-2 sidebar ">
-                <nav class="sidebar-menu pt-3 pb-3">
+            <app-left-sidebar [sidebarId]="'navbaSideMenuContent'">
+                <div header>
+                    <button type="button" class="btn-close text-reset close" type="button" data-toggle="collapse"
+                        data-target="#navbaSideMenuContent" aria-controls="navbaSideMenuContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div body>
+                    <aside class="sidebar ">
+                        <nav class="  sidebar-menu pt-3 pb-3">
+                            <ul class="menu-items">
+                                <li>
+                                    <a class="menu-item" [routerLinkActive]="['active']"
+                                        [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/dashboard']">
+                                        <svg-icon class="icon" src="assets/icons/home.svg"></svg-icon><span>{{ "HOME"
+                                            | translate }}</span>
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="menu-item" [routerLinkActive]="['active']"
+                                        [routerLinkActiveOptions]="{ exact: true }"
+                                        [routerLink]="['/dashboard/settings']">
+                                        <svg-icon class="icon" src="assets/icons/cog.svg"></svg-icon><span>{{
+                                            "MYSETTING"
+                                            | translate }}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="menu-item" [routerLinkActive]="['active']"
+                                        [routerLinkActiveOptions]="{ exact: true }"
+                                        [routerLink]="['/dashboard/myproject']">
+                                        <svg-icon class="icon" src="assets/icons/file.svg"></svg-icon><span>{{
+                                            "MYPROJECT"
+                                            | translate }}</span>
+                                    </a>
+                                    <div class="sub-menu" [ngClass]="{ 'show-menu': expand }">
+                                        <ul *ngFor="let menu of projects">
+                                            <li>
+                                                <a>{{ menu.name }}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a class="menu-item" [routerLinkActive]="['active']"
+                                        [routerLinkActiveOptions]="{ exact: true }"
+                                        [routerLink]="['/dashboard/collection']">
+                                        <svg-icon class="icon" src="assets/icons/heart.svg"></svg-icon><span>{{
+                                            "MYCOLLECTION"
+                                            | translate }}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="menu-item" [routerLinkActive]="['active']"
+                                        [routerLinkActiveOptions]="{ exact: true }"
+                                        [routerLink]="['/dashboard/notifications']">
+                                        <svg-icon class="icon" src="assets/icons/bell.svg"></svg-icon><span>{{ "MYNOTI"
+                                            | translate }}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="menu-item" [routerLinkActive]="['active']"
+                                        [routerLinkActiveOptions]="{ exact: true }"
+                                        [routerLink]="['/dashboard/messages']">
+                                        <svg-icon class="icon" src="assets/icons/message.svg"></svg-icon><span>{{
+                                            "MYMSG"
+                                            | translate }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </aside>
+
+                </div>
+            </app-left-sidebar>
+            <aside class="col-12 col-md-2 sidebar ">
+                <nav class="dt-sidebar  sidebar-menu pt-3 pb-3">
                     <ul class="menu-items">
                         <li>
                             <a class="menu-item" [routerLinkActive]="['active']"
@@ -64,11 +141,21 @@
                         </li> -->
                     </ul>
                 </nav>
+                <div class="row-reverse">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbaSideMenuContent" aria-controls="navbaSideMenuContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <i class="fa fa-bars icon-frame"></i>
+                    </button>
+
+                </div>
             </aside>
-            <div class="col-md-10">
+            <div class="col-12 col-md-10">
                 <router-outlet (activate)="onActivate($event)"></router-outlet>
             </div>
         </div>
+
+
     </div>
 </div>
 <app-footer></app-footer>

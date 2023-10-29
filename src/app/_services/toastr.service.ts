@@ -24,9 +24,9 @@ export class ToastService {
     applysendfailed: string = "";
 
     constructor(
-        private toastr: ToastrService,
+        private toasterSrv: ToastrService,
     ) {
-        this.options = this.toastr.toastrConfig;
+        this.options = this.toasterSrv.toastrConfig;
         this.options.positionClass = 'toast-top-right';
         this.options.timeOut = 1500;
         // this.options.disableTimeOut = true
@@ -92,11 +92,11 @@ export class ToastService {
 
 
     showToast(title, message, type) {
-        this.toastr.show(message, title, this.options, 'toast-' + type);
+        this.toasterSrv.show(message, title, this.options, 'toast-' + type);
     }
 
     showToast2(title, message) {
-        this.toastr.show(message, title, this.options);
+        this.toasterSrv.show(message, title, this.options);
     }
 
 }

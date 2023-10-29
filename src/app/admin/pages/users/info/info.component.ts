@@ -64,8 +64,6 @@ export class UserInfoComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.currentUser = this.authStoreSrv.getUserData();
-    // this.toastSrv.showToast('', "Sent", this.toastSrv.iconClasses.success);
-    // this.toastr.success('Hello world!', 'Toastr fun!');
     this.route.params.subscribe(params => {
       const _uid = params["id"];
       this.userSrv.getUserBasicInfo(_uid).then(res => {

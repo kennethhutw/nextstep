@@ -1,18 +1,44 @@
-.title {
-  font-size: 40px;
-  font-weight: 400;
-}
-
-
-
 .item {
   padding-left: 20px;
+}
+
+#move-to {
+  height: 40px;
+}
+
+.tab-pane {
+  margin-top: 1rem;
+}
+
+@media (max-width: 450px) {
+
+  #new-job {
+    font-size: 14px;
+  }
+
+  #move-to {
+    font-size: 14px;
+  }
+
+  .nav-link {
+    font-size: 16px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .tab-pane {
+    overflow-y: scroll;
+    position: relative;
+    background-color: #fff;
+
+  }
 }
 
 
 .empty {
   padding: 30px;
   font-size: 20px;
+  background-color: #F9FAFB;
 }
 
 .bar {
@@ -28,4 +54,10 @@
   border-bottom: 1px solid rgba(0, 0, 0, .125);
   border-radius: 0.25rem;
   padding: 12px 24px;
+
+
+
+  @media (max-width: 450px) {
+    grid-template-columns: 40px 170px 170px 320px 170px 42px;
+  }
 }

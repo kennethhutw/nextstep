@@ -59,10 +59,13 @@
 
                                     </div>
 
+
                                     <div class="d-flex align-items-center justify-right">
                                         <div class="dropdown "><i class="fas fa-ellipsis-h color-gray"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></i>
-                                            <div class="dropdown-menu"> <a class="dropdown-item"
+                                            <div class="dropdown-menu"
+                                                [ngClass]="{ 'dropdown-menu-right': this.isMobile == true  }"> <a
+                                                    class="dropdown-item"
                                                     [routerLink]="['/myproject/'+this.item?.id+'/members']">
                                                     <svg-icon src="assets/icons/invite.svg"></svg-icon>&nbsp;&nbsp;{{
                                                     "INVITE" | translate
@@ -132,13 +135,16 @@
 
                                     <div class="d-flex align-items-center justify-right">
                                         <div class="dropdown "><i class="fas fa-ellipsis-h color-gray"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></i>
-                                            <div class="dropdown-menu"> <a class="dropdown-item"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                            <div class="dropdown-menu"
+                                                [ngClass]="{ 'dropdown-menu-right': this.isMobile == true  }">
+                                                <a class="dropdown-item"
                                                     [routerLink]="['/myproject/'+this.item?.id+'/members']">
                                                     <svg-icon src="assets/icons/invite.svg"></svg-icon>&nbsp;&nbsp;{{
                                                     "INVITE" | translate
                                                     }}
-                                                </a><a class="dropdown-item"
+                                                </a>
+                                                <a class="dropdown-item"
                                                     [routerLink]="['/myproject/'+this.item?.id+'/settings']">
                                                     <svg-icon src="assets/icons/cog.svg"></svg-icon>&nbsp;&nbsp;{{
                                                     "PROJECTSETTING" | translate
@@ -153,7 +159,8 @@
                                                     <svg-icon src="assets/icons/trash.svg"></svg-icon>&nbsp;&nbsp;{{
                                                     "DELETE" | translate
                                                     }}
-                                                </a></div>
+                                                </a>
+                                            </div>
 
                                         </div>
 

@@ -3,7 +3,15 @@
   flex-direction: column;
 }
 
+@media (max-width: 450px) {
+  ui-radio-item .bar {
+    padding-left: 0px !important;
+  }
 
+  .bar {
+    padding-left: 0px !important;
+  }
+}
 
 
 .item-delete {

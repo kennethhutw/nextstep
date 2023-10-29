@@ -1,27 +1,24 @@
-<div class=" mb-80">
+<div id="project-log">
     <div class="row">
-        <div class="col-md-6">
-            <span class="title">{{ "PROJECTSLOGS"
+        <div class="col-12 col-md-6">
+            <span class="myProject-title ">{{ "PROJECTSLOGS"
                 | translate }}</span>
         </div>
-        <div class="col-md-3">
+        <div class="col-12 col-md-3 filter">
             <select class="form-control" [value]="selectedUser" (change)="onUserChange($event)">
                 <option value="">{{ "ALL"
                     | translate }}</option>
                 <option *ngFor="let opt of members" [value]="opt.id">{{opt.name}}
                 </option>
-                <!-- </ng-template> -->
             </select>
 
         </div>
-        <div class="col-md-3">
-
+        <div class="col-12 col-md-3 filter">
             <select class="form-control" [value]="selectedOrder" (change)="onSortChange($event)">
                 <option value="">{{ "LATEST"
                     | translate }}</option>
                 <option value="old">{{ "OLDEST"
                     | translate }}</option>
-                <!-- </ng-template> -->
             </select>
         </div>
     </div>

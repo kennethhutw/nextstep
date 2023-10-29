@@ -1,7 +1,8 @@
 import {
   ViewEncapsulation,
   Component,
-  OnInit
+  OnInit,
+  HostListener
 } from '@angular/core';
 
 import {
@@ -37,6 +38,17 @@ export class MyProjectComponent implements OnInit {
     deleted: "",
   }
 
+  isMobile = false;
+  @HostListener("window:resize", ["$event"])
+  getScreenSize(event?) {
+    let screenWidth = window.innerWidth;
+    if (screenWidth < 500) {
+      this.isMobile = true;
+    } else {
+      this.isMobile = false;
+    }
+  }
+
   constructor(
     private translateSrv: TranslateService,
     public utilitySrv: Utility,
@@ -58,9 +70,11 @@ export class MyProjectComponent implements OnInit {
         this.init_terms(lang);
       }
     });
+    this.getScreenSize();
   }
 
   ngOnInit() {
+
     this.spinnerSrv.show();
     this.currentUser = this.authStoreSrv.getUserData();
     this.projectSrv.getProjectsByUid(

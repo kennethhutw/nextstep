@@ -3,13 +3,29 @@ app-setting {
     background-color: #F9FAFB;
     padding-top: 24px;
     padding-bottom: 30px;
+    min-height: 110vh;
+
   }
 
   #setting {
-    min-height: 110vh;
+
     margin-top: 100px;
     padding-left: 0px;
     padding-right: 50px;
+
+    .navbar-toggler {
+      display: none;
+    }
+
+    @media (max-width: 450px) {
+      .navbar-toggler {
+        display: flex;
+        flex-direction: column-reverse;
+      }
+
+      padding-right: 0px;
+      margin-top: 50px;
+    }
 
     .sub-menu {
       transition: max-height 0.5s;
@@ -35,9 +51,6 @@ app-setting {
           cursor: pointer;
           display: block;
 
-          // svg-icon svg path {
-          //   fill: rgb(105, 115, 140) !important;
-          // }
 
           .icon {
             svg path {

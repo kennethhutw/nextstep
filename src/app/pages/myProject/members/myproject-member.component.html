@@ -1,17 +1,19 @@
 <div class=" mb-80">
     <div class="row">
-        <div class="col-md-12 mb-20" style="display: inline-block;">
-            <h1>{{ "PROJECTMEMBERMANAGEMENT"
-                | translate }}</h1>
+        <div class="d-inline-block col-12  col-md-4 mb-20">
+            <span class="myProject-title">{{ "PROJECTMEMBERMANAGEMENT"
+                | translate }}</span>
+        </div>
+        <div class="d-flex col-12  col-md-8 mb-20 actions">
 
-            <a type="button" class="btn btn-dropdown mr-10 float-right" data-toggle="modal"
-                [attr.data-target]="'#invitedMember'"><i class="fa fa-plus"></i> {{ "INVITE"
+            <a type="button" class="btn btn-dropdown " data-toggle="modal" [attr.data-target]="'#invitedMember'"><i
+                    class="fa fa-plus"></i> {{ "INVITE"
                 | translate }}
             </a>
-            <a type="button" class="btn btn-dropdown mr-10 float-right" data-toggle="modal"
-                [attr.data-target]="'#createRcruitModal'" (click)="onCreateRecruit()"><i class="fas fa-plus"></i>
+            <a type="button" class="btn btn-dropdown  " data-toggle="modal" [attr.data-target]="'#createRcruitModal'"
+                (click)="onCreateRecruit()"><i class="fas fa-plus"></i>
                 {{"NEWJOB" | translate }}</a>
-            <select *ngIf="this.isAllowEdit()" class="btn  mr-10 float-right h-40" [disabled]="!canMoveMember"
+            <select *ngIf="this.isAllowEdit()" class="btn btn-dropdown   h-40" [disabled]="!canMoveMember"
                 [value]="status" (change)="onStatusChange($event)">
                 <option value="null">{{"MOVETO" | translate }}</option>
                 <option value="current">{{"CURRENTMEMBER" | translate }}</option>
@@ -26,7 +28,7 @@
     </div>
     <div *ngIf="!loading" class="row">
         <div class="col-md-12">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <ul class="nav nav-tabs hidden-xs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link " id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
                         [ngClass]="{ 'active': currentTab === 'current' }" type="button" role="tab"
@@ -66,11 +68,28 @@
                 </li>
 
             </ul>
+
+            <select class="btn btn-dropdown mobileTab" [value]="currentTab" (change)="onChangeTab($event)">
+                <option value="current">{{"CURRENTMEMBER"
+                    | translate }}</option>
+                <option value="candidate">{{"CANDIDATE"
+                    | translate }}</option>
+                <option value="inviting">{{"INVITING"
+                    | translate }}</option>
+                <option value="interview">{{"INTERVIEW"
+                    | translate }}</option>
+                <option value="rejected">{{"REJECTEDMEMBER"
+                    | translate }}</option>
+                <option value="history">{{"PASTMEMBER"
+                    | translate }}</option>
+
+                <!-- </ng-template> -->
+            </select>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'current' }" id="home" role="tabpanel"
                     aria-labelledby="home-tab">
                     <div class="row  pl-15">
-                        <div class="bar mt-3 cursor-pointer w-100">
+                        <div class="bar  cursor-pointer w-100">
                             <div class="d-flex align-items-center mt-10">
                                 <label class="switch" for="allitem">
                                     <input type="checkbox" id="allitem" />
@@ -177,7 +196,7 @@
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'candidate' }" role="tabpanel"
                     aria-labelledby="candidate-tab">
                     <div *ngIf="candidates.length >0" class="row  pl-15">
-                        <div class="bar mt-3 cursor-pointer w-100">
+                        <div class="bar  cursor-pointer w-100">
                             <div class="d-flex align-items-center mt-10">
                                 <label class="switch" for="allitem">
                                     <input type="checkbox" id="allitem" />
@@ -257,7 +276,7 @@
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'inviting' }" role="tabpanel"
                     aria-labelledby="inviting-tab">
                     <div *ngIf="invitingList.length >0" class="row  pl-15">
-                        <div class="bar-6 mt-3 cursor-pointer w-100">
+                        <div class="bar-6  cursor-pointer w-100">
                             <div class="d-flex align-items-center mt-10">
                                 <label class="switch" for="allitem">
                                     <input type="checkbox" id="allitem" />
@@ -344,7 +363,7 @@
                 </div>
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'interview' }" role="tabpanel"
                     aria-labelledby="interview-tab">
-                    <div *ngIf="interviews.length >0" class="bar mt-3 cursor-pointer w-100">
+                    <div *ngIf="interviews.length >0" class="bar  cursor-pointer w-100">
                         <div class="d-flex align-items-center mt-10">
                             <label class="switch" for="allitem">
                                 <input type="checkbox" id="allitem" />
@@ -419,7 +438,7 @@
                 </div>
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'rejected' }" role="tabpanel"
                     aria-labelledby="rejected-tab">
-                    <div *ngIf="rejected.length >0" class="bar mt-3 cursor-pointer w-100">
+                    <div *ngIf="rejected.length >0" class="bar  cursor-pointer w-100">
                         <div class="d-flex align-items-center mt-10">
                             <label class="switch" for="allitem">
                                 <input type="checkbox" id="allitem" />
@@ -495,7 +514,7 @@
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'history' }" role="tabpanel"
                     aria-labelledby="history-tab">
                     <div *ngIf="past.length >0" class="row  pl-15">
-                        <div class="bar mt-3 cursor-pointer w-100">
+                        <div class="bar  cursor-pointer w-100">
                             <div class="d-flex align-items-center mt-10">
                                 <label class="switch" for="allitem">
                                     <input type="checkbox" id="allitem" />

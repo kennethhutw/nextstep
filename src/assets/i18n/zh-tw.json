@@ -172,6 +172,8 @@
   "CURRENT": "目前",
   "CLOSED": "已關閉",
   "INVITE": "邀請",
+  "INVITESENDSUC": "送出邀請成功",
+  "INVITESENDFAILED": "送出邀請成功",
   "VERIFYEMAIL": "信箱驗證",
   "IDENTITY": "身分認證",
   "FOLLOWINGAMEMBER": "與一名成員互相追蹤",

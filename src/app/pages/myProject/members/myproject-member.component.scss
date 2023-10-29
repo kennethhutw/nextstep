@@ -1,9 +1,22 @@
+.actions {
+  gap: 10px;
+  justify-content: end;
+
+  .btn {
+    display: inline-flex;
+    height: 40px;
+  }
+}
+
+
 .chat-title {
   font-size: 18px;
   font-weight: 500;
 }
 
-
+.tab-pane {
+  margin-top: 1rem;
+}
 
 .action-item {
   padding-left: 20px;
@@ -21,6 +34,7 @@
 .empty {
   padding: 30px;
   font-size: 20px;
+  background-color: #F9FAFB;
 }
 
 
@@ -61,12 +75,62 @@
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, .125);
+  border-bottom: 1px solid #dee2e6;
   border-radius: 0.25rem;
   padding: 12px 24px;
+
+  .fa-envelope {
+    border: 0px !important;
+  }
 }
 
 .text-md {
   color: #333333;
   word-break: break-all;
+}
+
+.mobileTab {
+  display: none;
+}
+
+@media (max-width: 450px) {
+
+  .actions {
+    gap: 10px;
+    justify-content: start;
+
+    .btn {
+      display: inline-flex;
+      height: 40px;
+    }
+  }
+
+  .nav-link {
+    font-size: 16px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .tab-pane {
+    overflow-y: scroll;
+    position: relative;
+    background-color: #fff;
+
+  }
+
+  .bar {
+    grid-template-columns: 72px 150px 123px 160px 160px 42px;
+  }
+
+  .bar-6 {
+    grid-template-columns: 72px 140px 123px 123px 72px 160px 84px;
+  }
+
+  .hidden-xs {
+    display: none;
+  }
+
+  .mobileTab {
+    display: block;
+  }
 }

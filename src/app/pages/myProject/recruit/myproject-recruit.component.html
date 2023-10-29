@@ -1,11 +1,11 @@
 <div class=" mb-80">
     <div class="row">
-        <div class="col-md-12  mb-20" style="display: inline-block;">
-            <span class="title">{{"RECRUITMANAGEMENT" | translate }}</span>
-            <a type="button" class="btn btn-dropdown mr-10 float-right" data-toggle="modal"
+        <div class="d-inline-block col-md-12  mb-20">
+            <span class="myProject-title">{{"RECRUITMANAGEMENT" | translate }}</span>
+            <a id="new-job" type="button" class="btn btn-dropdown mr-10 float-right" data-toggle="modal"
                 [attr.data-target]="'#createRcruitModal'"><i class="fas fa-plus"></i>
                 {{"NEWJOB" | translate }}</a>
-            <select class="btn btn-dropdown mr-10 float-right h-40" [disabled]="!canMove" [value]="status"
+            <select id="move-to" class="btn btn-dropdown mr-10 float-right" [disabled]="!canMove" [value]="status"
                 (change)="onStatusChange($event)">
                 <option value="null">{{"MOVETO" | translate }}</option>
                 <option value="current">{{"CURRENT" | translate }}</option>
@@ -21,7 +21,7 @@
         <div class="col-md-12">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link " id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+                    <button class="nav-link " id="current-tab" data-bs-toggle="tab" data-bs-target="#home"
                         [ngClass]="{ 'active': currentTab === 'current' }" type="button" role="tab"
                         (click)="changeTab('current')"><span class="num"
                             [ngClass]="{ 'active': currentTab === 'current' }">{{current.length}}</span>&nbsp;{{"CURRENT"
@@ -43,10 +43,10 @@
 
             </ul>
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'current' }" id="home" role="tabpanel"
-                    aria-labelledby="home-tab">
+                <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'current' }" id="current" role="tabpanel"
+                    aria-labelledby="current-tab">
                     <div *ngIf="current.length >0" class="row  pl-15">
-                        <div class="bar mt-3 cursor-pointer w-100">
+                        <div class="col-12 bar  cursor-pointer w-100">
                             <div class="d-flex align-items-center mt-10">
                                 <label class="switch" for="allitem">
                                     <input type="checkbox" id="allitem" />
@@ -91,7 +91,7 @@
                                         <p class="text-md m-0">{{item.position}}
                                         </p>
                                     </div>
-                                    <div class="d-flex align-items-center">
+                                    <div class=" align-items-center">
                                         <ng-container *ngIf="item.skills">
 
                                             <ng-container *ngFor="let tag of  item.skills; let i = index">
@@ -140,7 +140,7 @@
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'drafts' }" role="tabpanel"
                     aria-labelledby="new-tab">
                     <div *ngIf="drafts.length >0" class="row  pl-15">
-                        <div class="bar mt-3 cursor-pointer w-100">
+                        <div class="bar  cursor-pointer w-100">
                             <div class="d-flex align-items-center mt-10">
                                 <label class="switch" for="allitem">
                                     <input type="checkbox" id="allitem" />
@@ -185,7 +185,7 @@
                                         <p class="text-md m-0">{{item.position}}
                                         </p>
                                     </div>
-                                    <div class="d-flex align-items-center">
+                                    <div class=" align-items-center">
                                         <ng-container *ngIf="item.skills">
 
                                             <ng-container *ngFor="let tag of  item.skills; let i = index">
@@ -235,7 +235,7 @@
                 <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'closed' }" role="tabpanel"
                     aria-labelledby="new-tab">
                     <div *ngIf="closed.length >0" class="row  pl-15">
-                        <div class="bar mt-3 cursor-pointer w-100">
+                        <div class="bar  cursor-pointer w-100">
                             <div class="d-flex align-items-center mt-10">
                                 <label class="switch" for="allitem">
                                     <input type="checkbox" id="allitem" />
@@ -279,7 +279,7 @@
                                         <p class="text-md m-0">{{item.position}}
                                         </p>
                                     </div>
-                                    <div class="d-flex align-items-center">
+                                    <div class=" align-items-center">
                                         <ng-container *ngIf="item.skills">
 
                                             <ng-container *ngFor="let tag of  item.skills; let i = index">

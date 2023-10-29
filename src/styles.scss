@@ -1816,6 +1816,7 @@ input[type=radio] {
 }
 
 .tag {
+  display: inline-block;
   padding: 4px 8px 4px 8px;
   font-size: 14px;
   line-height: 20px;
@@ -2314,4 +2315,13 @@ a {
 .row-reverse {
   display: flex;
   flex-direction: row-reverse;
+}
+
+.myProject-title {
+  font-size: 32px;
+  font-weight: 600;
+
+  @media (max-width: 450px) {
+    font-size: 28px;
+  }
 }

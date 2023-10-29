@@ -5,8 +5,6 @@ app-user-card {
         margin-bottom: 1rem;
     }
 
-
-
     .title {
         white-space: nowrap;
         font-size: 16px;
@@ -48,7 +46,6 @@ app-user-card {
     }
 
     .name {
-
         text-align: left;
         font-weight: 400;
         color: #333333;
@@ -80,6 +77,11 @@ app-user-card {
 
         font-size: 14px;
         justify-content: flex-end;
+
+        @media (max-width: 450px) {
+            justify-content: flex-start;
+            padding-top: 10px;
+        }
 
 
         .fa-comment-dots {

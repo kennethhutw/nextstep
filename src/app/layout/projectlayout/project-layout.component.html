@@ -2,10 +2,70 @@
 <div class="container-bg">
     <div class="container">
         <div id="project" class=" mb-50 row">
-            <div class="col-md-2">
-                <aside class="sidebar ">
+            <app-left-sidebar [sidebarId]="'navbaSideMenuContent'">
+                <div header>
+                    <button type="button" class="btn-close text-reset close" type="button" data-toggle="collapse"
+                        data-target="#navbaSideMenuContent" aria-controls="navbaSideMenuContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class=" sidebar" body>
                     <nav class="sidebar-menu pt-3 pb-3">
-                        <ul class="menu-items" style="padding-left: 20px;">
+                        <ul class="menu-items">
+                            <li>
+                                <h3> <a class="menu-item" [routerLinkActive]="['active']"
+                                        [routerLinkActiveOptions]="{ exact: true }"
+                                        [routerLink]="['/dashboard/myproject']">
+                                        <i class="fas fa-angle-left"></i>&nbsp; {{ "MYPROJECT"
+                                        | translate }}</a></h3>
+                            </li>
+                            <li>
+                                <a class="menu-item" [routerLinkActive]="['active']"
+                                    [routerLinkActiveOptions]="{ exact: true }"
+                                    [routerLink]="['/myproject/'+projectId+'/profile']"
+                                    [ngClass]="{ 'active': currentMenu ==='profile' }">
+                                    {{ "PROJECTPROFILE"
+                                    | translate }}
+                                </a>
+                            </li>
+                            <li>
+                                <a class="menu-item" [routerLinkActive]="['active']"
+                                    [routerLinkActiveOptions]="{ exact: true }"
+                                    [routerLink]="['/myproject/'+projectId+'/members']"
+                                    [ngClass]="{ 'active': currentMenu ==='members' }">{{ "PROJECTMEMBERMANAGEMENT"
+                                    | translate }}</a>
+                            </li>
+                            <li>
+                                <a class="menu-item" [routerLinkActive]="['active']"
+                                    [routerLinkActiveOptions]="{ exact: true }"
+                                    [routerLink]="['/myproject/'+projectId+'/recruit']"
+                                    [ngClass]="{ 'active': currentMenu ==='recruit' }">{{ "RECRUITMANAGEMENT"
+                                    | translate }}</a>
+                            </li>
+                            <li>
+                                <a class="menu-item" [routerLink]="['/myproject/'+projectId+'/settings']"
+                                    [ngClass]="{ 'active': currentMenu ==='settings' }">
+                                    {{ "PROJECTSETTING"
+                                    | translate }}</a>
+                            </li>
+                            <li>
+                                <a class="menu-item" [routerLinkActive]="['active']"
+                                    [routerLinkActiveOptions]="{ exact: true }"
+                                    [routerLink]="['/myproject/'+projectId+'/logs']"
+                                    [ngClass]="{ 'active': currentMenu ==='logs' }">{{
+                                    "PROJECTSLOGS"
+                                    | translate }}</a>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+            </app-left-sidebar>
+            <div class="col-12 col-md-2">
+                <aside class="dt-sidebar  sidebar">
+                    <nav class="sidebar-menu pt-3 pb-3">
+                        <ul class="menu-items">
                             <li>
                                 <h3> <a class="menu-item" [routerLinkActive]="['active']"
                                         [routerLinkActiveOptions]="{ exact: true }"
@@ -53,8 +113,16 @@
                         </ul>
                     </nav>
                 </aside>
+                <div class="row-reverse">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbaSideMenuContent" aria-controls="navbaSideMenuContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <i class="fa fa-bars icon-frame"></i>
+                    </button>
+
+                </div>
             </div>
-            <div class="col-md-10">
+            <div class="col-12 col-md-10">
                 <router-outlet (activate)="onActivate($event)"></router-outlet>
             </div>
         </div>

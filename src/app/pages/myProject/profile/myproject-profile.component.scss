@@ -1,3 +1,12 @@
+#project-profile {
+
+  .action {
+    text-align: end;
+    padding-top: 12px;
+  }
+}
+
+
 ::ng-deep input[type="checkbox"]:checked {
   background-color: red;
 }
@@ -21,6 +30,11 @@ input[type="checkbox"]:before {
 .check-group {
   display: flex;
   gap: 48px;
+
+  @media (max-width: 450px) {
+    display: grid;
+    gap: 5px;
+  }
 }
 
 .project-item-title {

@@ -112,14 +112,16 @@ export class MyProjectMemberComponent implements OnInit {
     leftStr: "",
     inviteAgainStr: "",
     confirmDelete: "",
-    switchRoleStr: ""
+    switchRoleStr: "",
+    sendInvitingSucStr: "",
+    sendInvitingFailedStr: "",
   }
   constructor(
     private formBuilder: FormBuilder,
     private membersSrv: MembersService,
     private route: ActivatedRoute,
     private recruitSrv: RecruitService,
-    private toastr: ToastService,
+    private toasterSrv: ToastService,
     private projectSrv: ProjectService,
     private confirmDialogService: DialogService,
     private appSettingsSrv: AppSettingsService,
@@ -303,6 +305,14 @@ export class MyProjectMemberComponent implements OnInit {
     this.translateSrv.get("LEFTTHE").subscribe((text: string) => {
       this.msg.leftStr = text;
     });
+    this.translateSrv.get("INVITESENDSUC").subscribe((text: string) => {
+      this.msg.sendInvitingSucStr = text;
+    });
+
+    this.translateSrv.get("INVITESENDFAILED").subscribe((text: string) => {
+      this.msg.sendInvitingFailedStr = text;
+    });
+
 
     switch (lang) {
       case "zh-tw":
@@ -333,6 +343,43 @@ export class MyProjectMemberComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  onChangeTab(event) {
+    this.currentTab = event.target.value;
+    this.selectedItem = [];
+    this.canMoveMember = false;
+    if (this.current.length > 0) {
+      this.current.forEach(element => {
+        element.isSelected = false
+      });
+    }
+    if (this.candidates.length > 0) {
+      this.candidates.forEach(element => {
+        element.isSelected = false
+      });
+    }
+    if (this.interviews.length > 0) {
+      this.interviews.forEach(element => {
+        element.isSelected = false
+      });
+    }
+    if (this.rejected.length > 0) {
+      this.rejected.forEach(element => {
+        element.isSelected = false
+      });
+    }
+    if (this.invitingList.length > 0) {
+      this.invitingList.forEach(element => {
+        element.isSelected = false
+      });
+    }
+    if (this.past.length > 0) {
+      this.past.forEach(element => {
+        element.isSelected = false
+      });
+    }
+
   }
 
   changeTab(tab) {
@@ -405,15 +452,15 @@ export class MyProjectMemberComponent implements OnInit {
         this.invitationForm.reset();
         this.invitedUserId = "";
         document.getElementById('close_invited').click();
-        this.toastr.showToast(this.msg.projectmemberStr, this.msg.inviteStr + this.invitedUserId + 'Email已寄出', 'success');
+        this.toasterSrv.showToast("", this.msg.inviteStr + this.invitedUserId + 'Email已寄出', 'success');
       } else {
         this.projectMsg = res['message'];
-        this.toastr.showToast(this.msg.projectmemberStr, this.msg.inviteStr + this.invitedUserId + 'Email寄失敗! '
+        this.toasterSrv.showToast("", this.msg.inviteStr + this.invitedUserId + 'Email寄失敗! '
           + this.projectMsg, 'error');
       }
 
     }, (error) => {
-      this.toastr.showToast(this.msg.projectmemberStr, this.msg.inviteStr + this.invitedUserId + 'Email寄失敗! '
+      this.toasterSrv.showToast("", this.msg.inviteStr + this.invitedUserId + 'Email寄失敗! '
         + this.projectMsg, 'error');
       console.error("saveError", error);
       this.projectMsg = error.message;
@@ -455,15 +502,15 @@ export class MyProjectMemberComponent implements OnInit {
         this.invitationForm.reset();
         this.invitedUserId = "";
         document.getElementById('close_invited').click();
-        this.toastr.showToast(this.msg.projectmemberStr, this.msg.inviteStr + values.name + 'Email已寄出', 'success');
+        this.toasterSrv.showToast("", this.msg.inviteStr + values.name + 'Email已寄出', 'success');
 
       } else {
         this.projectMsg = res['error'].message;
-        this.toastr.showToast(this.msg.projectmemberStr, this.msg.inviteStr + values.name + 'Email寄失敗', 'error');
+        this.toasterSrv.showToast("", this.msg.inviteStr + values.name + 'Email寄失敗', 'error');
       }
 
     }, (error) => {
-      this.toastr.showToast(this.msg.projectmemberStr, this.msg.inviteStr + values.name + 'Email寄失敗', 'error');
+      this.toasterSrv.showToast("", this.msg.inviteStr + values.name + 'Email寄失敗', 'error');
       console.error("saveError", error);
       this.projectMsg = error.message;
     })
@@ -499,19 +546,19 @@ export class MyProjectMemberComponent implements OnInit {
         domain
       }).then(res => {
         if (res['result'] === 'successful') {
-          this.toastr.showToast('email', 'successfully', 'success');
+          this.toasterSrv.showToast('', this.msg.sendInvitingSucStr, 'success');
           for (var i = 0; i < this.invitingList.length; i++) {
             if (this.invitingList[i].id == invitation.id) {
               this.invitingList[i].invitedate = res['data'];
             }
           }
         } else {
-          this.toastr.showToast('email', 'Failed', 'error');
+          this.toasterSrv.showToast('', this.msg.sendInvitingFailedStr, 'error');
         }
 
       }).catch(error => {
         console.log("invite failed", error);
-        this.toastr.showToast('email', 'Failed', 'error');
+        this.toasterSrv.showToast('', this.msg.sendInvitingFailedStr, 'error');
       })
 
     }, () => {
@@ -527,16 +574,16 @@ export class MyProjectMemberComponent implements OnInit {
           this.invitingList = this.invitingList.filter(option => option.id != id);
 
 
-          this.toastr.showToast(this.msg.projectmemberStr,
+          this.toasterSrv.showToast("",
             this.msg.deletefulStr, 'success');
         } else {
-          this.toastr.showToast(this.msg.projectmemberStr,
+          this.toasterSrv.showToast("",
             this.msg.deletefailedStr, 'error');
         }
 
       }).catch(error => {
         console.log("delete failed", error);
-        this.toastr.showToast(this.msg.projectmemberStr,
+        this.toasterSrv.showToast("",
           this.msg.deletefailedStr, 'error');
       })
     }, () => {
@@ -581,7 +628,7 @@ export class MyProjectMemberComponent implements OnInit {
           this.currentUser.id).then(res => {
             if (res["result"] == 'successful') {
 
-              this.toastr.showToast(this.msg.projectmemberStr, this.msg.movetoStr + displayStatus + this.msg.successfulStr, 'success');
+              this.toasterSrv.showToast("", this.msg.movetoStr + displayStatus + this.msg.successfulStr, 'success');
 
               if (_changeto == "current") {
                 let _new_join_members = "";
@@ -630,11 +677,11 @@ export class MyProjectMemberComponent implements OnInit {
 
               this.refreshMemberList();
             } else {
-              this.toastr.showToast(this.msg.projectmemberStr, this.msg.movetoStr + displayStatus + this.msg.failedStr, 'error');
+              this.toasterSrv.showToast("", this.msg.movetoStr + displayStatus + this.msg.failedStr, 'error');
             }
           }).catch(error => {
             console.log("update failed", error);
-            this.toastr.showToast(this.msg.projectmemberStr, this.msg.movetoStr + displayStatus + this.msg.failedStr, 'error');
+            this.toasterSrv.showToast("", this.msg.movetoStr + displayStatus + this.msg.failedStr, 'error');
           })
 
       }, () => {
@@ -805,14 +852,14 @@ export class MyProjectMemberComponent implements OnInit {
       this.currentUser.id).then(res => {
         if (res["result"] == 'successful') {
           this.refreshMemberList();
-          this.toastr.showToast(this.msg.projectmemberStr, this.msg.switchRoleStr + event.target.value + this.msg.successfulStr, 'success');
+          this.toasterSrv.showToast("", this.msg.switchRoleStr + event.target.value + this.msg.successfulStr, 'success');
 
         } else {
-          this.toastr.showToast(this.msg.projectmemberStr, this.msg.switchRoleStr + event.target.value + this.msg.failedStr, 'error');
+          this.toasterSrv.showToast("", this.msg.switchRoleStr + event.target.value + this.msg.failedStr, 'error');
         }
       }).catch(error => {
         console.log("update failed", error);
-        this.toastr.showToast(this.msg.projectmemberStr, this.msg.movetoStr + event.target.value + this.msg.failedStr, 'error');
+        this.toasterSrv.showToast("", this.msg.movetoStr + event.target.value + this.msg.failedStr, 'error');
       })
   }
 
@@ -855,13 +902,13 @@ export class MyProjectMemberComponent implements OnInit {
         this.selectedEditeMember = null;
         this.close_Info_button.nativeElement.click();
         this.refreshMemberList();
-        this.toastr.showToast(this.msg.projectmemberStr, this.msg.updateSuc, 'success');
+        this.toasterSrv.showToast("", this.msg.updateSuc, 'success');
       } else {
-        this.toastr.showToast(this.msg.projectmemberStr, this.msg.updateFailed, 'error');
+        this.toasterSrv.showToast("", this.msg.updateFailed, 'error');
       }
     }).catch(error => {
       console.log("update failed", error);
-      this.toastr.showToast(this.msg.projectmemberStr, this.msg.updateFailed, 'error');
+      this.toasterSrv.showToast("", this.msg.updateFailed, 'error');
     })
   }
 
@@ -873,7 +920,7 @@ export class MyProjectMemberComponent implements OnInit {
         if (res['result'] == "successful") {
           this.selectedEditeMember = null;
           this.refreshMemberList();
-          this.toastr.showToast(this.msg.projectmemberStr, `${member.name} ${this.msg.deleted}`, 'success');
+          this.toasterSrv.showToast("", `${member.name} ${this.msg.deleted}`, 'success');
 
 
           this.activitySrv.insert(this.currentUser.id,
@@ -898,10 +945,10 @@ export class MyProjectMemberComponent implements OnInit {
           })
 
         } else {
-          this.toastr.showToast(this.msg.projectmemberStr, `${member.name} ${this.msg.deletefailedStr}`, 'error');
+          this.toasterSrv.showToast("", `${member.name} ${this.msg.deletefailedStr}`, 'error');
         }
       }, (error) => {
-        this.toastr.showToast(this.msg.projectmemberStr, `${member.name} ${this.msg.deletefailedStr}`, 'error');
+        this.toasterSrv.showToast("", `${member.name} ${this.msg.deletefailedStr}`, 'error');
         console.log("error", error);
       })
     }, () => {

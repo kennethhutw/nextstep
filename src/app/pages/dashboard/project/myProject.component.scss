@@ -1,4 +1,12 @@
 app-my-project {
+
+  #myTabContent {
+    @media (max-width: 450px) {
+
+      margin-right: 10px;
+    }
+  }
+
   .nav-link {
     background-color: transparent !important;
   }
@@ -23,6 +31,11 @@ app-my-project {
       font-size: 16px;
       font-weight: 500;
       line-height: 24px;
+    }
+
+    @media (max-width: 450px) {
+      padding: 12px 12px;
+      grid-template-columns: 20% 1fr 30% 5%;
     }
   }
 

@@ -8,6 +8,37 @@
   // justify-content: space-between;
   transition: 200ms;
   // flex-direction: row;
+
+  .profile {
+    justify-content: center;
+  }
+
+  .date {
+    justify-content: center;
+
+  }
+
+  .item {
+    padding-left: 20px;
+  }
+
+  .profile-image-small {
+    display: none;
+  }
+
+  .date-item {
+    color: #8F95A8;
+    font-size: 14px;
+  }
+
+  @media (max-width: 450px) {
+    grid-template-columns: 60% 20% 20%;
+    padding: 12px 12px;
+
+    .item {
+      padding-left: 0px;
+    }
+  }
 }
 
 .card:hover {
@@ -16,11 +47,4 @@
 
 .card:hover .dropdown {
   display: block;
-}
-
-
-
-
-.item {
-  padding-left: 20px;
 }

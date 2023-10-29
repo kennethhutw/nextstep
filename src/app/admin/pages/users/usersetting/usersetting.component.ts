@@ -37,15 +37,13 @@ export class UserSettingComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.toastSrv.showToast('', "Sent", this.toastSrv.iconClasses.success);
-    // this.toastr.success('Hello world!', 'Toastr fun!');
+
     this.route.params.subscribe(params => {
       const _uid = params["id"];
       this.userSrv.getUserBasicInfo(_uid).then(res => {
 
         if (res["result"] === "successful") {
           this.editedUser = res["data"];
-          //tags: "bizarre,love,romantic"
         } else {
 
         }

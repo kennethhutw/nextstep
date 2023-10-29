@@ -20,6 +20,11 @@ app-my-notifications {
   .clean-column {
     text-align: end;
     padding-right: 0px;
+    padding-top: 8px;
+
+    @media (max-width: 450px) {
+      padding-right: unset;
+    }
   }
 
   .msg-bar {
@@ -30,6 +35,12 @@ app-my-notifications {
     padding: 16px;
     border: 1px solid rgba(0, 0, 0, 0.075);
     box-shadow: 1px 2px 9px rgba(0, 0, 0, 0.04);
+
+    @media (max-width: 450px) {
+      margin-left: 10px;
+      margin-right: 10px;
+      grid-template-columns: 10% auto 25%;
+    }
   }
 
   // .msg-bar:first-child {

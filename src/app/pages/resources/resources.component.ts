@@ -103,7 +103,7 @@ Please let us know ASAP.
 
   constructor(
     private sanitizer: DomSanitizer,
-    private toastr: ToastService
+    private toasterSrv: ToastService
   ) {
 
   }
@@ -135,9 +135,9 @@ Please let us know ASAP.
       selBox.select();
       document.execCommand('copy');
       document.body.removeChild(selBox);
-      this.toastr.showToast("", 'copied', 'success');
+      this.toasterSrv.showToast("", 'copied', 'success');
     } catch (error) {
-      this.toastr.showToast("", 'Failed to generate the shared link', 'error');
+      this.toasterSrv.showToast("", 'Failed to generate the shared link', 'error');
     }
   }
 

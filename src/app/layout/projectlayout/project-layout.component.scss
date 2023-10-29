@@ -1,15 +1,36 @@
 .container-bg {
+  min-height: 110vh;
   background-color: #F9FAFB;
   padding-top: 24px;
   padding-bottom: 30px;
 }
 
 #project {
-  min-height: 110vh;
+
   margin-top: 100px;
   padding-left: 50px;
   padding-right: 50px;
   background-color: #F9FAFB;
+
+  .navbar-toggler {
+    display: none;
+  }
+
+  .menu-items {
+    padding-left: 20px;
+  }
+
+  @media (max-width: 450px) {
+    .navbar-toggler {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+
+    padding-right: 0px;
+    margin-top: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 
   .active {
     color: #347A9F !important;
@@ -18,4 +39,6 @@
     border-radius: 3px;
     width: 95% !important;
   }
+
+
 }

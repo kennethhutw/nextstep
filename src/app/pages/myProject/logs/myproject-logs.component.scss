@@ -1,8 +1,3 @@
-.title {
-  font-size: 32px;
-  font-weight: 400;
-}
-
 .noItem {
   padding: 15px;
   margin-top: 28px;
@@ -13,6 +8,12 @@
   font-size: 16px;
   gap: 10px;
   justify-items: center;
+}
+
+#project-log {
+  .filter {
+    margin-top: 10px;
+  }
 }
 
 .bar {
@@ -28,4 +29,9 @@
   /*  border: 1px solid rgba(0, 0, 0, .125); */
   border-radius: 0.25rem;
   padding: 12px 24px;
+
+  @media (max-width: 450px) {
+    grid-template-columns: 60% 20% 20%;
+    padding: 12px 12px;
+  }
 }

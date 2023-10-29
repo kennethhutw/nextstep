@@ -28,7 +28,7 @@ export class EmailTemplateCardComponent {
   constructor(
     private utility: Utility,
     private dataSrv: DataService,
-    private toastr: ToastService,
+    private toasterSrv: ToastService,
     private translateSrv: TranslateService
   ) {
     let _lang = localStorage.getItem("lang");
@@ -70,9 +70,9 @@ export class EmailTemplateCardComponent {
       selBox.select();
       document.execCommand('copy');
       document.body.removeChild(selBox);
-      this.toastr.showToast('Share', 'copied', 'success');
+      this.toasterSrv.showToast('Share', 'copied', 'success');
     } catch (error) {
-      this.toastr.showToast('Share', 'Failed to generate the shared link', 'error');
+      this.toasterSrv.showToast('Share', 'Failed to generate the shared link', 'error');
     }
   }
 

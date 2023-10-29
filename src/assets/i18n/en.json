@@ -171,6 +171,8 @@
   "CURRENT": "Current",
   "CLOSED": "Closed",
   "INVITE": "Invite",
+  "INVITESENDSUC": "Send successful",
+  "INVITESENDFAILED": "Send failed",
   "VERIFYEMAIL": "Verify email",
   "IDENTITY": "Identity verification",
   "FOLLOWINGAMEMBER": "Follow a member",
