@@ -5,12 +5,12 @@
     "heroku-postbuild": "npm run patch-webpack && ng build --aot --configuration=${environment} --prod --namedChunks=true --stats-json ",
     "ng": "ng",
     "start": "node server.js",
-    "build": "npm install  --force && export NODE_OPTIONS=--openssl-legacy-provider && ng build --aot --configuration=${environment}   --prod --namedChunks=true --stats-json ",
+    "build": "npm install --force && export NODE_OPTIONS=--openssl-legacy-provider && ng build --aot --configuration=${environment}   --prod --namedChunks=true --stats-json ",
     "test": "ng test",
     "lint": "ng lint ",
     "e2e": "ng e2e",
     "patch-webpack": "node plugins/patch.js",
-    "build:digitalocean": "npm install  --force"
+    "build:digitalocean": "npm install --force"
   },
   "engines": {
     "node": "18.12.1",
