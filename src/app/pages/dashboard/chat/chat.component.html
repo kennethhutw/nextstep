@@ -75,9 +75,11 @@
           <div class="input_msg_write">
             <input type="text" class="write_msg" [(ngModel)]="message" (keyup)="onChange($event)"
               placeholder="{{ 'INPUTMSG' | translate }}" />
-            <ui-button class="btn-solid blue round send" style="top:-3px" (click)="onSendMsg()"><img
-                src="assets/icons/Cursor.png" alt="no-comment">{{ "MSGSEND"
-              | translate }}</ui-button>
+            <!-- <ui-button class="btn-blue round send" style="top:-3px" (click)="onSendMsg()"></ui-button> -->
+
+            <button class="btn-blue font-16" (click)="onSendMsg()"><img src="assets/icons/Cursor.png"
+                alt="no-comment">{{ "MSGSEND"
+              | translate }}</button>
           </div>
         </div>
       </div>

@@ -44,14 +44,29 @@
 	margin: 0;
 	padding: 18px 16px 10px;
 
+	@media (max-width: 450px) {
+		padding: 18px 8px 10px;
+	}
+
 	.chat_people {
 		overflow: hidden;
 		clear: both;
 
+		@media (max-width: 450px) {
+			display: grid;
+			gap: 5px;
+		}
+
 		.chat_ib {
 			float: left;
 			padding: 0 0 0 15px;
-			width: 88%;
+			width: 78%;
+
+			@media (max-width: 450px) {
+				display: grid;
+				gap: 5px;
+				padding: 0 0;
+			}
 		}
 
 		.chat_ib h5 {
@@ -100,7 +115,7 @@
 
 	.chat_img {
 		float: left;
-		width: 11%;
+		width: 21%;
 	}
 
 	.chat_img img {
@@ -135,6 +150,7 @@
 		grid-template-columns: 50px 1fr;
 		border-bottom: 1px solid #c4c4c4;
 		margin-bottom: 10px;
+		padding-bottom: 10px;
 
 		img {
 			width: 40px;
@@ -184,6 +200,21 @@
 	padding-left: 32px;
 	padding-bottom: 59px;
 
+	@media (max-width: 450px) {
+
+		padding: 10px 0 0 0;
+
+		.input_msg_write {
+			display: grid;
+			gap: 10px;
+			width: 90%;
+
+			.write_msg {
+				width: 100%;
+			}
+		}
+	}
+
 	.input_msg_write {
 		padding: 5px;
 	}
@@ -209,11 +240,26 @@
 	.incoming_msg {
 		padding-top: 8px;
 
+		@media (max-width: 450px) {
+			display: grid;
+			gap: 5px;
+		}
+
 		.received_msg {
 			display: inline-block;
 			padding: 0 0 0 10px;
 			vertical-align: top;
 			width: 92%;
+
+			@media (max-width: 450px) {
+				display: grid;
+				gap: 5px;
+				padding: 0 0 0 0px;
+
+				.received_withd_msg {
+					width: 90%;
+				}
+			}
 
 		}
 
