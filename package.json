@@ -2,6 +2,7 @@
   "name": "nextstep",
   "version": "0.0.0",
   "scripts": {
+    "build:digitalocean": "npm install --force",
     "heroku-postbuild": "npm run patch-webpack && ng build --aot --configuration=${environment} --prod --namedChunks=true --stats-json ",
     "ng": "ng",
     "start": "node server.js",
@@ -9,8 +10,7 @@
     "test": "ng test",
     "lint": "ng lint ",
     "e2e": "ng e2e",
-    "patch-webpack": "node plugins/patch.js",
-    "build:digitalocean": "npm install --force"
+    "patch-webpack": "node plugins/patch.js"
   },
   "engines": {
     "node": "18.12.1",
