@@ -8,8 +8,7 @@
         </button>
       </div>
 
-      <div *ngIf="message?.type == 'confirm'" class="modal-body" style="    width: 450px;
-    margin-left: -30px;">
+      <div *ngIf="message?.type == 'confirm'" class="modal-body">
         <div class="row">
           <div class="col-md-12">
             <p class="text-center confirm-message" [innerHTML]="msg"></p>
@@ -19,8 +18,10 @@
           <div class="col-md-12">
             <p class="confirm-button">
 
-              <button (click)="message.noFn()" class="btn btn-transparent  btn_normal">取消</button>
-              <button (click)="message.yesFn()" class="btn btn-blue "> 確認</button>
+              <button (click)="message.noFn()" class="btn btn-white">{{"CANCEL" |
+                translate }}</button>
+              <button (click)="message.yesFn()" class="btn btn-blue "> {{"CONFIRM" |
+                translate }}</button>
 
             </p>
           </div>

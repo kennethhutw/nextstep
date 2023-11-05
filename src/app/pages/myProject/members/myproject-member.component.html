@@ -337,8 +337,9 @@
                                         </p>
                                     </div>
                                     <div class="d-flex align-items-center">
-                                        <p class="text-md m-0">{{member.status=="0"?"邀請中": member.status=="1"
-                                            ?"已接受":"拒絕"}}
+                                        <p class="text-md m-0">{{member.status=="0"?this.msg.invitingStr:
+                                            member.status=="1"
+                                            ?this.msg.acceptedStr:this.msg.rejectedStr}}
                                         </p>
                                     </div>
                                     <div class="d-flex align-items-center">

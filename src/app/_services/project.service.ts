@@ -100,7 +100,7 @@ export class ProjectService {
             .put<any>(`${environment.apiUrl}/members/role`, {
                 projectId,
                 userId,
-                status,
+                role,
                 uid
             })
             .toPromise();

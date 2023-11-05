@@ -81,8 +81,11 @@ export class JoinProjectComponent implements OnInit {
   }
 
   onReject() {
-    this.invitationSrv.updateInvitation(this.invitation.id, {
-      status: "rejected"
+    this.invitationSrv.rejectInvitation(this.invitation.id, {
+      status: "rejected",
+      userId: this.currentUser.id,
+      projectId: this.invitation.projectId,
+      username: this.currentUser.name
     }).subscribe(res => {
       if (res['result'] == 'successful') {
         this.switch_expression = 4;

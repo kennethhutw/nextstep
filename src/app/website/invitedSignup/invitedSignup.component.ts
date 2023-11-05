@@ -107,7 +107,6 @@ export class InvitedSignupComponent implements OnInit, AfterViewInit {
 
         if (res["result"] == 'successful') {
           this.project = res["data"];
-
         }
       }
     }).then(() => {

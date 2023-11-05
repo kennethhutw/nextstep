@@ -1,5 +1,5 @@
- /* .custom-alert {
-    width:300px;
+.custom-alert {
+    width: 400px;
 }
 
 .modal-backdrop.in {
@@ -7,125 +7,82 @@
 }
 
 .modal-body {
-     background-color: whitesmoke;
+    /* background-color: whitesmoke; */
     border-radius: 11px;
+    width: 450px;
+    margin-left: -30px;
 }
 
 .modal {
     background-color: rgba(58, 51, 51, 0.4);
-    padding-top:5px;
+    padding-top: 5px;
 }
 
 .confirm-message {
-    font-family:'Times New Roman', Times, serif;
-    font-size:20px;
-    font-weight:bold;
-    margin-bottom:0px;
-    margin-top:5px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 0px;
+    margin-top: 5px;
+    word-wrap: break-word;
 }
 
 .confirm-button {
     text-align: center;
     margin: 15px 0px 15px 0px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
 .btn-no {
-    background-color: #ED4639;
-    color:white;
+    background-color: #00FF90;
+    color: black;
+    margin-right: 10px;
+    width: 179px;
+    height: 60px;
 }
 
 .btn-yes {
-     font-size: 16px;
-    padding: 15px 20px;
-    width: 100%;
-    background-color: #17f596;
-    border: 2px solid #17f596;
+    background-color: #000000;
+    color: white;
+    margin-left: 10px;
+    width: 179px;
+    height: 60px;
+}
+
+.btn-delete-cancel {
+    background-color: transparent;
+    color: #CFD2DA;
+    border: 1px solid #CFD2DA;
     border-radius: 3px;
-    color: black;
-} */
- .custom-alert {
-     width: 400px;
- }
+    margin-right: 10px;
+    padding: 6px 12px;
+    height: 36px;
+}
 
- .modal-backdrop.in {
-     opacity: 0.9;
- }
+.btn-delete {
+    background-color: #FF3356;
+    color: white;
+    border: 1px solid #FF3356;
+    border-radius: 3px;
+    margin-right: 10px;
 
- .modal-body {
-     /* background-color: whitesmoke; */
-     border-radius: 11px;
- }
+    height: 36px;
+    padding: 6px 12px;
+}
 
- .modal {
-     background-color: rgba(58, 51, 51, 0.4);
-     padding-top: 5px;
- }
+.dailog {
+    position: relative;
+    width: auto;
+    margin: .5rem;
+}
 
- .confirm-message {
-     font-family: 'Roboto', sans-serif;
-     font-size: 20px;
-     font-weight: 400;
-     margin-bottom: 0px;
-     margin-top: 5px;
-     word-wrap: break-word;
- }
+@media (min-width: 576px) {
 
- .confirm-button {
-     text-align: center;
-     margin: 15px 0px 15px 0px;
-     display: flex;
-     justify-content: center;
-     gap: 10px;
- }
+    .dailog {
 
- .btn-no {
-     background-color: #00FF90;
-     color: black;
-     margin-right: 10px;
-     width: 179px;
-     height: 60px;
- }
-
- .btn-yes {
-     background-color: #000000;
-     color: white;
-     margin-left: 10px;
-     width: 179px;
-     height: 60px;
- }
-
- .btn-delete-cancel {
-     background-color: transparent;
-     color: #CFD2DA;
-     border: 1px solid #CFD2DA;
-     border-radius: 3px;
-     margin-right: 10px;
-     padding: 6px 12px;
-     height: 36px;
- }
-
- .btn-delete {
-     background-color: #FF3356;
-     color: white;
-     border: 1px solid #FF3356;
-     border-radius: 3px;
-     margin-right: 10px;
-
-     height: 36px;
-     padding: 6px 12px;
- }
-
- .dailog {
-     position: relative;
-     width: auto;
-     margin: .5rem;
- }
-
- @media (min-width: 576px) {
-
-     .dailog {
-
-         width: 500px;
-         margin: 1.75rem auto;
-     }
- }
+        width: 500px;
+        margin: 1.75rem auto;
+    }
+}

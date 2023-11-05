@@ -217,6 +217,7 @@
   "CANDIDATE": "申请加入",
   "INVITING": "邀请中",
   "INTERVIEW": "面谈中",
+  "ACCEPTEDEDMEMBER": "已接受",
   "REJECTEDMEMBER": "已拒绝",
   "PASTMEMBER": "历程成员",
   "ENSUREMOVE": "确定要移动至",

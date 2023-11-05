@@ -115,6 +115,7 @@ export class MyProjectMemberComponent implements OnInit {
     switchRoleStr: "",
     sendInvitingSucStr: "",
     sendInvitingFailedStr: "",
+    acceptedStr: ""
   }
   constructor(
     private formBuilder: FormBuilder,
@@ -193,6 +194,8 @@ export class MyProjectMemberComponent implements OnInit {
             }
           });
           this.invitingList = _invitingList;
+
+          console.log("invitingList =========. ", this.invitingList)
           // this.invitingList = _invitingList.filter((member) => {
           //   return member.status == '0'
           // });
@@ -312,6 +315,12 @@ export class MyProjectMemberComponent implements OnInit {
     this.translateSrv.get("INVITESENDFAILED").subscribe((text: string) => {
       this.msg.sendInvitingFailedStr = text;
     });
+
+    this.translateSrv.get("ACCEPTEDEDMEMBER").subscribe((text: string) => {
+      this.msg.acceptedStr = text;
+    });
+
+
 
 
     switch (lang) {
@@ -846,7 +855,7 @@ export class MyProjectMemberComponent implements OnInit {
   }
 
   onRoleChange(event, member) {
-    this.projectSrv.updateMemberstatus(this.currentProject.id,
+    this.projectSrv.updateMemberRole(this.currentProject.id,
       member.userId,
       event.target.value,
       this.currentUser.id).then(res => {
