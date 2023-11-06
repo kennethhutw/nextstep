@@ -1555,7 +1555,7 @@ input:focus:-ms-input-placeholder {
 .sidebar {
   height: 100%;
   /* width: 200px; */
-  position: absolute;
+  position: static;
   transition: left 0.3s ease;
   /*   left: -260px; */
   top: 0;
