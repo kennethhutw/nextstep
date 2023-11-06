@@ -6,7 +6,7 @@
     "heroku-postbuild": "npm install --force && npm run patch-webpack && ng build --aot --configuration=${environment} --prod --namedChunks=true --stats-json ",
     "ng": "ng",
     "start": "node server.js",
-    "build": " export NODE_OPTIONS=--openssl-legacy-provider && ng build --aot --configuration=${environment}   --prod --namedChunks=true --stats-json ",
+    "build": "npm install --force && export NODE_OPTIONS=--openssl-legacy-provider && ng build --aot --configuration=${environment}   --prod --namedChunks=true --stats-json ",
     "test": "ng test",
     "lint": "ng lint ",
     "e2e": "ng e2e",
