@@ -114,5 +114,14 @@ export class MyProjectComponent implements OnInit {
     this.currentTab = tab;
   }
 
+  isOwner(project) {
+
+    if (project.owner == this.currentUser.id) {
+      return true;
+    }
+    return false;
+
+  }
+
 
 }

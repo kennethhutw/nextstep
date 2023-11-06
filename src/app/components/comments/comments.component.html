@@ -46,14 +46,16 @@
 
     <input type="text" class="textarea" [(ngModel)]="message" placeholder="{{ 'INPUTMSG' | translate }}" />
 
-    <div class="actions">
+    <div class="actions pl-15">
       <!-- <div *ngIf="isSupportPrivate" class="control-form check" (click)="onToggleChecked()">
         <input type="checkbox" [checked]="isChecked"> Private
       </div> -->
       <!-- <ui-button class="btn-outline round cancel" (click)="onClose()">Cancel</ui-button> -->
-      <ui-button class="btn-solid blue round send" (click)="onComment()"><img src="assets/icons/Cursor.png"
-          alt="no-comment">{{ "MSGSEND"
-        | translate }}</ui-button>
+      <!-- <ui-button class="btn-blue" (click)="onComment()"><img src="assets/icons/Cursor.png" alt="no-comment">{{ "MSGSEND"
+        | translate }}</ui-button> -->
+      <button class="btn-blue font-16" (click)="onComment()"><img src="assets/icons/Cursor.png" alt="no-comment">{{
+        "MSGSEND"
+        | translate }}</button>
     </div>
 
   </footer>

@@ -194,8 +194,6 @@ export class MyProjectMemberComponent implements OnInit {
             }
           });
           this.invitingList = _invitingList;
-
-          console.log("invitingList =========. ", this.invitingList)
           // this.invitingList = _invitingList.filter((member) => {
           //   return member.status == '0'
           // });

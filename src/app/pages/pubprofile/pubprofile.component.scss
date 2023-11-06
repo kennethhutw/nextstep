@@ -1,77 +1,127 @@
 app-pub-profile {
     #profile-upper {
         position: relative;
-    }
 
-    #profile-d {
-        position: absolute;
-        left: 34px;
-        bottom: 0px;
-        right: 0px;
-        height: 180px;
-        z-index: 2;
+        #profile-d {
+            position: absolute;
+            left: 34px;
+            bottom: 0px;
+            right: 0px;
+            height: 180px;
+            z-index: 2;
 
-        .edit-profileImage {
-            margin-top: -40px;
+            @media (max-width: 450px) {
+                left: 1px;
+            }
+
+            .edit-profileImage {
+                margin-top: -40px;
+            }
+
+            #profile-pic {
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                margin-top: 108px;
+                overflow: hidden;
+                box-shadow: 0 0 0 5px #fff;
+
+                img {
+                    width: 100%;
+                }
+
+                @media (max-width: 450px) {
+                    width: 100px;
+                    height: 100px;
+                }
+
+
+            }
+        }
+
+        #u-name {
+            position: absolute;
+            top: 200px;
+            left: 208px;
+            color: #0e0e0e;
+            font-size: 36px;
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+
+            @media (max-width: 450px) {
+                top: auto;
+                left: auto;
+                margin-top: 10px;
+            }
         }
     }
+
 
     #profile-banner-image {
         height: 200px;
         overflow: hidden;
         z-index: 1;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .icon {
+            width: 21px !important;
+        }
+
+        .btn-cover {
+            position: absolute;
+            top: 80%;
+            left: 92%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            background-color: white;
+
+            cursor: pointer;
+            color: #8F95A8 !important;
+            border: 1px solid #CFD2DA !important;
+            border-radius: 4px !important;
+            padding: 3px 6px 3px 6px !important;
+            font-size: 16px;
+            z-index: 100;
+            width: max-content;
+        }
     }
 
-    #profile-banner-image img {
-        width: 100%;
-        height: 100%;
+    .action_section {
+        margin-top: 50px;
+
+        @media (max-width: 450px) {
+            margin-top: 130px;
+        }
     }
 
-    #profile-banner-image .icon {
-        width: 21px !important;
+    .follow {
+        text-align: right;
+
+        @media (max-width: 450px) {
+            text-align: left;
+        }
     }
 
-    #profile-banner-image .btn-cover {
-        position: absolute;
-        top: 80%;
-        left: 92%;
-        transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        background-color: white;
 
-        cursor: pointer;
-        color: #8F95A8 !important;
-        border: 1px solid #CFD2DA !important;
-        border-radius: 4px !important;
-        padding: 3px 6px 3px 6px !important;
-        font-size: 16px;
-        z-index: 100;
-        width: max-content;
+
+    .page-title {
+        font-size: 40px;
+        font-weight: 500;
+        padding-left: 55px;
+
+        @media (max-width: 450px) {
+            font-size: 32px;
+            padding-left: 15px;
+            margin-top: 30px;
+        }
     }
 
-    #profile-pic {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        margin-top: 108px;
-        overflow: hidden;
-        box-shadow: 0 0 0 5px #fff;
-    }
 
-    #profile-pic img {
-        width: 100%;
-    }
-
-    #u-name {
-        position: absolute;
-        top: 200px;
-        left: 208px;
-        color: #0e0e0e;
-        font-size: 36px;
-        font-weight: bold;
-        display: flex;
-        flex-direction: column;
-    }
 
     .bio {
         font-size: 20px;
@@ -93,6 +143,31 @@ app-pub-profile {
         background-color: #fff;
         padding-left: 10px;
         padding-right: 10px;
+
+        .sub-title {
+            font-weight: 500;
+
+        }
+    }
+
+
+    .project-frame {
+        border: 0px;
+        border-radius: 12px;
+        min-height: 300px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+
+        box-shadow: 1px 2px 9px 0px #0000000A !important;
+        background-color: #fff;
+        padding-left: 10px;
+        padding-right: 10px;
+        display: inline-block;
+        gap: 10;
+
+        div {
+            padding: 5px 12px;
+        }
 
         .sub-title {
             font-weight: 500;
@@ -135,21 +210,9 @@ app-pub-profile {
         }
     }
 
-    // .frame {
-    //     border: 1px solid rgba(0, 0, 0, 0.6);
-
-    //     padding-top: 15px;
-    //     padding-bottom: 15px;
-    //     padding-left: 10px;
-    //     padding-right: 10px;
-    //     gap: 12px;
-    //     display: grid;
-    //     border-radius: 9px;
-
-    //     .sub-title {
-    //         font-weight: 500;
-    //     }
-    // }
+    svg-icon svg path {
+        fill: #69738C !important;
+    }
 
     .icon {
         padding: 8px;
@@ -170,7 +233,7 @@ app-pub-profile {
         padding-bottom: 12px;
     }
 
-    .btn_items {
+    .btn_action_items {
         display: flex;
         gap: 16px;
         justify-content: flex-end;
@@ -178,30 +241,39 @@ app-pub-profile {
         margin-bottom: auto;
         color: #262E42;
         font-size: 24px;
-    }
 
-    .btn_item {
-        font-size: 16px;
-        line-height: 24px;
-        font-weight: 700;
-        padding: 4px 10px;
-        color: #fff;
-        background-color: #56BDF4;
-        border: 1px solid #56BDF4;
-        border-radius: 4px;
-        min-width: 84px;
-        height: 36px;
-        white-space: nowrap;
-
-        .fa-bookmark {
-            border: none !important;
-            display: contents !important;
+        @media (max-width: 450px) {
+            justify-content: flex-start;
         }
-    }
 
-    .btn_item_selected {
-        background-color: #FF859A;
-        border: 2px solid #FF859A;
+        .btn_action_item {
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 700;
+            padding: 4px 10px;
+            color: #fff;
+            background-color: #56BDF4;
+            border: 1px solid #56BDF4;
+            border-radius: 4px;
+            min-width: 84px;
+            height: 36px;
+            white-space: nowrap;
+
+            .fa-bookmark {
+                border: none !important;
+                display: contents !important;
+            }
+        }
+
+        .btn_action_item:hover {
+            background-color: #FF859A;
+            border: 2px solid #FF859A;
+        }
+
+        .btn_action_item_selected {
+            background-color: #FF859A;
+            border: 2px solid #FF859A;
+        }
     }
 
 
@@ -235,11 +307,22 @@ app-pub-profile {
     .exp-bar-2 {
         display: grid;
         grid-auto-flow: column;
-        grid-template-rows: 42px;
+
         grid-template-columns: 1fr 200px;
         position: relative;
         min-width: 0;
         word-wrap: break-word;
+        padding: 5px 12px;
+
+        @media (max-width: 450px) {
+            grid-auto-flow: row;
+            grid-template-columns: unset;
+
+            .exp-duration {
+                text-align: left;
+                padding: 5px 0px;
+            }
+        }
 
     }
 

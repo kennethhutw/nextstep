@@ -50,6 +50,12 @@ app-create-project {
     display: grid;
     grid-auto-flow: column;
     grid-template-columns: 33.3% 33.3% 33.3%;
+
+    @media (max-width: 450px) {
+      grid-auto-flow: row;
+      grid-template-columns: 1fr;
+      margin-bottom: 0px;
+    }
   }
 
   textarea#PROJECT_INTRO::placeholder {

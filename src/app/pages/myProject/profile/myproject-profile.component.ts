@@ -87,6 +87,7 @@ export class MyProjectProfileComponent implements OnInit, AfterViewInit {
     let projectId = this.route.snapshot.paramMap.get("projectId");
     this.projectSrv.getProject(projectId,
       this.currentUser.id).then(res => {
+
         if (res['result'] === 'successful') {
 
           this.currentProject = res['data'];

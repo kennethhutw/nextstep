@@ -5,12 +5,11 @@
       </p>
       <p class="text-md m-0 item-description">{{ description }}
       </p>
-
     </div>
     <div class="d-flex align-items-center mt-15">
       <label class="switch" [for]="id">
-        <input type="checkbox" [(ngModel)]="value" (change)="checkValue()" [id]="id" />
-        <div class="slider round"></div>
+        <input type="checkbox" [(ngModel)]="value" (change)="checkValue()" [disabled]="disabled" [id]="id" />
+        <div class="slider round" [ngClass]="{ 'disabled':disabled }" [disabled]="disabled"></div>
       </label>
     </div>
   </div>

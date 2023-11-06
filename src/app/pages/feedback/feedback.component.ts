@@ -19,6 +19,9 @@ import {
   TimeUtility
 } from 'src/app/_helpers';
 import { environment } from "../../../environments/environment";
+import { NgxSpinnerService } from "ngx-spinner";
+
+
 @Component({
   selector: 'app-feedback',
   templateUrl: './feedback.component.html',
@@ -45,7 +48,9 @@ export class FeedbackComponent implements OnInit {
   replyComment: string = "";
   hideall = {};
   hideprocessed = {};
-  hidemyproposals = {}
+  hidemyproposals = {};
+
+  loading = true;
 
   strImprovement: string = "";
   strBug: string = "";
@@ -66,7 +71,8 @@ export class FeedbackComponent implements OnInit {
     private CommentsSrv: CommentsService,
     private dataSrv: DataService,
     private timeUtilitySrv: TimeUtility,
-    private translateSrv: TranslateService
+    private translateSrv: TranslateService,
+    private spinnerSrv: NgxSpinnerService
   ) {
     let _lang = localStorage.getItem("lang");
     if (!this.utilitySrv.IsNullOrEmpty(_lang)) {
@@ -106,37 +112,44 @@ export class FeedbackComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.spinnerSrv.show();
     this.currentUser = this.authStoreSrv.getUserData();
     this.proposalSrv.getall().subscribe(res => {
       if (res["result"] == "successful") {
 
         this.allitems = res["data"];
-        this.allitems.forEach(element => {
 
-          if (!this.utilitySrv.IsNullOrEmpty(element.imageUrl)) {
-            element.imageUrl = environment.assetUrl + element.imageUrl;
-          }
-        });
-        this.displayItems = this.allitems;
-        // process_status
-        this.processed = this.allitems.filter(item => {
-          return item.process_status == "processed"
-        })
-        if (this.currentUser) {
-          this.myproposals = this.allitems.filter(item => {
-            return item.createdBy == this.currentUser.id
+        if (this.allitems) {
+          this.allitems.forEach(element => {
+
+            if (!this.utilitySrv.IsNullOrEmpty(element.imageUrl)) {
+              element.imageUrl = environment.assetUrl + element.imageUrl;
+            }
+          });
+          this.displayItems = this.allitems;
+          // process_status
+          this.processed = this.allitems.filter(item => {
+            return item.process_status == "processed"
           })
+          if (this.currentUser) {
+            this.myproposals = this.allitems.filter(item => {
+              return item.createdBy == this.currentUser.id
+            })
+          }
+          this.processed.forEach(e => {
+            this.hideprocessed[e.id] = false;
+          });
+          this.myproposals.forEach(e => {
+            this.hidemyproposals[e.id] = false;
+          });
+          this.allitems.forEach(e => {
+            this.hideall[e.id] = false;
+          });
+
         }
-        this.processed.forEach(e => {
-          this.hideprocessed[e.id] = false;
-        });
-        this.myproposals.forEach(e => {
-          this.hidemyproposals[e.id] = false;
-        });
-        this.allitems.forEach(e => {
-          this.hideall[e.id] = false;
-        });
       }
+      this.spinnerSrv.hide();
+      this.loading = false;
     })
 
   }

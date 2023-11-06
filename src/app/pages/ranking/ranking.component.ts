@@ -10,14 +10,11 @@ import {
 
 import { Observable } from 'rxjs';
 
-import { NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { Utility } from "../../_helpers";
 import { environment } from '../../../environments/environment';
 import { NgxSpinnerService } from "ngx-spinner";
 import { ActivatedRoute } from '@angular/router';
-import {
-  AuthStore
-} from "../../_services/auth.store";
+
 @Component({
   selector: "app-ranking",
   templateUrl: "./ranking.component.html",

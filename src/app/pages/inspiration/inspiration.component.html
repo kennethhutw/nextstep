@@ -33,7 +33,7 @@
                 "TEMPLATES" | translate }}</a>
         </li>
     </ul>
-    <div class="tab-content" id="myTabContent">
+    <div *ngIf="!loading" class="tab-content" id="myTabContent">
         <div class="tab-pane  active" id="all" role="tabpanel" aria-labelledby="all-tab">
             <div class="empty text-center" *ngIf="displayItems.length ===0">
                 <div class="col-md-12 empty-text-center qa-container">
@@ -185,6 +185,8 @@
                                             "IDEAS" | translate }}</option>
                                         <option value="experience">{{
                                             "INSIGHTS" | translate }}</option>
+                                        <option value="templates">{{
+                                            "TEMPLATES" | translate }}</option>
                                     </select>
                                 </div>
 
@@ -200,16 +202,29 @@
                                         <option value="">{{ "PLEASESELECT" | translate }}</option>
                                         <option value="content">{{ "CONTENT" | translate }}</option>
                                         <option value="link">{{ "LINK" | translate }}</option>
+                                        <option value="template">{{ "TEMPLATES" | translate }}</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row item-center">
 
+                    <div class="form-group">
+
+                        <label for="title">{{ "TITLE" |
+                            translate }} :</label>
+                        <input type="text" class="form-control rounded-0  w-96" id="title" aria-describedby="title"
+                            formControlName="title" placeholder="Enter title">
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="title">{{ "CONTENT" |
+                            translate }} :</label>
                         <textarea *ngIf="f?.type.value=='content'" class="form-control w-96" type="text"
                             formControlName="content" id="" rows="4" cols="50"></textarea>
-
+                        <textarea *ngIf="f?.type.value=='template'" class="form-control w-96" type="text"
+                            formControlName="content" id="" rows="4" cols="50"></textarea>
                         <input type="text" *ngIf="f?.type.value=='link'" class="form-control w-96 "
                             formControlName="content" aria-label="" (keyup.enter)="onLinkEnter($event)"
                             aria-describedby="button-addon2" />
@@ -280,3 +295,6 @@
         </div>
     </div>
 </div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p class="text-white">Please Wait. </p>
+</ngx-spinner>

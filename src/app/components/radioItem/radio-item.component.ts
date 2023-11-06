@@ -13,6 +13,7 @@ export class RadioItemComponent implements OnInit {
   @Input() description: string;
   @Input() id: string;
   @Input() value: boolean = false;
+  @Input() disabled: boolean = false;
 
   @Output() onChange = new EventEmitter<any>();
   constructor(

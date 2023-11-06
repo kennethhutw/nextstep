@@ -37,6 +37,7 @@ import {
 } from './myProject';
 
 import { SupportComponent } from './support/support.component';
+import { SubscriptionComponent } from './subscription/subscription.component';
 
 import {
     ChatComponent,
@@ -51,7 +52,6 @@ import {
 
 import { JobComponent } from './job/job.component';
 import { JoinProjectComponent } from './joinproject/joinproject.component';
-import { TemplatesComponent } from "./templates/templates.component";
 
 export const containers = [
     ActivityComponent,
@@ -95,7 +95,8 @@ export const containers = [
     ResourcesComponent,
     SettingsComponent,
     SupportComponent,
-    TemplatesComponent,
+    SubscriptionComponent,
+
     VerificationComponent,
 ];
 
@@ -129,7 +130,9 @@ export { RankingComponent } from "./ranking/ranking.component";
 export { RecruitComponent } from './recruit/recruit.component';
 export { ResourcesComponent } from "./resources/resources.component";
 export { SupportComponent } from './support/support.component';
-export { TemplatesComponent } from "./templates/templates.component";
+export { SubscriptionComponent } from './subscription/subscription.component';
+
+
 export { VerificationComponent } from './verification/verification.component';
 
 export * from "./example/example.component";

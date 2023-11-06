@@ -42,7 +42,7 @@ const routes: Routes = [
     children: [
       { path: "example", component: Pages.ExampleComponent },
       { path: "ranking", component: Pages.RankingComponent },
-      { path: "templates", component: Pages.TemplatesComponent },
+      { path: "subscription", component: Pages.SubscriptionComponent },
       { path: "projects", component: Pages.FindProjectComponent },
       { path: "project/:id", component: Pages.ProjectComponent },
       { path: "job/:id", component: Pages.JobComponent },
@@ -143,6 +143,10 @@ const routes: Routes = [
       {
         path: "settings",
         component: Pages.SettingsComponent
+      },
+      {
+        path: "notifications",
+        component: Pages.NotificationsComponent
       },
       {
         path: "notifications",

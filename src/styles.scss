@@ -529,7 +529,7 @@ button[disabled] {
 
 .btn-standard:hover {
   color: #424B61 !important;
-  border: 2px solid #8F95A8 !important;
+  border: 1px solid #8F95A8 !important;
 }
 
 .btn-pink {
@@ -551,14 +551,14 @@ button[disabled] {
 .btn-blue:hover {
   background-color: #FF859A !important;
   color: white !important;
-  border: 2px solid #FF859A !important;
+  border: 1px solid #FF859A !important;
   text-decoration: none;
 }
 
 .btn-white {
   background-color: #fff !important;
   color: #8F95A8 !important;
-  border: 2px solid #8F95A8 !important;
+  border: 1px solid #8F95A8 !important;
   border-radius: 4px !important;
   padding: 6px 12px 6px 12px !important;
 }
@@ -566,14 +566,14 @@ button[disabled] {
 .btn-white:hover {
   background-color: #FF859A !important;
   color: white !important;
-  border: 2px solid #FF859A !important;
+  border: 1px solid #FF859A !important;
   text-decoration: none;
 }
 
 .btn-dropdown {
   background-color: #fff !important;
   color: #8F95A8 !important;
-  border: 2px solid #8F95A8 !important;
+  border: 1px solid #8F95A8 !important;
   border-radius: 4px !important;
   padding: 6px 12px 6px 12px !important;
 }
@@ -607,7 +607,7 @@ button[disabled] {
 .btn-gray {
   background-color: #E3E5EC !important;
   color: #fff !important;
-  border: 2px solid #E3E5EC !important;
+  border: 1px solid #E3E5EC !important;
   border-radius: 4px !important;
   padding: 6px 12px 6px 12px !important;
 }
@@ -1779,6 +1779,11 @@ input[type=radio] {
   height: 60px;
   width: 60px;
   border-radius: 50%;
+
+  @media (max-width: 450px) {
+    height: 40px;
+    width: 40px;
+  }
 }
 
 .profile-image-small {
@@ -2204,7 +2209,7 @@ a {
 
 .d_icon_title {
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
   color: #262E42;
 }
 
@@ -2323,5 +2328,45 @@ a {
 
   @media (max-width: 450px) {
     font-size: 28px;
+  }
+}
+
+/*--------------------------------------------------------------
+#1	Find
+--------------------------------------------------------------*/
+#findcontent {
+  padding-bottom: 30px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 0px 200px 1fr;
+  margin-top: 50px;
+
+  .navbar-toggler {
+    display: none;
+  }
+
+  @media (max-width: 450px) {
+    grid-template-columns: none;
+    margin-top: 10px;
+
+    .navbar-toggler {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+  }
+
+  .filter_title {
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Noto Sans TC';
+    line-height: 20px;
+    margin-bottom: 12px;
+  }
+
+  .filter_option {
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Noto Sans TC';
+    line-height: 20px;
   }
 }

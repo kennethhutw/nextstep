@@ -32,6 +32,8 @@ export class MyProjectSettingsComponent implements OnInit {
   currentProject = null;
   projectName = "";
 
+  disabled = false;
+
   msg = {
     result: "",
     updateSuc: "",
@@ -56,6 +58,11 @@ export class MyProjectSettingsComponent implements OnInit {
     this.projectSrv.getProject(projectId, this.currentUser.id).then(res => {
       if (res['result'] === 'successful') {
         this.currentProject = res['data'];
+
+        if (this.currentProject.owner != this.currentUser.id) {
+          this.disabled = true;
+        }
+
         this.isPublic = this.currentProject.isPublic;
         this.isShowMember = this.currentProject.isShowMember;
       }

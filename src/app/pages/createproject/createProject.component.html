@@ -25,17 +25,20 @@
                         <span class="project-form-title"> {{ "PROJECT_STATUS" | translate }}</span>
                     </label>
                     <div class="form-group  options-3">
-                        <div> <input type="checkbox" (change)="onStatusChange($event, 'isFindPartner')"
+                        <div> <input type="checkbox" id="isFindPartner"
+                                (change)="onStatusChange($event, 'isFindPartner')"
                                 [checked]="projectForm.value.isFindPartner"
-                                value="projectForm.value.isFindPartner"><span>{{
-                                "FIND_MEMBER" | translate }}</span></div>
-                        <div> <input type="checkbox" (change)="onStatusChange($event, 'isFunding')"
-                                [checked]="projectForm.value.isFunding" value="projectForm.value.isFunding"><span>{{
+                                value="projectForm.value.isFindPartner"><label for="isFindPartner">{{
+                                "FIND_MEMBER" | translate }}</label></div>
+                        <div> <input type="checkbox" id="isFunding" (change)="onStatusChange($event, 'isFunding')"
+                                [checked]="projectForm.value.isFunding" value="projectForm.value.isFunding"><label
+                                for="isFunding">{{
                                 "FIND_MONEY" | translate }}
-                            </span></div>
-                        <div> <input type="checkbox" (change)="onStatusChange($event, 'isCofounder')"
-                                [checked]="projectForm.value.isCofounder" value="projectForm.value.isCofounder"><span>{{
-                                "FIND_COFOUNDER" | translate }}</span></div>
+                            </label></div>
+                        <div> <input type="checkbox" id="isCofounder" (change)="onStatusChange($event, 'isCofounder')"
+                                [checked]="projectForm.value.isCofounder" value="projectForm.value.isCofounder"><label
+                                for="isCofounder">{{
+                                "FIND_COFOUNDER" | translate }}</label></div>
                     </div>
 
                 </div>
@@ -59,50 +62,60 @@
                     </label>
                     <div class="form-group options-3">
                         <div>
-                            <input type="checkbox" (change)="onIndustryTypeChange($event, 'eComm')"
-                                [checked]="isInValue('eComm', f.type.value)" value="eComm"><span>{{"ECOMM" | translate
-                                }}</span>
+                            <input type="checkbox" id="eComm" (change)="onIndustryTypeChange($event, 'eComm')"
+                                [checked]="isInValue('eComm', f.type.value)" value="eComm"><label for="eComm">{{"ECOMM"
+                                | translate
+                                }}</label>
                         </div>
                         <div>
-                            <input type="checkbox" (change)="onIndustryTypeChange($event, 'medical')"
-                                [checked]="isInValue('medical', f.type.value)" value="medical"><span>{{"MEDICAL" |
+                            <input type="checkbox" id="medical" (change)="onIndustryTypeChange($event, 'medical')"
+                                [checked]="isInValue('medical', f.type.value)" value="medical"><label
+                                for="medical">{{"MEDICAL" |
                                 translate
-                                }}</span>
+                                }}</label>
                         </div>
                         <div>
-                            <input type="checkbox" (change)="onIndustryTypeChange($event, 'ai')"
-                                [checked]="isInValue('ai', f.type.value)" value="ai"><span>{{"AI" | translate }}</span>
+                            <input type="checkbox" id="ai" (change)="onIndustryTypeChange($event, 'ai')"
+                                [checked]="isInValue('ai', f.type.value)" value="ai"><label for="ai">{{"AI" |
+                                translate
+                                }}</label>
                         </div>
                     </div>
                     <div class="form-group options-3">
                         <div>
-                            <input type="checkbox" (change)="onIndustryTypeChange($event, 'transport')"
-                                [checked]="isInValue('transport', f.type.value)" value="transport"><span>{{"TRANSPORT" |
-                                translate }}</span>
+                            <input type="checkbox" id="transport" (change)="onIndustryTypeChange($event, 'transport')"
+                                [checked]="isInValue('transport', f.type.value)" value="transport"><label
+                                for="transport">{{"TRANSPORT"
+                                |
+                                translate }}</label>
                         </div>
                         <div>
-                            <input type="checkbox" (change)="onIndustryTypeChange($event, 'edutech')"
-                                [checked]="isInValue('edutech', f.type.value)" value="edutech"><span>{{"EDUTECH" |
+                            <input type="checkbox" id="edutech" (change)="onIndustryTypeChange($event, 'edutech')"
+                                [checked]="isInValue('edutech', f.type.value)" value="edutech"><label
+                                for="edutech">{{"EDUTECH" |
                                 translate
-                                }}</span>
+                                }}</label>
                         </div>
                         <div>
-                            <input type="checkbox" (change)="onIndustryTypeChange($event, 'fintech')"
-                                [checked]="isInValue('fintech', f.type.value)" value="fintech"><span>{{"FINTECH" |
+                            <input type="checkbox" id="fintech" (change)="onIndustryTypeChange($event, 'fintech')"
+                                [checked]="isInValue('fintech', f.type.value)" value="fintech"><label
+                                for="fintech">{{"FINTECH" |
                                 translate
-                                }}</span>
+                                }}</label>
                         </div>
                     </div>
                     <div class="form-group options-3">
                         <div>
-                            <input type="checkbox" (change)="onIndustryTypeChange($event, 'sharingeconomy')"
-                                [checked]="isInValue('sharingeconomy', f.type.value)"
-                                value="sharingeconomy"><span>{{"SHARINGECONOMY" | translate }}</span>
+                            <input type="checkbox" id="sharingeconomy"
+                                (change)="onIndustryTypeChange($event, 'sharingeconomy')"
+                                [checked]="isInValue('sharingeconomy', f.type.value)" value="sharingeconomy"><label
+                                for="sharingeconomy">{{"SHARINGECONOMY" | translate }}</label>
                         </div>
                         <div>
-                            <input type="checkbox" (change)="onIndustryTypeChange($event, 'game')"
-                                [checked]="isInValue('game', f.type.value)" value="game"><span>{{"GAME" | translate
-                                }}</span>
+                            <input type="checkbox" id="game" (change)="onIndustryTypeChange($event, 'game')"
+                                [checked]="isInValue('game', f.type.value)" value="game"><label for="game">{{"GAME" |
+                                translate
+                                }}</label>
                         </div>
                     </div>
                 </div>
@@ -113,59 +126,62 @@
                     </label>
                     <div class="form-group options-3">
                         <div>
-                            <input type="checkbox" (change)="onStageChange($event, 'idea')"
-                                [checked]="isInValue('idea', f.stages.value)" value="idea"><span>{{"PRORGRESS_1" |
+                            <input type="checkbox" id="idea" (change)="onStageChange($event, 'idea')"
+                                [checked]="isInValue('idea', f.stages.value)" value="idea"><label
+                                for="idea">{{"PRORGRESS_1" |
                                 translate
-                                }}</span>
+                                }}</label>
                         </div>
                         <div>
-                            <input type="checkbox" (change)="onStageChange($event, 'businessplan')"
-                                [checked]="isInValue('businessplan', f.stages.value)"
-                                value="businessplan"><span>{{"PRORGRESS_2" | translate
-                                }}</span>
+                            <input type="checkbox" id="businessplan" (change)="onStageChange($event, 'businessplan')"
+                                [checked]="isInValue('businessplan', f.stages.value)" value="businessplan"><label
+                                for="businessplan">{{"PRORGRESS_2" | translate
+                                }}</label>
                         </div>
                         <div>
-                            <input type="checkbox" (change)="onStageChange($event, 'findpartner')"
-                                [checked]="isInValue('findpartner', f.stages.value)"
-                                value="findpartner"><span>{{"PRORGRESS_3" | translate
-                                }}</span>
+                            <input type="checkbox" id="PRORGRESS_3" (change)="onStageChange($event, 'findpartner')"
+                                [checked]="isInValue('findpartner', f.stages.value)" value="findpartner"><label
+                                for="PRORGRESS_3">{{"PRORGRESS_3" | translate
+                                }}</label>
                         </div>
                     </div>
                     <div class="form-group options-3">
                         <div>
-                            <input type="checkbox" (change)="onStageChange($event, 'buildMVP')"
-                                [checked]="isInValue('buildMVP', f.stages.value)" value="buildMVP"><span>{{"PRORGRESS_4"
+                            <input type="checkbox" id="buildMVP" (change)="onStageChange($event, 'buildMVP')"
+                                [checked]="isInValue('buildMVP', f.stages.value)" value="buildMVP"><label
+                                for="buildMVP">{{"PRORGRESS_4"
                                 |
                                 translate
-                                }}</span>
+                                }}</label>
                         </div>
                         <div>
-                            <input type="checkbox" (change)="onStageChange($event, 'producttested')"
-                                [checked]="isInValue('producttested', f.stages.value)"
-                                value="producttested"><span>{{"PRORGRESS_5" | translate
-                                }}</span>
+                            <input type="checkbox" id="producttested" (change)="onStageChange($event, 'producttested')"
+                                [checked]="isInValue('producttested', f.stages.value)" value="producttested"><label
+                                for="producttested">{{"PRORGRESS_5" | translate
+                                }}</label>
                         </div>
 
                         <div>
-                            <input type="checkbox" (change)="onStageChange($event, 'findcustomers')"
-                                [checked]="isInValue('findcustomers', f.stages.value)"
-                                value="findcustomers"><span>{{"PRORGRESS_6" | translate
-                                }}</span>
+                            <input type="checkbox" id="findcustomers" (change)="onStageChange($event, 'findcustomers')"
+                                [checked]="isInValue('findcustomers', f.stages.value)" value="findcustomers"><label
+                                for="findcustomers">{{"PRORGRESS_6" | translate
+                                }}</label>
                         </div>
                     </div>
 
                     <div class="form-group options-3">
                         <div>
-                            <input type="checkbox" (change)="onStageChange($event, 'findpayingcustomers')"
+                            <input type="checkbox" id="findpayingcustomers"
+                                (change)="onStageChange($event, 'findpayingcustomers')"
                                 [checked]="isInValue('findpayingcustomers', f.stages.value)"
-                                value="findpayingcustomers"><span>{{"PRORGRESS_7" | translate
-                                }}</span>
+                                value="findpayingcustomers"><label for="findpayingcustomers">{{"PRORGRESS_7" | translate
+                                }}</label>
                         </div>
                         <div>
-                            <input type="checkbox" (change)="onStageChange($event, 'fundraising')"
-                                [checked]="isInValue('fundraising', f.stages.value)"
-                                value="fundraising"><span>{{"PRORGRESS_8" | translate
-                                }}</span>
+                            <input type="checkbox" id="fundraising" (change)="onStageChange($event, 'fundraising')"
+                                [checked]="isInValue('fundraising', f.stages.value)" value="fundraising"><label
+                                for="fundraising">{{"PRORGRESS_8" | translate
+                                }}</label>
                         </div>
                     </div>
                 </div>

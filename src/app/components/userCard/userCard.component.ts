@@ -66,7 +66,7 @@ export class UserCardComponent {
   }
 
   init_terms(lang) {
-    this.translateSrv.get("NONAME").subscribe((text: string) => {
+    this.translateSrv.get("NOTFILLED").subscribe((text: string) => {
       this.strNotFilled = text;
     });
 

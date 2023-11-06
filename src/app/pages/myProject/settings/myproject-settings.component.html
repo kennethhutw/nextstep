@@ -5,18 +5,19 @@
                 | translate }}</span>
         </div>
     </div>
+
     <div class="row" *ngIf="this.currentProject">
         <div class="col-md-12">
             <ui-radio-item title="{{ 'PUBLICVIEW'
                             | translate }}" description="{{ 'PUBLICVIEWDESC'
-                            | translate }}" [id]="'isPublic'" [value]="isPublic"
+                            | translate }}" [id]="'isPublic'" [value]="isPublic" [disabled]="disabled"
                 (onChange)="onPublicChange($event)"></ui-radio-item>
         </div>
         <div class="col-md-12">
 
             <ui-radio-item title="{{ 'DISPLAYMEMBERS'
                             | translate }}" description="{{ 'DISPLAYMEMBERSINFO'
-                            | translate }}" [id]="'isShowMember'" [value]="isShowMember"
+                            | translate }}" [id]="'isShowMember'" [value]="isShowMember" [disabled]="disabled"
                 (onChange)="onMemberChange($event)"></ui-radio-item>
         </div>
         <div class="col-md-12">
@@ -30,7 +31,7 @@
                             | translate }}
                         </p>
                     </div>
-                    <button type="button" class="btn-white mr-10" data-toggle="modal"
+                    <button type="button" class="btn-white mr-10" data-toggle="modal" [disabled]="disabled"
                         [attr.data-target]="'#deleteProjectModal'">{{ "DELPROJECT"
                         | translate }}
                     </button>

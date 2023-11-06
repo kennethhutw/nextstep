@@ -80,7 +80,7 @@
                                                     <svg-icon src="assets/icons/pencil.svg"></svg-icon>&nbsp;&nbsp;{{
                                                     "EDIT" | translate
                                                     }}
-                                                </a> <a class="dropdown-item"
+                                                </a> <a *ngIf="isOwner(item)" class="dropdown-item"
                                                     [routerLink]="['/myproject/'+this.item?.id+'/settings']">
                                                     <svg-icon src="assets/icons/trash.svg"></svg-icon>&nbsp;&nbsp;{{
                                                     "DELETE" | translate

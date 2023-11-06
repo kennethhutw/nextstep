@@ -1,45 +1,65 @@
-<div *ngIf="currentRecruit" class="row mt-50 ">
-  <div class="col-md-6 text-center d-flex flex-row gap-10">
-    <h1>{{this.currentRecruit.position? this.currentRecruit.position :this.msg.jobtitle}}</h1>
+<div *ngIf="currentRecruit" class="row page">
+  <div class="col-12 col-md-6 page-title">
+    <span>{{this.currentRecruit.position? this.currentRecruit.position :this.msg.jobtitle}}</span>
     <span class="update_date">{{this.currentRecruit.createdAt | date:"MM/dd"}} {{ "UPDATE" | translate
       }}</span>
   </div>
 
-  <div *ngIf="currentUser" class="col-md-6 text-right btn_items">
-    <button type="button" class="btn btn_item" data-toggle="modal" data-target="#modal_apply" data-dismiss="modal"
-      (click)="onSelectItem(currentRecruit)"><i class="far fa-envelope" tooltip="{{ 'APPLY' | translate }}"></i>
-      {{ 'APPLY' | translate }}</button><button type="button" class="d-flex btn btn_item"
-      [ngClass]="{'btn_item_selected': currentRecruit?.isCollected === true}"
+  <div *ngIf="currentUser" class="col-12 col-md-6 btn_action_items">
+    <button type="button" class="btn btn_action_item" data-toggle="modal" data-target="#modal_apply"
+      data-dismiss="modal" (click)="onSelectItem(currentRecruit)"><i class="far fa-envelope"
+        tooltip="{{ 'APPLY' | translate }}"></i>
+      {{ 'APPLY' | translate }}</button><button type="button" class="d-flex btn btn_action_item"
+      [ngClass]="{'btn_action_item_selected': currentRecruit?.isCollected === true}"
       *ngIf="currentRecruit?.owner !== currentUser?.id" (click)="onClickCollect()"><i class="far fa-bookmark fa-lg"
         tooltip="{{ 'COLLECT' | translate }}"></i>
       {{currentRecruit?.isCollected === true ? this.msg.collected : this.msg.collect}} </button>
 
-    <button type="button" class="btn btn_item" [ngClass]="{'btn_item_selected': currentRecruit?.isFollowing === true}"
+    <button type="button" class="btn btn_action_item"
+      [ngClass]="{'btn_action_item_selected': currentRecruit?.isFollowing === true}"
       *ngIf="currentRecruit?.owner !== currentUser?.id" (click)="onClickFollow()"><i class="fas fa-plus"></i>
       {{currentRecruit?.isFollowing === true ? this.msg.followed : this.msg.following}} </button>
-    <button type="button" class="btn btn_item " (click)="onToggleChat($event)"><i class="far fa-comment-alt"></i>
+    <button type="button" class="btn btn_action_item " (click)="onToggleChat($event)"><i class="far fa-comment-alt"></i>
       {{ 'MESSAGE' | translate }}</button>
-
-
   </div>
 </div>
 <div *ngIf="currentRecruit" class="row mt-10 pb-33 bottom-gray-line">
-  <div class="col-md-8  d-flex flex-row gap-10">
+  <div class="col-6 col-md-8  d-flex flex-row gap-10">
     <img class="profile-image rounded-circle" src="{{ currentRecruit.projectImageUrl }}" (error)="onImgError($event)"
       alt="" />
-    <span class="update_date">{{ currentRecruit.projectName }}</span>
+    <span class="project-name">{{ currentRecruit.projectName }}</span>
   </div>
-  <div class="col-md-4 text-right">
+  <div class="col-6 col-md-4 text-right follow">
     <span>{{ this.getFollow(currentRecruit)}}</span>
-    <!-- <span class="update_date">xx人收藏/xx人追蹤</span> -->
   </div>
 </div>
 
+<div class="row">
+  <div *ngIf="currentUser" class="col-12 col-md-6 btn_action_mobile_items">
+    <button type="button" class="btn btn_action_mobile_item" data-toggle="modal" data-target="#modal_apply"
+      data-dismiss="modal" (click)="onSelectItem(currentRecruit)"><i class="far fa-envelope"
+        tooltip="{{ 'APPLY' | translate }}"></i>
+      {{ 'APPLY' | translate }}</button>
+    <button type="button" class="btn btn_action_mobile_item"
+      [ngClass]="{'btn_action_item_mobile_selected': currentRecruit?.isCollected === true}"
+      *ngIf="currentRecruit?.owner !== currentUser?.id" (click)="onClickCollect()"><i class="far fa-bookmark fa-lg"
+        tooltip="{{ 'COLLECT' | translate }}"></i>
+      {{currentRecruit?.isCollected === true ? this.msg.collected : this.msg.collect}} </button>
+
+    <button type="button" class="btn btn_action_mobile_item"
+      [ngClass]="{'btn_action_item_mobile_selected': currentRecruit?.isFollowing === true}"
+      *ngIf="currentRecruit?.owner !== currentUser?.id" (click)="onClickFollow()"><i class="fas fa-plus"></i>
+      {{currentRecruit?.isFollowing === true ? this.msg.followed : this.msg.following}} </button>
+    <button type="button" class="btn btn_action_mobile_item " (click)="onToggleChat($event)"><i
+        class="far fa-comment-alt"></i>
+      {{ 'MESSAGE' | translate }}</button>
+  </div>
+</div>
 
 <div *ngIf="currentRecruit" class="row mt-20">
-  <div class="col-md-8">
+  <div class="col-12 col-md-8">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-12 col-md-12">
         <span class="title">{{ "JD" | translate
           }}</span>
         <span *ngIf="currentRecruit ?.createdBy == currentUser?.id" class="btn-standard ml-24" data-toggle="modal"
@@ -63,11 +83,11 @@
       </div>
     </div>
     <div class="row ">
-      <div class="col-md-12 mb-24">
+      <div class="col-12 col-md-12 mb-24">
         <span class="title">{{ "OTHERJOBS" | translate
           }}</span>
       </div>
-      <div class="col-md-12  noItem" *ngIf="!isHasOthersJob()">
+      <div class="col-12 col-md-12  noItem" *ngIf="!isHasOthersJob()">
         <svg-icon src="assets/icons/Suitcase.svg"></svg-icon>
         <span class="empty-text"> {{ "NOJOBOPEN" | translate
           }}</span>
@@ -76,12 +96,12 @@
         <ng-container *ngFor="let item of  this.currentRecruit.projectOthers; let i = index">
           <div *ngIf="item.status =='1'" class="job_frame" [ngClass]="{'mt-10':i>1}">
 
-            <div class="col-md-12" style="display: inline-flex;">
-              <div class="col-md-8">
+            <div class="d-flex">
+              <div class="col-8 col-md-8">
                 <p class="position"><b>{{item.position}}</b></p>
 
               </div>
-              <div *ngIf="currentUser" class="col-md-4 btn_items">
+              <div *ngIf="currentUser" class="col-4 col-md-4 btn_items">
                 <i *ngIf="item.isCollected" (click)="onClickJobCollect(item.id, item.isCollected)"
                   class="fas fa-bookmark collected"></i>
                 <i *ngIf="!item.isCollected" (click)="onClickJobCollect(item.id, item.isCollected)"
@@ -90,7 +110,7 @@
                   <i class="far fa-envelope"></i></a>
               </div>
             </div>
-            <div class="col-md-12 pl-30">
+            <div class="col-md-12">
               <small><ng-container *ngIf="item.skills">
 
                   <ng-container *ngFor=" let tag of item.skills; let i=index">
@@ -114,9 +134,9 @@
 
     </div>
   </div>
-  <div class="col-md-4">
+  <div class="col-12 col-md-4">
     <div class="row">
-      <div class="col-md-12 mb-24">
+      <div class="col-12 col-md-12 mb-24">
         <span class="title"> {{ "SIMILARJOBS" | translate }}</span>
       </div>
     </div>
@@ -129,11 +149,11 @@
       <ng-container *ngFor="let item of  this.currentRecruit.others; let i = index">
         <div *ngIf="item.status =='1'" class="row job_frame" [ngClass]="{'mt-10':i>1}">
 
-          <div class="col-md-12" style="display: inline-flex;">
-            <div class="col-md-8 pl-0 col-form-label">
+          <div class="col-12 col-md-12" style="display: inline-flex;">
+            <div class="col-12 col-md-8 pl-0 col-form-label">
               <p class="position col-form-label"><b>{{item.position}}</b></p>
             </div>
-            <div *ngIf="currentUser" class="col-md-4 btn_items">
+            <div *ngIf="currentUser" class="col-12 col-md-4 btn_items">
 
               <i *ngIf="item.isCollected" (click)="onClickJobCollect(item.id, item.isCollected)"
                 class="fas fa-bookmark collected" tooltip="{{ 'COLLECT' | translate }}"></i>
@@ -144,10 +164,10 @@
             </div>
           </div>
 
-          <div class="col-md-12 job_scopes">
+          <div class="col-12 col-md-12 job_scopes">
             {{item.scopes}}
           </div>
-          <div class="col-md-12 text-right">
+          <div class="col-12 col-md-12 text-right">
             <a class=" clickable " [routerLink]="['/job/',item.id ]">{{ "VIEWDETAILS" |
               translate
               }}</a>

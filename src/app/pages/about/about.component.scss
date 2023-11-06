@@ -1,3 +1,8 @@
+.container {
+  margin-top: 50px;
+  min-height: 110vh;
+}
+
 .page-title {
   font-weight: 700;
   font-size: 36px;
@@ -15,6 +20,11 @@
   font-weight: 500;
   border-radius: 12px;
   box-shadow: 0 0.05rem 0.01rem rgba(75, 75, 90, 0.075);
+
+  @media (max-width: 450px) {
+    padding: 24px;
+    font-size: 18px;
+  }
 
   .option_title {
     font-size: 20px;
@@ -46,12 +56,16 @@
 
 
 .member-container {
-  flex-direction: column;
+
   grid-auto-flow: column;
   display: grid;
   justify-content: center;
   align-items: center;
   gap: 80px;
+
+  @media (max-width: 450px) {
+    grid-auto-flow: row;
+  }
 }
 
 .member {
@@ -65,6 +79,10 @@
   width: 428px;
   border-radius: 12px;
   box-shadow: 0 0.05rem 0.01rem rgba(75, 75, 90, 0.075);
+
+  @media (max-width: 450px) {
+    width: auto;
+  }
 
   .member_name {
     font-size: 32px;

@@ -103,7 +103,7 @@
           </div>
         </li>
         <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-          <a routerLink="/messages"> <i class="far fa-comment-dots message "><span *ngIf="msgNum>0"
+          <a routerLink="/dashboard/messages"> <i class="far fa-comment-dots message "><span *ngIf="msgNum>0"
                 class="notification-dot"></span></i></a>
         </li>
         <li class="nav-item dropdown">
@@ -113,9 +113,10 @@
             <img *ngIf="currentUser.imageUrl" class="profile-image rounded-circle" src="{{ currentUser.imageUrl }}"
               (error)="onImgError($event)" alt="" />
           </a>
+
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
-              [routerLink]="['/admin']">管理員</a>
+            <a *ngIf="currentUser.isAdmin" class="dropdown-item" [routerLinkActive]="['active']"
+              [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/admin']">管理員</a>
             <a class="dropdown-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
               [routerLink]="['/u/',currentUser?.uid]">{{ "MYPROFILE" | translate }}</a>
             <a class="dropdown-item" [routerLink]="['/dashboard/collection']">{{ "MYCOLLECTION" | translate }}</a>

@@ -25,14 +25,14 @@
 
 </div>
 <div *ngIf="currentProject" class="row mt-24">
-  <div class="col-md-2 text-right">
+  <div class="col-12 col-md-2">
 
   </div>
-  <div class="col-md-5 pl-55">
-    <h1>{{this.currentProject?.name}}</h1>
+  <div class="col-12 col-md-5 page-title">
+    <span>{{this.currentProject?.name}}</span>
   </div>
 
-  <div class="col-md-5 text-right  btn_items" *ngIf="currentUser">
+  <div class="col-12 col-md-5  btn_items" *ngIf="currentUser">
     <button type="button" class="d-flex btn btn_item"
       [ngClass]="{'btn_item_selected': currentProject?.isCollected === true}"
       *ngIf="currentProject?.owner !== currentUser?.id" (click)="onClickCollect()"><i
@@ -48,10 +48,10 @@
   </div>
 </div>
 <div *ngIf="currentProject" class="row mt-10">
-  <div class="col-md-2 text-right">
+  <div class="col-12 col-md-2">
 
   </div>
-  <div class="col-md-5 pl-40">
+  <div class="col-12 col-md-5 links">
 
     <a class="fa-earth-americas pl-20" *ngIf="IsNullorEmpty(currentProject.website)" href="{{ currentProject.website }}"
       target="_blank">
@@ -72,7 +72,7 @@
         class="fab fa-instagram-square icon color-gray"></i></a>
   </div>
 
-  <div class="col-md-5 project-info">
+  <div class="col-12 col-md-5 follow">
     <span>{{ currentProject.viewCount}}&nbsp;&nbsp;{{ "VIEWNUM" | translate
       }}</span>
     <span>{{ this.getFollow(currentProject)}}</span>
@@ -80,7 +80,7 @@
 </div>
 
 <div *ngIf="currentProject" class="row project-content">
-  <div class="col-md-8">
+  <div class="col-12 col-md-8">
     <div class="row mb-24">
       <div class="col-md-12 d-inline">
         <span class="title mb-24">{{ "PROJECT_INTRO" | translate
@@ -91,8 +91,8 @@
           }}</span>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12 project_frame">
+    <div class="row frame">
+      <div class="col-12 col-md-12">
         <div class="tags">
           <ui-tag *ngIf="currentProject.isFindPartner" [class]="'tag-hiring'" tag="{{ 'FIND_MEMBER' | translate }}">
           </ui-tag>
@@ -147,7 +147,7 @@
       </div>
     </div>
     <div class="row frame ">
-      <div class="col-md-12 ">
+      <div class="col-12 col-md-12 ">
         <ng-container *ngFor="let work of currentProject.works; let i = index">
           <div class="workbar" *ngIf="isShowWork(work)">
             <span class="dot"></span>
@@ -241,7 +241,7 @@
 
     </div>
   </div>
-  <div class="col-md-4">
+  <div class="col-12 col-md-4">
     <div class="row mb-24">
       <div class="col-md-12">
         <span class="title mb-24 pl-10">{{ "RECRUITMENT" | translate

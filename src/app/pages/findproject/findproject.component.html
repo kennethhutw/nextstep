@@ -14,25 +14,25 @@
         <nav class="sidebar-menu pt-3 pb-3">
           <ul class="menu-items">
             <li class="mb-12">
-              <span class="title">{{ "PROJECT_STATUS"
+              <span class="filter_title">{{ "PROJECT_STATUS"
                 | translate }}</span>
             </li>
             <li>
               <input type="checkbox" [(ngModel)]="filterCondition.isFindPartner"
                 (change)="onProjectStatusChange($event)" data-key="project" />
-              <label class="option" for="firsttimeInput">{{ "FIND_MEMBER"
+              <label class="filter_option" for="firsttimeInput">{{ "FIND_MEMBER"
                 | translate }}</label>
             </li>
             <li>
               <input type="checkbox" [(ngModel)]="filterCondition.isFunding" (change)="onProjectStatusChange($event)"
                 data-key="project" />
-              <label class="option" for="firsttimeInput">{{ "FIND_MONEY"
+              <label class="filter_option" for="firsttimeInput">{{ "FIND_MONEY"
                 | translate }}</label>
             </li>
             <li>
               <input type="checkbox" [(ngModel)]="filterCondition.isCofounder" (change)="onProjectStatusChange($event)"
                 data-key="project" />
-              <label class="option" for="firsttimeInput">{{
+              <label class="filter_option" for="firsttimeInput">{{
                 "FIND_COFOUNDER"
                 | translate }}</label>
             </li>
@@ -41,63 +41,63 @@
 
           <ul class="menu-items">
             <li class="mb-12">
-              <span class="title">{{
+              <span class="filter_title">{{
                 "INDUSTRY_TYPES"
                 | translate }}</span>
             </li>
             <li>
               <input id="eComm" type="checkbox" [(ngModel)]="filterCondition.eComm" (change)="onTypeChange($event)"
                 data-key="project" />
-              <label class="option" for="eComm">{{
+              <label class="filter_option" for="eComm">{{
                 "ECOMM"
                 | translate }}</label>
             </li>
             <li>
               <input id="medical" type="checkbox" [(ngModel)]="filterCondition.medical" (change)="onTypeChange($event)"
                 data-key="project" />
-              <label class="option" for="medical">{{
+              <label class="filter_option" for="medical">{{
                 "MEDICAL"
                 | translate }}</label>
             </li>
             <li>
               <input id="ai" type="checkbox" [(ngModel)]="filterCondition.ai" (change)="onTypeChange($event)"
                 data-key="project" />
-              <label class="option" for="ai">{{
+              <label class="filter_option" for="ai">{{
                 "AI"
                 | translate }}</label>
             </li>
             <li>
               <input id="transport" type="checkbox" [(ngModel)]="filterCondition.transport"
                 (change)="onTypeChange($event)" data-key="project" />
-              <label class="option" for="transport">{{
+              <label class="filter_option" for="transport">{{
                 "TRANSPORT"
                 | translate }}</label>
             </li>
             <li>
               <input id="edutech" type="checkbox" [(ngModel)]="filterCondition.edutech" (change)="onTypeChange($event)"
                 data-key="project" />
-              <label class="option" for="edutech">{{
+              <label class="filter_option" for="edutech">{{
                 "EDUTECH"
                 | translate }}</label>
             </li>
             <li>
               <input id="fintech" type="checkbox" [(ngModel)]="filterCondition.fintech" (change)="onTypeChange($event)"
                 data-key="project" />
-              <label class="option" for="fintech">{{
+              <label class="filter_option" for="fintech">{{
                 "FINTECH"
                 | translate }}</label>
             </li>
             <li>
               <input id="sharingeconomy" type="checkbox" [(ngModel)]="filterCondition.sharingeconomy"
                 (change)="onTypeChange($event)" data-key="project" />
-              <label class="option" for="sharingeconomy">{{
+              <label class="filter_option" for="sharingeconomy">{{
                 "SHARINGECONOMY"
                 | translate }}</label>
             </li>
             <li>
               <input id="game" type="checkbox" [(ngModel)]="filterCondition.game" (change)="onTypeChange($event)"
                 data-key="project" />
-              <label class="option" for="game">{{
+              <label class="filter_option" for="game">{{
                 "GAME"
                 | translate }}</label>
             </li>
@@ -115,25 +115,25 @@
       <nav class="sidebar-menu pt-3 pb-3">
         <ul class="menu-items">
           <li class="mb-12">
-            <span class="title">{{ "PROJECT_STATUS"
+            <span class="filter_title">{{ "PROJECT_STATUS"
               | translate }}</span>
           </li>
           <li>
             <input type="checkbox" [(ngModel)]="filterCondition.isFindPartner" (change)="onProjectStatusChange($event)"
               data-key="project" />
-            <label class="option" for="firsttimeInput">{{ "FIND_MEMBER"
+            <label class="filter_option" for="firsttimeInput">{{ "FIND_MEMBER"
               | translate }}</label>
           </li>
           <li>
             <input type="checkbox" [(ngModel)]="filterCondition.isFunding" (change)="onProjectStatusChange($event)"
               data-key="project" />
-            <label class="option" for="firsttimeInput">{{ "FIND_MONEY"
+            <label class="filter_option" for="firsttimeInput">{{ "FIND_MONEY"
               | translate }}</label>
           </li>
           <li>
             <input type="checkbox" [(ngModel)]="filterCondition.isCofounder" (change)="onProjectStatusChange($event)"
               data-key="project" />
-            <label class="option" for="firsttimeInput">{{
+            <label class="filter_option" for="firsttimeInput">{{
               "FIND_COFOUNDER"
               | translate }}</label>
           </li>
@@ -146,79 +146,79 @@
           <li>
             <input id="websit" type="checkbox" [(ngModel)]="filterCondition.websit" (change)="onProductChange($event)"
               data-key="websit" />
-            <label class="option" for="websit">網站</label>
+            <label class="filter_option" for="websit">網站</label>
           </li>
           <li>
             <input id="app" type="checkbox" [(ngModel)]="filterCondition.app" (change)="onProductChange($event)"
               data-key="project" />
-            <label class="option" for="app">App</label>
+            <label class="filter_option" for="app">App</label>
           </li>
           <li>
             <input id="hardware" type="checkbox" [(ngModel)]="filterCondition.hardware"
               (change)="onProductChange($event)" data-key="project" />
-            <label class="option" for="hardware">硬體</label>
+            <label class="filter_option" for="hardware">硬體</label>
           </li>
 
         </ul> -->
         <ul class="menu-items">
           <li class="mb-12">
-            <span class="title">{{
+            <span class="filter_title">{{
               "INDUSTRY_TYPES"
               | translate }}</span>
           </li>
           <li>
             <input id="eComm" type="checkbox" [(ngModel)]="filterCondition.eComm" (change)="onTypeChange($event)"
               data-key="project" />
-            <label class="option" for="eComm">{{
+            <label class="filter_option" for="eComm">{{
               "ECOMM"
               | translate }}</label>
           </li>
           <li>
             <input id="medical" type="checkbox" [(ngModel)]="filterCondition.medical" (change)="onTypeChange($event)"
               data-key="project" />
-            <label class="option" for="medical">{{
+            <label class="filter_option" for="medical">{{
               "MEDICAL"
               | translate }}</label>
           </li>
           <li>
             <input id="ai" type="checkbox" [(ngModel)]="filterCondition.ai" (change)="onTypeChange($event)"
               data-key="project" />
-            <label class="option" for="ai">{{
+            <label class="filter_option" for="ai">{{
               "AI"
               | translate }}</label>
           </li>
           <li>
             <input id="transport" type="checkbox" [(ngModel)]="filterCondition.transport"
               (change)="onTypeChange($event)" data-key="project" />
-            <label class="option" for="transport">{{
+            <label class="filter_option" for="transport">{{
               "TRANSPORT"
               | translate }}</label>
           </li>
           <li>
             <input id="edutech" type="checkbox" [(ngModel)]="filterCondition.edutech" (change)="onTypeChange($event)"
               data-key="project" />
-            <label class="option" for="edutech">{{
+            <label class="filter_option" for="edutech">{{
               "EDUTECH"
               | translate }}</label>
           </li>
           <li>
             <input id="fintech" type="checkbox" [(ngModel)]="filterCondition.fintech" (change)="onTypeChange($event)"
               data-key="project" />
-            <label class="option" for="fintech">{{
+            <label class="filter_option" for="fintech">{{
               "FINTECH"
               | translate }}</label>
           </li>
           <li>
             <input id="sharingeconomy" type="checkbox" [(ngModel)]="filterCondition.sharingeconomy"
               (change)="onTypeChange($event)" data-key="project" />
-            <label class="option" for="sharingeconomy">{{
+            <label class="filter_option" for="sharingeconomy">{{
               "SHARINGECONOMY"
               | translate }}</label>
           </li>
           <li>
             <input id="game" type="checkbox" [(ngModel)]="filterCondition.game" (change)="onTypeChange($event)"
               data-key="project" />
-            <label class="option" for="game">{{
+            <label class="filter_option" for="game">{{
               "GAME"
               | translate }}</label>
           </li>
@@ -230,27 +230,27 @@
           <li>
             <input id="work12" type="checkbox" [(ngModel)]="filterCondition.work12" (change)="onHourChange($event)"
               data-key="hour" />
-            <label class="option" for="work12">1至2小時</label>
+            <label class="filter_option" for="work12">1至2小時</label>
           </li>
           <li>
             <input id="work34" type="checkbox" [(ngModel)]="filterCondition.work34" (change)="onHourChange($event)"
               data-key="hour" />
-            <label class="option" for="work34">3至4小時</label>
+            <label class="filter_option" for="work34">3至4小時</label>
           </li>
           <li>
             <input id="work56" type="checkbox" [(ngModel)]="filterCondition.work56" (change)="onHourChange($event)"
               data-key="hour" />
-            <label class="option" for="work56">5至6小時</label>
+            <label class="filter_option" for="work56">5至6小時</label>
           </li>
           <li>
             <input id="work78" type="checkbox" [(ngModel)]="filterCondition.work78" (change)="onHourChange($event)"
               data-key="hour" />
-            <label class="option" for="work78">7至8小時</label>
+            <label class="filter_option" for="work78">7至8小時</label>
           </li>
           <li>
             <input id="work9" type="checkbox" [(ngModel)]="filterCondition.work9" (change)="onHourChange($event)"
               data-key="hour" />
-            <label class="option" for="work9">9小時以上(含)</label>
+            <label class="filter_option" for="work9">9小時以上(含)</label>
           </li>
 
         </ul> -->

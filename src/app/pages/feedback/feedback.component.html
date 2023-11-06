@@ -33,14 +33,14 @@
             <a class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'processed' }" role="tab"
                 (click)="changeTab('processed')">{{ "PROCESSED" | translate }}</a>
         </li>
-        <li class="nav-item" role="presentation">
+        <li *ngIf="currentUser" class="nav-item" role="presentation">
             <a class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'myproposal' }" role="tab"
                 (click)="changeTab('myproposal')">{{ "MYFEEDBACK" | translate }}</a>
         </li>
 
 
     </ul>
-    <div class="tab-content" id="myTabContent">
+    <div *ngIf="!loading" class="tab-content" id="myTabContent">
         <div class="tab-pane  active" id="all" role="tabpanel" aria-labelledby="all-tab">
             <div class="empty text-center" *ngIf="displayItems.length ===0">
                 <div class="col-md-12 empty-text-center qa-container">
@@ -141,7 +141,7 @@
 
                             <div *ngIf="j == item.comments.length -1" class="row new_comment">
                                 <input type="text" #yourInput (keyup.enter)="onComment($event, item)"
-                                    class="form-control" placeholder="輸入留言" aria-describedby="">
+                                    class="form-control" placeholder=" " aria-describedby="">
                             </div>
                         </ng-container>
                     </div>
