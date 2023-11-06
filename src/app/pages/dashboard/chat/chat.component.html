@@ -17,7 +17,11 @@
                 <div class="chat_img"> <img [src]="item.image!= null ?  settingSrv.defaultAssetUrl+item.image
                   : settingSrv.defaultUserLogo" alt=""> </div>
                 <div class="chat_ib">
-                  <h5>{{item.name}} <span class="chat_date">{{item.date | date : 'yyyy-MM-dd'}}</span></h5>
+                  <div class="chat_people_header">
+                    <h5>{{item.name}}</h5>
+                    <span class="chat_date">{{item.date | date : 'yyyy-MM-dd'}}</span>
+                  </div>
+
                   <p class="chat_short_msg">{{item.message?item.message:""}}<span *ngIf="item?.readNum>0"
                       class="chat_num">{{item?.readNum}}</span>
                   </p>
