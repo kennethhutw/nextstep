@@ -59,7 +59,8 @@ export class ProjectComponent implements OnInit {
 
   currentUser;
   currentProject = null;
-  projectId;
+  projectId = null;
+  pId = null;
   defual_application_message: string = ``;
 
   application_message: string;
@@ -149,18 +150,20 @@ export class ProjectComponent implements OnInit {
   ngOnInit() {
     this.SpinnerService.show();
     this.currentUser = this.authStore.getUserData();
+    this.pId = this.route.snapshot.paramMap.get("pid");
 
-    this.projectId = this.route.snapshot.paramMap.get("id");
+    // this.projectId = this.route.snapshot.paramMap.get("id");
     let _id = null;
     if (this.currentUser && this.currentUser.id) {
       _id = this.currentUser.id;
     }
 
-    this.projectSrv.getProject(this.projectId, _id).then(res => {
+    this.projectSrv.getProjectByPid(this.pId, _id).then(res => {
       if (res['result'] == 'successful') {
 
         this.currentProject = res['data'];
         if (this.currentProject) {
+          this.projectId = this.currentProject.id;
           if (this.currentProject.members) {
             this.currentProject.members.forEach(element => {
               if (!this.utilitySrv.IsNullOrEmpty(element.imageUrl)) {
@@ -979,13 +982,13 @@ export class ProjectComponent implements OnInit {
   }
 
   isShowWork(work) {
-    if (!this.currentUser) {
-      return work.isPublic;
-    }
-    else if (this.currentProject.owner == this.currentUser.id) {
+    if (work.createdBy == this.currentUser.id) {
       return true;
 
-    } else {
+    } else if (!this.currentUser) {
+      return work.isPublic;
+    }
+    else {
       return work.isPublic;
     }
   }

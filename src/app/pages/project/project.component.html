@@ -146,7 +146,14 @@
           }}</span>
       </div>
     </div>
-    <div class="row frame ">
+
+    <div class="noItem mt-20" *ngIf="currentProject.works.length ===0">
+      <svg-icon class="icon" src="assets/icons/Suitcase.svg"></svg-icon>
+      <span class="d_icon_title">{{
+        "NOPORTFOLIO"
+        | translate }}</span>
+    </div>
+    <div class="row frame " *ngIf="currentProject.works.length >0">
       <div class="col-12 col-md-12 ">
         <ng-container *ngFor="let work of currentProject.works; let i = index">
           <div class="workbar" *ngIf="isShowWork(work)">

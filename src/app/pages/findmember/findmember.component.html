@@ -254,6 +254,11 @@
           | translate }}</p>
       </div>
     </div>
+    <div class="col-md-12 empty-text-center h-100" *ngIf="displayItems.length==0">
+      <svg-icon class="icon" src="assets/icons/NoUser.svg"></svg-icon>
+      <span>{{ "NOJOBOPEN"
+        | translate }}</span>
+    </div>
     <div class="col-md-12 empty-text-center h-100" *ngIf="foundItemNum ==-1 && displayItems.length ==0">
       <svg-icon class="icon" src="assets/icons/magnifier.svg"></svg-icon>
       <span>{{ "NORESULT"

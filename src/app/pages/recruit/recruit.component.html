@@ -277,6 +277,11 @@
       <span>{{ "NORESULT"
         | translate }}</span>
     </div>
+    <div class="col-md-12 empty-text-center h-100" *ngIf="displayItems.length==0">
+      <svg-icon class="icon" src="assets/icons/Suitcase.svg"></svg-icon>
+      <span>{{ "NOJOBOPEN"
+        | translate }}</span>
+    </div>
     <!--found result end-->
     <!--person-->
     <ng-container *ngIf="displayItems">

@@ -44,7 +44,7 @@ const routes: Routes = [
       { path: "ranking", component: Pages.RankingComponent },
       { path: "subscription", component: Pages.SubscriptionComponent },
       { path: "projects", component: Pages.FindProjectComponent },
-      { path: "project/:id", component: Pages.ProjectComponent },
+      { path: "project/:pid", component: Pages.ProjectComponent },
       { path: "job/:id", component: Pages.JobComponent },
       { path: "joinproject/:id", component: Pages.JoinProjectComponent },
       { path: "members", component: Pages.FindMemberComponent },

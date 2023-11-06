@@ -25,6 +25,15 @@ export class ProjectService {
             .toPromise();
     }
 
+    async getProjectByPid(pid: string, userId: string) {
+        const params = new HttpParams().set('userId', userId);
+        return await this.http
+            .get<any>(`${environment.apiUrl}/projects/p/${pid}`, {
+                params: params
+            })
+            .toPromise();
+    }
+
 
     async getProject(id: string, userId: string) {
         const params = new HttpParams().set('userId', userId);

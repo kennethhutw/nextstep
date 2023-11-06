@@ -46,7 +46,7 @@ export class ProjectCardComponent {
 
 
   routeToUserProfile() {
-    this.router.navigate(["./project/" + this.project.id], {});
+    this.router.navigate(["./project/" + this.project.pid], {});
   }
 
   ngOnInit() {

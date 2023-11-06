@@ -13,7 +13,9 @@ import {
   AppSettingsService,
   SettingService,
   UserService,
-  DataService
+  DataService,
+  WorkService,
+  DialogService
 } from "../../_services";
 import {
   AuthStore
@@ -52,6 +54,7 @@ export class PubProfileComponent implements OnInit {
 
   profileForm: FormGroup;
   experienceForm: FormGroup;
+  workForm: FormGroup;
   expModel: string = "new";
   years: string[] = [];
   submitted = false;
@@ -71,7 +74,13 @@ export class PubProfileComponent implements OnInit {
   currentTab: string = "current";
   msg = {
     noTitle: "",
+    updateSuc: "",
+    updateFailed: "",
+    deleted: "",
+    uncovered: ""
   }
+
+  selectedWork: any;
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
@@ -85,6 +94,8 @@ export class PubProfileComponent implements OnInit {
     private translateSrv: TranslateService,
     private dataSrv: DataService,
     private utility: Utility,
+    private WorkSrv: WorkService,
+    private dialogSrv: DialogService,
     private formBuilder: FormBuilder,
     private appSettingsSrv: AppSettingsService,
     private SpinnerService: NgxSpinnerService
@@ -212,6 +223,13 @@ export class PubProfileComponent implements OnInit {
 
       }
     })
+
+    this.workForm = this.formBuilder.group({
+      id: [""],
+      text: ["", Validators.required],
+      link: ["", Validators.required],
+      isPublic: [false, Validators.required]
+    });
   }
 
   intialTerms() {
@@ -239,6 +257,24 @@ export class PubProfileComponent implements OnInit {
     this.translateSrv.get("NOPOISTION").subscribe((text: string) => {
       this.msg.noTitle = text;
     });
+    this.translateSrv.get("ACTIONUNCOVER").subscribe((text: string) => {
+      this.msg.uncovered = text;
+    });
+
+
+    this.translateSrv.get("UPDATEDSUC").subscribe((text: string) => {
+      this.msg.updateSuc = text;
+    });
+
+    this.translateSrv.get("UPDATEDFAILED").subscribe((text: string) => {
+      this.msg.updateFailed = text;
+    });
+
+    this.translateSrv.get("DELETED").subscribe((text: string) => {
+      this.msg.deleted = text;
+    });
+
+
   }
 
   getFollow(profile) {
@@ -634,6 +670,156 @@ export class PubProfileComponent implements OnInit {
 
   onProjectImgError(event) {
     event.target.src = this.settingSrv.defaultProjectLogo;
+  }
+
+
+  onClickWork(work) {
+    this.selectedWork = work;
+    this.workForm.setValue({
+      id: this.selectedWork.id,
+      text: this.selectedWork.text,
+      link: this.selectedWork.link,
+      isPublic: this.selectedWork.isPublic
+    });
+  }
+  onCancelEditWork() {
+    this.selectedWork = null;
+    this.workForm.reset();
+  }
+
+  get w() {
+    return this.workForm.controls;
+  }
+
+  inWorkValid() {
+    return this.workForm.invalid;
+  }
+
+  onAddWork() {
+    this.submitted = true;
+    console.log("=============")
+    if (this.workForm.invalid) {
+      return;
+    }
+    const values = this.workForm.value;
+    this.WorkSrv.insert(
+      this.userProfile.id,
+      values.text,
+      values.link,
+      values.isPublic,
+      this.currentUser.id
+    ).then(res => {
+      if (res['result'] === 'successful') {
+        if (!this.userProfile.works) {
+          this.userProfile.works = [];
+        }
+
+        this.userProfile.works.push({
+          id: res['data'],
+          text: values.text,
+          link: values.link,
+          isPublic: values.isPublic,
+          uid: this.currentUser.id
+        })
+        this.submitted = false;
+        this.selectedWork = null;
+        document.getElementById("close_work").click();
+        this.workForm.reset();
+        this.toastSrv.showToast("",
+          this.msg.updateSuc,
+          this.toastSrv.iconClasses.success);
+      }
+    }, error => {
+      this.toastSrv.showToast("",
+        this.msg.updateFailed,
+        this.toastSrv.iconClasses.error);
+      console.error("updated error", error);
+    })
+  }
+
+  onUpdateWork() {
+    this.submitted = true;
+
+    if (this.workForm.invalid) {
+      return;
+    }
+    const values = this.workForm.value;
+    this.WorkSrv.update(this.selectedWork.id, {
+      projectId: this.userProfile.id,
+      text: values.text,
+      link: values.link,
+      isPublic: values.isPublic,
+      uid: this.currentUser.id
+    }).then(res => {
+      if (res['result'] === 'successful') {
+        this.userProfile.works.map(work => {
+          if (work.id === this.selectedWork.id) {
+            work.text = values.text;
+            work.link = values.link;
+            work.isPublic = values.isPublic;
+          }
+        })
+        this.submitted = false;
+        this.selectedWork = null;
+        document.getElementById("close_work").click();
+        this.workForm.reset();
+        this.toastSrv.showToast("",
+          this.msg.updateSuc,
+          this.toastSrv.iconClasses.success);
+      }
+    }, error => {
+      this.toastSrv.showToast("", this.msg.updateFailed,
+        this.toastSrv.iconClasses.error);
+      console.error("updated error", error);
+    })
+  }
+
+  onDeleteWork(work) {
+    this.dialogSrv.deleteThis(this.msg.deleted + work.text,
+      `${this.msg.deleted} ${work.text}?, ${this.msg.uncovered}`, () => {
+
+        this.WorkSrv.delete(
+          work.id,
+        ).then(res => {
+          if (res['result'] == 'successful') {
+            this.userProfile.works = this.userProfile.works.filter(element => {
+              return element.id !== work.id
+            });
+
+            this.toastSrv.showToast('',
+              " " + work.text + this.msg.deleted,
+              this.toastSrv.iconClasses.success);
+          } else {
+            this.toastSrv.showToast('',
+              res['message'],
+              this.toastSrv.iconClasses.error);
+          }
+        }).catch(error => {
+          console.error("Delete failed! " + error.message);
+          this.toastSrv.showToast('',
+            error.message,
+            this.toastSrv.iconClasses.error);
+        })
+
+
+      }, () => { })
+
+  }
+
+  onWorkChange($event) {
+    this.workForm.get('isPublic').setValue($event.target.checked);
+  }
+
+  isShowWork(work) {
+    if (work.createdBy == this.currentUser.id) {
+      return true;
+
+    } else if (!this.currentUser) {
+      return work.isPublic;
+    }
+    else {
+      return work.isPublic;
+    }
   }
 }
 //https://www.sliderrevolution.com/resources/bootstrap-profile/

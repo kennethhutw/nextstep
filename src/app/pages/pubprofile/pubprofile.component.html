@@ -70,7 +70,7 @@
             <svg-icon src="assets/icons/pencil.svg"></svg-icon>&nbsp;&nbsp;{{ "EDIT" | translate }}</span>
         </div>
       </div>
-      <div class="frame">
+      <div class="frame  mb-24">
         <div class="row">
           <div class="col-md-12">
             <div class="profile-header">
@@ -114,7 +114,47 @@
         </div>
       </div>
       <!-- 個人簡介 end -->
+      <!--     Portfolio start -->
+      <div class="row mb-24">
+        <div class="col-md-12 d-inline ">
+          <span class="title mb-24">{{ "PORTFOLIOAREA" | translate
+            }}</span>
+          <span *ngIf="userProfile?.id == currentUser?.id" class="btn-standard ml-24" data-toggle="modal"
+            [attr.data-target]="'#projectwork'">
+            <svg-icon src="assets/icons/pencil.svg"></svg-icon>&nbsp;&nbsp;{{ "EDIT" | translate
+            }}</span>
+        </div>
+      </div>
 
+      <div class="noItem mt-20" *ngIf="userProfile.works.length ===0">
+        <svg-icon class="icon" src="assets/icons/Suitcase.svg"></svg-icon>
+        <span class="d_icon_title">{{
+          "NOPORTFOLIO"
+          | translate }}</span>
+      </div>
+      <div class="row frame " *ngIf="userProfile.works.length >0">
+        <div class="col-12 col-md-12 ">
+          <ng-container *ngFor="let work of userProfile.works; let i = index">
+            <div class="workbar" *ngIf="isShowWork(work)">
+              <span class="dot"></span>
+              <a href="{{ work.link }}" target="_blank">{{work.text}}</a>
+              <div class="dropdown text-right" *ngIf="userProfile?.id == currentUser?.id"><i
+                  class="fas fa-ellipsis-h color-gray text-18" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="true"></i>
+                <div class="dropdown-menu"> <a class="dropdown-item color-gray" data-toggle="modal"
+                    [attr.data-target]="'#projectwork'" (click)="onClickWork(work)"><svg-icon
+                      src="assets/icons/pencil.svg"></svg-icon>&nbsp;&nbsp;{{ "EDIT" | translate
+                    }}</a> <a class="dropdown-item color-gray" (click)="onDeleteWork(work)"><i
+                      class="fas fa-trash"></i>&nbsp;&nbsp;{{ "DELETE" | translate
+                    }}</a></div>
+
+              </div>
+            </div>
+          </ng-container>
+
+        </div>
+      </div>
+      <!-- Portfolio end -->
       <div class="row mt-16">
         <div class="col-md-12">
           <ul class="nav nav-tabs" id="projectTab" role="tablist">
@@ -505,12 +545,81 @@
     </div>
   </div>
 </div>
+
+
+<div class="modal fade" id="projectwork" tabindex="-1" aria-labelledby="projectwork" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p class="title">{{"WORK" | translate }}</p>
+        <button type="button" id="close_work" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body content">
+        <form [formGroup]="workForm">
+          <div class="row">
+            <div class="col-md-12 mb-12 ">
+              <label class=" pr-2" for="workname">
+                <h5> {{"DISPLAYNAME" | translate }} :</h5>
+              </label>
+              <input type="text" formControlName="text" id="workname" class="form-control mr-10">
+              <div *ngIf="submitted && g.text.errors">
+                <div class="error-msg" *ngIf="g.text.errors.required">
+                  {{"DISPLAYNAME_MUST" | translate }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 mb-12 ">
+              <label class=" pr-2" for="worklink">
+                <h5> {{"LINK" | translate }}* :</h5>
+              </label>
+              <input type="text" formControlName="link" id="worklink" class="form-control mr-10">
+              <div *ngIf="submitted && g.link.errors">
+                <div class="error-msg" *ngIf="g.link.errors.required">
+                  {{"LINK_MUST" | translate }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 mb-12 ">
+              <input type="checkbox" (change)="onWorkChange($event)" [checked]="workForm.value.isPublic"
+                value="workForm.value.isPublic"><span>{{"PRIVACYOP2" | translate }}
+              </span>
+            </div>
+          </div>
+
+
+          <div class="row item-right">
+            <button type="button" class="btn btn-transparent  mr-10" data-dismiss="modal" aria-label="Close"
+              (click)="onCancelEditWork()">{{"CANCEL" | translate }}
+            </button>
+            <button type="button" *ngIf="!this.selectedWork" class="btn btn-blue  mr-10" (click)="onAddWork()">
+              {{"NEW" | translate }}</button>
+            <button type="button" *ngIf="this.selectedWork" class="btn btn-blue  mr-10" (click)="onUpdateWork()">
+              {{"UPDATE" | translate }}</button>
+          </div>
+          <div class="row">
+            <div class="col-md-12 mb-12 form-group text-center">
+              <div class="error-msg" *ngIf="projectMsg!=''">{{ projectMsg }}</div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div [class.show]="isChat" class="full">
   <lab-custom-modal [open]="isChat" (close)="onToggleChat($event)">
     <h3 *ngIf="userProfile" class="chat-header" title><img class="chat-user-img rounded-circle" [src]="userProfile.imageUrl!= null ?  userProfile.imageUrl
                               : settingSrv.defaultUserLogo" alt=""><span class="chat-user-name">{{userProfile?.name?
-        userProfile?.name:"No
-        name"}}</span></h3><span aria-hidden="true">X&times;</span>
+        userProfile?.name:"No name"}}</span></h3><span aria-hidden="true">X&times;</span>
     <div>
     </div>
     <lab-comments [currentUser]="currentUser" [receiverUser]="userProfile" (close)="onToggleChat($event)" body>
@@ -519,3 +628,4 @@
   </lab-custom-modal>
 
 </div>
+<app-dialog></app-dialog>
