@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { EditableInputComponent } from "./editableInput.component";
 
@@ -6,7 +6,7 @@ describe("EditableInputComponent", () => {
   let component: EditableInputComponent;
   let fixture: ComponentFixture<EditableInputComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [EditableInputComponent],
     }).compileComponents();
