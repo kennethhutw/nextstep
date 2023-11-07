@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "build:digitalocean": "npm install --force",
-    "heroku-postbuild": "export NODE_OPTIONS=--openssl-legacy-provider &&  npm run patch-webpack && ng build  --configuration=${environment} --prod --namedChunks=true --stats-json ",
+    "heroku-postbuild": "  npm run patch-webpack && ng build  --configuration=production --prod --namedChunks=true --stats-json ",
     "ng": "ng",
     "start": "node server.js",
     "build": "export NODE_OPTIONS=--openssl-legacy-provider && ng build --aot --configuration=${environment}   --prod --namedChunks=true --stats-json ",
