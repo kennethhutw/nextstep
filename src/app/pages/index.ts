@@ -52,6 +52,7 @@ import {
 
 import { JobComponent } from './job/job.component';
 import { JoinProjectComponent } from './joinproject/joinproject.component';
+import { TermsComponent } from './terms/terms.component';
 
 export const containers = [
     ActivityComponent,
@@ -96,7 +97,7 @@ export const containers = [
     SettingsComponent,
     SupportComponent,
     SubscriptionComponent,
-
+    TermsComponent,
     VerificationComponent,
 ];
 
@@ -132,6 +133,7 @@ export { ResourcesComponent } from "./resources/resources.component";
 export { SupportComponent } from './support/support.component';
 export { SubscriptionComponent } from './subscription/subscription.component';
 
+export { TermsComponent } from './terms/terms.component';
 
 export { VerificationComponent } from './verification/verification.component';
 

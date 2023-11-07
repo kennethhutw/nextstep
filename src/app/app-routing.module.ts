@@ -78,6 +78,8 @@ const routes: Routes = [
         component: Pages.FeedbackComponent,
         pathMatch: "full"
       },
+
+      { path: "terms", component: Pages.TermsComponent, pathMatch: "full" },
       { path: "policy", component: Pages.PolicyComponent, pathMatch: "full" },
       { path: "about", component: Pages.AboutComponent, pathMatch: "full" },
       { path: "support", component: Pages.SupportComponent, pathMatch: "full" },
@@ -177,6 +179,6 @@ const routes: Routes = [
 
 
 export const routing = RouterModule.forRoot(routes, {
-    scrollPositionRestoration: 'enabled',
-    relativeLinkResolution: 'legacy'
+  scrollPositionRestoration: 'enabled',
+  relativeLinkResolution: 'legacy'
 });
