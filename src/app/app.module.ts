@@ -55,6 +55,7 @@ import {
 } from "./_services";
 import { SwiperModule } from 'swiper/angular';
 import { TagInputModule } from 'ngx-chips';
+
 import {
   NgbPaginationModule,
   NgbTypeaheadModule,

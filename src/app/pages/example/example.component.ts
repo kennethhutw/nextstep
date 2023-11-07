@@ -5,7 +5,9 @@ import {
   ToastService
 } from './../../_services';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
+
+import { ComponentChipInput } from 'chip-input';
 declare var $: any; // ADD THIS
 
 
