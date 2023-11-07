@@ -240,7 +240,7 @@ export class CreateProjectComponent implements OnInit, ComponentCanDeactivate {
         this.activitySrv.insert(this.currentUser.id,
           res['data'],
           "create",
-          `${this.currentUser.name} ${this.msg.create}${projectName}${this.msg.project}！`
+          `${this.currentUser.name} ${this.msg.create} ${projectName} ${this.msg.project} ！`
         ).subscribe(res => {
           if (res['result'] === 'successful') { }
         });

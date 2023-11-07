@@ -5,7 +5,7 @@ import { resResult } from "../_models";
 
 @Injectable()
 export class SettingService {
-    defaultProfileLogo: string = 'assets/images/default_profile.png';
+    defaultProfileLogo: string = 'assets/images/defaultUserIcon.png';
     defaultProjectLogo: string = 'assets/images/defaultProjectIcon.png';
     defaultProjectCover: string = 'assets/images/defaultProjectCover.png';
     defaultPersonalCover: string = 'assets/images/defaultPersonalCover.png';
