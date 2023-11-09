@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  OnInit
+} from '@angular/core';
 
 import {
   DialogService,
@@ -22,6 +26,8 @@ import { Utility } from "../../../_helpers";
   styleUrls: ['./myproject-settings.component.scss']
 })
 export class MyProjectSettingsComponent implements OnInit {
+
+  @ViewChild('closeExpbutton') closeExpbutton;
 
   isPublic: boolean = false;
   isShowMember: boolean = false;
@@ -172,6 +178,8 @@ export class MyProjectSettingsComponent implements OnInit {
         }).catch(error => {
           this.msg.result = this.msg.updateFailed;
           console.error("updated error", error.message);
+        }).then(res => {
+          this.closeExpbutton.nativeElement.click();
         })
     }
 

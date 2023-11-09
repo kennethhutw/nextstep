@@ -78,7 +78,8 @@ const routes: Routes = [
         component: Pages.FeedbackComponent,
         pathMatch: "full"
       },
-
+      { path: "unsubscribe", component: Websitepages.UnsubscribeComponent, pathMatch: "full" },
+      { path: "subscribe", component: Pages.SubscriptionComponent, pathMatch: "full" },
       { path: "terms", component: Pages.TermsComponent, pathMatch: "full" },
       { path: "policy", component: Pages.PolicyComponent, pathMatch: "full" },
       { path: "about", component: Pages.AboutComponent, pathMatch: "full" },

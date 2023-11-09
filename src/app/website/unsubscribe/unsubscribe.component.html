@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <span class="page-title"> {{this.currentSubSetting.email?this.currentSubSetting.email:"Email does not
+                exist."}}</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <span>{{'UNSUBWARNING' | translate }}</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <button type="button" [disabled]="disabled" class="btn-blue" (click)="onUnsubscribe($event)">{{'UNSUBBTN' |
+                translate }}</button>
+        </div>
+    </div>
+
+</div>

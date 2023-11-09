@@ -33,7 +33,10 @@
           <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
             routerLink="/inspiration" (click)="ToggleNavBar()">{{ "INSPIRATION" | translate }}</a>
         </li>
-
+        <li class="nav-item">
+          <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+            routerLink="/subscribe" (click)="ToggleNavBar()">{{ "SUBSCRIBE" | translate }}</a>
+        </li>
         <!-- <li class="nav-item">
           <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
             routerLink="/mentors" (click)="ToggleNavBar()">導師</a>

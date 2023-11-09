@@ -1,13 +1,82 @@
 <div class="container  mt-50">
     <div class="row">
-        <div class="col-md-4">
-            Total subscribers
+        <div class="col-md-12">
+            <span class="page-title">{{"SUBSCRIPTION" | translate }} </span>
         </div>
-        <div class="col-md-4">
-            Project subscribers
+    </div>
+    <div class="count-section">
+        <div class="row">
+            <div class="col-md-4 count_title">
+                {{"TOTAL_SUBSCRIPTION" | translate }}
+            </div>
+            <div class="col-md-4 count_title">
+                {{"TOTAL_PROJECT_SUBSCRIPTION" | translate }}
+            </div>
+            <div class="col-md-4 count_title">
+                {{"TOTAL_USER_SUBSCRIPTION" | translate }}
+            </div>
         </div>
-        <div class="col-md-4">
-            Member subscribers
+        <div class="row">
+            <div class="col-md-4 count_num">
+                {{this.SubscriptionCount.total}}
+            </div>
+            <div class="col-md-4 count_num">
+                {{this.SubscriptionCount.projects}}
+            </div>
+            <div class="col-md-4 count_num">
+                {{this.SubscriptionCount.members}}
+            </div>
         </div>
+    </div>
+    <div class="row mt-10 pb-33 bottom-gray-line"></div>
+    <form [formGroup]="subForm">
+        <div class="row">
+            <div class="col-md-12  form-group form-inline">
+                <label class="pr-2" for="email">
+                    <span>Email :</span>
+                </label>
+                <input type="email" class="form-control" id="email" aria-describedby="email" formControlName="email"
+                    [ngClass]="{ 'is-invalid': (subForm.get('email').touched || subForm.get('email').dirty) && subForm.get('email').invalid || submitted && subForm.get('email').invalid }"
+                    placeholder="Email">
+
+                <button type="submit" class="btn-blue d-flex align-items-center justify-content-center"
+                    [disabled]="inValid()" (click)="onSubmit()">
+                    {{"SUBSCRIBE" | translate }}
+                </button>
+            </div>
+            <div class="row">
+                <div class="col-md-12  form-group form-inline">
+                    <label class="pl-3" for="email">
+                        <span>P.S {{"SUBSCRIBENOTE" | translate
+                            }}</span>
+                    </label>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12  form-group form-inline">
+                    <span class="invalid-feedback">{{"EMAILFORMATNOT" | translate
+                        }}</span>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+    <div class="row" *ngIf="currentSetting.id!=''">
+        <div class="col-md-12">
+            <ui-radio-item [title]="this.msg.notifOp1" [description]="this.msg.notifOp1Desc" [id]="'project'"
+                [value]="currentSetting.project" (onChange)="onChange($event, 'project')"></ui-radio-item>
+        </div>
+    </div>
+    <div class="row" *ngIf="currentSetting.id!=''">
+        <div class="col-md-12">
+            <ui-radio-item [title]="this.msg.notifOp2" [description]="this.msg.notifOp2Desc" [id]="'member'"
+                [value]="currentSetting.member" (onChange)="onChange($event,'member')">
+            </ui-radio-item>
+        </div>
+
+
     </div>
 </div>

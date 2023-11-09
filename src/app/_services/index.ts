@@ -25,6 +25,7 @@ import { RecruitService } from './recruit.service';
 import { SeoService } from './seo.service';
 import { ScrollService } from './scroll.service';
 import { SettingService } from "./setting.service";
+import { SubscribeService } from "./subscribe.service";
 import { TableService } from "./table.service";
 import { ToastService } from './toastr.service';
 import { UserService } from "./user.service";
@@ -62,6 +63,7 @@ export const services = [
     SeoService,
     ScrollService,
     SettingService,
+    SubscribeService,
     UserService,
     UserSettingService,
     UserTourService,
@@ -91,6 +93,7 @@ export * from "./table.service";
 export * from './user-tour.service';
 export * from './userSetting.service';
 export * from './seo.service';
+export { SubscribeService } from "./subscribe.service";
 export * from './google-analytics.service';
 export * from './scroll.service';
 export * from './pager.service';

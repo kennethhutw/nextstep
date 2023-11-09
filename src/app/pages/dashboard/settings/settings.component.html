@@ -17,6 +17,10 @@
             type="button" role="tab" (click)="changeTab('notifications')">{{ "NOTISETTING" | translate }}</button>
         </li>
         <li class="nav-item" role="presentation">
+          <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'subscribe' }" type="button"
+            role="tab" (click)="changeTab('subscribe')">{{ "SUBSCRIPTION" | translate }}</button>
+        </li>
+        <li class="nav-item" role="presentation">
           <button class="nav-link" id="profile-tab" [ngClass]="{ 'active': currentTab === 'password' }" type="button"
             role="tab" (click)="changeTab('password')">{{ "CHANGEPSW" | translate }}</button>
         </li>
@@ -53,6 +57,15 @@
           <div class="col-md-12 mb-12 form-group button-center">
             <span>{{notifMsg}}</span>
           </div>
+        </div>
+        <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'subscribe' }" role="tabpanel"
+          aria-labelledby="profile-tab">
+          <ui-radio-item [title]="this.msg.notifSubOp1" [description]="this.msg.notifSubOp1Desc" [id]="'project'"
+            [value]="currentSubSetting.project" (onChange)="onSubChange($event, 'project')"></ui-radio-item>
+          <ui-radio-item [title]="this.msg.notifSubOp2" [description]="this.msg.notifSubOp2Desc" [id]="'member'"
+            [value]="currentSubSetting.member" (onChange)="onSubChange($event,'member')">
+          </ui-radio-item>
+
         </div>
         <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'password' }" role="tabpanel"
           aria-labelledby="profile-tab">

@@ -34,7 +34,7 @@ export class AuthStore {
 
   constructor(
     private http: HttpClient,
-    private utility: Utility,
+    private utilitySrv: Utility,
     private emailService: EmailService,
     private userSrv: UserService,
     private socialAuthService: SocialAuthService) {
@@ -44,7 +44,8 @@ export class AuthStore {
 
     const user = localStorage.getItem(AUTH_DATA);
 
-    if (!this.utility.IsNullOrEmpty(user) && this.utility.isJSONString(user)) {
+    if (!this.utilitySrv.IsNullOrEmpty(user) &&
+      this.utilitySrv.isJSONString(user)) {
       this.subject.next(JSON.parse(user));
     } else {
       this.logout();
@@ -200,8 +201,8 @@ export class AuthStore {
 
   getUserData() {
     try {
-      if (!this.utility.IsNullOrEmpty(localStorage.getItem(AUTH_DATA))) {
-        if (this.utility.isJSONString(localStorage.getItem(AUTH_DATA))) {
+      if (!this.utilitySrv.IsNullOrEmpty(localStorage.getItem(AUTH_DATA))) {
+        if (this.utilitySrv.isJSONString(localStorage.getItem(AUTH_DATA))) {
           return JSON.parse(localStorage.getItem(AUTH_DATA));
         } else {
           return null;

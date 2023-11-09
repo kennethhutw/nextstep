@@ -9,7 +9,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { SharedModule } from '../_shared/shared.module';
-
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import * as Containers from './index';
 
 @NgModule({
@@ -19,7 +19,8 @@ import * as Containers from './index';
     TooltipModule.forRoot(),
     SharedModule,
     BsDatepickerModule.forRoot(),
-
+    FormsModule,
+    ReactiveFormsModule,
     TimepickerModule
 
   ],

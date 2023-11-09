@@ -47,18 +47,18 @@
             <div class="form-group">
                 <label for="testEmail">Test Email</label>
                 <input type="text" class="form-control" id="testEmail" placeholder="Email for testing"
-                    formControlName="testEmail" (input)="isInvalid()" required>
+                    formControlName="testEmail" required>
             </div>
             <div class="form-group">
                 <label for="delegatingEmail">Delegating Email</label>
                 <input type="text" id="delegatingEmail" formControlName="delegatingEmail" class="form-control"
-                    placeholder="Real email" (input)="isInvalid()" required>
+                    placeholder="Real email" required>
             </div>
         </form>
 
         <div style="text-align: end;">
-            <button type='button' id='InsertDisplay' (click)="addEmailEntry()" [disabled]="isInvalid()"
-                class="btn btn-md btn-primary btn-width" data-dismiss="modal">Add</button>
+            <button type='button' id='InsertDisplay' (click)="addEmailEntry()" class="btn btn-md btn-primary btn-width"
+                data-dismiss="modal">Add</button>
             <button type='button' class="btn btn-md btn-secondary btn_wrap ml-3 btn-width"
                 data-dismiss="modal">Cancel</button>
         </div>

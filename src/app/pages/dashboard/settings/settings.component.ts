@@ -3,7 +3,8 @@ import { TranslateService } from "@ngx-translate/core";
 import {
   DataService,
   ToastService,
-  UserSettingService
+  UserSettingService,
+  SubscribeService
 } from "../../../_services";
 import {
   AuthStore
@@ -12,7 +13,6 @@ import { Utility } from "../../../_helpers";
 import { NgxSpinnerService } from "ngx-spinner";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: "app-settings",
   templateUrl: "./settings.component.html",
@@ -39,6 +39,12 @@ export class SettingsComponent implements OnInit {
   showNewPassword = false;
   showReNewPassword = false;
 
+  currentSubSetting = {
+    id: "",
+    project: false,
+    member: false
+  };
+
   //UPDATEDFAILED
   msg = {
 
@@ -57,7 +63,11 @@ export class SettingsComponent implements OnInit {
     updateSuc: "",
     updateFailed: "",
     changePSWTitle: "",
-    oldPSWWrong: ""
+    oldPSWWrong: "",
+    notifSubOp1: "訂閱新專案通知",
+    notifSubOp2: "訂閱新會員通知",
+    notifSubOp1Desc: "有新專案發布會收到email通知",
+    notifSubOp2Desc: "有新會員加入會收到email通知",
   }
 
   constructor(
@@ -69,9 +79,10 @@ export class SettingsComponent implements OnInit {
     private userSettingSrv: UserSettingService,
     private authStoreSrv: AuthStore,
     private router: Router,
-    private spinnerSrv: NgxSpinnerService
+    private spinnerSrv: NgxSpinnerService,
+    private subscribeSrv: SubscribeService
   ) {
-    //['', [Validators.required, Validators.pattern('(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}')]
+
     this.PasswordForm = this.formBuilder.group({
       currentPassword: ['', [Validators.required]],
       newPassword: ['', [Validators.required]],
@@ -132,17 +143,23 @@ export class SettingsComponent implements OnInit {
       this.msg.oldPSWWrong = text;
     });
 
-
-
-    // this.translateSrv.get("CURRENTPSW").subscribe((text: string) => {
-    //   this.utility.SetPlaceholder("#CURRENTPSW", text);
+    // this.translateSrv.get("NEWPSW").subscribe((text: string) => {
+    //   this.utility.SetPlaceholder("#NEWPSW", text);
     // });
-    this.translateSrv.get("NEWPSW").subscribe((text: string) => {
-      this.utility.SetPlaceholder("#NEWPSW", text);
-    });
-    this.translateSrv.get("CONFIRMPSW").subscribe((text: string) => {
-      this.utility.SetPlaceholder("#CONFIRMPSW", text);
-    });
+    // this.translateSrv.get("CONFIRMPSW").subscribe((text: string) => {
+    //   this.utility.SetPlaceholder("#CONFIRMPSW", text);
+    // });
+
+    this.translateSrv.get(["SUBOP1",
+      "SUBOP2",
+      "SUBOP1DESC",
+      "SUBOP2DESC"
+    ]).subscribe((words: string) => {
+      this.msg.notifSubOp1 = words["SUBOP1"];
+      this.msg.notifSubOp2 = words["SUBOP2"];
+      this.msg.notifSubOp1Desc = words["SUBOP1DESC"];
+      this.msg.notifSubOp2Desc = words["SUBOP2DESC"];
+    })
   }
 
 
@@ -157,11 +174,7 @@ export class SettingsComponent implements OnInit {
       this.translateSrv.use(_lang);
       this.init_terms();
     }
-    // else {
-    //   let _browserLang = this.translateSrv.getBrowserLang();
-    //   this.translateSrv.use(_browserLang);
-    //   this.initTags(_browserLang);
-    // }
+
     this.dataSrv.langKey.subscribe((lang) => {
       if (!this.utility.IsNullOrEmpty(lang)) {
         this.translateSrv.use(lang);
@@ -194,6 +207,24 @@ export class SettingsComponent implements OnInit {
       this.loading = false;
     })
 
+
+
+    this.subscribeSrv.getByUserId(this.currentUser.id,
+      this.currentUser.email).then(res => {
+        if (res['result'] == 'successful') {
+
+          this.currentSubSetting = {
+            id: res['data']['id'],
+            project: res['data']['project'],
+            member: res['data']['member']
+          }
+        }
+      }).catch(error => {
+        console.error("cannot get setting.", error);
+      }).then(() => {
+        this.spinnerSrv.hide();
+        this.loading = false;
+      })
 
   }
 
@@ -346,6 +377,39 @@ export class SettingsComponent implements OnInit {
     const values = this.PasswordForm.value;
     let _isEmpty = this.utility.IsNullOrEmpty(values.currentPassword) && this.utility.IsNullOrEmpty(values.newPassword) && this.utility.IsNullOrEmpty(values.confirmPassword);
     return !this.f.invalid && !_isEmpty;
+  }
+
+  onSubChange($event, type) {
+
+    if (type == 'project') {
+      this.currentSubSetting.project = !this.currentSubSetting.project;
+    } else {
+      this.currentSubSetting.member = !this.currentSubSetting.member;
+    }
+
+    let params = {
+
+      project: this.currentSubSetting.project,
+      member: this.currentSubSetting.member,
+    }
+    this.subscribeSrv.update(this.currentSubSetting.id,
+      params).then(res => {
+        if (res['result'] == 'successful') {
+          this.toastSrv.showToast("",
+            this.msg.updateSuc,
+            this.toastSrv.iconClasses.success);
+        } else {
+          this.toastSrv.showToast("",
+            this.msg.updateFailed,
+            this.toastSrv.iconClasses.error);
+        }
+
+      }).catch(error => {
+        console.error("update failed.", error);
+        this.toastSrv.showToast("",
+          this.msg.updateFailed,
+          this.toastSrv.iconClasses.error);
+      })
   }
 
 }
