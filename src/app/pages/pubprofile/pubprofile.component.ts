@@ -77,7 +77,8 @@ export class PubProfileComponent implements OnInit {
     updateSuc: "",
     updateFailed: "",
     deleted: "",
-    uncovered: ""
+    uncovered: "",
+    profileTitle: ""
   }
 
   selectedWork: any;
@@ -272,6 +273,10 @@ export class PubProfileComponent implements OnInit {
 
     this.translateSrv.get("DELETED").subscribe((text: string) => {
       this.msg.deleted = text;
+    });
+
+    this.translateSrv.get("NOTFILLEDINTITLEYET").subscribe((text: string) => {
+      this.msg.profileTitle = text;
     });
 
 

@@ -57,7 +57,7 @@ export class LinkPreviewComponent implements OnInit {
         this.onMetaData.emit(this.preview);
         this.changeDetectorRef.detectChanges();
       }, error => {
-        this.preview.url = this.link.value;
+        this.preview.url = this.link;
         this.preview.title = this.preview.url;
       });
   };

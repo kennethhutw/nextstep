@@ -22,7 +22,7 @@
       <div id="u-name">
         <div class="d-inline-flex ">
           <span>{{userProfile.name}} </span>
-          <span class="bio">&nbsp; /&nbsp; {{userProfile.title?userProfile.title:"我還沒有填寫職稱"}}</span>
+          <span class="bio">&nbsp; /&nbsp; {{userProfile.title?userProfile.title:this.msg.profileTitle}}</span>
         </div>
         <span class="uid color-gray"> @{{userProfile.uid}}</span>
       </div>

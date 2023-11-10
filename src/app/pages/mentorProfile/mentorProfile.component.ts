@@ -66,6 +66,20 @@ export class MentorProfileComponent implements OnInit {
   // tab
   currentTab: string = "current";
 
+  msg = {
+    strNoJD: "",
+    strFollow: "",
+    strFollowed: "",
+    strCollect: "",
+    strCollected: "",
+    strNoWords: "",
+    noTitle: "",
+    updateSuc: "",
+    updateFailed: "",
+    deleted: "",
+    uncovered: "",
+    profileTitle: ""
+  }
   constructor(
     private viewsSrv: ViewsService,
     public toastSrv: ToastService,
@@ -123,6 +137,10 @@ export class MentorProfileComponent implements OnInit {
       this.years.push(i.toString());
     }
   }
+
+  // this.translateSrv.get("NOTFILLEDINTITLEYET").subscribe((text: string) => {
+  //   this.msg.profileTitle = text;
+  // });
 
   ngOnInit() {
     this.SpinnerService.show();
@@ -190,6 +208,55 @@ export class MentorProfileComponent implements OnInit {
         });
       }
     })
+  }
+
+  intialTerms() {
+
+    this.translateSrv.get("NOJD").subscribe((text: string) => {
+      this.msg.strNoJD = text;
+    });
+    this.translateSrv.get("FOLLOW").subscribe((text: string) => {
+      this.msg.strFollow = text;
+    });
+    this.translateSrv.get("FOLLOWED").subscribe((text: string) => {
+      this.msg.strFollowed = text;
+    });
+    this.translateSrv.get("COLLECT").subscribe((text: string) => {
+      this.msg.strCollect = text;
+    });
+    this.translateSrv.get("COLLECTED").subscribe((text: string) => {
+      this.msg.strCollected = text;
+    });
+    //
+    this.translateSrv.get("NOWORDS").subscribe((text: string) => {
+      this.msg.strNoWords = text;
+    });
+
+    this.translateSrv.get("NOPOISTION").subscribe((text: string) => {
+      this.msg.noTitle = text;
+    });
+    this.translateSrv.get("ACTIONUNCOVER").subscribe((text: string) => {
+      this.msg.uncovered = text;
+    });
+
+
+    this.translateSrv.get("UPDATEDSUC").subscribe((text: string) => {
+      this.msg.updateSuc = text;
+    });
+
+    this.translateSrv.get("UPDATEDFAILED").subscribe((text: string) => {
+      this.msg.updateFailed = text;
+    });
+
+    this.translateSrv.get("DELETED").subscribe((text: string) => {
+      this.msg.deleted = text;
+    });
+
+    this.translateSrv.get("NOTFILLEDINTITLEYET").subscribe((text: string) => {
+      this.msg.profileTitle = text;
+    });
+
+
   }
 
 
