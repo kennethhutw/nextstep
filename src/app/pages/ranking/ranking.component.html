@@ -79,6 +79,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <tr>
+                                        <td colspan="9">
+                                            <div class="noItem text-center" *ngIf="recruit.length ===0">
+                                                <svg-icon class="icon" src="assets/icons/Suitcase.svg"></svg-icon>
+                                                <span class="d_icon_title">{{ "NORECORD" | translate }}</span>
+                                            </div>
+                                        </td>
+                                    </tr>
                                     <ng-container *ngFor="let item of recruit; let i = index">
                                         <tr>
                                             <th scope="row">{{i+1}}</th>
@@ -159,6 +167,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <tr>
+                                        <td colspan="9">
+                                            <div class="noItem text-center" *ngIf="mentors.length ===0">
+                                                <svg-icon class="icon" src="assets/icons/NoMentor.svg"></svg-icon>
+                                                <span class="d_icon_title">{{ "NORECORD" | translate }}</span>
+                                            </div>
+                                        </td>
+                                    </tr>
                                     <ng-container *ngFor="let item of mentors; let i = index">
                                         <tr>
                                             <th scope="row">{{i+1}}</th>
@@ -187,3 +203,6 @@
 
     </div>
 </div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p class="text-white">Please Wait. </p>
+</ngx-spinner>

@@ -40,12 +40,14 @@ export class RankingComponent implements OnInit {
 
 
   constructor(
-    private rankingSrv: RankingService
+    private rankingSrv: RankingService,
+    private spinnerSrv: NgxSpinnerService
   ) {
 
   }
 
   ngOnInit() {
+    this.spinnerSrv.show();
     this.rankingSrv.getRanking().subscribe(res => {
       if (res['result'] == 'successful') {
         this.projects = res['projects'];
@@ -53,7 +55,8 @@ export class RankingComponent implements OnInit {
         this.mentors = res['mentors'];
         this.recruit = res['recruit'];
       }
-    })
+    }, err => console.log('Ranking Error', err),
+      () => { this.spinnerSrv.hide(); })
 
   }
 

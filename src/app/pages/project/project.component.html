@@ -203,12 +203,14 @@
                 | translate }}</span>
             </div>
             <ng-container *ngIf="this.currentProject?.logs?.length >0">
-              <div class="frame mt-10">
+              <div class="project_history_frame mt-10">
                 <ng-container *ngFor="let log of currentProject.logs; let i = index">
-                  <div class="col-md-12 history">
+                  <div class="row">
+                    <div class="col-md-12 history">
 
-                    <span class="color-gray">{{log.createdAt | date:"yyyy-MM-dd"}}</span><span
-                      class="dot"></span><span>{{log.action}}</span>
+                      <span class="color-gray">{{log.createdAt | date:"yyyy-MM-dd"}}</span><span
+                        class="dot"></span><span>{{log.action}}</span>
+                    </div>
                   </div>
                 </ng-container>
               </div>
