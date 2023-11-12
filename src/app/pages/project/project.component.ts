@@ -236,6 +236,8 @@ export class ProjectComponent implements OnInit {
     }).catch(error => {
       console.error("error", error);
       this.SpinnerService.hide();
+    }).then(() => {
+      this.SpinnerService.hide();
     })
 
     this.recruitForm = this.formBuilder.group({
@@ -982,7 +984,7 @@ export class ProjectComponent implements OnInit {
   }
 
   isShowWork(work) {
-    if (work.createdBy == this.currentUser.id) {
+    if (work.createdBy == this.currentUser?.id) {
       return true;
 
     } else if (!this.currentUser) {

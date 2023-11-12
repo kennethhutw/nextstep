@@ -281,7 +281,7 @@ export class MyProjectProfileComponent implements OnInit, AfterViewInit {
 
   onStageChange($event, value) {
     var _values = this.projectForm.get('stages').value;
-
+    console.log('onStageChange ==============');
     if ($event.target.checked) {
       _values += "," + value;
     } else {
@@ -319,6 +319,7 @@ export class MyProjectProfileComponent implements OnInit, AfterViewInit {
     if (this.utilitySrv.IsNullOrEmpty(types)) {
       return false;
     } else {
+
       return types.indexOf(value) > -1;
     }
   }
@@ -330,6 +331,7 @@ export class MyProjectProfileComponent implements OnInit, AfterViewInit {
   }
 
   onSave() {
+
     this.submitted = true;
     this.projectMsg = "";
     if (this.projectForm.invalid) {
@@ -353,6 +355,8 @@ export class MyProjectProfileComponent implements OnInit, AfterViewInit {
         this.projectMsg = this.msg.updateSuc;
         this.mode = "view";
         this.toastSrv.showToast('', this.projectMsg, this.toastSrv.iconClasses.success);
+      } else {
+
       }
     }, error => {
       this.projectMsg = this.msg.updateFailed;
