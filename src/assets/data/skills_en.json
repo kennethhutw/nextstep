@@ -45,6 +45,11 @@
         "text": "Machine Learning"
     },
     {
+        "value": "ai",
+        "group": "ai",
+        "text": "Artificial Intelligence"
+    },
+    {
         "value": "it",
         "group": "it",
         "text": "MIS/Network"

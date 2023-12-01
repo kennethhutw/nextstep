@@ -6,7 +6,7 @@
         <img class="profile-image rounded-circle" src="{{ user.imageUrl }}" (error)="onImgError($event)" alt="" />
       </a>
       <div class="u-name">
-        <span class=" text-body name">{{ user.name }}</span>
+        <span class="text-body name">{{ user.name }}</span>
         <span class="title">{{ user.title? user.title:this.strNoPosition}}</span>
       </div>
     </div>
@@ -26,7 +26,7 @@
     </div>
   </div>
   <div class="row mh-70">
-    <div class="col-md-12 discr">
+    <div class="col-md-12 discr text_content">
       {{user?.bio.length> 0? user.bio.length>39?user.bio.substring(0,40)+' ...':user.bio : this.strNotFilled}}
     </div>
   </div>

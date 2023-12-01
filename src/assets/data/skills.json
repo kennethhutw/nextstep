@@ -45,6 +45,11 @@
         "text": "機器學習"
     },
     {
+        "value": "ai",
+        "group": "ai",
+        "text": "人工智慧"
+    },
+    {
         "value": "it",
         "group": "it",
         "text": "MIS/網路管理"
