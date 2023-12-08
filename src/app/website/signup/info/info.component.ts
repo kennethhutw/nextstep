@@ -221,6 +221,10 @@ export class SignupInfoComponent implements OnInit {
           // this.router.navigate(["./dashboard"], {});
           this.step = 2;
         }
+      }, error => {
+        console.error("updateUserBasicInfo error ", error);
+      }, () => {
+        this.step = 2;
       })
     } catch (error) {
       console.log("failed", error);
@@ -235,7 +239,7 @@ export class SignupInfoComponent implements OnInit {
   }
 
   NextStep(value) {
-    console.log("=========", value);
+
     this.submitted = true;
 
     if (this.profileForm.invalid) {

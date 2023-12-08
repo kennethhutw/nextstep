@@ -86,7 +86,8 @@
                             <div><span id="wordCount">({{ words }} / 300 )</span></div>
                         </div>
                         <div class="form-group mt-36">
-                            <button type="button" (click)="NextStep(1)" class="btn btn-continue ">{{'NEXT' | translate
+                            <button type="button" [disabled]="!profileForm.valid" (click)="NextStep(1)"
+                                class="btn btn-continue ">{{'NEXT' | translate
                                 }}</button>
                         </div>
                     </form>
