@@ -98,9 +98,9 @@ export class SignupInfoComponent implements OnInit {
     const _regex = /([A-Za-z0-9]+)/g;
     this.profileForm = this.formBuilder.group({
       name: ["", [Validators.required, Validators.pattern('^[a-zA-Z 0-9]*$')]],
-      position: ["", [Validators.required, Validators.pattern('^[a-zA-Z 0-9]*$')]],
+      position: [""],
       company: [""],
-      bio: ["", Validators.maxLength(1000)],
+      bio: [""],
       skills: [""],
       website: [""],
       github: [""],
@@ -239,7 +239,7 @@ export class SignupInfoComponent implements OnInit {
   }
 
   NextStep(value) {
-
+    console.log("XXXXXxxx =====", value);
     this.submitted = true;
 
     if (this.profileForm.invalid) {
