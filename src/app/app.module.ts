@@ -43,7 +43,6 @@ import * as Pages from './pages';
 import * as Websitepages from './website/index';
 
 import { CollapseModule } from 'ngx-bootstrap/collapse';
-import { AnQrcodeModule } from "an-qrcode";
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { SharedModule } from "./_shared/shared.module";
@@ -96,7 +95,6 @@ export function appConfigFactory(provider: AppSettingsService) {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AnQrcodeModule,
     CollapseModule,
     NgxSpinnerModule,
     SharedModule,
