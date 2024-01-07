@@ -7,6 +7,7 @@ export const environment = {
   apiUrl: 'http://localhost:3003',
   assetUrl: 'http://localhost:3003',
   assetAPIUrl: 'http://localhost:3003',
+  jsonlink_key: 'pk_46b6b3f97dbf76846aa126108e04d69a2cb07395',
   environment: 'staging',
   gtag: 'G-3T59MY55H9'
 };

@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-
+import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import {
   Utility
@@ -85,7 +85,7 @@ export class LinkPreviewComponent implements OnInit {
   // You should probably create a service for this function
   getLinkPreview(link: string): Observable<any> {
     // Go to linkpreview.net to get your own key and place it below, replacing <key>
-    const api = 'https://jsonlink.io/api/extract?url=' + link;
+    const api = 'https://jsonlink.io/api/extract?url=' + link + '&api_key=' + environment.jsonlink_key;
     //https://jsonlink.io/api/extract?url=https://www.facebook.com/groups/uiuxsideproject
     return this.http.get(api);
   }
