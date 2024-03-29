@@ -143,12 +143,18 @@
 
     </div>
     <div>
-        {{foundItemNum}}
+        <div class="row" *ngIf="foundItemNum >0">
+            <div class="col-md-12">
+                <p> {{foundItemNum}} {{ "NFOUND"
+                    | translate }}</p>
+            </div>
+        </div>
 
         <div class="row">
             <ng-container *ngFor="let item of  displayUsers; let i = index">
                 <div class="col-md-6 text-center">
-                    <div class="card card-white grid-margin cursor-pointer">
+                    <div class="card card-white grid-margin cursor-pointer" (click)="selectedAttendee(item)"
+                        data-toggle="modal" [attr.data-target]="'#attendeeDetail'">
                         <div class="header">
                             <div class="">
 
@@ -189,56 +195,40 @@
                 </div>
             </ng-container>
         </div>
-
-
     </div>
-    <!-- <div class="table-responsive table-wrapper">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th class="col-md-1">#</th>
-                    <th style="width: 10%;">{{ "NAME" | translate }}</th>
-                    <th style="width: 10%;">{{ "CONTACT" | translate }}</th>
-                    <th class="col-md-4"> {{ "ROLE" | translate }} </th>
-                    <th style="width: 20%;">{{ "BIO" | translate }}</th>
-                    <th style="width: 10%;">{{ "EVENT_PURPOSES" | translate }}</th>
-                    <th style="width: 10%;">{{ "PROJECT_NAME" | translate }}</th>
-                    <th style="width: 10%;">{{ "PROJECTCONTENT" | translate }}</th>
-
-
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td *ngIf="displayUsers.length ===0" colspan="9">
-                        <div class="noItem text-center">
-                            <svg-icon class="icon" src="assets/icons/Suitcase.svg"></svg-icon>
-                            <span class="d_icon_title">{{ "NORECORD" | translate }}</span>
-                        </div>
-                    </td>
-                </tr>
-                <ng-container *ngFor="let item of displayUsers; let i = index">
-                    <tr>
-                        <th>{{i+1}}</th>
-                        <td>{{item.name?item.name:""}}
-                        </td>
-                        <td>{{item.contact?item.contact:""}}</td>
-                        <td class="col-md-4">{{ item.roles}}</td>
-                        <td>
-                            <div [innerHTML]="item.introduce"> </div>
-                        </td>
-                        <td>{{displayPurpose(item.purposes, item.otherpurpose)}}</td>
-                        <td>{{item.proj_name}}</td>
-                        <td [innerHTML]="item.proj_introd"></td>
-
-
-                    </tr>
-                </ng-container>
-            </tbody>
-        </table>
-    </div> -->
 
 </div>
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
     <p class="text-white">Please Wait. </p>
 </ngx-spinner>
+<div *ngIf="selectedItem" class="modal fade" id="attendeeDetail" tabindex="-1" aria-labelledby="attendeeDetail"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="title">{{selectedItem.name}}</p>
+                <button type="button" id="close_attendee" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body content">
+                <div><span class="font-weight-bold"> {{ "ROLE"
+                        | translate }}:</span>{{ selectedItem.displayRoles }}</div>
+                <div><span class="font-weight-bold"> {{
+                        "EVENT_PURPOSES"
+                        | translate }} :</span>{{selectedItem.displayPurposes}}</div>
+
+                <div><span class="font-weight-bold"> {{ "BIO"
+                        | translate }}:</span>
+                    <div [innerHTML]="selectedItem.introduce"> </div>
+                </div>
+                <div><span class="font-weight-bold">{{ "PROJECT_NAME"
+                        | translate }} : </span>{{selectedItem.proj_name}}</div>
+                <div><span class="font-weight-bold">{{ "PROJECT_INTRO"
+                        | translate }} : </span>
+                    <div [innerHTML]="selectedItem.proj_introd"> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

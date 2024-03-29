@@ -33,13 +33,10 @@ export class AttendeesComponent implements OnInit {
   currentUser: any;
 
   foundItemNum: number = -1;
+  selectedItem = null;
 
-  sendEmail = '';
   searchUserName = '';
-  // fiter
-  filterPanelOpen: string;
-  FromDate: string;
-  ToDate: string;
+
 
   terms = {
     strPROFOUNDER: "",
@@ -107,14 +104,39 @@ export class AttendeesComponent implements OnInit {
     this.checkUser();
   }
 
-
+  onCleanClick() {
+    this.filterCondition.isProFounder = false,
+      this.filterCondition.isDeveloper = false,
+      this.filterCondition.isUI = false,
+      this.filterCondition.isUX = false,
+      this.filterCondition.isPM = false,
+      this.filterCondition.isInvestors = false,
+      this.filterCondition.isRoleOthers = false,
+      this.filterCondition.isEvent_purpose_1 = false,
+      this.filterCondition.isEvent_purpose_2 = false,
+      this.filterCondition.isEvent_purpose_3 = false,
+      this.filterCondition.isEvent_purpose_4 = false,
+      this.filterCondition.isEvent_purpose_5 = false,
+      this.filterCondition.isEvent_purpose_6 = false,
+      this.filterCondition.isEvent_purpose_7 = false,
+      this.filterCondition.isEvent_purpose_8 = false;
+    this.displayUsers = this.users;
+    this.foundItemNum = -1;
+    localStorage.removeItem("attendess");
+  }
 
   checkUser() {
 
-    if (!this.currentUser) {
+    const _data = localStorage.getItem("attendess");
+    if (!this.currentUser || !_data) {
+
+    } else {
       this.router.navigate(["./events"], {});
-      console.log("no user =================")
     }
+    // if (!this.currentUser) {
+    //   this.router.navigate(["./events"], {});
+    //   console.log("no user =================")
+    // }
     // const _data = localStorage.getItem("attendess");
     // if (!_data) {
     //   this.router.navigate(["./events"], {});
@@ -328,10 +350,7 @@ export class AttendeesComponent implements OnInit {
           }
         }
 
-
         this.displayUsers = currentItem;
-
-
 
       })
       if (this.displayUsers.length == 0 || this.displayUsers.length == this.users.length) {
@@ -420,4 +439,7 @@ export class AttendeesComponent implements OnInit {
 
   }
 
+  selectedAttendee(item) {
+    this.selectedItem = item;
+  }
 }
