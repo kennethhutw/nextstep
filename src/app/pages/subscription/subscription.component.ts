@@ -18,8 +18,6 @@ import {
 
 
 import { Utility } from "../../_helpers";
-import { environment } from '../../../environments/environment';
-import { NgxSpinnerService } from "ngx-spinner";
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

@@ -1,6 +1,7 @@
 import { ActivityService } from "./activity.service";
 import { AdminService } from "./admin.service";
 import { AppSettingsService } from "./appSettings.service";
+import { AttendeeService } from "./attendees.service";
 import { ConfirmDialogService } from "./confirm-dialog.service";
 import { ChatService } from './chat.service';
 import { CommentsService } from './comments.service';
@@ -38,6 +39,7 @@ export const services = [
     ActivityService,
     AdminService,
     AppSettingsService,
+    AttendeeService,
     ConfirmDialogService,
     ChatService,
     CommentsService,
@@ -72,6 +74,7 @@ export const services = [
 
 
 export * from "./activity.service";
+export * from "./attendees.service";
 export * from "./user.service";
 export * from "./appSettings.service";
 export * from "./admin.service";

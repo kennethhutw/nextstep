@@ -71,7 +71,8 @@
                     </div>
                     <div class="col-md-12 mb-12 form-group ">
                         <label class="pr-2" for="projectname">
-                            <h5> 專案產品</h5>
+                            <h5> {{ "PROJECT_PRODUCT"
+                                | translate }}</h5>
                         </label>
                         <div class="form-group">
                             <input type="checkbox" (change)="onProductChange($event, 'website')"

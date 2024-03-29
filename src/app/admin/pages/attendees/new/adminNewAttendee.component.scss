@@ -1,0 +1,13 @@
+.check-group {
+    display: flex;
+    gap: 48px;
+
+    @media (max-width: 450px) {
+        display: grid;
+        gap: 5px;
+    }
+}
+
+.mr-10 {
+    margin-right: 10px;
+}

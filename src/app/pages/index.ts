@@ -4,6 +4,8 @@ import { HomeOldComponent } from "./home_old/home.component";
 import { InspirationComponent } from './inspiration/inspiration.component';
 import { AboutComponent } from "./about/about.component";
 import { ActivityComponent } from "./activity/activity.component";
+import { AttendeesComponent } from "./events/attendees/attendees.component";
+import { EventsComponent } from "./events/events.component";
 import { CreateProjectComponent } from "./createproject/createProject.component";
 import { FeedbackComponent } from "./feedback/feedback.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
@@ -57,10 +59,12 @@ import { TermsComponent } from './terms/terms.component';
 export const containers = [
     ActivityComponent,
     AboutComponent,
+    AttendeesComponent,
     BeAmentorComponent,
     ChatComponent,
     CreateProjectComponent,
     DashboardComponent,
+    EventsComponent,
     ErrorComponent,
     ExampleComponent,
     FeedbackComponent,
@@ -103,7 +107,9 @@ export const containers = [
 
 export { ActivityComponent } from "./activity/activity.component";
 export { AboutComponent } from "./about/about.component";
+export { AttendeesComponent } from "./events/attendees/attendees.component";
 export { CreateProjectComponent } from "./createproject/createProject.component";
+export { EventsComponent } from "./events/events.component";
 export { ErrorComponent } from "./error/error.component";
 export { FindMentorComponent } from './findmentor/findmentor.component';
 export { FindProjectComponent } from './findproject/findproject.component';

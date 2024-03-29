@@ -702,7 +702,6 @@ export class PubProfileComponent implements OnInit {
 
   onAddWork() {
     this.submitted = true;
-    console.log("=============")
     if (this.workForm.invalid) {
       return;
     }

@@ -1,0 +1,244 @@
+<div id="findcontent" class="mx-auto  mt-50">
+    <app-left-sidebar [sidebarId]="'navbaSideMenuContent'">
+        <div header>
+            <div class="cursor-pointer" (click)="onCleanClick()"><span class="btn-clean">{{ "BTNCLEAR"
+                    | translate }}</span></div>
+            <button type="button" class="btn-close text-reset close" type="button" data-toggle="collapse"
+                data-target="#navbaSideMenuContent" aria-controls="navbaSideMenuContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div body>
+            <aside class="sidebar mt-10">
+                <nav class="sidebar-menu pb-3">
+
+
+                </nav>
+            </aside>
+        </div>
+    </app-left-sidebar>
+    <div class="dt-sidebar">
+        <div (click)="onCleanClick()"><span class="btn-clean">{{ "BTNCLEAR"
+                | translate }}</span></div>
+
+        <aside class="sidebar">
+            <nav class="sidebar-menu pt-3 pb-3">
+                <ul class="menu-items">
+                    <li class="mb-12">
+                        <span class="filter_title">{{ "ROLE"
+                            | translate }}</span>
+                    </li>
+                    <li>
+                        <input type="checkbox" [(ngModel)]="filterCondition.isProFounder"
+                            (change)="onRolesChange($event)" data-key="project" />
+                        <label class="filter_option" for="firsttimeInput">{{
+                            "PROFOUNDER"
+                            | translate }}</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" [(ngModel)]="filterCondition.isDeveloper"
+                            (change)="onRolesChange($event)" data-key="project" />
+                        <label class="filter_option" for="firsttimeInput">{{ "DEVELOPER"
+                            | translate }}</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" [(ngModel)]="filterCondition.isUI" (change)="onRolesChange($event)"
+                            data-key="project" />
+                        <label class="filter_option" for="firsttimeInput">{{
+                            "UI"
+                            | translate }}</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" [(ngModel)]="filterCondition.isUX" (change)="onRolesChange($event)"
+                            data-key="project" />
+                        <label class="filter_option" for="firsttimeInput">{{
+                            "UX"
+                            | translate }}</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" [(ngModel)]="filterCondition.isPM" (change)="onRolesChange($event)"
+                            data-key="project" />
+                        <label class="filter_option" for="firsttimeInput">{{
+                            "PM"
+                            | translate }}</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" [(ngModel)]="filterCondition.isInvestors"
+                            (change)="onRolesChange($event)" data-key="project" />
+                        <label class="filter_option" for="firsttimeInput">{{
+                            "INVESTORS"
+                            | translate }}</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" [(ngModel)]="filterCondition.isRoleOthers"
+                            (change)="onRolesChange($event)" data-key="project" />
+                        <label class="filter_option" for="firsttimeInput">{{
+                            "OTHERS"
+                            | translate }}</label>
+                    </li>
+
+
+                </ul>
+
+                <ul class="menu-items">
+                    <li class="mb-12">
+                        <span class="filter_title">{{
+                            "EVENT_PURPOSES"
+                            | translate }}</span>
+                    </li>
+                    <li>
+                        <input id="event_purpose_1" type="checkbox" [(ngModel)]="filterCondition.isEvent_purpose_1"
+                            (change)="onPurposeChange($event)" data-key="project" />
+                        <label class="filter_option" for="event_purpose_1">{{
+                            "EVENT_PURPOSE_1"
+                            | translate }}</label>
+                    </li>
+                    <li>
+                        <input id="event_purpose_2" type="checkbox" [(ngModel)]="filterCondition.isEvent_purpose_2"
+                            (change)="onPurposeChange($event)" data-key="project" />
+                        <label class="filter_option" for="event_purpose_2">{{
+                            "EVENT_PURPOSE_2"
+                            | translate }}</label>
+                    </li>
+                    <li>
+                        <input id="event_purpose_3" type="checkbox" [(ngModel)]="filterCondition.isEvent_purpose_3"
+                            (change)="onPurposeChange($event)" data-key="project" />
+                        <label class="filter_option" for="event_purpose_3">{{
+                            "EVENT_PURPOSE_3"
+                            | translate }}</label>
+                    </li>
+                    <li>
+                        <input id="event_purpose_4" type="checkbox" [(ngModel)]="filterCondition.isEvent_purpose_4"
+                            (change)="onPurposeChange($event)" data-key="project" />
+                        <label class="filter_option" for="event_purpose_4">{{
+                            "EVENT_PURPOSE_4"
+                            | translate }}</label>
+                    </li>
+                    <li>
+                        <input id="event_purpose_5" type="checkbox" [(ngModel)]="filterCondition.isEvent_purpose_5"
+                            (change)="onPurposeChange($event)" data-key="project" />
+                        <label class="filter_option" for="event_purpose_5">{{
+                            "EVENT_PURPOSE_5"
+                            | translate }}</label>
+                    </li>
+                    <li>
+                        <input id="event_purpose_6" type="checkbox" [(ngModel)]="filterCondition.isEvent_purpose_6"
+                            (change)="onPurposeChange($event)" data-key="project" />
+                        <label class="filter_option" for="event_purpose_6">{{
+                            "EVENT_PURPOSE_6"
+                            | translate }}</label>
+                    </li>
+                    <li>
+                        <input id="event_purpose_7" type="checkbox" [(ngModel)]="filterCondition.isEvent_purpose_7"
+                            (change)="onPurposeChange($event)" data-key="project" />
+                        <label class="filter_option" for="event_purpose_7">{{
+                            "EVENT_PURPOSE_7"
+                            | translate }}</label>
+                    </li>
+                </ul>
+
+            </nav>
+        </aside>
+
+    </div>
+    <div>
+        {{foundItemNum}}
+
+        <div class="row">
+            <ng-container *ngFor="let item of  displayUsers; let i = index">
+                <div class="col-md-6 text-center">
+                    <div class="card card-white grid-margin cursor-pointer">
+                        <div class="header">
+                            <div class="">
+
+                                <h6 class="mt-10 mb-10 text-body name text-left">{{ item.name }}</h6>
+
+
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-left ">
+                                <span class="font-weight-bold"> {{ "ROLE"
+                                    | translate }}:</span>{{ item.displayRoles }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-left bio-body ">
+                                <span class="font-weight-bold"> {{
+                                    "BIO"
+                                    | translate }} :</span><br> <span *ngIf="item.introduce" class="text_contents"
+                                    [innerHTML]="item.introduce.length>100 ?
+                                    item.introduce.substring(0,100)+' ...':item.introduce"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-left ">
+                                <span class="font-weight-bold"> {{
+                                    "EVENT_PURPOSES"
+                                    | translate }} :</span>{{item.displayPurposes}}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </ng-container>
+        </div>
+
+
+    </div>
+    <!-- <div class="table-responsive table-wrapper">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="col-md-1">#</th>
+                    <th style="width: 10%;">{{ "NAME" | translate }}</th>
+                    <th style="width: 10%;">{{ "CONTACT" | translate }}</th>
+                    <th class="col-md-4"> {{ "ROLE" | translate }} </th>
+                    <th style="width: 20%;">{{ "BIO" | translate }}</th>
+                    <th style="width: 10%;">{{ "EVENT_PURPOSES" | translate }}</th>
+                    <th style="width: 10%;">{{ "PROJECT_NAME" | translate }}</th>
+                    <th style="width: 10%;">{{ "PROJECTCONTENT" | translate }}</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td *ngIf="displayUsers.length ===0" colspan="9">
+                        <div class="noItem text-center">
+                            <svg-icon class="icon" src="assets/icons/Suitcase.svg"></svg-icon>
+                            <span class="d_icon_title">{{ "NORECORD" | translate }}</span>
+                        </div>
+                    </td>
+                </tr>
+                <ng-container *ngFor="let item of displayUsers; let i = index">
+                    <tr>
+                        <th>{{i+1}}</th>
+                        <td>{{item.name?item.name:""}}
+                        </td>
+                        <td>{{item.contact?item.contact:""}}</td>
+                        <td class="col-md-4">{{ item.roles}}</td>
+                        <td>
+                            <div [innerHTML]="item.introduce"> </div>
+                        </td>
+                        <td>{{displayPurpose(item.purposes, item.otherpurpose)}}</td>
+                        <td>{{item.proj_name}}</td>
+                        <td [innerHTML]="item.proj_introd"></td>
+
+
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+    </div> -->
+
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p class="text-white">Please Wait. </p>
+</ngx-spinner>

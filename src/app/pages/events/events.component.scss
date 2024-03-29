@@ -1,0 +1,23 @@
+ .container {
+     min-height: 50vh;
+     display: flex;
+     gap: 30px;
+     flex-direction: column;
+     margin-top: 50px;
+
+
+ }
+
+ .page-title {
+     font-weight: 800;
+     font-size: 32px;
+     // border-bottom:9px solid #17F596;
+     padding-bottom: 10px;
+
+ }
+
+ .row-title {
+     padding-top: 25px !important;
+     padding-bottom: 10px !important;
+     font-size: 24px !important;
+ }

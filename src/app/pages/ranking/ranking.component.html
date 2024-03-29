@@ -79,9 +79,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr *ngIf="recruit.length ===0">
                                         <td colspan="9">
-                                            <div class="noItem text-center" *ngIf="recruit.length ===0">
+                                            <div class="noItem text-center">
                                                 <svg-icon class="icon" src="assets/icons/Suitcase.svg"></svg-icon>
                                                 <span class="d_icon_title">{{ "NORECORD" | translate }}</span>
                                             </div>
@@ -167,9 +167,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr *ngIf="mentors.length ===0">
                                         <td colspan="9">
-                                            <div class="noItem text-center" *ngIf="mentors.length ===0">
+                                            <div class="noItem text-center">
                                                 <svg-icon class="icon" src="assets/icons/NoMentor.svg"></svg-icon>
                                                 <span class="d_icon_title">{{ "NORECORD" | translate }}</span>
                                             </div>

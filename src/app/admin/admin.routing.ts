@@ -12,6 +12,10 @@ export const AdminLayoutRoutes: Routes = [
 
   { path: 'users', component: Containers.AdminUsersComponent },
   { path: 'users/info/:id', component: Containers.UserInfoComponent },
+  { path: 'attendees', component: Containers.AdminAttendeesComponent },
+  { path: 'attendees/info/:id', component: Containers.AdminAttendeesInfoComponent },
+  { path: 'attendees/new', component: Containers.AdminNewAttendeeComponent },
+  { path: 'attendees/edit/:id', component: Containers.AdminNewAttendeeComponent },
   { path: 'notifications', component: Containers.NotificationsComponent },
   { path: 'usersetting/:id', component: Containers.UserSettingComponent },
   { path: 'projects', component: Containers.AdminProjectsComponent },

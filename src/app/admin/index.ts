@@ -6,6 +6,9 @@ import { MapsComponent } from './pages/maps/maps.component';
 import { NotificationsComponent } from './pages/notifications/notifications.component';
 
 import { AdminUsersComponent } from './pages/users/adminusers.component';
+import { AdminAttendeesComponent } from './pages/attendees/adminAttendees.component';
+import { AdminAttendeesInfoComponent } from './pages/attendees/info/adminAttendeesInfo.component';
+import { AdminNewAttendeeComponent } from './pages/attendees/new/adminNewAttendee.component';
 import { UserSettingComponent } from './pages/users/usersetting/usersetting.component';
 import { AdminDelegateEmailComponent } from './pages/delegateEmail/delegate-email.component';
 import { UserInfoComponent } from './pages/users/info/info.component';
@@ -21,6 +24,9 @@ export const containers = [
     AdminProjectsComponent,
     AdminDelegateEmailComponent,
     AdminSettingsComponent,
+    AdminAttendeesComponent,
+    AdminAttendeesInfoComponent,
+    AdminNewAttendeeComponent,
     AdminUsersComponent,
 
     DashboardComponent,
@@ -51,5 +57,8 @@ export { UserInfoComponent } from './pages/users/info/info.component';
 export { AdminSettingsComponent } from './pages/settings/settings.component';
 
 export { AdminProjectsComponent } from './pages/projects/projects.component';
+export { AdminAttendeesComponent } from './pages/attendees/adminAttendees.component';
+export { AdminAttendeesInfoComponent } from './pages/attendees/info/adminAttendeesInfo.component';
+export { AdminNewAttendeeComponent } from './pages/attendees/new/adminNewAttendee.component';
 export { ProjectInfoComponent } from './pages/projects/info/info.component';
 export { ProjectSettingComponent } from './pages/projects/projectsetting/setting.component';

@@ -1,0 +1,238 @@
+<div class="mx-auto content">
+    <div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a [routerLink]="['/admin/attendees']">Attendees</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Library</li>
+            </ol>
+        </nav>
+        <form [formGroup]="attendeeForm">
+            <div class="row">
+                <div class="col-md-12 mb-12 form-group ">
+                    <label class="pr-2" for="name">
+                        <h5>{{ "NAME"
+                            | translate }}*</h5>
+                    </label>
+                    <input type="text" formControlName="name" id="name" class="form-control mr-10">
+                    <div *ngIf="submitted && f.name.errors">
+                        <div class="error-msg" *ngIf="f.name.errors.required">
+                            Name is required
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-12 form-group ">
+                    <label class="pr-2" for="email">
+                        <h5>{{ "Email"
+                            | translate }}*</h5>
+                    </label>
+                    <input type="text" formControlName="email" id="email" class="form-control mr-10">
+                    <div *ngIf="submitted && f.email.errors">
+                        <div class="error-msg" *ngIf="f.email.errors.required">
+                            Email is required
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-12 form-group ">
+                    <label class="pr-2" for="contact">
+                        <h5>{{ "contact"
+                            | translate }}</h5>
+                    </label>
+                    <input type="text" formControlName="contact" id="contact" class="form-control mr-10">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-12 form-group ">
+                    <label class="pr-2">
+                        <h5> {{ "ISSHAREINFO"
+                            | translate }}</h5>
+                    </label>
+                    <div class="form-check check-group ">
+
+                        <input type="checkbox" (change)="onIsShareChange($event)" [checked]="f.isShare.value"
+                            value="f.isShare.value"><span>{{
+                            "YES"
+                            | translate }} </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-12 form-group ">
+                    <label class="pr-2" for="event_date">
+                        <h5>{{ "EVENT_DATE"
+                            | translate }}</h5>
+                    </label>
+                    <input type="text" formControlName="event_date" id="event_date" class="form-control mr-10">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-12 form-group ">
+                    <label class="pr-2">
+                        <h5> {{ "ROLE"
+                            | translate }}</h5>
+                    </label>
+                    <div class="form-check check-group ">
+
+                        <input type="checkbox" (change)="onRoleChange($event, '1')"
+                            [checked]="isInValue('1', f.roles.value)"><span>{{
+                            "PROFOUNDER"
+                            | translate }}</span>
+                        <input type="checkbox" (change)="onRoleChange($event, '2')"
+                            [checked]="isInValue('2', f.roles.value)"><span>{{
+                            "DEVELOPER"
+                            | translate }}
+                        </span>
+                        <input type="checkbox" (change)="onRoleChange($event, '3')"
+                            [checked]="isInValue('3', f.roles.value)"><span>{{
+                            "UI"
+                            | translate }}
+                        </span>
+                    </div>
+                    <div class="form-check check-group ">
+                        <input type="checkbox" (change)="onRoleChange($event, '4')"
+                            [checked]="isInValue('4', f.roles.value)"><span>{{
+                            "UX"
+                            | translate }}
+                        </span>
+                        <input type="checkbox" (change)="onRoleChange($event, '5')"
+                            [checked]="isInValue('5', f.roles.value)"><span>{{
+                            "EVENTPARTNER"
+                            | translate }}
+                        </span>
+                        <input type="checkbox" (change)="onRoleChange($event, '6')"
+                            [checked]="isInValue('6', f.roles.value)"><span>{{
+                            "PM"
+                            | translate }}
+                        </span>
+                    </div>
+                    <div class="form-check check-group ">
+                        <input type="checkbox" (change)="onRoleChange($event, '7')"
+                            [checked]="isInValue('7', f.roles.value)"><span>{{
+                            "INVESTORS"
+                            | translate }}
+                        </span>
+                        <input type="checkbox" (change)="onRoleChange($event, '8')"
+                            [checked]="isInValue('8', f.roles.value)"><span style=" display: flex;">{{
+                            "OTHERS"
+                            | translate }} <input type="text" formControlName="otherrole" id="otherrole"
+                                class="form-control ml-10">
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-12 form-group ">
+                    <label class="pr-2" for="introduce">
+                        <h5> {{
+                            "BIO"
+                            | translate }}</h5>
+                    </label>
+                    <textarea formControlName="introduce" id="introduce" type="text" class="form-control" id="" rows="4"
+                        cols="50"
+                        placeholder="範例:     目前想轉UIUX，之前是平面設計，想透過Side Project來提升工作技能 想找side project 增加自己的作品與獲取更多經驗"></textarea>
+                    <div *ngIf="submitted && f.introduce.errors">
+                        <div class="error-msg" *ngIf="f.introduce.errors.required">
+                            {{ "PROJECT_INTRO_MUST" | translate }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 mb-12 form-group ">
+                    <label class="pr-2">
+                        <h5> {{ "EVENT_PURPOSES"
+                            | translate }}</h5>
+                    </label>
+                    <div class="form-check check-group ">
+
+                        <input type="checkbox" (change)="onPurposesChange($event, '1')"
+                            [checked]="isInValue('1', f.purposes.value)"><span>{{
+                            "EVENT_PURPOSE_1"
+                            | translate }}</span>
+                        <input type="checkbox" (change)="onPurposesChange($event, '2')"
+                            [checked]="isInValue('2', f.purposes.value)"><span>{{
+                            "EVENT_PURPOSE_2"
+                            | translate }}
+                        </span>
+                        <input type="checkbox" (change)="onPurposesChange($event, '3')"
+                            [checked]="isInValue('3', f.purposes.value)"><span>{{
+                            "EVENT_PURPOSE_3"
+                            | translate }}
+                        </span>
+                    </div>
+                    <div class="form-check check-group ">
+                        <input type="checkbox" (change)="onPurposesChange($event, '4')"
+                            [checked]="isInValue('4', f.purposes.value)"><span>{{
+                            "EVENT_PURPOSE_4"
+                            | translate }}
+                        </span>
+                        <input type="checkbox" (change)="onPurposesChange($event, '5')"
+                            [checked]="isInValue('5', f.purposes.value)"><span>{{
+                            "EVENT_PURPOSE_5"
+                            | translate }}
+                        </span>
+                        <input type="checkbox" (change)="onPurposesChange($event, '6')"
+                            [checked]="isInValue('6', f.purposes.value)"><span>{{
+                            "EVENT_PURPOSE_6"
+                            | translate }}
+                        </span>
+                    </div>
+                    <div class="form-check check-group ">
+                        <input type="checkbox" (change)="onPurposesChange($event, '7')"
+                            [checked]="isInValue('7', f.purposes.value)"><span>{{
+                            "EVENT_PURPOSE_7"
+                            | translate }}
+                        </span>
+                        <input type="checkbox" (change)="onPurposesChange($event, '8')"
+                            [checked]="isInValue('8', f.purposes.value)"><span style=" display: flex;">{{
+                            "OTHERS"
+                            | translate }} <input type="text" formControlName="otherpurpose" id="otherpurpose"
+                                class="form-control ml-10">
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-12 form-group ">
+                    <label class="pr-2" for="proj_name">
+                        <h5>{{ "PROJECT_NAME"
+                            | translate }}</h5>
+                    </label>
+                    <input type="text" formControlName="proj_name" id="proj_name" class="form-control mr-10">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-12 form-group ">
+                    <label class="pr-2" for="proj_introd">
+                        <h5>{{ "PROJECT_INTRO"
+                            | translate }}</h5>
+                    </label>
+                    <textarea formControlName="proj_introd" id="proj_introd" type="text" class="form-control" id=""
+                        rows="4" cols="50"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="text-center mt-40">
+                    <button (click)="onSubmit()" id="member_last_btn_w100" class="btn_normal mb-20">
+                        Save
+                    </button>
+                </div>
+                <div class="text-center  mb-40">
+                    <div *ngIf="msg">{{msg}}</div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+<app-confirm-dialog></app-confirm-dialog>

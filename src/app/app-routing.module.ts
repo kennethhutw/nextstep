@@ -87,6 +87,14 @@ const routes: Routes = [
       { path: "error", component: Pages.ErrorComponent, pathMatch: "full" },
       { path: "resources", component: Pages.ResourcesComponent },
       { path: "inspiration", component: Pages.InspirationComponent },
+      {
+        path: "events",
+
+        children: [
+          { path: "", component: Pages.EventsComponent },
+          { path: "attendees", component: Pages.AttendeesComponent }
+        ]
+      },
       { path: "recruit", component: Pages.RecruitComponent },
       {
         path: "newProject",
@@ -130,7 +138,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: './admin/admin.module#AdminLayoutModule'
+
+        loadChildren: () => import('./admin/admin.module').then(mod => mod.AdminLayoutModule)
       }
     ]
   },
