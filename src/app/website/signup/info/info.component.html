@@ -85,8 +85,43 @@
                                 cols="50"></textarea>
                             <div><span id="wordCount">({{ words }} / 300 )</span></div>
                         </div>
+                        <div class="form-group">
+                            <ul class="menu-items">
+                                <label for="WANTUTODO">{{'WANTUTODO' | translate
+                                    }}</label>
+                                <li>
+                                    <input type="checkbox" id="isProjectcb" [(ngModel)]="isProject"
+                                        (change)="onSelectedProject()" data-key="project" />
+                                    <label class="filter_option" for="isProjectcb">{{
+                                        "SECTION_0_BTN_1"
+                                        | translate }}</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="isPartnercb" [(ngModel)]="isPartner"
+                                        (change)="onSelectedPartner()" data-key="partner" />
+                                    <label class="filter_option" for="isPartnercb">{{
+                                        "SECTION_0_BTN_2"
+                                        | translate }}</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="isMentorcb" [(ngModel)]="isMentor"
+                                        (change)="onSelectedMentor()" data-key="mentor" />
+                                    <label class="filter_option" for="isMentorcb">{{
+                                        "SECTION_0_BTN_3"
+                                        | translate }}</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="beMentorcb" [(ngModel)]="beMentor"
+                                        (change)="onSelectedBeMontor()" data-key="beMontor" />
+                                    <label class="filter_option" for="beMentorcb">{{
+                                        "SECTION_0_BTN_4"
+                                        | translate }}</label>
+                                </li>
+
+                            </ul>
+                        </div>
                         <div class="form-group mt-36">
-                            <button type="button" [disabled]="!profileForm.valid" (click)="NextStep(1)"
+                            <button type="button" [disabled]="!profileForm.valid" (click)="onSubmit()"
                                 class="btn btn-continue ">{{'NEXT' | translate
                                 }}</button>
                         </div>
@@ -211,7 +246,7 @@
 
         <div class="col-md-12 mt-50 text-center">
 
-            <button type="button" (click)="NextStep(1)" class="btn btn-step-2 mr-2">
+            <button type="button" (click)="NextStep(0)" class="btn btn-step-2 mr-2">
                 {{'PRESTEP' | translate }}</button>
             <button type="button" (click)="GoDashboard()" class="btn btn-step-2 mr-2">
                 {{'SKIP' | translate }}</button>
@@ -428,8 +463,10 @@
 
         <div class="row">
             <div class="col-md-12 mb-12 form-group button-center">
-                <button type="button" (click)="NextStep(2)" class="btn btn-step-2 mr-2">
+                <button type="button" (click)="NextStep(0)" class="btn btn-step-2 mr-2">
                     {{'PRESTEP' | translate }}</button>
+                <button type="button" (click)="GoDashboard()" class="btn btn-step-2 mr-2">
+                    {{'SKIP' | translate }}</button>
                 <button type="button" class="btn btn-transparent mr-10" [disabled]="!projectForm.valid"
                     (click)="onSaveDraft()">
                     {{ "SAVE_DRAFT" | translate }}</button>
