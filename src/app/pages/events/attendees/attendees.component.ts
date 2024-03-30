@@ -37,6 +37,16 @@ export class AttendeesComponent implements OnInit {
 
   searchUserName = '';
 
+  statistics = {
+    founderNum: 0,
+    devNum: 0,
+    uiNum: 0,
+    uxNum: 0,
+    pmNum: 0,
+    investorNum: 0,
+    otherNum: 0
+  }
+
 
   terms = {
     strPROFOUNDER: "",
@@ -231,25 +241,32 @@ export class AttendeesComponent implements OnInit {
     roles.forEach(element => {
       if (element == "1") {
         _roles += this.terms.strPROFOUNDER + ";";
+        this.statistics.founderNum += 1;
       }
       if (element == "2") {
         _roles += this.terms.strDEVELOPER + ";";
+        this.statistics.devNum += 1;
       }
       if (element == "3") {
         _roles += this.terms.strUI + ";";
+        this.statistics.uiNum += 1;
       }
       if (element == "4") {
         _roles += this.terms.strUX + ";";
+        this.statistics.uxNum += 1;
       }
       if (element == "6") {
         _roles += this.terms.strPM + ";";
+        this.statistics.pmNum += 1;
       }
       if (element == "7") {
         _roles += this.terms.strINVESTORS + ";";
+        this.statistics.investorNum += 1;
       }
 
       if (element == "8") {
         _roles += otherrole + ";";
+        this.statistics.otherNum += 1;
       }
     })
     return _roles;

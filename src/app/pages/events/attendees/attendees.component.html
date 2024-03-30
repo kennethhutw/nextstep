@@ -254,6 +254,32 @@
 
     </div>
     <div>
+        <div class="count-section">
+            <div class="row">
+                <div class="col-md-4 count_title">
+                    <span class="font-weight-bold"> {{"PROFOUNDER" | translate }} :
+                    </span>{{this.statistics.founderNum}}
+                </div>
+                <div class="col-md-4 count_title">
+                    <span class="font-weight-bold"> {{"DEVELOPER" | translate }}: </span>{{this.statistics.devNum}}
+                </div>
+                <div class="col-md-4 count_title">
+                    <span class="font-weight-bold"> {{"UI" | translate }}: </span>{{this.statistics.uiNum}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 count_title">
+                    <span class="font-weight-bold"> {{"UX" | translate }} : </span>{{this.statistics.uxNum}}
+                </div>
+                <div class="col-md-4 count_title">
+                    <span class="font-weight-bold"> {{"PM" | translate }}: </span>{{this.statistics.pmNum}}
+                </div>
+                <div class="col-md-4 count_title">
+                    <span class="font-weight-bold"> {{"INVESTORS" | translate }}: </span>
+                    {{this.statistics.investorNum}}
+                </div>
+            </div>
+        </div>
         <div class="row" *ngIf="foundItemNum >0">
             <div class="col-md-12">
                 <p> {{foundItemNum}} {{ "NFOUND"
