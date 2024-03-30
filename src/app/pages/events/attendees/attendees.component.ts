@@ -122,17 +122,17 @@ export class AttendeesComponent implements OnInit {
       this.filterCondition.isEvent_purpose_8 = false;
     this.displayUsers = this.users;
     this.foundItemNum = -1;
-    localStorage.removeItem("attendess");
+
   }
 
   checkUser() {
 
-    const _data = localStorage.getItem("attendess");
-    if (!this.currentUser || !_data) {
+    // const _data = localStorage.getItem("attendess");
+    // if (!this.currentUser || !_data) {
 
-    } else {
-      this.router.navigate(["./events"], {});
-    }
+    // } else {
+    //   this.router.navigate(["./events"], {});
+    // }
     // if (!this.currentUser) {
     //   this.router.navigate(["./events"], {});
     //   console.log("no user =================")
