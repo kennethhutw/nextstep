@@ -117,12 +117,12 @@ export class SignupInfoComponent implements OnInit {
     this.projectForm = this.formBuilder.group({
       name: ["", Validators.required],
       description: [""],
-      isFindPartner: [0, Validators.required],
-      isFunding: [0, Validators.required],
-      isCofounder: [0, Validators.required],
+      isFindPartner: [0],
+      isFunding: [0],
+      isCofounder: [0],
       product: [""],
-      type: ["", Validators.required],
-      stages: ["", Validators.required]
+      type: [""],
+      stages: [""]
     });
   }
 
