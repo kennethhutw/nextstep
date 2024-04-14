@@ -90,29 +90,29 @@
                                 <label for="WANTUTODO">{{'WANTUTODO' | translate
                                     }}</label>
                                 <li>
-                                    <input type="checkbox" id="isProjectcb" [(ngModel)]="isProject"
-                                        (change)="onSelectedProject()" data-key="project" />
+                                    <input type="checkbox" id="isProjectcb" formControlName="isProject"
+                                        (change)="onSelectedType($event, 'isProject')" data-key="project" />
                                     <label class="filter_option" for="isProjectcb">{{
                                         "SECTION_0_BTN_1"
                                         | translate }}</label>
                                 </li>
                                 <li>
-                                    <input type="checkbox" id="isPartnercb" [(ngModel)]="isPartner"
-                                        (change)="onSelectedPartner()" data-key="partner" />
+                                    <input type="checkbox" id="isPartnercb" formControlName="isPartner"
+                                        (change)="onSelectedType($event, 'isPartner')" data-key="partner" />
                                     <label class="filter_option" for="isPartnercb">{{
                                         "SECTION_0_BTN_2"
                                         | translate }}</label>
                                 </li>
                                 <li>
-                                    <input type="checkbox" id="isMentorcb" [(ngModel)]="isMentor"
-                                        (change)="onSelectedMentor()" data-key="mentor" />
+                                    <input type="checkbox" id="isMentorcb" formControlName="isMentor"
+                                        (change)="onSelectedType($event, 'isMentor')" data-key="mentor" />
                                     <label class="filter_option" for="isMentorcb">{{
                                         "SECTION_0_BTN_3"
                                         | translate }}</label>
                                 </li>
                                 <li>
-                                    <input type="checkbox" id="beMentorcb" [(ngModel)]="beMentor"
-                                        (change)="onSelectedBeMontor()" data-key="beMontor" />
+                                    <input type="checkbox" id="beMentorcb" formControlName="beMentor"
+                                        (change)="onSelectedType($event, 'beMentor')" data-key="beMontor" />
                                     <label class="filter_option" for="beMentorcb">{{
                                         "SECTION_0_BTN_4"
                                         | translate }}</label>

@@ -108,7 +108,10 @@ export class SignupInfoComponent implements OnInit {
       twitter: [""],
       linkedin: [""],
       tags: [""],
-
+      isProject: [false],
+      isPartner: [false],
+      beMentor: [false],
+      isMentor: [false],
     });
 
     this.projectForm = this.formBuilder.group({
@@ -146,8 +149,14 @@ export class SignupInfoComponent implements OnInit {
     return this.profileForm.invalid;
   }
 
+  onSelectedType($event, property) {
+    this.profileForm.get(property).setValue($event.target.checked);
+  }
+
   onSelectedProject() {
     this.isProject = !this.isProject;
+
+    // this.projectForm.get(property).setValue($event.target.checked);
   }
   onSelectedPartner() {
     this.isPartner = !this.isPartner;
@@ -186,16 +195,16 @@ export class SignupInfoComponent implements OnInit {
       }
 
       let _tags = "";
-      if (this.isProject) {
+      if (values.isProject) {
         _tags += "findProject,";
       }
-      if (this.isPartner) {
+      if (values.isPartner) {
         _tags += "findPartner,";
       }
-      if (this.beMentor) {
+      if (values.beMentor) {
         _tags += "beMentor,";
       }
-      if (this.isMentor) {
+      if (values.isMentor) {
         _tags += "findMentor,";
       }
 
@@ -239,7 +248,7 @@ export class SignupInfoComponent implements OnInit {
   }
 
   NextStep(value) {
-    console.log("XXXXXxxx =====", value);
+
     this.submitted = true;
 
     if (this.profileForm.invalid) {
@@ -293,6 +302,7 @@ export class SignupInfoComponent implements OnInit {
   onStatusChange($event, property) {
     this.projectForm.get(property).setValue($event.target.checked);
   }
+
   onProductChange($event, value) {
     var _values = this.projectForm.get('product').value;
 
