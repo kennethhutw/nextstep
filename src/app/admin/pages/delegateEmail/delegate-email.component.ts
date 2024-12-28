@@ -104,7 +104,7 @@ export class AdminDelegateEmailComponent implements OnInit {
   // Adds a new delegating
   addEmailEntry() {
     this.submitted = true;
-    console.log("=============", this.emailsForm.value)
+
     this.testEmailToAdd = this.emailsForm.value.testEmail;
     this.delegatingEmailToAdd = this.emailsForm.value.delegatingEmail;
 

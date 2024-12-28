@@ -129,7 +129,6 @@ export class EventsComponent implements OnInit {
     }
 
     this.attendeeSrv.getByEmail(values.email).then(res => {
-      console.log("=================", res);
       if (res['result'] == 'successful') {
 
         localStorage.setItem("attendess", values.email);

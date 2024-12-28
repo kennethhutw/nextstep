@@ -281,7 +281,6 @@ export class MyProjectProfileComponent implements OnInit, AfterViewInit {
 
   onStageChange($event, value) {
     var _values = this.projectForm.get('stages').value;
-    console.log('onStageChange ==============');
     if ($event.target.checked) {
       _values += "," + value;
     } else {

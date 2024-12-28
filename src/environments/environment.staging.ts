@@ -1,7 +1,7 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://next.airland.io:8443',
-    assetUrl: 'https://next.airland.io:8443',
+    apiUrl: 'https://next-backend.zeabur.app',
+    assetUrl: 'https://next-backend.zeabur.app',
     environment: 'staging',
     gtag: 'G-3T59MY55H9'
     //0xF52D3DBfB49a3045189E8C28196E493d73C6cFA3
