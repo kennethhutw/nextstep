@@ -87,6 +87,7 @@ const routes: Routes = [
       { path: "error", component: Pages.ErrorComponent, pathMatch: "full" },
       { path: "resources", component: Pages.ResourcesComponent },
       { path: "inspiration", component: Pages.InspirationComponent },
+      { path: "attendee", component: Pages.AttendeeComponent },
       {
         path: "events",
 

@@ -5,6 +5,7 @@ import { InspirationComponent } from './inspiration/inspiration.component';
 import { AboutComponent } from "./about/about.component";
 import { ActivityComponent } from "./activity/activity.component";
 import { AttendeesComponent } from "./events/attendees/attendees.component";
+import { AttendeeComponent } from "./attendee/attendee.component";
 import { EventsComponent } from "./events/events.component";
 import { CreateProjectComponent } from "./createproject/createProject.component";
 import { FeedbackComponent } from "./feedback/feedback.component";
@@ -60,6 +61,7 @@ export const containers = [
     ActivityComponent,
     AboutComponent,
     AttendeesComponent,
+    AttendeeComponent,
     BeAmentorComponent,
     ChatComponent,
     CreateProjectComponent,
@@ -108,6 +110,7 @@ export const containers = [
 export { ActivityComponent } from "./activity/activity.component";
 export { AboutComponent } from "./about/about.component";
 export { AttendeesComponent } from "./events/attendees/attendees.component";
+export { AttendeeComponent } from "./attendee/attendee.component";
 export { CreateProjectComponent } from "./createproject/createProject.component";
 export { EventsComponent } from "./events/events.component";
 export { ErrorComponent } from "./error/error.component";

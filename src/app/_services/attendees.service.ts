@@ -19,7 +19,7 @@ export class AttendeeService {
     async getByEmail(email: string) {
         const params = new HttpParams().set("email", email);
         return await this.http
-            .get<any>(`${environment.apiUrl}/${serviceName}/getByEmail`, {
+            .get<any>(`${environment.apiUrl}/${serviceName}/email`, {
                 params: params,
             })
             .toPromise();

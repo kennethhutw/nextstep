@@ -1,0 +1,112 @@
+<div class="mx-auto content mt-50">
+    <div class="row">
+        <div class="col-md-12">
+            <span class="page-title">{{"EVENTS" | translate }} </span>
+        </div>
+    </div>
+
+    <div class="row mt-10 pb-33 mb-20 bottom-gray-line"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <span class="row-title">{{"EVENT_PAGE_TITLE_2" |
+                translate }} </span>
+        </div>
+        <div class="col-md-12 mt-10">
+
+            <form [formGroup]="subForm">
+                <div class="row">
+                    <div class="col-md-12  form-group form-inline">
+                        <label class="pr-2" for="email">
+                            <span>Email :</span>
+                        </label>
+                        <input type="email" class="form-control" id="email" aria-describedby="email"
+                            formControlName="email"
+                            [ngClass]="{ 'is-invalid': (subForm.get('email').touched || subForm.get('email').dirty) && subForm.get('email').invalid || submitted && subForm.get('email').invalid }"
+                            placeholder="Your Email">
+
+                        <button type="submit" class="btn-blue d-flex align-items-center justify-content-center"
+                            [disabled]="inValid()" (click)="onSubmit()">
+                            {{"CHECK" | translate }}
+                        </button>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12  form-group form-inline">
+                            <span class="invalid-feedback">{{"EMAILFORMATNOT" | translate
+                                }}</span>
+                        </div>
+                    </div>
+                    <div *ngIf="notFound" class="col-md-12 text-red">
+
+                        <label class="pr-2" for="email"> {{"NOTFOUND" | translate
+                            }}</label>
+
+                    </div>
+                </div>
+
+
+            </form>
+
+            <div class="row">
+                <ng-container *ngIf="userInfo">
+                    <div class="col-md-6 text-center">
+                        <div class="card card-white grid-margin cursor-pointer" (click)="selectedAttendee(item)"
+                            data-toggle="modal" [attr.data-target]="'#attendeeDetail'">
+                            <div class="row">
+                                <div class="col-md-12 text-left">
+                                    <span class="font-weight-bold"> {{ "EMAIL"
+                                        | translate }}: </span>
+                                    {{ userInfo.email }}
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 text-left">
+                                    <span class="font-weight-bold"> {{ "NAME"
+                                        | translate }}: </span>
+                                    {{ userInfo.name }}
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 text-left ">
+                                    <span class="font-weight-bold"> {{ "ROLE"
+                                        | translate }}: </span>{{ userInfo.displayRoles }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 text-left bio-body ">
+                                    <span class="font-weight-bold"> {{
+                                        "BIO"
+                                        | translate }} : </span><br> <span *ngIf="userInfo.introduce"
+                                        class="text_contents" [innerHTML]="userInfo.introduce.length>100 ?
+                                                userInfo.introduce.substring(0,100)+' ...':userInfo.introduce"></span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 text-left ">
+                                    <span class="font-weight-bold"> {{
+                                        "EVENT_PURPOSES"
+                                        | translate }} : </span>{{userInfo.displayPurposes}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 text-left ">
+                                    <span class="font-weight-bold"> {{
+                                        "CONTACT"
+                                        | translate }} : </span>{{userInfo.contact}}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </ng-container>
+            </div>
+
+        </div>
+    </div>
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p class="text-white">Please Wait. </p>
+</ngx-spinner>
